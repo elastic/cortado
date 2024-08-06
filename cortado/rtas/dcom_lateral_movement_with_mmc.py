@@ -18,7 +18,7 @@ metadata = RtaMetadata(
     id="7f4cfcf6-881b-48b0-864d-21eba06e57cc",
     platforms=["windows"],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "51ce96fb-9e52-4dad-b0ba-99b54440fc9a", "rule_name": "Incoming DCOM Lateral Movement with MMC"}],
+    siem_rules=[RuleMetadata(id="51ce96fb-9e52-4dad-b0ba-99b54440fc9a", name="Incoming DCOM Lateral Movement with MMC")],
     techniques=["T1021"],
 )
 

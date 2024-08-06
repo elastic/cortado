@@ -13,7 +13,7 @@ metadata = RtaMetadata(
     platforms=["macos"],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_name": "Persistence via Docker Shortcut Modification", "rule_id": "c81cefcb-82b9-4408-a533-3c3df549e62d"}
+        RuleMetadata(id="c81cefcb-82b9-4408-a533-3c3df549e62d", name="Persistence via Docker Shortcut Modification")
     ],
     techniques=["T1543"],
 )

@@ -18,7 +18,7 @@ metadata = RtaMetadata(
     id="8ffd2053-c04a-435a-84b3-a8403a5395db",
     platforms=["windows"],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "581add16-df76-42bb-af8e-c979bfb39a59", "rule_name": "Deleting Backup Catalogs with Wbadmin"}],
+    siem_rules=[RuleMetadata(id="581add16-df76-42bb-af8e-c979bfb39a59", name="Deleting Backup Catalogs with Wbadmin")],
     techniques=["T1490"],
 )
 

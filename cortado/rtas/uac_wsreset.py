@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="e8612e97-2df7-4e85-94ee-e61bc58c6479",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "UAC Bypass via WSReset Execution Hijack", "rule_id": "11c67af9-9599-4800-9e84-bd38f2a51581"}
+        RuleMetadata(id="11c67af9-9599-4800-9e84-bd38f2a51581", name="UAC Bypass via WSReset Execution Hijack")
     ],
     siem_rules=[],
     techniques=["T1548"],

@@ -12,11 +12,11 @@ metadata = RtaMetadata(
     platforms=["windows"],
     siem_rules=[],
     endpoint_rules=[
-        {"rule_id": "33cdad6c-5809-4d78-94f0-5a5153289e7e", "rule_name": "Oversized DLL Creation followed by SideLoad"},
-        {"rule_id": "65a402ff-904b-4d14-b7aa-fa0c5ae575f8", "rule_name": "Potential Evasion via Oversized Image Load"},
-        {"rule_id": "b58a6662-cc72-4c1c-a24e-703427f3b725", "rule_name": "Rundll32 or Regsvr32 Executing an OverSized File"},
-        {"rule_id": "d84090d7-91e4-4063-84c1-c1f410dd717b", "rule_name": "DLL Side Loading via a Copied Microsoft Executable"},
-        {"rule_id": "901f0c30-a7c5-40a5-80e3-a50c6744632f", "rule_name": "RunDLL32/Regsvr32 Loads Dropped Executable"},
+        RuleMetadata(id="33cdad6c-5809-4d78-94f0-5a5153289e7e", name="Oversized DLL Creation followed by SideLoad"),
+        RuleMetadata(id="65a402ff-904b-4d14-b7aa-fa0c5ae575f8", name="Potential Evasion via Oversized Image Load"),
+        RuleMetadata(id="b58a6662-cc72-4c1c-a24e-703427f3b725", name="Rundll32 or Regsvr32 Executing an OverSized File"),
+        RuleMetadata(id="d84090d7-91e4-4063-84c1-c1f410dd717b", name="DLL Side Loading via a Copied Microsoft Executable"),
+        RuleMetadata(id="901f0c30-a7c5-40a5-80e3-a50c6744632f", name="RunDLL32/Regsvr32 Loads Dropped Executable"),
     ],
     techniques=["T1027", "T1574"],
 )

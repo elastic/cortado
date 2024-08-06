@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="0885b643-a199-4453-95e0-be0d1f29aafc",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Suspicious Execution from MSSQL Service", "rule_id": "547636af-cad2-4be0-a74e-613c7bb86664"}
+        RuleMetadata(id="547636af-cad2-4be0-a74e-613c7bb86664", name="Suspicious Execution from MSSQL Service")
     ],
     siem_rules=[],
     techniques=["T1059"],

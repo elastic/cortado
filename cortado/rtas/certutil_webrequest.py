@@ -16,7 +16,7 @@ metadata = RtaMetadata(
     id="10609a63-0013-4fd0-9322-66c86c1c9501",
     platforms=["windows"],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "3838e0e3-1850-4850-a411-2e8c5ba40ba8", "rule_name": "Network Connection via Certutil"}],
+    siem_rules=[RuleMetadata(id="3838e0e3-1850-4850-a411-2e8c5ba40ba8", name="Network Connection via Certutil")],
     techniques=["T1105"],
 )
 

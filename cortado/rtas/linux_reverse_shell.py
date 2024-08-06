@@ -10,7 +10,7 @@ from . import RtaMetadata, _common
 metadata = RtaMetadata(
     id="a5603982-8b43-4ea9-b8de-112d9817e12d",
     platforms=["linux"],
-    endpoint_rules=[{"rule_name": "Linux Reverse Shell", "rule_id": "52206861-4570-4b8b-a73e-4ef0ea379a4c"}],
+    endpoint_rules=[RuleMetadata(id="52206861-4570-4b8b-a73e-4ef0ea379a4c", name="Linux Reverse Shell")],
     siem_rules=[],
     techniques=["T1059", "T1071"],
 )

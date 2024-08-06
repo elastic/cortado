@@ -10,7 +10,7 @@ from . import RtaMetadata
 metadata = RtaMetadata(
     id="48419773-64de-498a-be98-cb1f6815e80c",
     platforms=["windows"],
-    endpoint_rules=[{"rule_name": "Delayed Execution via Ping", "rule_id": "7615ca4b-c291-4f05-9488-114b6bf99157"}],
+    endpoint_rules=[RuleMetadata(id="7615ca4b-c291-4f05-9488-114b6bf99157", name="Delayed Execution via Ping")],
     siem_rules=[],
     techniques=["T1216", "T1220", "T1218", "T1059"],
 )

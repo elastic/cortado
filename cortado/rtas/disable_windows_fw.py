@@ -17,7 +17,7 @@ metadata = RtaMetadata(
     id="75e14e5a-1188-47ea-9b96-2cf6e9443fc2",
     platforms=["windows"],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "4b438734-3793-4fda-bd42-ceeada0be8f9", "rule_name": "Disable Windows Firewall Rules via Netsh"}],
+    siem_rules=[RuleMetadata(id="4b438734-3793-4fda-bd42-ceeada0be8f9", name="Disable Windows Firewall Rules via Netsh")],
     techniques=["T1562"],
 )
 

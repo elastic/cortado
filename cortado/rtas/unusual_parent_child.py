@@ -18,7 +18,7 @@ metadata = RtaMetadata(
     id="6cf12026-f99f-4e5c-8cd4-3dbc7bce3e67",
     platforms=["windows"],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "35df0dd8-092d-4a83-88c1-5151a804f31b", "rule_name": "Unusual Parent-Child Relationship"}],
+    siem_rules=[RuleMetadata(id="35df0dd8-092d-4a83-88c1-5151a804f31b", name="Unusual Parent-Child Relationship")],
     techniques=["T1055"],
 )
 

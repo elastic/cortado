@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="456ec321-41c8-4a41-8f6f-40b8e3d1c295",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Suspicious MS Office Execution via DCOM", "rule_id": "6a714747-2671-4523-b233-744f119949b6"}
+        RuleMetadata(id="6a714747-2671-4523-b233-744f119949b6", name="Suspicious MS Office Execution via DCOM")
     ],
     siem_rules=[],
     techniques=["T1112", "T1566"],

@@ -16,7 +16,7 @@ metadata = RtaMetadata(
             "rule_id": "e5c0963c-0367-4d24-bdf2-5af3a233e57b",
         }
     ],
-    siem_rules=[{"rule_name": "Virtual Machine Fingerprinting via Grep", "rule_id": "c85eb82c-d2c8-485c-a36f-534f914b7663"}],
+    siem_rules=[RuleMetadata(id="c85eb82c-d2c8-485c-a36f-534f914b7663", name="Virtual Machine Fingerprinting via Grep")],
     techniques=["T1082", "T1497"],
 )
 

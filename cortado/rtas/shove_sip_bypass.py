@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="1796555f-921a-459f-9661-0d94cf90fe81",
     platforms=["macos"],
     endpoint_rules=[
-        {"rule_name": "Potential SIP Bypass via the ShoveService", "rule_id": "7dea8cfc-92db-4081-9a5d-85ead8cedd5f"}
+        RuleMetadata(id="7dea8cfc-92db-4081-9a5d-85ead8cedd5f", name="Potential SIP Bypass via the ShoveService")
     ],
     siem_rules=[],
     techniques=["T1068"],

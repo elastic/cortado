@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="d3c0c965-3167-4fe3-8aee-a9f101766b5a",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Unusual Remote Desktop Client Process", "rule_id": "d448566e-486f-4b61-a76f-945662313d49"}
+        RuleMetadata(id="d448566e-486f-4b61-a76f-945662313d49", name="Unusual Remote Desktop Client Process")
     ],
     siem_rules=[],
     techniques=["T1021"],

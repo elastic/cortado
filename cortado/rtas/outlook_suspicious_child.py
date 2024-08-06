@@ -11,12 +11,12 @@ metadata = RtaMetadata(
     id="b30811a1-f734-4c28-b386-bcf43b214e09",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Binary Masquerading via Untrusted Path", "rule_id": "35dedf0c-8db6-4d70-b2dc-a133b808211f"},
+        RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         {
             "rule_name": "Execution via Outlook Application COM Object",
             "rule_id": "17030515-5ed0-43c8-9602-f97cbebd43c0",
         },
-        {"rule_name": "Potential Masquerading as SVCHOST", "rule_id": "5b00c9ba-9546-47cc-8f9f-1c1a3e95f65c"},
+        RuleMetadata(id="5b00c9ba-9546-47cc-8f9f-1c1a3e95f65c", name="Potential Masquerading as SVCHOST"),
     ],
     siem_rules=[],
     techniques=["T1566", "T1218", "T1036", "T1059"],

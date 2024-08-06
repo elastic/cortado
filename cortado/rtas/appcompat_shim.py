@@ -19,7 +19,7 @@ metadata = RtaMetadata(
     platforms=["windows"],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_id": "fd4a992d-6130-4802-9ff8-829b89ae801f", "rule_name": "Potential Application Shimming via Sdbinst"}
+        RuleMetadata(id="fd4a992d-6130-4802-9ff8-829b89ae801f", name="Potential Application Shimming via Sdbinst")
     ],
     techniques=["T1546"],
 )

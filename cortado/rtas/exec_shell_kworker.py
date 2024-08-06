@@ -12,7 +12,7 @@ from . import RtaMetadata, _common
 metadata = RtaMetadata(
     id="11b447ca-6ad4-4597-a048-2585b27762ea",
     platforms=["linux"],
-    endpoint_rules=[{"rule_name": "Shell Command Execution via kworker", "rule_id": "94943f02-5580-4d1d-a763-09e958bd0f57"}],
+    endpoint_rules=[RuleMetadata(id="94943f02-5580-4d1d-a763-09e958bd0f57", name="Shell Command Execution via kworker")],
     siem_rules=[],
     techniques=["T1036", "T1059"],
 )

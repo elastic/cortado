@@ -15,7 +15,7 @@ metadata = RtaMetadata(
             "rule_name": "Unusual File Written or Modified in Startup Folder",
             "rule_id": "30a90136-7831-41c3-a2aa-1a303c1186ac",
         },
-        {"rule_name": "Network Connection via Startup Item", "rule_id": "0b33141a-3f73-4414-ba90-d8410e6ab176"},
+        RuleMetadata(id="0b33141a-3f73-4414-ba90-d8410e6ab176", name="Network Connection via Startup Item"),
     ],
     siem_rules=[],
     techniques=["T1547", "T1218", "T1036", "T1059"],

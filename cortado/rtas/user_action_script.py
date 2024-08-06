@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="4e63cb99-b56d-4c75-9cda-3a7f30861d35",
     platforms=["macos"],
     endpoint_rules=[],
-    siem_rules=[{"rule_name": "Persistence via Folder Action Script", "rule_id": "c292fa52-4115-408a-b897-e14f684b3cb7"}],
+    siem_rules=[RuleMetadata(id="c292fa52-4115-408a-b897-e14f684b3cb7", name="Persistence via Folder Action Script")],
     techniques=["T1037", "T1059"],
 )
 

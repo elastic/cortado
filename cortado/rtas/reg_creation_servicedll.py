@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="58b3052d-4242-4b41-9f28-b04ce5962761",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Suspicious Windows Service DLL Creation", "rule_id": "2c624716-75a1-42d9-bcb8-1defcb9bded9"}
+        RuleMetadata(id="2c624716-75a1-42d9-bcb8-1defcb9bded9", name="Suspicious Windows Service DLL Creation")
     ],
     siem_rules=[],
     techniques=["T1543"],

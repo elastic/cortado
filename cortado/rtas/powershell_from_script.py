@@ -18,7 +18,7 @@ metadata = RtaMetadata(
     id="161c5972-6bfe-47b5-92bd-e0399e025dec",
     platforms=["windows"],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "f545ff26-3c94-4fd0-bd33-3c7f95a3a0fc", "rule_name": "Windows Script Executing PowerShell"}],
+    siem_rules=[RuleMetadata(id="f545ff26-3c94-4fd0-bd33-3c7f95a3a0fc", name="Windows Script Executing PowerShell")],
     techniques=["T1566"],
 )
 

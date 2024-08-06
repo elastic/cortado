@@ -11,9 +11,9 @@ metadata = RtaMetadata(
     id="cc7b01f9-852c-4232-8c70-ada3fb5cc515",
     platforms=["macos"],
     endpoint_rules=[
-        {"rule_name": "Potential Credentials Phishing via OSASCRIPT", "rule_id": "318d3d9d-ba60-40e3-bc8c-3d3304209a3c"}
+        RuleMetadata(id="318d3d9d-ba60-40e3-bc8c-3d3304209a3c", name="Potential Credentials Phishing via OSASCRIPT")
     ],
-    siem_rules=[{"rule_name": "Prompt for Credentials with OSASCRIPT", "rule_id": "38948d29-3d5d-42e3-8aec-be832aaaf8eb"}],
+    siem_rules=[RuleMetadata(id="38948d29-3d5d-42e3-8aec-be832aaaf8eb", name="Prompt for Credentials with OSASCRIPT")],
     techniques=["T1056"],
 )
 

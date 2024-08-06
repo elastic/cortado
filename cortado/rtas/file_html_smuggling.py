@@ -12,7 +12,7 @@ metadata = RtaMetadata(
     id="0debe15f-1c9b-4ff8-9e4c-478647ca45e2",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Suspicious File Delivery via HTML Smuggling", "rule_id": "4415ab60-7cff-41dc-b3f0-939bd22c1810"}
+        RuleMetadata(id="4415ab60-7cff-41dc-b3f0-939bd22c1810", name="Suspicious File Delivery via HTML Smuggling")
     ],
     siem_rules=[],
     techniques=["T1027", "T1566"],

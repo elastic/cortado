@@ -17,7 +17,7 @@ metadata = RtaMetadata(
     id="7b2c1b3e-2097-4e2f-bf5c-e157a91b8001",
     platforms=["windows"],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "fd70c98a-c410-42dc-a2e3-761c71848acf", "rule_name": "Suspicious CertUtil Commands"}],
+    siem_rules=[RuleMetadata(id="fd70c98a-c410-42dc-a2e3-761c71848acf", name="Suspicious CertUtil Commands")],
     techniques=["T1140"],
 )
 

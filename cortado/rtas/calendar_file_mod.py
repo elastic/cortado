@@ -12,7 +12,7 @@ metadata = RtaMetadata(
     id="44345dc0-883f-41b7-ad34-1d84cfd57129",
     platforms=["macos"],
     endpoint_rules=[],
-    siem_rules=[{"rule_name": "Suspicious Calendar File Modification", "rule_id": "cb71aa62-55c8-42f0-b0dd-afb0bb0b1f51"}],
+    siem_rules=[RuleMetadata(id="cb71aa62-55c8-42f0-b0dd-afb0bb0b1f51", name="Suspicious Calendar File Modification")],
     techniques=["T1546"],
 )
 

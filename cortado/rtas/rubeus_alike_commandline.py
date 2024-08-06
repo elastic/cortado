@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="85cf6796-5f53-4fed-a5cb-8b211882543c",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Potential Credential Access via Rubeus", "rule_id": "0783f666-75ad-4015-9dd5-d39baec8f6b0"}
+        RuleMetadata(id="0783f666-75ad-4015-9dd5-d39baec8f6b0", name="Potential Credential Access via Rubeus")
     ],
     siem_rules=[],
     techniques=["T1558"],

@@ -17,7 +17,7 @@ metadata = RtaMetadata(
         }
     ],
     siem_rules=[
-        {"rule_name": "Keychain Password Retrieval via Command Line", "rule_id": "9092cd6c-650f-4fa3-8a8a-28256c7489c9"}
+        RuleMetadata(id="9092cd6c-650f-4fa3-8a8a-28256c7489c9", name="Keychain Password Retrieval via Command Line")
     ],
     techniques=["T1555"],
 )

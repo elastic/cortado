@@ -17,7 +17,7 @@ metadata = RtaMetadata(
     id="e09d904a-f3bb-4d36-8eb8-8c234812807c",
     platforms=["windows"],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "6839c821-011d-43bd-bd5b-acff00257226", "rule_name": "Image File Execution Options Injection"}],
+    siem_rules=[RuleMetadata(id="6839c821-011d-43bd-bd5b-acff00257226", name="Image File Execution Options Injection")],
     techniques=["T1546"],
 )
 

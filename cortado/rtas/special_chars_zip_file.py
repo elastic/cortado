@@ -12,7 +12,7 @@ metadata = RtaMetadata(
     platforms=["macos"],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_name": "Potential Microsoft Office Sandbox Evasion", "rule_id": "d22a85c6-d2ad-4cc4-bf7b-54787473669a"}
+        RuleMetadata(id="d22a85c6-d2ad-4cc4-bf7b-54787473669a", name="Potential Microsoft Office Sandbox Evasion")
     ],
     techniques=["T1497"],
 )

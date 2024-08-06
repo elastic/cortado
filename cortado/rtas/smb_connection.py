@@ -19,7 +19,7 @@ metadata = RtaMetadata(
     id="b0e3e1bb-dfa5-473a-8862-b2d1d42819ce",
     platforms=["windows"],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "c82c7d8f-fb9e-4874-a4bd-fd9e3f9becf1", "rule_name": "Direct Outbound SMB Connection"}],
+    siem_rules=[RuleMetadata(id="c82c7d8f-fb9e-4874-a4bd-fd9e3f9becf1", name="Direct Outbound SMB Connection")],
     techniques=["T1021"],
 )
 

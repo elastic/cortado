@@ -12,9 +12,9 @@ metadata = RtaMetadata(
     id="d8de8c03-d5d0-4118-8971-32439638d69f",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Execution from Unusual Directory", "rule_id": "16c84e67-e5e7-44ff-aefa-4d771bcafc0c"},
-        {"rule_name": "Binary Masquerading via Untrusted Path", "rule_id": "35dedf0c-8db6-4d70-b2dc-a133b808211f"},
-        {"rule_name": "Dynwrapx Image Load via Windows Scripts", "rule_id": "4cd6f758-0057-4e8a-9701-20b6116c2118"},
+        RuleMetadata(id="16c84e67-e5e7-44ff-aefa-4d771bcafc0c", name="Execution from Unusual Directory"),
+        RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
+        RuleMetadata(id="4cd6f758-0057-4e8a-9701-20b6116c2118", name="Dynwrapx Image Load via Windows Scripts"),
         {
             "rule_name": "Suspicious Windows Script Interpreter Child Process",
             "rule_id": "83da4fac-563a-4af8-8f32-5a3797a9068e",

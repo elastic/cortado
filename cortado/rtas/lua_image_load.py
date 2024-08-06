@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="860e5968-c31f-4928-ac05-3c3c2d19450c",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Suspicious Windows LUA Script Execution", "rule_id": "8f237d98-1825-4c27-a5cd-e38bde70882a"}
+        RuleMetadata(id="8f237d98-1825-4c27-a5cd-e38bde70882a", name="Suspicious Windows LUA Script Execution")
     ],
     siem_rules=[],
     techniques=["T1036"],

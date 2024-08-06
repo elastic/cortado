@@ -11,7 +11,7 @@ from . import RtaMetadata, _common
 metadata = RtaMetadata(
     id="e6d5315f-4c70-4788-8564-e7c23786a4d0",
     platforms=["windows"],
-    endpoint_rules=[{"rule_name": "NTDLL Loaded from an Unusual Path", "rule_id": "3205274e-7eb0-4765-a712-5783361091ae"}],    
+    endpoint_rules=[RuleMetadata(id="3205274e-7eb0-4765-a712-5783361091ae", name="NTDLL Loaded from an Unusual Path")],    
     siem_rules=[],
     techniques=["T1055"],
 )

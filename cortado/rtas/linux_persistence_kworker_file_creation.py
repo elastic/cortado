@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="5282c9a4-4ce9-48b8-863a-ff453143635a",
     platforms=["linux"],
     endpoint_rules=[],
-    siem_rules=[{"rule_name": "Suspicious File Creation via kworker", "rule_id": "ae343298-97bc-47bc-9ea2-5f2ad831c16e"}],
+    siem_rules=[RuleMetadata(id="ae343298-97bc-47bc-9ea2-5f2ad831c16e", name="Suspicious File Creation via kworker")],
     techniques=["T1547", "T1014"],
 )
 

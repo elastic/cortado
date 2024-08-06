@@ -15,7 +15,7 @@ metadata = RtaMetadata(
             "rule_name": "Execution of File Written or Modified by Microsoft Equation Editor",
             "rule_id": "8bc4f22c-9bb1-4c76-a7b6-195bee3579db",
         },
-        {"rule_name": "Microsoft Equation Editor Child Process", "rule_id": "60eb5960-b26e-494a-8cf2-35ab5939f6c1"},
+        RuleMetadata(id="60eb5960-b26e-494a-8cf2-35ab5939f6c1", name="Microsoft Equation Editor Child Process"),
     ],
     siem_rules=[],
     techniques=["T1203", "T1566"],

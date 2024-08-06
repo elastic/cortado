@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="c798f63a-f8be-459a-bb75-407e97f55faa",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Suspicious Microsoft Office Child Process", "rule_id": "c34a9dca-66cf-4283-944d-1800b28ae690"}
+        RuleMetadata(id="c34a9dca-66cf-4283-944d-1800b28ae690", name="Suspicious Microsoft Office Child Process")
     ],
     siem_rules=[],
     techniques=["T1566"],

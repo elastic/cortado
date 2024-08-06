@@ -12,7 +12,7 @@ metadata = RtaMetadata(
     id="9bf3622b-dd76-4156-a89c-6845dca46b1f",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Execution from Unusual Directory", "rule_id": "16c84e67-e5e7-44ff-aefa-4d771bcafc0c"},
+        RuleMetadata(id="16c84e67-e5e7-44ff-aefa-4d771bcafc0c", name="Execution from Unusual Directory"),
         {
             "rule_name": "Managed .NET Code Execution via Windows Script Interpreter",
             "rule_id": "5a898048-d98c-44c6-b7ba-f63a31eb3571",

@@ -10,7 +10,7 @@ from . import RtaMetadata
 metadata = RtaMetadata(
     id="af8d27bb-1673-463f-8631-a5b30278cf33",
     platforms=["macos"],
-    endpoint_rules=[{"rule_name": "Suspicious Apple Script Execution", "rule_id": "7b9d544a-5b2a-4f0d-984a-cdc89a7fad25"}],
+    endpoint_rules=[RuleMetadata(id="7b9d544a-5b2a-4f0d-984a-cdc89a7fad25", name="Suspicious Apple Script Execution")],
     siem_rules=[],
     techniques=["T1105", "T1059"],
 )

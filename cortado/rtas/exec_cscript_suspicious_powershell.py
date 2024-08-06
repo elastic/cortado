@@ -11,8 +11,8 @@ metadata = RtaMetadata(
     id="c562a05e-0ac8-46f9-91a2-5e99c8a1117c",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Execution from Unusual Directory", "rule_id": "16c84e67-e5e7-44ff-aefa-4d771bcafc0c"},
-        {"rule_name": "Binary Masquerading via Untrusted Path", "rule_id": "35dedf0c-8db6-4d70-b2dc-a133b808211f"},
+        RuleMetadata(id="16c84e67-e5e7-44ff-aefa-4d771bcafc0c", name="Execution from Unusual Directory"),
+        RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         {
             "rule_name": "Suspicious PowerShell Execution via Windows Scripts",
             "rule_id": "3899dd3b-f31a-4634-8467-55326cd87597",

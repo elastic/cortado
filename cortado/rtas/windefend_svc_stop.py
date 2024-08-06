@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="811ccfc2-d0fc-4a2a-85f6-6dc1235278bf",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Binary Masquerading via Untrusted Path", "rule_id": "35dedf0c-8db6-4d70-b2dc-a133b808211f"},
+        RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         {
             "rule_name": "Attempt to Disable Windows Defender Services",
             "rule_id": "32ab2977-2932-4172-9117-36e382591818",

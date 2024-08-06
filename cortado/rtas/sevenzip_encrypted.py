@@ -18,7 +18,7 @@ metadata = RtaMetadata(
     id="6cd35061-278b-45e7-a9cb-86b48bc47884",
     platforms=["windows"],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "45d273fb-1dca-457d-9855-bcb302180c21", "rule_name": "Encrypting Files with WinRar or 7z"}],
+    siem_rules=[RuleMetadata(id="45d273fb-1dca-457d-9855-bcb302180c21", name="Encrypting Files with WinRar or 7z")],
     techniques=["T1560"],
 )
 

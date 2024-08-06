@@ -9,8 +9,8 @@ from . import RtaMetadata
 metadata = RtaMetadata(
     id="fcd2d0fe-fed2-424a-bdc5-e9bef5031344",
     platforms=["linux"],
-    endpoint_rules=[{"rule_name": "Network Activity Detected via cat", "rule_id": "25ae94f5-0214-4bf1-b534-33d4ffc3d41c"}],
-    siem_rules=[{"rule_name": "Network Activity Detected via cat", "rule_id": "afd04601-12fc-4149-9b78-9c3f8fe45d39"}],
+    endpoint_rules=[RuleMetadata(id="25ae94f5-0214-4bf1-b534-33d4ffc3d41c", name="Network Activity Detected via cat")],
+    siem_rules=[RuleMetadata(id="afd04601-12fc-4149-9b78-9c3f8fe45d39", name="Network Activity Detected via cat")],
     techniques=[""],
 )
 

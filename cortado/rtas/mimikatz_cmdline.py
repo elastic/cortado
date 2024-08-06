@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="75fdde39-92bb-4a71-a4f1-f70e9c85d6db",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Potential Credential Access via Mimikatz", "rule_id": "86bf5d50-7f5d-44b4-977b-dff222379727"}
+        RuleMetadata(id="86bf5d50-7f5d-44b4-977b-dff222379727", name="Potential Credential Access via Mimikatz")
     ],
     siem_rules=[],
     techniques=["T1558", "T1003"],

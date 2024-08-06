@@ -11,9 +11,9 @@ metadata = RtaMetadata(
     id="aa6bf766-db74-4db5-8eec-f91386b1285b",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Execution from Unusual Directory", "rule_id": "16c84e67-e5e7-44ff-aefa-4d771bcafc0c"},
-        {"rule_name": "Binary Masquerading via Untrusted Path", "rule_id": "35dedf0c-8db6-4d70-b2dc-a133b808211f"},
-        {"rule_name": "Scriptlet Execution via CMSTP", "rule_id": "8adfa9ad-0ed2-4b1b-bdad-f2c52e1d2a00"},
+        RuleMetadata(id="16c84e67-e5e7-44ff-aefa-4d771bcafc0c", name="Execution from Unusual Directory"),
+        RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
+        RuleMetadata(id="8adfa9ad-0ed2-4b1b-bdad-f2c52e1d2a00", name="Scriptlet Execution via CMSTP"),
     ],
     siem_rules=[],
     techniques=["T1218", "T1036", "T1059"],

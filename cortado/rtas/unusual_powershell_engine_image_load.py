@@ -10,7 +10,7 @@ from . import RtaMetadata
 metadata = RtaMetadata(
     id="a5d82c62-6d4e-4d31-94f2-a996c9613604",
     platforms=["windows"],
-    endpoint_rules=[{"rule_name": "Unusual PowerShell Engine ImageLoad", "rule_id": "f57505bb-a1d2-4d3b-b7b5-1d81d7bdb80e"}],
+    endpoint_rules=[RuleMetadata(id="f57505bb-a1d2-4d3b-b7b5-1d81d7bdb80e", name="Unusual PowerShell Engine ImageLoad")],
     siem_rules=[],
     techniques=["T1059"],
 )

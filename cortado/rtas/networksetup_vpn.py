@@ -12,7 +12,7 @@ metadata = RtaMetadata(
     platforms=["macos"],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_name": "Virtual Private Network Connection Attempt", "rule_id": "15dacaa0-5b90-466b-acab-63435a59701a"}
+        RuleMetadata(id="15dacaa0-5b90-466b-acab-63435a59701a", name="Virtual Private Network Connection Attempt")
     ],
     techniques=["T1021"],
 )

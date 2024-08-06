@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="be6619a2-324a-443b-9f23-2dc84733c847",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Suspicious Microsoft IIS Worker Descendant", "rule_id": "89c9c5a0-a136-41e9-8cc8-f21ef5ad894b"}
+        RuleMetadata(id="89c9c5a0-a136-41e9-8cc8-f21ef5ad894b", name="Suspicious Microsoft IIS Worker Descendant")
     ],
     siem_rules=[],
     techniques=["T1190", "T1059"],

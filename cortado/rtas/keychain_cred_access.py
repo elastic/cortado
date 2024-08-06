@@ -18,7 +18,7 @@ metadata = RtaMetadata(
         }
     ],
     siem_rules=[
-        {"rule_name": "Access to Keychain Credentials Directories", "rule_id": "96e90768-c3b7-4df6-b5d9-6237f8bc36a8"}
+        RuleMetadata(id="96e90768-c3b7-4df6-b5d9-6237f8bc36a8", name="Access to Keychain Credentials Directories")
     ],
     techniques=["T1555"],
 )

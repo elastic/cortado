@@ -19,7 +19,7 @@ metadata = RtaMetadata(
     platforms=["windows"],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_id": "be8afaed-4bcd-4e0a-b5f9-5562003dde81", "rule_name": "Searching for Saved Credentials via VaultCmd"}
+        RuleMetadata(id="be8afaed-4bcd-4e0a-b5f9-5562003dde81", name="Searching for Saved Credentials via VaultCmd")
     ],
     techniques=["T1555", "T1003"],
 )

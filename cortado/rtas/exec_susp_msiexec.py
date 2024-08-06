@@ -11,8 +11,8 @@ metadata = RtaMetadata(
     id="c9b68802-7d8b-4806-a817-ad50032efc58",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Suspicious Execution via MSIEXEC", "rule_id": "9d1d6c77-8acc-478b-8a1f-43da8fa151c7"},
-        {"rule_name": "Binary Masquerading via Untrusted Path", "rule_id": "35dedf0c-8db6-4d70-b2dc-a133b808211f"},
+        RuleMetadata(id="9d1d6c77-8acc-478b-8a1f-43da8fa151c7", name="Suspicious Execution via MSIEXEC"),
+        RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
     ],
     siem_rules=[],
     techniques=["T1218", "T1036"],

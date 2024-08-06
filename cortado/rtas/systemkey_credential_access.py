@@ -11,9 +11,9 @@ metadata = RtaMetadata(
     id="d950ef5f-8277-4ed8-a8dd-d2433e791cef",
     platforms=["macos"],
     endpoint_rules=[
-        {"rule_name": "Suspicious SystemKey Access via Command Line", "rule_id": "7d3f98bf-2111-4e5f-9787-9edef8d94dd0"}
+        RuleMetadata(id="7d3f98bf-2111-4e5f-9787-9edef8d94dd0", name="Suspicious SystemKey Access via Command Line")
     ],
-    siem_rules=[{"rule_name": "SystemKey Access via Command Line", "rule_id": "d75991f2-b989-419d-b797-ac1e54ec2d61"}],
+    siem_rules=[RuleMetadata(id="d75991f2-b989-419d-b797-ac1e54ec2d61", name="SystemKey Access via Command Line")],
     techniques=["T1555"],
 )
 

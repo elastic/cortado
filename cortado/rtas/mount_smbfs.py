@@ -12,7 +12,7 @@ metadata = RtaMetadata(
     platforms=["macos"],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_name": "Attempt to Mount SMB Share via Command Line", "rule_id": "661545b4-1a90-4f45-85ce-2ebd7c6a15d0"}
+        RuleMetadata(id="661545b4-1a90-4f45-85ce-2ebd7c6a15d0", name="Attempt to Mount SMB Share via Command Line")
     ],
     techniques=["T1021"],
 )

@@ -11,8 +11,8 @@ metadata = RtaMetadata(
     id="e0e95f35-173d-4545-a1cc-ee35ee1d89b1",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Suspicious Parent-Child Relationship", "rule_id": "18a26e3e-e535-4d23-8ffa-a3cdba56d16e"},
-        {"rule_name": "Binary Masquerading via Untrusted Path", "rule_id": "35dedf0c-8db6-4d70-b2dc-a133b808211f"},
+        RuleMetadata(id="18a26e3e-e535-4d23-8ffa-a3cdba56d16e", name="Suspicious Parent-Child Relationship"),
+        RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         {
             "rule_name": "UAC Bypass via ICMLuaUtil Elevated COM Interface",
             "rule_id": "13fab475-06e4-4ac9-87fc-2105c7441244",

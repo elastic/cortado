@@ -16,7 +16,7 @@ metadata = RtaMetadata(
     id="b0e3e1bb-dfa5-473a-8862-b2d1d42819ce",
     platforms=["windows"],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "f2c7b914-eda3-40c2-96ac-d23ef91776ca", "rule_name": "SIP Provider Modification"}],
+    siem_rules=[RuleMetadata(id="f2c7b914-eda3-40c2-96ac-d23ef91776ca", name="SIP Provider Modification")],
     techniques=["T1553"],
 )
 

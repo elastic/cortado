@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="de7e28b2-c01d-4cd7-abb7-ddb64bce5f45",
     platforms=["macos"],
     endpoint_rules=[
-        {"rule_name": "Compressed File Extracted to Temp Directory", "rule_id": "24fa0f80-7e3a-4b27-801a-30ef53f190bf"}
+        RuleMetadata(id="24fa0f80-7e3a-4b27-801a-30ef53f190bf", name="Compressed File Extracted to Temp Directory")
     ],
     siem_rules=[],
     techniques=["T1059", "T1059.004"],

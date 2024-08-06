@@ -12,7 +12,7 @@ metadata = RtaMetadata(
     id="e15ea2ec-c8a9-4203-8d01-d18d1c27fd58",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Sensitive File Access - Cloud Credentials", "rule_id": "39f60a36-8c5a-4703-8576-ad3e8c800a0f"}
+        RuleMetadata(id="39f60a36-8c5a-4703-8576-ad3e8c800a0f", name="Sensitive File Access - Cloud Credentials")
     ],
     siem_rules=[],
     techniques=["T1552"],

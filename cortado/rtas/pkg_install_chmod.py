@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="caa6feb7-cc17-425f-996f-b1b69efa93e2",
     platforms=["macos"],
     endpoint_rules=[
-        {"rule_name": "File Made Executable via Pkg Install Script", "rule_id": "75f5d51a-218f-4d5b-80e5-eb74e498fde4"},
+        RuleMetadata(id="75f5d51a-218f-4d5b-80e5-eb74e498fde4", name="File Made Executable via Pkg Install Script"),
         {
             "rule_name": "File Made Executable by Suspicious Parent Process",
             "rule_id": "42ab2c0f-b10d-467d-8c6d-def890cf3f68",

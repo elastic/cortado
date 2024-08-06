@@ -18,7 +18,7 @@ metadata = RtaMetadata(
     id="ae6343cc-3b56-4f60-854f-7102db519ec4",
     platforms=["windows"],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "dc9c1f74-dac3-48e3-b47f-eb79db358f57", "rule_name": "Volume Shadow Copy Deletion via WMIC"}],
+    siem_rules=[RuleMetadata(id="dc9c1f74-dac3-48e3-b47f-eb79db358f57", name="Volume Shadow Copy Deletion via WMIC")],
     techniques=["T1490"],
 )
 

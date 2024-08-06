@@ -11,8 +11,8 @@ metadata = RtaMetadata(
     id="b9d5427a-33c4-4b1d-838d-f47c5f3b0b43",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Binary Masquerading via Untrusted Path", "rule_id": "35dedf0c-8db6-4d70-b2dc-a133b808211f"},
-        {"rule_name": "Suspicious WMIC XSL Script Execution", "rule_id": "18371ec4-ee2f-465b-8757-ee726914006c"},
+        RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
+        RuleMetadata(id="18371ec4-ee2f-465b-8757-ee726914006c", name="Suspicious WMIC XSL Script Execution"),
     ],
     siem_rules=[],
     techniques=["T1220", "T1047", "T1036"],

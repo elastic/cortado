@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="0e5a4099-f76d-43f8-aa91-0ed1ad5fed81",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Remcos RAT Registry or File Modification", "rule_id": "9769d372-4115-4ef8-8d7b-aaad05dad9ae"}
+        RuleMetadata(id="9769d372-4115-4ef8-8d7b-aaad05dad9ae", name="Remcos RAT Registry or File Modification")
     ],
     siem_rules=[],
     techniques=["T1112"],

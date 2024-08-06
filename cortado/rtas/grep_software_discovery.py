@@ -16,7 +16,7 @@ metadata = RtaMetadata(
             "rule_id": "13eade2e-73dd-4fab-a511-88258635559d",
         }
     ],
-    siem_rules=[{"rule_name": "Security Software Discovery via Grep", "rule_id": "870aecc0-cea4-4110-af3f-e02e9b373655"}],
+    siem_rules=[RuleMetadata(id="870aecc0-cea4-4110-af3f-e02e9b373655", name="Security Software Discovery via Grep")],
     techniques=["T1518"],
 )
 

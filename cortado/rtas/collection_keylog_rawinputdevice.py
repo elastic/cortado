@@ -13,8 +13,8 @@ metadata = RtaMetadata(
     id="89f2b412-bbc7-4298-8768-2f3d3b43c93b",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Keystroke Input Capture via DirectInput", "rule_id": "102b5c1a-7f2a-4254-8b26-6b299705fce7"},
-        {"rule_name": "Keystroke Input Capture via RegisterRawInputDevices", "rule_id": "4dbb9dfb-b3e2-49d7-8919-d6f221526df4"},
+        RuleMetadata(id="102b5c1a-7f2a-4254-8b26-6b299705fce7", name="Keystroke Input Capture via DirectInput"),
+        RuleMetadata(id="4dbb9dfb-b3e2-49d7-8919-d6f221526df4", name="Keystroke Input Capture via RegisterRawInputDevices"),
     ],
     siem_rules=[],
     techniques=["T1056", "T1056.001"],

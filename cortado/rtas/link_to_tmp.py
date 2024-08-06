@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="eb5834cf-fcd8-4318-a656-5315a664e61d",
     platforms=["macos"],
     endpoint_rules=[
-        {"rule_name": "Link Creation to Temp Directory", "rule_id": "ccca5e9f-2625-4b95-9b15-d5d8fc56df2c"},
+        RuleMetadata(id="ccca5e9f-2625-4b95-9b15-d5d8fc56df2c", name="Link Creation to Temp Directory"),
     ],
     siem_rules=[],
     techniques=["T1222", "T1222.002"],

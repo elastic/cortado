@@ -15,7 +15,7 @@ metadata = RtaMetadata(
     id="f3ffa89b-de47-4e17-ac8e-385e0e7f8253",
     platforms=["linux"],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "6b84d470-9036-4cc0-a27c-6d90bbfe81ab", "rule_name": "Sensitive Files Compression"}],
+    siem_rules=[RuleMetadata(id="6b84d470-9036-4cc0-a27c-6d90bbfe81ab", name="Sensitive Files Compression")],
     techniques=["T1560", "T1552"],
 )
 

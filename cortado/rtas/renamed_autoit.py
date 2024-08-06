@@ -10,7 +10,7 @@ from . import RtaMetadata
 metadata = RtaMetadata(
     id="43636c0c-162b-4445-bcd0-348cbd203fa3",
     platforms=["windows"],
-    endpoint_rules=[{"rule_name": "Renamed AutoIt Scripts Interpreter", "rule_id": "99f2327e-871f-4b8a-ae75-d1c4697aefe4"}],
+    endpoint_rules=[RuleMetadata(id="99f2327e-871f-4b8a-ae75-d1c4697aefe4", name="Renamed AutoIt Scripts Interpreter")],
     siem_rules=[],
     techniques=["T1036"],
 )

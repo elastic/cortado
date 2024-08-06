@@ -10,7 +10,7 @@ from . import RtaMetadata
 metadata = RtaMetadata(
     id="de245f02-8614-4fdd-b6e4-e845bbadd056",
     platforms=["windows"],
-    endpoint_rules=[{"rule_name": "Remote File Execution via MSIEXEC", "rule_id": "8ba98e28-d83e-451e-8df7-f0964f7e69b6"}],
+    endpoint_rules=[RuleMetadata(id="8ba98e28-d83e-451e-8df7-f0964f7e69b6", name="Remote File Execution via MSIEXEC")],
     siem_rules=[],
     techniques=["T1218"],
 )

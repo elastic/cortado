@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="fa2bbba7-66f4-4fd6-9c81-599d58fe67e8",
     platforms=["macos"],
     endpoint_rules=[
-        {"rule_name": "Background Process Execution via Shell", "rule_id": "603ac59e-9cca-4c48-9750-e38399079043"}
+        RuleMetadata(id="603ac59e-9cca-4c48-9750-e38399079043", name="Background Process Execution via Shell")
     ],
     siem_rules=[],
     techniques=["T1059", "T1059.004"],

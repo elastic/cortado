@@ -10,8 +10,8 @@ from . import RtaMetadata
 metadata = RtaMetadata(
     id="58041706-c636-4043-b221-3d59f977b7e2",
     platforms=["macos"],
-    endpoint_rules=[{"rule_name": "Potential Persistence via Emond", "rule_id": "1cd247d8-00e8-4c62-b9ee-90cd1811460b"}],
-    siem_rules=[{"rule_name": "Suspicious Emond Child Process", "rule_id": "3e3d15c6-1509-479a-b125-21718372157e"}],
+    endpoint_rules=[RuleMetadata(id="1cd247d8-00e8-4c62-b9ee-90cd1811460b", name="Potential Persistence via Emond")],
+    siem_rules=[RuleMetadata(id="3e3d15c6-1509-479a-b125-21718372157e", name="Suspicious Emond Child Process")],
     techniques=["T1546"],
 )
 

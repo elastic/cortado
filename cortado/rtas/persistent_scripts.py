@@ -17,7 +17,7 @@ metadata = RtaMetadata(
     id="2ab62c28-1abb-4ac5-a16d-2f4f75d01d02",
     platforms=["windows"],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "afcce5ad-65de-4ed2-8516-5e093d3ac99a", "rule_name": "Local Scheduled Task Creation"}],
+    siem_rules=[RuleMetadata(id="afcce5ad-65de-4ed2-8516-5e093d3ac99a", name="Local Scheduled Task Creation")],
     techniques=["T1053"],
 )
 

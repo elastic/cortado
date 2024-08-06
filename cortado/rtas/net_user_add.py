@@ -18,7 +18,7 @@ metadata = RtaMetadata(
     platforms=["windows"],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_id": "41b638a1-8ab6-4f8e-86d9-466317ef2db5", "rule_name": "Potential Hidden Local User Account Creation"}
+        RuleMetadata(id="41b638a1-8ab6-4f8e-86d9-466317ef2db5", name="Potential Hidden Local User Account Creation")
     ],
     techniques=["T1078"],
 )

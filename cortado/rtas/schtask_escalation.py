@@ -21,9 +21,9 @@ metadata = RtaMetadata(
     platforms=["windows"],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_id": "afcce5ad-65de-4ed2-8516-5e093d3ac99a", "rule_name": "Local Scheduled Task Creation"},
-        {"rule_id": "ef862985-3f13-4262-a686-5f357bbb9bc2", "rule_name": "Whoami Process Activity"},
-        {"rule_id": "fd7a6052-58fa-4397-93c3-4795249ccfa2", "rule_name": "Svchost spawning Cmd"},
+        RuleMetadata(id="afcce5ad-65de-4ed2-8516-5e093d3ac99a", name="Local Scheduled Task Creation"),
+        RuleMetadata(id="ef862985-3f13-4262-a686-5f357bbb9bc2", name="Whoami Process Activity"),
+        RuleMetadata(id="fd7a6052-58fa-4397-93c3-4795249ccfa2", name="Svchost spawning Cmd"),
     ],
     techniques=["T1033", "T1053", "T1059"],
 )

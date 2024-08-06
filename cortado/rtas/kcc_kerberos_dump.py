@@ -16,7 +16,7 @@ metadata = RtaMetadata(
             "rule_id": "dc8fa849-efb4-45d1-be1a-9472325ff746",
         }
     ],
-    siem_rules=[{"rule_name": "Kerberos Cached Credentials Dumping", "rule_id": "ad88231f-e2ab-491c-8fc6-64746da26cfe"}],
+    siem_rules=[RuleMetadata(id="ad88231f-e2ab-491c-8fc6-64746da26cfe", name="Kerberos Cached Credentials Dumping")],
     techniques=["T1558", "T1003"],
 )
 

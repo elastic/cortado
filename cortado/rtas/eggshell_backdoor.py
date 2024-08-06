@@ -10,8 +10,8 @@ from . import RtaMetadata
 metadata = RtaMetadata(
     id="be090f8e-dc7b-41eb-9c7e-74a0aed0dad1",
     platforms=["macos", "linux"],
-    endpoint_rules=[{"rule_name": "EggShell Backdoor Execution", "rule_id": "feed7842-34a6-4764-b858-6e5ac01a5ab7"}],
-    siem_rules=[{"rule_name": "EggShell Backdoor Execution", "rule_id": "41824afb-d68c-4d0e-bfee-474dac1fa56e"}],
+    endpoint_rules=[RuleMetadata(id="feed7842-34a6-4764-b858-6e5ac01a5ab7", name="EggShell Backdoor Execution")],
+    siem_rules=[RuleMetadata(id="41824afb-d68c-4d0e-bfee-474dac1fa56e", name="EggShell Backdoor Execution")],
     techniques=["T1059"],
 )
 

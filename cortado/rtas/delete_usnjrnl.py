@@ -19,7 +19,7 @@ metadata = RtaMetadata(
     id="5d049893-b5ca-4482-a9ea-c38c6d01c171",
     platforms=["windows"],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "f675872f-6d85-40a3-b502-c0d2ef101e92", "rule_name": "Delete Volume USN Journal with Fsutil"}],
+    siem_rules=[RuleMetadata(id="f675872f-6d85-40a3-b502-c0d2ef101e92", name="Delete Volume USN Journal with Fsutil")],
     techniques=["T1070"],
 )
 

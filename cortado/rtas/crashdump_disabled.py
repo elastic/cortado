@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="775ffaa8-7a44-490b-b13d-1bfa2100b1ae",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "CrashDump Disabled via Registry Modification", "rule_id": "77ca3fcc-f607-45e0-837e-e4173e4ffc2a"}
+        RuleMetadata(id="77ca3fcc-f607-45e0-837e-e4173e4ffc2a", name="CrashDump Disabled via Registry Modification")
     ],
     siem_rules=[],
     techniques=["T1112"],

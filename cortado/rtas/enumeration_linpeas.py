@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="b88c08af-eee5-4683-a56a-36e91e6386d5",
     platforms=["macos", "linux"],
     endpoint_rules=[
-        {"rule_name": "Privilege Escalation Enumeration via LinPEAS", "rule_id": "92bb2a27-745b-4291-90a1-b7b654df1379"}
+        RuleMetadata(id="92bb2a27-745b-4291-90a1-b7b654df1379", name="Privilege Escalation Enumeration via LinPEAS")
     ],
     siem_rules=[],
     techniques=["T1059"],

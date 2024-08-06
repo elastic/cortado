@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="c2786f8d-d565-494d-84e2-5dcb2da711c4",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "SolarMarker Backdoor Registry Modification", "rule_id": "f7e6d239-9af5-42e3-8d23-91e7188a5cb0"}
+        RuleMetadata(id="f7e6d239-9af5-42e3-8d23-91e7188a5cb0", name="SolarMarker Backdoor Registry Modification")
     ],
     siem_rules=[],
     techniques=["T1112", "T1546"],

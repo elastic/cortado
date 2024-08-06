@@ -16,7 +16,7 @@ metadata = RtaMetadata(
     id="a8331ff5-2199-48cf-9284-88351c859835",
     platforms=["windows"],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "b86afe07-0d98-4738-b15d-8d7465f95ff5", "rule_name": "Network Connection via MsXsl"}],
+    siem_rules=[RuleMetadata(id="b86afe07-0d98-4738-b15d-8d7465f95ff5", name="Network Connection via MsXsl")],
     techniques=["T1220"],
 )
 

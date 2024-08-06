@@ -17,7 +17,7 @@ metadata = RtaMetadata(
     id="16b3d9c6-e188-49c5-8dce-d3eb5b0fcf91",
     platforms=["windows"],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "7f370d54-c0eb-4270-ac5a-9a6020585dc6", "rule_name": "Suspicious WMIC XSL Script Execution"}],
+    siem_rules=[RuleMetadata(id="7f370d54-c0eb-4270-ac5a-9a6020585dc6", name="Suspicious WMIC XSL Script Execution")],
     techniques=["T1220"],
 )
 

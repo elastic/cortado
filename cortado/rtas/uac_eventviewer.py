@@ -19,7 +19,7 @@ metadata = RtaMetadata(
     id="1185afa2-49aa-4cca-8702-228d238c0bd5",
     platforms=["windows"],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "31b4c719-f2b4-41f6-a9bd-fce93c2eaf62", "rule_name": "Bypass UAC via Event Viewer"}],
+    siem_rules=[RuleMetadata(id="31b4c719-f2b4-41f6-a9bd-fce93c2eaf62", name="Bypass UAC via Event Viewer")],
     techniques=["T1548"],
 )
 

@@ -17,7 +17,7 @@ metadata = RtaMetadata(
             "rule_name": "PowerShell Obfuscation Spawned via Microsoft Office",
             "rule_id": "93ef8a09-0f8d-4aa1-b0fb-47d5d5b40cf2",
         },
-        {"rule_name": "Suspicious PowerShell Downloads", "rule_id": "7200673e-588c-45d5-be48-bc5c7a908d6b"},
+        RuleMetadata(id="7200673e-588c-45d5-be48-bc5c7a908d6b", name="Suspicious PowerShell Downloads"),
     ],
     siem_rules=[],
     techniques=["T1566", "T1059"],

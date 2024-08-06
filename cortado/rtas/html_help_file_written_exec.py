@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="9bbf9aea-33fc-45fc-be55-4cafc744da80",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "File Execution via Microsoft HTML Help", "rule_id": "9c3b13f6-bc26-4397-9721-4ba23ddd1014"}
+        RuleMetadata(id="9c3b13f6-bc26-4397-9721-4ba23ddd1014", name="File Execution via Microsoft HTML Help")
     ],
     siem_rules=[],
     techniques=["T1218", "T1566"],

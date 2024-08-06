@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="71c81436-242d-4bc8-a195-93d1fdbc774b",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Binary Masquerading via Untrusted Path", "rule_id": "35dedf0c-8db6-4d70-b2dc-a133b808211f"},
+        RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         {
             "rule_name": "Suspicious Troubleshooting Pack Cabinet Execution",
             "rule_id": "d18721f0-dce0-4bbc-a56a-06ea511b025e",

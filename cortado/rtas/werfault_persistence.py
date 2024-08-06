@@ -21,7 +21,7 @@ metadata = RtaMetadata(
     id="cbd90dde-02f4-4010-b654-ccabff3c3c73",
     platforms=["windows"],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "ac5012b8-8da8-440b-aaaf-aedafdea2dff", "rule_name": "Suspicious WerFault Child Process"}],
+    siem_rules=[RuleMetadata(id="ac5012b8-8da8-440b-aaaf-aedafdea2dff", name="Suspicious WerFault Child Process")],
     techniques=["T1036"],
 )
 

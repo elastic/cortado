@@ -13,8 +13,8 @@ metadata = RtaMetadata(
     id="e7a55d39-37b4-4f37-9519-3779b3c23bfa",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Suspicious Bitsadmin Activity", "rule_id": "676ac66c-4899-498f-ae21-ed5620af5477"},
-        {"rule_name": "Suspicious Microsoft Office Child Process", "rule_id": "c34a9dca-66cf-4283-944d-1800b28ae690"},
+        RuleMetadata(id="676ac66c-4899-498f-ae21-ed5620af5477", name="Suspicious Bitsadmin Activity"),
+        RuleMetadata(id="c34a9dca-66cf-4283-944d-1800b28ae690", name="Suspicious Microsoft Office Child Process"),
     ],
     siem_rules=[],
     techniques=["T1197", "T1566"],

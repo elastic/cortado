@@ -12,7 +12,7 @@ metadata = RtaMetadata(
     platforms=["macos"],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_name": "TCC Bypass via Mounted APFS Snapshot Access", "rule_id": "b00bcd89-000c-4425-b94c-716ef67762f6"}
+        RuleMetadata(id="b00bcd89-000c-4425-b94c-716ef67762f6", name="TCC Bypass via Mounted APFS Snapshot Access")
     ],
     techniques=["T1006"],
 )

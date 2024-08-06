@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="cf71bf97-e3ba-474c-9b6b-538e5a8008b0",
     platforms=["macos"],
     endpoint_rules=[],
-    siem_rules=[{"rule_name": "Attempt to Disable Gatekeeper", "rule_id": "4da13d6e-904f-4636-81d8-6ab14b4e6ae9"}],
+    siem_rules=[RuleMetadata(id="4da13d6e-904f-4636-81d8-6ab14b4e6ae9", name="Attempt to Disable Gatekeeper")],
     techniques=["T1553"],
 )
 

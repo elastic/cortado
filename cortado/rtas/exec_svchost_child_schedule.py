@@ -11,9 +11,9 @@ metadata = RtaMetadata(
     id="e9ee4f0c-b8c6-4471-b132-1edf4a7ca441",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Binary Masquerading via Untrusted Path", "rule_id": "35dedf0c-8db6-4d70-b2dc-a133b808211f"},
-        {"rule_name": "Potential Masquerading as SVCHOST", "rule_id": "5b00c9ba-9546-47cc-8f9f-1c1a3e95f65c"},
-        {"rule_name": "Suspicious Windows Schedule Child Process", "rule_id": "eb04896b-935f-4d12-b2ad-579db82e1f42"},
+        RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
+        RuleMetadata(id="5b00c9ba-9546-47cc-8f9f-1c1a3e95f65c", name="Potential Masquerading as SVCHOST"),
+        RuleMetadata(id="eb04896b-935f-4d12-b2ad-579db82e1f42", name="Suspicious Windows Schedule Child Process"),
     ],
     siem_rules=[],
     techniques=["T1218", "T1036", "T1216", "T1220", "T1053", "T1059"],

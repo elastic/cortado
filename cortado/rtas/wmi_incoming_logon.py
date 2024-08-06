@@ -18,7 +18,7 @@ metadata = RtaMetadata(
     id="3adf005f-94b8-4b34-8994-d5a3dc6666c2",
     platforms=["windows"],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "f3475224-b179-4f78-8877-c2bd64c26b88", "rule_name": "WMI Incoming Lateral Movement"}],
+    siem_rules=[RuleMetadata(id="f3475224-b179-4f78-8877-c2bd64c26b88", name="WMI Incoming Lateral Movement")],
     techniques=["T1047"],
 )
 

@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="d5643e8a-c3f5-48a7-9f64-7255f603a24a",
     platforms=["macos"],
     endpoint_rules=[],
-    siem_rules=[{"rule_name": "Potential Admin Group Account Addition", "rule_id": "565c2b44-7a21-4818-955f-8d4737967d2e"}],
+    siem_rules=[RuleMetadata(id="565c2b44-7a21-4818-955f-8d4737967d2e", name="Potential Admin Group Account Addition")],
     techniques=["T1078"],
 )
 

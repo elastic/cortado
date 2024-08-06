@@ -13,7 +13,7 @@ metadata = RtaMetadata(
     id="fb5cd755-cc31-4142-969a-cd14d3142b36",
     platforms=["linux"],
     endpoint_rules=[
-        {"rule_id": "aec74eb4-9618-42ff-96eb-2d13e6959d47", "rule_name": "Potential VScode Remote Tunnel Established"},
+        RuleMetadata(id="aec74eb4-9618-42ff-96eb-2d13e6959d47", name="Potential VScode Remote Tunnel Established"),
     ],
     siem_rules=[],
     techniques=["T1059"],

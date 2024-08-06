@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="61abdbb3-bcab-4c57-8b5d-2a5c9226e580",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Registry Modification via Microsoft Office", "rule_id": "926b6cd1-c0c7-46d4-82d6-9deb6ae431d6"}
+        RuleMetadata(id="926b6cd1-c0c7-46d4-82d6-9deb6ae431d6", name="Registry Modification via Microsoft Office")
     ],
     siem_rules=[],
     techniques=["T1547", "T1112", "T1566"],

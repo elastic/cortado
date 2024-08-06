@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="2c186f11-d07c-4df6-8b86-bf9ffd6ca871",
     platforms=["macos"],
     endpoint_rules=[],
-    siem_rules=[{"rule_name": "Emond Rules Creation or Modification", "rule_id": "a6bf4dd4-743e-4da8-8c03-3ebd753a6c90"}],
+    siem_rules=[RuleMetadata(id="a6bf4dd4-743e-4da8-8c03-3ebd753a6c90", name="Emond Rules Creation or Modification")],
     techniques=["T1546"],
 )
 

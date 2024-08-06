@@ -9,8 +9,8 @@ from . import RtaMetadata
 metadata = RtaMetadata(
     id="9b0bbe6d-2116-4327-930b-51e3e5097487",
     platforms=["linux"],
-    endpoint_rules=[{"rule_name": "Potential Linux Hack Tool Launched", "rule_id": "3337a10c-e950-4827-a44e-96a688fba221"}],
-    siem_rules=[{"rule_name": "Potential Linux Hack Tool Launched", "rule_id": "1df1152b-610a-4f48-9d7a-504f6ee5d9da"}],
+    endpoint_rules=[RuleMetadata(id="3337a10c-e950-4827-a44e-96a688fba221", name="Potential Linux Hack Tool Launched")],
+    siem_rules=[RuleMetadata(id="1df1152b-610a-4f48-9d7a-504f6ee5d9da", name="Potential Linux Hack Tool Launched")],
     techniques=[""],
 )
 

@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="bc6130d9-f4fd-46c6-bcfe-623be6c51a3b",
     platforms=["macos"],
     endpoint_rules=[],
-    siem_rules=[{"rule_name": "WebProxy Settings Modification", "rule_id": "10a500bb-a28f-418e-ba29-ca4c8d1a9f2f"}],
+    siem_rules=[RuleMetadata(id="10a500bb-a28f-418e-ba29-ca4c8d1a9f2f", name="WebProxy Settings Modification")],
     techniques=["T1539"],
 )
 

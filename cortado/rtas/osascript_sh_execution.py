@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="fa1dd615-73f0-46d0-b047-b495337d356b",
     platforms=["macos"],
     endpoint_rules=[],
-    siem_rules=[{"rule_name": "Shell Execution via Apple Scripting", "rule_id": "d461fac0-43e8-49e2-85ea-3a58fe120b4f"}],
+    siem_rules=[RuleMetadata(id="d461fac0-43e8-49e2-85ea-3a58fe120b4f", name="Shell Execution via Apple Scripting")],
     techniques=["T1059"],
 )
 

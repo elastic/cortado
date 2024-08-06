@@ -11,10 +11,10 @@ metadata = RtaMetadata(
     id="0a6fcfaa-db5e-498f-9253-0f76b8a18687",
     platforms=["macos"],
     endpoint_rules=[
-        {"rule_name": "Dumping Account Hashes via Built-In Commands", "rule_id": "2ed766db-e0b0-4a07-8ec1-4e41dd406b64"}
+        RuleMetadata(id="2ed766db-e0b0-4a07-8ec1-4e41dd406b64", name="Dumping Account Hashes via Built-In Commands")
     ],
     siem_rules=[
-        {"rule_name": "Dumping Account Hashes via Built-In Commands", "rule_id": "02ea4563-ec10-4974-b7de-12e65aa4f9b3"}
+        RuleMetadata(id="02ea4563-ec10-4974-b7de-12e65aa4f9b3", name="Dumping Account Hashes via Built-In Commands")
     ],
     techniques=["T1003"],
 )

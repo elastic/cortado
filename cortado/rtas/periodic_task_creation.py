@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="31161e21-c290-4e51-a6d3-2865710793ff",
     platforms=["macos"],
     endpoint_rules=[],
-    siem_rules=[{"rule_name": "Potential Persistence via Periodic Tasks", "rule_id": "48ec9452-e1fd-4513-a376-10a1a26d2c83"}],
+    siem_rules=[RuleMetadata(id="48ec9452-e1fd-4513-a376-10a1a26d2c83", name="Potential Persistence via Periodic Tasks")],
     techniques=["T1053"],
 )
 

@@ -11,9 +11,9 @@ metadata = RtaMetadata(
     id="8b5119a5-9f78-492a-8448-ff726b0e0b4f",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Scriptlet Proxy Execution via PubPrn", "rule_id": "0d4454a7-c682-4085-995c-300973c5bdea"},
-        {"rule_name": "Execution from Unusual Directory", "rule_id": "16c84e67-e5e7-44ff-aefa-4d771bcafc0c"},
-        {"rule_name": "Binary Masquerading via Untrusted Path", "rule_id": "35dedf0c-8db6-4d70-b2dc-a133b808211f"},
+        RuleMetadata(id="0d4454a7-c682-4085-995c-300973c5bdea", name="Scriptlet Proxy Execution via PubPrn"),
+        RuleMetadata(id="16c84e67-e5e7-44ff-aefa-4d771bcafc0c", name="Execution from Unusual Directory"),
+        RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
     ],
     siem_rules=[],
     techniques=["T1216", "T1218", "T1036", "T1059"],

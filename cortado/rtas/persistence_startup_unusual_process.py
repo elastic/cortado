@@ -12,12 +12,12 @@ metadata = RtaMetadata(
     id="9a0c0715-5225-4170-a505-0e3cc4dfd63e",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Execution via Renamed Signed Binary Proxy", "rule_id": "b0207677-5041-470b-981d-13ab956cf5b4"},
+        RuleMetadata(id="b0207677-5041-470b-981d-13ab956cf5b4", name="Execution via Renamed Signed Binary Proxy"),
         {
             "rule_name": "Unusual File Written or Modified in Startup Folder",
             "rule_id": "30a90136-7831-41c3-a2aa-1a303c1186ac",
         },
-        {"rule_name": "Startup Persistence via Unusual Process", "rule_id": "95d13ce1-ffb2-4be8-a56e-cc9a891e81e2"},
+        RuleMetadata(id="95d13ce1-ffb2-4be8-a56e-cc9a891e81e2", name="Startup Persistence via Unusual Process"),
         {
             "rule_name": "Script Interpreter Process Writing to Commonly Abused Persistence Locations",
             "rule_id": "be42f9fc-bdca-41cd-b125-f223d09eef69",

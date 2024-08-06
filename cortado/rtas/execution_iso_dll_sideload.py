@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="ba802fb2-f183-420e-947b-da5ce0c74d123",
     platforms=["windows"],
     siem_rules=[],
-    endpoint_rules=[{"rule_id": "ba802fb2-f183-420e-947b-da5ce0c74dd3", "rule_name": "Potential DLL SideLoad via a Microsoft Signed Binary"}],
+    endpoint_rules=[RuleMetadata(id="ba802fb2-f183-420e-947b-da5ce0c74dd3", name="Potential DLL SideLoad via a Microsoft Signed Binary")],
     techniques=["T1574", "T1574.002"],
 )
 

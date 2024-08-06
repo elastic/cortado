@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="459d7b3c-2c6d-4101-b830-d6c317d4b355",
     platforms=["macos"],
     endpoint_rules=[],
-    siem_rules=[{"rule_name": "Suspicious Browser Child Process", "rule_id": "080bc66a-5d56-4d1f-8071-817671716db9"}],
+    siem_rules=[RuleMetadata(id="080bc66a-5d56-4d1f-8071-817671716db9", name="Suspicious Browser Child Process")],
     techniques=["T1203", "T1189"],
 )
 

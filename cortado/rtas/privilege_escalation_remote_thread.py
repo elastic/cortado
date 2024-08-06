@@ -14,7 +14,7 @@ metadata = RtaMetadata(
     id="e1ff47b2-af5d-4cfc-bd94-e0b86828b241",
     platforms=["macos"],
     endpoint_rules=[
-        {"rule_name": "Potential Code Injection via Remote Thread", "rule_id": "458f0b4b-be9a-45bc-8f19-a26dac267250"}
+        RuleMetadata(id="458f0b4b-be9a-45bc-8f19-a26dac267250", name="Potential Code Injection via Remote Thread")
     ],
     siem_rules=[],
     techniques=["T1055"],

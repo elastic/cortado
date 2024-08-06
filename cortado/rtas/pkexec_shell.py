@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="dc1baf0d-8048-481a-b142-73313181fe31",
     platforms=["linux"],
     endpoint_rules=[
-        {"rule_name": "Privilege Escalation via PKEXEC Exploitation", "rule_id": "30c89cc9-d93c-4134-a976-58f8413f2f32"}
+        RuleMetadata(id="30c89cc9-d93c-4134-a976-58f8413f2f32", name="Privilege Escalation via PKEXEC Exploitation")
     ],
     siem_rules=[],
     techniques=["T1574", "T1068"],

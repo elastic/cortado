@@ -20,8 +20,8 @@ metadata = RtaMetadata(
     platforms=["windows"],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_id": "7b8bfc26-81d2-435e-965c-d722ee397ef1", "rule_name": "Windows Network Enumeration"},
-        {"rule_id": "871ea072-1b71-4def-b016-6278b505138d", "rule_name": "Enumeration of Administrator Accounts"},
+        RuleMetadata(id="7b8bfc26-81d2-435e-965c-d722ee397ef1", name="Windows Network Enumeration"),
+        RuleMetadata(id="871ea072-1b71-4def-b016-6278b505138d", name="Enumeration of Administrator Accounts"),
     ],
     techniques=["T1135", "T1069", "T1087", "T1018"],
 )

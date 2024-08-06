@@ -30,7 +30,7 @@ metadata = RtaMetadata(
             "rule_id": "1fe3b299-fbb5-4657-a937-1d746f2c711a",
             "rule_name": "Unusual Network Activity from a Windows System Binary",
         },
-        {"rule_id": "610949a1-312f-4e04-bb55-3a79b8c95267", "rule_name": "Unusual Process Network Connection"},
+        RuleMetadata(id="610949a1-312f-4e04-bb55-3a79b8c95267", name="Unusual Process Network Connection"),
     ],
     techniques=["T1127"],
 )

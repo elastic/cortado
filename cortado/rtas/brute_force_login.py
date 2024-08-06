@@ -23,7 +23,7 @@ metadata = RtaMetadata(
     platforms=["windows"],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_id": "e08ccd49-0380-4b2b-8d71-8000377d6e49", "rule_name": "Attempts to Brute Force an Okta User Account"}
+        RuleMetadata(id="e08ccd49-0380-4b2b-8d71-8000377d6e49", name="Attempts to Brute Force an Okta User Account")
     ],
     techniques=["T1110"],
 )

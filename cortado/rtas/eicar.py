@@ -9,7 +9,7 @@ from . import RtaMetadata
 metadata = RtaMetadata(
     id="c8efd8c9-b32c-482a-90ff-f2d366a2af45",
     platforms=["macos", "linux", "windows"],
-    endpoint_rules=[{"rule_id": "c4539c79-9f55-4b36-b06f-8aff82563bca", "rule_name": "Behavior Protection - EICAR"}],
+    endpoint_rules=[RuleMetadata(id="c4539c79-9f55-4b36-b06f-8aff82563bca", name="Behavior Protection - EICAR")],
     siem_rules=[],
     techniques=["TA0002"]
 )

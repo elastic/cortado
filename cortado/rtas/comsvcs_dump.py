@@ -24,7 +24,7 @@ metadata = RtaMetadata(
             "rule_id": "c5c9f591-d111-4cf8-baec-c26a39bc31ef",
             "rule_name": "Potential Credential Access via Renamed COM+ Services DLL",
         },
-        {"rule_id": "208dbe77-01ed-4954-8d44-1e5751cb20de", "rule_name": "LSASS Memory Dump Handle Access"},
+        RuleMetadata(id="208dbe77-01ed-4954-8d44-1e5751cb20de", name="LSASS Memory Dump Handle Access"),
         {
             "rule_id": "00140285-b827-4aee-aa09-8113f58a08f3",
             "rule_name": "Potential Credential Access via Windows Utilities",

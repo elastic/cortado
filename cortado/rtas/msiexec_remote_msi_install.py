@@ -11,8 +11,8 @@ metadata = RtaMetadata(
     id="8cb1d15d-d945-4f1c-9238-b221600156bc",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Binary Masquerading via Untrusted Path", "rule_id": "35dedf0c-8db6-4d70-b2dc-a133b808211f"},
-        {"rule_name": "Remote MSI Package Installation via MSIEXEC", "rule_id": "706bf4ca-45b7-4eb1-acae-b1228124594a"},
+        RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
+        RuleMetadata(id="706bf4ca-45b7-4eb1-acae-b1228124594a", name="Remote MSI Package Installation via MSIEXEC"),
     ],
     siem_rules=[],
     techniques=["T1218", "T1036"],

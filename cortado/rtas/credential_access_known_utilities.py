@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="374718be-d841-4381-a75f-ef54f0d5eb18",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Credential Access via Known Utilities", "rule_id": "3c44fc50-2672-48b3-af77-ff43b895ac70"}
+        RuleMetadata(id="3c44fc50-2672-48b3-af77-ff43b895ac70", name="Credential Access via Known Utilities")
     ],
     siem_rules=[],
     techniques=["T1003"],

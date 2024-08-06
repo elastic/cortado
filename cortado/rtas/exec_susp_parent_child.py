@@ -10,7 +10,7 @@ from . import RtaMetadata
 metadata = RtaMetadata(
     id="b12372b8-0e76-4b3d-9dfc-880664893eb9",
     platforms=["windows"],
-    endpoint_rules=[{"rule_name": "Suspicious Parent-Child Relationship", "rule_id": "18a26e3e-e535-4d23-8ffa-a3cdba56d16e"}],
+    endpoint_rules=[RuleMetadata(id="18a26e3e-e535-4d23-8ffa-a3cdba56d16e", name="Suspicious Parent-Child Relationship")],
     siem_rules=[],
     techniques=["T1055", "T1036"],
 )

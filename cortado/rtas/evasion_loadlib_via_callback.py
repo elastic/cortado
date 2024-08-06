@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="ae4b2807-3a16-485e-bb69-5d36bbe9b7d1",
     platforms=["windows"],
     siem_rules=[],
-    endpoint_rules=[{"rule_id": "fae9f554-d3bc-4d48-8863-54d0dd68db54", "rule_name": "Library Loaded via a CallBack Function"}],
+    endpoint_rules=[RuleMetadata(id="fae9f554-d3bc-4d48-8863-54d0dd68db54", name="Library Loaded via a CallBack Function")],
     techniques=["T1574"],
 )
 

@@ -12,7 +12,7 @@ metadata = RtaMetadata(
     platforms=["macos"],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_name": "Finder Sync Plugin Registered and Enabled", "rule_id": "37f638ea-909d-4f94-9248-edd21e4a9906"}
+        RuleMetadata(id="37f638ea-909d-4f94-9248-edd21e4a9906", name="Finder Sync Plugin Registered and Enabled")
     ],
     techniques=["T1543"],
 )

@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="b023cf4b-2856-4170-9ea0-884041904159",
     platforms=["macos"],
     endpoint_rules=[
-        {"rule_name": "MacOS Monterey Reflective Code Loading", "rule_id": "16fba7a9-f8f6-43ce-ae24-6a392a48e49c"}
+        RuleMetadata(id="16fba7a9-f8f6-43ce-ae24-6a392a48e49c", name="MacOS Monterey Reflective Code Loading")
     ],
     siem_rules=[],
     techniques=["T1620", "T1106"],

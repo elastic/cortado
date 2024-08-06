@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="a67586fd-cceb-4fb9-bf0e-d355b9e8921a",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "UAC Bypass via FodHelper Execution Hijack", "rule_id": "b5c0058e-2bca-4ed5-84b3-4e017c039c57"}
+        RuleMetadata(id="b5c0058e-2bca-4ed5-84b3-4e017c039c57", name="UAC Bypass via FodHelper Execution Hijack")
     ],
     siem_rules=[],
     techniques=["T1548"],

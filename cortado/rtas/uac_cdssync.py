@@ -13,7 +13,7 @@ metadata = RtaMetadata(
     id="7e9a94f4-46aa-45eb-b95b-53da7c01a033",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Binary Masquerading via Untrusted Path", "rule_id": "35dedf0c-8db6-4d70-b2dc-a133b808211f"},
+        RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         {
             "rule_name": "UAC Bypass Attempt via CDSSync Scheduled Task Hijack",
             "rule_id": "d8b7a157-c98f-42bd-8aac-7d1e4fcd53f4",

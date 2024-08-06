@@ -11,9 +11,9 @@ metadata = RtaMetadata(
     id="057f2c1b-28cc-4286-92ce-75e789aa8e74",
     platforms=["macos"],
     endpoint_rules=[
-        {"rule_name": "Potential Kerberos Attack via Bifrost", "rule_id": "fecebe4f-2d28-46e7-9bc1-71cdd8ecdd60"}
+        RuleMetadata(id="fecebe4f-2d28-46e7-9bc1-71cdd8ecdd60", name="Potential Kerberos Attack via Bifrost")
     ],
-    siem_rules=[{"rule_name": "Potential Kerberos Attack via Bifrost", "rule_id": "16904215-2c95-4ac8-bf5c-12354e047192"}],
+    siem_rules=[RuleMetadata(id="16904215-2c95-4ac8-bf5c-12354e047192", name="Potential Kerberos Attack via Bifrost")],
     techniques=["T1558", "T1550"],
 )
 

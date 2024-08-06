@@ -10,7 +10,7 @@ from . import RtaMetadata
 metadata = RtaMetadata(
     id="bf2f893a-513a-41ea-9170-2c9b08a2a55f",
     platforms=["windows"],
-    endpoint_rules=[{"rule_name": "LSA Dump via SilentProcessExit", "rule_id": "28969fe6-0ebe-4442-b40c-dbe9b4234f5e"}],
+    endpoint_rules=[RuleMetadata(id="28969fe6-0ebe-4442-b40c-dbe9b4234f5e", name="LSA Dump via SilentProcessExit")],
     siem_rules=[],
     techniques=["T1003"],
 )

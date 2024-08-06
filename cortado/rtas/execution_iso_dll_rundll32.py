@@ -11,8 +11,8 @@ metadata = RtaMetadata(
     id="8bd17f51-3fc0-46a8-9e1a-662723314ad4",
     platforms=["windows"],
     siem_rules=[],
-    endpoint_rules=[{"rule_id": "779b9502-7912-4773-95a1-51cd702a71c8", "rule_name": "Suspicious ImageLoad from an ISO Mounted Device"}, 
-              {"rule_id": "08fba401-b76f-4c7b-9a88-4f3b17fe00c1", "rule_name": "DLL Loaded from an Archive File"}],
+    endpoint_rules=[RuleMetadata(id="779b9502-7912-4773-95a1-51cd702a71c8", name="Suspicious ImageLoad from an ISO Mounted Device"), 
+              RuleMetadata(id="08fba401-b76f-4c7b-9a88-4f3b17fe00c1", name="DLL Loaded from an Archive File")],
     techniques=["T1574", "T1574.002"],
 )
 

@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="633313a4-dbe5-420f-b4ae-90c481a7f881",
     platforms=["macos"],
     endpoint_rules=[],
-    siem_rules=[{"rule_name": "Attempt to Install Root Certificate", "rule_id": "bc1eeacf-2972-434f-b782-3a532b100d67"}],
+    siem_rules=[RuleMetadata(id="bc1eeacf-2972-434f-b782-3a532b100d67", name="Attempt to Install Root Certificate")],
     techniques=["T1553"],
 )
 

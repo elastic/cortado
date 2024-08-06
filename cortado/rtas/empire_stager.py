@@ -10,7 +10,7 @@ from . import RtaMetadata
 metadata = RtaMetadata(
     id="4d7ce5b3-f8e4-434c-9caa-c7e133146b27",
     platforms=["macos", "linux"],
-    endpoint_rules=[{"rule_name": "Empire Stager Execution", "rule_id": "b7974ff6-82ff-4743-9e07-1c6901b1f0ea"}],
+    endpoint_rules=[RuleMetadata(id="b7974ff6-82ff-4743-9e07-1c6901b1f0ea", name="Empire Stager Execution")],
     siem_rules=[],
     techniques=["T1132", "T1059"],
 )

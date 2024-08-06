@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="26339b1f-05ba-4fd8-94c2-8ee1613e4590",
     platforms=["macos"],
     endpoint_rules=[],
-    siem_rules=[{"rule_name": "Persistence via Login or Logout Hook", "rule_id": "5d0265bf-dea9-41a9-92ad-48a8dcd05080"}],
+    siem_rules=[RuleMetadata(id="5d0265bf-dea9-41a9-92ad-48a8dcd05080", name="Persistence via Login or Logout Hook")],
     techniques=["T1037"],
 )
 

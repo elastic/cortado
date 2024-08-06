@@ -11,7 +11,7 @@ metadata = RtaMetadata(
     id="13fbcfdc-ba84-414b-aaa6-49b416806c8e",
     platforms=["windows"],
     endpoint_rules=[
-        {"rule_name": "Registry Run Key Prefixed with Asterisk", "rule_id": "94d35931-5c48-49ed-8c18-d601c4f8aeaa"}
+        RuleMetadata(id="94d35931-5c48-49ed-8c18-d601c4f8aeaa", name="Registry Run Key Prefixed with Asterisk")
     ],
     siem_rules=[],
     techniques=["T1547"],

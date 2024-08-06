@@ -15,7 +15,7 @@ metadata = RtaMetadata(
             "rule_name": "Suspicious Execution via Windows Management Instrumentation",
             "rule_id": "7e554c18-6435-41ce-b57b-d0ac3b73817f",
         },
-        {"rule_name": "Microsoft Office File Execution via WMI", "rule_id": "792411bd-59ef-4ac0-89be-786d52d1a5c8"},
+        RuleMetadata(id="792411bd-59ef-4ac0-89be-786d52d1a5c8", name="Microsoft Office File Execution via WMI"),
     ],
     siem_rules=[],
     techniques=["T1047", "T1566"],

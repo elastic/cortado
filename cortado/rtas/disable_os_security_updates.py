@@ -11,9 +11,9 @@ metadata = RtaMetadata(
     id="f4e4a28e-c845-4b26-bfdf-24128e73ef21",
     platforms=["macos"],
     endpoint_rules=[
-        {"rule_name": "Operating System Security Updates Disabled", "rule_id": "741ad90d-e8d0-4d29-b91b-3d68108cb789"}
+        RuleMetadata(id="741ad90d-e8d0-4d29-b91b-3d68108cb789", name="Operating System Security Updates Disabled")
     ],
-    siem_rules=[{"rule_name": "SoftwareUpdate Preferences Modification", "rule_id": "f683dcdf-a018-4801-b066-193d4ae6c8e5"}],
+    siem_rules=[RuleMetadata(id="f683dcdf-a018-4801-b066-193d4ae6c8e5", name="SoftwareUpdate Preferences Modification")],
     techniques=["T1562"],
 )
 

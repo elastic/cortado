@@ -10,7 +10,7 @@ from . import RtaMetadata
 metadata = RtaMetadata(
     id="4843eb25-3579-473a-b309-76d02eda3085",
     platforms=["macos", "linux"],
-    endpoint_rules=[{"rule_name": "DARKRADIATION Ransomware Infection", "rule_id": "33309858-3154-47a6-b601-eda2de62557b"}],
+    endpoint_rules=[RuleMetadata(id="33309858-3154-47a6-b601-eda2de62557b", name="DARKRADIATION Ransomware Infection")],
     siem_rules=[],
     techniques=["T1486"],
 )

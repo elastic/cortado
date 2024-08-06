@@ -23,7 +23,7 @@ metadata = RtaMetadata(
     id="389392dc-61db-4e45-846f-099f7d289c1b",
     platforms=["windows"],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "d61cbcf8-1bc1-4cff-85ba-e7b21c5beedc", "rule_name": "Service Command Lateral Movement"}],
+    siem_rules=[RuleMetadata(id="d61cbcf8-1bc1-4cff-85ba-e7b21c5beedc", name="Service Command Lateral Movement")],
     techniques=["T1569", "T1021", "T1543"],
 )
 
