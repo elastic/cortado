@@ -11,7 +11,7 @@
 import socket
 import sys
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 SMB_PORT = 445
 

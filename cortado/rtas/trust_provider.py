@@ -8,7 +8,7 @@
 # ATT&CK: T1116
 # Description: Substitutes an invalid code authentication policy, enabling trust policy bypass.
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 if _common.is_64bit():

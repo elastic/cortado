@@ -8,7 +8,7 @@
 # ATT&CK: T1105
 # Description: Uses certutil.exe to download a file.
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 MY_DLL = "bin/mydll.dll"

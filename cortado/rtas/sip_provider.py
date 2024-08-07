@@ -8,7 +8,7 @@
 # ATT&CK: TBD
 # Description: Registers a mock SIP provider to bypass code integrity checks and execute mock malware.
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 CRYPTO_ROOT = "SOFTWARE\\Microsoft\\Cryptography\\OID\\EncodingType 0"

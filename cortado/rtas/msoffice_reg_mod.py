@@ -3,11 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 @register_code_rta(
     id="61abdbb3-bcab-4c57-8b5d-2a5c9226e580",
+    name="msoffice_reg_mod",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="926b6cd1-c0c7-46d4-82d6-9deb6ae431d6", name="Registry Modification via Microsoft Office")

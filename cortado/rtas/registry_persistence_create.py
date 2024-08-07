@@ -13,7 +13,7 @@
 # TODO: Split into multiple files
 import time
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 TARGET_APP_EXE = "bin/myapp.exe"

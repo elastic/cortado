@@ -8,7 +8,7 @@
 # ATT&CK: T1023,T1204,T1193,T1192
 # Description: Create a .lnk file using cmd.exe
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 @register_code_rta(

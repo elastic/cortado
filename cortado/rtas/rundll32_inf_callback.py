@@ -12,7 +12,7 @@
 
 import time
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 INF_FILE = "bin/script_launch.inf"

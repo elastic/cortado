@@ -11,16 +11,15 @@
 import os
 from pathlib import Path
 
+from . import _common, register_code_rta, OSType
+
 
 @register_code_rta(
     id="dc734786-66bd-4be6-bd06-eb41fa7b6745",
     platforms=[OSType.WINDOWS],
-    endpoint_rules=[],
-    siem_rules=[],
-    techniques=[],
+    ancillary_files=[_common.PS_EXEC],
 )
-@_common.dependencies(_common.PS_EXEC)
-def main():
+def main() -> None:
     # make sure path is absolute for psexec
     status = _common.run_system()
     if status is not None:

@@ -8,7 +8,7 @@
 # ATT&CK: T1127
 # Description: Generates network traffic from msxsl.exe
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 MS_XSL_EXE = "bin/msxsl.exe"

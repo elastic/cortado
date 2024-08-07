@@ -9,7 +9,7 @@
 # ATT&CK: T1064
 # Description: Generates network traffic various children processes from emulated Office processes.
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 @register_code_rta(

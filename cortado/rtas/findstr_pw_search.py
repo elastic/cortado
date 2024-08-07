@@ -8,7 +8,7 @@
 # ATT&CK: T1081
 # Description: Recursively searches files looking for the string "password".
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 @register_code_rta(

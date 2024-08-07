@@ -11,10 +11,10 @@
 
 import time
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
-MY_APP = _common.get_path("bin", "myapp.exe")
+MY_APP = "bin/myapp.exe"
 
 
 @register_code_rta(
@@ -23,8 +23,8 @@ MY_APP = _common.get_path("bin", "myapp.exe")
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="ac5012b8-8da8-440b-aaaf-aedafdea2dff", name="Suspicious WerFault Child Process")],
     techniques=["T1036"],
+    ancillary_files=[MY_APP_EXE],
 )
-@_common.dependencies(MY_APP)
 def main():
     reg_key = "'HKLM:\\SOFTWARE\\Microsoft\\Windows\\Windows Error Reporting\\hangs'"
     reg_name = "ReflectDebugger"

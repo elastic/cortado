@@ -3,7 +3,7 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-import sys
+from . import _common, register_code_rta, OSType, RuleMetadata
 
 
 @register_code_rta(
@@ -12,7 +12,6 @@ import sys
     endpoint_rules=[
         RuleMetadata(id="22145fc0-dc4c-4187-8397-4d20162fc391", name="CVE-2023-0386 Exploitation Attempt"),
     ],
-    siem_rules=[],
     techniques=["T1068"],
 )
 def main() -> None:
@@ -30,7 +29,3 @@ def main() -> None:
 
     # cleanup
     _common.remove_file(masquerade)
-
-
-if __name__ == "__main__":
-    sys.exit(main())

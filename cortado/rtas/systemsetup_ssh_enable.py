@@ -3,11 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 @register_code_rta(
     id="23997dfa-9e30-4091-9ee2-8bd45a2da70a",
+    name="systemsetup_ssh_enable",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

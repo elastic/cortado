@@ -8,7 +8,7 @@
 # ATT&CK: T1036
 # Description: Creates processes with anomalous extensions
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 MY_APP_EXE = "bin/myapp.exe"

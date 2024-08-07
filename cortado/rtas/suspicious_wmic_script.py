@@ -9,7 +9,7 @@
 # Reference: https://subt0x11.blogspot.com/2018/04/wmicexe-whitelisting-bypass-hacking.html
 import os
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 xsl_file = "test.xsl"

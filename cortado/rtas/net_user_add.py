@@ -9,7 +9,7 @@
 # signal.rule.name: User Account Creation
 # Description: Adds an account to the local host using the net.exe command
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 @register_code_rta(

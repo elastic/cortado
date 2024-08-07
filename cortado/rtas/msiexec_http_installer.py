@@ -8,7 +8,7 @@
 # ATT&CK:
 # Description: Use msiexec.exe to download an executable from a remote site over HTTP and run it.
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 @register_code_rta(

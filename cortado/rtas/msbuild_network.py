@@ -10,7 +10,7 @@
 # signal.rule.name: Trusted Developer Application Usage
 # Description: Generates network traffic from msbuild.exe
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 MS_BUILD_EXE = "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\msbuild.exe"

@@ -9,7 +9,7 @@
 # Description: Uses GlobalFlags option in Image File Execution Options to silently execute calc.exe after the monitored
 #              process (notepad.exe) is closed.
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 @register_code_rta(

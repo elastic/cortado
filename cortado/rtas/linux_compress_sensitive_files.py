@@ -7,7 +7,7 @@
 # RTA: linux_compress_sensitive_files.py
 # Description: Uses built-in commands for *nix operating systems to compress known sensitive
 #              files, such as etc/shadow and etc/passwd
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 @register_code_rta(

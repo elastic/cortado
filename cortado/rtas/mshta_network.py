@@ -8,10 +8,10 @@
 # ATT&CK: T1170
 # Description: Generates network traffic from mshta.exe
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
-HTA_FILE = _common.get_path("bin", "beacon.hta")
+HTA_FILE = "bin/beacon.hta"
 
 
 @register_code_rta(
@@ -26,8 +26,8 @@ HTA_FILE = _common.get_path("bin", "beacon.hta")
         RuleMetadata(id="a4ec1382-4557-452b-89ba-e413b22ed4b8", name="Network Connection via Mshta"),
     ],
     techniques=["T1127", "T1218"],
+    ancillary_files=[HTA_FILE],
 )
-@_common.dependencies(HTA_FILE)
 def main():
     # http server will terminate on main thread exit
     # if daemon is True

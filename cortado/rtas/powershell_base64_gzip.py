@@ -8,7 +8,7 @@
 # ATT&CK: T1140
 # Description: Calls PowerShell with command-line that contains base64/gzip
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 @register_code_rta(

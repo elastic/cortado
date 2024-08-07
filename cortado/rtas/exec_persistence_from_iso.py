@@ -7,14 +7,13 @@ from pathlib import Path
 
 
 # iso contains cmd.exe to test for rules looking for persistence from a PE from a mounted ISO or its descendants
-ISO = _common.get_path("bin", "cmd_from_iso.iso")
-PROC = "cmd.exe"
+ISO_FILE = "bin/cmd_from_iso.iso"
+PROC_EXE = "cmd.exe"
 
 
 @register_code_rta(
     id="a4355bfc-aa15-43f6-a36d-523aa637127b",
     platforms=[OSType.WINDOWS],
-    siem_rules=[],
     endpoint_rules=[
         RuleMetadata(
             id="0cdf1d24-b1c3-4952-a400-5ba3c1491087",

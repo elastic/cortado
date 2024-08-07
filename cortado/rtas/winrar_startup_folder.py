@@ -11,13 +11,12 @@
 import os
 from pathlib import Path
 
+from . import _common, register_code_rta, OSType
+
 
 @register_code_rta(
     id="6d2d3c21-2d71-4395-8ab7-b1d0138d9225",
     platforms=[OSType.WINDOWS],
-    endpoint_rules=[],
-    siem_rules=[],
-    techniques=[],
 )
 def main():
     _common.log("WinRAR StartUp Folder Persistence")

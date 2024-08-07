@@ -3,7 +3,7 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 # shellcode to load ws2_32.dll from unbacked memory to trigger <Network Module Loaded from Suspicious Unbacked Memory>

@@ -15,7 +15,7 @@ import os
 import re
 import sys
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 MY_APP_EXE = "bin/myapp.exe"

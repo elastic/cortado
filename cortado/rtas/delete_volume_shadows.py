@@ -10,7 +10,7 @@
 # ATT&CK: T1107
 # Description: Uses both vssadmin.exe and wmic.exe to delete volume shadow copies.
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 @register_code_rta(

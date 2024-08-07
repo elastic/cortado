@@ -10,7 +10,7 @@
 
 import sys
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 @register_code_rta(
@@ -19,8 +19,8 @@ from . import _common
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="55d551c6-333b-4665-ab7e-5d14a59715ce", name="PsExec Network Connection")],
     techniques=["T1569"],
+    ancillary_files=[_common.PS_EXEC],
 )
-@_common.dependencies(_common.PS_EXEC)
 def main(remote_host=None):
     remote_host = remote_host or _common.get_ip()
     _common.log("Performing PsExec to %s" % remote_host)

@@ -10,7 +10,7 @@
 
 import time
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 SHIM_FILE = "bin/CVE-2013-3893.sdb"

@@ -10,7 +10,7 @@
 # ATT&CK: T1085
 # Description: Executes javascript code with an AJAX call via RunDll32.exe
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 @register_code_rta(

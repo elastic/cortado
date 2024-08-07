@@ -12,7 +12,7 @@ import time
 from pathlib import Path
 
 
-VBS = _common.get_path("bin", "persistent_script.vbs")
+VBS = "bin/persistent_script.vbs"
 NAME = "rta-vbs-persistence"
 
 

@@ -8,7 +8,7 @@
 # ATT&CK: T1036
 # Description: Create and run a process with a double extension.
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 MY_APP_EXE = "bin/myapp_x64.exe"

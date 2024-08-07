@@ -7,8 +7,8 @@ from pathlib import Path
 
 
 # iso contains WerFault.exe and a testing faultrep.dll to be sideloaded
-ISO = _common.get_path("bin", "werfault_iso.iso")
-PROC = "WER_RTA.exe"
+ISO_FILE = "bin/werfault_iso.iso"
+WEB_RTA_EXE = "WER_RTA.exe"
 
 
 @register_code_rta(
@@ -25,10 +25,10 @@ def main():
     # ps script to mount, execute a file and unmount ISO device
     PS_SCRIPT = _common.get_path("bin", "ExecFromISOFile.ps1")
 
-    if Path(ISO).is_file() and Path(PS_SCRIPT).is_file():
-        print(f"[+] - ISO File {ISO} will be mounted and executed via powershell")
+    if Path(ISO_FILE).is_file() and Path(PS_SCRIPT).is_file():
+        print(f"[+] - ISO File {ISO_FILE} will be mounted and executed via powershell")
 
         # import ExecFromISO function that takes two args -ISOFIle pointing to ISO file path and -procname pointing to the filename to execute
-        command = f"powershell.exe -ExecutionPol Bypass -c import-module {PS_SCRIPT}; ExecFromISO -ISOFile {ISO} -procname {PROC};"
+        command = f"powershell.exe -ExecutionPol Bypass -c import-module {PS_SCRIPT}; ExecFromISO -ISOFile {ISO_FILE} -procname {WEB_RTA_EXE};"
         _common.execute(command)
         print(f"[+] - RTA Done!")

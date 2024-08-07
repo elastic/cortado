@@ -3,7 +3,7 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 @register_code_rta(
@@ -13,7 +13,6 @@ from . import _common
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         RuleMetadata(id="18371ec4-ee2f-465b-8757-ee726914006c", name="Suspicious WMIC XSL Script Execution"),
     ],
-    siem_rules=[],
     techniques=["T1220", "T1047", "T1036"],
 )
 def main():

@@ -9,8 +9,20 @@
 # Description: Uses "bin\rar.exe" to perform encryption of archives and archive headers.
 
 import base64
-import sys
 from pathlib import Path
+
+from . import _common, register_code_rta, OSType, RuleMetadata
+
+
+def create_exfil(path=Path("secret_stuff.txt").resolve()):
+    _common.log("Writing dummy exfil to %s" % path)
+    with open(path, "wb") as f:
+        f.write(base64.b64encode(b"This is really secret stuff" * 100))
+    return path
+
+
+MY_APP_EXE = "bin/myapp.exe"
+WINRAR_EXE = "bin/Rar.exe"
 
 
 @register_code_rta(
@@ -19,29 +31,19 @@ from pathlib import Path
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="45d273fb-1dca-457d-9855-bcb302180c21", name="Encrypting Files with WinRar or 7z")],
     techniques=["T1560"],
+    ancillary_files=[MY_APP_EXE, WINRAR_EXE],
 )
-def create_exfil(path=Path("secret_stuff.txt").resolve()):
-    _common.log("Writing dummy exfil to %s" % path)
-    with open(path, "wb") as f:
-        f.write(base64.b64encode(b"This is really secret stuff" * 100))
-    return path
-
-
-@_common.dependencies(MY_APP, WINRAR)
 def main(password="s0l33t"):
-    MY_APP = _common.get_path("bin", "myapp.exe")
-    WINRAR = _common.get_path("bin", "Rar.exe")
-
     # Copies of the rar.exe for various tests
     winrar_bin_modsig = _common.get_path("bin", "rar_broken-sig.exe")
-    _common.patch_file(WINRAR, b"win.rar GmbH", b"bad.bad GmbH", winrar_bin_modsig)
+    _common.patch_file(WINRAR_EXE, b"win.rar GmbH", b"bad.bad GmbH", winrar_bin_modsig)
 
     # Renamed copies of executables
     winrar_bin_modsig_a = Path("a.exe").resolve()
     winrar_bin_b = Path("b.exe").resolve()
 
     _common.copy_file(winrar_bin_modsig, winrar_bin_modsig_a)
-    _common.copy_file(WINRAR, winrar_bin_b)
+    _common.copy_file(WINRAR_EXE, winrar_bin_b)
 
     # Output options for various tests
     rar_file = Path("out.rar").resolve()
@@ -52,13 +54,13 @@ def main(password="s0l33t"):
 
     _common.log("Test case 1: Basic use new rar out", log_type="!")
     exfil = create_exfil()
-    _common.execute([WINRAR, "a", rar_file, "-hp" + password, exfil])
+    _common.execute([WINRAR_EXE, "a", rar_file, "-hp" + password, exfil])
 
     # use case: rar with -hp to add to existing rar file
     # didn't delete rar from previous case
     _common.log("Test case 2: Basic use add to existing rar", log_type="!")
     exfil2 = create_exfil("more_stuff.txt")
-    _common.execute([WINRAR, "a", rar_file, "-hp" + password, exfil2])
+    _common.execute([WINRAR_EXE, "a", rar_file, "-hp" + password, exfil2])
     _common.remove_files(exfil2, rar_file)
 
     #  use case: process_name == "*rar*" - yes
@@ -92,7 +94,7 @@ def main(password="s0l33t"):
     #            signature_signer == "*win.rar*" -no
     #            output filename == "*.rar" - no
     _common.log("Test case 6: FP, shouldn't alert, run with myapp.exe", log_type="!")
-    _common.execute([MY_APP, "-hpbadargument"])
+    _common.execute([MY_APP_EXE, "-hpbadargument"])
 
     _common.log("Cleanup", "-")
     _common.remove_files(winrar_bin_modsig, winrar_bin_modsig_a, winrar_bin_b)

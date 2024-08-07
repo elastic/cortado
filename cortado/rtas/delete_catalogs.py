@@ -10,7 +10,7 @@
 
 import time
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 @register_code_rta(

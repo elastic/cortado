@@ -7,9 +7,9 @@ from pathlib import Path
 
 
 # iso contains shortcut to start Rundll32 to load a testing DLL that when executed it will spawn notepad.exe
-ISO = _common.get_path("bin", "lnk_from_iso_rundll.iso")
+ISO_FILE = "bin/lnk_from_iso_rundll.iso"
 # shortcut name
-PROC = "Invite.lnk"
+LINK_FILE = "Invite.lnk"
 
 
 @register_code_rta(
@@ -26,11 +26,11 @@ def main():
     # ps script to mount, execute a file and unmount ISO device
     PS_SCRIPT = _common.get_path("bin", "ExecFromISOFile.ps1")
 
-    if Path(ISO).is_file() and Path(PS_SCRIPT).is_file():
-        print(f"[+] - ISO File {ISO} will be mounted and executed via powershell")
+    if Path(ISO_FILE).is_file() and Path(PS_SCRIPT).is_file():
+        print(f"[+] - ISO File {ISO_FILE} will be mounted and executed via powershell")
 
         # import ExecFromISO function that takes two args -ISOFIle pointing to ISO file path and -procname pointing to the filename to execute
-        command = f"powershell.exe -ExecutionPol Bypass -c import-module {PS_SCRIPT}; ExecFromISO -ISOFile {ISO} -procname {PROC};"
+        command = f"powershell.exe -ExecutionPol Bypass -c import-module {PS_SCRIPT}; ExecFromISO -ISOFile {ISO_FILE} -procname {LINK_FILE};"
         _common.execute(command)
 
         # terminate notepad.exe spawned as a result of the DLL execution

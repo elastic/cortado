@@ -4,7 +4,7 @@
 # 2.0.
 # Adjusted version of https://github.com/XRoemer/Organon/blob/master/source/py/rawinputdata.py
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 import time, sys
 

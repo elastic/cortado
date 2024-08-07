@@ -13,12 +13,10 @@ import shutil
 import sys
 from pathlib import Path
 
+from . import _common, register_code_rta, OSType
 
-if sys.version_info > (3,):
-    urlliblib = "urllib.request"
-else:
-    urlliblib = "urllib"
 
+urlliblib = "urllib.request"
 
 process_names = [
     "bginfo.exe",

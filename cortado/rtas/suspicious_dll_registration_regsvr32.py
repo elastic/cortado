@@ -8,7 +8,7 @@
 # ATT&CK: T1117
 # Description: Pretends to register DLL without traditional DLL extension using RegSvr32
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 @register_code_rta(

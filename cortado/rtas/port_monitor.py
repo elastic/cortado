@@ -8,7 +8,7 @@
 # ATT&CK: T1013
 # Description: Drops dummy DLL to Monitors registry path as non-system user, which would be executed with SYSTEM privs.
 
-from . import _common
+from . import _common, RuleMetadata, register_code_rta, OSType
 
 
 @register_code_rta(
