@@ -69,5 +69,3 @@ def main():
     register_sip_provider(wintrust, "CryptSIPVerifyIndirectData", "CryptSIPGetSignedDataMsg")
 
 
-if __name__ == "__main__":
-    exit(main())

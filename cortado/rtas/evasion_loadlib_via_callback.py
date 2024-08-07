@@ -29,5 +29,3 @@ def main():
         _common.execute(["taskkill", "/f", "/im", "LoadLib-Callback64.exe"])
         print(f'[+] - RTA Done!')
 
-if __name__ == "__main__":
-    exit(main())

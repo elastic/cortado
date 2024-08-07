@@ -31,5 +31,3 @@ def main():
     _common.remove_files(fake_exe, smss)
 
 
-if __name__ == "__main__":
-    exit(main())

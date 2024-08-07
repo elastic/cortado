@@ -62,5 +62,3 @@ def main():
     impersonate_trusted_installer()
 
 
-if __name__ == "__main__":
-    exit(main())

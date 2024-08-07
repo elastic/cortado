@@ -40,5 +40,3 @@ def main():
     return _common.SUCCESS
 
 
-if __name__ == "__main__":
-    exit(main())

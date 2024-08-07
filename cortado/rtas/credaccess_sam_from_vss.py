@@ -60,5 +60,3 @@ def main():
             print(f"[x] - RTA Failed :(")
 
 
-if __name__ == "__main__":
-    exit(main())

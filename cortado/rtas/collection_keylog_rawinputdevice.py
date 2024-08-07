@@ -279,5 +279,3 @@ def main():
     rir.stop()
 
 
-if __name__ == "__main__":
-    exit(main(*sys.argv[1:]))

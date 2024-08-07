@@ -21,5 +21,3 @@ def main():
     _common.temporary_file_helper("testing", file_name=f"{Path.home()}/Library/Preferences/com.apple.dock.plist")
 
 
-if __name__ == "__main__":
-    exit(main())

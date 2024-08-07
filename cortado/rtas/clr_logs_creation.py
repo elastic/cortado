@@ -38,5 +38,3 @@ def main():
     _common.remove_files(msxsl, fake_clr_logs)
 
 
-if __name__ == "__main__":
-    exit(main())

@@ -27,5 +27,3 @@ def main(remote_host=None):
     _common.execute([_common.PS_EXEC, "\\\\%s" % remote_host, "-accepteula", "ipconfig"])
 
 
-if __name__ == "__main__":
-    exit(main(*sys.argv[1:]))

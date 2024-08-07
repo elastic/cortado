@@ -21,5 +21,3 @@ def main():
     _common.execute([cmd, "/c", "ping -n 3 127.0.0.1 && rundll32.exe"], timeout=5, kill=True)
 
 
-if __name__ == "__main__":
-    exit(main())

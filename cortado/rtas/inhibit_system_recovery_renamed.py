@@ -29,5 +29,3 @@ def main():
     _common.remove_file(ren_vssadmin)
 
 
-if __name__ == "__main__":
-    exit(main())

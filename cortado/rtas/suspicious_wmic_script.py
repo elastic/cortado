@@ -50,5 +50,3 @@ def main():
     os.remove(xsl_file)
 
 
-if __name__ == "__main__":
-    exit(main())

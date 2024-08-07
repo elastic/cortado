@@ -27,5 +27,3 @@ def main():
     _common.remove_file(shortcut_path)
 
 
-if __name__ == "__main__":
-    exit(main())

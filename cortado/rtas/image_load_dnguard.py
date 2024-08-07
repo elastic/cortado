@@ -38,5 +38,3 @@ def main():
     _common.remove_files(proc, dll, ps1)
 
 
-if __name__ == "__main__":
-    exit(main())

@@ -27,5 +27,3 @@ def main():
     _common.remove_directory("/Library/StartupItems/test/")
 
 
-if __name__ == "__main__":
-    exit(main())

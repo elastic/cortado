@@ -37,5 +37,3 @@ def main():
     _common.remove_files(mmc, msc)
 
 
-if __name__ == "__main__":
-    exit(main())

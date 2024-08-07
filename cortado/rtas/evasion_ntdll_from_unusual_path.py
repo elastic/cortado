@@ -37,5 +37,3 @@ def main():
             print("f[+] - Failed to load ntdll")
 
 
-if __name__ == "__main__":
-    exit(main())

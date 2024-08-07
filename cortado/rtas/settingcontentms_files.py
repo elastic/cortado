@@ -34,5 +34,3 @@ def main():
     _common.execute(["cmd", "/c", "del", "%APPDATA%\\test.SettingContent-ms"])
 
 
-if __name__ == "__main__":
-    exit(main())

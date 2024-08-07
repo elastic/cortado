@@ -67,5 +67,3 @@ def main(target_host=None):
         _common.execute(["at.exe", host_str, job_id, "/delete"])
 
 
-if __name__ == "__main__":
-    exit(main(*sys.argv[1:]))

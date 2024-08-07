@@ -32,5 +32,3 @@ def main():
     _common.remove_files(explorer, msbuild)
 
 
-if __name__ == "__main__":
-    exit(main())

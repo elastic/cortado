@@ -20,5 +20,3 @@ def main():
     _common.execute([fsutil, "fsinfo", "drives"], timeout=10)
 
 
-if __name__ == "__main__":
-    exit(main())

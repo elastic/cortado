@@ -32,5 +32,3 @@ def main():
         _common.execute(["taskkill", "/F", "/IM", "netstat.exe"])
 
 
-if __name__ == "__main__":
-    exit(main())

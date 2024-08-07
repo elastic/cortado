@@ -64,5 +64,3 @@ def main():
         _common.remove_file(target_path)
 
 
-if __name__ == "__main__":
-    exit(main())

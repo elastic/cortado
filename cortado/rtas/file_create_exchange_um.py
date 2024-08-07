@@ -33,5 +33,3 @@ def main():
     _common.remove_files(proc)
 
 
-if __name__ == "__main__":
-    exit(main())

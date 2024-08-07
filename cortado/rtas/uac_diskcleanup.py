@@ -23,5 +23,3 @@ def main():
     _common.execute([powershell, "/autoclean", "/d"], timeout=2, kill=True)
 
 
-if __name__ == "__main__":
-    exit(main())

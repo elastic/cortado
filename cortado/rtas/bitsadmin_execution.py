@@ -38,5 +38,3 @@ def main():
     _common.remove_files(fake_word)
 
 
-if __name__ == "__main__":
-    exit(main())

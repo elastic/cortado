@@ -41,5 +41,3 @@ def main():
     _common.remove_files(dll, posh, rcedit)
 
 
-if __name__ == "__main__":
-    exit(main())

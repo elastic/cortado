@@ -92,5 +92,3 @@ def main(remote_host=None):
     _common.execute(["C:\\Windows\\system32\\wsmprovhost.exe", "-Embedding"], timeout=5, kill=True)
 
 
-if __name__ == "__main__":
-    exit(main(*sys.argv[1:]))

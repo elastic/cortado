@@ -25,5 +25,3 @@ def main():
     _common.execute([masquerade, "childprocess", command], shell=True, timeout=5, kill=True)
 
 
-if __name__ == "__main__":
-    exit(main())

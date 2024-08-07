@@ -40,5 +40,3 @@ def main():
     _common.execute(["sdbinst.exe", "-u", SHIM_FILE])
 
 
-if __name__ == "__main__":
-    exit(main())

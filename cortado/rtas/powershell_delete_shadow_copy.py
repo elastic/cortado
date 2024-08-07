@@ -28,5 +28,3 @@ def main():
     _common.execute([powershell, "/c", "Get-WmiObject Win32_ShadowCopy | Remove-WmiObject"], timeout=10)
 
 
-if __name__ == "__main__":
-    exit(main())

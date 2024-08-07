@@ -36,5 +36,3 @@ def main():
         _common.execute([cmd, "/c", "echo", "elastic-behavior-protection-eicar"])
 
 
-if __name__ == "__main__":
-    exit(main())

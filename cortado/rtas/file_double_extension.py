@@ -24,5 +24,3 @@ def main():
     _common.remove_file(doubleext)
 
 
-if __name__ == "__main__":
-    exit(main())

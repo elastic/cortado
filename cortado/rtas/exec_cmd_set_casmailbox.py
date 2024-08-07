@@ -26,5 +26,3 @@ def main():
     _common.execute([powershell, "/c", "echo", "Set-CASMailbox ActiveSyncAllowedDeviceIDs"], timeout=5, kill=True)
 
 
-if __name__ == "__main__":
-    exit(main())

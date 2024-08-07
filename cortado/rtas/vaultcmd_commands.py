@@ -28,5 +28,3 @@ def main():
     _common.execute(["vaultcmd.exe", "/list"])
 
 
-if __name__ == "__main__":
-    exit(main(*sys.argv[1:]))

@@ -28,5 +28,3 @@ def main():
     _common.execute([powershell, "/c", cmd1, ";", cmd2], timeout=10)
 
 
-if __name__ == "__main__":
-    exit(main())

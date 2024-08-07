@@ -75,5 +75,3 @@ def main():
     server.shutdown()
 
 
-if __name__ == "__main__":
-    exit(main())

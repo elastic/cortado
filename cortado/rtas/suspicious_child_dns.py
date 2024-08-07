@@ -29,5 +29,3 @@ def main():
     _common.remove_files(dns)
 
 
-if __name__ == "__main__":
-    exit(main())

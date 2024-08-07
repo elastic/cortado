@@ -23,5 +23,3 @@ def main():
     _common.temporary_file_helper("testing", file_name=f"{Path.home()}/Library/LaunchAgents/.test.plist")
 
 
-if __name__ == "__main__":
-    exit(main())

@@ -38,5 +38,3 @@ def main():
     _common.remove_files(binary, temp)
 
 
-if __name__ == "__main__":
-    exit(main())

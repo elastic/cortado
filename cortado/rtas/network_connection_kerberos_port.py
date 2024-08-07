@@ -22,5 +22,3 @@ def main():
     _common.execute([powershell, "/c", "Test-NetConnection -ComputerName portquiz.net -Port 88"], timeout=5)
 
 
-if __name__ == "__main__":
-    exit(main())

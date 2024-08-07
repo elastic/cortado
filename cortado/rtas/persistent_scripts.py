@@ -68,5 +68,3 @@ def main():
     _common.execute(["schtasks.exe", "/delete", "/tn", NAME, "/f"])
 
 
-if __name__ == "__main__":
-    exit(main())

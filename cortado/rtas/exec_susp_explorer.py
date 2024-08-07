@@ -20,5 +20,3 @@ def main():
     _common.execute([explorer, "easyminerRTA"], timeout=1, kill=True)
 
 
-if __name__ == "__main__":
-    exit(main())

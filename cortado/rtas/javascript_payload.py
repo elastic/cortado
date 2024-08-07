@@ -27,5 +27,3 @@ def main():
     _common.execute(["osascript", "-l", "JavaScript", "&"], shell=True)
 
 
-if __name__ == "__main__":
-    exit(main())

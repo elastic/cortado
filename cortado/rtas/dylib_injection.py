@@ -38,5 +38,3 @@ def main():
     _common.execute([f"DYLD_INSERT_LIBRARIES={dylib}", target_bin, "5"], kill=True, shell=True)
 
 
-if __name__ == "__main__":
-    exit(main())

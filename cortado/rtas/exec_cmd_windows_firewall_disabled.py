@@ -22,5 +22,3 @@ def main():
     _common.execute([powershell, "/c", "echo", "Set-NetFirewallProfile", "-Enabled", "False", "-All"], timeout=2)
 
 
-if __name__ == "__main__":
-    exit(main())

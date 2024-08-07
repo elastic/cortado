@@ -35,5 +35,3 @@ def main():
     _common.remove_files(binary, temposh)
 
 
-if __name__ == "__main__":
-    exit(main())

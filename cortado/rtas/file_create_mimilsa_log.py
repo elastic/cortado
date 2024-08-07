@@ -31,5 +31,3 @@ def main():
     _common.remove_files(fake_log, lsass)
 
 
-if __name__ == "__main__":
-    exit(main())

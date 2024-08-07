@@ -20,5 +20,3 @@ def main():
     _common.temporary_file_helper("testing", file_name="/private/tmp/NSCreateObjectFileImageFromMemory-test")
 
 
-if __name__ == "__main__":
-    exit(main())

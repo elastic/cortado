@@ -44,5 +44,3 @@ def main():
     _common.remove_file(masquerade_bash)
 
 
-if __name__ == "__main__":
-    exit(main())

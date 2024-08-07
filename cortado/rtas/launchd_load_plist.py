@@ -53,5 +53,3 @@ def main():
         _common.execute(["launchctl", "unload", plist_path], kill=True)
 
 
-if __name__ == "__main__":
-    exit(main())

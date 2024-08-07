@@ -53,5 +53,3 @@ def main():
         _common.remove_directory(working_dir)
 
 
-if __name__ == "__main__":
-    exit(main())

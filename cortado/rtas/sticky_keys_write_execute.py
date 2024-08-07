@@ -71,5 +71,3 @@ def main():
     _common.execute(["taskkill", "/F", "/im", "calculator.exe"])
 
 
-if __name__ == "__main__":
-    exit(main())

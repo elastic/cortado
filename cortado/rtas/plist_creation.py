@@ -67,5 +67,3 @@ def main():
         plist_file.unlink()
 
 
-if __name__ == "__main__":
-    exit(main())

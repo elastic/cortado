@@ -30,5 +30,3 @@ def main():
     _common.remove_directory(str(atom_dir))
 
 
-if __name__ == "__main__":
-    exit(main())

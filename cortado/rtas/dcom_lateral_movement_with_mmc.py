@@ -47,5 +47,3 @@ def main(remote_host=None):
     _common.execute(command, timeout=15, kill=True)
 
 
-if __name__ == "__main__":
-    exit(main(*sys.argv[1:]))

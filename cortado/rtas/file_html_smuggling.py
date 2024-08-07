@@ -48,5 +48,3 @@ def main():
     _common.remove_files(explorer, chrome, file)
 
 
-if __name__ == "__main__":
-    exit(main())

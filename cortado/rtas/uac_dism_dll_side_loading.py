@@ -41,5 +41,3 @@ def main():
     _common.remove_files(dism, dllhost, dccwpathdll2)
 
 
-if __name__ == "__main__":
-    exit(main())

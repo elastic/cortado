@@ -32,5 +32,3 @@ def main():
     _common.remove_files(regsvr32)
 
 
-if __name__ == "__main__":
-    exit(main())

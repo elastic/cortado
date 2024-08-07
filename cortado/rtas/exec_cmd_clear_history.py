@@ -20,5 +20,3 @@ def main():
     _common.execute([powershell, "/c", "Clear-History"], timeout=10)
 
 
-if __name__ == "__main__":
-    exit(main())

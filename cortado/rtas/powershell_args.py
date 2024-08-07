@@ -43,5 +43,3 @@ def main():
     _common.remove_file(temp_script)
 
 
-if __name__ == "__main__":
-    exit(main())

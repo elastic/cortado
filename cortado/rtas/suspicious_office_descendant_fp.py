@@ -53,5 +53,3 @@ def main():
     _common.remove_file(browser_path)
 
 
-if __name__ == "__main__":
-    exit(main())

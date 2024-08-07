@@ -48,5 +48,3 @@ def main():
     _common.remove_file("dump.bin")
 
 
-if __name__ == "__main__":
-    exit(main())

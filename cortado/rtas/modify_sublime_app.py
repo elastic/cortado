@@ -32,5 +32,3 @@ def main():
     _common.remove_directory(str(sublime_dir))
 
 
-if __name__ == "__main__":
-    exit(main())

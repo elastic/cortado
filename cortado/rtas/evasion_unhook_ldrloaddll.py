@@ -30,5 +30,3 @@ def main():
         # cleanup
         _common.execute(["taskkill", "/f", "/im", "notepad.exe"])
 
-if __name__ == "__main__":
-    exit(main())

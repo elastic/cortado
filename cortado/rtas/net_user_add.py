@@ -44,5 +44,3 @@ def main():
         _common.execute(cmd)
 
 
-if __name__ == "__main__":
-    exit(main())

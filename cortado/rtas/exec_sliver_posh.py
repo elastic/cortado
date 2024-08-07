@@ -30,5 +30,3 @@ def main():
                     "[Console]::OutputEncoding=[Text.UTF8Encoding]::UTF8"], timeout=5, kill=True)
 
 
-if __name__ == "__main__":
-    exit(main())

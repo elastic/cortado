@@ -49,5 +49,3 @@ def main(target_file=_common.get_path("bin", "myapp.exe")):
     winreg.CloseKey(hkey)
 
 
-if __name__ == "__main__":
-    exit(main(*sys.argv[1:]))

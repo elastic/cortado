@@ -31,5 +31,3 @@ def main():
     _common.remove_file(forfiles)
 
 
-if __name__ == "__main__":
-    exit(main())

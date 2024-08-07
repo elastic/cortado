@@ -23,5 +23,3 @@ def main():
     _common.execute(["code", "--install-extension", "test"])
 
 
-if __name__ == "__main__":
-    exit(main())

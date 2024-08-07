@@ -32,5 +32,3 @@ def main():
     _common.log("Simulation successfull!")
 
 
-if __name__ == "__main__":
-    exit(main())

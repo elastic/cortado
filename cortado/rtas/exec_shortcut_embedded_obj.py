@@ -40,5 +40,3 @@ def main():
     _common.remove_files(cmd, rta, tempfile)
 
 
-if __name__ == "__main__":
-    exit(main())

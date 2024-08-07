@@ -18,5 +18,3 @@ def main():
     _common.temporary_file_helper("testing", file_name="/tmp/com.apple.loginwindow.plist")
 
 
-if __name__ == "__main__":
-    exit(main())

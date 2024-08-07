@@ -39,5 +39,3 @@ def main(dll_location="c:\\windows\\temp\\evil.dll"):
     return _common.SUCCESS
 
 
-if __name__ == "__main__":
-    exit(main(*sys.argv[1:]))

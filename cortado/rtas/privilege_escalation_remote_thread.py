@@ -32,5 +32,3 @@ def main():
     os.system(f"{path} `pgrep {sleep_name}`")
 
 
-if __name__ == "__main__":
-    exit(main())

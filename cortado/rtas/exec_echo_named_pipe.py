@@ -23,5 +23,3 @@ def main():
     _common.execute(["cmd.exe", "/c", "'echo", "cmd.exe", ">", "\\\\.\\pipe\\named'"], timeout=5)
 
 
-if __name__ == "__main__":
-    exit(main())

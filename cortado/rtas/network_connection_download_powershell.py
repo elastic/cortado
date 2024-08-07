@@ -26,5 +26,3 @@ def main():
     _common.remove_file(fake_exe)
 
 
-if __name__ == "__main__":
-    exit(main())

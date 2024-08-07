@@ -34,5 +34,3 @@ def main():
     _common.remove_files(rdrcef, arp, temp)
 
 
-if __name__ == "__main__":
-    exit(main())

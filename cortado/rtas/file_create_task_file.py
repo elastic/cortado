@@ -23,5 +23,3 @@ def main():
     _common.remove_files(path)
 
 
-if __name__ == "__main__":
-    exit(main())

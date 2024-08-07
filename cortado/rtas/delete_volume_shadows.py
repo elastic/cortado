@@ -28,5 +28,3 @@ def main():
     _common.execute(["wmic.exe", "shadowcopy", "delete", "/nointeractive"])
 
 
-if __name__ == "__main__":
-    exit(main())

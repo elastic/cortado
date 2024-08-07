@@ -28,5 +28,3 @@ def main():
     _common.execute([path, "5"], kill=True)
 
 
-if __name__ == "__main__":
-    exit(main())

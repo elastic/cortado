@@ -40,5 +40,3 @@ def main():
     _common.remove_file(masquerade3)
 
 
-if __name__ == "__main__":
-    exit(main())

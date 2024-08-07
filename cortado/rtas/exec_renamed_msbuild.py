@@ -36,5 +36,3 @@ def main():
     _common.remove_files(rcedit, msbuild)
 
 
-if __name__ == "__main__":
-    exit(main())

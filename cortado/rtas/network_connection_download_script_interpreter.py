@@ -32,5 +32,3 @@ def main():
     _common.remove_files(fake_exe, wscript)
 
 
-if __name__ == "__main__":
-    exit(main())

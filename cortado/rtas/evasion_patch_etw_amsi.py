@@ -77,5 +77,3 @@ def main():
         print(f"[*] RTA Done - Patched AmsiScanBuffer & EtwNotificationRegister!")
 
 
-if __name__ == "__main__":
-    exit(main())

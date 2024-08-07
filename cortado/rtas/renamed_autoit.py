@@ -38,5 +38,3 @@ def main():
     _common.remove_files(autoit, rcedit)
 
 
-if __name__ == "__main__":
-    exit(main())

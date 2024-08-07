@@ -25,5 +25,3 @@ def main():
     _common.execute(["plutil", "-convert", "binary1", plist])
 
 
-if __name__ == "__main__":
-    exit(main())

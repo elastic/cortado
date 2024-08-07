@@ -26,5 +26,3 @@ def main():
     _common.remove_file(explorer)
 
 
-if __name__ == "__main__":
-    exit(main())

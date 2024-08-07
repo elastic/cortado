@@ -33,5 +33,3 @@ def main():
         _common.execute(command)
         print(f'[+] - RTA Done!')
 
-if __name__ == "__main__":
-    exit(main())

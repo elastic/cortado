@@ -30,5 +30,3 @@ def main():
     _common.remove_file(w3wp)
 
 
-if __name__ == "__main__":
-    exit(main())

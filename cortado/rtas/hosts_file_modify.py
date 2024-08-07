@@ -56,5 +56,3 @@ def main():
     os.remove(backup)
 
 
-if __name__ == "__main__":
-    exit(main())

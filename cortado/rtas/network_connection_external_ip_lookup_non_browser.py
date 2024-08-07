@@ -22,5 +22,3 @@ def main():
     _common.execute([powershell, "/c", "iwr api.ipify.org -UseBasicParsing"], timeout=10)
 
 
-if __name__ == "__main__":
-    exit(main())

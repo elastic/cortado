@@ -42,5 +42,3 @@ def main():
             _common.log("Skipping %s" % process, "-")
 
 
-if __name__ == "__main__":
-    exit(main())

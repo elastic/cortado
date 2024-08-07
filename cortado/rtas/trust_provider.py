@@ -58,5 +58,3 @@ def main():
     set_final_policy("C:\\Windows\\System32\\WINTRUST.dll", "SoftpubAuthenticode")
 
 
-if __name__ == "__main__":
-    exit(main())

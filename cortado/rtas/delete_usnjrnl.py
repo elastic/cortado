@@ -28,5 +28,3 @@ def main():
     _common.execute(["fsutil", "usn", "deletejournal", "/d", "C:"])
 
 
-if __name__ == "__main__":
-    exit(main())

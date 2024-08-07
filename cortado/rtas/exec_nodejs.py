@@ -29,5 +29,3 @@ def main():
     _common.remove_files(node)
 
 
-if __name__ == "__main__":
-    exit(main())

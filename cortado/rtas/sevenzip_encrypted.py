@@ -61,5 +61,3 @@ def main(password="s0l33t"):
     _common.remove_files(exfil, svnz2, out_jpg)
 
 
-if __name__ == "__main__":
-    exit(main(*sys.argv[1:]))

@@ -22,5 +22,3 @@ def main():
     _common.execute([powershell, "/c", "echo", "127.0.0.1:3389", "-ssh"], timeout=10)
 
 
-if __name__ == "__main__":
-    exit(main())

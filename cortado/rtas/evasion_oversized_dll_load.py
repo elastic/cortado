@@ -64,5 +64,3 @@ def main():
         win32file.DeleteFile(rta_pe)
         print(f'[+] - RTA Done!')
 
-if __name__ == "__main__":
-    exit(main())

@@ -45,5 +45,3 @@ def main():
     _common.execute([powershell, "/c", f"rmdir {dccwpath} -Force"], timeout=3)
 
 
-if __name__ == "__main__":
-    exit(main())

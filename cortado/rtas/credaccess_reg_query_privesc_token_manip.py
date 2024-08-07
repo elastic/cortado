@@ -147,5 +147,3 @@ def main():
     CloseHandle(hprocess)
 
 
-if __name__ == "__main__":
-    exit(main())

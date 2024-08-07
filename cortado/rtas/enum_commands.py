@@ -80,5 +80,3 @@ def main(args=None):
             _common.execute(command)
 
 
-if __name__ == "__main__":
-    exit(main())

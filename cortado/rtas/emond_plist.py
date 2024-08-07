@@ -18,5 +18,3 @@ def main():
     _common.temporary_file_helper("testing", file_name="/private/etc/emond.d/rules/test.plist")
 
 
-if __name__ == "__main__":
-    exit(main())

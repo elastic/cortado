@@ -51,5 +51,3 @@ def main():
     _common.remove_files(dll, ps1, rcedit, task, winword, svchost)
 
 
-if __name__ == "__main__":
-    exit(main())

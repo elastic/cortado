@@ -36,5 +36,3 @@ def main():
     _common.remove_file(msiexec)
 
 
-if __name__ == "__main__":
-    exit(main())

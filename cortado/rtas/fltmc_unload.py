@@ -24,5 +24,3 @@ def main():
     _common.execute(["fltmc.exe", "unload", "ElasticNonExisting"], timeout=10)
 
 
-if __name__ == "__main__":
-    exit(main())

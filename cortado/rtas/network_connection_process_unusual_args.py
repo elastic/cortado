@@ -31,5 +31,3 @@ def main():
     _common.execute([EXE_FILE], timeout=10, kill=True)
 
 
-if __name__ == "__main__":
-    exit(main())

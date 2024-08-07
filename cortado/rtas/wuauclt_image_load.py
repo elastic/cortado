@@ -58,5 +58,3 @@ def main():
     _common.remove_files(wuauclt, dll, ps1, rcedit)
 
 
-if __name__ == "__main__":
-    exit(main())

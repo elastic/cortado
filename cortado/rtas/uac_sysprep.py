@@ -30,5 +30,3 @@ def main():
     _common.remove_file("C:\\Windows\\system32\sysprep\\CRYPTBASE.DLL")
 
 
-if __name__ == "__main__":
-    exit(main())

@@ -24,5 +24,3 @@ def main():
     _common.execute([chrome, "--load-extension=/test"])
 
 
-if __name__ == "__main__":
-    exit(main())

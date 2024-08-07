@@ -27,5 +27,3 @@ def main():
     _common.execute([cmd, "/c", vssadmin, "delete", "shadows", "/For=C:"], timeout=10)
 
 
-if __name__ == "__main__":
-    exit(main())

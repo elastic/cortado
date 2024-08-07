@@ -40,5 +40,3 @@ def main():
     _common.remove_file(computerdefaults)
 
 
-if __name__ == "__main__":
-    exit(main())

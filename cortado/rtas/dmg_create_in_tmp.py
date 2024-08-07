@@ -34,5 +34,3 @@ def main():
     _common.remove_file(tmp_dmg)
 
 
-if __name__ == "__main__":
-    exit(main())

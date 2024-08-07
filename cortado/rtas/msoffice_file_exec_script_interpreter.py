@@ -44,5 +44,3 @@ def main():
     _common.remove_files(binary, "cmd.exe")
 
 
-if __name__ == "__main__":
-    exit(main())

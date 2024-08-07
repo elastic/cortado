@@ -45,5 +45,3 @@ def main():
     _common.remove_files(msxsl, dll, ps1, rcedit)
 
 
-if __name__ == "__main__":
-    exit(main())

@@ -43,5 +43,3 @@ def main():
     _common.remove_files(cscript, explorer, userinit, winlogon)
 
 
-if __name__ == "__main__":
-    exit(main())

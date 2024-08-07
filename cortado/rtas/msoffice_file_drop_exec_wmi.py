@@ -45,5 +45,3 @@ def main():
     _common.remove_file(dropped)
 
 
-if __name__ == "__main__":
-    exit(main())

@@ -46,5 +46,3 @@ def main():
     _common.remove_files(tempowershell, posh)
 
 
-if __name__ == "__main__":
-    exit(main())

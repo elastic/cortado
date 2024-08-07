@@ -28,5 +28,3 @@ def main():
     _common.remove_files(pwsh, services)
 
 
-if __name__ == "__main__":
-    exit(main())

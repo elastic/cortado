@@ -46,5 +46,3 @@ def main():
     _common.remove_file(user_app_path)
 
 
-if __name__ == "__main__":
-    exit(main())

@@ -36,5 +36,3 @@ def main():
     _common.remove_file(cscript)
 
 
-if __name__ == "__main__":
-    exit(main())

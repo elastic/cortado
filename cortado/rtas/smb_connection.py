@@ -42,5 +42,3 @@ def main(ip=None):
     _common.log("Closed connection to {}:{}".format(ip, SMB_PORT))
 
 
-if __name__ == "__main__":
-    exit(main(*sys.argv[1:]))

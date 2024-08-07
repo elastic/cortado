@@ -53,5 +53,3 @@ def main():
     _common.remove_files(dfsvc, rundll32)
 
 
-if __name__ == "__main__":
-    exit(main())

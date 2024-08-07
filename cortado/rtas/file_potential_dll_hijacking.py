@@ -40,5 +40,3 @@ def main():
         path.rmdir()
 
 
-if __name__ == "__main__":
-    exit(main())

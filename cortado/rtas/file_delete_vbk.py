@@ -25,5 +25,3 @@ def main():
     _common.remove_file(fakebkp)
 
 
-if __name__ == "__main__":
-    exit(main())

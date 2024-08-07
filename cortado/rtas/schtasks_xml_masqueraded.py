@@ -24,5 +24,3 @@ def main():
     _common.execute(["schtasks.exe", "/CREATE", "/XML", "update", "/TN", "Test", "/F"])
 
 
-if __name__ == "__main__":
-    exit(main())

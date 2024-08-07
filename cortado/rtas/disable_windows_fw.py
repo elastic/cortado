@@ -42,5 +42,3 @@ def main():
     _common.remove_file(rules_file)
 
 
-if __name__ == "__main__":
-    exit(main())

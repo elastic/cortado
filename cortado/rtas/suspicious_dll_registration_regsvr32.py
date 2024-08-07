@@ -24,5 +24,3 @@ def main():
     _common.execute(["regsvr32.exe", "-s", "meow.txt"])
 
 
-if __name__ == "__main__":
-    exit(main())

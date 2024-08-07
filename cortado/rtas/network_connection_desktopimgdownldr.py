@@ -29,5 +29,3 @@ def main():
     _common.remove_file(desktopimgdownldr)
 
 
-if __name__ == "__main__":
-    exit(main())

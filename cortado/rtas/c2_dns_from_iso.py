@@ -40,5 +40,3 @@ def main():
 
         print(f'[+] - RTA Done!')
 
-if __name__ == "__main__":
-    exit(main())

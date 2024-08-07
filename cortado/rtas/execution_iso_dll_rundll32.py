@@ -38,5 +38,3 @@ def main():
         _common.execute(["taskkill", "/f", "/im", "notepad.exe"])
         print(f'[+] - RTA Done!')
 
-if __name__ == "__main__":
-    exit(main())

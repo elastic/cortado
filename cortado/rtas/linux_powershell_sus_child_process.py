@@ -39,5 +39,3 @@ def main():
     _common.remove_file(fake_pwsh_script)
 
 
-if __name__ == "__main__":
-    exit(main())

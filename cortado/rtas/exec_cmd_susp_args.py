@@ -20,5 +20,3 @@ def main():
     _common.execute([cmd, "/C", "echo", "wscript"], timeout=5, kill=True)
 
 
-if __name__ == "__main__":
-    exit(main())

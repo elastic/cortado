@@ -37,5 +37,3 @@ def main():
     _common.execute([bcdedit, "/import", backup_file])
 
 
-if __name__ == "__main__":
-    exit(main())

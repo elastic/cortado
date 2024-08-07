@@ -67,5 +67,3 @@ def main(username="rta-tester", remote_host=None):
     time.sleep(2)
 
 
-if __name__ == "__main__":
-    exit(main(*sys.argv[1:]))

@@ -44,5 +44,3 @@ def main():
     _common.remove_files(rundll32, dll, ps1)
 
 
-if __name__ == "__main__":
-    exit(main())

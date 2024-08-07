@@ -33,5 +33,3 @@ def main():
     _common.execute(["taskkill", "/f", "/im", "WerFault.exe"])
 
 
-if __name__ == "__main__":
-    exit(main())

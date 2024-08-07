@@ -32,5 +32,3 @@ def main():
     _common.remove_file(disk_file)
 
 
-if __name__ == "__main__":
-    exit(main())

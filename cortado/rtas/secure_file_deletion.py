@@ -31,5 +31,3 @@ def main():
         _common.remove_file(temp_path)
 
 
-if __name__ == "__main__":
-    exit(main())

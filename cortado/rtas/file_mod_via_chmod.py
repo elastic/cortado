@@ -24,5 +24,3 @@ def main():
         _common.execute(["chmod", "+x", "/tmp/test.txt"])
 
 
-if __name__ == "__main__":
-    exit(main())

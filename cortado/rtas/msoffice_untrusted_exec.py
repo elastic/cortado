@@ -45,5 +45,3 @@ def main():
     _common.remove_files(binary, fake_regsvr)
 
 
-if __name__ == "__main__":
-    exit(main())

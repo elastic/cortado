@@ -103,5 +103,3 @@ def main(password="s0l33t"):
     _common.remove_files(winrar_bin_modsig, winrar_bin_modsig_a, winrar_bin_b)
 
 
-if __name__ == "__main__":
-    exit(main(*sys.argv[1:]))

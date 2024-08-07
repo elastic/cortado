@@ -42,5 +42,3 @@ def main(remote_host=None):
     _common.execute(["net.exe", "time", "\\\\{}".format(remote_host)])
 
 
-if __name__ == "__main__":
-    exit(main(*sys.argv[1:]))

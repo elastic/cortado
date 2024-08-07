@@ -37,5 +37,3 @@ def main():
     _common.remove_file(fodhelper)
 
 
-if __name__ == "__main__":
-    exit(main())

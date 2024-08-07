@@ -30,5 +30,3 @@ def main():
     _common.remove_directory(f"{Path.home()}/Library/Mobile Documents/com.apple.mail/Data/test/")
 
 
-if __name__ == "__main__":
-    exit(main())

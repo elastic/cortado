@@ -25,5 +25,3 @@ def main():
     _common.execute(["egrep", "-i", '"Manufacturer: (parallels|vmware|virtualbox)"'], shell=True)
 
 
-if __name__ == "__main__":
-    exit(main())

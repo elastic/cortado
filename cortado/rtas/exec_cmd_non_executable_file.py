@@ -21,5 +21,3 @@ def main():
         _common.execute(["/bin/bash", "/*.txt"])
 
 
-if __name__ == "__main__":
-    exit(main())

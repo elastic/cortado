@@ -41,5 +41,3 @@ def main():
         _common.execute(["SCHTASKS.exe", "/delete", "/TN", "FromISO", "/F"])
         print(f'[+] - RTA Done!')
 
-if __name__ == "__main__":
-    exit(main())

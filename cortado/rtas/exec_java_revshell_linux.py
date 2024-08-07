@@ -34,5 +34,3 @@ def main():
     _common.log("RTA completed!")
 
 
-if __name__ == "__main__":
-    exit(main())

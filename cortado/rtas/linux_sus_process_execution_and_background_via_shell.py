@@ -39,5 +39,3 @@ def main():
     _common.remove_file(parent_process)
 
 
-if __name__ == "__main__":
-    exit(main())

@@ -24,5 +24,3 @@ def main():
     _common.execute(["dir", path, "/s", "/b", "|", "findstr", "password"], shell=True, timeout=15)
 
 
-if __name__ == "__main__":
-    exit(main())

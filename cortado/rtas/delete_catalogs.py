@@ -28,5 +28,3 @@ def main():
     _common.execute(["wbadmin", "delete", "catalog", "-quiet"])
 
 
-if __name__ == "__main__":
-    exit(main())

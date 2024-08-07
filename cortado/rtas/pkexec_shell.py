@@ -25,5 +25,3 @@ def main():
     _common.execute(exploit_path)
 
 
-if __name__ == "__main__":
-    exit(main())

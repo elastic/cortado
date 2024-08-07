@@ -32,5 +32,3 @@ def main():
     _common.execute([eqnedt32, "-Embedding"], timeout=10, kill=True)
 
 
-if __name__ == "__main__":
-    exit(main())

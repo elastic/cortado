@@ -21,5 +21,3 @@ def main():
     _common.execute(["control.exe", "cpl1.cpl:../a"], timeout=10)
 
 
-if __name__ == "__main__":
-    exit(main())

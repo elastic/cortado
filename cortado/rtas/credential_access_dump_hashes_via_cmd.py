@@ -22,5 +22,3 @@ def main():
     _common.execute(["defaults", "ShadowHashData", "-dump"])
 
 
-if __name__ == "__main__":
-    exit(main())

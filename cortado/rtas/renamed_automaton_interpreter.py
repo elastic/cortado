@@ -45,5 +45,3 @@ def main():
     _common.remove_files(autohotkey, rcedit)
 
 
-if __name__ == "__main__":
-    exit(main())

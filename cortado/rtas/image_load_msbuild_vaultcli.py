@@ -43,5 +43,3 @@ def main():
     _common.remove_files(dll, ps1, rcedit, msbuild)
 
 
-if __name__ == "__main__":
-    exit(main())

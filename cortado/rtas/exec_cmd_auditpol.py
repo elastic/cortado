@@ -30,5 +30,3 @@ def main():
     _common.remove_file(auditpol)
 
 
-if __name__ == "__main__":
-    exit(main())
