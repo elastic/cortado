@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="e45cd941-dee1-4275-8c63-2f8cab2cf8a6",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Potential Privilege Escalation via TCC bypass with fake TCC.db",
@@ -19,11 +18,7 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1068"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     _common.log("Executing deletion on /tmp/TCC.db file.")
     _common.temporary_file_helper("testing", file_name="/tmp/TCC.db")
 

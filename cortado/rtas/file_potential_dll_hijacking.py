@@ -6,12 +6,12 @@
 import os
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="7e23fa7b-1812-4abb-ab42-a2350c9a4741",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[{
         'rule_id': 'ddc4fa22-4675-44c0-a813-e786e638d7e0',
         'rule_name': 'Potential Initial Access via DLL Search Order Hijacking'
@@ -22,7 +22,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     appdata = os.getenv("LOCALAPPDATA")
     path = Path(appdata) / "\\Microsoft\\OneDrive"

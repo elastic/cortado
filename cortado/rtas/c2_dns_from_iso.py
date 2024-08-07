@@ -5,11 +5,11 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="ba802fb2-f183-420e-947m-da5ce0235d123",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     siem_rules=[],
     endpoint_rules=[RuleMetadata(id="3bc98de7-3349-43ac-869c-58357ae2aac0", name="Suspicious DNS Query from Mounted Virtual Disk"), 
               RuleMetadata(id="88f6c3d4-112e-4fad-b3ef-33095c954b63", name="Suspicious DNS Query to Free SSL Certificate Domains"), 
@@ -24,7 +24,7 @@ PROC = 'ping.exe'
 # ps script to mount, execute a file and unmount ISO device
 PS_SCRIPT = _common.get_path("bin", "ExecFromISOFile.ps1")
 
-@_common.requires_os(*metadata.platforms)
+
 
 def main():
     if Path(ISO).is_file() and Path(PS_SCRIPT).is_file():

@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="2bb1016f-b3e9-455d-b665-02a0aafc797a",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[{
         'rule_id': 'ff5fd85a-e770-4e57-8bae-0d267442eb9f',
         'rule_name': 'Suspicious Image File Execution Options Modification'
@@ -20,7 +20,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     _common.log("Temp Registry mod: IFEO")
 

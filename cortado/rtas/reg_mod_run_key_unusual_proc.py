@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="a3461218-f6c2-4178-ad85-f25b8df2d2e1",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Registry Run Key Modified by Unusual Process",
@@ -27,7 +27,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     posh = "C:\\Windows\\posh.exe"
     _common.copy_file(EXE_FILE, posh)

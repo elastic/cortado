@@ -5,12 +5,11 @@
 
 from pathlib import Path
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="72c2470b-c96e-4b44-88ec-1a67c4ec091c",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
         {
@@ -20,11 +19,7 @@ metadata = RtaMetadata(
     ],
     techniques=["T1037"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     atom_dir = Path.home().joinpath(".atom")
     atom_dir.mkdir(parents=True, exist_ok=True)
     atom_path = atom_dir.joinpath("init.coffee")

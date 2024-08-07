@@ -6,12 +6,12 @@
 import subprocess
 from pathlib import Path
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="e7a55d39-37b4-4f37-9519-3779b3c23bfa",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="676ac66c-4899-498f-ae21-ed5620af5477", name="Suspicious Bitsadmin Activity"),
         RuleMetadata(id="c34a9dca-66cf-4283-944d-1800b28ae690", name="Suspicious Microsoft Office Child Process"),
@@ -24,7 +24,7 @@ ROOT_DIR = Path(__file__).parent
 EXE_FILE = _common.get_path("bin", "renamed.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
 
     fake_word = ROOT_DIR / "winword.exe"

@@ -4,24 +4,17 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="2119cf83-795b-4049-a416-bb46a5aad3a0",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_name": "At Utility Launched through Udevadm",
-            "rule_id": "47e5595e-1920-4fdd-9a1c-cf712e1112d1"
-        }
+        {"rule_name": "At Utility Launched through Udevadm", "rule_id": "47e5595e-1920-4fdd-9a1c-cf712e1112d1"}
     ],
     techniques=["T1037"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     # Path for the fake udevadm script
     fake_udevadm = "/tmp/udevadm"
 
@@ -31,13 +24,13 @@ def main():
     _common.copy_file(source, masquerade)
 
     # Create a fake udevadm script that launches at
-    with open(fake_udevadm, 'w') as script:
-        script.write('#!/bin/bash\n')
-        script.write('/tmp/at\n')
+    with open(fake_udevadm, "w") as script:
+        script.write("#!/bin/bash\n")
+        script.write("/tmp/at\n")
 
     # Make the script executable
-    _common.execute(['chmod', '+x', fake_udevadm])
-    _common.execute(['chmod', '+x', masquerade])
+    _common.execute(["chmod", "+x", fake_udevadm])
+    _common.execute(["chmod", "+x", masquerade])
 
     # Execute the fake udevadm script
     _common.log("Launching a shell that executes a payload as a child of fake udevadm")

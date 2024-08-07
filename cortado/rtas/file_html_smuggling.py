@@ -4,13 +4,13 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
+
 import os
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="0debe15f-1c9b-4ff8-9e4c-478647ca45e2",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="4415ab60-7cff-41dc-b3f0-939bd22c1810", name="Suspicious File Delivery via HTML Smuggling")
     ],
@@ -21,7 +21,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     userprofile = os.getenv("USERPROFILE")
     partial = f"{userprofile}\\Downloads\\a.partial"

@@ -12,11 +12,11 @@ import base64
 import sys
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="6cd35061-278b-45e7-a9cb-86b48bc47884",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="45d273fb-1dca-457d-9855-bcb302180c21", name="Encrypting Files with WinRar or 7z")],
     techniques=["T1560"],
@@ -33,7 +33,7 @@ def create_exfil(path=Path("secret_stuff.txt").resolve()):
     return path
 
 
-@_common.requires_os(*metadata.platforms)
+
 @_common.dependencies(SEVENZIP)
 def main(password="s0l33t"):
     # create 7z.exe with not-7zip name, and exfil

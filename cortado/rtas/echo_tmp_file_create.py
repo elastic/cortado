@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="2182f7e5-fc4b-4476-86c3-e7128dfcaa7a",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Suspicious File Overwrite and Modification via Echo",
@@ -19,11 +18,7 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1027", "T1059", "T1059.004"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     file_path = "/tmp/test"
     masquerade = "/tmp/testbin"
     _common.create_macos_masquerade(masquerade)

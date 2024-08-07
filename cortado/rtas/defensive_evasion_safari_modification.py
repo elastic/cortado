@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="9d02871f-6338-47aa-84c4-7d622692319f",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Modification of Safari Settings via Defaults Command",
@@ -24,11 +23,7 @@ metadata = RtaMetadata(
     ],
     techniques=["T1562"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/defaults"
     _common.create_macos_masquerade(masquerade)
 

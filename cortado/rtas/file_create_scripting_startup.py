@@ -5,11 +5,11 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="e56f77bc-d9a7-4e02-97e2-b3056f3d4171",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{
         'rule_id': '440e2db4-bc7f-4c96-a068-65b78da59bde',
@@ -20,7 +20,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     path = "C:\\Users\\Public\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"

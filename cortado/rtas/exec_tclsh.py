@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="9332cece-38b7-49e1-9f8d-e879913ffdfb",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Tclsh execution followed by immediate network connection",
@@ -19,11 +18,7 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/tclsh"
     _common.copy_file("/usr/bin/curl", masquerade)
 

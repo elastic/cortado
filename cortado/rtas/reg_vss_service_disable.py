@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="c4eefb59-2c59-4904-a04e-5e3a75f54a46",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Shadow Copy Service Disabled via Registry Modification",
@@ -31,7 +31,7 @@ metadata = RtaMetadata(
 HIGHENTROPY = _common.get_path("bin", "highentropy.txt")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     key = "SYSTEM\\CurrentControlSet\\Services\\VSS"
     value = "Start"

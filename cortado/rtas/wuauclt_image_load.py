@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="42eed432-af05-45d3-b788-7e3220f81f9a",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Suspicious ImageLoad via Windows Update Auto Update Client",
@@ -25,7 +25,7 @@ PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
 RENAMER = _common.get_path("bin", "rcedit-x64.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     wuauclt = "C:\\Users\\Public\\wuauclt.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"

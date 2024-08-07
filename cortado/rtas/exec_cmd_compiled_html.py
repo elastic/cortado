@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="2e2b5db2-2edb-421e-bb5e-6d2ab09303e0",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{'rule_id': 'e3343ab9-4245-4715-b344-e11c56b0a47f', 'rule_name': 'Process Activity via Compiled HTML File'}],
     techniques=['T1204', 'T1204.002', 'T1218', 'T1218.001'],
@@ -17,7 +17,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     hh = "C:\\Users\\Public\\hh.exe"
     mshta = "C:\\Windows\\System32\\mshta.exe"

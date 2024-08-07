@@ -4,21 +4,17 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="85cf6796-5f53-4fed-a5cb-8b211882543c",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="0783f666-75ad-4015-9dd5-d39baec8f6b0", name="Potential Credential Access via Rubeus")
     ],
     siem_rules=[],
     techniques=["T1558"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 

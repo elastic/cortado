@@ -4,24 +4,18 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="1048ff54-4ac4-441f-839d-e4d06a0cb211",
-    platforms=["macos"],
-    endpoint_rules=[{
-        'rule_id': 'eb78fa0f-5e8a-4c15-a099-e904c4a226e6',
-        'rule_name': 'Potential WizardUpdate Malware Infection'
-    }],
+    platforms=[OSType.MACOS],
+    endpoint_rules=[
+        {"rule_id": "eb78fa0f-5e8a-4c15-a099-e904c4a226e6", "rule_name": "Potential WizardUpdate Malware Infection"}
+    ],
     siem_rules=[],
     techniques=[""],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/curl"
     _common.create_macos_masquerade(masquerade)
 

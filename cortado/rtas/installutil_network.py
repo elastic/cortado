@@ -13,11 +13,11 @@
 import sys
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="6dfa88c9-9fb2-4fb0-8bea-0bc45222b498",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
         {
@@ -36,7 +36,7 @@ metadata = RtaMetadata(
 MY_DOT_NET = _common.get_path("bin", "mydotnet.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 @_common.dependencies(MY_DOT_NET)
 def main():
     server, ip, port = _common.serve_web()

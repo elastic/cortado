@@ -6,11 +6,10 @@
 import sys
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="be8c9227-8266-4d91-931e-c53e07731d07",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         {
             "rule_name": "Linux User Discovery Command Execution from Suspicious Directory",
@@ -19,9 +18,6 @@ metadata = RtaMetadata(
     ],
     techniques=["T1059", "T1033"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main() -> None:
     # Path for the fake executable
     fake_executable = "/dev/shm/evil"

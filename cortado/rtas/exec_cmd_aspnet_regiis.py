@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="5faf9f55-c52e-41e0-8195-b183aba8b876",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{
         'rule_id': 'c25e9c87-95e1-4368-bfab-9fd34cf867ec',
@@ -20,7 +20,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     aspnet_regiis = "C:\\Users\\Public\\aspnet_regiis.exe"
     _common.copy_file(EXE_FILE, aspnet_regiis)

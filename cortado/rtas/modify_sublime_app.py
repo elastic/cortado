@@ -5,12 +5,11 @@
 
 from pathlib import Path
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="5fc46f6e-5a2a-4336-98f3-5fdc27db7152",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
         {
@@ -20,11 +19,7 @@ metadata = RtaMetadata(
     ],
     techniques=["T1554"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     sublime_dir = Path(f"{Path.home()}/Library/Application Support/Sublime Text 4/")
     sublime_packages = sublime_dir.joinpath("Packages")
     sublime_packages.mkdir(parents=True, exist_ok=True)

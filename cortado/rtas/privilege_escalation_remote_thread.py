@@ -7,23 +7,18 @@ import os
 import platform
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="e1ff47b2-af5d-4cfc-bd94-e0b86828b241",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="458f0b4b-be9a-45bc-8f19-a26dac267250", name="Potential Code Injection via Remote Thread")
     ],
     siem_rules=[],
     techniques=["T1055"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     if platform.processor() == "arm":
         name = "thread_injector_arm"
         sleep_name = "com.apple.sleep_arm"

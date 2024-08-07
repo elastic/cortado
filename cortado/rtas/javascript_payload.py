@@ -4,22 +4,19 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
+
 from time import sleep
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="9332cece-38b7-49e1-9f8d-e879913ffdfb",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="871f0c30-a7c5-40a5-80e3-a50c6714632f", name="Download and Execution of JavaScript Payload")
     ],
     siem_rules=[],
     techniques=["T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     # Setup web server
     _common.serve_web()

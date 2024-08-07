@@ -4,24 +4,21 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="4406f514-0ffa-465b-9cef-2eeeb32f1096",
-    platforms=["macos"],
-    endpoint_rules=[{
-        'rule_id': '5dce3865-838f-4773-9781-87226af1fc12',
-        'rule_name': 'Payload Decoded and Decrypted via Built-In Utilities'
-    }],
+    platforms=[OSType.MACOS],
+    endpoint_rules=[
+        {
+            "rule_id": "5dce3865-838f-4773-9781-87226af1fc12",
+            "rule_name": "Payload Decoded and Decrypted via Built-In Utilities",
+        }
+    ],
     siem_rules=[],
     techniques=[""],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     # create masquerades
     masquerade = "/tmp/DiskImageMounter"
     masquerade2 = "/tmp/bash"

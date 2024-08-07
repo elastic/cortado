@@ -4,23 +4,20 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="f4e4a28e-c845-4b26-bfdf-24128e73ef21",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="741ad90d-e8d0-4d29-b91b-3d68108cb789", name="Operating System Security Updates Disabled")
     ],
-    siem_rules=[RuleMetadata(id="f683dcdf-a018-4801-b066-193d4ae6c8e5", name="SoftwareUpdate Preferences Modification")],
+    siem_rules=[
+        RuleMetadata(id="f683dcdf-a018-4801-b066-193d4ae6c8e5", name="SoftwareUpdate Preferences Modification")
+    ],
     techniques=["T1562"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/defaults"
     _common.create_macos_masquerade(masquerade)
 

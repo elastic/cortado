@@ -4,22 +4,17 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="4ac771ca-5095-4a1b-ac6a-e2b714be8ccc",
-    platforms=["windows"],
-    endpoint_rules=[{
-        'rule_id': '377aad38-24e0-4dd7-93c2-bd231cb749e3',
-        'rule_name': 'Unusual Startup Shell Folder Modification'
-    }],
+    platforms=[OSType.WINDOWS],
+    endpoint_rules=[
+        {"rule_id": "377aad38-24e0-4dd7-93c2-bd231cb749e3", "rule_name": "Unusual Startup Shell Folder Modification"}
+    ],
     siem_rules=[],
-    techniques=['T1547', 'T1547.001', 'T1112'],
+    techniques=["T1547", "T1547.001", "T1112"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("Temp Registry mod: Common Startup Folder")
 

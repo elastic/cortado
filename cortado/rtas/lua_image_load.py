@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="860e5968-c31f-4928-ac05-3c3c2d19450c",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="8f237d98-1825-4c27-a5cd-e38bde70882a", name="Suspicious Windows LUA Script Execution")
     ],
@@ -22,7 +22,7 @@ PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
 RENAMER = _common.get_path("bin", "rcedit-x64.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     posh = "C:\\Users\\Public\\posh.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"

@@ -5,11 +5,10 @@
 
 import sys
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="6a5977f6-ed19-446e-a441-e325cff7772b",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         {
             "rule_name": "Potential curl CVE-2023-38545 Exploitation",
@@ -24,8 +23,6 @@ metadata = RtaMetadata(
     ],
     techniques=["T1203"],
 )
-
-
 @_common.requires_os(metadata.platforms)
 def main() -> None:
     masquerade = "/tmp/curl"

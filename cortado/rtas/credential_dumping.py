@@ -5,11 +5,10 @@
 
 import sys
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="43ce7648-d48a-4609-80a5-f68384e498d3",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         {
             "rule_id": "05f95917-6942-4aab-a904-37c6db906503",
@@ -19,9 +18,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1003"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main() -> None:
     masquerade = "/tmp/unshadow"
     source = _common.get_path("bin", "linux.ditto_and_spawn")

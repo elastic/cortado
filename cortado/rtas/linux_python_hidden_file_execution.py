@@ -4,24 +4,20 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="d2c9baa4-6dda-46ff-acaa-f70ac0d3391b",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         {
             "rule_name": "Linux Hidden Folder or File Execution via Python",
-            "rule_id": "b25ec4e7-34f1-40c2-b683-bbf1dcdd84e5"
+            "rule_id": "b25ec4e7-34f1-40c2-b683-bbf1dcdd84e5",
         }
     ],
     techniques=["T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/python"
     source = _common.get_path("bin", "linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)

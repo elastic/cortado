@@ -12,18 +12,14 @@
 import sys
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="6cf12026-f99f-4e5c-8cd4-3dbc7bce3e67",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="35df0dd8-092d-4a83-88c1-5151a804f31b", name="Unusual Parent-Child Relationship")],
     techniques=["T1055"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("Running Windows processes with an unexpected parent of %s" % Path(sys.executable).name)
     process_names = [

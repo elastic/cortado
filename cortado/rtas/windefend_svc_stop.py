@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="811ccfc2-d0fc-4a2a-85f6-6dc1235278bf",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         {
@@ -20,9 +19,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1562", "T1036"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     tempshell = "C:\\Users\\Public\\powershell.exe"

@@ -11,18 +11,14 @@
 import os
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="dc734786-66bd-4be6-bd06-eb41fa7b6745",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[],
-    techniques=[]
+    techniques=[],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 @_common.dependencies(_common.PS_EXEC)
 def main():
     # make sure path is absolute for psexec

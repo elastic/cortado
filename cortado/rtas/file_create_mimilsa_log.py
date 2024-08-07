@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="4b23eaa2-aa73-43ee-9c10-47ecf01e00aa",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{
         'rule_id': 'ebb200e8-adf0-43f8-a0bb-4ee5b5d852c6',
@@ -20,7 +20,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     lsass = "C:\\Users\\Public\\lsass.exe"
     fake_log = "C:\\Users\\Public\\mimilsa.log"

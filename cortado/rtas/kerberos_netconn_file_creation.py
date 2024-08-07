@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="f8ffc63a-4a54-44a8-ac55-9c63e1bb584c",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Suspicious Credential Files Creation via Kerberos",
@@ -19,9 +18,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1558", "T1021"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 

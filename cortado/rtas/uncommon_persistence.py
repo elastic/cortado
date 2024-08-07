@@ -4,19 +4,17 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="ca020d7f-f495-4f0a-a808-da615f3409b4",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[RuleMetadata(id="97fc44d3-8dae-4019-ae83-298c3015600f", name="Startup or Run Key Registry Modification")],
+    siem_rules=[
+        RuleMetadata(id="97fc44d3-8dae-4019-ae83-298c3015600f", name="Startup or Run Key Registry Modification")
+    ],
     techniques=["T1547"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     key = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Shell"
     value = "Common Startup"

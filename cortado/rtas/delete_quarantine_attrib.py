@@ -4,24 +4,21 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="d7a67c3c-eadb-4bfb-beb1-61ddd86b4b83",
-    platforms=["macos"],
-    endpoint_rules=[{
-        'rule_id': '6e47b750-72c4-4af9-ad7b-0fc846df64d3',
-        'rule_name': 'Quarantine Attribute Deleted via Untrusted Binary'
-    }],
+    platforms=[OSType.MACOS],
+    endpoint_rules=[
+        {
+            "rule_id": "6e47b750-72c4-4af9-ad7b-0fc846df64d3",
+            "rule_name": "Quarantine Attribute Deleted via Untrusted Binary",
+        }
+    ],
     siem_rules=[],
     techniques=[""],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     # create masquerades
     masquerade = "/tmp/bash"
     masquerade2 = "/tmp/testbypass"

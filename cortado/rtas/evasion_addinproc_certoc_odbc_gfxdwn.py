@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="6e84852e-b8a2-4158-971e-c5148d969d2a",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     siem_rules=[],
     endpoint_rules=[
           {'rule_id': '5bc7a8f8-4de8-4af4-bea4-cba538e54a5c', 'rule_name': 'Suspicious Execution via DotNet Remoting'},
@@ -21,7 +21,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     addinproc = "C:\\Users\\Public\\AddInProcess.exe"
     certoc = "C:\\Users\\Public\\CertOc.exe"

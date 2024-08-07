@@ -6,12 +6,12 @@
 import shutil
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="7e9a94f4-46aa-45eb-b95b-53da7c01a033",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         {
@@ -27,7 +27,7 @@ EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     taskhostw = "C:\\Users\\Public\\taskhostw.exe"

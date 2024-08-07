@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="b12372b8-0e76-4b3d-9dfc-880664893eb9",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[RuleMetadata(id="18a26e3e-e535-4d23-8ffa-a3cdba56d16e", name="Suspicious Parent-Child Relationship")],
     siem_rules=[],
     techniques=["T1055", "T1036"],
@@ -18,7 +18,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     posh = "C:\\Users\\Public\\posh.exe"
     tiworker = "C:\\Users\\Public\\TiWorker.exe"

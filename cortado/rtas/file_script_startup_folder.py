@@ -5,11 +5,11 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="b8dcb997-e099-472e-8f2f-15a80c8dfe1a",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             'rule_id': 'dec8781c-ef73-4037-9684-ef28c0322fa4',
@@ -26,7 +26,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     proc = "C:\\Users\\Public\\proc.exe"
     path = "C:\\Users\\Public\\AppData\\Roaming\\Microsoft\\Windows\\'Start Menu'\\Programs\\Startup\\"

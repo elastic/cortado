@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="f964558b-0674-4c97-afcc-42d4b6a813c6",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Web Browsers Password Access via Command Line",
@@ -21,11 +20,7 @@ metadata = RtaMetadata(
     ],
     techniques=["T1555"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/security"
     _common.create_macos_masquerade(masquerade)
 

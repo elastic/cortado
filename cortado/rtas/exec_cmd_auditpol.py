@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="92da05da-5acf-473c-809c-6f4cdbced0db",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{
         'rule_id': '4de76544-f0e5-486a-8f84-eae0b6063cdc',
@@ -20,7 +20,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     auditpol = "C:\\Users\\Public\\auditpol.exe"
     _common.copy_file(EXE_FILE, auditpol)

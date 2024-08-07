@@ -10,19 +10,15 @@
 import time
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="7b88c558-f732-4ff4-adaa-09c79bf02bd2",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[],
-    techniques=[]
+    techniques=[],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     # All encoded versions of the following: `start calc && ping -n 2 127.0.0.1>nul && taskkill /im calc.exe`
     commands = """

@@ -4,23 +4,20 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="6294e8bd-a82e-4d60-9de7-cceb639e91d9",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="e390d36d-c739-43ee-9e3d-5a76fa853bd5", name="Suspicious Automator Workflows Execution")
     ],
-    siem_rules=[RuleMetadata(id="5d9f8cfc-0d03-443e-a167-2b0597ce0965", name="Suspicious Automator Workflows Execution")],
+    siem_rules=[
+        RuleMetadata(id="5d9f8cfc-0d03-443e-a167-2b0597ce0965", name="Suspicious Automator Workflows Execution")
+    ],
     techniques=["T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     # create masquerades
     masquerade = "/tmp/automator"
     masquerade2 = "/tmp/com.apple.automator.runner"

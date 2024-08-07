@@ -4,21 +4,16 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="633313a4-dbe5-420f-b4ae-90c481a7f881",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="bc1eeacf-2972-434f-b782-3a532b100d67", name="Attempt to Install Root Certificate")],
     techniques=["T1553"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/security"
     _common.create_macos_masquerade(masquerade)
 

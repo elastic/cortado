@@ -4,23 +4,18 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="057f2c1b-28cc-4286-92ce-75e789aa8e74",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="fecebe4f-2d28-46e7-9bc1-71cdd8ecdd60", name="Potential Kerberos Attack via Bifrost")
     ],
     siem_rules=[RuleMetadata(id="16904215-2c95-4ac8-bf5c-12354e047192", name="Potential Kerberos Attack via Bifrost")],
     techniques=["T1558", "T1550"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/bifrost"
     _common.create_macos_masquerade(masquerade)
 

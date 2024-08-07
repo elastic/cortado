@@ -4,23 +4,18 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="0630610d-a9ae-47df-9e2f-e7f393972f1e",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="c0770406-7ede-4049-a7a1-999c15fb60bd", name="Execution of Non-Executable File via Shell")
     ],
     siem_rules=[],
     techniques=["T1036", "T1059", "T1059.004"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     _common.log("Executing bash on unexecutable file.")
     with _common.temporary_file("testing", "/*.txt"):
         _common.execute(["/bin/bash", "/*.txt"])

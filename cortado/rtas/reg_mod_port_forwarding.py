@@ -4,19 +4,15 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="8896c6ac-ead6-4f4e-aecf-8308fd53e78c",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{'rule_id': '3535c8bb-3bd5-40f4-ae32-b7cd589d5372', 'rule_name': 'Port Forwarding Rule Addition'}],
-    techniques=['T1572'],
+    siem_rules=[{"rule_id": "3535c8bb-3bd5-40f4-ae32-b7cd589d5372", "rule_name": "Port Forwarding Rule Addition"}],
+    techniques=["T1572"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     key = "System\\CurrentControlSet\\Services\\PortProxy\\v4tov4"
     value = "a"

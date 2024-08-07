@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="07eaba7d-c0ff-4480-87cf-5ad39805dc92",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{'rule_id': '201200f1-a99b-43fb-88ed-f65a45c4972c', 'rule_name': 'Suspicious .NET Code Compilation'}],
     techniques=['T1027', 'T1027.004'],
@@ -17,7 +17,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     wscript = "C:\\Users\\Public\\wscript.exe"
     csc = "C:\\Users\\Public\\csc.exe"

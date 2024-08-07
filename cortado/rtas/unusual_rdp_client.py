@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="d3c0c965-3167-4fe3-8aee-a9f101766b5a",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="d448566e-486f-4b61-a76f-945662313d49", name="Unusual Remote Desktop Client Process")
     ],
@@ -21,7 +21,7 @@ EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     posh = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\posh.exe"

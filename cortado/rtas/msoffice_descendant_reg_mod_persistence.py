@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="8fc20141-a73e-4c5e-9c9b-70acb69ab1dd",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Registry Persistence via Microsoft Office Descendant Process",
@@ -23,7 +23,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     winword = "C:\\Users\\Public\\winword.exe"
     posh = "C:\\Users\\Public\\posh.exe"

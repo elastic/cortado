@@ -4,21 +4,16 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="d5643e8a-c3f5-48a7-9f64-7255f603a24a",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="565c2b44-7a21-4818-955f-8d4737967d2e", name="Potential Admin Group Account Addition")],
     techniques=["T1078"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/dseditgroup"
     _common.create_macos_masquerade(masquerade)
 

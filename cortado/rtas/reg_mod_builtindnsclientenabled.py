@@ -4,19 +4,17 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="2edd7889-578b-4870-befd-6b3d0f5a10fd",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{'rule_id': 'a22a09c2-2162-4df0-a356-9aacbeb56a04', 'rule_name': 'DNS-over-HTTPS Enabled via Registry'}],
-    techniques=['T1562'],
+    siem_rules=[
+        {"rule_id": "a22a09c2-2162-4df0-a356-9aacbeb56a04", "rule_name": "DNS-over-HTTPS Enabled via Registry"}
+    ],
+    techniques=["T1562"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     key = "SOFTWARE\\Policies\\Microsoft\\Edge"
     value = "BuiltInDnsClientEnabled"

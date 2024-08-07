@@ -4,19 +4,17 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="fafdfbda-add8-40a1-b2b5-640fce12413e",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{'rule_id': 'd117cbb4-7d56-41b4-b999-bdf8c25648a0', 'rule_name': 'Symbolic Link to Shadow Copy Created'}],
-    techniques=['T1003'],
+    siem_rules=[
+        {"rule_id": "d117cbb4-7d56-41b4-b999-bdf8c25648a0", "rule_name": "Symbolic Link to Shadow Copy Created"}
+    ],
+    techniques=["T1003"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 

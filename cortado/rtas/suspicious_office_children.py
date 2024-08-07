@@ -10,24 +10,19 @@
 # Description: Generates network traffic various children processes from emulated Office processes.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="cd8e06c0-fc62-4932-8ef7-b767570e88eb",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
         RuleMetadata(id="a624863f-a70d-417f-a7d2-7a404638d47f", name="Suspicious MS Office Child Process"),
-        RuleMetadata(id="32f4675e-6c49-4ace-80f9-97c9259dca2e", name="Suspicious MS Outlook Child Process")
+        RuleMetadata(id="32f4675e-6c49-4ace-80f9-97c9259dca2e", name="Suspicious MS Outlook Child Process"),
     ],
-    techniques=['T1566', 'T1566.001'],
+    techniques=["T1566", "T1566.001"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     cmd_path = "c:\\windows\\system32\\cmd.exe"
     binaries = ["adobe.exe", "winword.exe", "outlook.exe", "excel.exe", "powerpnt.exe"]
     for binary in binaries:

@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="9e85eb9f-ee9e-4c73-8a83-14dd29a5aa80",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Connection to Dynamic DNS Provider by an Unsigned Binary",
@@ -23,7 +23,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     posh = "C:\\Users\\Public\\posh.exe"
     _common.copy_file(EXE_FILE, posh)

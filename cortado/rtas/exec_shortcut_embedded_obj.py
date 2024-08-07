@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="32faebaa-b581-464c-bca9-6936fe0948dc",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             'rule_id': '8076640d-ec66-4d24-a252-ee2f054e00a1',

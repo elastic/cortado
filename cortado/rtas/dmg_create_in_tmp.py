@@ -6,12 +6,11 @@
 from pathlib import Path
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="4743705e-bf41-404a-b2f3-9f8f067516e6",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Suspicious DMG File Creation in Temp Directory",
@@ -21,11 +20,7 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1211", "T1059", "T1059.004"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     tmp_dir = Path("/tmp/TestDMGDir")
     tmp_dmg = "/tmp/TestDMG.dmg"
     tmp_dir.mkdir(parents=True, exist_ok=True)

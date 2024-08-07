@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="aec658cc-a5df-42e8-8e09-810b484b9ef2",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "MacOS Potential Data Exfiltration via Curl",
@@ -19,11 +18,7 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1048"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     # create masquerades
     masquerade = "/tmp/curl"
     _common.create_macos_masquerade(masquerade)

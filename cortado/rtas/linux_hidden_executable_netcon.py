@@ -4,32 +4,28 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="da45a71e-fc97-492d-932f-703b11c08387",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         {
             "rule_name": "Hidden Process Execution followed by Network Connection",
-            "rule_id": "04ec0ec4-86c4-47e3-8c7b-8dad5f97532c"
+            "rule_id": "04ec0ec4-86c4-47e3-8c7b-8dad5f97532c",
         }
     ],
     techniques=["T1105", "T1071"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     _common.log("Creating a fake hidden executable..")
     masquerade = "/tmp/.evil"
     source = _common.get_path("bin", "netcon_exec_chain.elf")
     _common.copy_file(source, masquerade)
     _common.log("Granting execute permissions...")
-    _common.execute(['chmod', '+x', masquerade])
+    _common.execute(["chmod", "+x", masquerade])
 
-    commands = [masquerade, 'netcon', '-h', '8.8.8.8', '-p', '53']
+    commands = [masquerade, "netcon", "-h", "8.8.8.8", "-p", "53"]
     _common.execute([*commands], timeout=5, kill=True)
     _common.log("Cleaning...")
     _common.remove_file(masquerade)

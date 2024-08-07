@@ -14,11 +14,10 @@
 import time
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="398933ec-f8d4-4d81-93ed-e7d7adcb9d97",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
         {
@@ -32,9 +31,6 @@ metadata = RtaMetadata(
     ],
     techniques=["T1546", "T1053"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     # Prep
     bins = [
@@ -51,7 +47,6 @@ def main():
 
     # loop over bins
     for bin_name in bins:
-
         bin_path = Path("\\Windows\\system32\\" + bin_name).resolve()
 
         # Back up bin

@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="4fd98e1e-6a58-4684-b565-aa7a09b29d6b",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[{
         'rule_id': '28297d1e-c2a9-442c-9e48-98fe8ce36fab',
         'rule_name': 'Suspicious Microsoft OneNote Child Process'
@@ -20,7 +20,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     onenote = "C:\\Users\\Public\\onenote.exe"
     _common.copy_file(EXE_FILE, onenote)

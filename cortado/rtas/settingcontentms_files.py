@@ -13,12 +13,11 @@
 import time
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="7dea9748-dcac-49a9-8909-bd1f5590e508",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
         {
@@ -28,9 +27,6 @@ metadata = RtaMetadata(
     ],
     techniques=["T1546"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     # Write to AppData\Local\
     _common.execute(["cmd", "/c", "echo", "test", ">", "%APPDATA%\\test.SettingContent-ms"])

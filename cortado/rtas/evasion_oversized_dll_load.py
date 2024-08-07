@@ -5,11 +5,11 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="ec52377c-b2a8-4c44-8eb4-465376f2189a",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     siem_rules=[],
     endpoint_rules=[
         RuleMetadata(id="33cdad6c-5809-4d78-94f0-5a5153289e7e", name="Oversized DLL Creation followed by SideLoad"),
@@ -28,7 +28,7 @@ DLL = _common.get_path("bin", "faultrep.dll")
 WER = "c:\\windows\\system32\\werfault.exe"
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     import os
     from os import path

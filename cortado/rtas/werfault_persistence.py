@@ -12,21 +12,18 @@
 import time
 
 from . import _common
-from . import RtaMetadata
+
 
 MY_APP = _common.get_path("bin", "myapp.exe")
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="cbd90dde-02f4-4010-b654-ccabff3c3c73",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="ac5012b8-8da8-440b-aaaf-aedafdea2dff", name="Suspicious WerFault Child Process")],
     techniques=["T1036"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 @_common.dependencies(MY_APP)
 def main():
     reg_key = "'HKLM:\\SOFTWARE\\Microsoft\\Windows\\Windows Error Reporting\\hangs'"

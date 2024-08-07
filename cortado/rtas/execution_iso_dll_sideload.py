@@ -5,11 +5,11 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="ba802fb2-f183-420e-947b-da5ce0c74d123",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     siem_rules=[],
     endpoint_rules=[RuleMetadata(id="ba802fb2-f183-420e-947b-da5ce0c74dd3", name="Potential DLL SideLoad via a Microsoft Signed Binary")],
     techniques=["T1574", "T1574.002"],
@@ -22,7 +22,7 @@ PROC = 'WER_RTA.exe'
 # ps script to mount, execute a file and unmount ISO device
 PS_SCRIPT = _common.get_path("bin", "ExecFromISOFile.ps1")
 
-@_common.requires_os(*metadata.platforms)
+
 
 def main():
     if Path(ISO).is_file() and Path(PS_SCRIPT).is_file():

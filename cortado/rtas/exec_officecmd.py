@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="4f7261bb-d298-48ec-9cdf-b8ebe05a7f1e",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[{
         'rule_id': '12e6ac2e-a429-4f54-abb2-eaa5713a4d06',
         'rule_name': 'Suspicious Execution via Microsoft OfficeCmd URL Handler'
@@ -20,7 +20,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     localbridge = "C:\\Users\\Public\\LocalBridge.exe"
     _common.copy_file(EXE_FILE, localbridge)

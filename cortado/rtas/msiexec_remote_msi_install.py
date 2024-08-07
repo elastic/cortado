@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="8cb1d15d-d945-4f1c-9238-b221600156bc",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         RuleMetadata(id="706bf4ca-45b7-4eb1-acae-b1228124594a", name="Remote MSI Package Installation via MSIEXEC"),
@@ -21,7 +21,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     msiexec = "C:\\Users\\Public\\msiexec.exe"
     _common.copy_file(EXE_FILE, msiexec)

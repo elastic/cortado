@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
+
 from pathlib import Path
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="55750f93-0545-4222-a1fe-8b25a1c736f0",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{'rule_id': '25224a80-5a4a-4b8a-991e-6ab390465c4f', 'rule_name': 'Lateral Movement via Startup Folder'}],
     techniques=['T1021', 'T1547', 'T1547.001'],
@@ -17,7 +17,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     mstsc = "C:\\Users\\Public\\mstsc.exe"
     path = "C:\\Users\\Public\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"

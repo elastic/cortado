@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="cd2154fa-de1a-4098-83c1-be1ab23da379",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             'rule_id': '31b7218e-ba98-4228-a39a-d0e0d1c0e5b7',
@@ -22,7 +22,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     key = "SYSTEM\\CurrentControlSet\\Control\\CI\\Config"
     value = "VulnerableDriverBlocklistEnable"

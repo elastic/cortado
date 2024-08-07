@@ -6,12 +6,12 @@
 import time
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="7d139669-2b4c-4fc3-9a7c-bd1b643696dc",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="93438ae3-becd-43fa-81de-645ce17afa8e", name="Scriptlet Execution via Rundll32"),
         RuleMetadata(id="f60455df-5054-49ff-9ff7-1dc4e37b6ea7", name="Binary Proxy Execution via Rundll32"),
@@ -23,7 +23,7 @@ metadata = RtaMetadata(
 INF_FILE = _common.get_path("bin", "notepad_launch.inf")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     # http server will terminate on main thread exit
     # if daemon is True

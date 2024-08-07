@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="88905741-350f-4a20-a363-22be1e71840c",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Access to Windows Passwords Vault via Powershell",
@@ -19,9 +18,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1555", "T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 

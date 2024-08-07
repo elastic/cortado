@@ -10,19 +10,15 @@
 #              process (notepad.exe) is closed.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="e09d904a-f3bb-4d36-8eb8-8c234812807c",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="6839c821-011d-43bd-bd5b-acff00257226", name="Image File Execution Options Injection")],
     techniques=["T1546"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("Setting up persistence using Globalflags")
     ifeo_subkey = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\netstat.exe"
@@ -31,7 +27,6 @@ def main():
     with _common.temporary_reg(_common.HKLM, ifeo_subkey, "GlobalFlag", 512, _common.DWORD), _common.temporary_reg(
         _common.HKLM, spe_subkey, "ReportingMode", 1, _common.DWORD
     ), _common.temporary_reg(_common.HKLM, spe_subkey, "MonitorProcess", "C:\\Windows\\system32\\whoami.exe"):
-
         _common.log("Opening and closing netstat")
         _common.execute(["whoami"], shell=True)
         _common.execute(["taskkill", "/F", "/IM", "netstat.exe"])

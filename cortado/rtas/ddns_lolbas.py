@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="95d34e55-789d-40bf-9988-dbb803c2d066",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Connection to Dynamic DNS Provider by a Signed Binary Proxy",
@@ -19,9 +18,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1218", "T1071"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 

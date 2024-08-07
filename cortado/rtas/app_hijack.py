@@ -5,12 +5,11 @@
 
 from pathlib import Path
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="9e87748e-9866-4b6b-832d-5cba4dda14e8",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Potential Default Application Hijacking",
@@ -20,11 +19,7 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1574"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     app_dir = Path("/Applications/test/Contents/")
     app_dir.mkdir(parents=True, exist_ok=True)
     masquerade = str(app_dir / "hijack")

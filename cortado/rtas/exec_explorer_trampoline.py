@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="5e911636-6f68-40d3-b1ef-7a951a397cc9",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Execution of Commonly Abused Utilities via Explorer Trampoline",
@@ -23,7 +23,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     explorer = "C:\\Users\\Public\\explorer.exe"
     _common.copy_file(EXE_FILE, explorer)

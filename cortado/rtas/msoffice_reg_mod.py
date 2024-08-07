@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="61abdbb3-bcab-4c57-8b5d-2a5c9226e580",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="926b6cd1-c0c7-46d4-82d6-9deb6ae431d6", name="Registry Modification via Microsoft Office")
     ],
@@ -20,7 +20,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     winword = "C:\\Users\\Public\\winword.exe"
     _common.copy_file(EXE_FILE, winword)

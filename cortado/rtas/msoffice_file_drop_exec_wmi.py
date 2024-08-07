@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="ca0cc06d-6a8f-4d9b-a9c2-9315c62f924a",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Suspicious Execution via Windows Management Instrumentation",
@@ -24,7 +24,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     server, ip, port = _common.serve_web()
     url = f"http://{ip}:{port}/bin/renamed_posh.exe"

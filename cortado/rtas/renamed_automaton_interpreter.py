@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="8c128a2b-fa7b-4bfc-9ec9-934395460420",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="92d720dd-93b2-49e0-b68a-d5d6acbe4910", name="Renamed Windows Automaton Script Interpreter")
     ],
@@ -21,7 +21,7 @@ EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 RENAMER = _common.get_path("bin", "rcedit-x64.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     autohotkey = "C:\\Users\\Public\\notaut0hotkey.exe"
     rcedit = "C:\\Users\\Public\\rcedit.exe"

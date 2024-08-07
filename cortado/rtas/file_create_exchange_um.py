@@ -5,11 +5,11 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="29eb99a6-14cc-4d37-81dd-c2e78cda8c74",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{
         'rule_id': '6cd1779c-560f-4b68-a8f1-11009b27fe63',
@@ -20,7 +20,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     proc = "C:\\Users\\Public\\UMWorkerProcess.exe"
     path = "C:\\Users\\Public\\Microsoft\\Exchange Server Test\\FrontEnd\\HttpProxy\\owa\\auth\\"

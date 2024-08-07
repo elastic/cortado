@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="5a2a5c20-73f6-4a08-a767-95d242b52708",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="ffbab5db-73ae-42fd-a33f-36bf649f41cc", name="Suspicious Windows Script Process Execution"),
         RuleMetadata(id="16c84e67-e5e7-44ff-aefa-4d771bcafc0c", name="Execution from Unusual Directory"),
@@ -23,7 +23,7 @@ EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 RENAMER = _common.get_path("bin", "rcedit-x64.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     cscript = "C:\\Users\\Public\\cscript.exe"
     rcedit = "C:\\Users\\Public\\rcedit.exe"

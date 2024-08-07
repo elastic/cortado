@@ -5,12 +5,12 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="9bf3622b-dd76-4156-a89c-6845dca46b1f",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="16c84e67-e5e7-44ff-aefa-4d771bcafc0c", name="Execution from Unusual Directory"),
         {
@@ -25,7 +25,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     msxsl = "C:\\Users\\Public\\msxsl.exe"
     fake_clr_path = "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\CLR_v4.0\\UsageLogs"

@@ -5,12 +5,12 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="98adf0ff-2d8e-4eea-8d68-42084204bb74",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         RuleMetadata(id="5b00c9ba-9546-47cc-8f9f-1c1a3e95f65c", name="Potential Masquerading as SVCHOST"),
@@ -23,7 +23,7 @@ metadata = RtaMetadata(
 CMD_PATH = "c:\\windows\\system32\\cmd.exe"
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     masquerades = ["svchost.exe", "lsass.exe"]
 

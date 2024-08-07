@@ -4,25 +4,19 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
+
 import subprocess
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="0a3d2e78-1860-48e9-b4c8-99dcc7dc0e87",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_name": "Linux Command Execution via Env Binary",
-            "rule_id": "a393fff6-3735-440e-8536-82509d78bfdd"
-        }
+        {"rule_name": "Linux Command Execution via Env Binary", "rule_id": "a393fff6-3735-440e-8536-82509d78bfdd"}
     ],
     techniques=["T1059", "T1033", "T1105"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     # List of commands to be executed by 'env'
     command = "/bin/bash -c whoami"
     env_command = f"/usr/bin/env {command}"

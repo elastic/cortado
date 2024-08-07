@@ -4,21 +4,17 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="75fdde39-92bb-4a71-a4f1-f70e9c85d6db",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="86bf5d50-7f5d-44b4-977b-dff222379727", name="Potential Credential Access via Mimikatz")
     ],
     siem_rules=[],
     techniques=["T1558", "T1003"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 

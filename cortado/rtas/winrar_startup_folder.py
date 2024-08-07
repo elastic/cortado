@@ -11,18 +11,14 @@
 import os
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="6d2d3c21-2d71-4395-8ab7-b1d0138d9225",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[],
-    techniques=[]
+    techniques=[],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("WinRAR StartUp Folder Persistence")
     win_rar_path = Path("WinRAR.exe").resolve()

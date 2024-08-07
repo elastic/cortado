@@ -4,22 +4,17 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="a6263f00-58b4-4555-b88f-9d66a7395891",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{
-        'rule_id': 'c57f8579-e2a5-4804-847f-f2732edc5156',
-        'rule_name': 'Potential Remote Desktop Shadowing Activity'
-    }],
-    techniques=['T1021'],
+    siem_rules=[
+        {"rule_id": "c57f8579-e2a5-4804-847f-f2732edc5156", "rule_name": "Potential Remote Desktop Shadowing Activity"}
+    ],
+    techniques=["T1021"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("Modifying RDP Shadow reg key...")
 

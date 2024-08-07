@@ -4,19 +4,17 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="c5b8e9c5-59c6-4316-8e73-cd4f5a9a2761",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{'rule_id': '84da2554-e12a-11ec-b896-f661ea17fbcd', 'rule_name': 'Enumerating Domain Trusts via NLTEST.EXE'}],
-    techniques=['T1482'],
+    siem_rules=[
+        {"rule_id": "84da2554-e12a-11ec-b896-f661ea17fbcd", "rule_name": "Enumerating Domain Trusts via NLTEST.EXE"}
+    ],
+    techniques=["T1482"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 

@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="c4ac8740-3dca-4550-831b-e03d21de581d",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "New System Kext File and Immediate Load via KextLoad",
@@ -19,11 +18,7 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1547", "T1547.006", "T1059", "T1059.004"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     # create masquerades
     masquerade = "/tmp/mv"
     _common.create_macos_masquerade(masquerade)

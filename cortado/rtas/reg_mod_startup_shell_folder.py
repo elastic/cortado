@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="16fe008f-58b5-4a8c-9e73-2784edf636b1",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{
         'rule_id': 'c8b150f0-0164-475b-a75e-74b47800a9ff',
@@ -20,7 +20,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     key = "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders"
     value = "Common Startup"

@@ -9,12 +9,12 @@
 # Description: Creates processes with anomalous extensions
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="c7d9d63d-09ff-40e9-b990-4c273281d6a0",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[],
     techniques=[]
@@ -24,7 +24,7 @@ metadata = RtaMetadata(
 MY_APP = _common.get_path("bin", "myapp.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 @_common.dependencies(MY_APP)
 def main():
     anomalies = [

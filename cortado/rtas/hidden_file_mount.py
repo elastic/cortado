@@ -5,23 +5,18 @@
 
 from pathlib import Path
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="1d7ff305-03b5-4917-b32c-d0267018063c",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="c5f219ca-4bda-461b-bc54-246c0bb48143", name="MacOS Hidden File Mounted"),
     ],
     siem_rules=[],
     techniques=["T1211", "T1059", "T1059.004"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     mount_dir = "/tmp/.exploit"
     disk_file = "disk.dmg"
 

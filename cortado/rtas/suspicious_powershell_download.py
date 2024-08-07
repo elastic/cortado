@@ -6,12 +6,12 @@
 import time
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="20b96aa7-609e-473f-ac35-5ac19d10f9a5",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "PowerShell Obfuscation Spawned via Microsoft Office",
@@ -26,7 +26,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     server, ip, port = _common.serve_web()
     url = "http://{}:{}/bad.ps1".format(ip, port)

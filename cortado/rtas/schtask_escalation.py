@@ -14,11 +14,10 @@
 import time
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="1a61241e-5b1b-44ec-8c9f-3ae4652550be",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
         RuleMetadata(id="afcce5ad-65de-4ed2-8516-5e093d3ac99a", name="Local Scheduled Task Creation"),
@@ -27,13 +26,10 @@ metadata = RtaMetadata(
     ],
     techniques=["T1033", "T1053", "T1059"],
 )
-
-
 def schtasks(*args, **kwargs):
     return _common.execute(["schtasks.exe"] + list(args), **kwargs)
 
 
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("Scheduled Task Privilege Escalation")
 

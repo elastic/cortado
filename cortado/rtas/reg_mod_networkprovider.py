@@ -4,22 +4,17 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="1b4050d9-e3fa-4559-b188-522b620584c8",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{
-        'rule_id': '54c3d186-0461-4dc3-9b33-2dc5c7473936',
-        'rule_name': 'Network Logon Provider Registry Modification'
-    }],
-    techniques=['T1556', 'T1543'],
+    siem_rules=[
+        {"rule_id": "54c3d186-0461-4dc3-9b33-2dc5c7473936", "rule_name": "Network Logon Provider Registry Modification"}
+    ],
+    techniques=["T1556", "T1543"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     key = "System\\CurrentControlSet\\Services\\Test\\NetworkProvider"
     value = "ProviderPath"

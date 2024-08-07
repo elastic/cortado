@@ -5,12 +5,11 @@
 
 from pathlib import Path
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="aac863d1-8306-463e-b81f-3d97ba925a44",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Suspicious PrivilegedHelperTool Activity",
@@ -20,11 +19,7 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1068"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     tools = Path("/Library/PrivilegedHelperTools")
     tools.mkdir(parents=True, exist_ok=True)
     masquerade = str(tools / "testbin")

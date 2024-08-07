@@ -12,12 +12,11 @@ import os
 import time
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="413cf7ef-0fad-46fd-ab67-e94c4e3e0f0b",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
         {
@@ -32,9 +31,6 @@ metadata = RtaMetadata(
     ],
     techniques=["T1003"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("Memory Dump via Comsvcs")
     pid = os.getpid()

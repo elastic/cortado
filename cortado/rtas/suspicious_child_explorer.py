@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="bc837b89-713a-4d21-a086-8649e8411f11",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{'rule_id': '9a5b4e31-6cde-4295-9ff7-6be1b8567e1b', 'rule_name': 'Suspicious Explorer Child Process'}],
     techniques=['T1566', 'T1566.001', 'T1566.002'],
@@ -17,7 +17,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     explorer = "C:\\Users\\Public\\explorer.exe"
     _common.copy_file(EXE_FILE, explorer)

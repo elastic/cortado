@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="0860c487-e9e0-4f86-9829-5bb98f615046",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="16c84e67-e5e7-44ff-aefa-4d771bcafc0c", name="Execution from Unusual Directory"),
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
@@ -17,9 +16,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1218", "T1036", "T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     exe_path = "c:\\windows\\system32\\cscript.exe"
     binary = "c:\\Users\\Public\\cscript.exe"

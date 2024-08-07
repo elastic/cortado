@@ -7,20 +7,16 @@ import os
 import pathlib
 import sys
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="fb5cd755-cc31-4142-969a-cd14d3142b36",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="aec74eb4-9618-42ff-96eb-2d13e6959d47", name="Potential VScode Remote Tunnel Established"),
     ],
     siem_rules=[],
     techniques=["T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main() -> None:
     masquerade = "code_tunnel.json"
     working_dir = "/tmp/fake_folder/code"

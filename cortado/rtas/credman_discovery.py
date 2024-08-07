@@ -4,13 +4,13 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
+
 import os
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="d12e0abb-017f-4321-adf2-20843f62b55d",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Potential Discovery of Windows Credential Manager Store",
@@ -20,9 +20,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1555"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     appdata = os.getenv("LOCALAPPDATA")
     credmanfile = f"{appdata}\\Microsoft\\Credentials\\a.txt"

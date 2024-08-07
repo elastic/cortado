@@ -4,25 +4,19 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
+
 import subprocess
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="075664b1-83db-4cb1-9280-e18309e187bc",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_name": "Shell Execution of Non-Executable File",
-            "rule_id": "4c61fca2-6f77-474d-a537-2d7fd9ec75e0"
-        }
+        {"rule_name": "Shell Execution of Non-Executable File", "rule_id": "4c61fca2-6f77-474d-a537-2d7fd9ec75e0"}
     ],
     techniques=["T1036", "T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     shell_command = "/bin/bash"
     file_pattern = "/bin/bash /tmp/evil.log"
 

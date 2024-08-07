@@ -12,19 +12,15 @@
 import time
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="5d049893-b5ca-4482-a9ea-c38c6d01c171",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="f675872f-6d85-40a3-b502-c0d2ef101e92", name="Delete Volume USN Journal with Fsutil")],
     techniques=["T1070"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     message = "Deleting the USN journal may have unintended consequences"
     _common.log("WARNING: %s" % message, log_type="!")

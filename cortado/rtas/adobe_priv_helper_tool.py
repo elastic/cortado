@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="e5d376ae-d634-41fa-903c-42f35736a615",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
         {
@@ -19,11 +18,7 @@ metadata = RtaMetadata(
     ],
     techniques=["T1068"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/com.adobe.ARMDC.SMJobBlessHelper"
     _common.create_macos_masquerade(masquerade)
 

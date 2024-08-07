@@ -11,21 +11,17 @@
 import sys
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="53d071d9-36e3-4b40-83c8-d818bd831010",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
         RuleMetadata(id="be8afaed-4bcd-4e0a-b5f9-5562003dde81", name="Searching for Saved Credentials via VaultCmd")
     ],
     techniques=["T1555", "T1003"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("Searching Credential Vaults via VaultCmd")
 

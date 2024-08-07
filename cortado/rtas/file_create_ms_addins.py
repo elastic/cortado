@@ -5,11 +5,11 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="5432792c-d31a-42cc-a82f-0884ea230493",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{'rule_id': 'f44fa4b6-524c-4e87-8d9e-a32599e4fb7c', 'rule_name': 'Persistence via Microsoft Office AddIns'}],
     techniques=['T1137'],
@@ -17,7 +17,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     path = "C:\\Users\\Public\\\\AppData\\Roaming\\Microsoft\\Word\\Startup"
     Path(path).mkdir(parents=True, exist_ok=True)

@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="8b5119a5-9f78-492a-8448-ff726b0e0b4f",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="0d4454a7-c682-4085-995c-300973c5bdea", name="Scriptlet Proxy Execution via PubPrn"),
         RuleMetadata(id="16c84e67-e5e7-44ff-aefa-4d771bcafc0c", name="Execution from Unusual Directory"),
@@ -23,7 +23,7 @@ EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 RENAMER = _common.get_path("bin", "rcedit-x64.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     cscript = "C:\\Users\\Public\\cscript.exe"
     rcedit = "C:\\Users\\Public\\rcedit.exe"

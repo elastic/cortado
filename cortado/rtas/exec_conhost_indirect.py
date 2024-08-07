@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="32e926c2-2f33-4dd0-ac77-12545331d3e4",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             'rule_id': '4b61b37d-c569-444a-bafa-e29d221ee55c',
@@ -22,7 +22,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     conhost = "C:\\Users\\Public\\conhost.exe"
     posh = "C:\\Users\\Public\\posh.exe"

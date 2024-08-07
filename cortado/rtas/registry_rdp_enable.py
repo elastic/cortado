@@ -10,21 +10,15 @@
 # Description: Identifies registry write modification to enable RDP access.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="1ef2a173-a9c8-446d-9d56-f7e54a197a33",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[
-        {'rule_id': '58aa72ca-d968-4f34-b9f7-bea51d75eb50', 'rule_name': 'RDP Enabled via Registry'}
-    ],
-    techniques=['T1021', 'T1021.001'],
+    siem_rules=[{"rule_id": "58aa72ca-d968-4f34-b9f7-bea51d75eb50", "rule_name": "RDP Enabled via Registry"}],
+    techniques=["T1021", "T1021.001"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("Enabling RDP Through Registry")
 

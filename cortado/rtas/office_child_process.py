@@ -4,21 +4,18 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="65ae1bcd-0b1c-4992-97c3-f40b0f92deb1",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[],
-    siem_rules=[RuleMetadata(id="66da12b1-ac83-40eb-814c-07ed1d82b7b9", name="Suspicious macOS MS Office Child Process")],
+    siem_rules=[
+        RuleMetadata(id="66da12b1-ac83-40eb-814c-07ed1d82b7b9", name="Suspicious macOS MS Office Child Process")
+    ],
     techniques=["T1566"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     # create masquerades
     masquerade = "/tmp/Microsoft Word"
     masquerade2 = "/tmp/bash"

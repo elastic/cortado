@@ -9,12 +9,12 @@
 # Description: Uses certutil.exe to download a file.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="10609a63-0013-4fd0-9322-66c86c1c9501",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="3838e0e3-1850-4850-a411-2e8c5ba40ba8", name="Network Connection via Certutil")],
     techniques=["T1105"],
@@ -24,7 +24,7 @@ metadata = RtaMetadata(
 MY_DLL = _common.get_path("bin", "mydll.dll")
 
 
-@_common.requires_os(*metadata.platforms)
+
 @_common.dependencies(MY_DLL)
 def main():
     # http server will terminate on main thread exit

@@ -12,18 +12,14 @@
 import subprocess
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="aee48793-01ec-428f-9890-c5db9df07830",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="a624863f-a70d-417f-a7d2-7a404638d47f", name="Suspicious MS Office Child Process")],
     techniques=["T1566"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("Running Windows BitsAdmin to Download")
     server, ip, port = _common.serve_web()

@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="b9d5427a-33c4-4b1d-838d-f47c5f3b0b43",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         RuleMetadata(id="18371ec4-ee2f-465b-8757-ee726914006c", name="Suspicious WMIC XSL Script Execution"),
@@ -22,7 +22,7 @@ EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     wmic = "C:\\Users\\Public\\wmic.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"

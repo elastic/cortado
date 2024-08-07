@@ -10,18 +10,14 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="71f67037-1df3-4d5f-b8cb-eaf295ad16ed",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[],
-    techniques=[]
+    techniques=[],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("Suspicious File Writes (IQY, PUB)")
     adobe_path = Path("AcroRd32.exe").resolve()

@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="32462f3e-d5af-4ef9-8260-aa9fbeb6e117",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             'rule_id': '2ffc3943-8100-4f77-9c8f-e8f9e185604b',
@@ -22,7 +22,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     key = "SYSTEM\\ControlSet001\\Services\\WinSock2\\Parameters"
     value = "AutodialDLL"

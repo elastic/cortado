@@ -4,25 +4,21 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
+
 
 from pathlib import Path
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="c01971a7-3aa6-4c43-aee6-85d48e93b8c1",
-    platforms=["macos"],
-    endpoint_rules=[{
-        'rule_id': '2ac8ec88-8549-4fcb-9697-5f53e2f78bf4',
-        'rule_name': 'Suspicious Terminal Plist Modification'
-    }],
+    platforms=[OSType.MACOS],
+    endpoint_rules=[
+        {"rule_id": "2ac8ec88-8549-4fcb-9697-5f53e2f78bf4", "rule_name": "Suspicious Terminal Plist Modification"}
+    ],
     siem_rules=[],
     techniques=[""],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     _common.log("Executing plutil commands to modify plist file.")
     plist = f"{Path.home()}/Library/Preferences/com.apple.Terminal.plist"
     _common.execute(["plutil", "-convert", "xml1", plist])

@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="f9feed6d-bae3-49c6-8952-7ed8e9b0b9ef",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Potential Privilege Escalation via Root Crontab File Modification",
@@ -24,11 +23,7 @@ metadata = RtaMetadata(
     ],
     techniques=["T1053"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     _common.log("Executing deletion on /private/var/at/tabs/root file.")
     _common.temporary_file_helper("testing", file_name="/private/var/at/tabs/root")
 

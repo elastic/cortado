@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="a840e9b2-5aac-41a1-8c79-03ff624eb77b",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{'rule_id': '0022d47d-39c7-4f69-a232-4fe9dc7a3acd', 'rule_name': 'System Shells via Services'}],
     techniques=['T1543', 'T1543.003'],
@@ -17,7 +17,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     services = "C:\\Users\\Public\\services.exe"
     pwsh = "C:\\Users\\Public\\pwsh.exe"

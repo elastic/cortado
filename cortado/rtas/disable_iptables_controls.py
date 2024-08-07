@@ -4,21 +4,18 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="2b07eb19-c71e-4e79-b0b6-a3850bdbf273",
-    platforms=["linux"],
-    endpoint_rules=[{"rule_id": "02db53f7-d6de-4e69-8e05-819233583c87",
-               "rule_name": "Attempt to Disable IPTables or Firewall"}],
+    platforms=[OSType.LINUX],
+    endpoint_rules=[
+        {"rule_id": "02db53f7-d6de-4e69-8e05-819233583c87", "rule_name": "Attempt to Disable IPTables or Firewall"}
+    ],
     siem_rules=[],
-    techniques=["T1562", "T1562.001"]
+    techniques=["T1562", "T1562.001"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/ufw"
     source = _common.get_path("bin", "linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)

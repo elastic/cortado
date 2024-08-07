@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="571e229f-fb92-48cf-b0fb-dd9630b1580f",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{
         'rule_id': '1defdd62-cd8d-426e-a246-81a37751bb2b',
@@ -20,7 +20,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     rdrcef = "C:\\Users\\Public\\rdrcef.exe"
     arp = "C:\\Users\\Public\\arp.exe"

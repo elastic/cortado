@@ -4,21 +4,16 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="4d7ce5b3-f8e4-434c-9caa-c7e133146b27",
     platforms=["macos", "linux"],
     endpoint_rules=[RuleMetadata(id="b7974ff6-82ff-4743-9e07-1c6901b1f0ea", name="Empire Stager Execution")],
     siem_rules=[],
     techniques=["T1132", "T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/bash"
     if _common.CURRENT_OS == "linux":
         source = _common.get_path("bin", "linux.ditto_and_spawn")

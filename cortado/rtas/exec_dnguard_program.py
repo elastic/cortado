@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="db2e6589-d2df-4d9d-9d88-d91af5fd57e9",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[{
         'rule_id': 'e691d379-6d01-43cc-9f1e-ab10df48a6bc',
         'rule_name': 'Execution of a DNGUard Protected Program'
@@ -21,7 +21,7 @@ EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     posh = "C:\\Users\\Public\\posh.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"

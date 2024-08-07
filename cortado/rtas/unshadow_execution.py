@@ -5,12 +5,11 @@
 
 from pathlib import Path
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="c5cecd6d-a7c4-4e3b-970d-6ca5cfc5c662",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         {
             "rule_name": "Potential Linux Credential Dumping via Unshadow",
@@ -20,16 +19,12 @@ metadata = RtaMetadata(
     siem_rules=[
         {
             "rule_name": "Potential Linux Credential Dumping via Unshadow",
-            "rule_id": "e7cb3cfd-aaa3-4d7b-af18-23b89955062c"
+            "rule_id": "e7cb3cfd-aaa3-4d7b-af18-23b89955062c",
         }
     ],
     techniques=["T1003", "T1003.008"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/unshadow"
     source = _common.get_path("bin", "linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)

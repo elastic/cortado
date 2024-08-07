@@ -4,21 +4,16 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="af8d27bb-1673-463f-8631-a5b30278cf33",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[RuleMetadata(id="7b9d544a-5b2a-4f0d-984a-cdc89a7fad25", name="Suspicious Apple Script Execution")],
     siem_rules=[],
     techniques=["T1105", "T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/osascript"
     _common.create_macos_masquerade(masquerade)
 

@@ -10,19 +10,15 @@
 
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="72e0a6ca-5b2d-48f6-9d6f-a879ace9cdae",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[],
-    techniques=[]
+    techniques=[],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("Bypass UAC with CRYPTBASE.dll")
 

@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="b434626c-4787-4967-9984-50c0db12692f",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{'rule_id': 'd0e159cf-73e9-40d1-a9ed-077e3158a855', 'rule_name': 'Registry Persistence via AppInit DLL'}],
     techniques=['T1546', 'T1546.010'],
@@ -17,7 +17,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     key = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows"
     value = "AppInit_Dlls"

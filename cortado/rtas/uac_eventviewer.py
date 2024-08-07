@@ -12,12 +12,11 @@ import sys
 import time
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="1185afa2-49aa-4cca-8702-228d238c0bd5",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="31b4c719-f2b4-41f6-a9bd-fce93c2eaf62", name="Bypass UAC via Event Viewer")],
     techniques=["T1548"],
@@ -29,7 +28,6 @@ metadata = RtaMetadata(
 # %SystemRoot%\system32\mmc.exe "%1" %*
 
 
-@_common.requires_os(*metadata.platforms)
 def main(target_file=_common.get_path("bin", "myapp.exe")):
     winreg = _common.get_winreg()
     _common.log("Bypass UAC with %s" % target_file)

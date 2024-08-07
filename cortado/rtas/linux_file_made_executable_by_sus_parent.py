@@ -4,24 +4,20 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="97993aa0-7b15-442b-a180-7c158b3339c1",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         {
             "rule_name": "Linux File Made Executable by Suspicious Parent",
-            "rule_id": "742037b3-3ef6-4a33-84ed-b26fc6ae322c"
+            "rule_id": "742037b3-3ef6-4a33-84ed-b26fc6ae322c",
         }
     ],
     techniques=["T1222", "T1564"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/chmod"
     source = _common.get_path("bin", "linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)

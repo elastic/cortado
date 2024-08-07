@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="219dee0a-48ad-4e17-ab59-783a619a7bd5",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{'rule_id': 'c6453e73-90eb-4fe7-a98c-cde7bbfc504a', 'rule_name': 'Remote File Download via MpCmdRun'}],
     techniques=['T1105'],
@@ -17,7 +17,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     mpcmdrun = "C:\\Users\\Public\\MpCmdRun.exe"
     _common.copy_file(EXE_FILE, mpcmdrun)

@@ -4,20 +4,16 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="9b0bbe6d-2116-4327-930b-51e3e5097487",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[RuleMetadata(id="3337a10c-e950-4827-a44e-96a688fba221", name="Potential Linux Hack Tool Launched")],
     siem_rules=[RuleMetadata(id="1df1152b-610a-4f48-9d7a-504f6ee5d9da", name="Potential Linux Hack Tool Launched")],
     techniques=[""],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/crackmapexec"
     source = _common.get_path("bin", "linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)

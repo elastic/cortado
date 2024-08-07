@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="a56d07b3-c459-4a72-adab-b93bbe008f0f",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Non-Native Dylib Extracted into New Directory",
@@ -19,11 +18,7 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1059", "T1059.004"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     # Execute command"
     _common.log("Launching commands to tar tmp dir.")
     _common.execute(["mkdir"], timeout=10, kill=True)

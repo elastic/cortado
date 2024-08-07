@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="498c13e2-789c-4a6c-b32d-0589d2f907c2",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Signed Binary Execution via Microsoft Office",
@@ -20,9 +19,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1574", "T1218", "T1566"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     temposh = "C:\\Users\\Public\\posh.exe"

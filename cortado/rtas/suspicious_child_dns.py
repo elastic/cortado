@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="9f58f9e7-a0f5-48e6-a924-d437fd626195",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
         {'rule_id': '8c37dc0e-e3ac-4c97-8aa0-cf6a9122de45', 'rule_name': 'Unusual Child Process of dns.exe'},
@@ -20,7 +20,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     dns = "C:\\Users\\Public\\dns.exe"
     _common.copy_file(EXE_FILE, dns)

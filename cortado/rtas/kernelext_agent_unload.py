@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="61f308d8-40c5-4c46-9181-e993cf07e92b",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Attempt to Unload Elastic Endpoint Security Kernel Extension",
@@ -24,11 +23,7 @@ metadata = RtaMetadata(
     ],
     techniques=["T1547", "T1562"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/kextunload"
     _common.create_macos_masquerade(masquerade)
 

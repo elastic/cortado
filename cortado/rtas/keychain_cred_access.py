@@ -5,12 +5,11 @@
 
 from pathlib import Path
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="603d77bf-cdfc-44dd-94d3-5b4016caef94",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Suspicious Access to Keychain Credentials Files",
@@ -22,11 +21,7 @@ metadata = RtaMetadata(
     ],
     techniques=["T1555"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/bash"
     _common.create_macos_masquerade(masquerade)
 

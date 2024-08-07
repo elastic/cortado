@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="78e59247-db65-412a-898c-2e757d695851",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="9ba39516-651e-489f-8b6a-f5501e0c492d", name="Execution from Suspicious Directory"),
         {
@@ -27,7 +27,7 @@ PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
 RENAMER = _common.get_path("bin", "rcedit-x64.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     posh = "C:\\Users\\Public\\posh.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"

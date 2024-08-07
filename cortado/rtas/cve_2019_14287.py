@@ -4,22 +4,26 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="df91f5f2-a0a0-47e8-848b-d01526a43d60",
-    platforms=["linux"],
-    endpoint_rules=[{"rule_name": "Potential Sudo Privilege Escalation via CVE-2019-14287",
-               "rule_id": "b382c343-892d-46e1-8fad-22576a086598"}],
-    siem_rules=[{"rule_name": "Potential Sudo Privilege Escalation via CVE-2019-14287",
-           "rule_id": "8af5b42f-8d74-48c8-a8d0-6d14b4197288"}],
+    platforms=[OSType.LINUX],
+    endpoint_rules=[
+        {
+            "rule_name": "Potential Sudo Privilege Escalation via CVE-2019-14287",
+            "rule_id": "b382c343-892d-46e1-8fad-22576a086598",
+        }
+    ],
+    siem_rules=[
+        {
+            "rule_name": "Potential Sudo Privilege Escalation via CVE-2019-14287",
+            "rule_id": "8af5b42f-8d74-48c8-a8d0-6d14b4197288",
+        }
+    ],
     techniques=["T1068"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/sudo"
     source = _common.get_path("bin", "linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)

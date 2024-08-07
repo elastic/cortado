@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="469c7bb5-44e2-4a85-b14d-5aee4f2b18c1",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="16c84e67-e5e7-44ff-aefa-4d771bcafc0c", name="Execution from Unusual Directory"),
         RuleMetadata(id="0524c24c-e45e-4220-b21a-abdba0c46c4d", name="Regsvr32 Scriptlet Execution"),
@@ -23,7 +23,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     regsvr32 = "C:\\Users\\Public\\regsvr32.exe"
     _common.copy_file(EXE_FILE, regsvr32)

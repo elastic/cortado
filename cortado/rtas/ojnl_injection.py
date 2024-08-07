@@ -4,21 +4,21 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="b48a9dd2-8fe7-41e1-9af2-65f609a54237",
-    platforms=["linux"],
-    endpoint_rules=[{"rule_id": "8fff17c6-f0ba-4996-bcc3-342a9ebd0ef3",
-               "rule_name": "Remote Code Execution via Confluence OGNL Injection"}],
+    platforms=[OSType.LINUX],
+    endpoint_rules=[
+        {
+            "rule_id": "8fff17c6-f0ba-4996-bcc3-342a9ebd0ef3",
+            "rule_name": "Remote Code Execution via Confluence OGNL Injection",
+        }
+    ],
     siem_rules=[],
-    techniques=["T1190"]
+    techniques=["T1190"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/confluence/jre/fake/java"
     masquerade2 = "/tmp/bash"
     # Using the Linux binary that simulates parent-> child process in Linux

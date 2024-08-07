@@ -6,11 +6,11 @@
 import os
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="a3b26c9e-6910-43f7-93b2-84cc777e54f4",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             'rule_id': '15b1d979-5be0-4e7f-9202-0c4cfd76b146',

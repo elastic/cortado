@@ -5,6 +5,7 @@ import importlib.resources
 from pathlib import Path
 from dataclasses import dataclass, KW_ONLY, field
 from typing import Callable
+from typing import Callable, ParamSpec, Concatenate, TypeVar
 
 import logging
 
@@ -75,6 +76,7 @@ def register_code_rta(
 
         @functools.wraps(func)
         def wrapper() -> None:
+            # RTA code has no args
             func()
 
         return wrapper

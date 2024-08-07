@@ -11,11 +11,11 @@ import os
 import time
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="2ab62c28-1abb-4ac5-a16d-2f4f75d01d02",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="afcce5ad-65de-4ed2-8516-5e093d3ac99a", name="Local Scheduled Task Creation")],
     techniques=["T1053"],
@@ -26,7 +26,7 @@ VBS = _common.get_path("bin", "persistent_script.vbs")
 NAME = "rta-vbs-persistence"
 
 
-@_common.requires_os(*metadata.platforms)
+
 @_common.dependencies(_common.PS_EXEC, VBS)
 def main():
     _common.log("Persistent Scripts")

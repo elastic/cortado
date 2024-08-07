@@ -10,18 +10,15 @@
 import sys
 from pathlib import Path
 
-from . import RtaMetadata, _common
+from . import register_code_rta, RuleMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="2df08481-31db-44a8-b01d-1c0df827bddb",
-    platforms=["windows"],
-    endpoint_rules=[],
+    platforms=[OSType.WINDOWS],
     siem_rules=[RuleMetadata(id="2bf78aa2-9c56-48de-b139-f169bf99cf86", name="Adobe Hijack Persistence")],
     techniques=["T1574"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main() -> None:
     rdr_cef_dir = Path("C:\\Program Files (x86)\\Adobe\\Acrobat Reader DC\\Reader\\AcroCEF")
     rdrcef_exe = rdr_cef_dir / "RdrCEF.exe"

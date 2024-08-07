@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="afaf4f08-765e-4d4a-8db0-5a2613e1f5be",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             'rule_id': '05599d18-6ff7-4fff-ad2d-f03c930a7b6e',
@@ -22,7 +22,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     winword = "C:\\Users\\Public\\winword.exe"
     cmd = "C:\\Windows\\System32\\cmd.exe"

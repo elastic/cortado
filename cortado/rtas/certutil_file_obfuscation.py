@@ -11,18 +11,14 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="7b2c1b3e-2097-4e2f-bf5c-e157a91b8001",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="fd70c98a-c410-42dc-a2e3-761c71848acf", name="Suspicious CertUtil Commands")],
     techniques=["T1140"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("Encoding target")
     encoded_file = Path("encoded.txt").resolve()

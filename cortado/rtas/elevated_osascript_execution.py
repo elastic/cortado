@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="086c6cae-22ac-47b6-bd24-85b33d8cf3a2",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Elevated Apple Script Execution via Unsigned Parent",
@@ -24,11 +23,7 @@ metadata = RtaMetadata(
     ],
     techniques=["T1078", "T1548", "T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     # create masquerades
     masquerade = "/tmp/bash"
     _common.copy_macos_masquerade(masquerade)

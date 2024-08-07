@@ -4,11 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="127f1e70-a491-4da4-a24f-ac6bf6e5b756",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{
         'rule_id': '15c0b7a7-9c34-4869-b25b-fa6518414899',
@@ -19,7 +19,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     desktopimgdownldr = "C:\\Users\\Public\\desktopimgdownldr.exe"
     _common.copy_file(EXE_FILE, desktopimgdownldr)

@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="aa05a870-7075-42f9-a009-49aa75ea99fa",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Inhibit System Recovery via Untrusted Parent Process",
@@ -27,7 +27,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     binary = "winword.exe"
     _common.copy_file(EXE_FILE, binary)

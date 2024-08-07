@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="2cefb7c2-5ffc-4410-a63c-bded93b258c3",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             'rule_id': '877c6bd9-8df1-4a15-aa97-2a091731b15d',
@@ -25,7 +25,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     msiexec = "C:\\Users\\Public\\msiexec.exe"
     regsvr32 = "C:\\Users\\Public\\regsvr32.exe"

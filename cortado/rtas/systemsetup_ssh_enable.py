@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="23997dfa-9e30-4091-9ee2-8bd45a2da70a",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
         {
@@ -19,11 +18,7 @@ metadata = RtaMetadata(
     ],
     techniques=["T1021"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/systemsetup"
     _common.create_macos_masquerade(masquerade)
 

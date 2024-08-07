@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="84a9bc41-8b2e-434e-b6ae-237e9202c745",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{'rule_id': 'ebf1adea-ccf2-4943-8b96-7ab11ca173a5', 'rule_name': 'IIS HTTP Logging Disabled'}],
     techniques=['T1562', 'T1562.002'],
@@ -17,7 +17,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     appcmd = "C:\\Users\\Public\\appcmd.exe"
     _common.copy_file(EXE_FILE, appcmd)

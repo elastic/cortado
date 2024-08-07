@@ -5,18 +5,14 @@
 
 import sys
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="ecb34b55-2947-48af-b746-3a472abfda43",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[RuleMetadata(id="c0ca8114-254d-46ba-88c6-db57de6efe2d", name="Linux Reverse Shell via netcat")],
     siem_rules=[],
     techniques=["T1059", "T1071"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main() -> None:
     _common.log("Creating a fake nc executable..")
     masquerade = "/tmp/nc"

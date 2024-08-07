@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="6e84852e-b8a2-4158-971e-c5148d969d2a",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{'rule_id': 'eda499b8-a073-4e35-9733-22ec71f57f3a', 'rule_name': 'AdFind Command Activity'}],
     techniques=['T1018', 'T1069', 'T1069.002', 'T1087', 'T1087.002', 'T1482'],
@@ -17,7 +17,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     adfind = "C:\\Users\\Public\\adfind.exe"
     _common.copy_file(EXE_FILE, adfind)

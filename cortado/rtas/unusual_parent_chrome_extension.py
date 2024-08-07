@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="9e31b8ae-c0a6-46c9-9634-d1aebceea541",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[{
         'rule_id': 'd7fda3d7-fe77-49c2-8b50-d28a6da206c4',
         'rule_name': 'Chromium Extension Loaded from Unusual Parent'
@@ -20,7 +20,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     proc = "C:\\Users\\Public\\proc.exe"
     childproc = "C:\\Users\\Public\\childproc.exe"

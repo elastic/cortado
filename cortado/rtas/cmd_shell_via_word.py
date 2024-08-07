@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="6c399694-d21c-4a19-9e58-8fa24eb399b9",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Windows Command Shell Spawned via Microsoft Office",
@@ -23,7 +23,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     binary = "winword.exe"
     _common.copy_file(EXE_FILE, binary)

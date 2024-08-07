@@ -4,18 +4,17 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="d6c94638-5c8a-40e9-9ad8-86a8f97cc043",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{'rule_id': '3a59fc81-99d3-47ea-8cd6-d48d561fca20', 'rule_name': 'Potential DNS Tunneling via NsLookup'}],
-    techniques=['T1071', 'T1071.004'],
+    siem_rules=[
+        {"rule_id": "3a59fc81-99d3-47ea-8cd6-d48d561fca20", "rule_name": "Potential DNS Tunneling via NsLookup"}
+    ],
+    techniques=["T1071", "T1071.004"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     nslookup = "C:\\Windows\\System32\\nslookup.exe"
 

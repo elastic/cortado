@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="374718be-d841-4381-a75f-ef54f0d5eb18",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="3c44fc50-2672-48b3-af77-ff43b895ac70", name="Credential Access via Known Utilities")
     ],
@@ -20,7 +20,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     binary = "ProcessDump.exe"
     _common.copy_file(EXE_FILE, binary)

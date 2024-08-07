@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="4bb0b65e-8e78-4680-ab37-d6c0723f97a9",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Suspicious Scheduled Task Creation via Masqueraded XML File",
@@ -19,9 +18,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1053", "T1036"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     # Execute Command
     _common.log("Executing command to simulate the task creation (This will not create a task)")

@@ -5,11 +5,11 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="7fcf2f31-b510-45f8-9de4-7dc8f5ecb68b",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     siem_rules=[],
     endpoint_rules=[RuleMetadata(id="d7bc9652-fe82-4fb3-8a48-4a9289c840f8", name="Potential NTDLL Memory Unhooking"), 
               RuleMetadata(id="2c4f5a78-a64f-4fcf-ac52-bf91fd9b82c8", name="Suspicious Image Load via LdrLoadDLL"), 
@@ -21,7 +21,7 @@ metadata = RtaMetadata(
 # source code -https://gist.github.com/Samirbous/cee44dbd0254c28d4f57709d5c723aee
 BIN = _common.get_path("bin", "rta_unhook_ldrload.exe")
 
-@_common.requires_os(*metadata.platforms)
+
 
 def main():
     if Path(BIN).is_file():

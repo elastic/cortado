@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="e85f7e39-da36-4ed4-be00-c5b29f4d763c",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Cron Tab Creation or Modification by an Unusual Process",
@@ -19,11 +18,7 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1053", "T1053.003"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     _common.log("Executing file creation on /private/var/at/tabs/test.")
     _common.temporary_file_helper("testing", file_name="/private/var/at/tabs/test")
 

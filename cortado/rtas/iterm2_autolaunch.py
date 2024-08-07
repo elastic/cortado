@@ -4,25 +4,20 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
+
 from pathlib import Path
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="9010739f-05c5-4fc0-b806-27753d3d6b5b",
-    platforms=["macos"],
-    endpoint_rules=[{
-        'rule_id': '7e52f64b-b0be-4437-81d1-91dd4dd5cb79',
-        'rule_name': 'Potential iTerm2 Autolaunch Process Hijack'
-    }],
+    platforms=[OSType.MACOS],
+    endpoint_rules=[
+        {"rule_id": "7e52f64b-b0be-4437-81d1-91dd4dd5cb79", "rule_name": "Potential iTerm2 Autolaunch Process Hijack"}
+    ],
     siem_rules=[],
     techniques=[""],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     iterm2 = "/Applications/iTerm.app/Contents/MacOS/iTerm2"
     backup_iterm2 = "/tmp/backup_iterm2"
     masquerade_bash = "/tmp/bash"

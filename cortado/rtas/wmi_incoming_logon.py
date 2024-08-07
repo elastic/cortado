@@ -11,19 +11,15 @@
 import sys
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="3adf005f-94b8-4b34-8994-d5a3dc6666c2",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="f3475224-b179-4f78-8877-c2bd64c26b88", name="WMI Incoming Lateral Movement")],
     techniques=["T1047"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main(remote_host=None):
     if not remote_host:
         _common.log("A remote host is required to detonate this RTA", "!")

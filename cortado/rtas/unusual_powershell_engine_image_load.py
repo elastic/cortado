@@ -4,19 +4,17 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="a5d82c62-6d4e-4d31-94f2-a996c9613604",
-    platforms=["windows"],
-    endpoint_rules=[RuleMetadata(id="f57505bb-a1d2-4d3b-b7b5-1d81d7bdb80e", name="Unusual PowerShell Engine ImageLoad")],
+    platforms=[OSType.WINDOWS],
+    endpoint_rules=[
+        RuleMetadata(id="f57505bb-a1d2-4d3b-b7b5-1d81d7bdb80e", name="Unusual PowerShell Engine ImageLoad")
+    ],
     siem_rules=[],
     techniques=["T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     posh = "C:\\Windows\\System32\\posh.exe"

@@ -4,11 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="2e5d3ddd-6dc4-4ebf-93e3-c32698b8df40",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{'rule_id': '1327384f-00f3-44d5-9a8c-2373ba071e92', 'rule_name': 'Persistence via Scheduled Job Creation'}],
     techniques=['T1053', 'T1053.005'],
@@ -16,7 +16,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     path = "C:\\Windows\\Tasks\\a.job"
     _common.copy_file(EXE_FILE, path)

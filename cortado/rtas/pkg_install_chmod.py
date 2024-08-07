@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="caa6feb7-cc17-425f-996f-b1b69efa93e2",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="75f5d51a-218f-4d5b-80e5-eb74e498fde4", name="File Made Executable via Pkg Install Script"),
         {
@@ -24,11 +23,7 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1222", "T1222.002", "T1564", "T1546", "T1546.016"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     dest_file = "/tmp/test.py"
     source_file = "/tmp/test.txt"
     masquerade = "/Users/bash"

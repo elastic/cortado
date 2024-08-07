@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="4aa158f6-39ed-456f-9d8a-849052cce2f5",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {'rule_id': '816e1e39-e1a3-4935-9b7b-18395d244670', 'rule_name': 'Windows Script Execution from Archive File'},
         {'rule_id': '16c84e67-e5e7-44ff-aefa-4d771bcafc0c', 'rule_name': 'Execution from Unusual Directory'},
@@ -23,7 +23,7 @@ EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 RENAMER = _common.get_path("bin", "rcedit-x64.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     cscript = "C:\\Users\\Public\\cscript.exe"
     rcedit = "C:\\Users\\Public\\rcedit.exe"

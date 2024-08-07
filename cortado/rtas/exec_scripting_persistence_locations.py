@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="537de67d-8ba8-4df8-a965-75ca564d0846",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Script Interpreter Process Writing to Commonly Abused Persistence Locations",
@@ -23,11 +22,7 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1547", "T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 
     _common.log("Dropping executable to Startup Folder using powershell")

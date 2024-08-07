@@ -5,11 +5,11 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="ae4b2807-3a16-485e-bb69-5d36bbe9b7d1",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     siem_rules=[],
     endpoint_rules=[RuleMetadata(id="fae9f554-d3bc-4d48-8863-54d0dd68db54", name="Library Loaded via a CallBack Function")],
     techniques=["T1574"],
@@ -19,7 +19,7 @@ metadata = RtaMetadata(
 # source code - https://gist.github.com/joe-desimone/0b2bb00eca4c522ba0bd5541a6f3528b
 BIN = _common.get_path("bin", "LoadLib-Callback64.exe")
 
-@_common.requires_os(*metadata.platforms)
+
 
 def main():
     if Path(BIN).is_file():

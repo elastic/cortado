@@ -4,10 +4,9 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="6ef908be-9ed3-413d-8d4d-94446107eecc",
     platforms=["macos", "linux"],
     endpoint_rules=[
@@ -19,11 +18,7 @@ metadata = RtaMetadata(
     siem_rules=[RuleMetadata(id="870aecc0-cea4-4110-af3f-e02e9b373655", name="Security Software Discovery via Grep")],
     techniques=["T1518"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/grep"
     if _common.CURRENT_OS == "linux":
         source = _common.get_path("bin", "linux.ditto_and_spawn")

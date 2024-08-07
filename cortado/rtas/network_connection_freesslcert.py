@@ -4,21 +4,20 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="9261a9ca-53ed-483c-967a-3f7a8f93e0ea",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{
-        'rule_id': 'e3cf38fa-d5b8-46cc-87f9-4a7513e4281d',
-        'rule_name': 'Connection to Commonly Abused Free SSL Certificate Providers'
-    }],
-    techniques=['T1573'],
+    siem_rules=[
+        {
+            "rule_id": "e3cf38fa-d5b8-46cc-87f9-4a7513e4281d",
+            "rule_name": "Connection to Commonly Abused Free SSL Certificate Providers",
+        }
+    ],
+    techniques=["T1573"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 

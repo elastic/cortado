@@ -7,17 +7,16 @@ import os
 import sys
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="11b447ca-6ad4-4597-a048-2585b27762ea",
-    platforms=["linux"],
-    endpoint_rules=[RuleMetadata(id="94943f02-5580-4d1d-a763-09e958bd0f57", name="Shell Command Execution via kworker")],
+    platforms=[OSType.LINUX],
+    endpoint_rules=[
+        RuleMetadata(id="94943f02-5580-4d1d-a763-09e958bd0f57", name="Shell Command Execution via kworker")
+    ],
     siem_rules=[],
     techniques=["T1036", "T1059"],
 )
-
-
 @_common.requires_os(metadata.platforms)
 def main() -> None:
     masquerade_script = Path("/tmp/kworker_evasion.sh")

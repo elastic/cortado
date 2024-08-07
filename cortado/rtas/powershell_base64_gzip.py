@@ -9,12 +9,11 @@
 # Description: Calls PowerShell with command-line that contains base64/gzip
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="38defc7e-7234-45a2-83ef-e845d0eba3f2",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
         {
@@ -24,9 +23,6 @@ metadata = RtaMetadata(
     ],
     techniques=["T1140", "T1027", "T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("PowerShell with base64/gzip")
 

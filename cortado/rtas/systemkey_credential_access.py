@@ -4,23 +4,18 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="d950ef5f-8277-4ed8-a8dd-d2433e791cef",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="7d3f98bf-2111-4e5f-9787-9edef8d94dd0", name="Suspicious SystemKey Access via Command Line")
     ],
     siem_rules=[RuleMetadata(id="d75991f2-b989-419d-b797-ac1e54ec2d61", name="SystemKey Access via Command Line")],
     techniques=["T1555"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/bash"
     _common.create_macos_masquerade(masquerade)
 

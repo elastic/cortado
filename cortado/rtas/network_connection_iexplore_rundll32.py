@@ -4,11 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="9182299f-cebf-4d8b-97a8-15ec5e11fe14",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{
         'rule_id': 'acd611f3-2b93-47b3-a0a3-7723bcc46f6d',
@@ -22,7 +22,7 @@ PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
 RENAMER = _common.get_path("bin", "rcedit-x64.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     rundll32 = "C:\\Users\\Public\\rundll32.exe"
     iexplore = "C:\\Users\\Public\\iexplore.exe"

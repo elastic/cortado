@@ -12,19 +12,15 @@ from pathlib import Path
 import time
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="e6d124ee-27d3-48a6-8c59-354072ec9e00",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="a624863f-a70d-417f-a7d2-7a404638d47f", name="Suspicious MS Office Child Process")],
     techniques=["T1566"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("MS Office unusual child process emulation")
     suspicious_apps = [
@@ -37,7 +33,6 @@ def main():
     _common.copy_file(cmd_path, browser_path)
 
     for office_app in ["winword.exe", "excel.exe"]:
-
         _common.log("Emulating %s" % office_app)
         office_path = Path(office_app).resolve()
         _common.copy_file(cmd_path, office_path)

@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="f0340de4-e433-49a3-ba8c-de0ded32840d",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{
         'rule_id': '4ed493fc-d637-4a36-80ff-ac84937e5461',
@@ -20,7 +20,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     sqlservr = "C:\\Users\\Public\\sqlservr.exe"
     cmd = "C:\\Windows\\System32\\cmd.exe"

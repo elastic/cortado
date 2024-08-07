@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="c4445d28-fe0f-4822-b0b0-92e188a9ca0e",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             'rule_id': '74be6307-2d15-4c71-8072-fc606f337a51',
@@ -24,7 +24,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     msbuild = "C:\\Users\\Public\\msbuild.exe"
     cmd = "C:\\Users\\Public\\cmd.exe"

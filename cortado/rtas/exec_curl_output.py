@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="c3be0d35-069b-4b2b-ab92-63530e8c23f7",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[{'rule_id': '336ada1c-69f8-46e8-bdd2-790c85429696', 'rule_name': 'Ingress Tool Transfer via CURL'}],
     siem_rules=[],
     techniques=[""],
@@ -17,7 +17,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     curl = "C:\\Users\\Public\\curl.exe"
     _common.copy_file(EXE_FILE, curl)

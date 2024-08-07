@@ -5,11 +5,11 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="3c40b5fd-afd0-4794-8af3-f7af249edf84",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{'rule_id': '397945f3-d39a-4e6f-8bcb-9656c2031438', 'rule_name': 'Persistence via Microsoft Outlook VBA'}],
     techniques=['T1137'],
@@ -17,7 +17,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     path = "C:\\Users\\Public\\AppData\\Roaming\\Microsoft\\Outlook"
     Path(path).mkdir(parents=True, exist_ok=True)

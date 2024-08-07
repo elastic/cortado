@@ -11,22 +11,18 @@
 import base64
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="5efc844c-0c11-4f84-a904-ada611315298",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[],
-    techniques=[]
+    techniques=[],
 )
-
-
 def encode(command):
     return base64.b64encode(command.encode("utf-16le"))
 
 
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("PowerShell Suspicious Commands")
     temp_script = Path("tmp.ps1").resolve()

@@ -5,21 +5,19 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="858475a2-78a6-40f8-8691-7ce0c631cc0c",
-    platforms=["windows"],
-    endpoint_rules=[{
-        'rule_id': '608eae71-6797-4ded-bfaa-41bcb17a8498',
-        'rule_name': 'Office Application Startup via Template File Modification'
-    }],
+    platforms=[OSType.WINDOWS],
+    endpoint_rules=[
+        {
+            "rule_id": "608eae71-6797-4ded-bfaa-41bcb17a8498",
+            "rule_name": "Office Application Startup via Template File Modification",
+        }
+    ],
     siem_rules=[],
-    techniques=['T1137', 'T1137.001'],
+    techniques=["T1137", "T1137.001"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     path = "C:\\Users\\Public\\AppData\\Roaming\\Microsoft\\Templates\\"
     Path(path).mkdir(parents=True, exist_ok=True)

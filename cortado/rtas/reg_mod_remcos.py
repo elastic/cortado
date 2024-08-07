@@ -4,21 +4,17 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="0e5a4099-f76d-43f8-aa91-0ed1ad5fed81",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="9769d372-4115-4ef8-8d7b-aaad05dad9ae", name="Remcos RAT Registry or File Modification")
     ],
     siem_rules=[],
     techniques=["T1112"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("Temporarily creating a Remcos RAT alike reg key...")
 

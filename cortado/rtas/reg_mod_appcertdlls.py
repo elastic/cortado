@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="4c0e7d24-63d1-4888-9ea4-0d920ce3fe40",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{'rule_id': '513f0ffd-b317-4b9c-9494-92ce861f22c7', 'rule_name': 'Registry Persistence via AppCert DLL'}],
     techniques=['T1546', 'T1546.009'],
@@ -17,7 +17,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     key = "SYSTEM\\CurrentControlSet\\Control\\Session Manager\\AppCertDLLs"
     value = "RTA"

@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="54be1902-0608-49df-8053-40020d8a9210",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Potential Defense Evasion via Filter Manager Control Program",
@@ -19,11 +18,7 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1562"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     # Execute command
     _common.log("Executing ftlmc unload on non-exisiting driver")
     _common.execute(["fltmc.exe", "unload", "ElasticNonExisting"], timeout=10)

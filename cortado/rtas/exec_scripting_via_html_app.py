@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="05f1f2a3-430d-4d20-9c0c-767d3b950cbb",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Script Execution via Microsoft HTML Application",
@@ -19,9 +18,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1218"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     # Execute Command
     # Had a hard time trying to escape the quotes that would be needed to execute a real command using

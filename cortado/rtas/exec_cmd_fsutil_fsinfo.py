@@ -4,22 +4,15 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="904cae88-f6bf-4585-b779-2451ce4b6b1b",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{
-        'rule_id': '0c7ca5c2-728d-4ad9-b1c5-bbba83ecb1f4',
-        'rule_name': 'Peripheral Device Discovery'
-    }],
-    techniques=['T1120'],
+    siem_rules=[{"rule_id": "0c7ca5c2-728d-4ad9-b1c5-bbba83ecb1f4", "rule_name": "Peripheral Device Discovery"}],
+    techniques=["T1120"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     fsutil = "C:\\Windows\\System32\\fsutil.exe"
 

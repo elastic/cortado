@@ -4,21 +4,17 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="c2786f8d-d565-494d-84e2-5dcb2da711c4",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="f7e6d239-9af5-42e3-8d23-91e7188a5cb0", name="SolarMarker Backdoor Registry Modification")
     ],
     siem_rules=[],
     techniques=["T1112", "T1546"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     reg = "C:\\Windows\\System32\\reg.exe"
 

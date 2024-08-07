@@ -5,11 +5,10 @@
 
 import sys
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="4eceac28-10c3-425f-a007-c03a9b57956f",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         {
             "rule_id": "b63df89d-ac6f-44d7-80fa-ddf038295e42",
@@ -19,9 +18,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1562", "T1562.001"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main() -> None:
     masquerade = "/tmp/systemctl"
     source = _common.get_path("bin", "linux.ditto_and_spawn")

@@ -11,11 +11,11 @@
 import time
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="790cbe6f-ee44-4654-9998-039236dbe0d8",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
         {
@@ -31,7 +31,7 @@ RECYCLE_PATHS = ["C:\\$Recycle.Bin", "C:\\Recycler"]
 TARGET_APP = _common.get_path("bin", "myapp.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 @_common.dependencies(TARGET_APP, _common.CMD_PATH)
 def main():
     _common.log("Execute files from the Recycle Bin")

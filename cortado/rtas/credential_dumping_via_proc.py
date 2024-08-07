@@ -5,11 +5,10 @@
 
 import sys
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="e5a98cc9-1f15-4d14-baf2-96bebb932ae9",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         {
             "rule_name": "Potential Linux Credential Dumping via Proc Filesystem",
@@ -24,9 +23,6 @@ metadata = RtaMetadata(
     ],
     techniques=["T1212", "T1003", "T1003.007"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main() -> None:
     masquerade = "/tmp/ps"
     masquerade2 = "/tmp/strings"

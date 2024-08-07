@@ -5,23 +5,22 @@
 # Adjusted version of https://github.com/XRoemer/Organon/blob/master/source/py/rawinputdata.py
 
 from . import _common
-from . import RtaMetadata
+
 import time, sys
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="89f2b412-bbc7-4298-8768-2f3d3b43c93b",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="102b5c1a-7f2a-4254-8b26-6b299705fce7", name="Keystroke Input Capture via DirectInput"),
-        RuleMetadata(id="4dbb9dfb-b3e2-49d7-8919-d6f221526df4", name="Keystroke Input Capture via RegisterRawInputDevices"),
+        RuleMetadata(
+            id="4dbb9dfb-b3e2-49d7-8919-d6f221526df4", name="Keystroke Input Capture via RegisterRawInputDevices"
+        ),
     ],
     siem_rules=[],
     techniques=["T1056", "T1056.001"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     from ctypes import c_long, c_int, c_uint, c_ushort, Structure, Union
     from ctypes import WINFUNCTYPE, windll, byref, sizeof, pointer, WinError
@@ -31,28 +30,31 @@ def main():
     wndproc = WINFUNCTYPE(c_long, c_int, c_uint, c_int, c_int)
 
     class WNDCLASS(Structure):
-        _fields_ = [('style', c_uint),
-                    ('lpfnWndProc', wndproc),
-                    ('cbClsExtra', c_int),
-                    ('cbWndExtra', c_int),
-                    ('hInstance', HINSTANCE),
-                    ('hIcon', HANDLE),
-                    ('hCursor', HANDLE),
-                    ('hbrBackground', HANDLE),
-                    ('lpszMenuName', LPCSTR),
-                    ('lpszClassName', LPCSTR)]
+        _fields_ = [
+            ("style", c_uint),
+            ("lpfnWndProc", wndproc),
+            ("cbClsExtra", c_int),
+            ("cbWndExtra", c_int),
+            ("hInstance", HINSTANCE),
+            ("hIcon", HANDLE),
+            ("hCursor", HANDLE),
+            ("hbrBackground", HANDLE),
+            ("lpszMenuName", LPCSTR),
+            ("lpszClassName", LPCSTR),
+        ]
 
     class POINT(Structure):
-        _fields_ = [('x', c_long),
-                    ('y', c_long)]
+        _fields_ = [("x", c_long), ("y", c_long)]
 
     class MSG(Structure):
-        _fields_ = [('hwnd', c_int),
-                    ('message', c_uint),
-                    ('wparam', c_int),
-                    ('lparam', c_int),
-                    ('time', c_int),
-                    ('pt', POINT)]
+        _fields_ = [
+            ("hwnd", c_int),
+            ("message", c_uint),
+            ("wparam", c_int),
+            ("lparam", c_int),
+            ("time", c_int),
+            ("pt", POINT),
+        ]
 
     class RAWINPUTDEVICE(Structure):
         _fields_ = [
@@ -77,6 +79,7 @@ def main():
                     ("usButtonFlags", c_ushort),
                     ("usButtonData", c_ushort),
                 ]
+
             _fields_ = [
                 ("ulButtons", ULONG),
                 ("_s2", _S2),
@@ -90,7 +93,7 @@ def main():
             ("lLastY", LONG),
             ("ulExtraInformation", ULONG),
         ]
-        _anonymous_ = ("_u1", )
+        _anonymous_ = ("_u1",)
 
     class RAWKEYBOARD(Structure):
         _fields_ = [
@@ -123,40 +126,51 @@ def main():
             ("hDevice", HANDLE),
             ("wparam", WPARAM),
         ]
-        _anonymous_ = ("_u1", )
+        _anonymous_ = ("_u1",)
 
-    class RawInputReader():
-
+    class RawInputReader:
         def __init__(self):
             pass
 
         def start(self):
-
-            ws_overlapped_window = (0 | 12582912 | 524288 | 262144 | 131072 | 65536)
+            ws_overlapped_window = 0 | 12582912 | 524288 | 262144 | 131072 | 65536
             cw_use_default = -2147483648
 
             try:
                 createwindowex = windll.user32.CreateWindowExA
-                createwindowex.argtypes = [DWORD, LPCSTR, LPCSTR, DWORD,
-                                           c_int, c_int, c_int, c_int, HANDLE,
-                                           HANDLE, HANDLE, LPVOID]
+                createwindowex.argtypes = [
+                    DWORD,
+                    LPCSTR,
+                    LPCSTR,
+                    DWORD,
+                    c_int,
+                    c_int,
+                    c_int,
+                    c_int,
+                    HANDLE,
+                    HANDLE,
+                    HANDLE,
+                    LPVOID,
+                ]
                 createwindowex.restype = HANDLE
                 wndclass = self.get_window()
                 # Create Window
-                hwnd = createwindowex(0,
-                                      wndclass.lpszClassName,
-                                      b"Python Window",
-                                      ws_overlapped_window,
-                                      cw_use_default,
-                                      cw_use_default,
-                                      cw_use_default,
-                                      cw_use_default,
-                                      0,
-                                      0,
-                                      wndclass.hInstance,
-                                      0)
+                hwnd = createwindowex(
+                    0,
+                    wndclass.lpszClassName,
+                    b"Python Window",
+                    ws_overlapped_window,
+                    cw_use_default,
+                    cw_use_default,
+                    cw_use_default,
+                    cw_use_default,
+                    0,
+                    0,
+                    wndclass.hInstance,
+                    0,
+                )
 
-                if (hwnd == 0):
+                if hwnd == 0:
                     print(WinError())
                 # Register for raw input
                 raw_input_device = (2 * RAWINPUTDEVICE)()
@@ -180,7 +194,6 @@ def main():
                 print(e)
 
         def get_window(self):
-
             cs_vredraw = 1
             cs_hredraw = 2
             idi_application = 32512
@@ -207,7 +220,6 @@ def main():
             return wndclass
 
         def poll_events(self):
-
             # Pump Messages
             msg = MSG()
             pmsg = pointer(msg)
@@ -221,12 +233,10 @@ def main():
             pass
 
         def stop(self):
-
             self.Rid[0].dwFlags = 0x00000001
             windll.user32.DestroyWindow(self.hwnd)
 
         def wndproc(self, hwnd, message, wparam, lparam):
-
             try:
                 wm_input = 255
                 ri_mouse_wheel = 0x0400
@@ -247,15 +257,13 @@ def main():
                         # Mouse
                         raw = RAWINPUT()
 
-                        if get_raw_input_data(lparam,
-                                              rid_input,
-                                              byref(raw),
-                                              byref(dw_size),
-                                              sizeof(RAWINPUTHEADER)) == dw_size.value:
+                        if (
+                            get_raw_input_data(lparam, rid_input, byref(raw), byref(dw_size), sizeof(RAWINPUTHEADER))
+                            == dw_size.value
+                        ):
                             rim_typemouse = 0x00000000
 
                             if raw.header.dwType == rim_typemouse:
-
                                 if raw.mouse._u1._s2.usButtonFlags != ri_mouse_wheel:
                                     return 0
 

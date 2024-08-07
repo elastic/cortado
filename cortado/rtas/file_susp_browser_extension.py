@@ -5,11 +5,11 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="edb804d6-85df-4dca-a521-1b6dfee9f354",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[{
         'rule_id': '7df7fca3-8a91-4a54-9799-0478a90ae326',
         'rule_name': 'Suspicious Browser Files Modification'
@@ -20,7 +20,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     proc = "C:\\Users\\Public\\proc.exe"
     path = "C:\\Users\\Public\\AppData\\Roaming\\Mozilla\\Test\\Profiles\\AdefaultA"

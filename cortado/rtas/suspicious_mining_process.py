@@ -4,21 +4,18 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="425ba45e-10eb-4067-93f4-95701d26da3d",
-    platforms=["linux"],
-    endpoint_rules=[{"rule_id": "fbf9342e-3d1e-4fba-a828-92fa0fb4d21b",
-               "rule_name": "Suspicious Mining Process Events"}],
+    platforms=[OSType.LINUX],
+    endpoint_rules=[
+        {"rule_id": "fbf9342e-3d1e-4fba-a828-92fa0fb4d21b", "rule_name": "Suspicious Mining Process Events"}
+    ],
     siem_rules=[],
-    techniques=["T1059", "T1059.004"]
+    techniques=["T1059", "T1059.004"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/systemctl"
     source = _common.get_path("bin", "linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)

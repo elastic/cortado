@@ -14,12 +14,12 @@
 import time
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="c62c65bf-248e-4f5a-ad4f-a48736c1d6f2",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
         {
@@ -38,7 +38,7 @@ def pause():
     time.sleep(0.5)
 
 
-@_common.requires_os(*metadata.platforms)
+
 @_common.dependencies(TARGET_APP)
 def main():
     _common.log("Suspicious Registry Persistence")

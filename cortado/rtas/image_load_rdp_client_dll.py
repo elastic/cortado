@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="eb06a33e-bc80-412b-8ae8-f45af6682293",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{'rule_id': '71c5cb27-eca5-4151-bb47-64bc3f883270', 'rule_name': 'Suspicious RDP ActiveX Client Loaded'}],
     techniques=['T1021'],
@@ -18,7 +18,7 @@ EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     proc = "C:\\Users\\Public\\proc.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"

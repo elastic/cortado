@@ -16,12 +16,12 @@ import re
 import sys
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="389392dc-61db-4e45-846f-099f7d289c1b",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="d61cbcf8-1bc1-4cff-85ba-e7b21c5beedc", name="Service Command Lateral Movement")],
     techniques=["T1569", "T1021", "T1543"],
@@ -31,7 +31,7 @@ metadata = RtaMetadata(
 MY_APP = _common.get_path("bin", "myapp.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 @_common.dependencies(MY_APP)
 def main(remote_host=None):
     remote_host = remote_host or _common.get_ip()

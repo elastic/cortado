@@ -4,24 +4,15 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="ac51c9f0-d8ea-4ee1-9371-f368aab884e9",
-    platforms=["linux"],
-    endpoint_rules=[
-        {
-            "rule_name": "Linux Hidden File Mounted",
-            "rule_id": "5b544dbb-2c66-42cd-a4ee-8d1e5afe9903"
-        }
-    ],
+    platforms=[OSType.LINUX],
+    endpoint_rules=[{"rule_name": "Linux Hidden File Mounted", "rule_id": "5b544dbb-2c66-42cd-a4ee-8d1e5afe9903"}],
     techniques=["T1211", "T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/mount"
     source = _common.get_path("bin", "linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)

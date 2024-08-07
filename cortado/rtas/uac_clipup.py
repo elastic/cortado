@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="1d887a40-ea2a-493c-90b4-54e0ce4f3534",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{
         'rule_id': 'b90cdde7-7e0d-4359-8bf0-2c112ce2008a',
@@ -20,7 +20,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     dllhost = "C:\\Users\\Public\\dllhost.exe"
     clipup = "C:\\Users\\Public\\clipup.exe"

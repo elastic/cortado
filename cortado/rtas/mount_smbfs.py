@@ -4,23 +4,18 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="d275922f-a702-4668-a77d-c60e8df58646",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
         RuleMetadata(id="661545b4-1a90-4f45-85ce-2ebd7c6a15d0", name="Attempt to Mount SMB Share via Command Line")
     ],
     techniques=["T1021"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/mount_smbfs"
     _common.create_macos_masquerade(masquerade)
 

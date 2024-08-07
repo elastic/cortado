@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="4aa10c2d-3839-4ed3-8ca6-a88fdd32bdef",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{
         'rule_id': 'e94262f2-c1e9-4d3f-a907-aeab16712e1a',
@@ -20,7 +20,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     smss = "C:\\Users\\Public\\smss.exe"
     fake_exe = "C:\\Users\\Public\\a.exe"

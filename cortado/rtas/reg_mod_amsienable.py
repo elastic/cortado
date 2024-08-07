@@ -4,19 +4,17 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="78715019-6eff-45b1-a942-47db87d55b01",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{'rule_id': 'f874315d-5188-4b4a-8521-d1c73093a7e4', 'rule_name': 'Modification of AmsiEnable Registry Key'}],
-    techniques=['T1562', 'T1562.001'],
+    siem_rules=[
+        {"rule_id": "f874315d-5188-4b4a-8521-d1c73093a7e4", "rule_name": "Modification of AmsiEnable Registry Key"}
+    ],
+    techniques=["T1562", "T1562.001"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     key = "Software\\Microsoft\\Windows Script\\Settings"
     value = "AmsiEnable"

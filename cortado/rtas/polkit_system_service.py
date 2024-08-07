@@ -5,11 +5,10 @@
 
 import sys
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="32a4b4dd-24b3-4aed-bbce-2ca6ed5e1d69",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         {
             "rule_id": "3144cab7-cc28-46c3-a3ac-8fefe8db22d6",
@@ -19,9 +18,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1548"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main() -> None:
     masquerade = "/tmp/dbus-send"
     source = _common.get_path("bin", "linux.ditto_and_spawn")

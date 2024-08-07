@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="1bb39cea-8bf2-4b1f-a70e-69f6074a1fb4",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         RuleMetadata(id="2e708541-c6e8-4ded-923f-78a6c160987e", name="Unusual Network Connection via RunDLL32"),
@@ -21,7 +21,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "regsvr32.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     binary = "rundll32.exe"
     _common.copy_file(EXE_FILE, binary)

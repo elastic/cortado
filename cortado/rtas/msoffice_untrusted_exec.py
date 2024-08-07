@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="9d5af763-b3f9-4b89-96b6-16e0210f9755",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Network Connection via Process with Unusual Arguments",
@@ -29,7 +29,7 @@ EXE_FILE = _common.get_path("bin", "regsvr32.exe")
 EXE_FILE2 = _common.get_path("bin", "renamed.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     binary = "winword.exe"
     _common.copy_file(EXE_FILE2, binary)

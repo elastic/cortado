@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="1d452f81-8f5a-44a3-ae95-e95fe4bf2762",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{'rule_id': '4630d948-40d4-4cef-ac69-4002e29bc3db', 'rule_name': 'Adding Hidden File Attribute via Attrib'}],
     techniques=['T1564', 'T1564.001'],
@@ -17,7 +17,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     attrib = "C:\\Users\\Public\\attrib.exe"
     _common.copy_file(EXE_FILE, attrib)

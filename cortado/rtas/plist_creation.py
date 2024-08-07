@@ -4,13 +4,13 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
+
 from pathlib import Path
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="12e70377-e24e-4374-8aec-42064614d706",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Suspicious Property List File Creation or Modification",
@@ -20,9 +20,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1547", "T1543"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     launch_agents_dir = Path.home() / "Library" / "Launchagents"
     plistbuddy_bin = "/usr/libexec/PlistBuddy"

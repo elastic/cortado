@@ -4,19 +4,17 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="af989d34-49af-4815-8d58-ab10835bfc35",
-    platforms=["windows"],
-    endpoint_rules=[{'rule_id': 'ccfca0c7-c975-4735-82bd-954ffbafd00b', 'rule_name': 'Evasion via Double File Extension'}],
+    platforms=[OSType.WINDOWS],
+    endpoint_rules=[
+        {"rule_id": "ccfca0c7-c975-4735-82bd-954ffbafd00b", "rule_name": "Evasion via Double File Extension"}
+    ],
     siem_rules=[],
     techniques=[""],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     doubleext = "C:\\Users\\Public\\powershell.pdf.exe"

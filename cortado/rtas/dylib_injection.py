@@ -5,12 +5,11 @@
 
 import platform
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="f1321e5c-101d-4b03-8f0c-6cf8bda174ec",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Collect DIAG Dylib Load Event",
@@ -28,11 +27,7 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1574", "T1574.006"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     if platform.processor() == "arm":
         name = "com.apple.sleep_arm"
         dylib = "inject_arm.dylib"

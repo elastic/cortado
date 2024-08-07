@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="75fec962-54a4-4bb1-80ea-995269e90b30",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Potential Privacy Control Bypass via Localhost Secure Copy",
@@ -24,11 +23,7 @@ metadata = RtaMetadata(
     ],
     techniques=["T1548"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/scp"
     _common.create_macos_masquerade(masquerade)
 

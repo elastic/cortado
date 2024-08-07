@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="81adc847-2965-4a4b-8d3c-91e541c85ab4",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{
         'rule_id': '9ccf3ce0-0057-440a-91f5-870c6ad39093',
@@ -20,7 +20,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     rundll32 = "C:\\Users\\Public\\rundll32.exe"
     cmd = "C:\\Windows\\System32\\cmd.exe"

@@ -4,23 +4,18 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="1796555f-921a-459f-9661-0d94cf90fe81",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="7dea8cfc-92db-4081-9a5d-85ead8cedd5f", name="Potential SIP Bypass via the ShoveService")
     ],
     siem_rules=[],
     techniques=["T1068"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/sh"
     _common.create_macos_masquerade(masquerade)
 

@@ -5,20 +5,16 @@
 
 import sys
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="a078ecca-e8b8-4ae8-a76c-3238e74ca34d",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="13fd98ce-f1c3-423f-9441-45c50eb462c0", name="Attempt to etablish VScode Remote Tunnel"),
     ],
     siem_rules=[],
     techniques=["T1102", "T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main() -> None:
     masquerade = "/tmp/code"
     source = _common.get_path("bin", "linux.ditto_and_spawn")

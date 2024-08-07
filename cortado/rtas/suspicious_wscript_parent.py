@@ -12,11 +12,10 @@
 import time
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="a3cdd478-b817-4513-bb3d-897a5f92c836",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
         RuleMetadata(id="32f4675e-6c49-4ace-80f9-97c9259dca2e", name="Suspicious MS Outlook Child Process"),
@@ -24,9 +23,6 @@ metadata = RtaMetadata(
     ],
     techniques=["T1566"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     script_data = """
         WScript.CreateObject("wscript.shell")

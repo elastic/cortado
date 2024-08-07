@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="2145af1a-0781-47ab-8d73-2d50e93b5ff7",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[{'rule_id': '048737fe-80d6-4462-aa80-ffeed853103e', 'rule_name': 'Suspicious Vault Client Image Load'}],
     siem_rules=[],
     techniques=[""],
@@ -18,7 +18,7 @@ PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
 RENAMER = _common.get_path("bin", "rcedit-x64.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"

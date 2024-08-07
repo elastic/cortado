@@ -9,19 +9,15 @@
 # Description: Recursively searches files looking for the string "password".
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="332d6bb9-845f-401d-af5a-368f1f10e27a",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[],
-    techniques=[]
+    techniques=[],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     path = "c:\\rta"
     _common.log("Searching for passwords on %s" % path)

@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="0a6fcfaa-db5e-498f-9253-0f76b8a18687",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="2ed766db-e0b0-4a07-8ec1-4e41dd406b64", name="Dumping Account Hashes via Built-In Commands")
     ],
@@ -18,11 +17,7 @@ metadata = RtaMetadata(
     ],
     techniques=["T1003"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     _common.log("Executing defaults commands to dump hashes.")
     _common.execute(["defaults", "ShadowHashData", "-dump"])
 

@@ -4,20 +4,16 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="c8efd8c9-b32c-482a-90ff-f2d366a2af45",
     platforms=["macos", "linux", "windows"],
     endpoint_rules=[RuleMetadata(id="c4539c79-9f55-4b36-b06f-8aff82563bca", name="Behavior Protection - EICAR")],
     siem_rules=[],
-    techniques=["TA0002"]
+    techniques=["TA0002"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/bash"
     if _common.CURRENT_OS in ["linux", "macos"]:
         if _common.CURRENT_OS == "linux":
@@ -33,7 +29,6 @@ def main():
         # cleanup
         _common.remove_file(masquerade)
     else:
-
         cmd = "C:\\Windows\\System32\\cmd.exe"
 
         # Execute command

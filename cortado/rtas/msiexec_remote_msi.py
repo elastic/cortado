@@ -4,21 +4,16 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="de245f02-8614-4fdd-b6e4-e845bbadd056",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[RuleMetadata(id="8ba98e28-d83e-451e-8df7-f0964f7e69b6", name="Remote File Execution via MSIEXEC")],
     siem_rules=[],
     techniques=["T1218"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     # Execute command
     _common.log("Trying to fetch remote non-existent MSI")
     _common.execute(

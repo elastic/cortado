@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="ce87d15a-9b72-42c4-8721-ae4bcff86a05",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Screensaver Plist File Modified by Unexpected Process",
@@ -24,11 +23,7 @@ metadata = RtaMetadata(
     ],
     techniques=["T1546"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/killall"
     _common.create_macos_masquerade(masquerade)
 

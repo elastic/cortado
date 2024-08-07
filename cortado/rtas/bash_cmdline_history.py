@@ -4,21 +4,18 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="631a211d-bdaa-4b9d-a786-31d84d7bc070",
-    platforms=["linux"],
-    endpoint_rules=[{"rule_id": "31da6564-b3d3-4fc8-9a96-75ad0b364363",
-               "rule_name": "Tampering of Bash Command-Line History"}],
+    platforms=[OSType.LINUX],
+    endpoint_rules=[
+        {"rule_id": "31da6564-b3d3-4fc8-9a96-75ad0b364363", "rule_name": "Tampering of Bash Command-Line History"}
+    ],
     siem_rules=[],
-    techniques=["T1070", "T1070.003"]
+    techniques=["T1070", "T1070.003"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/history"
     source = _common.get_path("bin", "linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)

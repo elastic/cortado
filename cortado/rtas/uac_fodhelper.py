@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="a67586fd-cceb-4fb9-bf0e-d355b9e8921a",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="b5c0058e-2bca-4ed5-84b3-4e017c039c57", name="UAC Bypass via FodHelper Execution Hijack")
     ],
@@ -20,7 +20,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     key = "Software\\Classes\\ms-settings\\shell\\open\\command"
     value = "test"

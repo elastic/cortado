@@ -4,25 +4,19 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
+
 import subprocess
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="5132ee2a-25ae-4c2d-abe0-5bc3a9fbcab2",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_name": "Linux Background Process Execution via Shell",
-            "rule_id": "21692d53-d4a5-462c-9ee6-2d8788411996"
-        }
+        {"rule_name": "Linux Background Process Execution via Shell", "rule_id": "21692d53-d4a5-462c-9ee6-2d8788411996"}
     ],
     techniques=["T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     shell_command = "/bin/bash"
     shell_args = "-c '/*&'"
     parent_process = "/tmp/fake_parent.sh"
@@ -33,7 +27,7 @@ def main():
         script.write(f"{shell_command} {shell_args}\n")
 
     # Make the script executable
-    _common.execute(['chmod', '+x', parent_process])
+    _common.execute(["chmod", "+x", parent_process])
 
     # Execute the fake parent process script
     _common.log("Executing the fake parent process script")

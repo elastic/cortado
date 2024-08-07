@@ -5,11 +5,11 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="a4355bfc-aa15-43f6-a36d-523aa637127b",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     siem_rules=[],
     endpoint_rules=[RuleMetadata(id="0cdf1d24-b1c3-4952-a400-5ba3c1491087", name="Persistence via a Process from a Removable or Mounted ISO Device"), 
               RuleMetadata(id="3c12c648-e29f-4bff-9157-b07f2cbddf1a", name="Scheduled Task from a Removable or Mounted ISO Device")],
@@ -23,7 +23,7 @@ PROC = 'cmd.exe'
 # ps script to mount, execute a file and unmount ISO device
 PS_SCRIPT = _common.get_path("bin", "ExecFromISOFile.ps1")
 
-@_common.requires_os(*metadata.platforms)
+
 
 def main():
     if Path(ISO).is_file() and Path(PS_SCRIPT).is_file():

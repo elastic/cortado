@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="d64b9c0c-d4be-4af2-b820-233493fb7d75",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Inhibit System Recovery via Windows Command Shell",
@@ -19,9 +18,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1490", "T1047", "T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     vssadmin = "C:\\Windows\\System32\\vssadmin.exe"
     cmd = "C:\\Windows\\System32\\cmd.exe"

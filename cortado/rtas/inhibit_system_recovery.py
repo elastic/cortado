@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="b11e12a4-271c-427f-b215-12a7a25cb3be",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Inhibit System Recovery via Obfuscated Commands",
@@ -19,9 +18,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1490", "T1047", "T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("Deleting volume shadow copies...")
 

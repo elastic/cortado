@@ -4,26 +4,22 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
+
 from multiprocessing import Process
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="61369084-af6a-4fd0-903f-b44467f5d6e7",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="ace1e989-a541-44df-93a8-a8b0591b63c0", name="Potential SSH Brute Force Detected")],
     techniques=["T1110"],
 )
-
-
 def test(masquerade, masquerade2):
     _common.execute([masquerade2, "childprocess", masquerade], timeout=0.3, kill=True)
 
 
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/sshd-keygen-wrapper"
     masquerade2 = "/tmp/launchd"
     _common.create_macos_masquerade(masquerade)

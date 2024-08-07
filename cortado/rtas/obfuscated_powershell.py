@@ -10,19 +10,15 @@
 import time
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="a52a72cb-6fc7-48b2-b365-8479a6cdb2e6",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[],
-    techniques=[]
+    techniques=[],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     # All encoded versions of the following:
     # `iex("Write-Host 'This is my test command' -ForegroundColor Green; start c:\windows\system32\calc")`

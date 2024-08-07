@@ -5,11 +5,10 @@
 
 import sys
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="432b8bb0-03e2-4618-bda9-77c0cef7eef8",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         {
             "rule_id": "22145fc0-dc4c-4187-8397-4d20162fc391",
@@ -19,8 +18,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1068"],
 )
-
-
 @_common.requires_os(metadata.platforms)
 def main() -> None:
     masquerade = "/tmp/fuse"

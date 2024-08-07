@@ -5,11 +5,10 @@
 
 import sys
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="3ad5efdc-c186-4dbd-b5ce-f8d1f102002c",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         {
             "rule_name": "Potential SSH-IT SSH Worm Downloaded",
@@ -19,8 +18,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1021", "T1563"],
 )
-
-
 @_common.requires_os(metadata.platforms)
 def main() -> None:
     masquerade = "/tmp/curl"

@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="e7f3a729-e5ee-462b-ba1c-dd778468d24d",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             'rule_id': 'aafe3c78-15d9-4853-a602-663b8fada5b5',
@@ -22,7 +22,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     gfx = "C:\\Users\\Public\\GfxDownloadWrapper.exe"
     _common.copy_file(EXE_FILE, gfx)

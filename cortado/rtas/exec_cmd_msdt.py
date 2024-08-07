@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="83332fb4-2299-4584-b5f3-7e0264d034f7",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{
         'rule_id': '2c3c29a4-f170-42f8-a3d8-2ceebc18eb6a',
@@ -21,7 +21,7 @@ EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 RENAMER = _common.get_path("bin", "rcedit-x64.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     msdt = "C:\\Users\\Public\\rta.exe"
     rcedit = "C:\\Users\\Public\\rcedit.exe"

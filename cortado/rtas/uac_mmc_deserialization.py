@@ -6,12 +6,12 @@
 import os
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="1d486055-38f8-4cf3-aec1-7f4f72d73fb2",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "UAC Bypass via Unsafe Deserialization in Event Viewer",
@@ -25,7 +25,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     appdata = os.getenv("LOCALAPPDATA")
     path = Path(appdata) / "\\Microsoft\\Event Viewer"

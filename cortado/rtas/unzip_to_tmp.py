@@ -4,23 +4,18 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="de7e28b2-c01d-4cd7-abb7-ddb64bce5f45",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="24fa0f80-7e3a-4b27-801a-30ef53f190bf", name="Compressed File Extracted to Temp Directory")
     ],
     siem_rules=[],
     techniques=["T1059", "T1059.004"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/Users/bash"
     _common.create_macos_masquerade(masquerade)
 

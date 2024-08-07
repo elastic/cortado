@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="20631e46-d3c4-45c0-bfa8-37f6b287db36",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Execution via Electron Child Process Node.js Module",
@@ -24,11 +23,7 @@ metadata = RtaMetadata(
     ],
     techniques=["T1548", "T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/node"
     _common.create_macos_masquerade(masquerade)
 

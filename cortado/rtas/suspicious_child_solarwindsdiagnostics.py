@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="810554c9-fe55-4fdd-8127-e753ae448d52",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{'rule_id': 'd72e33fc-6e91-42ff-ac8b-e573268c5a87', 'rule_name': 'Command Execution via SolarWinds Process'}],
     techniques=['T1059', 'T1195', 'T1195.002'],
@@ -17,7 +17,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     solarwindsdiagnostics = "C:\\Users\\Public\\solarwindsdiagnostics.exe"
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"

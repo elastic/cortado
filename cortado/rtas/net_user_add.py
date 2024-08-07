@@ -10,21 +10,17 @@
 # Description: Adds an account to the local host using the net.exe command
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="7884fa56-c4d6-494f-bfa5-825851ee0fda",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
         RuleMetadata(id="41b638a1-8ab6-4f8e-86d9-466317ef2db5", name="Potential Hidden Local User Account Creation")
     ],
     techniques=["T1078"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("Creating local and domain user accounts using net.exe")
     commands = [

@@ -4,24 +4,17 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="15043951-ca9b-4fbe-b3cb-d1288a875ca7",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_name": "Linux Compilation in Suspicious Directory",
-            "rule_id": "52001df2-a3bf-411d-a09c-5f36a9f976b8"
-        }
+        {"rule_name": "Linux Compilation in Suspicious Directory", "rule_id": "52001df2-a3bf-411d-a09c-5f36a9f976b8"}
     ],
     techniques=["T1027"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/gcc"
     source = _common.get_path("bin", "linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)
@@ -32,7 +25,7 @@ def main():
     _common.copy_file(source, masquerade_file)
 
     _common.log("Granting execute permissions...")
-    _common.execute(['chmod', '+x', masquerade_file])
+    _common.execute(["chmod", "+x", masquerade_file])
 
     commands_file = [masquerade_file, "/dev/shm/evil"]
 

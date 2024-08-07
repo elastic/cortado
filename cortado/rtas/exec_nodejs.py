@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="5cf6e510-b0c3-41f2-93d4-1210d68802c5",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[{
         'rule_id': 'a34c5dc0-a353-4c1f-9b08-6f0aca4f1f45',
         'rule_name': 'Suspicious JavaScript Execution via Node.js'
@@ -20,7 +20,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     node = "C:\\Users\\Public\\node.exe"
     _common.copy_file(EXE_FILE, node)

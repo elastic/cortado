@@ -5,11 +5,11 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="1bc32d6d-c5c9-43c6-bada-6d26469b5dac",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{'rule_id': '5cf6397e-eb91-4f31-8951-9f0eaa755a31', 'rule_name': 'Persistence via PowerShell profile'}],
     techniques=['T1546', 'T1546.013'],
@@ -17,7 +17,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     path = "C:\\Users\\Public\\Documents\\WindowsPowerShell"
     Path(path).mkdir(parents=True, exist_ok=True)

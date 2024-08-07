@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="adc70542-4d6e-4449-bf96-4cd44367bfbb",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Unexpected Child Process of macOS Screensaver Engine",
@@ -24,11 +23,7 @@ metadata = RtaMetadata(
     ],
     techniques=["T1546"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/ScreenSaverEngine"
     _common.create_macos_masquerade(masquerade)
 

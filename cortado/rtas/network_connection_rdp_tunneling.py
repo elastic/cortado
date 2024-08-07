@@ -4,22 +4,17 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="7143aab0-c4f3-43da-a11e-aca589887860",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{
-        'rule_id': '76fd43b7-3480-4dd9-8ad7-8bd36bfad92f',
-        'rule_name': 'Potential Remote Desktop Tunneling Detected'
-    }],
-    techniques=['T1572'],
+    siem_rules=[
+        {"rule_id": "76fd43b7-3480-4dd9-8ad7-8bd36bfad92f", "rule_name": "Potential Remote Desktop Tunneling Detected"}
+    ],
+    techniques=["T1572"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 

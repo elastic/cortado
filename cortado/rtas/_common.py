@@ -47,6 +47,7 @@ EXPAND_SZ = "expand_sz"
 MULTI_SZ = "multi_sz"
 DWORD = "dword"
 
+
 def get_current_os() -> OSType:
     if sys.platform == "darwin":
         return OSType.MACOS
@@ -62,7 +63,6 @@ def get_cmd_path():
         return os.environ.get("COMSPEC")
     else:
         return "/bin/sh"
-
 
 
 def dependencies(*paths: str):
@@ -86,7 +86,7 @@ def dependencies(*paths: str):
     return decorator
 
 
-def execute_command( # noqa
+def execute_command(  # noqa
     command: Iterable,
     hide_log=False,
     mute=False,
@@ -389,7 +389,6 @@ def check_system():
 
 
 def run_system(arguments=None):
-
     PS_EXEC = get_path("bin", "PsExec.exe")
 
     if check_system():
@@ -452,7 +451,7 @@ def read_reg(hive: str, key: str, value: str) -> (str, str):
 
 
 @contextlib.contextmanager
-def temporary_reg( # noqa
+def temporary_reg(  # noqa
     hive: str,
     key: str,
     value: str,

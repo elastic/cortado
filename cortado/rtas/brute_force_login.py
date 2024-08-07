@@ -15,21 +15,17 @@ import sys
 import time
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="35bb73a9-cafa-4b2c-81f0-a97e2afa5e1c",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
         RuleMetadata(id="e08ccd49-0380-4b2b-8d71-8000377d6e49", name="Attempts to Brute Force an Okta User Account")
     ],
     techniques=["T1110"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main(username="rta-tester", remote_host=None):
     if not remote_host:
         _common.log("A remote host is required to detonate this RTA", "!")

@@ -12,18 +12,14 @@
 import time
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="161c5972-6bfe-47b5-92bd-e0399e025dec",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="f545ff26-3c94-4fd0-bd33-3c7f95a3a0fc", name="Windows Script Executing PowerShell")],
     techniques=["T1566"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     # Write script
     script_file = Path("launchpowershell.vbs").resolve()

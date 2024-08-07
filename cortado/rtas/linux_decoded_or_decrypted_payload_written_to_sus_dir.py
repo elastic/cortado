@@ -4,24 +4,20 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="c5ae5daf-50f4-4cbb-84ed-d0ee7750bad0",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         {
             "rule_name": "Linux Decoded or Decrypted Payload Written to Suspicious Directory",
-            "rule_id": "a0fce633-b6ee-4e4c-b6c7-ba46b8561e9e"
+            "rule_id": "a0fce633-b6ee-4e4c-b6c7-ba46b8561e9e",
         }
     ],
     techniques=["T1027", "T1140", "T1059", "T1204"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/openssl"
     source = _common.get_path("bin", "linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)

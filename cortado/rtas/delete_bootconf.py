@@ -12,18 +12,14 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="eaf71384-2e38-4970-b170-9645ccde1d2b",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="69c251fb-a5d6-4035-b5ec-40438bd829ff", name="Modification of Boot Configuration")],
     techniques=["T1490"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     # Messing with the boot configuration is probably not a great idea so create a backup:
     _common.log("Exporting the boot configuration....")

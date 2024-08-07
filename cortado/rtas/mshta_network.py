@@ -9,14 +9,14 @@
 # Description: Generates network traffic from mshta.exe
 
 from . import _common
-from . import RtaMetadata
+
 
 HTA_FILE = _common.get_path("bin", "beacon.hta")
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="83465fca-25ae-4d6d-b747-c82cda75b0ae",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
         {
@@ -28,9 +28,6 @@ metadata = RtaMetadata(
     ],
     techniques=["T1127", "T1218"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 @_common.dependencies(HTA_FILE)
 def main():
     # http server will terminate on main thread exit

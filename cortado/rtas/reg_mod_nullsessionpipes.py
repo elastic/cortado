@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="a6263f00-58b4-4555-b88f-9d66a7395891",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Suspicious NullSessionPipe Registry Modification",
@@ -19,9 +18,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1021", "T1112"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("Modifying NullSessionPipes reg key...")
 

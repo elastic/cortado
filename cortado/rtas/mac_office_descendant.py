@@ -9,18 +9,10 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
-    id="bb523eb1-db67-4ae6-9369-af1a93322817",
-    platforms=["macos"],
-    endpoint_rules=[],
-    siem_rules=[],
-    techniques=[]
+@register_code_rta(
+    id="bb523eb1-db67-4ae6-9369-af1a93322817", platforms=[OSType.MACOS], endpoint_rules=[], siem_rules=[], techniques=[]
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("Emulating Microsoft Word running enumeration commands")
     office_path = Path("Microsoft Word").resolve()

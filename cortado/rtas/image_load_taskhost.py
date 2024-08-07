@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="9cca3284-848f-483a-9241-48562eee0605",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[{
         'rule_id': '4b4ba027-151f-40e4-99ba-a386735c27e4',
         'rule_name': 'Unsigned DLL Loaded by Windows Tasks Host'
@@ -22,7 +22,7 @@ PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
 RENAMER = _common.get_path("bin", "rcedit-x64.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     taskhost1 = "C:\\Users\\Public\\taskhost1.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"

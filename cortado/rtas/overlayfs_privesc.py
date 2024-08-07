@@ -5,11 +5,10 @@
 
 import sys
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="a78663dc-9561-40a9-b4eb-f15e31c690cc",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         {
             "rule_name": "Potential Privilege Escalation via OverlayFS",
@@ -24,9 +23,6 @@ metadata = RtaMetadata(
     ],
     techniques=["T1068"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main() -> None:
     _common.log("Creating a fake unshare executable..")
     masquerade = "/tmp/unshare"

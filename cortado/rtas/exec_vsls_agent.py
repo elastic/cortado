@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="ad0986cb-b5ef-41ad-9b40-8d708dc28844",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
         'rule_id': 'a5416b1f-fc3f-4162-936d-34086689c3b0',
@@ -22,7 +22,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     vslsagent = "C:\\Users\\Public\\vsls-agent.exe"
     _common.copy_file(EXE_FILE, vslsagent)

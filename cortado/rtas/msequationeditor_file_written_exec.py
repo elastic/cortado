@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="a0b7435a-1f48-4fae-b3dc-c596dc70490d",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Execution of File Written or Modified by Microsoft Equation Editor",
@@ -24,7 +24,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     server, ip, port = _common.serve_web()
     url = f"http://{ip}:{port}/bin/renamed_posh.exe"

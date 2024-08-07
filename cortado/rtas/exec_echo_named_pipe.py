@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="f94f70a3-7c63-4f75-b5bc-f2227e284934",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Privilege Escalation via Named Pipe Impersonation",
@@ -19,11 +18,7 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1134"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     # Execute command
     _common.execute(["cmd.exe", "/c", "'echo", "cmd.exe", ">", "\\\\.\\pipe\\named'"], timeout=5)
 

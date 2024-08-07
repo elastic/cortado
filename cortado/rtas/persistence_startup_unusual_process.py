@@ -4,13 +4,13 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
+
 import time
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="9a0c0715-5225-4170-a505-0e3cc4dfd63e",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="b0207677-5041-470b-981d-13ab956cf5b4", name="Execution via Renamed Signed Binary Proxy"),
         {
@@ -34,7 +34,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     tempowershell = "C:\\Windows\\notp0sh.exe"

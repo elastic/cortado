@@ -4,21 +4,16 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="c0f3618b-a7d9-403c-8b42-572da0b20f47",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[RuleMetadata(id="3dda1ac2-86ef-41f5-ad3b-d9396383e104", name="Shlayer Malware Infection")],
     siem_rules=[],
     techniques=["T1105"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/curl"
     _common.create_macos_masquerade(masquerade)
 

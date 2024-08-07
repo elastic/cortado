@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="38cea037-c1a8-4749-a434-ba4c7d6e91f8",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Privilege Escalation via Windir or SystemRoot Environment Variable",
@@ -19,9 +18,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1574"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     key = "System\\Environment"
     value = "windir"

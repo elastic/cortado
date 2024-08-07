@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="91238171-b3f1-4c0b-80bb-90a824e2ed61",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[{
         'rule_id': '1dbf6ac3-540a-4214-8173-9aa93232da38',
         'rule_name': 'Suspicious Control Panel DLL Loaded by Explorer'
@@ -23,7 +23,7 @@ PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
 RENAMER = _common.get_path("bin", "rcedit-x64.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     explorer = "C:\\Users\\Public\\explorer.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"

@@ -4,23 +4,18 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="4c8675a8-fbed-4f36-88e6-ffceaf82f426",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
         RuleMetadata(id="b00bcd89-000c-4425-b94c-716ef67762f6", name="TCC Bypass via Mounted APFS Snapshot Access")
     ],
     techniques=["T1006"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/mount_apfs"
     _common.create_macos_masquerade(masquerade)
 

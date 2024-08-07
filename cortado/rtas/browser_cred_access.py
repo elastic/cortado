@@ -5,12 +5,11 @@
 
 from pathlib import Path
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="ea187b1f-4aa0-4ffc-bac9-9ee1d55552fd",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Suspicious Access to Stored Browser Credentials",
@@ -20,11 +19,7 @@ metadata = RtaMetadata(
     siem_rules=[RuleMetadata(id="20457e4f-d1de-4b92-ae69-142e27a4342a", name="Access of Stored Browser Credentials")],
     techniques=["T1539", "T1555"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/bash"
     _common.create_macos_masquerade(masquerade)
 

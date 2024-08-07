@@ -4,25 +4,21 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
+
 
 from pathlib import Path
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="8bd875f2-eafb-4151-bfb7-4bd97192400d",
-    platforms=["macos"],
-    endpoint_rules=[{
-        'rule_id': '3da48cdd-262a-42a9-af2f-c82ef639b9e3',
-        'rule_name': 'Persistence via a Masqueraded Plist Filename'
-    }],
+    platforms=[OSType.MACOS],
+    endpoint_rules=[
+        {"rule_id": "3da48cdd-262a-42a9-af2f-c82ef639b9e3", "rule_name": "Persistence via a Masqueraded Plist Filename"}
+    ],
     siem_rules=[],
     techniques=[""],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/bash"
     masquerade2 = "/tmp/testmodify"
 

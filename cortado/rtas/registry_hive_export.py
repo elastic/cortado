@@ -10,11 +10,11 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="dfdcc4f4-5aca-486a-8115-b15b653b9b4f",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
         {
@@ -29,7 +29,7 @@ metadata = RtaMetadata(
 REG = "reg.exe"
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     for hive in ["sam", "security", "system"]:
         filename = Path("%s.reg" % hive).resolve()

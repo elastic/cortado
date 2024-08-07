@@ -5,11 +5,10 @@
 
 import sys
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="8d6f2979-747a-42d9-813a-ddadd90650d2",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         {
             "rule_id": "7b9ddfc8-8ea8-45d5-b62f-3fbd142c8f08",
@@ -19,8 +18,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["TA0002"],
 )
-
-
 @_common.requires_os(metadata.platforms)
 def main() -> None:
     masquerade = "/tmp/bash"

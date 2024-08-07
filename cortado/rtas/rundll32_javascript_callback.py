@@ -11,19 +11,15 @@
 # Description: Executes javascript code with an AJAX call via RunDll32.exe
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="75687622-2e75-4612-b213-a31f923efdd4",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[],
-    techniques=[]
+    techniques=[],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("RunDLL32 with Javascript Callback")
     server, ip, port = _common.serve_web()

@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="64a7cd38-767f-4d46-9350-feb585a32c18",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Unusual DLL Extension Loaded by Rundll32 or Regsvr32",
@@ -26,7 +26,7 @@ EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     rundll32 = "C:\\Users\\Public\\rundll32.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"

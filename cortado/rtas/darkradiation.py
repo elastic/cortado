@@ -4,21 +4,16 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="4843eb25-3579-473a-b309-76d02eda3085",
     platforms=["macos", "linux"],
     endpoint_rules=[RuleMetadata(id="33309858-3154-47a6-b601-eda2de62557b", name="DARKRADIATION Ransomware Infection")],
     siem_rules=[],
     techniques=["T1486"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/xargs"
     if _common.CURRENT_OS == "linux":
         source = _common.get_path("bin", "linux.ditto_and_spawn")

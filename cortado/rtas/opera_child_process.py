@@ -4,21 +4,16 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="459d7b3c-2c6d-4101-b830-d6c317d4b355",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="080bc66a-5d56-4d1f-8071-817671716db9", name="Suspicious Browser Child Process")],
     techniques=["T1203", "T1189"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     # create masquerades
     masquerade = "/tmp/Opera"
     masquerade2 = "/tmp/curl"

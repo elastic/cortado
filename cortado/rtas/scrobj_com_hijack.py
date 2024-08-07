@@ -9,19 +9,15 @@
 # Description: Modifies the Registry to create a new user-defined COM broker, "scrobj.dll".
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="ac739578-c978-429f-9454-0bbe82f993f4",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="16a52c14-7883-47af-8745-9357803f0d4c", name="Component Object Model Hijacking")],
     techniques=["T1546"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     key = "SOFTWARE\\Classes\\CLSID\\{00000000-0000-0000-0000-0000DEADBEEF}"
     subkey = "InprocServer32"

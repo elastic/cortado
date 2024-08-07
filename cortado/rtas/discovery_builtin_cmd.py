@@ -4,24 +4,18 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="b4454817-eea7-458d-8426-e4f529352e39",
-    platforms=["macos"],
-    endpoint_rules=[{
-        'rule_id': '92525741-9ca8-466e-acee-ceb14ab0dc34',
-        'rule_name': 'System Discovery via Built-In Utilities'
-    }],
+    platforms=[OSType.MACOS],
+    endpoint_rules=[
+        {"rule_id": "92525741-9ca8-466e-acee-ceb14ab0dc34", "rule_name": "System Discovery via Built-In Utilities"}
+    ],
     siem_rules=[],
     techniques=[""],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/bash"
     _common.create_macos_masquerade(masquerade)
 

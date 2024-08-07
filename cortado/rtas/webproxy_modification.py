@@ -4,21 +4,16 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="bc6130d9-f4fd-46c6-bcfe-623be6c51a3b",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="10a500bb-a28f-418e-ba29-ca4c8d1a9f2f", name="WebProxy Settings Modification")],
     techniques=["T1539"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/networksetup"
     _common.create_macos_masquerade(masquerade)
 

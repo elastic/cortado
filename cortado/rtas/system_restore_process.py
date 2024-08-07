@@ -10,11 +10,11 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="0fcf5aeb-cebd-466d-8a2e-ddb710ec845d",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[],
     techniques=[]
@@ -24,7 +24,7 @@ metadata = RtaMetadata(
 SYSTEM_RESTORE = "c:\\System Volume Information"
 
 
-@_common.requires_os(*metadata.platforms)
+
 @_common.dependencies(_common.PS_EXEC)
 def main():
     status = _common.run_system()

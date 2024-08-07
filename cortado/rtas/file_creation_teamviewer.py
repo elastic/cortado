@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="0da48a27-4a5e-4974-ba6a-63cce8f602df",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{'rule_id': 'b25a7df2-120a-4db2-bd3f-3e4b86b24bee', 'rule_name': 'Remote File Copy via TeamViewer'}],
     techniques=['T1105', 'T1219'],
@@ -17,7 +17,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     teamviewer = "C:\\Users\\Public\\teamviewer.exe"
     fake_exe = "C:\\Users\\Public\\a.exe"

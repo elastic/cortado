@@ -5,21 +5,16 @@
 
 from pathlib import Path
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="44345dc0-883f-41b7-ad34-1d84cfd57129",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="cb71aa62-55c8-42f0-b0dd-afb0bb0b1f51", name="Suspicious Calendar File Modification")],
     techniques=["T1546"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     cal_dir = Path(f"{Path.home()}/Library/Calendars/")
     cal_calendar = cal_dir.joinpath("test.calendar", "Events")
     cal_calendar.mkdir(parents=True, exist_ok=True)

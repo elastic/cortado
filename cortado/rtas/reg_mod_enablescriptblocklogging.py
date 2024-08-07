@@ -4,19 +4,17 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="5ef57ec6-32a0-40b2-b9a7-c4eda4cd3e49",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{'rule_id': '818e23e6-2094-4f0e-8c01-22d30f3506c6', 'rule_name': 'PowerShell Script Block Logging Disabled'}],
-    techniques=['T1562', 'T1562.002'],
+    siem_rules=[
+        {"rule_id": "818e23e6-2094-4f0e-8c01-22d30f3506c6", "rule_name": "PowerShell Script Block Logging Disabled"}
+    ],
+    techniques=["T1562", "T1562.002"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     key = "SOFTWARE\\Policies\\Microsoft\\Windows\\PowerShell\\ScriptBlockLogging"
     value = "EnableScriptBlockLogging"

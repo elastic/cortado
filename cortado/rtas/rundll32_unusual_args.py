@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="3ede81fa-f4e7-48fc-a939-50ad7a9a07ca",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="b8a0a3aa-0345-4035-b41d-f758a6c59a78", name="Command Shell Activity Started via RunDLL32"),
         RuleMetadata(id="16c84e67-e5e7-44ff-aefa-4d771bcafc0c", name="Execution from Unusual Directory"),
@@ -19,9 +18,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1218", "T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     source_dll = "C:\\Windows\\System32\\IEAdvpack.dll"
     dll = "C:\\Users\\Public\\IEAdvpack.dll"

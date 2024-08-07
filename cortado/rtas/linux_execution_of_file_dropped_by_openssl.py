@@ -4,25 +4,19 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
+
 import time
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="f9a0601a-4c36-41df-bdf6-140ae7c99de3",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_name": "Linux Execution of a File Dropped by OpenSSL",
-            "rule_id": "7032dd32-8a51-4545-94d0-5997051f4610"
-        }
+        {"rule_name": "Linux Execution of a File Dropped by OpenSSL", "rule_id": "7032dd32-8a51-4545-94d0-5997051f4610"}
     ],
     techniques=["T1027", "T1140", "T1204"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/dev/shm/evil"
     source = _common.get_path("bin", "linux.ditto_and_spawn")
     commands = [masquerade, "/dev/shm/evil"]
@@ -32,7 +26,7 @@ def main():
     _common.copy_file(source, masquerade_file)
 
     _common.log("Granting execute permissions...")
-    _common.execute(['chmod', '+x', masquerade_file])
+    _common.execute(["chmod", "+x", masquerade_file])
 
     commands_file = [masquerade_file, "/dev/shm/evil"]
 

@@ -5,12 +5,11 @@
 
 import platform
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="62eb4521-cfb8-4fb8-bc6d-792fe57273b7",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Potential Binary Masquerading via Invalid Code Signature",
@@ -20,11 +19,7 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1036"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     if platform.processor() == "arm":
         name = "com.apple.sleep_arm"
     else:

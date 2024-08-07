@@ -5,11 +5,11 @@
 
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="8bd17f51-3fc0-46a8-9e1a-662723314ad4",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     siem_rules=[],
     endpoint_rules=[RuleMetadata(id="779b9502-7912-4773-95a1-51cd702a71c8", name="Suspicious ImageLoad from an ISO Mounted Device"), 
               RuleMetadata(id="08fba401-b76f-4c7b-9a88-4f3b17fe00c1", name="DLL Loaded from an Archive File")],
@@ -24,7 +24,7 @@ PROC = 'Invite.lnk'
 # ps script to mount, execute a file and unmount ISO device
 PS_SCRIPT = _common.get_path("bin", "ExecFromISOFile.ps1")
 
-@_common.requires_os(*metadata.platforms)
+
 
 def main():
     if Path(ISO).is_file() and Path(PS_SCRIPT).is_file():

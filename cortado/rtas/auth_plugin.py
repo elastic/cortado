@@ -4,21 +4,16 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="96c3cc10-7f86-428c-b353-e9de52472a96",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="e6c98d38-633d-4b3e-9387-42112cd5ac10", name="Authorization Plugin Modification")],
     techniques=["T1547"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     _common.log("Executing file modification on test.plist to mimic authorization plugin modification")
     _common.temporary_file_helper("testing", file_name="/Library/Security/SecurityAgentPlugins/test.plist")
 

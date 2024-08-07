@@ -5,19 +5,16 @@
 
 import sys
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="d768af98-4e0b-451a-bc29-04b0be110ee5",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="c71b9783-ca42-4532-8eb3-e8f2fe32ff39", name="Linux Reverse Shell via Suspicious Utility"),
     ],
     siem_rules=[],
     techniques=["T1059", "T1071"],
 )
-
-
 @_common.requires_os(metadata.platforms)
 def main() -> None:
     _common.log("Creating a fake awk executable..")

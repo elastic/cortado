@@ -10,12 +10,12 @@
 import os
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="16b3d9c6-e188-49c5-8dce-d3eb5b0fcf91",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="7f370d54-c0eb-4270-ac5a-9a6020585dc6", name="Suspicious WMIC XSL Script Execution")],
     techniques=["T1220"],
@@ -37,7 +37,7 @@ version="1.0">
 """
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     _common.log("Executing suspicious WMIC script")
 

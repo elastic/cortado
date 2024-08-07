@@ -4,24 +4,17 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="5c520396-4951-4763-8512-a53545bcff9c",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_name": "Linux Shared Object Load via SSH-Keygen",
-            "rule_id": "cc29bf55-8d7f-45df-b8fe-212968c8951c"
-        }
+        {"rule_name": "Linux Shared Object Load via SSH-Keygen", "rule_id": "cc29bf55-8d7f-45df-b8fe-212968c8951c"}
     ],
     techniques=["T1574"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/ssh-keygen"
     source = _common.get_path("bin", "linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)

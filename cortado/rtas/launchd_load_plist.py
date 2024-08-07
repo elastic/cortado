@@ -5,12 +5,12 @@
 
 from pathlib import Path
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="17c710a6-9070-4448-b68c-a3694657552e",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Persistence via Suspicious Launch Agent or Launch Daemon",
@@ -39,7 +39,7 @@ plist = """
 """
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     plist_name = "com.test.plist"
     daemon_dir = Path("/", "Library", "LaunchDaemons").expanduser()

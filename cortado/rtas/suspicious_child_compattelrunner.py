@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="82e913eb-441b-4c93-bad9-6340af0cc71b",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{
         'rule_id': '68921d85-d0dc-48b3-865f-43291ca2c4f2',
@@ -20,7 +20,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     compattelrunner = "C:\\Users\\Public\\compattelrunner.exe"
     child = "C:\\Users\\Public\\child.exe"

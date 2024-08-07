@@ -11,12 +11,12 @@
 # Description: Generates network traffic from msbuild.exe
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="022dc249-a496-413a-9355-c37e3ea41dda",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
         {
@@ -31,7 +31,7 @@ metadata = RtaMetadata(
 MS_BUILD = "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\msbuild.exe"
 
 
-@_common.requires_os(*metadata.platforms)
+
 @_common.dependencies(MS_BUILD)
 def main():
     _common.log("MsBuild Beacon")

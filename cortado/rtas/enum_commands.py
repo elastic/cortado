@@ -12,12 +12,11 @@ import argparse
 import random
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="9b19f4a3-7287-45d2-ab0f-9a9c0b1bc8e1",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
         RuleMetadata(id="7b8bfc26-81d2-435e-965c-d722ee397ef1", name="Windows Network Enumeration"),
@@ -25,9 +24,6 @@ metadata = RtaMetadata(
     ],
     techniques=["T1135", "T1069", "T1087", "T1018"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main(args=None):
     slow_commands = ["gpresult.exe /z", "systeminfo.exe"]
 
@@ -76,7 +72,6 @@ def main(args=None):
 
     _common.log("Running {} out of {} enumeration commands\n".format(sample, len(commands)))
     for command in commands[0:sample]:
-
         _common.log("About to call {}".format(command))
         if command in slow_commands:
             _common.execute(command, kill=True, timeout=15)

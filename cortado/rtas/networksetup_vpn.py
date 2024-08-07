@@ -4,23 +4,18 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="f9a34606-863d-46aa-b12d-eeeb68b530e3",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
         RuleMetadata(id="15dacaa0-5b90-466b-acab-63435a59701a", name="Virtual Private Network Connection Attempt")
     ],
     techniques=["T1021"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/networksetup"
     _common.create_macos_masquerade(masquerade)
 

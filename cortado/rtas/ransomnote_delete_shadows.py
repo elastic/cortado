@@ -4,19 +4,15 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="2ab87570-d9ad-40f4-9f52-d5a2942e11ac",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[RuleMetadata(id="5dba1130-72df-46f1-b581-18d9c866cb23", name="Potential Ransomware Note File")],
     siem_rules=[],
     techniques=["T1485"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     vssadmin = "C:\\Windows\\System32\\vssadmin.exe"
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"

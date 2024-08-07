@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="41ea3472-7ec7-4c4a-baf4-b1805ba597df",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[{'rule_id': '3b47900d-e793-49e8-968f-c90dc3526aa1', 'rule_name': 'Unusual Parent Process for cmd.exe'}],
     techniques=['T1059'],
@@ -17,7 +17,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     logonui = "C:\\Users\\Public\\logonui.exe"
     cmd = "C:\\Windows\\System32\\cmd.exe"

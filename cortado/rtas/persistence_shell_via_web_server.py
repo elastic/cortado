@@ -6,21 +6,16 @@
 import os
 from . import _common
 import pathlib
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="884ae75b-d9ed-448c-9267-fb470fffb249",
-    platforms=["linux"],
-    endpoint_rules=[{"rule_id": "753f83ff-437b-4952-8612-07e3c1327daf",
-               "rule_name": "Potential Shell via Web Server"}],
+    platforms=[OSType.LINUX],
+    endpoint_rules=[{"rule_id": "753f83ff-437b-4952-8612-07e3c1327daf", "rule_name": "Potential Shell via Web Server"}],
     siem_rules=[],
-    techniques=["T1505", "T1505.003"]
+    techniques=["T1505", "T1505.003"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/httpd"
     masquerade2 = "/tmp/bash"
     # used only for linux at 2 places to enumerate xargs as parent process.

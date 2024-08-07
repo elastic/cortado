@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="2f17286a-e4a8-41de-b3fa-595a4be6fb19",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Potential Access to Kerberos Cached Credentials",
@@ -19,11 +18,7 @@ metadata = RtaMetadata(
     siem_rules=[RuleMetadata(id="ad88231f-e2ab-491c-8fc6-64746da26cfe", name="Kerberos Cached Credentials Dumping")],
     techniques=["T1558", "T1003"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/kcc"
     _common.create_macos_masquerade(masquerade)
 

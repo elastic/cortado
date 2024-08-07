@@ -4,13 +4,13 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
+
 import os
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="3f60cbfd-9e9b-47e4-a585-2a9d1075a3b9",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[{
         'rule_id': '196f4c30-a8c5-40a5-80e3-a50c6714632f',
         'rule_name': 'Execution of File Downloaded via Internet Browser'
@@ -21,7 +21,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     user = os.getenv("USERPROFILE")
     posh = f"{user}\\Downloads\\posh.exe"

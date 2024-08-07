@@ -4,23 +4,18 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="fa2bbba7-66f4-4fd6-9c81-599d58fe67e8",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="603ac59e-9cca-4c48-9750-e38399079043", name="Background Process Execution via Shell")
     ],
     siem_rules=[],
     techniques=["T1059", "T1059.004"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/sh"
     _common.create_macos_masquerade(masquerade)
 

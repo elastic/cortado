@@ -6,11 +6,10 @@
 import pathlib
 import sys
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="5fce12c8-642a-49ad-9a94-e21d23149afb",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         {
             "rule_id": "0b206183-7f90-461d-80b3-8a147147ae78",
@@ -20,8 +19,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1190", "T1059", "T1059.004"],
 )
-
-
 @_common.requires_os(metadata.platforms)
 def main() -> None:
     masquerade = "/tmp/kibana/node/bin/node"

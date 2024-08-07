@@ -14,19 +14,15 @@ import re
 import sys
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="961d7a1f-7bad-41d5-a3d9-8e8a2f59a824",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[],
-    techniques=[]
+    techniques=[],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main(target_host=None):
     target_host = target_host or _common.get_ip()
     host_str = "\\\\%s" % target_host

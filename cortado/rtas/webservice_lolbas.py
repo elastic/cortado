@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="b7a7d246-b1ef-4d08-85ce-92e1cfc18520",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "External IP Address Discovery via a Trusted Program",
@@ -23,9 +22,6 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1102", "T1218", "T1016", "T1071"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 

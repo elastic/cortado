@@ -12,12 +12,12 @@ import socket
 import sys
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="b0e3e1bb-dfa5-473a-8862-b2d1d42819ce",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="c82c7d8f-fb9e-4874-a4bd-fd9e3f9becf1", name="Direct Outbound SMB Connection")],
     techniques=["T1021"],
@@ -27,7 +27,7 @@ metadata = RtaMetadata(
 SMB_PORT = 445
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main(ip=None):
     ip = ip or _common.get_ip()
 

@@ -5,25 +5,25 @@
 
 from . import _common
 from multiprocessing import Process
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="04361aca-0550-4134-ac21-939bf4a0582f",
     platforms=["macos", "linux"],
-    endpoint_rules=[{"rule_id": "41f1f818-0efe-4670-a2ed-7a4c200dd621",
-               "rule_name": "Suspicious Content Extracted or Decompressed via Built-In Utilities"}],
+    endpoint_rules=[
+        {
+            "rule_id": "41f1f818-0efe-4670-a2ed-7a4c200dd621",
+            "rule_name": "Suspicious Content Extracted or Decompressed via Built-In Utilities",
+        }
+    ],
     siem_rules=[],
-    techniques=["T1059", "T1059.004", "T1027", "T1140"]
+    techniques=["T1059", "T1059.004", "T1027", "T1140"],
 )
-
-
 def test(masquerade, masquerade2):
-    _common.execute([masquerade2, "childprocess", masquerade, "testnessus_sutest"], timeout=.3, kill=True)
+    _common.execute([masquerade2, "childprocess", masquerade, "testnessus_sutest"], timeout=0.3, kill=True)
 
 
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/funzip"
     masquerade2 = "/tmp/bash"
     if _common.CURRENT_OS == "linux":
@@ -39,7 +39,13 @@ def main():
     processes = []
 
     for i in range(2):
-        p = Process(target=test, args=(masquerade, masquerade2,))
+        p = Process(
+            target=test,
+            args=(
+                masquerade,
+                masquerade2,
+            ),
+        )
         processes.append(p)
 
     for i in processes:

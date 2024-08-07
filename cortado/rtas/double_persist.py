@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="74d0c16a-8af1-4dbb-9202-cc4b25208ea6",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         {
             "rule_name": "Untrusted Process Writing to Commonly Abused Persistence Locations",
@@ -23,7 +23,7 @@ metadata = RtaMetadata(
 EXE_FILE = _common.get_path("bin", "DoublePersist.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     binary = "DoublePersist.exe"
     _common.copy_file(EXE_FILE, binary)

@@ -5,11 +5,10 @@
 
 import sys
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="94366604-8f84-448e-9761-0eb7b45bc2fa",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         {
             "rule_name": "Linux Suspicious Child Process Execution via Interactive Shell",
@@ -18,9 +17,6 @@ metadata = RtaMetadata(
     ],
     techniques=["T1059"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main() -> None:
     masquerade = "/tmp/bash"
     source = _common.get_path("bin", "linux.ditto_and_spawn")

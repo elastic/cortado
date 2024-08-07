@@ -4,22 +4,17 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="5781ea36-ac63-4746-8e0f-a1ebd5ec481d",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{
-        'rule_id': '203ab79b-239b-4aa5-8e54-fc50623ee8e4',
-        'rule_name': 'Creation or Modification of Root Certificate'
-    }],
-    techniques=['T1553', 'T1553.004'],
+    siem_rules=[
+        {"rule_id": "203ab79b-239b-4aa5-8e54-fc50623ee8e4", "rule_name": "Creation or Modification of Root Certificate"}
+    ],
+    techniques=["T1553", "T1553.004"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     key = "Software\\Microsoft\\SystemCertificates\\Root\\Certificates\\Test"
     value = "Blob"

@@ -5,17 +5,14 @@
 
 import sys
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="5282c9a4-4ce9-48b8-863a-ff453143635a",
-    platforms=["linux"],
+    platforms=[OSType.LINUX],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="ae343298-97bc-47bc-9ea2-5f2ad831c16e", name="Suspicious File Creation via kworker")],
     techniques=["T1547", "T1014"],
 )
-
-
 @_common.requires_os(metadata.platforms)
 def main() -> None:
     masquerade = "/tmp/kworker"

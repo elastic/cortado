@@ -4,21 +4,16 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="eddbcd95-2922-46e4-b356-86d3bc8aeadc",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[],
-    siem_rules=[{'rule_id': 'cc2fd2d0-ba3a-4939-b87f-2901764ed036', 'rule_name': 'Attempt to Enable the Root Account'}],
+    siem_rules=[{"rule_id": "cc2fd2d0-ba3a-4939-b87f-2901764ed036", "rule_name": "Attempt to Enable the Root Account"}],
     techniques=[""],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/dsenableroot"
     _common.create_macos_masquerade(masquerade)
 

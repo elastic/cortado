@@ -6,9 +6,9 @@
 import os
 from . import _common
 import pathlib
-from . import RtaMetadata
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="c69a06f3-3873-4d5d-8584-035e0921b4a8",
     platforms=["macos", "linux"],
     endpoint_rules=[
@@ -20,11 +20,7 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1565", "T1485"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/xargs"
     masquerade2 = "/tmp/rm"
     # used only for linux at 2 places to enumerate xargs as parent process.

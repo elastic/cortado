@@ -4,12 +4,12 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+
+@register_code_rta(
     id="cd549ba9-63be-4eff-ab6c-f567445e1977",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="16c84e67-e5e7-44ff-aefa-4d771bcafc0c", name="Execution from Unusual Directory"),
         RuleMetadata(id="de3615bc-4e50-485e-b3b5-8548ef6faa3d", name="Script Execution via MSXSL"),
@@ -23,7 +23,7 @@ PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
 RENAMER = _common.get_path("bin", "rcedit-x64.exe")
 
 
-@_common.requires_os(*metadata.platforms)
+
 def main():
     msxsl = "C:\\Users\\Public\\msxsl.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"

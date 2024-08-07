@@ -4,21 +4,16 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="cf71bf97-e3ba-474c-9b6b-538e5a8008b0",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="4da13d6e-904f-4636-81d8-6ab14b4e6ae9", name="Attempt to Disable Gatekeeper")],
     techniques=["T1553"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     masquerade = "/tmp/spctl"
     _common.create_macos_masquerade(masquerade)
 

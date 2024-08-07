@@ -12,11 +12,10 @@ import os
 import time
 from pathlib import Path
 
-from . import RtaMetadata, _common
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="ce85674f-fb6c-44d5-b880-4ce9062e1028",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
         {
@@ -26,9 +25,6 @@ metadata = RtaMetadata(
     ],
     techniques=["T1566"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     cmd_path = "c:\\windows\\system32\\cmd.exe"
 

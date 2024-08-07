@@ -11,19 +11,17 @@
 import sys
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="7f4cfcf6-881b-48b0-864d-21eba06e57cc",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[RuleMetadata(id="51ce96fb-9e52-4dad-b0ba-99b54440fc9a", name="Incoming DCOM Lateral Movement with MMC")],
+    siem_rules=[
+        RuleMetadata(id="51ce96fb-9e52-4dad-b0ba-99b54440fc9a", name="Incoming DCOM Lateral Movement with MMC")
+    ],
     techniques=["T1021"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main(remote_host=None):
     remote_host = remote_host or _common.get_ip()
     _common.log("DCOM Lateral Movement with MMC")

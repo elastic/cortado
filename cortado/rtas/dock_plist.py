@@ -5,23 +5,18 @@
 
 from pathlib import Path
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="38c81994-958f-40c8-bb6a-20bc1b93d598",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
         RuleMetadata(id="c81cefcb-82b9-4408-a533-3c3df549e62d", name="Persistence via Docker Shortcut Modification")
     ],
     techniques=["T1543"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     _common.log("Executing file modification on com.apple.dock.plist to mimic dock plist modification")
     _common.temporary_file_helper("testing", file_name=f"{Path.home()}/Library/Preferences/com.apple.dock.plist")
 

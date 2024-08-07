@@ -4,12 +4,11 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="4d9af153-a878-4ae3-b6c4-b3f14e516f25",
-    platforms=["macos"],
+    platforms=[OSType.MACOS],
     endpoint_rules=[
         {
             "rule_name": "Manual Loading of a Suspicious Chromium Extension",
@@ -19,11 +18,7 @@ metadata = RtaMetadata(
     siem_rules=[],
     techniques=["T1176"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
-
     _common.log("Executing chrome commands to load suspicious ext.")
     chrome = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
     _common.execute([chrome, "--load-extension=/test"])

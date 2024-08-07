@@ -4,21 +4,17 @@
 # 2.0.
 
 from . import _common
-from . import RtaMetadata
 
 
-metadata = RtaMetadata(
+@register_code_rta(
     id="775ffaa8-7a44-490b-b13d-1bfa2100b1ae",
-    platforms=["windows"],
+    platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="77ca3fcc-f607-45e0-837e-e4173e4ffc2a", name="CrashDump Disabled via Registry Modification")
     ],
     siem_rules=[],
     techniques=["T1112"],
 )
-
-
-@_common.requires_os(*metadata.platforms)
 def main():
     _common.log("Temporarily disabling CrashDump...")
 
