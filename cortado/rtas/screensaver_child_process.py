@@ -10,16 +10,14 @@ from . import _common
     id="adc70542-4d6e-4449-bf96-4cd44367bfbb",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "Unexpected Child Process of macOS Screensaver Engine",
-            "rule_id": "fba012f6-7aa8-448e-8f59-cdecce2845b5",
-        }
+        RuleMetadata(
+            id="fba012f6-7aa8-448e-8f59-cdecce2845b5", name="Unexpected Child Process of macOS Screensaver Engine"
+        )
     ],
     siem_rules=[
-        {
-            "rule_name": "Unexpected Child Process of macOS Screensaver Engine",
-            "rule_id": "48d7f54d-c29e-4430-93a9-9db6b5892270",
-        }
+        RuleMetadata(
+            id="48d7f54d-c29e-4430-93a9-9db6b5892270", name="Unexpected Child Process of macOS Screensaver Engine"
+        )
     ],
     techniques=["T1546"],
 )
@@ -33,5 +31,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

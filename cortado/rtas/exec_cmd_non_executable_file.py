@@ -19,5 +19,3 @@ def main():
     _common.log("Executing bash on unexecutable file.")
     with _common.temporary_file("testing", "/*.txt"):
         _common.execute(["/bin/bash", "/*.txt"])
-
-

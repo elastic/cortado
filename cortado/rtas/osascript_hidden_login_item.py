@@ -11,10 +11,7 @@ from . import _common
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_name": "Creation of Hidden Login Item via Apple Script",
-            "rule_id": "f24bcae1-8980-4b30-b5dd-f851b055c9e7",
-        }
+        RuleMetadata(id="f24bcae1-8980-4b30-b5dd-f851b055c9e7", name="Creation of Hidden Login Item via Apple Script")
     ],
     techniques=["T1547", "T1059"],
 )
@@ -33,5 +30,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

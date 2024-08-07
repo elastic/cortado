@@ -11,10 +11,10 @@ from pathlib import Path
     id="be8c9227-8266-4d91-931e-c53e07731d07",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_name": "Linux User Discovery Command Execution from Suspicious Directory",
-            "rule_id": "c932c9f0-76ed-4d78-a242-cfaade43080c",
-        },
+        RuleMetadata(
+            id="c932c9f0-76ed-4d78-a242-cfaade43080c",
+            name="Linux User Discovery Command Execution from Suspicious Directory",
+        ),
     ],
     techniques=["T1059", "T1033"],
 )

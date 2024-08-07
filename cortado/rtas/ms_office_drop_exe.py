@@ -18,10 +18,9 @@ from pathlib import Path
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_id": "0d8ad79f-9025-45d8-80c1-4f0cd3c5e8e5",
-            "rule_name": "Execution of File Written or Modified by Microsoft Office",
-        }
+        RuleMetadata(
+            id="0d8ad79f-9025-45d8-80c1-4f0cd3c5e8e5", name="Execution of File Written or Modified by Microsoft Office"
+        )
     ],
     techniques=["T1566"],
 )
@@ -43,5 +42,3 @@ def main():
         time.sleep(1)
         _common.remove_files(office_app, bad_path)
         print("")
-
-

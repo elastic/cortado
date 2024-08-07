@@ -6,7 +6,6 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="8b5119a5-9f78-492a-8448-ff726b0e0b4f",
     platforms=[OSType.WINDOWS],
@@ -18,13 +17,10 @@ from . import _common
     siem_rules=[],
     techniques=["T1216", "T1218", "T1036", "T1059"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-RENAMER = _common.get_path("bin", "rcedit-x64.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+
     cscript = "C:\\Users\\Public\\cscript.exe"
     rcedit = "C:\\Users\\Public\\rcedit.exe"
 
@@ -41,5 +37,3 @@ def main():
     _common.execute([cscript, "/c", "echo", cmd], timeout=5, kill=True)
 
     _common.remove_files(cscript, rcedit)
-
-

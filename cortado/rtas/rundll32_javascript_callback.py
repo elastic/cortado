@@ -38,5 +38,3 @@ def main():
 
     _common.execute([rundll32, packed_js])
     server.shutdown()
-
-

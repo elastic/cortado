@@ -6,7 +6,6 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="c798f63a-f8be-459a-bb75-407e97f55faa",
     platforms=[OSType.WINDOWS],
@@ -16,12 +15,9 @@ from . import _common
     siem_rules=[],
     techniques=["T1566"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed.exe")
+
     binary = "winword.exe"
     _common.copy_file(EXE_FILE, binary)
 
@@ -29,5 +25,3 @@ def main():
     _common.execute([binary, "/c", "certutil.exe"], timeout=5, kill=True)
 
     _common.remove_files(binary)
-
-

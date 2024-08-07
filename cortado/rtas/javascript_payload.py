@@ -25,5 +25,3 @@ def main():
     _common.execute(["curl", "http://127.0.0.1:8000/payload.js"], shell=True)
     sleep(1)
     _common.execute(["osascript", "-l", "JavaScript", "&"], shell=True)
-
-

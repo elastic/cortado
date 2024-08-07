@@ -6,27 +6,22 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="42eed432-af05-45d3-b788-7e3220f81f9a",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "Suspicious ImageLoad via Windows Update Auto Update Client",
-            "rule_id": "3788c03d-28a5-4466-b157-d6dd4dc449bb",
-        }
+        RuleMetadata(
+            id="3788c03d-28a5-4466-b157-d6dd4dc449bb", name="Suspicious ImageLoad via Windows Update Auto Update Client"
+        )
     ],
     siem_rules=[],
     techniques=["T1218"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-RENAMER = _common.get_path("bin", "rcedit-x64.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+
     wuauclt = "C:\\Users\\Public\\wuauclt.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
     dll = "C:\\Users\\Public\\unsigned.dll"
@@ -56,5 +51,3 @@ def main():
     )
 
     _common.remove_files(wuauclt, dll, ps1, rcedit)
-
-

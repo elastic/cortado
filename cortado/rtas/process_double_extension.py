@@ -11,33 +11,26 @@
 from . import _common
 
 
+MY_APP_EXE = "bin/myapp_x64.exe"
+
 
 @register_code_rta(
     id="27694576-0454-40b3-9823-e29719c53750",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_id": "8b2b3a62-a598-4293-bc14-3d5fa22bb98f",
-            "rule_name": "Executable File Creation with Multiple Extensions",
-        }
+        RuleMetadata(
+            id="8b2b3a62-a598-4293-bc14-3d5fa22bb98f", name="Executable File Creation with Multiple Extensions"
+        )
     ],
     techniques=["T1204", "T1036"],
+    ancillary_files=[MY_APP_EXE],
 )
-
-
-MY_APP = _common.get_path("bin", "myapp_x64.exe")
-
-
-
-@_common.dependencies(MY_APP)
 def main():
     anomalies = ["test.txt.exe"]
 
     for path in anomalies:
-        _common.log("Masquerading process as %s" % path)
-        _common.copy_file(MY_APP, path)
+        _common.log(f"Masquerading process as {path}")
+        _common.copy_file(MY_APP_EXE, path)
         _common.execute([path])
         _common.remove_file(path)
-
-

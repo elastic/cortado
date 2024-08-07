@@ -16,10 +16,10 @@ from . import _common
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_id": "8f3e91c7-d791-4704-80a1-42c160d7aa27",
-            "rule_name": "Potential Port Monitor or Print Processor Registration Abuse",
-        }
+        RuleMetadata(
+            id="8f3e91c7-d791-4704-80a1-42c160d7aa27",
+            name="Potential Port Monitor or Print Processor Registration Abuse",
+        )
     ],
     techniques=["T1547"],
 )
@@ -32,5 +32,3 @@ def main():
 
     with _common.temporary_reg(_common.HKLM, key, value, dll):
         pass
-
-

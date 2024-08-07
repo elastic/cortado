@@ -21,5 +21,3 @@ def main():
     # Execute command
     _common.log("Echoing a mimikatz command")
     _common.execute([powershell, "echo", "misc::memssp"], timeout=10)
-
-

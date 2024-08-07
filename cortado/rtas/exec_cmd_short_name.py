@@ -6,23 +6,19 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="f62ebacb-5d53-4f74-ae72-b64b8b6c899f",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{
-        'rule_id': '17c7f6a5-5bc9-4e1f-92bf-13632d24384d',
-        'rule_name': 'Suspicious Execution - Short Program Name'
-    }],
-    techniques=['T1036', 'T1036.003'],
+    siem_rules=[
+        RuleMetadata(id="17c7f6a5-5bc9-4e1f-92bf-13632d24384d", name="Suspicious Execution - Short Program Name")
+    ],
+    techniques=["T1036", "T1036.003"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-RENAMER = _common.get_path("bin", "rcedit-x64.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+
     rta = "C:\\Users\\Public\\a.exe"
     rcedit = "C:\\Users\\Public\\rcedit.exe"
     _common.copy_file(RENAMER, rcedit)
@@ -34,5 +30,3 @@ def main():
     _common.execute([rta], timeout=2, kill=True)
 
     _common.remove_files(rcedit, rta)
-
-

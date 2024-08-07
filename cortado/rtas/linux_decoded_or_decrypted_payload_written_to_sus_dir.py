@@ -10,10 +10,10 @@ from . import _common
     id="c5ae5daf-50f4-4cbb-84ed-d0ee7750bad0",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_name": "Linux Decoded or Decrypted Payload Written to Suspicious Directory",
-            "rule_id": "a0fce633-b6ee-4e4c-b6c7-ba46b8561e9e",
-        }
+        RuleMetadata(
+            id="a0fce633-b6ee-4e4c-b6c7-ba46b8561e9e",
+            name="Linux Decoded or Decrypted Payload Written to Suspicious Directory",
+        )
     ],
     techniques=["T1027", "T1140", "T1059", "T1204"],
 )
@@ -29,5 +29,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

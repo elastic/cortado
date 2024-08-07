@@ -6,7 +6,6 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="be6619a2-324a-443b-9f23-2dc84733c847",
     platforms=[OSType.WINDOWS],
@@ -16,17 +15,12 @@ from . import _common
     siem_rules=[],
     techniques=["T1190", "T1059"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     w3wp = "C:\\Users\\Public\\w3wp.exe"
     _common.copy_file(EXE_FILE, w3wp)
 
     # Creating a high entropy file, and executing the rename operation
     _common.execute([w3wp, "/c", "cmd.exe"], timeout=10)
     _common.remove_file(w3wp)
-
-

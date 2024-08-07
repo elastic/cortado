@@ -10,12 +10,7 @@ from . import _common
     id="b2faa842-ffc9-41c6-baed-8008c9749a52",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
-    siem_rules=[
-        {
-            "rule_name": "Suspicious Nohup Execution",
-            "rule_id": "3f18726c-4897-41dc-8426-15da95b8482f",
-        }
-    ],
+    siem_rules=[RuleMetadata(id="3f18726c-4897-41dc-8426-15da95b8482f", name="Suspicious Nohup Execution")],
     techniques=["T1059", "T1059.004", "T1564", "T1564.003"],
 )
 def main():
@@ -31,5 +26,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

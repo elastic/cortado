@@ -11,10 +11,10 @@ from . import _common
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_name": "Suspicious Child Process of Adobe Acrobat Reader Update Service",
-            "rule_id": "f85ce03f-d8a8-4c83-acdc-5c8cd0592be7",
-        }
+        RuleMetadata(
+            id="f85ce03f-d8a8-4c83-acdc-5c8cd0592be7",
+            name="Suspicious Child Process of Adobe Acrobat Reader Update Service",
+        )
     ],
     techniques=["T1068"],
 )
@@ -28,5 +28,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

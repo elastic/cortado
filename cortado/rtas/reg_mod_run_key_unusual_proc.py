@@ -6,29 +6,21 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="a3461218-f6c2-4178-ad85-f25b8df2d2e1",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "Registry Run Key Modified by Unusual Process",
-            "rule_id": "b2fcbb09-d9bd-4f6c-a08e-247548b4edcd",
-        },
-        {
-            "rule_name": "Suspicious String Value Written to Registry Run Key",
-            "rule_id": "727db78e-e1dd-4bc0-89b0-885cd99e069e",
-        },
+        RuleMetadata(id="b2fcbb09-d9bd-4f6c-a08e-247548b4edcd", name="Registry Run Key Modified by Unusual Process"),
+        RuleMetadata(
+            id="727db78e-e1dd-4bc0-89b0-885cd99e069e", name="Suspicious String Value Written to Registry Run Key"
+        ),
     ],
     siem_rules=[],
     techniques=["T1547"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     posh = "C:\\Windows\\posh.exe"
     _common.copy_file(EXE_FILE, posh)
 
@@ -43,5 +35,3 @@ def main():
     _common.execute([posh, "/c", cmd], timeout=10)
     _common.execute([posh, "/c", rem_cmd], timeout=10)
     _common.remove_file(posh)
-
-

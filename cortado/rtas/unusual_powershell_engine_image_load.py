@@ -23,5 +23,3 @@ def main():
     _common.log("Executing renamed powershell on system32 folder")
     _common.execute([posh, "-c", "echo RTA"], timeout=10)
     _common.remove_files(posh)
-
-

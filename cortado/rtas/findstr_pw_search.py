@@ -22,5 +22,3 @@ def main():
     path = "c:\\rta"
     _common.log("Searching for passwords on %s" % path)
     _common.execute(["dir", path, "/s", "/b", "|", "findstr", "password"], shell=True, timeout=15)
-
-

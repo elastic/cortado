@@ -7,20 +7,6 @@ from pathlib import Path
 from . import _common
 
 
-
-@register_code_rta(
-    id="17c710a6-9070-4448-b68c-a3694657552e",
-    platforms=[OSType.MACOS],
-    endpoint_rules=[
-        {
-            "rule_name": "Persistence via Suspicious Launch Agent or Launch Daemon",
-            "rule_id": "c6037fad-ad13-46a6-9f7f-4deeef5ac69b",
-        },
-    ],
-    siem_rules=[],
-    techniques=["T1547", "T1547.011", "T1543", "T1543.001", "T1543.004"],
-)
-
 plist = """
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -39,7 +25,17 @@ plist = """
 """
 
 
-
+@register_code_rta(
+    id="17c710a6-9070-4448-b68c-a3694657552e",
+    platforms=[OSType.MACOS],
+    endpoint_rules=[
+        RuleMetadata(
+            id="c6037fad-ad13-46a6-9f7f-4deeef5ac69b", name="Persistence via Suspicious Launch Agent or Launch Daemon"
+        ),
+    ],
+    siem_rules=[],
+    techniques=["T1547", "T1547.011", "T1543", "T1543.001", "T1543.004"],
+)
 def main():
     plist_name = "com.test.plist"
     daemon_dir = Path("/", "Library", "LaunchDaemons").expanduser()
@@ -51,5 +47,3 @@ def main():
         f.write(plist)
         _common.execute(["launchctl", "load", plist_path], kill=True)
         _common.execute(["launchctl", "unload", plist_path], kill=True)
-
-

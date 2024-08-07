@@ -10,7 +10,7 @@ from . import _common
     id="0a9bd666-6dc8-484e-9286-dea82a5661a9",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "3bc6deaa-fbd4-433a-ae21-3e892f95624f", "rule_name": "NTDS or SAM Database File Copied"}],
+    siem_rules=[RuleMetadata(id="3bc6deaa-fbd4-433a-ae21-3e892f95624f", name="NTDS or SAM Database File Copied")],
     techniques=["T1003", "T1003.002"],
 )
 def main():
@@ -18,5 +18,3 @@ def main():
 
     # Execute command
     _common.execute([powershell, "/c", "echo", "copy", "\\ntds.dit"], timeout=10)
-
-

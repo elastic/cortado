@@ -11,10 +11,9 @@ from pathlib import Path
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_id": "11ea6bec-ebde-4d71-a8e9-784948f8e3e9",
-            "rule_name": "Third-party Backup Files Deleted via Unexpected Process",
-        }
+        RuleMetadata(
+            id="11ea6bec-ebde-4d71-a8e9-784948f8e3e9", name="Third-party Backup Files Deleted via Unexpected Process"
+        )
     ],
     techniques=["T1490"],
 )
@@ -23,5 +22,3 @@ def main():
     with open(fakebkp, "w"):
         pass
     _common.remove_file(fakebkp)
-
-

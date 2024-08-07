@@ -10,10 +10,7 @@ from . import _common
     id="7343a543-c2f6-4215-a21c-04eb8c764656",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "Potential Masquerading as System Binary",
-            "rule_id": "bb1de0c7-3504-4b31-8d3e-928aa3acf64f",
-        }
+        RuleMetadata(id="bb1de0c7-3504-4b31-8d3e-928aa3acf64f", name="Potential Masquerading as System Binary")
     ],
     siem_rules=[],
     techniques=["T1036", "T1036.004", "T1059", "T1059.004"],
@@ -29,5 +26,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

@@ -10,15 +10,11 @@ import sys
     id="3ad5efdc-c186-4dbd-b5ce-f8d1f102002c",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_name": "Potential SSH-IT SSH Worm Downloaded",
-            "rule_id": "cb351778-7329-4de9-82b5-6705f772a3af",
-        },
+        RuleMetadata(id="cb351778-7329-4de9-82b5-6705f772a3af", name="Potential SSH-IT SSH Worm Downloaded"),
     ],
     siem_rules=[],
     techniques=["T1021", "T1563"],
 )
-@_common.requires_os(metadata.platforms)
 def main() -> None:
     masquerade = "/tmp/curl"
     source = _common.get_path("bin", "linux.ditto_and_spawn")

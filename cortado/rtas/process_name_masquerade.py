@@ -6,6 +6,7 @@
 from pathlib import Path
 
 
+CMD_PATH = "c:\\windows\\system32\\cmd.exe"
 
 
 @register_code_rta(
@@ -16,14 +17,8 @@ from pathlib import Path
         RuleMetadata(id="5b00c9ba-9546-47cc-8f9f-1c1a3e95f65c", name="Potential Masquerading as SVCHOST"),
         RuleMetadata(id="b0207677-5041-470b-981d-13ab956cf5b4", name="Execution via Renamed Signed Binary Proxy"),
     ],
-    siem_rules=[],
     techniques=["T1218", "T1036"],
 )
-
-CMD_PATH = "c:\\windows\\system32\\cmd.exe"
-
-
-
 def main():
     masquerades = ["svchost.exe", "lsass.exe"]
 
@@ -32,5 +27,3 @@ def main():
         _common.copy_file(CMD_PATH, path)
         _common.execute(path, timeout=3, kill=True)
         _common.remove_file(path)
-
-

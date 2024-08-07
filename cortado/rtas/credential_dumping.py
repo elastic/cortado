@@ -10,10 +10,7 @@ import sys
     id="43ce7648-d48a-4609-80a5-f68384e498d3",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_id": "05f95917-6942-4aab-a904-37c6db906503",
-            "rule_name": "Potential Linux Credential Dumping via Unshadow",
-        },
+        RuleMetadata(id="05f95917-6942-4aab-a904-37c6db906503", name="Potential Linux Credential Dumping via Unshadow"),
     ],
     siem_rules=[],
     techniques=["T1003"],

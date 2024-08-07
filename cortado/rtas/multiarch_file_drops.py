@@ -10,7 +10,7 @@ from . import _common
     id="b2603bac-ba1c-4e6e-a041-ed8772fded75",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {"rule_id": "276a5df0-7e20-4218-ade1-3f3ed711d4cb", "rule_name": "Potential Multi Architecture File Downloads"}
+        RuleMetadata(id="276a5df0-7e20-4218-ade1-3f3ed711d4cb", name="Potential Multi Architecture File Downloads")
     ],
     siem_rules=[],
     techniques=["T1105"],
@@ -29,5 +29,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

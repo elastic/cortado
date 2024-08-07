@@ -10,7 +10,7 @@ from . import _common
     id="b4454817-eea7-458d-8426-e4f529352e39",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {"rule_id": "92525741-9ca8-466e-acee-ceb14ab0dc34", "rule_name": "System Discovery via Built-In Utilities"}
+        RuleMetadata(id="92525741-9ca8-466e-acee-ceb14ab0dc34", name="System Discovery via Built-In Utilities")
     ],
     siem_rules=[],
     techniques=[""],
@@ -25,5 +25,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

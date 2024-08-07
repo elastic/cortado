@@ -10,10 +10,10 @@ from . import _common
     id="1a483c55-443d-4d01-a9de-e2c69df744f3",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "Initial Access or Execution via Microsoft Office Application",
-            "rule_id": "64021ef9-19d3-4797-ac3c-79e38d5e5a5a",
-        }
+        RuleMetadata(
+            id="64021ef9-19d3-4797-ac3c-79e38d5e5a5a",
+            name="Initial Access or Execution via Microsoft Office Application",
+        )
     ],
     siem_rules=[],
     techniques=["T1105", "T1140", "T1027", "T1566", "T1547", "T1204", "T1059"],
@@ -28,5 +28,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

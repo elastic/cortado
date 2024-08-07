@@ -13,7 +13,6 @@ import subprocess
     siem_rules=[],
     techniques=["T1059", "T1071"],
 )
-@_common.requires_os(metadata.platforms)
 def main() -> None:
     _common.log("Creating the bash command to execute to get the proper parent/child relationship in place...")
     # Bash command that attempts a network connection and then starts a new bash process with the -i flag

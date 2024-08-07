@@ -21,5 +21,3 @@ def main():
     cmd = "Echo asreproast instead of executing it"
     # Execute command
     _common.execute([powershell, "/c", "echo", cmd], timeout=10)
-
-

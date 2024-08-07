@@ -12,9 +12,7 @@ from pathlib import Path
 @register_code_rta(
     id="4693d845-6b2f-435a-92aa-54421071e599",
     platforms=[OSType.MACOS],
-    endpoint_rules=[
-        {"rule_id": "875b71bb-ef09-46b2-9c12-a95112461e85", "rule_name": "Potential XCSSET Malware Infection"}
-    ],
+    endpoint_rules=[RuleMetadata(id="875b71bb-ef09-46b2-9c12-a95112461e85", name="Potential XCSSET Malware Infection")],
     siem_rules=[],
     techniques=[""],
 )
@@ -30,5 +28,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

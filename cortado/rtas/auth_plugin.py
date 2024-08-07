@@ -16,5 +16,3 @@ from . import _common
 def main():
     _common.log("Executing file modification on test.plist to mimic authorization plugin modification")
     _common.temporary_file_helper("testing", file_name="/Library/Security/SecurityAgentPlugins/test.plist")
-
-

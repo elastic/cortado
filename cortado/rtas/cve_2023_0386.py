@@ -10,15 +10,11 @@ import sys
     id="432b8bb0-03e2-4618-bda9-77c0cef7eef8",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_id": "22145fc0-dc4c-4187-8397-4d20162fc391",
-            "rule_name": "CVE-2023-0386 Exploitation Attempt",
-        },
+        RuleMetadata(id="22145fc0-dc4c-4187-8397-4d20162fc391", name="CVE-2023-0386 Exploitation Attempt"),
     ],
     siem_rules=[],
     techniques=["T1068"],
 )
-@_common.requires_os(metadata.platforms)
 def main() -> None:
     masquerade = "/tmp/fuse"
     masquerade2 = "/tmp/fusermount"

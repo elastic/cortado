@@ -11,7 +11,7 @@ from . import _common
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_id": "d703a5af-d5b0-43bd-8ddb-7a5d500b7da5", "rule_name": "Modification of WDigest Security Provider"}
+        RuleMetadata(id="d703a5af-d5b0-43bd-8ddb-7a5d500b7da5", name="Modification of WDigest Security Provider")
     ],
     techniques=["T1003"],
 )
@@ -22,5 +22,3 @@ def main():
 
     with _common.temporary_reg(_common.HKLM, key, value, data, data_type="dword"):
         pass
-
-

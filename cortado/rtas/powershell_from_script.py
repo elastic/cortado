@@ -38,5 +38,3 @@ def main():
     _common.remove_file(script_file)
 
     return _common.SUCCESS
-
-

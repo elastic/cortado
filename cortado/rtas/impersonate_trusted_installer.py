@@ -10,10 +10,7 @@ from . import _common
     id="6373e944-52c8-4199-8ca4-e88fd6361b9c",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_id": "cc35ee3e-d350-4319-b7f3-ea0d991ce4d9",
-            "rule_name": "Suspicious Impersonation as Trusted Installer",
-        }
+        RuleMetadata(id="cc35ee3e-d350-4319-b7f3-ea0d991ce4d9", name="Suspicious Impersonation as Trusted Installer")
     ],
     siem_rules=[],
     techniques=["T1134"],
@@ -60,5 +57,3 @@ def main():
     _common.impersonate_system()
     startsvc_trustedinstaller()
     impersonate_trusted_installer()
-
-

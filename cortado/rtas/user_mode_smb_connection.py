@@ -10,10 +10,7 @@ from . import _common
     id="8ce1099f-26e7-45ea-a7a9-9ab0926a2c4a",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "Unexpected SMB Connection from User-mode Process",
-            "rule_id": "2fbbd139-3919-4b6b-9c50-9452b0aef005",
-        }
+        RuleMetadata(id="2fbbd139-3919-4b6b-9c50-9452b0aef005", name="Unexpected SMB Connection from User-mode Process")
     ],
     siem_rules=[],
     techniques=["T1021"],
@@ -38,5 +35,3 @@ def main():
         timeout=10,
     )
     _common.remove_files(posh)
-
-

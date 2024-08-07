@@ -7,18 +7,17 @@ from . import _common
 
 from pathlib import Path
 
+
 @register_code_rta(
     id="55750f93-0545-4222-a1fe-8b25a1c736f0",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{'rule_id': '25224a80-5a4a-4b8a-991e-6ab390465c4f', 'rule_name': 'Lateral Movement via Startup Folder'}],
-    techniques=['T1021', 'T1547', 'T1547.001'],
+    siem_rules=[RuleMetadata(id="25224a80-5a4a-4b8a-991e-6ab390465c4f", name="Lateral Movement via Startup Folder")],
+    techniques=["T1021", "T1547", "T1547.001"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     mstsc = "C:\\Users\\Public\\mstsc.exe"
     path = "C:\\Users\\Public\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"
     argpath = "C:\\Users\\Public\\AppData\\Roaming\\Microsoft\\Windows\\'Start Menu'\\Programs\\Startup"
@@ -28,5 +27,3 @@ def main():
 
     _common.execute([mstsc, "/c", f"echo AAAAAAAA | Out-File {file}"], timeout=10, kill=True)
     _common.remove_files(mstsc)
-
-

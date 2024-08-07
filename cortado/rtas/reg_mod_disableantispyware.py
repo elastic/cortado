@@ -11,11 +11,10 @@ from . import _common
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_id": "fe794edd-487f-4a90-b285-3ee54f2af2d3", "rule_name": "Microsoft Windows Defender Tampering"},
-        {
-            "rule_id": "2ffa1f1e-b6db-47fa-994b-1512743847eb",
-            "rule_name": "Windows Defender Disabled via Registry Modification",
-        },
+        RuleMetadata(id="fe794edd-487f-4a90-b285-3ee54f2af2d3", name="Microsoft Windows Defender Tampering"),
+        RuleMetadata(
+            id="2ffa1f1e-b6db-47fa-994b-1512743847eb", name="Windows Defender Disabled via Registry Modification"
+        ),
     ],
     techniques=["T1562", "T1562.001", "T1562.006"],
 )
@@ -26,5 +25,3 @@ def main():
 
     with _common.temporary_reg(_common.HKLM, key, value, data, data_type="dword"):
         pass
-
-

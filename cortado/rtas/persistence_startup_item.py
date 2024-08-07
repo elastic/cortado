@@ -13,7 +13,7 @@ from pathlib import Path
     id="7a8c8ab6-4994-47d1-b8b6-d1dca4499289",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {"rule_id": "eaf68cce-b250-4a17-a3c3-3c9c4cf1ec14", "rule_name": "Persistence Attempt via StartupItems"}
+        RuleMetadata(id="eaf68cce-b250-4a17-a3c3-3c9c4cf1ec14", name="Persistence Attempt via StartupItems")
     ],
     siem_rules=[],
     techniques=[""],
@@ -25,5 +25,3 @@ def main():
     output_file.parent.mkdir(exist_ok=True, parents=True)
     _common.temporary_file_helper("testing", file_name=str(plist))
     _common.remove_directory("/Library/StartupItems/test/")
-
-

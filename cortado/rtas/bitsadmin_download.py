@@ -35,5 +35,3 @@ def main():
     _common.execute(["taskkill", "/f", "/im", "bitsadmin.exe"])
 
     _common.remove_files(dest_path, fake_word)
-
-

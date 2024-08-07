@@ -11,7 +11,7 @@ from . import _common
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_id": "203ab79b-239b-4aa5-8e54-fc50623ee8e4", "rule_name": "Creation or Modification of Root Certificate"}
+        RuleMetadata(id="203ab79b-239b-4aa5-8e54-fc50623ee8e4", name="Creation or Modification of Root Certificate")
     ],
     techniques=["T1553", "T1553.004"],
 )
@@ -22,5 +22,3 @@ def main():
 
     with _common.temporary_reg(_common.HKLM, key, value, data):
         pass
-
-

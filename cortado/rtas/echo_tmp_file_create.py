@@ -10,10 +10,9 @@ from . import _common
     id="2182f7e5-fc4b-4476-86c3-e7128dfcaa7a",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "Suspicious File Overwrite and Modification via Echo",
-            "rule_id": "cd3a06dc-58c3-4d57-a03a-0d8991f237e7",
-        }
+        RuleMetadata(
+            id="cd3a06dc-58c3-4d57-a03a-0d8991f237e7", name="Suspicious File Overwrite and Modification via Echo"
+        )
     ],
     siem_rules=[],
     techniques=["T1027", "T1059", "T1059.004"],
@@ -31,5 +30,3 @@ def main():
     # cleanup
     _common.remove_file(masquerade)
     _common.remove_file(file_path)
-
-

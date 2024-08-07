@@ -65,5 +65,3 @@ def main(username="rta-tester", remote_host=None):
 
     # allow time for audit event to process
     time.sleep(2)
-
-

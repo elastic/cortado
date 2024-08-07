@@ -11,10 +11,10 @@ from . import _common
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_name": "LaunchDaemon Creation or Modification and Immediate Loading",
-            "rule_id": "9d19ece6-c20e-481a-90c5-ccca596537de",
-        }
+        RuleMetadata(
+            id="9d19ece6-c20e-481a-90c5-ccca596537de",
+            name="LaunchDaemon Creation or Modification and Immediate Loading",
+        )
     ],
     techniques=["T1543"],
 )
@@ -31,5 +31,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

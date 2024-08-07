@@ -10,10 +10,9 @@ import sys
     id="4eceac28-10c3-425f-a007-c03a9b57956f",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_id": "b63df89d-ac6f-44d7-80fa-ddf038295e42",
-            "rule_name": "Attempt to Disable Linux Security and Logging Controls",
-        },
+        RuleMetadata(
+            id="b63df89d-ac6f-44d7-80fa-ddf038295e42", name="Attempt to Disable Linux Security and Logging Controls"
+        ),
     ],
     siem_rules=[],
     techniques=["T1562", "T1562.001"],

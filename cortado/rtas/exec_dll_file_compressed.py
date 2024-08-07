@@ -6,21 +6,18 @@
 from pathlib import Path
 
 
-
 @register_code_rta(
     id="bbad34f5-3542-4484-9b23-5ef05af94c0f",
     platforms=[OSType.WINDOWS],
-    endpoint_rules=[{'rule_id': '08fba401-b76f-4c7b-9a88-4f3b17fe00c1', 'rule_name': 'DLL Loaded from an Archive File'}],
+    endpoint_rules=[RuleMetadata(id="08fba401-b76f-4c7b-9a88-4f3b17fe00c1", name="DLL Loaded from an Archive File")],
     siem_rules=[],
-    techniques=['T1204', 'T1204.002', 'T1574', 'T1574.002'],
+    techniques=["T1204", "T1204.002", "T1574", "T1574.002"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-RENAMER = _common.get_path("bin", "rcedit-x64.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+
     path = "C:\\Users\\Public\\Temp\\7z\\"
     Path(path).mkdir(parents=True, exist_ok=True)
     file = "C:\\Users\\Public\\Temp\\7z\\file.exe"
@@ -41,5 +38,3 @@ def main():
     _common.execute([file, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout=10)
 
     _common.remove_files(dll, ps1, rcedit, file)
-
-

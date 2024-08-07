@@ -19,10 +19,9 @@ HTA_FILE = _common.get_path("bin", "beacon.hta")
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_id": "1fe3b299-fbb5-4657-a937-1d746f2c711a",
-            "rule_name": "Unusual Network Activity from a Windows System Binary",
-        },
+        RuleMetadata(
+            id="1fe3b299-fbb5-4657-a937-1d746f2c711a", name="Unusual Network Activity from a Windows System Binary"
+        ),
         RuleMetadata(id="c2d90150-0133-451c-a783-533e736c12d7", name="Mshta Making Network Connections"),
         RuleMetadata(id="a4ec1382-4557-452b-89ba-e413b22ed4b8", name="Network Connection via Mshta"),
     ],
@@ -43,5 +42,3 @@ def main():
     mshta = "mshta.exe"
     _common.execute([mshta, HTA_FILE], timeout=3, kill=True)
     server.shutdown()
-
-

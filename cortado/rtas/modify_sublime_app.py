@@ -12,10 +12,9 @@ from . import _common
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_name": "Sublime Plugin or Application Script Modification",
-            "rule_id": "88817a33-60d3-411f-ba79-7c905d865b2a",
-        }
+        RuleMetadata(
+            id="88817a33-60d3-411f-ba79-7c905d865b2a", name="Sublime Plugin or Application Script Modification"
+        )
     ],
     techniques=["T1554"],
 )
@@ -30,5 +29,3 @@ def main():
     # cleanup
     _common.remove_directory(str(sublime_packages))
     _common.remove_directory(str(sublime_dir))
-
-

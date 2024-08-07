@@ -11,7 +11,7 @@ from . import _common
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_id": "93c1ce76-494c-4f01-8167-35edfb52f7b1", "rule_name": "Encoded Executable Stored in the Registry"}
+        RuleMetadata(id="93c1ce76-494c-4f01-8167-35edfb52f7b1", name="Encoded Executable Stored in the Registry")
     ],
     techniques=["T1112", "T1140"],
 )
@@ -22,5 +22,3 @@ def main():
 
     with _common.temporary_reg(_common.HKLM, key, value, data):
         pass
-
-

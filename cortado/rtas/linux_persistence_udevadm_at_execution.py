@@ -10,7 +10,7 @@ from . import _common
     id="2119cf83-795b-4049-a416-bb46a5aad3a0",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {"rule_name": "At Utility Launched through Udevadm", "rule_id": "47e5595e-1920-4fdd-9a1c-cf712e1112d1"}
+        RuleMetadata(id="47e5595e-1920-4fdd-9a1c-cf712e1112d1", name="At Utility Launched through Udevadm")
     ],
     techniques=["T1037"],
 )
@@ -39,5 +39,3 @@ def main():
     # Cleanup
     _common.remove_file(fake_udevadm)
     _common.remove_file(masquerade)
-
-

@@ -38,5 +38,3 @@ def main():
     _common.log("Cleaning up")
     _common.remove_file(encoded_file)
     _common.remove_file(decoded_file)
-
-

@@ -11,7 +11,7 @@ from . import _common
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_id": "54c3d186-0461-4dc3-9b33-2dc5c7473936", "rule_name": "Network Logon Provider Registry Modification"}
+        RuleMetadata(id="54c3d186-0461-4dc3-9b33-2dc5c7473936", name="Network Logon Provider Registry Modification")
     ],
     techniques=["T1556", "T1543"],
 )
@@ -22,5 +22,3 @@ def main():
 
     with _common.temporary_reg(_common.HKLM, key, value, data):
         pass
-
-

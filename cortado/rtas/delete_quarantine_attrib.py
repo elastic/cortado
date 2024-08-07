@@ -10,10 +10,9 @@ from . import _common
     id="d7a67c3c-eadb-4bfb-beb1-61ddd86b4b83",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_id": "6e47b750-72c4-4af9-ad7b-0fc846df64d3",
-            "rule_name": "Quarantine Attribute Deleted via Untrusted Binary",
-        }
+        RuleMetadata(
+            id="6e47b750-72c4-4af9-ad7b-0fc846df64d3", name="Quarantine Attribute Deleted via Untrusted Binary"
+        )
     ],
     siem_rules=[],
     techniques=[""],
@@ -33,5 +32,3 @@ def main():
     # cleanup
     _common.remove_file(masquerade)
     _common.remove_file(masquerade2)
-
-

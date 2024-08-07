@@ -10,16 +10,14 @@ from . import _common
     id="086c6cae-22ac-47b6-bd24-85b33d8cf3a2",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "Elevated Apple Script Execution via Unsigned Parent",
-            "rule_id": "f17c8dcf-d65f-479a-b047-3558233f774e",
-        }
+        RuleMetadata(
+            id="f17c8dcf-d65f-479a-b047-3558233f774e", name="Elevated Apple Script Execution via Unsigned Parent"
+        )
     ],
     siem_rules=[
-        {
-            "rule_name": "Apple Scripting Execution with Administrator Privileges",
-            "rule_id": "827f8d8f-4117-4ae4-b551-f56d54b9da6b",
-        }
+        RuleMetadata(
+            id="827f8d8f-4117-4ae4-b551-f56d54b9da6b", name="Apple Scripting Execution with Administrator Privileges"
+        )
     ],
     techniques=["T1078", "T1548", "T1059"],
 )
@@ -35,5 +33,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

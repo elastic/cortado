@@ -32,5 +32,3 @@ def main():
     _common.log("Cleaning...")
     _common.remove_file(masquerade)
     _common.log("RTA completed!")
-
-

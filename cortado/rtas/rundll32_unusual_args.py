@@ -28,5 +28,3 @@ def main():
     _common.execute(["rundll32.exe", f"{dll},RegisterOCX", "cmd.exe"])
 
     _common.remove_files(dll)
-
-

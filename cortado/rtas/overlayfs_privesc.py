@@ -10,16 +10,10 @@ import sys
     id="a78663dc-9561-40a9-b4eb-f15e31c690cc",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_name": "Potential Privilege Escalation via OverlayFS",
-            "rule_id": "ca9de348-a09d-4c67-af21-5645b70003d0",
-        },
+        RuleMetadata(id="ca9de348-a09d-4c67-af21-5645b70003d0", name="Potential Privilege Escalation via OverlayFS"),
     ],
     siem_rules=[
-        {
-            "rule_name": "Potential Privilege Escalation via OverlayFS",
-            "rule_id": "b51dbc92-84e2-4af1-ba47-65183fcd0c57",
-        },
+        RuleMetadata(id="b51dbc92-84e2-4af1-ba47-65183fcd0c57", name="Potential Privilege Escalation via OverlayFS"),
     ],
     techniques=["T1068"],
 )

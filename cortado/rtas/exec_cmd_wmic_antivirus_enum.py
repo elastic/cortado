@@ -10,9 +10,7 @@ from . import _common
     id="d123ee22-aa28-4dcd-9c3b-5be047eb6eff",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[
-        {"rule_id": "6ea55c81-e2ba-42f2-a134-bccf857ba922", "rule_name": "Security Software Discovery using WMIC"}
-    ],
+    siem_rules=[RuleMetadata(id="6ea55c81-e2ba-42f2-a134-bccf857ba922", name="Security Software Discovery using WMIC")],
     techniques=["T1518", "T1518.001"],
 )
 def main():
@@ -22,5 +20,3 @@ def main():
     _common.execute(
         [wmic, "/namespace:\\\\root\\SecurityCenter2", "Path", "AntiVirusProduct", "get", "displayname"], timeout=10
     )
-
-

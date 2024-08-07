@@ -18,6 +18,8 @@ import sys
 from . import _common
 
 
+MY_APP_EXE = "bin/myapp.exe"
+
 
 @register_code_rta(
     id="389392dc-61db-4e45-846f-099f7d289c1b",
@@ -25,14 +27,8 @@ from . import _common
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="d61cbcf8-1bc1-4cff-85ba-e7b21c5beedc", name="Service Command Lateral Movement")],
     techniques=["T1569", "T1021", "T1543"],
+    ancillary_files=[MY_APP_EXE],
 )
-
-
-MY_APP = _common.get_path("bin", "myapp.exe")
-
-
-
-@_common.dependencies(MY_APP)
 def main(remote_host=None):
     remote_host = remote_host or _common.get_ip()
     _common.log("Attempting to laterally move to %s" % remote_host)
@@ -73,7 +69,9 @@ def main(remote_host=None):
 
     # Check if the account is local or a domain
     if domain in (hostname, "NT AUTHORITY"):
-        _common.log("Need password for remote scheduled task in workgroup. Performing instead on %s." % _common.get_ip())
+        _common.log(
+            "Need password for remote scheduled task in workgroup. Performing instead on %s." % _common.get_ip()
+        )
         schtasks_host = _common.get_ip()
 
     task_name = "test_task-%d" % os.getpid()
@@ -90,5 +88,3 @@ def main(remote_host=None):
 
     # Remote powershell
     _common.execute(["C:\\Windows\\system32\\wsmprovhost.exe", "-Embedding"], timeout=5, kill=True)
-
-

@@ -6,7 +6,6 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="d3c0c965-3167-4fe3-8aee-a9f101766b5a",
     platforms=[OSType.WINDOWS],
@@ -16,13 +15,10 @@ from . import _common
     siem_rules=[],
     techniques=["T1021"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     posh = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\posh.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
@@ -47,5 +43,3 @@ def main():
         timeout=10,
     )
     _common.remove_files(dll, ps1, posh)
-
-

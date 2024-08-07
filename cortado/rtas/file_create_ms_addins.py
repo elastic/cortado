@@ -6,24 +6,21 @@
 from pathlib import Path
 
 
-
 @register_code_rta(
     id="5432792c-d31a-42cc-a82f-0884ea230493",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{'rule_id': 'f44fa4b6-524c-4e87-8d9e-a32599e4fb7c', 'rule_name': 'Persistence via Microsoft Office AddIns'}],
-    techniques=['T1137'],
+    siem_rules=[
+        RuleMetadata(id="f44fa4b6-524c-4e87-8d9e-a32599e4fb7c", name="Persistence via Microsoft Office AddIns")
+    ],
+    techniques=["T1137"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     path = "C:\\Users\\Public\\\\AppData\\Roaming\\Microsoft\\Word\\Startup"
     Path(path).mkdir(parents=True, exist_ok=True)
     file = path + "\\file.xll"
     _common.copy_file(EXE_FILE, file)
 
     _common.remove_files(file)
-
-

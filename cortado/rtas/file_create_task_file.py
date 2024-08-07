@@ -10,16 +10,12 @@ from . import _common
     id="2e5d3ddd-6dc4-4ebf-93e3-c32698b8df40",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{'rule_id': '1327384f-00f3-44d5-9a8c-2373ba071e92', 'rule_name': 'Persistence via Scheduled Job Creation'}],
-    techniques=['T1053', 'T1053.005'],
+    siem_rules=[RuleMetadata(id="1327384f-00f3-44d5-9a8c-2373ba071e92", name="Persistence via Scheduled Job Creation")],
+    techniques=["T1053", "T1053.005"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     path = "C:\\Windows\\Tasks\\a.job"
     _common.copy_file(EXE_FILE, path)
     _common.remove_files(path)
-
-

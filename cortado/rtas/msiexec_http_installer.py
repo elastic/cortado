@@ -16,10 +16,9 @@ from . import _common
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_id": "1fe3b299-fbb5-4657-a937-1d746f2c711a",
-            "rule_name": "Unusual Network Activity from a Windows System Binary",
-        }
+        RuleMetadata(
+            id="1fe3b299-fbb5-4657-a937-1d746f2c711a", name="Unusual Network Activity from a Windows System Binary"
+        )
     ],
     techniques=["T1127"],
 )
@@ -39,5 +38,3 @@ def main():
     )
 
     server.shutdown()
-
-

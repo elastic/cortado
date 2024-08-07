@@ -10,7 +10,7 @@ from . import _common
     id="631a211d-bdaa-4b9d-a786-31d84d7bc070",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {"rule_id": "31da6564-b3d3-4fc8-9a96-75ad0b364363", "rule_name": "Tampering of Bash Command-Line History"}
+        RuleMetadata(id="31da6564-b3d3-4fc8-9a96-75ad0b364363", name="Tampering of Bash Command-Line History")
     ],
     siem_rules=[],
     techniques=["T1070", "T1070.003"],
@@ -26,5 +26,3 @@ def main():
     _common.execute([masquerade, command], timeout=10, kill=True, shell=True)
     # cleanup
     _common.remove_file(masquerade)
-
-

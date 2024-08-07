@@ -25,5 +25,3 @@ def main():
     # cleanup
     _common.remove_directory(str(cal_calendar))
     _common.remove_directory(str(cal_dir))
-
-

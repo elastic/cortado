@@ -11,7 +11,7 @@ from . import _common
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_id": "f63c8e3c-d396-404f-b2ea-0379d3942d73", "rule_name": "Windows Firewall Disabled via PowerShell"}
+        RuleMetadata(id="f63c8e3c-d396-404f-b2ea-0379d3942d73", name="Windows Firewall Disabled via PowerShell")
     ],
     techniques=["T1562", "T1562.004"],
 )
@@ -20,5 +20,3 @@ def main():
 
     # Execute command
     _common.execute([powershell, "/c", "echo", "Set-NetFirewallProfile", "-Enabled", "False", "-All"], timeout=2)
-
-

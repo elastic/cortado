@@ -28,5 +28,3 @@ def main():
     # Execute command
     _common.execute([powershell, "/c", cmd], timeout=10)
     _common.remove_file(gitcreds)
-
-

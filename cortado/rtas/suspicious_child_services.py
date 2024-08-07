@@ -6,19 +6,16 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="a840e9b2-5aac-41a1-8c79-03ff624eb77b",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{'rule_id': '0022d47d-39c7-4f69-a232-4fe9dc7a3acd', 'rule_name': 'System Shells via Services'}],
-    techniques=['T1543', 'T1543.003'],
+    siem_rules=[RuleMetadata(id="0022d47d-39c7-4f69-a232-4fe9dc7a3acd", name="System Shells via Services")],
+    techniques=["T1543", "T1543.003"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     services = "C:\\Users\\Public\\services.exe"
     pwsh = "C:\\Users\\Public\\pwsh.exe"
     _common.copy_file(EXE_FILE, pwsh)
@@ -26,5 +23,3 @@ def main():
 
     _common.execute([services, "/c", pwsh], timeout=5, kill=True)
     _common.remove_files(pwsh, services)
-
-

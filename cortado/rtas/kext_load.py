@@ -10,10 +10,9 @@ from . import _common
     id="c4ac8740-3dca-4550-831b-e03d21de581d",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "New System Kext File and Immediate Load via KextLoad",
-            "rule_id": "de869aa1-c63a-451e-a953-7069ec39ba60",
-        }
+        RuleMetadata(
+            id="de869aa1-c63a-451e-a953-7069ec39ba60", name="New System Kext File and Immediate Load via KextLoad"
+        )
     ],
     siem_rules=[],
     techniques=["T1547", "T1547.006", "T1059", "T1059.004"],
@@ -30,5 +29,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

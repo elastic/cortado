@@ -12,10 +12,9 @@ from pathlib import Path
     id="12e70377-e24e-4374-8aec-42064614d706",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "Suspicious Property List File Creation or Modification",
-            "rule_id": "901f0c30-a7c5-40a5-80e3-a50c6714432f",
-        }
+        RuleMetadata(
+            id="901f0c30-a7c5-40a5-80e3-a50c6714432f", name="Suspicious Property List File Creation or Modification"
+        )
     ],
     siem_rules=[],
     techniques=["T1547", "T1543"],
@@ -65,5 +64,3 @@ def main():
     if plist_file.exists():
         _common.log(f"Deleting plist file {plist_file}")
         plist_file.unlink()
-
-

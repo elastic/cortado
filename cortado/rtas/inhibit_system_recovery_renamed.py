@@ -10,10 +10,7 @@ from . import _common
     id="5fe84989-d544-4a7b-9fbf-0e30d86c09ce",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "Inhibit System Recovery via Renamed Utilities",
-            "rule_id": "153f52e2-2fe5-420b-8691-ddb8562b99d7",
-        }
+        RuleMetadata(id="153f52e2-2fe5-420b-8691-ddb8562b99d7", name="Inhibit System Recovery via Renamed Utilities")
     ],
     siem_rules=[],
     techniques=["T1490", "T1218"],
@@ -27,5 +24,3 @@ def main():
     _common.log("Deleting Shadow Copies using a renamed Vssadmin")
     _common.execute([ren_vssadmin, "delete", "shadows", "/For=C:"], timeout=10)
     _common.remove_file(ren_vssadmin)
-
-

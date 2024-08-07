@@ -10,10 +10,10 @@ from . import _common
     id="38cea037-c1a8-4749-a434-ba4c7d6e91f8",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "Privilege Escalation via Windir or SystemRoot Environment Variable",
-            "rule_id": "18ffee0c-5f40-4dd8-aa9a-28251a308dbc",
-        }
+        RuleMetadata(
+            id="18ffee0c-5f40-4dd8-aa9a-28251a308dbc",
+            name="Privilege Escalation via Windir or SystemRoot Environment Variable",
+        )
     ],
     siem_rules=[],
     techniques=["T1574"],
@@ -25,5 +25,3 @@ def main():
 
     with _common.temporary_reg(_common.HKCU, key, value, data):
         pass
-
-

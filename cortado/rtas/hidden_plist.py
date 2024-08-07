@@ -14,12 +14,10 @@ from pathlib import Path
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_id": "092b068f-84ac-485d-8a55-7dd9e006715f", "rule_name": "Creation of Hidden Launch Agent or Daemon"}
+        RuleMetadata(id="092b068f-84ac-485d-8a55-7dd9e006715f", name="Creation of Hidden Launch Agent or Daemon")
     ],
     techniques=[""],
 )
 def main():
     _common.log(f"Executing hidden plist creation on {Path.home()}/Library/LaunchAgents/.test.plist")
     _common.temporary_file_helper("testing", file_name=f"{Path.home()}/Library/LaunchAgents/.test.plist")
-
-

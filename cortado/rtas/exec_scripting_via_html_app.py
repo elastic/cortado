@@ -10,10 +10,7 @@ from . import _common
     id="05f1f2a3-430d-4d20-9c0c-767d3b950cbb",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "Script Execution via Microsoft HTML Application",
-            "rule_id": "f0630213-c4c4-4898-9514-746395eb9962",
-        }
+        RuleMetadata(id="f0630213-c4c4-4898-9514-746395eb9962", name="Script Execution via Microsoft HTML Application")
     ],
     siem_rules=[],
     techniques=["T1218"],
@@ -32,5 +29,3 @@ def main():
         timeout=5,
         kill=True,
     )
-
-

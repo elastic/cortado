@@ -10,7 +10,7 @@ from . import _common
     id="aef45f58-14c8-4934-8518-62a254d96b77",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {"rule_id": "e216abf2-1961-43fb-bef2-0c4b34c78600", "rule_name": "Linux Binary Masquerading via Untrusted Path"}
+        RuleMetadata(id="e216abf2-1961-43fb-bef2-0c4b34c78600", name="Linux Binary Masquerading via Untrusted Path")
     ],
     siem_rules=[],
     techniques=["T1036", "T1036.004"],
@@ -26,5 +26,3 @@ def main():
     _common.execute([masquerade, command], timeout=10, kill=True, shell=True)
     # cleanup
     _common.remove_file(masquerade)
-
-

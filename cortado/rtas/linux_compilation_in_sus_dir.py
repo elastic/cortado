@@ -10,7 +10,7 @@ from . import _common
     id="15043951-ca9b-4fbe-b3cb-d1288a875ca7",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {"rule_name": "Linux Compilation in Suspicious Directory", "rule_id": "52001df2-a3bf-411d-a09c-5f36a9f976b8"}
+        RuleMetadata(id="52001df2-a3bf-411d-a09c-5f36a9f976b8", name="Linux Compilation in Suspicious Directory")
     ],
     techniques=["T1027"],
 )
@@ -39,5 +39,3 @@ def main():
     _common.log("Cleaning...")
     _common.remove_file(masquerade_file)
     _common.log("RTA completed!")
-
-

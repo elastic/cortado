@@ -6,20 +6,18 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="b12372b8-0e76-4b3d-9dfc-880664893eb9",
     platforms=[OSType.WINDOWS],
-    endpoint_rules=[RuleMetadata(id="18a26e3e-e535-4d23-8ffa-a3cdba56d16e", name="Suspicious Parent-Child Relationship")],
+    endpoint_rules=[
+        RuleMetadata(id="18a26e3e-e535-4d23-8ffa-a3cdba56d16e", name="Suspicious Parent-Child Relationship")
+    ],
     siem_rules=[],
     techniques=["T1055", "T1036"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     posh = "C:\\Users\\Public\\posh.exe"
     tiworker = "C:\\Users\\Public\\TiWorker.exe"
     _common.copy_file(EXE_FILE, posh)
@@ -28,5 +26,3 @@ def main():
     # Execute command
     _common.execute([posh, "/c", tiworker], timeout=3, kill=True)
     _common.remove_files(posh, tiworker)
-
-

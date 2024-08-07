@@ -6,7 +6,6 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="860e5968-c31f-4928-ac05-3c3c2d19450c",
     platforms=[OSType.WINDOWS],
@@ -16,14 +15,11 @@ from . import _common
     siem_rules=[],
     techniques=["T1036"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-RENAMER = _common.get_path("bin", "rcedit-x64.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+
     posh = "C:\\Users\\Public\\posh.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
     dll = "C:\\Users\\Public\\luacom.dll"
@@ -54,5 +50,3 @@ def main():
     )
 
     _common.remove_files(posh, dll, ps1, rcedit)
-
-

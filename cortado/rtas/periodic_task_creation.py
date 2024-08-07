@@ -18,5 +18,3 @@ from . import _common
 def main():
     _common.log("Executing file modification on periodic file test.conf to mimic periodic tasks creation")
     _common.temporary_file_helper("testing", file_name="/private/etc/periodic/test.conf")
-
-

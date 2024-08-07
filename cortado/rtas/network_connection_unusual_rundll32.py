@@ -6,7 +6,6 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="1bb39cea-8bf2-4b1f-a70e-69f6074a1fb4",
     platforms=[OSType.WINDOWS],
@@ -17,17 +16,12 @@ from . import _common
     siem_rules=[],
     techniques=["T1055", "T1218", "T1036"],
 )
-
-EXE_FILE = _common.get_path("bin", "regsvr32.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "regsvr32.exe")
+
     binary = "rundll32.exe"
     _common.copy_file(EXE_FILE, binary)
 
     _common.log("Making connection using fake rundll32.exe")
     _common.execute([binary])
     _common.remove_files(binary)
-
-

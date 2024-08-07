@@ -6,7 +6,6 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="0a766d3c-baee-4bc2-8997-e4e450f77253",
     platforms=[OSType.WINDOWS],
@@ -19,12 +18,9 @@ from . import _common
     siem_rules=[],
     techniques=["T1218", "T1053", "T1036", "T1059"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     regsvr32 = "C:\\Users\\Public\\regsvr32.exe"
     _common.copy_file(EXE_FILE, regsvr32)
 
@@ -32,5 +28,3 @@ def main():
     # Execute command
     _common.execute([regsvr32, "/c", cmd], timeout=10)
     _common.remove_file(regsvr32)
-
-

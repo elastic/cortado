@@ -30,5 +30,3 @@ def main():
         _common.log("Opening and closing netstat")
         _common.execute(["whoami"], shell=True)
         _common.execute(["taskkill", "/F", "/IM", "netstat.exe"])
-
-

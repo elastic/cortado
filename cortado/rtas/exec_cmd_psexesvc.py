@@ -6,23 +6,21 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="7c4e0d1e-e80a-465a-9612-a319800390f4",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{
-        'rule_id': 'e2f9fdf5-8076-45ad-9427-41e0e03dc9c2',
-        'rule_name': 'Suspicious Process Execution via Renamed PsExec Executable'
-    }],
-    techniques=['T1569', 'T1569.002'],
+    siem_rules=[
+        RuleMetadata(
+            id="e2f9fdf5-8076-45ad-9427-41e0e03dc9c2", name="Suspicious Process Execution via Renamed PsExec Executable"
+        )
+    ],
+    techniques=["T1569", "T1569.002"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-RENAMER = _common.get_path("bin", "rcedit-x64.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+
     psexesvc = "C:\\Users\\Public\\rta.exe"
     rcedit = "C:\\Users\\Public\\rcedit.exe"
     _common.copy_file(RENAMER, rcedit)
@@ -34,5 +32,3 @@ def main():
     _common.execute([psexesvc], timeout=2, kill=True)
 
     _common.remove_files(rcedit, psexesvc)
-
-

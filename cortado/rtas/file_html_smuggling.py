@@ -17,12 +17,9 @@ import os
     siem_rules=[],
     techniques=["T1027", "T1566"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     userprofile = os.getenv("USERPROFILE")
     partial = f"{userprofile}\\Downloads\\a.partial"
     file = f"{userprofile}\\Downloads\\a.iso"
@@ -46,5 +43,3 @@ def main():
     _common.execute([chrome, "/c", f"New-Item -Path {partial} -Type File"], timeout=10)
     _common.execute([chrome, "/c", f"Rename-Item {partial} {file}"], timeout=10)
     _common.remove_files(explorer, chrome, file)
-
-

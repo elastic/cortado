@@ -53,5 +53,3 @@ def main():
     _common.remove_files(adobe_path, bad_path, fake_pub)
     _common.remove_files(msoffice_path, bad_path, fake_doc_iqy)
     _common.remove_files(browser_path, bad_path, fake_browser_iqy)
-
-

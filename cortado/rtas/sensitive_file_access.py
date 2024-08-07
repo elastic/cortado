@@ -57,5 +57,3 @@ def main():
         except Exception as e:
             print(f"[x] - Failed to open {item}")
             pass
-
-

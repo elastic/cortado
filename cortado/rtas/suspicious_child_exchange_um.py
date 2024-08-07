@@ -11,10 +11,9 @@ from . import _common
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_id": "483c4daf-b0c6-49e0-adf3-0bfa93231d6b",
-            "rule_name": "Microsoft Exchange Server UM Spawning Suspicious Processes",
-        }
+        RuleMetadata(
+            id="483c4daf-b0c6-49e0-adf3-0bfa93231d6b", name="Microsoft Exchange Server UM Spawning Suspicious Processes"
+        )
     ],
     techniques=["T1190"],
 )
@@ -25,5 +24,3 @@ def main():
 
     _common.execute([umservice, "/c", EXE_FILE], timeout=5, kill=True)
     _common.remove_files(umservice)
-
-

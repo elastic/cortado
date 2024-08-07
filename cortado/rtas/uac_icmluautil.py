@@ -6,27 +6,22 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="e0e95f35-173d-4545-a1cc-ee35ee1d89b1",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="18a26e3e-e535-4d23-8ffa-a3cdba56d16e", name="Suspicious Parent-Child Relationship"),
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
-        {
-            "rule_name": "UAC Bypass via ICMLuaUtil Elevated COM Interface",
-            "rule_id": "13fab475-06e4-4ac9-87fc-2105c7441244",
-        },
+        RuleMetadata(
+            id="13fab475-06e4-4ac9-87fc-2105c7441244", name="UAC Bypass via ICMLuaUtil Elevated COM Interface"
+        ),
     ],
     siem_rules=[],
     techniques=["T1055", "T1548", "T1036"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     dllhost = "C:\\Users\\Public\\dllhost.exe"
     _common.copy_file(EXE_FILE, dllhost)
 
@@ -36,5 +31,3 @@ def main():
         kill=True,
     )
     _common.remove_file(dllhost)
-
-

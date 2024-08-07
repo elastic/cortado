@@ -9,9 +9,7 @@ from . import _common
 @register_code_rta(
     id="425ba45e-10eb-4067-93f4-95701d26da3d",
     platforms=[OSType.LINUX],
-    endpoint_rules=[
-        {"rule_id": "fbf9342e-3d1e-4fba-a828-92fa0fb4d21b", "rule_name": "Suspicious Mining Process Events"}
-    ],
+    endpoint_rules=[RuleMetadata(id="fbf9342e-3d1e-4fba-a828-92fa0fb4d21b", name="Suspicious Mining Process Events")],
     siem_rules=[],
     techniques=["T1059", "T1059.004"],
 )
@@ -27,5 +25,3 @@ def main():
     _common.execute([masquerade, command, command1], timeout=10, kill=True, shell=True)
     # cleanup
     _common.remove_file(masquerade)
-
-

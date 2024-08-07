@@ -6,25 +6,20 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="91238171-b3f1-4c0b-80bb-90a824e2ed61",
     platforms=[OSType.WINDOWS],
-    endpoint_rules=[{
-        'rule_id': '1dbf6ac3-540a-4214-8173-9aa93232da38',
-        'rule_name': 'Suspicious Control Panel DLL Loaded by Explorer'
-    }],
+    endpoint_rules=[
+        RuleMetadata(id="1dbf6ac3-540a-4214-8173-9aa93232da38", name="Suspicious Control Panel DLL Loaded by Explorer")
+    ],
     siem_rules=[],
     techniques=[""],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-RENAMER = _common.get_path("bin", "rcedit-x64.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+
     explorer = "C:\\Users\\Public\\explorer.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
     dll = "C:\\Users\\Public\\rta.dll"
@@ -39,8 +34,14 @@ def main():
     _common.execute([rcedit, dll, "--set-version-string", "OriginalFilename", "rta.dll"])
 
     _common.log("Loading rta.dll")
-    _common.execute([explorer, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}; echo",
-                   "/factory,{5BD95610-9434-43C2-886C-57852CC8A120}", ";powershell"], timeout=10)
+    _common.execute(
+        [
+            explorer,
+            "-c",
+            f"Import-Module {ps1}; Invoke-ImageLoad {dll}; echo",
+            "/factory,{5BD95610-9434-43C2-886C-57852CC8A120}",
+            ";powershell",
+        ],
+        timeout=10,
+    )
     _common.remove_files(dll, ps1, rcedit, explorer)
-
-

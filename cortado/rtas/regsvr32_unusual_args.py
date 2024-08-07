@@ -6,7 +6,6 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="469d383a-d03f-470a-bcba-15da9dd373ed",
     platforms=[OSType.WINDOWS],
@@ -18,12 +17,9 @@ from . import _common
     siem_rules=[],
     techniques=["T1218", "T1036", "T1059"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed.exe")
+
     binary = "regsvr32.exe"
     _common.copy_file(EXE_FILE, binary)
 
@@ -31,5 +27,3 @@ def main():
     _common.execute([binary, "cd", "C:\\Users\\Public\\"], timeout=10, kill=True)
 
     _common.remove_file(binary)
-
-

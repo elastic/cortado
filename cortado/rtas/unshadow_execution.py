@@ -11,16 +11,10 @@ from . import _common
     id="c5cecd6d-a7c4-4e3b-970d-6ca5cfc5c662",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_name": "Potential Linux Credential Dumping via Unshadow",
-            "rule_id": "05f95917-6942-4aab-a904-37c6db906503",
-        }
+        RuleMetadata(id="05f95917-6942-4aab-a904-37c6db906503", name="Potential Linux Credential Dumping via Unshadow")
     ],
     siem_rules=[
-        {
-            "rule_name": "Potential Linux Credential Dumping via Unshadow",
-            "rule_id": "e7cb3cfd-aaa3-4d7b-af18-23b89955062c",
-        }
+        RuleMetadata(id="e7cb3cfd-aaa3-4d7b-af18-23b89955062c", name="Potential Linux Credential Dumping via Unshadow")
     ],
     techniques=["T1003", "T1003.008"],
 )
@@ -35,5 +29,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

@@ -11,21 +11,10 @@
 from . import _common
 
 
-
-@register_code_rta(
-    id="c7d9d63d-09ff-40e9-b990-4c273281d6a0",
-    platforms=[OSType.WINDOWS],
-    endpoint_rules=[],
-    siem_rules=[],
-    techniques=[]
-)
+MY_APP_EXE = "bin/myapp.exe"
 
 
-MY_APP = _common.get_path("bin", "myapp.exe")
-
-
-
-@_common.dependencies(MY_APP)
+@register_code_rta(id="c7d9d63d-09ff-40e9-b990-4c273281d6a0", platforms=[OSType.WINDOWS], ancillary_files=[MY_APP_EXE])
 def main():
     anomalies = [
         "bad.pif",
@@ -38,9 +27,7 @@ def main():
     ]
 
     for path in anomalies:
-        _common.log("Masquerading python as %s" % path)
-        _common.copy_file(MY_APP, path)
+        _common.log(f"Masquerading python as {path}")
+        _common.copy_file(MY_APP_EXE, path)
         _common.execute([path])
         _common.remove_file(path)
-
-

@@ -75,5 +75,3 @@ def main():
     etw_bypass = WriteProcessMemory(GetCurrentProcess(), etw, patch, ctypes.sizeof(patch), ctypes.byref(c_null))
     if amsi_bypass and etw_bypass:
         print(f"[*] RTA Done - Patched AmsiScanBuffer & EtwNotificationRegister!")
-
-

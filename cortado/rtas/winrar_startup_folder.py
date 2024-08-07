@@ -34,5 +34,3 @@ def main():
     _common.remove_file(startup_path)
     _common.remove_file(ace_loader_path)
     _common.remove_file(win_rar_path)
-
-

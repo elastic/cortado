@@ -101,5 +101,3 @@ def SetWindowsHookEx():
 def main():
     SetWindowsHookEx()
     GetAsyncKeyState()
-
-

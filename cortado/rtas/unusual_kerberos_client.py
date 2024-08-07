@@ -6,29 +6,25 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="78e59247-db65-412a-898c-2e757d695851",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="9ba39516-651e-489f-8b6a-f5501e0c492d", name="Execution from Suspicious Directory"),
-        {
-            "rule_name": "Executable File Creation Followed by Immediate Network Connection",
-            "rule_id": "8d11d741-7a06-41a1-a525-feaaa07ebbae",
-        },
+        RuleMetadata(
+            id="8d11d741-7a06-41a1-a525-feaaa07ebbae",
+            name="Executable File Creation Followed by Immediate Network Connection",
+        ),
         RuleMetadata(id="b5c91c3e-9d2d-4df6-afb7-c9d236b5ebe2", name="Unusual Kerberos Client Process"),
     ],
     siem_rules=[],
     techniques=["T1558", "T1204", "T1036"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-RENAMER = _common.get_path("bin", "rcedit-x64.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+
     posh = "C:\\Users\\Public\\posh.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
     dll = "C:\\Users\\Public\\System.DirectoryServices.Protocols.test.dll"
@@ -66,5 +62,3 @@ def main():
     )
 
     _common.remove_files(posh, dll, ps1)
-
-

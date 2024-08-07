@@ -13,7 +13,6 @@ import sys
 from pathlib import Path
 
 
-
 @register_code_rta(
     id="6d2d3c21-2d71-4395-8ab7-b1d0138d9225",
     platforms=[OSType.WINDOWS],
@@ -21,12 +20,6 @@ from pathlib import Path
     siem_rules=[RuleMetadata(id="45d273fb-1dca-457d-9855-bcb302180c21", name="Encrypting Files with WinRar or 7z")],
     techniques=["T1560"],
 )
-
-
-MY_APP = _common.get_path("bin", "myapp.exe")
-WINRAR = _common.get_path("bin", "Rar.exe")
-
-
 def create_exfil(path=Path("secret_stuff.txt").resolve()):
     _common.log("Writing dummy exfil to %s" % path)
     with open(path, "wb") as f:
@@ -34,9 +27,11 @@ def create_exfil(path=Path("secret_stuff.txt").resolve()):
     return path
 
 
-
 @_common.dependencies(MY_APP, WINRAR)
 def main(password="s0l33t"):
+    MY_APP = _common.get_path("bin", "myapp.exe")
+    WINRAR = _common.get_path("bin", "Rar.exe")
+
     # Copies of the rar.exe for various tests
     winrar_bin_modsig = _common.get_path("bin", "rar_broken-sig.exe")
     _common.patch_file(WINRAR, b"win.rar GmbH", b"bad.bad GmbH", winrar_bin_modsig)
@@ -101,5 +96,3 @@ def main(password="s0l33t"):
 
     _common.log("Cleanup", "-")
     _common.remove_files(winrar_bin_modsig, winrar_bin_modsig_a, winrar_bin_b)
-
-

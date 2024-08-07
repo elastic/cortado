@@ -11,25 +11,16 @@
 from pathlib import Path
 
 
-
 @register_code_rta(
     id="0fcf5aeb-cebd-466d-8a2e-ddb710ec845d",
     platforms=[OSType.WINDOWS],
-    endpoint_rules=[],
-    siem_rules=[],
-    techniques=[]
 )
-
-
-SYSTEM_RESTORE = "c:\\System Volume Information"
-
-
-
-@_common.dependencies(_common.PS_EXEC)
 def main():
     status = _common.run_system()
     if status is not None:
         return status
+
+    SYSTEM_RESTORE = "c:\\System Volume Information"
 
     _common.log("System Restore Process Evasion")
     program_path = _common.get_path("bin", "myapp.exe")
@@ -46,5 +37,3 @@ def main():
 
     _common.log("Cleanup", log_type="-")
     _common.remove_file(target_path)
-
-

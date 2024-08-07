@@ -15,21 +15,14 @@ import time
 from . import _common
 
 
+INF_FILE = "bin/script_launch.inf"
+
 
 @register_code_rta(
     id="a2edc784-e969-45f4-b8d2-fe4556b42cd6",
     platforms=[OSType.WINDOWS],
-    endpoint_rules=[],
-    siem_rules=[],
-    techniques=[]
+    ancillary_files=[INF_FILE],
 )
-
-
-INF_FILE = _common.get_path("bin", "script_launch.inf")
-
-
-
-@_common.dependencies(INF_FILE)
 def main():
     # http server will terminate on main thread exit
     # if daemon is True
@@ -48,5 +41,3 @@ def main():
     _common.log("Cleanup", log_type="-")
     _common.execute(["taskkill", "/f", "/im", "notepad.exe"])
     server.shutdown()
-
-

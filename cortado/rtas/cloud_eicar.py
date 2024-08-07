@@ -10,15 +10,11 @@ import sys
     id="8d6f2979-747a-42d9-813a-ddadd90650d2",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_id": "7b9ddfc8-8ea8-45d5-b62f-3fbd142c8f08",
-            "rule_name": "Behavior Protection - Cloud Reputation EICAR",
-        },
+        RuleMetadata(id="7b9ddfc8-8ea8-45d5-b62f-3fbd142c8f08", name="Behavior Protection - Cloud Reputation EICAR"),
     ],
     siem_rules=[],
     techniques=["TA0002"],
 )
-@_common.requires_os(metadata.platforms)
 def main() -> None:
     masquerade = "/tmp/bash"
     source = _common.get_path("bin", "linux.ditto_and_spawn")

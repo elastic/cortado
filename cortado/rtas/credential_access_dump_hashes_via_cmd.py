@@ -20,5 +20,3 @@ from . import _common
 def main():
     _common.log("Executing defaults commands to dump hashes.")
     _common.execute(["defaults", "ShadowHashData", "-dump"])
-
-

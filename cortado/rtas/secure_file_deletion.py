@@ -29,5 +29,3 @@ def main():
 
     finally:
         _common.remove_file(temp_path)
-
-

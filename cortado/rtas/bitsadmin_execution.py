@@ -8,7 +8,6 @@ from pathlib import Path
 from . import _common
 
 
-
 @register_code_rta(
     id="e7a55d39-37b4-4f37-9519-3779b3c23bfa",
     platforms=[OSType.WINDOWS],
@@ -19,13 +18,10 @@ from . import _common
     siem_rules=[],
     techniques=["T1197", "T1566"],
 )
-
-ROOT_DIR = Path(__file__).parent
-EXE_FILE = _common.get_path("bin", "renamed.exe")
-
-
-
 def main():
+    # FIXME
+    ROOT_DIR = Path(__file__).parent
+    EXE_FILE = _common.get_path("bin", "renamed.exe")
 
     fake_word = ROOT_DIR / "winword.exe"
     _common.log(f"Copying {EXE_FILE} to {fake_word}")
@@ -36,5 +32,3 @@ def main():
     _common.execute(["taskkill", "/f", "/im", "bitsadmin.exe"])
 
     _common.remove_files(fake_word)
-
-

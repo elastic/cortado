@@ -11,10 +11,9 @@ from . import _common
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_name": "Execution with Explicit Credentials via Scripting",
-            "rule_id": "f0eb70e9-71e9-40cd-813f-bf8e8c812cb1",
-        }
+        RuleMetadata(
+            id="f0eb70e9-71e9-40cd-813f-bf8e8c812cb1", name="Execution with Explicit Credentials via Scripting"
+        )
     ],
     techniques=["T1078", "T1548", "T1059"],
 )
@@ -29,5 +28,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

@@ -14,37 +14,29 @@ import sys
 from pathlib import Path
 
 
+MY_DOT_NET_EXE = "bin/mydotnet.exe"
+
 
 @register_code_rta(
     id="6dfa88c9-9fb2-4fb0-8bea-0bc45222b498",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_id": "a13167f1-eec2-4015-9631-1fee60406dcf",
-            "rule_name": "InstallUtil Process Making Network Connections",
-        },
-        {
-            "rule_id": "1fe3b299-fbb5-4657-a937-1d746f2c711a",
-            "rule_name": "Unusual Network Activity from a Windows System Binary",
-        },
+        RuleMetadata(id="a13167f1-eec2-4015-9631-1fee60406dcf", name="InstallUtil Process Making Network Connections"),
+        RuleMetadata(
+            id="1fe3b299-fbb5-4657-a937-1d746f2c711a", name="Unusual Network Activity from a Windows System Binary"
+        ),
     ],
     techniques=["T1127", "T1218"],
+    ancillary_files=[MY_DOT_NET_EXE],
 )
-
-
-MY_DOT_NET = _common.get_path("bin", "mydotnet.exe")
-
-
-
-@_common.dependencies(MY_DOT_NET)
 def main():
     server, ip, port = _common.serve_web()
     _common.clear_web_cache()
 
     target_app = "mydotnet.exe"
     _common.patch_file(
-        MY_DOT_NET,
+        MY_DOT_NET_EXE,
         _common.wchar(":8000"),
         _common.wchar(":%d" % port),
         target_file=target_app,
@@ -81,5 +73,3 @@ def main():
 
     _common.remove_file(target_app)
     server.shutdown()
-
-

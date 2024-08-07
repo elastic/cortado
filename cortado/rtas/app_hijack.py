@@ -11,10 +11,7 @@ from . import _common
     id="9e87748e-9866-4b6b-832d-5cba4dda14e8",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "Potential Default Application Hijacking",
-            "rule_id": "5d2c3833-a36a-483a-acea-5bf8cf363a81",
-        }
+        RuleMetadata(id="5d2c3833-a36a-483a-acea-5bf8cf363a81", name="Potential Default Application Hijacking")
     ],
     siem_rules=[],
     techniques=["T1574"],
@@ -35,5 +32,3 @@ def main():
     # cleanup
     _common.remove_directory(str(app_dir))
     _common.remove_file(masquerade2)
-
-

@@ -12,7 +12,7 @@ from pathlib import Path
     id="9010739f-05c5-4fc0-b806-27753d3d6b5b",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {"rule_id": "7e52f64b-b0be-4437-81d1-91dd4dd5cb79", "rule_name": "Potential iTerm2 Autolaunch Process Hijack"}
+        RuleMetadata(id="7e52f64b-b0be-4437-81d1-91dd4dd5cb79", name="Potential iTerm2 Autolaunch Process Hijack")
     ],
     siem_rules=[],
     techniques=[""],
@@ -42,5 +42,3 @@ def main():
 
     _common.remove_file(backup_iterm2)
     _common.remove_file(masquerade_bash)
-
-

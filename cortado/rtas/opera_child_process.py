@@ -29,5 +29,3 @@ def main():
     # cleanup
     _common.remove_file(masquerade)
     _common.remove_file(masquerade2)
-
-

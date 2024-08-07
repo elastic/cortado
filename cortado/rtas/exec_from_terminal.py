@@ -11,10 +11,7 @@ from . import _common
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_name": "Suspicious Terminal Child Process Execution",
-            "rule_id": "8e88d216-af7a-4f5c-8155-fa7d2be03987",
-        }
+        RuleMetadata(id="8e88d216-af7a-4f5c-8155-fa7d2be03987", name="Suspicious Terminal Child Process Execution")
     ],
     techniques=["T1059", "T1059.004"],
 )
@@ -29,5 +26,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

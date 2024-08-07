@@ -6,7 +6,6 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="7396debc-65ce-488f-845e-f92e68aceeb1",
     platforms=[OSType.WINDOWS],
@@ -17,17 +16,12 @@ from . import _common
     siem_rules=[],
     techniques=["T1548", "T1036"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     eventvwr = "C:\\Users\\Public\\eventvwr.exe"
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     _common.copy_file(EXE_FILE, eventvwr)
 
     _common.execute([eventvwr, "/c", powershell], timeout=2, kill=True)
     _common.remove_files(eventvwr)
-
-

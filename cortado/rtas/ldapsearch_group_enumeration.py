@@ -11,10 +11,9 @@ from . import _common
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_name": "Enumeration of Users or Groups via Built-in Commands",
-            "rule_id": "6e9b351e-a531-4bdc-b73e-7034d6eed7ff",
-        }
+        RuleMetadata(
+            id="6e9b351e-a531-4bdc-b73e-7034d6eed7ff", name="Enumeration of Users or Groups via Built-in Commands"
+        )
     ],
     techniques=["T1069", "T1087"],
 )
@@ -28,5 +27,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

@@ -6,19 +6,16 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="07eaba7d-c0ff-4480-87cf-5ad39805dc92",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{'rule_id': '201200f1-a99b-43fb-88ed-f65a45c4972c', 'rule_name': 'Suspicious .NET Code Compilation'}],
-    techniques=['T1027', 'T1027.004'],
+    siem_rules=[RuleMetadata(id="201200f1-a99b-43fb-88ed-f65a45c4972c", name="Suspicious .NET Code Compilation")],
+    techniques=["T1027", "T1027.004"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     wscript = "C:\\Users\\Public\\wscript.exe"
     csc = "C:\\Users\\Public\\csc.exe"
     _common.copy_file(EXE_FILE, wscript)
@@ -27,5 +24,3 @@ def main():
     # Execute command
     _common.execute([wscript, "/c", csc], timeout=2, kill=True)
     _common.remove_files(wscript, csc)
-
-

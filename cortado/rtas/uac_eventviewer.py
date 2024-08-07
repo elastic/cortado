@@ -47,5 +47,3 @@ def main(target_file=_common.get_path("bin", "myapp.exe")):
     winreg.DeleteValue(hkey, "")
     winreg.DeleteKey(hkey, "")
     winreg.CloseKey(hkey)
-
-

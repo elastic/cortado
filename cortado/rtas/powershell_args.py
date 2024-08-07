@@ -41,5 +41,3 @@ def main():
         _common.execute(command)
 
     _common.remove_file(temp_script)
-
-

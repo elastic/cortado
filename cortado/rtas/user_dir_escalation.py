@@ -38,5 +38,3 @@ def main():
     _common.execute([target_path])
 
     _common.remove_directory(target_directory)
-
-

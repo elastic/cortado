@@ -45,5 +45,3 @@ def main():
     )
 
     _common.execute([reg, "delete", regpath, "/f"], timeout=5, kill=True)
-
-

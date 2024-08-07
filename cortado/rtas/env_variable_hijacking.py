@@ -11,10 +11,9 @@ from . import _common
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_name": "Modification of Environment Variable via Launchctl",
-            "rule_id": "7453e19e-3dbf-4e4e-9ae0-33d6c6ed15e1",
-        }
+        RuleMetadata(
+            id="7453e19e-3dbf-4e4e-9ae0-33d6c6ed15e1", name="Modification of Environment Variable via Launchctl"
+        )
     ],
     techniques=["T1574"],
 )
@@ -28,5 +27,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

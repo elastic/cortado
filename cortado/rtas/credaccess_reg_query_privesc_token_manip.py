@@ -10,19 +10,12 @@ from . import _common
     id="59329aa6-852a-44d0-9b24-322fe4fbdad0",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {"rule_id": "c5ee8453-bc89-42e7-a414-1ba4bec85119", "rule_name": "Suspicious Access to LSA Secrets Registry"},
-        {
-            "rule_id": "b6e8c090-f0ec-4c4c-af00-55ac2a9f9b41",
-            "rule_name": "Security Account Manager (SAM) Registry Access",
-        },
-        {
-            "rule_id": "2afd9e7f-99e0-4a4d-a6e3-9e9db730f63b",
-            "rule_name": "Privilege Escalation via EXTENDED STARTUPINFO",
-        },
-        {
-            "rule_id": "46de65b8-b873-4ae7-988d-12dcdc6fa605",
-            "rule_name": "Potential Privilege Escalation via Token Impersonation",
-        },
+        RuleMetadata(id="c5ee8453-bc89-42e7-a414-1ba4bec85119", name="Suspicious Access to LSA Secrets Registry"),
+        RuleMetadata(id="b6e8c090-f0ec-4c4c-af00-55ac2a9f9b41", name="Security Account Manager (SAM) Registry Access"),
+        RuleMetadata(id="2afd9e7f-99e0-4a4d-a6e3-9e9db730f63b", name="Privilege Escalation via EXTENDED STARTUPINFO"),
+        RuleMetadata(
+            id="46de65b8-b873-4ae7-988d-12dcdc6fa605", name="Potential Privilege Escalation via Token Impersonation"
+        ),
     ],
     siem_rules=[],
     techniques=["T1134", "T1003"],
@@ -145,5 +138,3 @@ def main():
     CloseHandle(hsystem_token_dup)
     CloseHandle(hsystem_token)
     CloseHandle(hprocess)
-
-

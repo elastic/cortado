@@ -9,9 +9,7 @@ from . import _common
 @register_code_rta(
     id="af989d34-49af-4815-8d58-ab10835bfc35",
     platforms=[OSType.WINDOWS],
-    endpoint_rules=[
-        {"rule_id": "ccfca0c7-c975-4735-82bd-954ffbafd00b", "rule_name": "Evasion via Double File Extension"}
-    ],
+    endpoint_rules=[RuleMetadata(id="ccfca0c7-c975-4735-82bd-954ffbafd00b", name="Evasion via Double File Extension")],
     siem_rules=[],
     techniques=[""],
 )
@@ -22,5 +20,3 @@ def main():
 
     _common.execute([doubleext], timeout=1, kill=True)
     _common.remove_file(doubleext)
-
-

@@ -6,24 +6,23 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="dabd91c9-101e-475d-b2f2-ca255abda003",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{
-        'rule_id': 'bfeaf89b-a2a7-48a3-817f-e41829dc61ee',
-        'rule_name': 'Suspicious DLL Loaded for Persistence or Privilege Escalation'
-    }],
-    techniques=['T1574', 'T1574.002', 'T1574', 'T1574.001'],
+    siem_rules=[
+        RuleMetadata(
+            id="bfeaf89b-a2a7-48a3-817f-e41829dc61ee",
+            name="Suspicious DLL Loaded for Persistence or Privilege Escalation",
+        )
+    ],
+    techniques=["T1574", "T1574.002", "T1574", "T1574.001"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-RENAMER = _common.get_path("bin", "rcedit-x64.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+
     proc = "C:\\Users\\Public\\proc.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
     dll = "C:\\Users\\Public\\wlbsctrl.dll"
@@ -41,5 +40,3 @@ def main():
     _common.log("Loading wlbsctrl.dll into fake proc")
     _common.execute([proc, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout=10)
     _common.remove_files(proc, dll, ps1)
-
-

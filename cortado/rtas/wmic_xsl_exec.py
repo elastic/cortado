@@ -6,7 +6,6 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="b9d5427a-33c4-4b1d-838d-f47c5f3b0b43",
     platforms=[OSType.WINDOWS],
@@ -17,13 +16,10 @@ from . import _common
     siem_rules=[],
     techniques=["T1220", "T1047", "T1036"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+
     wmic = "C:\\Users\\Public\\wmic.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
     dll = "C:\\Users\\Public\\jscript.dll"
@@ -39,5 +35,3 @@ def main():
     )
 
     _common.remove_files(wmic, dll, ps1)
-
-

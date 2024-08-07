@@ -10,10 +10,7 @@ from . import _common
     id="a6263f00-58b4-4555-b88f-9d66a7395891",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "Suspicious NullSessionPipe Registry Modification",
-            "rule_id": "11d374d8-2dad-4d9b-83a2-ee908eac8269",
-        }
+        RuleMetadata(id="11d374d8-2dad-4d9b-83a2-ee908eac8269", name="Suspicious NullSessionPipe Registry Modification")
     ],
     siem_rules=[],
     techniques=["T1021", "T1112"],
@@ -27,5 +24,3 @@ def main():
 
     with _common.temporary_reg(_common.HKLM, key, value, data):
         pass
-
-

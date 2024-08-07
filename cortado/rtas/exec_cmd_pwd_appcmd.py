@@ -6,27 +6,21 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="a296162b-65c1-4fbe-ae34-67f606de408e",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{
-        'rule_id': '0564fb9d-90b9-4234-a411-82a546dc1343',
-        'rule_name': 'Microsoft IIS Service Account Password Dumped'
-    }],
-    techniques=['T1003'],
+    siem_rules=[
+        RuleMetadata(id="0564fb9d-90b9-4234-a411-82a546dc1343", name="Microsoft IIS Service Account Password Dumped")
+    ],
+    techniques=["T1003"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     appcmd = "C:\\Users\\Public\\appcmd.exe"
     _common.copy_file(EXE_FILE, appcmd)
 
     # Execute command
     _common.execute([appcmd, "/c", "echo", "/list", "/text&password"], timeout=10)
     _common.remove_file(appcmd)
-
-

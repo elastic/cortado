@@ -32,5 +32,3 @@ def main():
 
     _common.execute([wsreset, "/c", powershell], timeout=2, kill=True)
     _common.remove_file(wsreset)
-
-

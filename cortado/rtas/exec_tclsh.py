@@ -10,10 +10,9 @@ from . import _common
     id="9332cece-38b7-49e1-9f8d-e879913ffdfb",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "Tclsh execution followed by immediate network connection",
-            "rule_id": "ac1eaed8-2aee-48d7-9824-2be1f00eda0e",
-        }
+        RuleMetadata(
+            id="ac1eaed8-2aee-48d7-9824-2be1f00eda0e", name="Tclsh execution followed by immediate network connection"
+        )
     ],
     siem_rules=[],
     techniques=["T1059"],
@@ -24,5 +23,3 @@ def main():
 
     _common.log("Executing commands to mimic network activity from tclsh")
     _common.execute([masquerade, url], shell=True)
-
-

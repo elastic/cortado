@@ -14,11 +14,10 @@ SHELLCODE = b"\x48\x31\xff\x48\xf7\xe7\x65\x48\x8b\x58\x60\x48\x8b\x5b\x18\x48\x
     id="979b8d18-e266-41ad-bab4-6e68971398ea",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {"rule_id": "58b996a5-634c-4205-9ffa-a6f2b8ebc1ad", "rule_name": "Potential Process Creation via ShellCode"},
-        {
-            "rule_id": "2ad63716-3dc3-49ba-b682-ef4b9e4a4d87",
-            "rule_name": "Potential Injection via the Console Window Class",
-        },
+        RuleMetadata(id="58b996a5-634c-4205-9ffa-a6f2b8ebc1ad", name="Potential Process Creation via ShellCode"),
+        RuleMetadata(
+            id="2ad63716-3dc3-49ba-b682-ef4b9e4a4d87", name="Potential Injection via the Console Window Class"
+        ),
     ],
     siem_rules=[],
     techniques=["T1134", "T1055"],
@@ -30,5 +29,3 @@ def main():
     # Terminate CalculatorApp.exe and Calc.exe processes using taskkill
     _common.execute(["taskkill.exe", "/f", "/im", "CalculatorApp.exe"])
     _common.execute(["taskkill.exe", "/f", "/im", "Calc.exe"])
-
-

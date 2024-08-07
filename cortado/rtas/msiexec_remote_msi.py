@@ -21,5 +21,3 @@ def main():
         timeout=5,
         kill=True,
     )
-
-

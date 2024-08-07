@@ -6,25 +6,21 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="8fc20141-a73e-4c5e-9c9b-70acb69ab1dd",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "Registry Persistence via Microsoft Office Descendant Process",
-            "rule_id": "999e7a9a-334f-4b74-834f-a652f91531f2",
-        }
+        RuleMetadata(
+            id="999e7a9a-334f-4b74-834f-a652f91531f2",
+            name="Registry Persistence via Microsoft Office Descendant Process",
+        )
     ],
     siem_rules=[],
     techniques=["T1547", "T1112", "T1566"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     winword = "C:\\Users\\Public\\winword.exe"
     posh = "C:\\Users\\Public\\posh.exe"
     _common.copy_file(EXE_FILE, winword)
@@ -41,5 +37,3 @@ def main():
     _common.execute([winword, "/c", posh, "/c", cmd], timeout=10)
     _common.execute([posh, "/c", rem_cmd], timeout=10)
     _common.remove_file(winword)
-
-

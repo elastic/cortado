@@ -47,6 +47,8 @@ EXPAND_SZ = "expand_sz"
 MULTI_SZ = "multi_sz"
 DWORD = "dword"
 
+PS_EXEC = get_path("bin", "PsExec.exe")
+
 
 def get_current_os() -> OSType:
     if sys.platform == "darwin":
@@ -63,27 +65,6 @@ def get_cmd_path():
         return os.environ.get("COMSPEC")
     else:
         return "/bin/sh"
-
-
-def dependencies(*paths: str):
-    missing = []
-    for path in paths:
-        if not Path(path).exists():
-            missing.append(path)
-
-    def decorator(f):
-        @functools.wraps(f)
-        def decorated(*args, **kwargs):
-            if len(missing):
-                log("Missing dependencies for %s:%s()" % (f.func_code.co_filename, f.func_code.co_name), "!")
-                for dep in missing:
-                    print("    - %s" % os.path.relpath(dep, BASE_DIR))
-                return MISSING_DEPENDENCIES
-            return f(*args, **kwargs)
-
-        return decorated
-
-    return decorator
 
 
 def execute_command(  # noqa
@@ -389,8 +370,6 @@ def check_system():
 
 
 def run_system(arguments=None):
-    PS_EXEC = get_path("bin", "PsExec.exe")
-
     if check_system():
         return None
 

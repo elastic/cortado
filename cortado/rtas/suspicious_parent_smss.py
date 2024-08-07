@@ -6,22 +6,18 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="46463426-0a03-448a-afe3-9215841ec86d",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{
-        'rule_id': '05b358de-aa6d-4f6c-89e6-78f74018b43b',
-        'rule_name': 'Conhost Spawned By Suspicious Parent Process'
-    }],
-    techniques=['T1059'],
+    siem_rules=[
+        RuleMetadata(id="05b358de-aa6d-4f6c-89e6-78f74018b43b", name="Conhost Spawned By Suspicious Parent Process")
+    ],
+    techniques=["T1059"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     smss = "C:\\Users\\Public\\smss.exe"
     conhost = "C:\\Users\\Public\\conhost.exe"
     _common.copy_file(EXE_FILE, smss)
@@ -30,5 +26,3 @@ def main():
     # Execute command
     _common.execute([smss, "/c", conhost], timeout=2, kill=True)
     _common.remove_files(smss, conhost)
-
-

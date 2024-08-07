@@ -6,7 +6,6 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="bbbfc3e3-e1ba-45ad-9d30-cbbe115a0c6c",
     platforms=[OSType.WINDOWS],
@@ -17,13 +16,10 @@ from . import _common
     siem_rules=[],
     techniques=["T1218"],
 )
-
-RENAMER = _common.get_path("bin", "rcedit-x64.exe")
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     dll = "C:\\Users\\Public\\sqlite3.dll"
     posh = "C:\\Users\\Public\\posh.exe"
     rcedit = "C:\\Users\\Public\\rcedit.exe"
@@ -39,5 +35,3 @@ def main():
     _common.execute([posh], timeout=10, kill=True)
 
     _common.remove_files(dll, posh, rcedit)
-
-

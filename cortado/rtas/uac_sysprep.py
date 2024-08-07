@@ -28,5 +28,3 @@ def main():
     )
     _common.execute(["C:\\Windows\\system32\sysprep\\sysprep.exe"], timeout=5, kill=True)
     _common.remove_file("C:\\Windows\\system32\sysprep\\CRYPTBASE.DLL")
-
-

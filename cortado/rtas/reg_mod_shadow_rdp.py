@@ -11,7 +11,7 @@ from . import _common
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_id": "c57f8579-e2a5-4804-847f-f2732edc5156", "rule_name": "Potential Remote Desktop Shadowing Activity"}
+        RuleMetadata(id="c57f8579-e2a5-4804-847f-f2732edc5156", name="Potential Remote Desktop Shadowing Activity")
     ],
     techniques=["T1021"],
 )
@@ -24,5 +24,3 @@ def main():
 
     with _common.temporary_reg(_common.HKLM, key, value, data):
         pass
-
-

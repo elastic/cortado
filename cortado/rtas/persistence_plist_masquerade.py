@@ -13,7 +13,7 @@ from pathlib import Path
     id="8bd875f2-eafb-4151-bfb7-4bd97192400d",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {"rule_id": "3da48cdd-262a-42a9-af2f-c82ef639b9e3", "rule_name": "Persistence via a Masqueraded Plist Filename"}
+        RuleMetadata(id="3da48cdd-262a-42a9-af2f-c82ef639b9e3", name="Persistence via a Masqueraded Plist Filename")
     ],
     siem_rules=[],
     techniques=[""],
@@ -44,5 +44,3 @@ def main():
     _common.remove_file(masquerade)
     _common.remove_file(masquerade2)
     _common.remove_file(tmp_file)
-
-

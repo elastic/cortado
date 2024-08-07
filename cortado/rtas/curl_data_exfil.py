@@ -10,10 +10,7 @@ from . import _common
     id="aec658cc-a5df-42e8-8e09-810b484b9ef2",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "MacOS Potential Data Exfiltration via Curl",
-            "rule_id": "192ec591-1d00-4c16-a717-8a7481038d23",
-        }
+        RuleMetadata(id="192ec591-1d00-4c16-a717-8a7481038d23", name="MacOS Potential Data Exfiltration via Curl")
     ],
     siem_rules=[],
     techniques=["T1048"],
@@ -29,5 +26,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

@@ -27,5 +27,3 @@ def main():
 
     with _common.temporary_reg(_common.HKCU, key_path, value, scrobj, pause=True):
         pass
-
-

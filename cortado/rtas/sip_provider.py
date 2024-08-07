@@ -11,16 +11,6 @@
 from . import _common
 
 
-
-@register_code_rta(
-    id="b0e3e1bb-dfa5-473a-8862-b2d1d42819ce",
-    platforms=[OSType.WINDOWS],
-    endpoint_rules=[],
-    siem_rules=[RuleMetadata(id="f2c7b914-eda3-40c2-96ac-d23ef91776ca", name="SIP Provider Modification")],
-    techniques=["T1553"],
-)
-
-
 CRYPTO_ROOT = "SOFTWARE\\Microsoft\\Cryptography\\OID\\EncodingType 0"
 VERIFY_DLL_KEY = "%s\\CryptSIPDllVerifyIndirectData\\{C689AAB8-8E78-11D0-8C47-00C04FC295EE}" % CRYPTO_ROOT
 GETSIG_KEY = "%s\\CryptSIPDllGetSignedDataMsg\\{C689AAB8-8E78-11D0-8C47-00C04FC295EE}" % CRYPTO_ROOT
@@ -46,26 +36,30 @@ def register_sip_provider(dll_path, verify_function, getsig_function):
 
 
 if _common.is_64bit():
-    SIGCHECK = _common.get_path("bin", "sigcheck64.exe")
-    TRUST_PROVIDER_DLL = _common.get_path("bin", "TrustProvider64.dll")
+    SIGCHECK_EXE = "bin/sigcheck64.exe"
+    TRUST_PROVIDER_DLL = "bin/TrustProvider64.dll"
 else:
-    SIGCHECK = _common.get_path("bin", "sigcheck32.exe")
-    TRUST_PROVIDER_DLL = _common.get_path("bin", "TrustProvider32.dll")
+    SIGCHECK_EXE = "bin/sigcheck32.exe"
+    TRUST_PROVIDER_DLL = "bin/TrustProvider32.dll"
 
-TARGET_APP = _common.get_path("bin", "myapp.exe")
+TARGET_APP_EXE = "bin/myapp.exe"
 
 
-
-@_common.dependencies(SIGCHECK, TRUST_PROVIDER_DLL, TARGET_APP)
+@register_code_rta(
+    id="b0e3e1bb-dfa5-473a-8862-b2d1d42819ce",
+    platforms=[OSType.WINDOWS],
+    endpoint_rules=[],
+    siem_rules=[RuleMetadata(id="f2c7b914-eda3-40c2-96ac-d23ef91776ca", name="SIP Provider Modification")],
+    techniques=["T1553"],
+    ancillary_files=[SIGCHECK_EXE, TRUST_PROVIDER_DLL, TARGET_APP_EXE],
+)
 def main():
     _common.log("Registering SIP provider")
     register_sip_provider(TRUST_PROVIDER_DLL, "VerifyFunction", "GetSignature")
 
     _common.log("Launching sigcheck")
-    _common.execute([SIGCHECK, "-accepteula", TARGET_APP])
+    _common.execute([SIGCHECK_EXE, "-accepteula", TARGET_APP])
 
     _common.log("Cleaning up", log_type="-")
     wintrust = "C:\\Windows\\System32\\WINTRUST.dll"
     register_sip_provider(wintrust, "CryptSIPVerifyIndirectData", "CryptSIPGetSignedDataMsg")
-
-

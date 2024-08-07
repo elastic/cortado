@@ -19,5 +19,3 @@ from . import _common
 def main():
     _common.log("Executing file modification on com.apple.dock.plist to mimic dock plist modification")
     _common.temporary_file_helper("testing", file_name=f"{Path.home()}/Library/Preferences/com.apple.dock.plist")
-
-

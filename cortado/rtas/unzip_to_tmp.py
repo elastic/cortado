@@ -23,5 +23,3 @@ def main():
 
     _common.log("Executing unzip to tmp directory.")
     _common.execute([masquerade, "childprocess", command], shell=True, timeout=5, kill=True)
-
-

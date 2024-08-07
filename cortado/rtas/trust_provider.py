@@ -11,14 +11,14 @@
 from . import _common
 
 
+if _common.is_64bit():
+    SIGCHECK_EXE = "bin/sigcheck64.exe"
+    TRUST_PROVIDER_DLL = "bin/TrustProvider64.dll"
+else:
+    SIGCHECK_EXE = "bin/sigcheck32.exe"
+    TRUST_PROVIDER_DLL = "bin/TrustProvider32.dll"
 
-@register_code_rta(
-    id="45541eb5-c636-477b-81c9-b6dcf184c9cc",
-    platforms=[OSType.WINDOWS],
-    endpoint_rules=[],
-    siem_rules=[RuleMetadata(id="f2c7b914-eda3-40c2-96ac-d23ef91776ca", name="SIP Provider Modification")],
-    techniques=["T1553"],
-)
+TARGET_APP_EXE = "bin/myapp.exe"
 
 
 FINAL_POLICY_KEY = "Software\\Microsoft\\Cryptography\\providers\\trust\\FinalPolicy\\{00AAC56B-CD44-11D0-8CC2-00C04FC295EE}"  # noqa: E501
@@ -35,18 +35,14 @@ def set_final_policy(dll_path, function_name):
     winreg.SetValueEx(hkey, "$Function", 0, winreg.REG_SZ, function_name)
 
 
-if _common.is_64bit():
-    SIGCHECK = _common.get_path("bin", "sigcheck64.exe")
-    TRUST_PROVIDER_DLL = _common.get_path("bin", "TrustProvider64.dll")
-else:
-    SIGCHECK = _common.get_path("bin", "sigcheck32.exe")
-    TRUST_PROVIDER_DLL = _common.get_path("bin", "TrustProvider32.dll")
-
-TARGET_APP = _common.get_path("bin", "myapp.exe")
-
-
-
-@_common.dependencies(SIGCHECK, TRUST_PROVIDER_DLL, TARGET_APP)
+@register_code_rta(
+    id="45541eb5-c636-477b-81c9-b6dcf184c9cc",
+    platforms=[OSType.WINDOWS],
+    endpoint_rules=[],
+    siem_rules=[RuleMetadata(id="f2c7b914-eda3-40c2-96ac-d23ef91776ca", name="SIP Provider Modification")],
+    techniques=["T1553"],
+    ancillary_files=[SIGCHECK_EXE, TRUST_PROVIDER_DLL, TARGET_APP_EXE],
+)
 def main():
     _common.log("Trust Provider")
     set_final_policy(TRUST_PROVIDER_DLL, "FinalPolicy")
@@ -56,5 +52,3 @@ def main():
 
     _common.log("Cleaning up")
     set_final_policy("C:\\Windows\\System32\\WINTRUST.dll", "SoftpubAuthenticode")
-
-

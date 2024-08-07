@@ -12,10 +12,10 @@ from . import _common
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_name": "Launch Agent Creation or Modification and Immediate Loading",
-            "rule_id": "082e3f8c-6f80-485c-91eb-5b112cb79b28",
-        }
+        RuleMetadata(
+            id="082e3f8c-6f80-485c-91eb-5b112cb79b28",
+            name="Launch Agent Creation or Modification and Immediate Loading",
+        )
     ],
     techniques=["T1543"],
 )
@@ -32,5 +32,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

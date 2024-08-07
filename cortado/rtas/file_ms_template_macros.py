@@ -10,10 +10,9 @@ from pathlib import Path
     id="858475a2-78a6-40f8-8691-7ce0c631cc0c",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_id": "608eae71-6797-4ded-bfaa-41bcb17a8498",
-            "rule_name": "Office Application Startup via Template File Modification",
-        }
+        RuleMetadata(
+            id="608eae71-6797-4ded-bfaa-41bcb17a8498", name="Office Application Startup via Template File Modification"
+        )
     ],
     siem_rules=[],
     techniques=["T1137", "T1137.001"],
@@ -24,5 +23,3 @@ def main():
     file = path + "\\Normal.dotm"
 
     _common.temporary_file_helper("testing", file_name=file)
-
-

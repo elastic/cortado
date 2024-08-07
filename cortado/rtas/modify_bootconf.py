@@ -6,21 +6,18 @@
 from pathlib import Path
 
 
-
-
 @register_code_rta(
     id="672cd0e6-fa5a-468f-80c8-04f92bead469",
     platforms=[OSType.WINDOWS],
-    endpoint_rules=[RuleMetadata(id="6d660b32-23bf-434b-a588-1cdc91224664", name="BCDEdit Safe Mode Command Execution")],
+    endpoint_rules=[
+        RuleMetadata(id="6d660b32-23bf-434b-a588-1cdc91224664", name="BCDEdit Safe Mode Command Execution")
+    ],
     siem_rules=[],
     techniques=["T1490", "T1218", "T1059"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed.exe")
+
     binary = "winword.exe"
     _common.copy_file(EXE_FILE, binary)
     bcdedit = "bcdedit.exe"
@@ -43,5 +40,3 @@ def main():
     _common.execute([bcdedit, "/import", backup_file])
 
     _common.remove_files(binary)
-
-

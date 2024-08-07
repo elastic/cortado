@@ -10,10 +10,10 @@ import sys
     id="94366604-8f84-448e-9761-0eb7b45bc2fa",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_name": "Linux Suspicious Child Process Execution via Interactive Shell",
-            "rule_id": "aa02591f-c9e6-4317-841e-0b075b9515ff",
-        },
+        RuleMetadata(
+            id="aa02591f-c9e6-4317-841e-0b075b9515ff",
+            name="Linux Suspicious Child Process Execution via Interactive Shell",
+        ),
     ],
     techniques=["T1059"],
 )

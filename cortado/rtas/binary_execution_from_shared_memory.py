@@ -10,20 +10,13 @@ import sys
     id="1b7fe2e7-29c0-4d10-9ced-8b9cd158835d",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_id": "78ae5dbd-477b-4ce7-a7f7-8c4b5e228df2",
-            "rule_name": "Binary Executed from Shared Memory Directory",
-        },
+        RuleMetadata(id="78ae5dbd-477b-4ce7-a7f7-8c4b5e228df2", name="Binary Executed from Shared Memory Directory"),
     ],
     siem_rules=[
-        {
-            "rule_id": "3f3f9fe2-d095-11ec-95dc-f661ea17fbce",
-            "rule_name": "Binary Executed from Shared Memory Directory",
-        },
+        RuleMetadata(id="3f3f9fe2-d095-11ec-95dc-f661ea17fbce", name="Binary Executed from Shared Memory Directory"),
     ],
     techniques=["T1620"],
 )
-@_common.requires_os(metadata.platforms)
 def main() -> None:
     masquerade = "/dev/shm/test"
     source = _common.get_path("bin", "linux.ditto_and_spawn")

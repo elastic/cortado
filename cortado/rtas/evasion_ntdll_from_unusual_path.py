@@ -35,5 +35,3 @@ def main():
             print(f"[+] - NTDLL copy deleted")
         else:
             print("f[+] - Failed to load ntdll")
-
-

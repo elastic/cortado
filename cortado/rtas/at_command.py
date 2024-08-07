@@ -65,5 +65,3 @@ def main(target_host=None):
         # Check status and delete
         _common.execute(["at.exe", host_str, job_id])
         _common.execute(["at.exe", host_str, job_id, "/delete"])
-
-

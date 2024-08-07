@@ -6,24 +6,19 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="735969b3-6a2e-4c7d-b18a-59e2f36ef13b",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{'rule_id': 'c5ce48a6-7f57-4ee8-9313-3d0024caee10', 'rule_name': 'Installation of Custom Shim Databases'}],
-    techniques=['T1546', 'T1546.011'],
+    siem_rules=[RuleMetadata(id="c5ce48a6-7f57-4ee8-9313-3d0024caee10", name="Installation of Custom Shim Databases")],
+    techniques=["T1546", "T1546.011"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     key = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Custom"
     value = "a.sdb"
     data = "RTA"
 
     with _common.temporary_reg(_common.HKLM, key, value, data):
         pass
-
-

@@ -11,10 +11,7 @@ from . import _common
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_name": "Remote SSH Login Enabled via systemsetup Command",
-            "rule_id": "5ae4e6f8-d1bf-40fa-96ba-e29645e1e4dc",
-        }
+        RuleMetadata(id="5ae4e6f8-d1bf-40fa-96ba-e29645e1e4dc", name="Remote SSH Login Enabled via systemsetup Command")
     ],
     techniques=["T1021"],
 )
@@ -28,5 +25,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

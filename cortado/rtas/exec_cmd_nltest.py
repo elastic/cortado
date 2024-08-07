@@ -11,7 +11,7 @@ from . import _common
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_id": "84da2554-e12a-11ec-b896-f661ea17fbcd", "rule_name": "Enumerating Domain Trusts via NLTEST.EXE"}
+        RuleMetadata(id="84da2554-e12a-11ec-b896-f661ea17fbcd", name="Enumerating Domain Trusts via NLTEST.EXE")
     ],
     techniques=["T1482"],
 )
@@ -20,5 +20,3 @@ def main():
 
     # Execute command
     _common.execute([powershell, "/c", "nltest.exe /DCLIST:$env:USERDNSDOMAIN"], timeout=10)
-
-

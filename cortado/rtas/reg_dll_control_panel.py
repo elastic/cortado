@@ -10,10 +10,7 @@ from . import _common
     id="a86199f3-b08c-4fb5-ba92-a706a24090da",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_id": "340bdcad-187f-4ccb-b84e-34ee70844d78",
-            "rule_name": "DLL Control Panel Items Registry Modification",
-        }
+        RuleMetadata(id="340bdcad-187f-4ccb-b84e-34ee70844d78", name="DLL Control Panel Items Registry Modification")
     ],
     siem_rules=[],
     techniques=[""],
@@ -27,5 +24,3 @@ def main():
 
     with _common.temporary_reg(_common.HKCU, key, value, data):
         pass
-
-

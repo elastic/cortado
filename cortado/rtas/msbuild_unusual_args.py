@@ -6,7 +6,6 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="511278ac-4996-438e-ba03-bef8f10665b5",
     platforms=[OSType.WINDOWS],
@@ -17,13 +16,10 @@ from . import _common
     siem_rules=[],
     techniques=["T1127", "T1218"],
 )
-
-RENAMER = _common.get_path("bin", "rcedit-x64.exe")
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     msbuild = "C:\\Users\\Public\\posh.exe"
     rcedit = "C:\\Users\\Public\\rcedit.exe"
     _common.copy_file(RENAMER, rcedit)
@@ -37,5 +33,3 @@ def main():
     _common.execute([msbuild, "-Version"], timeout=10, kill=True)
 
     _common.remove_files(msbuild, rcedit)
-
-

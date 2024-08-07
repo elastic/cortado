@@ -6,25 +6,20 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="3206f2b2-c731-479f-a258-d486dac8a055",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "Microsoft Office File Execution via Script Interpreter",
-            "rule_id": "54aabea0-3687-4ef1-b70c-015ca588e563",
-        }
+        RuleMetadata(
+            id="54aabea0-3687-4ef1-b70c-015ca588e563", name="Microsoft Office File Execution via Script Interpreter"
+        )
     ],
     siem_rules=[],
     techniques=["T1566"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed.exe")
+
     binary = "winword.exe"
     _common.copy_file(EXE_FILE, binary)
 
@@ -42,5 +37,3 @@ def main():
     )
 
     _common.remove_files(binary, "cmd.exe")
-
-

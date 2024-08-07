@@ -40,5 +40,3 @@ def main():
     _common.execute([netsh, "advfirewall", "import", rules_file])
 
     _common.remove_file(rules_file)
-
-

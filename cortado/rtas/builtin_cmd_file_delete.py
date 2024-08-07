@@ -12,10 +12,9 @@ import pathlib
     id="c69a06f3-3873-4d5d-8584-035e0921b4a8",
     platforms=["macos", "linux"],
     endpoint_rules=[
-        {
-            "rule_id": "15019d7c-42e6-4cf7-88b0-0c3a6963e6f5",
-            "rule_name": "Suspicious Recursive File Deletion via Built-In Utilities",
-        }
+        RuleMetadata(
+            id="15019d7c-42e6-4cf7-88b0-0c3a6963e6f5", name="Suspicious Recursive File Deletion via Built-In Utilities"
+        )
     ],
     siem_rules=[],
     techniques=["T1565", "T1485"],
@@ -51,5 +50,3 @@ def main():
     _common.remove_file(masquerade2)
     if _common.CURRENT_OS == "linux":
         _common.remove_directory(working_dir)
-
-

@@ -6,7 +6,6 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="8c128a2b-fa7b-4bfc-9ec9-934395460420",
     platforms=[OSType.WINDOWS],
@@ -16,13 +15,10 @@ from . import _common
     siem_rules=[],
     techniques=["T1036"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-RENAMER = _common.get_path("bin", "rcedit-x64.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+
     autohotkey = "C:\\Users\\Public\\notaut0hotkey.exe"
     rcedit = "C:\\Users\\Public\\rcedit.exe"
     _common.copy_file(EXE_FILE, autohotkey)
@@ -43,5 +39,3 @@ def main():
     _common.execute([autohotkey], timeout=10, kill=True)
 
     _common.remove_files(autohotkey, rcedit)
-
-

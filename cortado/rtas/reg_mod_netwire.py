@@ -22,5 +22,3 @@ def main():
 
     with _common.temporary_reg(_common.HKCU, key, value, data):
         pass
-
-

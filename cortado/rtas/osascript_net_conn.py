@@ -11,10 +11,9 @@ from . import _common
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_name": "Apple Script Execution followed by Network Connection",
-            "rule_id": "47f76567-d58a-4fed-b32b-21f571e28910",
-        }
+        RuleMetadata(
+            id="47f76567-d58a-4fed-b32b-21f571e28910", name="Apple Script Execution followed by Network Connection"
+        )
     ],
     techniques=["T1105", "T1059"],
 )
@@ -28,5 +27,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

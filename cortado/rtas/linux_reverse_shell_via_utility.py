@@ -15,7 +15,6 @@ import sys
     siem_rules=[],
     techniques=["T1059", "T1071"],
 )
-@_common.requires_os(metadata.platforms)
 def main() -> None:
     _common.log("Creating a fake awk executable..")
     masquerade = "/tmp/awk"

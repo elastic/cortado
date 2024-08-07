@@ -9,7 +9,7 @@ from . import _common
 @register_code_rta(
     id="ac51c9f0-d8ea-4ee1-9371-f368aab884e9",
     platforms=[OSType.LINUX],
-    endpoint_rules=[{"rule_name": "Linux Hidden File Mounted", "rule_id": "5b544dbb-2c66-42cd-a4ee-8d1e5afe9903"}],
+    endpoint_rules=[RuleMetadata(id="5b544dbb-2c66-42cd-a4ee-8d1e5afe9903", name="Linux Hidden File Mounted")],
     techniques=["T1211", "T1059"],
 )
 def main():
@@ -24,5 +24,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

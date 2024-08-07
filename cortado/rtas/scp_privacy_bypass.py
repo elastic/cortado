@@ -10,16 +10,14 @@ from . import _common
     id="75fec962-54a4-4bb1-80ea-995269e90b30",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "Potential Privacy Control Bypass via Localhost Secure Copy",
-            "rule_id": "55df8e91-fd3c-4cc1-b36f-f01ded8c6da3",
-        }
+        RuleMetadata(
+            id="55df8e91-fd3c-4cc1-b36f-f01ded8c6da3", name="Potential Privacy Control Bypass via Localhost Secure Copy"
+        )
     ],
     siem_rules=[
-        {
-            "rule_name": "Potential Privacy Control Bypass via Localhost Secure Copy",
-            "rule_id": "c02c8b9f-5e1d-463c-a1b0-04edcdfe1a3d",
-        }
+        RuleMetadata(
+            id="c02c8b9f-5e1d-463c-a1b0-04edcdfe1a3d", name="Potential Privacy Control Bypass via Localhost Secure Copy"
+        )
     ],
     techniques=["T1548"],
 )
@@ -37,5 +35,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

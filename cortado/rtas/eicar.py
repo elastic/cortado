@@ -34,5 +34,3 @@ def main():
         # Execute command
         _common.log("Launching eicar test")
         _common.execute([cmd, "/c", "echo", "elastic-behavior-protection-eicar"])
-
-

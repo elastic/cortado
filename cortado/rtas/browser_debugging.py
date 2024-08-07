@@ -8,30 +8,20 @@ import platform
 from . import _common
 
 
-
 @register_code_rta(
     id="e061a96e-4c31-4f67-9745-6ff873f7829e",
     platforms=["windows", "macos", "linux"],
     endpoint_rules=[
-        {
-            "rule_name": "Potential Cookies Theft via Browser Debugging",
-            "rule_id": "5d7328aa-973b-41e7-a6b3-6f40ea3094f1",
-        }
+        RuleMetadata(id="5d7328aa-973b-41e7-a6b3-6f40ea3094f1", name="Potential Cookies Theft via Browser Debugging")
     ],
     siem_rules=[
-        {
-            "rule_name": "Potential Cookies Theft via Browser Debugging",
-            "rule_id": "027ff9ea-85e7-42e3-99d2-bbb7069e02eb",
-        }
+        RuleMetadata(id="027ff9ea-85e7-42e3-99d2-bbb7069e02eb", name="Potential Cookies Theft via Browser Debugging")
     ],
     techniques=["T1539"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     param1 = "--remote-debugging-port=9222"
     param2 = "--user-data-dir=remote-profile"
     if platform.system() == "Darwin":
@@ -63,5 +53,3 @@ def main():
         _common.log("Mimicking the start of a browser on debug mode")
         _common.execute([chrome, "/c", "echo", param1, param2], timeout=10)
         _common.remove_file(chrome)
-
-

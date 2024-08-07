@@ -6,28 +6,23 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="64a7cd38-767f-4d46-9350-feb585a32c18",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "Unusual DLL Extension Loaded by Rundll32 or Regsvr32",
-            "rule_id": "76da5dca-ffe5-4756-85ba-3ac2e6ccf623",
-        },
+        RuleMetadata(
+            id="76da5dca-ffe5-4756-85ba-3ac2e6ccf623", name="Unusual DLL Extension Loaded by Rundll32 or Regsvr32"
+        ),
         RuleMetadata(id="16c84e67-e5e7-44ff-aefa-4d771bcafc0c", name="Execution from Unusual Directory"),
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
     ],
     siem_rules=[],
     techniques=["T1218", "T1036", "T1059"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+
     rundll32 = "C:\\Users\\Public\\rundll32.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
     dll = "C:\\Users\\Public\\a.rta"
@@ -42,5 +37,3 @@ def main():
     _common.execute([rundll32, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout=10)
 
     _common.remove_files(rundll32, dll, ps1)
-
-

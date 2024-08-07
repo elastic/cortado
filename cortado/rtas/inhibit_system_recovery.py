@@ -10,10 +10,7 @@ from . import _common
     id="b11e12a4-271c-427f-b215-12a7a25cb3be",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "Inhibit System Recovery via Obfuscated Commands",
-            "rule_id": "99358f31-a84a-4f92-bb91-4370083acda0",
-        }
+        RuleMetadata(id="99358f31-a84a-4f92-bb91-4370083acda0", name="Inhibit System Recovery via Obfuscated Commands")
     ],
     siem_rules=[],
     techniques=["T1490", "T1047", "T1059"],
@@ -59,5 +56,3 @@ def main():
             "/nointeractive'",
         ]
     )
-
-

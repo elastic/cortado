@@ -10,14 +10,13 @@ from . import _common
     id="537de67d-8ba8-4df8-a965-75ca564d0846",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "Script Interpreter Process Writing to Commonly Abused Persistence Locations",
-            "rule_id": "be42f9fc-bdca-41cd-b125-f223d09eef69",
-        },
-        {
-            "rule_name": "Startup Persistence via Windows Script Interpreter",
-            "rule_id": "a85000c8-3eac-413b-8353-079343c2b6f0",
-        },
+        RuleMetadata(
+            id="be42f9fc-bdca-41cd-b125-f223d09eef69",
+            name="Script Interpreter Process Writing to Commonly Abused Persistence Locations",
+        ),
+        RuleMetadata(
+            id="a85000c8-3eac-413b-8353-079343c2b6f0", name="Startup Persistence via Windows Script Interpreter"
+        ),
     ],
     siem_rules=[],
     techniques=["T1547", "T1059"],
@@ -51,5 +50,3 @@ def main():
         "C:\\Documents and Settings\\All Users\\Start Menu\\Programs\\Startup\\cmd2.exe",
         "C:\\Documents and Settings\\All Users\\Start Menu\\Programs\\Startup\\cmd.exe",
     )
-
-

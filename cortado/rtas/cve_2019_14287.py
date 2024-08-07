@@ -10,16 +10,14 @@ from . import _common
     id="df91f5f2-a0a0-47e8-848b-d01526a43d60",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_name": "Potential Sudo Privilege Escalation via CVE-2019-14287",
-            "rule_id": "b382c343-892d-46e1-8fad-22576a086598",
-        }
+        RuleMetadata(
+            id="b382c343-892d-46e1-8fad-22576a086598", name="Potential Sudo Privilege Escalation via CVE-2019-14287"
+        )
     ],
     siem_rules=[
-        {
-            "rule_name": "Potential Sudo Privilege Escalation via CVE-2019-14287",
-            "rule_id": "8af5b42f-8d74-48c8-a8d0-6d14b4197288",
-        }
+        RuleMetadata(
+            id="8af5b42f-8d74-48c8-a8d0-6d14b4197288", name="Potential Sudo Privilege Escalation via CVE-2019-14287"
+        )
     ],
     techniques=["T1068"],
 )
@@ -34,5 +32,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

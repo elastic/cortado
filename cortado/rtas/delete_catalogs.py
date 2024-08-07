@@ -26,5 +26,3 @@ def main():
     time.sleep(2.5)
 
     _common.execute(["wbadmin", "delete", "catalog", "-quiet"])
-
-

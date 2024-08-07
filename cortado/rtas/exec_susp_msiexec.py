@@ -6,7 +6,6 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="c9b68802-7d8b-4806-a817-ad50032efc58",
     platforms=[OSType.WINDOWS],
@@ -17,12 +16,9 @@ from . import _common
     siem_rules=[],
     techniques=["T1218", "T1036"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     msiexec = "C:\\Users\\Public\\msiexec.exe"
     _common.copy_file(EXE_FILE, msiexec)
@@ -30,5 +26,3 @@ def main():
     # Execute command
     _common.execute([powershell, "/c", msiexec], timeout=10, kill=True)
     _common.remove_file(msiexec)
-
-

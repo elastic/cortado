@@ -22,5 +22,3 @@ def main():
     _common.log("Suspicious DLL Registration by Regsvr32")
 
     _common.execute(["regsvr32.exe", "-s", "meow.txt"])
-
-

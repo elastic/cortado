@@ -21,5 +21,3 @@ def main():
     _common.execute([office_path], stdin="whoami")
 
     _common.remove_files(office_path)
-
-

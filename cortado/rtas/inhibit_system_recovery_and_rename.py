@@ -10,10 +10,10 @@ from . import _common
     id="43331e29-57ba-438f-8d61-99f5d6471aaa",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "Inhibit System Recovery Followed by a Suspicious File Rename",
-            "rule_id": "92f114fb-7113-4e82-b021-6c2c4ca0a507",
-        }
+        RuleMetadata(
+            id="92f114fb-7113-4e82-b021-6c2c4ca0a507",
+            name="Inhibit System Recovery Followed by a Suspicious File Rename",
+        )
     ],
     siem_rules=[],
     techniques=["T1490", "T1486"],
@@ -34,5 +34,3 @@ def main():
     _common.execute([powershell, "/c", f"Rename-Item {tmppng} {renamed}"], timeout=10)
 
     _common.remove_file(renamed)
-
-

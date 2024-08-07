@@ -10,16 +10,14 @@ from . import _common
     id="9d02871f-6338-47aa-84c4-7d622692319f",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "Modification of Safari Settings via Defaults Command",
-            "rule_id": "396e1138-243c-4215-a8ed-be303204710d",
-        }
+        RuleMetadata(
+            id="396e1138-243c-4215-a8ed-be303204710d", name="Modification of Safari Settings via Defaults Command"
+        )
     ],
     siem_rules=[
-        {
-            "rule_name": "Modification of Safari Settings via Defaults Command",
-            "rule_id": "6482255d-f468-45ea-a5b3-d3a7de1331ae",
-        }
+        RuleMetadata(
+            id="6482255d-f468-45ea-a5b3-d3a7de1331ae", name="Modification of Safari Settings via Defaults Command"
+        )
     ],
     techniques=["T1562"],
 )
@@ -33,5 +31,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

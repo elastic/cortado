@@ -6,28 +6,19 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="ac6b2cda-97f1-4095-b5f1-9791da2e6282",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            'rule_id': 'e86da94d-e54b-4fb5-b96c-cecff87e8787',
-            'rule_name': 'Installation of Security Support Provider'
-        },
-        {
-            'rule_id': 'e9abe69b-1deb-4e19-ac4a-5d5ac00f72eb',
-            'rule_name': 'Potential LSA Authentication Package Abuse'
-        },
+        RuleMetadata(id="e86da94d-e54b-4fb5-b96c-cecff87e8787", name="Installation of Security Support Provider"),
+        RuleMetadata(id="e9abe69b-1deb-4e19-ac4a-5d5ac00f72eb", name="Potential LSA Authentication Package Abuse"),
     ],
-    techniques=['T1547', 'T1547.002', 'T1547.005'],
+    techniques=["T1547", "T1547.002", "T1547.005"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     key = "SYSTEM\\ControlSet001\\Control\\Lsa\\Security Packages"
     key2 = "SYSTEM\\ControlSet001\\Control\\Lsa"
     value = "RTA"
@@ -38,5 +29,3 @@ def main():
         pass
     with _common.temporary_reg(_common.HKLM, key2, value2, data):
         pass
-
-

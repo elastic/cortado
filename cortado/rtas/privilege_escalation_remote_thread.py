@@ -30,5 +30,3 @@ def main():
 
     path = _common.get_path("bin", name)
     os.system(f"{path} `pgrep {sleep_name}`")
-
-

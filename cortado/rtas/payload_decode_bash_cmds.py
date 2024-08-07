@@ -10,10 +10,9 @@ from . import _common
     id="4406f514-0ffa-465b-9cef-2eeeb32f1096",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_id": "5dce3865-838f-4773-9781-87226af1fc12",
-            "rule_name": "Payload Decoded and Decrypted via Built-In Utilities",
-        }
+        RuleMetadata(
+            id="5dce3865-838f-4773-9781-87226af1fc12", name="Payload Decoded and Decrypted via Built-In Utilities"
+        )
     ],
     siem_rules=[],
     techniques=[""],
@@ -38,5 +37,3 @@ def main():
     _common.remove_file(masquerade)
     _common.remove_file(masquerade2)
     _common.remove_file(masquerade3)
-
-

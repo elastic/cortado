@@ -15,22 +15,18 @@ import time
         RuleMetadata(id="16c84e67-e5e7-44ff-aefa-4d771bcafc0c", name="Execution from Unusual Directory"),
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         RuleMetadata(id="4cd6f758-0057-4e8a-9701-20b6116c2118", name="Dynwrapx Image Load via Windows Scripts"),
-        {
-            "rule_name": "Suspicious Windows Script Interpreter Child Process",
-            "rule_id": "83da4fac-563a-4af8-8f32-5a3797a9068e",
-        },
+        RuleMetadata(
+            id="83da4fac-563a-4af8-8f32-5a3797a9068e", name="Suspicious Windows Script Interpreter Child Process"
+        ),
     ],
     siem_rules=[],
     techniques=["T1055", "T1218", "T1036", "T1059"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-RENAMER = _common.get_path("bin", "rcedit-x64.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+
     cscript = "C:\\Users\\Public\\cscript.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
     dll = "C:\\Users\\Public\\dynwrapx.dll"
@@ -52,5 +48,3 @@ def main():
     # is only populated if I delay the removal of the dll file
     time.sleep(5)
     _common.remove_files(cscript, dll, ps1, rcedit)
-
-

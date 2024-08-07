@@ -10,16 +10,16 @@ from . import _common
     id="61f308d8-40c5-4c46-9181-e993cf07e92b",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "Attempt to Unload Elastic Endpoint Security Kernel Extension",
-            "rule_id": "a412fd9b-2a06-49ff-a073-8eb313c2d930",
-        }
+        RuleMetadata(
+            id="a412fd9b-2a06-49ff-a073-8eb313c2d930",
+            name="Attempt to Unload Elastic Endpoint Security Kernel Extension",
+        )
     ],
     siem_rules=[
-        {
-            "rule_name": "Attempt to Unload Elastic Endpoint Security Kernel Extension",
-            "rule_id": "70fa1af4-27fd-4f26-bd03-50b6af6b9e24",
-        }
+        RuleMetadata(
+            id="70fa1af4-27fd-4f26-bd03-50b6af6b9e24",
+            name="Attempt to Unload Elastic Endpoint Security Kernel Extension",
+        )
     ],
     techniques=["T1547", "T1562"],
 )
@@ -33,5 +33,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

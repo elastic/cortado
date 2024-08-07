@@ -17,7 +17,6 @@ from pathlib import Path
     siem_rules=[],
     techniques=["T1036", "T1059"],
 )
-@_common.requires_os(metadata.platforms)
 def main() -> None:
     masquerade_script = Path("/tmp/kworker_evasion.sh")
     with masquerade_script.open("w") as f:

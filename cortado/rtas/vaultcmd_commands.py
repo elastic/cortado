@@ -26,5 +26,3 @@ def main():
     _common.log("Searching Credential Vaults via VaultCmd")
 
     _common.execute(["vaultcmd.exe", "/list"])
-
-

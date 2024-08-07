@@ -18,5 +18,3 @@ from . import _common
 def main():
     _common.log("Executing deletion on /private/tmp/NSCreateObjectFileImageFromMemory-test file.")
     _common.temporary_file_helper("testing", file_name="/private/tmp/NSCreateObjectFileImageFromMemory-test")
-
-

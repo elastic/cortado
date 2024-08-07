@@ -7,27 +7,21 @@ import time
 from pathlib import Path
 
 
-
-
 @register_code_rta(
     id="20b96aa7-609e-473f-ac35-5ac19d10f9a5",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "PowerShell Obfuscation Spawned via Microsoft Office",
-            "rule_id": "93ef8a09-0f8d-4aa1-b0fb-47d5d5b40cf2",
-        },
+        RuleMetadata(
+            id="93ef8a09-0f8d-4aa1-b0fb-47d5d5b40cf2", name="PowerShell Obfuscation Spawned via Microsoft Office"
+        ),
         RuleMetadata(id="7200673e-588c-45d5-be48-bc5c7a908d6b", name="Suspicious PowerShell Downloads"),
     ],
     siem_rules=[],
     techniques=["T1566", "T1059"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed.exe")
+
     server, ip, port = _common.serve_web()
     url = "http://{}:{}/bad.ps1".format(ip, port)
 
@@ -44,5 +38,3 @@ def main():
 
     # Cleanup
     _common.remove_file(user_app_path)
-
-

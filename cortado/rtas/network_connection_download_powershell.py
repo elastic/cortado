@@ -10,9 +10,7 @@ from . import _common
     id="4b85db7b-b7e7-45d1-94de-210587e6d947",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[
-        {"rule_id": "33f306e8-417c-411b-965c-c2812d6d3f4d", "rule_name": "Remote File Download via PowerShell"}
-    ],
+    siem_rules=[RuleMetadata(id="33f306e8-417c-411b-965c-c2812d6d3f4d", name="Remote File Download via PowerShell")],
     techniques=["T1105", "T1059", "T1059.001"],
 )
 def main():
@@ -24,5 +22,3 @@ def main():
         [powershell, "/c", f"Test-NetConnection -ComputerName google.com -Port 443 | Out-File {fake_exe}"], timeout=10
     )
     _common.remove_file(fake_exe)
-
-

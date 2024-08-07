@@ -11,7 +11,7 @@ from . import _common
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_id": "76fd43b7-3480-4dd9-8ad7-8bd36bfad92f", "rule_name": "Potential Remote Desktop Tunneling Detected"}
+        RuleMetadata(id="76fd43b7-3480-4dd9-8ad7-8bd36bfad92f", name="Potential Remote Desktop Tunneling Detected")
     ],
     techniques=["T1572"],
 )
@@ -20,5 +20,3 @@ def main():
 
     # Execute command
     _common.execute([powershell, "/c", "echo", "127.0.0.1:3389", "-ssh"], timeout=10)
-
-

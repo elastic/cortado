@@ -6,7 +6,6 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="61abdbb3-bcab-4c57-8b5d-2a5c9226e580",
     platforms=[OSType.WINDOWS],
@@ -16,12 +15,9 @@ from . import _common
     siem_rules=[],
     techniques=["T1547", "T1112", "T1566"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     winword = "C:\\Users\\Public\\winword.exe"
     _common.copy_file(EXE_FILE, winword)
 
@@ -36,5 +32,3 @@ def main():
     _common.execute([winword, "/c", cmd], timeout=10)
     _common.execute([winword, "/c", rem_cmd], timeout=10)
     _common.remove_file(winword)
-
-

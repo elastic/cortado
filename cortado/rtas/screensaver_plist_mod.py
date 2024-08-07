@@ -10,16 +10,14 @@ from . import _common
     id="ce87d15a-9b72-42c4-8721-ae4bcff86a05",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "Screensaver Plist File Modified by Unexpected Process",
-            "rule_id": "ebae5222-71ba-4b73-afe9-8e034f8b4a04",
-        }
+        RuleMetadata(
+            id="ebae5222-71ba-4b73-afe9-8e034f8b4a04", name="Screensaver Plist File Modified by Unexpected Process"
+        )
     ],
     siem_rules=[
-        {
-            "rule_name": "Screensaver Plist File Modified by Unexpected Process",
-            "rule_id": "e6e8912f-283f-4d0d-8442-e0dcaf49944b",
-        }
+        RuleMetadata(
+            id="e6e8912f-283f-4d0d-8442-e0dcaf49944b", name="Screensaver Plist File Modified by Unexpected Process"
+        )
     ],
     techniques=["T1546"],
 )
@@ -37,5 +35,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

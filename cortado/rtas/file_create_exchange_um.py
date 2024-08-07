@@ -6,22 +6,20 @@
 from pathlib import Path
 
 
-
 @register_code_rta(
     id="29eb99a6-14cc-4d37-81dd-c2e78cda8c74",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{
-        'rule_id': '6cd1779c-560f-4b68-a8f1-11009b27fe63',
-        'rule_name': 'Microsoft Exchange Server UM Writing Suspicious Files'
-    }],
-    techniques=['T1190'],
+    siem_rules=[
+        RuleMetadata(
+            id="6cd1779c-560f-4b68-a8f1-11009b27fe63", name="Microsoft Exchange Server UM Writing Suspicious Files"
+        )
+    ],
+    techniques=["T1190"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     proc = "C:\\Users\\Public\\UMWorkerProcess.exe"
     path = "C:\\Users\\Public\\Microsoft\\Exchange Server Test\\FrontEnd\\HttpProxy\\owa\\auth\\"
     argpath = "C:\\Users\\Public\\Microsoft\\'Exchange Server Test'\\FrontEnd\\HttpProxy\\owa\\auth\\"
@@ -31,5 +29,3 @@ def main():
 
     _common.execute([proc, "/c", f"echo AAAAAAAA | Out-File {file}"], timeout=10, kill=True)
     _common.remove_files(proc)
-
-

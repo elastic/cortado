@@ -6,26 +6,21 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="71c81436-242d-4bc8-a195-93d1fdbc774b",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
-        {
-            "rule_name": "Suspicious Troubleshooting Pack Cabinet Execution",
-            "rule_id": "d18721f0-dce0-4bbc-a56a-06ea511b025e",
-        },
+        RuleMetadata(
+            id="d18721f0-dce0-4bbc-a56a-06ea511b025e", name="Suspicious Troubleshooting Pack Cabinet Execution"
+        ),
     ],
     siem_rules=[],
     techniques=["T1218", "T1036"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     firefox = "C:\\Users\\Public\\firefox.exe"
     msdt = "C:\\Users\\Public\\msdt.exe"
     _common.copy_file(EXE_FILE, firefox)
@@ -37,5 +32,3 @@ def main():
         timeout=10,
     )
     _common.remove_files(firefox, msdt)
-
-

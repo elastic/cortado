@@ -35,5 +35,3 @@ def main():
     # Restore the boot configuration
     _common.log("Restoring boot configuration from %s" % backup_file, log_type="-")
     _common.execute([bcdedit, "/import", backup_file])
-
-

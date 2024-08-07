@@ -11,7 +11,7 @@ import pathlib
 @register_code_rta(
     id="884ae75b-d9ed-448c-9267-fb470fffb249",
     platforms=[OSType.LINUX],
-    endpoint_rules=[{"rule_id": "753f83ff-437b-4952-8612-07e3c1327daf", "rule_name": "Potential Shell via Web Server"}],
+    endpoint_rules=[RuleMetadata(id="753f83ff-437b-4952-8612-07e3c1327daf", name="Potential Shell via Web Server")],
     siem_rules=[],
     techniques=["T1505", "T1505.003"],
 )
@@ -39,5 +39,3 @@ def main():
     _common.remove_file(masquerade)
     _common.remove_file(masquerade2)
     _common.remove_directory(working_dir)
-
-

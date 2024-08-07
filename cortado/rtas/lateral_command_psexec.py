@@ -25,5 +25,3 @@ def main(remote_host=None):
     remote_host = remote_host or _common.get_ip()
     _common.log("Performing PsExec to %s" % remote_host)
     _common.execute([_common.PS_EXEC, "\\\\%s" % remote_host, "-accepteula", "ipconfig"])
-
-

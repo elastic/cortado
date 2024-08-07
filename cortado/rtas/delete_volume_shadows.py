@@ -26,5 +26,3 @@ def main():
     # Create a volume shadow copy so that there is at least one to delete
     _common.execute(["wmic.exe", "shadowcopy", "call", "create", "volume=c:\\"])
     _common.execute(["wmic.exe", "shadowcopy", "delete", "/nointeractive"])
-
-

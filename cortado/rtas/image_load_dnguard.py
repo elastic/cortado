@@ -6,25 +6,19 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="1a565d0d-ac8e-487c-94cc-02aba86ad671",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            'rule_id': 'e691d379-6d01-43cc-9f1e-ab10df48a6bc',
-            'rule_name': 'Execution of a DNGUard Protected Program'
-        }
+        RuleMetadata(id="e691d379-6d01-43cc-9f1e-ab10df48a6bc", name="Execution of a DNGUard Protected Program")
     ],
     siem_rules=[],
-    techniques=['T1027', 'T1027.002'],
+    techniques=["T1027", "T1027.002"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+
     proc = "C:\\Users\\Public\\proc.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
     dll = "C:\\Users\\Public\\HVMRuntm.dll"
@@ -36,5 +30,3 @@ def main():
     _common.log("Loading HVMRuntm.dll into fake proc")
     _common.execute([proc, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout=10)
     _common.remove_files(proc, dll, ps1)
-
-

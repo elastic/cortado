@@ -10,9 +10,7 @@ from . import _common
     id="fafdfbda-add8-40a1-b2b5-640fce12413e",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[
-        {"rule_id": "d117cbb4-7d56-41b4-b999-bdf8c25648a0", "rule_name": "Symbolic Link to Shadow Copy Created"}
-    ],
+    siem_rules=[RuleMetadata(id="d117cbb4-7d56-41b4-b999-bdf8c25648a0", name="Symbolic Link to Shadow Copy Created")],
     techniques=["T1003"],
 )
 def main():
@@ -20,5 +18,3 @@ def main():
 
     # Execute command
     _common.execute([powershell, "/c", "echo", "mklink", "HarddiskVolumeShadowCopy"], timeout=10)
-
-

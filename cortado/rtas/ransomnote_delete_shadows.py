@@ -22,5 +22,3 @@ def main():
     _common.execute([vssadmin, "delete", "shadows", "/For=C:"], timeout=10)
 
     _common.execute([powershell, "/c", "echo 'Ooops! All your' > readme.txt"], timeout=10)
-
-

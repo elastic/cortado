@@ -13,17 +13,7 @@ import sys
 from pathlib import Path
 
 
-
-@register_code_rta(
-    id="6cd35061-278b-45e7-a9cb-86b48bc47884",
-    platforms=[OSType.WINDOWS],
-    endpoint_rules=[],
-    siem_rules=[RuleMetadata(id="45d273fb-1dca-457d-9855-bcb302180c21", name="Encrypting Files with WinRar or 7z")],
-    techniques=["T1560"],
-)
-
-
-SEVENZIP = _common.get_path("bin", "7za.exe")
+SEVENZIP_EXE = "bin/7za.exe"
 
 
 def create_exfil(path=Path("secret_stuff.txt").resolve()):
@@ -33,8 +23,14 @@ def create_exfil(path=Path("secret_stuff.txt").resolve()):
     return path
 
 
-
-@_common.dependencies(SEVENZIP)
+@register_code_rta(
+    id="6cd35061-278b-45e7-a9cb-86b48bc47884",
+    platforms=[OSType.WINDOWS],
+    endpoint_rules=[],
+    siem_rules=[RuleMetadata(id="45d273fb-1dca-457d-9855-bcb302180c21", name="Encrypting Files with WinRar or 7z")],
+    techniques=["T1560"],
+    ancillary_files=[SEVENZIP_EXE],
+)
 def main(password="s0l33t"):
     # create 7z.exe with not-7zip name, and exfil
     svnz2 = Path("a.exe").resolve()
@@ -59,5 +55,3 @@ def main(password="s0l33t"):
 
     _common.execute([SEVENZIP, "a", out_jpg, "-p" + password, exfil], mute=True)
     _common.remove_files(exfil, svnz2, out_jpg)
-
-

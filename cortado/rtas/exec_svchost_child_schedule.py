@@ -6,7 +6,6 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="e9ee4f0c-b8c6-4471-b132-1edf4a7ca441",
     platforms=[OSType.WINDOWS],
@@ -18,16 +17,11 @@ from . import _common
     siem_rules=[],
     techniques=["T1218", "T1036", "T1216", "T1220", "T1053", "T1059"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     svchost = "C:\\Users\\Public\\svchost.exe"
     _common.copy_file(EXE_FILE, svchost)
 
     _common.execute([svchost, "/c", "echo", "Schedule", "; mshta"], timeout=1, kill=True)
     _common.remove_file(svchost)
-
-

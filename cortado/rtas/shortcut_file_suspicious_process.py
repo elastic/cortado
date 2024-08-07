@@ -25,5 +25,3 @@ def main():
 
     _common.log("Deleting dummy shortcut file")
     _common.remove_file(shortcut_path)
-
-

@@ -40,5 +40,3 @@ def main():
             _common.execute([process], timeout=2, kill=True)
         else:
             _common.log("Skipping %s" % process, "-")
-
-

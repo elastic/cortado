@@ -6,26 +6,21 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="33f20563-7d1b-46a4-8644-a563f2488120",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
-        {
-            "rule_name": "UAC Bypass Attempt via MMC DLL Search Order Hijacking",
-            "rule_id": "28996098-b9be-4aa8-a1f3-4923c84b2649",
-        },
+        RuleMetadata(
+            id="28996098-b9be-4aa8-a1f3-4923c84b2649", name="UAC Bypass Attempt via MMC DLL Search Order Hijacking"
+        ),
     ],
     siem_rules=[],
     techniques=["T1574", "T1548", "T1036"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     key = "Environment"
     value = "COR_PROFILER_PATH"
     data = "temp.dll"
@@ -39,5 +34,3 @@ def main():
 
     _common.execute([mmc, "/c", powershell], timeout=2, kill=True)
     _common.remove_files(mmc)
-
-

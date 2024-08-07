@@ -6,23 +6,18 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="3c2c32fd-0856-4fc9-8a2d-81ed85e568b0",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{'rule_id': '9b6813a1-daf1-457e-b0e6-0bb4e55b8a4c', 'rule_name': 'Persistence via WMI Event Subscription'}],
-    techniques=['T1546', 'T1546.003'],
+    siem_rules=[RuleMetadata(id="9b6813a1-daf1-457e-b0e6-0bb4e55b8a4c", name="Persistence via WMI Event Subscription")],
+    techniques=["T1546", "T1546.003"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     wmic = "C:\\Users\\Public\\wmic.exe"
     _common.copy_file(EXE_FILE, wmic)
 
     _common.execute([wmic, "/c", "echo", "create", "ActiveScriptEventConsumer"], timeout=5, kill=True)
     _common.remove_files(wmic)
-
-

@@ -10,7 +10,7 @@ from . import _common
     id="712509fa-5326-4ebc-bb1e-82ddf28e8baa",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "9aa0e1f6-52ce-42e1-abb3-09657cee2698", "rule_name": "Scheduled Tasks AT Command Enabled"}],
+    siem_rules=[RuleMetadata(id="9aa0e1f6-52ce-42e1-abb3-09657cee2698", name="Scheduled Tasks AT Command Enabled")],
     techniques=["T1562", "T1562.001"],
 )
 def main():
@@ -20,5 +20,3 @@ def main():
 
     with _common.temporary_reg(_common.HKLM, key, value, data, data_type="dword"):
         pass
-
-

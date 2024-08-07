@@ -10,10 +10,7 @@ from . import _common
     id="d2c9baa4-6dda-46ff-acaa-f70ac0d3391b",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_name": "Linux Hidden Folder or File Execution via Python",
-            "rule_id": "b25ec4e7-34f1-40c2-b683-bbf1dcdd84e5",
-        }
+        RuleMetadata(id="b25ec4e7-34f1-40c2-b683-bbf1dcdd84e5", name="Linux Hidden Folder or File Execution via Python")
     ],
     techniques=["T1059"],
 )
@@ -29,5 +26,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

@@ -11,7 +11,7 @@ from . import _common
     platforms=[OSType.WINDOWS],
     siem_rules=[],
     endpoint_rules=[
-        {"rule_id": "dc27190a-688b-4f9b-88f0-1f13deccd67f", "rule_name": "Security Account Manager (SAM) File Access"}
+        RuleMetadata(id="dc27190a-688b-4f9b-88f0-1f13deccd67f", name="Security Account Manager (SAM) File Access")
     ],
     techniques=["T1003", "T1003.002"],
 )
@@ -58,5 +58,3 @@ def main():
             win32file.CloseHandle(hf)
         else:
             print(f"[x] - RTA Failed :(")
-
-

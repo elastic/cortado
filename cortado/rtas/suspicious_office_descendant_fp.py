@@ -51,5 +51,3 @@ def main():
     time.sleep(5)
     _common.log("Cleanup %s" % browser_path)
     _common.remove_file(browser_path)
-
-

@@ -12,7 +12,7 @@ import time
     id="f9a0601a-4c36-41df-bdf6-140ae7c99de3",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {"rule_name": "Linux Execution of a File Dropped by OpenSSL", "rule_id": "7032dd32-8a51-4545-94d0-5997051f4610"}
+        RuleMetadata(id="7032dd32-8a51-4545-94d0-5997051f4610", name="Linux Execution of a File Dropped by OpenSSL")
     ],
     techniques=["T1027", "T1140", "T1204"],
 )
@@ -44,5 +44,3 @@ def main():
     _common.log("Cleaning...")
     _common.remove_file(masquerade)
     _common.log("RTA completed!")
-
-

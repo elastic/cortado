@@ -16,5 +16,3 @@ from . import _common
 def main():
     _common.log("Executing file modification on test.plist to mimic emond file modification")
     _common.temporary_file_helper("testing", file_name="/private/etc/emond.d/rules/test.plist")
-
-

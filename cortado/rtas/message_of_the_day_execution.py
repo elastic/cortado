@@ -10,16 +10,10 @@ from . import _common
     id="33f3ebda-7776-4cec-933b-48e85d707d61",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_name": "Suspicious Process Spawned from MOTD Detected",
-            "rule_id": "b9b3922a-59ee-407c-8773-31b98bf9b18d",
-        }
+        RuleMetadata(id="b9b3922a-59ee-407c-8773-31b98bf9b18d", name="Suspicious Process Spawned from MOTD Detected")
     ],
     siem_rules=[
-        {
-            "rule_name": "Suspicious Process Spawned from MOTD Detected",
-            "rule_id": "4ec47004-b34a-42e6-8003-376a123ea447",
-        }
+        RuleMetadata(id="4ec47004-b34a-42e6-8003-376a123ea447", name="Suspicious Process Spawned from MOTD Detected")
     ],
     techniques=[""],
 )
@@ -40,5 +34,3 @@ def main():
     _common.log("Cleaning...")
     _common.remove_file(masquerade)
     _common.log("RTA completed!")
-
-

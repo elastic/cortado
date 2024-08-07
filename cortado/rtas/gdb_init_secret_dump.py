@@ -10,11 +10,9 @@ from . import _common
     id="163dbe60-28e0-4042-b2f0-173dddea877b",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {"rule_name": "Linux init (PID 1) Secret Dump via GDB", "rule_id": "ba70be59-bf50-48a9-8b36-0f0808a50fb8"}
+        RuleMetadata(id="ba70be59-bf50-48a9-8b36-0f0808a50fb8", name="Linux init (PID 1) Secret Dump via GDB")
     ],
-    siem_rules=[
-        {"rule_name": "Linux init (PID 1) Secret Dump via GDB", "rule_id": "d4ff2f53-c802-4d2e-9fb9-9ecc08356c3f"}
-    ],
+    siem_rules=[RuleMetadata(id="d4ff2f53-c802-4d2e-9fb9-9ecc08356c3f", name="Linux init (PID 1) Secret Dump via GDB")],
     techniques=["T1003"],
 )
 def main():
@@ -28,5 +26,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

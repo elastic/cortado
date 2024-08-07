@@ -6,26 +6,21 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="245fcf03-6df8-4731-af94-f2ba4ed60670",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "Unusual File Written or Modified in Startup Folder",
-            "rule_id": "30a90136-7831-41c3-a2aa-1a303c1186ac",
-        },
+        RuleMetadata(
+            id="30a90136-7831-41c3-a2aa-1a303c1186ac", name="Unusual File Written or Modified in Startup Folder"
+        ),
         RuleMetadata(id="0b33141a-3f73-4414-ba90-d8410e6ab176", name="Network Connection via Startup Item"),
     ],
     siem_rules=[],
     techniques=["T1547", "T1218", "T1036", "T1059"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     posh = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\posh.exe"
     _common.copy_file(EXE_FILE, posh)
 
@@ -42,5 +37,3 @@ def main():
         timeout=10,
     )
     _common.remove_files(posh)
-
-

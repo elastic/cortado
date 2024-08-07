@@ -11,10 +11,10 @@ from multiprocessing import Process
     id="04361aca-0550-4134-ac21-939bf4a0582f",
     platforms=["macos", "linux"],
     endpoint_rules=[
-        {
-            "rule_id": "41f1f818-0efe-4670-a2ed-7a4c200dd621",
-            "rule_name": "Suspicious Content Extracted or Decompressed via Built-In Utilities",
-        }
+        RuleMetadata(
+            id="41f1f818-0efe-4670-a2ed-7a4c200dd621",
+            name="Suspicious Content Extracted or Decompressed via Built-In Utilities",
+        )
     ],
     siem_rules=[],
     techniques=["T1059", "T1059.004", "T1027", "T1140"],
@@ -57,5 +57,3 @@ def main():
     # cleanup
     _common.remove_file(masquerade)
     _common.remove_file(masquerade2)
-
-

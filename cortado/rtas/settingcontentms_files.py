@@ -20,10 +20,7 @@ from . import _common
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_id": "7405ddf1-6c8e-41ce-818f-48bea6bcaed8",
-            "rule_name": "Potential Modification of Accessibility Binaries",
-        }
+        RuleMetadata(id="7405ddf1-6c8e-41ce-818f-48bea6bcaed8", name="Potential Modification of Accessibility Binaries")
     ],
     techniques=["T1546"],
 )
@@ -32,5 +29,3 @@ def main():
     _common.execute(["cmd", "/c", "echo", "test", ">", "%APPDATA%\\test.SettingContent-ms"])
     time.sleep(1)
     _common.execute(["cmd", "/c", "del", "%APPDATA%\\test.SettingContent-ms"])
-
-

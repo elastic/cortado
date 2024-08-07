@@ -10,10 +10,7 @@ from . import _common
     id="ea7c50ad-5736-48c7-bf39-50f708710826",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "Script Execution via macOS Application Bundle",
-            "rule_id": "94a891a9-3771-4a8c-a6ca-82fa66cfd7e2",
-        }
+        RuleMetadata(id="94a891a9-3771-4a8c-a6ca-82fa66cfd7e2", name="Script Execution via macOS Application Bundle")
     ],
     siem_rules=[],
     techniques=["T1553", "T1059"],
@@ -36,5 +33,3 @@ def main():
     # cleanup
     _common.remove_file(masquerade)
     _common.remove_file(masquerade2)
-
-

@@ -10,10 +10,7 @@ from . import _common
     id="a56d07b3-c459-4a72-adab-b93bbe008f0f",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "Non-Native Dylib Extracted into New Directory",
-            "rule_id": "62cc9cf4-5440-4237-aa5b-ea8db83deb3d",
-        }
+        RuleMetadata(id="62cc9cf4-5440-4237-aa5b-ea8db83deb3d", name="Non-Native Dylib Extracted into New Directory")
     ],
     siem_rules=[],
     techniques=["T1059", "T1059.004"],
@@ -28,5 +25,3 @@ def main():
 
     # cleanup
     _common.remove_file("test.dylib")
-
-

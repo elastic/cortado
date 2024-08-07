@@ -6,29 +6,22 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="804463e7-b146-41ba-a757-d131d0a021ac",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "Scheduled Task Creation via Microsoft Office",
-            "rule_id": "f9fd002c-0dab-42ec-8675-0cf5af6b4a85",
-        },
+        RuleMetadata(id="f9fd002c-0dab-42ec-8675-0cf5af6b4a85", name="Scheduled Task Creation via Microsoft Office"),
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         RuleMetadata(id="5b00c9ba-9546-47cc-8f9f-1c1a3e95f65c", name="Potential Masquerading as SVCHOST"),
     ],
     siem_rules=[],
     techniques=["T1036", "T1053", "T1566"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-RENAMER = _common.get_path("bin", "rcedit-x64.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+
     winword = "C:\\Users\\Public\\winword.exe"
     svchost = "C:\\Users\\Public\\svchost.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
@@ -49,5 +42,3 @@ def main():
     _common.execute([winword, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout=10)
     _common.execute([svchost, "-c", f"New-Item -Path {task} -Type File"], timeout=10)
     _common.remove_files(dll, ps1, rcedit, task, winword, svchost)
-
-

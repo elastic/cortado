@@ -9,9 +9,7 @@ from . import _common
 @register_code_rta(
     id="a960d54a-685b-4058-bb88-a67ff002a280",
     platforms=[OSType.LINUX],
-    endpoint_rules=[
-        {"rule_name": "Linux Powershell Encoded Command", "rule_id": "cd6e64ec-2890-4bd8-9d07-bef06465b06f"}
-    ],
+    endpoint_rules=[RuleMetadata(id="cd6e64ec-2890-4bd8-9d07-bef06465b06f", name="Linux Powershell Encoded Command")],
     techniques=["T1059"],
 )
 def main():
@@ -29,5 +27,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

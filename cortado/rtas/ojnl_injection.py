@@ -10,10 +10,9 @@ from . import _common
     id="b48a9dd2-8fe7-41e1-9af2-65f609a54237",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_id": "8fff17c6-f0ba-4996-bcc3-342a9ebd0ef3",
-            "rule_name": "Remote Code Execution via Confluence OGNL Injection",
-        }
+        RuleMetadata(
+            id="8fff17c6-f0ba-4996-bcc3-342a9ebd0ef3", name="Remote Code Execution via Confluence OGNL Injection"
+        )
     ],
     siem_rules=[],
     techniques=["T1190"],
@@ -34,5 +33,3 @@ def main():
     # cleanup
     _common.remove_file(masquerade)
     _common.remove_file(masquerade2)
-
-

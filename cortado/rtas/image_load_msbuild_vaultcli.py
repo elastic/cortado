@@ -6,24 +6,22 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="d4b4f924-974b-4033-9728-bb6a736bf7ef",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{
-        'rule_id': '9d110cb3-5f4b-4c9a-b9f5-53f0a1707ae5',
-        'rule_name': 'Potential Credential Access via Trusted Developer Utility'
-    }],
-    techniques=['T1003'],
+    siem_rules=[
+        RuleMetadata(
+            id="9d110cb3-5f4b-4c9a-b9f5-53f0a1707ae5", name="Potential Credential Access via Trusted Developer Utility"
+        )
+    ],
+    techniques=["T1003"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-RENAMER = _common.get_path("bin", "rcedit-x64.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+
     msbuild = "C:\\Users\\Public\\msbuild.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
     dll = "C:\\Users\\Public\\vaultcli.dll"
@@ -41,5 +39,3 @@ def main():
     _common.execute([msbuild, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout=10)
 
     _common.remove_files(dll, ps1, rcedit, msbuild)
-
-

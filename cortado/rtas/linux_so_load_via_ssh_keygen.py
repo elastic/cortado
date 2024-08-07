@@ -10,7 +10,7 @@ from . import _common
     id="5c520396-4951-4763-8512-a53545bcff9c",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {"rule_name": "Linux Shared Object Load via SSH-Keygen", "rule_id": "cc29bf55-8d7f-45df-b8fe-212968c8951c"}
+        RuleMetadata(id="cc29bf55-8d7f-45df-b8fe-212968c8951c", name="Linux Shared Object Load via SSH-Keygen")
     ],
     techniques=["T1574"],
 )
@@ -26,5 +26,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

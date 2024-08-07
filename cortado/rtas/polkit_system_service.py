@@ -10,10 +10,7 @@ import sys
     id="32a4b4dd-24b3-4aed-bbce-2ca6ed5e1d69",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_id": "3144cab7-cc28-46c3-a3ac-8fefe8db22d6",
-            "rule_name": "Privilege Escalation via Polkit System Service",
-        },
+        RuleMetadata(id="3144cab7-cc28-46c3-a3ac-8fefe8db22d6", name="Privilege Escalation via Polkit System Service"),
     ],
     siem_rules=[],
     techniques=["T1548"],

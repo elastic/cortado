@@ -6,25 +6,20 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="9643aa7f-fe2e-46f1-b3ef-8cf07b5aaaa0",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "UAC Bypass via Windows Activation Execution Hijack",
-            "rule_id": "71ad1420-ed83-46d0-835b-63d4b2008427",
-        }
+        RuleMetadata(
+            id="71ad1420-ed83-46d0-835b-63d4b2008427", name="UAC Bypass via Windows Activation Execution Hijack"
+        )
     ],
     siem_rules=[],
     techniques=["T1548"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     key = "Software\\Classes\\Launcher.SystemSettings\\shell\\open\\command"
     value = "test"
     data = "test"
@@ -38,5 +33,3 @@ def main():
 
     _common.execute([changepk, "/c", powershell], timeout=2, kill=True)
     _common.remove_file(changepk)
-
-

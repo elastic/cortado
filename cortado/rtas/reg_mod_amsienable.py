@@ -11,7 +11,7 @@ from . import _common
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {"rule_id": "f874315d-5188-4b4a-8521-d1c73093a7e4", "rule_name": "Modification of AmsiEnable Registry Key"}
+        RuleMetadata(id="f874315d-5188-4b4a-8521-d1c73093a7e4", name="Modification of AmsiEnable Registry Key")
     ],
     techniques=["T1562", "T1562.001"],
 )
@@ -22,5 +22,3 @@ def main():
 
     with _common.temporary_reg(_common.HKCU, key, value, data, data_type="dword"):
         pass
-
-

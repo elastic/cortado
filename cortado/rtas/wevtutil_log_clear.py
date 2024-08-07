@@ -29,5 +29,3 @@ def main():
 
     for log in ["security", "application", "system"]:
         _common.execute([wevtutil, "cl", log])
-
-

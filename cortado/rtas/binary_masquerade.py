@@ -11,10 +11,9 @@ from . import _common
     id="62eb4521-cfb8-4fb8-bc6d-792fe57273b7",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "Potential Binary Masquerading via Invalid Code Signature",
-            "rule_id": "4154c8ce-c718-4641-80db-a6a52276f1a4",
-        }
+        RuleMetadata(
+            id="4154c8ce-c718-4641-80db-a6a52276f1a4", name="Potential Binary Masquerading via Invalid Code Signature"
+        )
     ],
     siem_rules=[],
     techniques=["T1036"],
@@ -26,5 +25,3 @@ def main():
         name = "com.apple.sleep_intel"
     path = _common.get_path("bin", name)
     _common.execute([path, "5"], kill=True)
-
-

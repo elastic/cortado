@@ -10,7 +10,7 @@ from . import _common
     id="2b07eb19-c71e-4e79-b0b6-a3850bdbf273",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {"rule_id": "02db53f7-d6de-4e69-8e05-819233583c87", "rule_name": "Attempt to Disable IPTables or Firewall"}
+        RuleMetadata(id="02db53f7-d6de-4e69-8e05-819233583c87", name="Attempt to Disable IPTables or Firewall")
     ],
     siem_rules=[],
     techniques=["T1562", "T1562.001"],
@@ -26,5 +26,3 @@ def main():
     _common.execute([masquerade, command], timeout=10, kill=True, shell=True)
     # cleanup
     _common.remove_file(masquerade)
-
-

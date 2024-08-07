@@ -11,10 +11,7 @@ from . import _common
     id="aac863d1-8306-463e-b81f-3d97ba925a44",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "Suspicious PrivilegedHelperTool Activity",
-            "rule_id": "900fdb84-2a81-4a6d-88db-b48a0fafd79e",
-        }
+        RuleMetadata(id="900fdb84-2a81-4a6d-88db-b48a0fafd79e", name="Suspicious PrivilegedHelperTool Activity")
     ],
     siem_rules=[],
     techniques=["T1068"],
@@ -32,5 +29,3 @@ def main():
 
     # cleanup
     _common.remove_directory(str(tools))
-
-

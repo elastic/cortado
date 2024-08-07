@@ -10,10 +10,10 @@ from . import _common
     id="bf7645b2-d0cf-428d-a158-b1479160e60c",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "Payload Downloaded by Process Running in Suspicious Directory",
-            "rule_id": "8c42c8bd-c282-44ca-b308-92e4267b6244",
-        }
+        RuleMetadata(
+            id="8c42c8bd-c282-44ca-b308-92e4267b6244",
+            name="Payload Downloaded by Process Running in Suspicious Directory",
+        )
     ],
     siem_rules=[],
     techniques=["T1105"],
@@ -28,5 +28,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

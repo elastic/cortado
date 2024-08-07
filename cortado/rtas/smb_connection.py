@@ -13,6 +13,7 @@ import sys
 
 from . import _common
 
+SMB_PORT = 445
 
 
 @register_code_rta(
@@ -22,12 +23,6 @@ from . import _common
     siem_rules=[RuleMetadata(id="c82c7d8f-fb9e-4874-a4bd-fd9e3f9becf1", name="Direct Outbound SMB Connection")],
     techniques=["T1021"],
 )
-
-
-SMB_PORT = 445
-
-
-
 def main(ip=None):
     ip = ip or _common.get_ip()
 
@@ -40,5 +35,3 @@ def main(ip=None):
     _common.log("Shutting down the connection...")
     s.close()
     _common.log("Closed connection to {}:{}".format(ip, SMB_PORT))
-
-

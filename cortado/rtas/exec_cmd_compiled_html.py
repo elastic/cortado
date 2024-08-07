@@ -6,19 +6,18 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="2e2b5db2-2edb-421e-bb5e-6d2ab09303e0",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{'rule_id': 'e3343ab9-4245-4715-b344-e11c56b0a47f', 'rule_name': 'Process Activity via Compiled HTML File'}],
-    techniques=['T1204', 'T1204.002', 'T1218', 'T1218.001'],
+    siem_rules=[
+        RuleMetadata(id="e3343ab9-4245-4715-b344-e11c56b0a47f", name="Process Activity via Compiled HTML File")
+    ],
+    techniques=["T1204", "T1204.002", "T1218", "T1218.001"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     hh = "C:\\Users\\Public\\hh.exe"
     mshta = "C:\\Windows\\System32\\mshta.exe"
     _common.copy_file(EXE_FILE, hh)
@@ -26,5 +25,3 @@ def main():
     # Execute command
     _common.execute([hh, "/c", mshta], timeout=2, kill=True)
     _common.remove_file(hh)
-
-

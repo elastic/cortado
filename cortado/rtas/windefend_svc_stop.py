@@ -11,10 +11,7 @@ from . import _common
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
-        {
-            "rule_name": "Attempt to Disable Windows Defender Services",
-            "rule_id": "32ab2977-2932-4172-9117-36e382591818",
-        },
+        RuleMetadata(id="32ab2977-2932-4172-9117-36e382591818", name="Attempt to Disable Windows Defender Services"),
     ],
     siem_rules=[],
     techniques=["T1562", "T1036"],
@@ -28,5 +25,3 @@ def main():
     _common.log("Attempting to stop Windefend, which will not work unless running as SYSTEM")
     _common.execute([tempshell, "/c", "sc.exe stop Windefend"])
     _common.remove_file(tempshell)
-
-

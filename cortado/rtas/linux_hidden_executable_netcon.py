@@ -10,10 +10,9 @@ from . import _common
     id="da45a71e-fc97-492d-932f-703b11c08387",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_name": "Hidden Process Execution followed by Network Connection",
-            "rule_id": "04ec0ec4-86c4-47e3-8c7b-8dad5f97532c",
-        }
+        RuleMetadata(
+            id="04ec0ec4-86c4-47e3-8c7b-8dad5f97532c", name="Hidden Process Execution followed by Network Connection"
+        )
     ],
     techniques=["T1105", "T1071"],
 )
@@ -30,5 +29,3 @@ def main():
     _common.log("Cleaning...")
     _common.remove_file(masquerade)
     _common.log("Simulation successfull!")
-
-

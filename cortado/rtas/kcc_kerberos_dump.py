@@ -10,10 +10,7 @@ from . import _common
     id="2f17286a-e4a8-41de-b3fa-595a4be6fb19",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "Potential Access to Kerberos Cached Credentials",
-            "rule_id": "dc8fa849-efb4-45d1-be1a-9472325ff746",
-        }
+        RuleMetadata(id="dc8fa849-efb4-45d1-be1a-9472325ff746", name="Potential Access to Kerberos Cached Credentials")
     ],
     siem_rules=[RuleMetadata(id="ad88231f-e2ab-491c-8fc6-64746da26cfe", name="Kerberos Cached Credentials Dumping")],
     techniques=["T1558", "T1003"],
@@ -28,5 +25,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

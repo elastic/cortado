@@ -35,5 +35,3 @@ def main():
     _common.execute(["excel.exe", "/c", "cscript.exe", "-x"], timeout=5, kill=True)
 
     _common.remove_files(*binaries)
-
-

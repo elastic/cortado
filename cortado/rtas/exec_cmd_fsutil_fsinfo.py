@@ -10,7 +10,7 @@ from . import _common
     id="904cae88-f6bf-4585-b779-2451ce4b6b1b",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "0c7ca5c2-728d-4ad9-b1c5-bbba83ecb1f4", "rule_name": "Peripheral Device Discovery"}],
+    siem_rules=[RuleMetadata(id="0c7ca5c2-728d-4ad9-b1c5-bbba83ecb1f4", name="Peripheral Device Discovery")],
     techniques=["T1120"],
 )
 def main():
@@ -18,5 +18,3 @@ def main():
 
     # Execute command
     _common.execute([fsutil, "fsinfo", "drives"], timeout=10)
-
-

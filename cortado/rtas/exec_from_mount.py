@@ -11,10 +11,9 @@ from . import _common
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_name": "Shell Script Execution from abnormal Volume Mount Path",
-            "rule_id": "87def154-004d-4d3a-8224-591e41804454",
-        }
+        RuleMetadata(
+            id="87def154-004d-4d3a-8224-591e41804454", name="Shell Script Execution from abnormal Volume Mount Path"
+        )
     ],
     techniques=["T1059", "T1059.004"],
 )
@@ -25,5 +24,3 @@ def main():
     # Execute command
     _common.log("Launching bash commands to simulate execution from mounted volume")
     _common.execute([masquerade, "/Volumes/*/Contents/*"], timeout=10, kill=True)
-
-

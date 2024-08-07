@@ -30,5 +30,3 @@ def main():
     # cleanup
     _common.execute(["hdiutil", "eject", "/tmp/.exploit"], timeout=10, kill=True)
     _common.remove_file(disk_file)
-
-

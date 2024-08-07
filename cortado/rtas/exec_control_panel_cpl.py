@@ -19,5 +19,3 @@ def main():
     # Execute command
     _common.log("Executing control.exe with a non-existing .cpl file")
     _common.execute(["control.exe", "cpl1.cpl:../a"], timeout=10)
-
-

@@ -18,5 +18,3 @@ from . import _common
 def main():
     _common.log("Creating suspicious zip file with special characters to mimic evasion of sanboxed office apps.")
     _common.temporary_file_helper("testing", file_name="/tmp/~$test.zip")
-
-

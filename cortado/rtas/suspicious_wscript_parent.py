@@ -50,5 +50,3 @@ def main():
     time.sleep(5)
     _common.log("Cleanup %s" % script_path)
     _common.remove_file(script_path)
-
-

@@ -10,10 +10,10 @@ from . import _common
     id="abd56d74-6538-456e-bd2a-42f08d1bac3c",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "Reading or Modifying Downloaded Files Database via SQLite Utility",
-            "rule_id": "b8fb52cd-5f06-4519-921d-bd1b363dc01b",
-        }
+        RuleMetadata(
+            id="b8fb52cd-5f06-4519-921d-bd1b363dc01b",
+            name="Reading or Modifying Downloaded Files Database via SQLite Utility",
+        )
     ],
     siem_rules=[],
     techniques=[],
@@ -28,5 +28,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

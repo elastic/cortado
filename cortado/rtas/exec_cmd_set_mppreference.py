@@ -11,14 +11,13 @@ from . import _common
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_id": "c8cccb06-faf2-4cd5-886e-2c9636cfcb87",
-            "rule_name": "Disabling Windows Defender Security Settings via PowerShell",
-        },
-        {
-            "rule_id": "2c17e5d7-08b9-43b2-b58a-0270d65ac85b",
-            "rule_name": "Windows Defender Exclusions Added via PowerShell",
-        },
+        RuleMetadata(
+            id="c8cccb06-faf2-4cd5-886e-2c9636cfcb87",
+            name="Disabling Windows Defender Security Settings via PowerShell",
+        ),
+        RuleMetadata(
+            id="2c17e5d7-08b9-43b2-b58a-0270d65ac85b", name="Windows Defender Exclusions Added via PowerShell"
+        ),
     ],
     techniques=["T1562", "T1562.001", "T1562.006", "T1059", "T1059.001"],
 )
@@ -28,5 +27,3 @@ def main():
     # Execute command
     _common.execute([powershell, "/c", "Set-MpPreference", "-ExclusionPath", f"{powershell}"], timeout=10)
     _common.execute([powershell, "/c", f"Remove-MpPreference -ExclusionPath {powershell}"], timeout=10)
-
-

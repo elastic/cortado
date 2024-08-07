@@ -18,5 +18,3 @@ from . import _common
 def main():
     explorer = "C:\\Windows\\explorer.exe"
     _common.execute([explorer, "easyminerRTA"], timeout=1, kill=True)
-
-

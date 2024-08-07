@@ -70,5 +70,3 @@ def main():
     _common.execute(["taskkill", "/F", "/im", "calc.exe"])
     _common.execute(["taskkill", "/F", "/im", "calculator.exe"])
     _common.execute(["taskkill", "/F", "/im", "myapp.exe"])
-
-

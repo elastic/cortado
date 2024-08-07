@@ -10,7 +10,7 @@ from . import _common
     id="4c02d7e0-51c3-4fff-ae90-4b560f497c94",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {"rule_name": "Linux Powershell Suspicious Child Process", "rule_id": "e9731cea-c3fc-4183-a76c-9a798ae0a2b0"}
+        RuleMetadata(id="e9731cea-c3fc-4183-a76c-9a798ae0a2b0", name="Linux Powershell Suspicious Child Process")
     ],
     techniques=["T1059"],
 )
@@ -37,5 +37,3 @@ def main():
 
     # Cleanup
     _common.remove_file(fake_pwsh_script)
-
-

@@ -12,27 +12,20 @@ import time
 from pathlib import Path
 
 
+RECYCLE_PATHS = ["C:\\$Recycle.Bin", "C:\\Recycler"]
+TARGET_APP_EXE = "bin/myapp.exe"
+
 
 @register_code_rta(
     id="790cbe6f-ee44-4654-9998-039236dbe0d8",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_id": "cff92c41-2225-4763-b4ce-6f71e5bda5e6",
-            "rule_name": "Execution from Unusual Directory - Command Line",
-        }
+        RuleMetadata(id="cff92c41-2225-4763-b4ce-6f71e5bda5e6", name="Execution from Unusual Directory - Command Line")
     ],
     techniques=["T1036", "T1059"],
+    ancillary_files=[TARGET_APP_EXE, _common.CMD_PATH],
 )
-
-
-RECYCLE_PATHS = ["C:\\$Recycle.Bin", "C:\\Recycler"]
-TARGET_APP = _common.get_path("bin", "myapp.exe")
-
-
-
-@_common.dependencies(TARGET_APP, _common.CMD_PATH)
 def main():
     _common.log("Execute files from the Recycle Bin")
     target_dir = None
@@ -47,7 +40,7 @@ def main():
         exit(1)
 
     commands = [
-        [TARGET_APP],
+        [TARGET_APP_EXE],
         [_common.CMD_PATH, "/c", "echo hello world"],
     ]
 
@@ -62,5 +55,3 @@ def main():
         _common.execute(arguments)
         time.sleep(0.5)
         _common.remove_file(target_path)
-
-

@@ -10,10 +10,9 @@ from . import _common
     id="4076de6c-6caa-40b3-bfb6-548645823376",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_name": "Init.d Script Executed Binary from Unusual Location",
-            "rule_id": "879c083c-e2d9-4f75-84f2-0f1471d915a8",
-        }
+        RuleMetadata(
+            id="879c083c-e2d9-4f75-84f2-0f1471d915a8", name="Init.d Script Executed Binary from Unusual Location"
+        )
     ],
     techniques=["T1037"],
 )
@@ -41,5 +40,3 @@ def main():
 
     # Cleanup
     _common.remove_file(fake_initd)
-
-

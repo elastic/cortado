@@ -11,14 +11,10 @@ from . import _common
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="75f5d51a-218f-4d5b-80e5-eb74e498fde4", name="File Made Executable via Pkg Install Script"),
-        {
-            "rule_name": "File Made Executable by Suspicious Parent Process",
-            "rule_id": "42ab2c0f-b10d-467d-8c6d-def890cf3f68",
-        },
-        {
-            "rule_name": "Suspicious File Create via Pkg Install Script",
-            "rule_id": "f06d9987-33f8-44b7-b815-c1f66fb39d25",
-        },
+        RuleMetadata(
+            id="42ab2c0f-b10d-467d-8c6d-def890cf3f68", name="File Made Executable by Suspicious Parent Process"
+        ),
+        RuleMetadata(id="f06d9987-33f8-44b7-b815-c1f66fb39d25", name="Suspicious File Create via Pkg Install Script"),
     ],
     siem_rules=[],
     techniques=["T1222", "T1222.002", "T1564", "T1546", "T1546.016"],
@@ -50,5 +46,3 @@ def main():
     # cleanup
     _common.remove_file(masquerade)
     _common.remove_file(dest_file)
-
-

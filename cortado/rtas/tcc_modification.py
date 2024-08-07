@@ -11,10 +11,9 @@ from . import _common
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_name": "Potential Privacy Control Bypass via TCCDB Modification",
-            "rule_id": "eea82229-b002-470e-a9e1-00be38b14d32",
-        }
+        RuleMetadata(
+            id="eea82229-b002-470e-a9e1-00be38b14d32", name="Potential Privacy Control Bypass via TCCDB Modification"
+        )
     ],
     techniques=["T1562"],
 )
@@ -32,5 +31,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

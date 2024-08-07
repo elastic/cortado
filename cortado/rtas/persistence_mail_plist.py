@@ -13,10 +13,9 @@ from pathlib import Path
     id="a9754fdb-2beb-454a-b918-36a56c5bf7bd",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_id": "482e5ab2-029c-4896-afc0-f3e6b8280920",
-            "rule_name": "Suspicious Apple Mail Rule Creation or Modification",
-        }
+        RuleMetadata(
+            id="482e5ab2-029c-4896-afc0-f3e6b8280920", name="Suspicious Apple Mail Rule Creation or Modification"
+        )
     ],
     siem_rules=[],
     techniques=[""],
@@ -28,5 +27,3 @@ def main():
     output_file.parent.mkdir(exist_ok=True, parents=True)
     _common.temporary_file_helper("testing", file_name=str(plist))
     _common.remove_directory(f"{Path.home()}/Library/Mobile Documents/com.apple.mail/Data/test/")
-
-

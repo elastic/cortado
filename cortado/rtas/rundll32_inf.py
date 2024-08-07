@@ -8,7 +8,6 @@ import time
 from . import _common
 
 
-
 @register_code_rta(
     id="7d139669-2b4c-4fc3-9a7c-bd1b643696dc",
     platforms=[OSType.WINDOWS],
@@ -19,12 +18,9 @@ from . import _common
     siem_rules=[],
     techniques=["T1218", "T1059"],
 )
-
-INF_FILE = _common.get_path("bin", "notepad_launch.inf")
-
-
-
 def main():
+    INF_FILE = _common.get_path("bin", "notepad_launch.inf")
+
     # http server will terminate on main thread exit
     # if daemon is True
     _common.log("RunDLL32 with Script Object and Network Callback")
@@ -48,5 +44,3 @@ def main():
     _common.log("Cleanup", log_type="-")
     _common.execute(["taskkill", "/f", "/im", "notepad.exe"])
     server.shutdown()
-
-

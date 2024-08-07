@@ -26,5 +26,3 @@ def main():
     _common.log("WARNING: %s" % message, log_type="!")
     time.sleep(2.5)
     _common.execute(["fsutil", "usn", "deletejournal", "/d", "C:"])
-
-

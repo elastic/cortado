@@ -78,5 +78,3 @@ def main(args=None):
             _common.log("[output suppressed]", log_type="-")
         else:
             _common.execute(command)
-
-

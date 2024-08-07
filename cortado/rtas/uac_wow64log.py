@@ -6,26 +6,21 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="ab957b94-2c39-49dd-93cf-f1e40394ff1b",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "UAC Bypass Attempt via WOW64 Logger DLL Side-Loading",
-            "rule_id": "28a39a43-e850-4941-8605-ffa23dcfd25a",
-        }
+        RuleMetadata(
+            id="28a39a43-e850-4941-8605-ffa23dcfd25a", name="UAC Bypass Attempt via WOW64 Logger DLL Side-Loading"
+        )
     ],
     siem_rules=[],
     techniques=["T1574", "T1548"],
 )
-
-PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-RENAMER = _common.get_path("bin", "rcedit-x64.exe")
-
-
-
 def main():
+    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
     dll = "C:\\Users\\Public\\wow64log.dll"
@@ -45,5 +40,3 @@ def main():
     )
 
     _common.remove_files(dll, ps1, rcedit)
-
-

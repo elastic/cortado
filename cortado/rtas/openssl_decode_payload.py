@@ -10,10 +10,9 @@ from . import _common
     id="fd86ee85-a3ee-4824-875b-bb386a23a578",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_id": "4dd92062-2871-43bc-adda-82f15cf6e189",
-            "rule_name": "Decoded or Decrypted Payload Written to Temp Directory",
-        }
+        RuleMetadata(
+            id="4dd92062-2871-43bc-adda-82f15cf6e189", name="Decoded or Decrypted Payload Written to Temp Directory"
+        )
     ],
     siem_rules=[],
     techniques=[""],
@@ -28,5 +27,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

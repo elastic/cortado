@@ -23,5 +23,3 @@ def main():
 
     exploit_path = _common.get_path("bin", "pkexec_cve20214034", "cve-2021-4034")
     _common.execute(exploit_path)
-
-

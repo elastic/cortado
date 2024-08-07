@@ -6,7 +6,6 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="374718be-d841-4381-a75f-ef54f0d5eb18",
     platforms=[OSType.WINDOWS],
@@ -16,12 +15,9 @@ from . import _common
     siem_rules=[],
     techniques=["T1003"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed.exe")
+
     binary = "ProcessDump.exe"
     _common.copy_file(EXE_FILE, binary)
 
@@ -29,5 +25,3 @@ def main():
     _common.execute([binary], timeout=5, kill=True)
 
     _common.remove_files(binary)
-
-

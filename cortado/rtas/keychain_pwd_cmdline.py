@@ -10,10 +10,7 @@ from . import _common
     id="f964558b-0674-4c97-afcc-42d4b6a813c6",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "Web Browsers Password Access via Command Line",
-            "rule_id": "77d71ede-3025-4c71-bb99-ada7c344bf89",
-        }
+        RuleMetadata(id="77d71ede-3025-4c71-bb99-ada7c344bf89", name="Web Browsers Password Access via Command Line")
     ],
     siem_rules=[
         RuleMetadata(id="9092cd6c-650f-4fa3-8a8a-28256c7489c9", name="Keychain Password Retrieval via Command Line")
@@ -30,5 +27,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

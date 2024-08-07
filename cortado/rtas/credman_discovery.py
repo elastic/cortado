@@ -12,10 +12,9 @@ import os
     id="d12e0abb-017f-4321-adf2-20843f62b55d",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "Potential Discovery of Windows Credential Manager Store",
-            "rule_id": "cc60be0e-2c6c-4dc9-9902-e97103ff8df9",
-        }
+        RuleMetadata(
+            id="cc60be0e-2c6c-4dc9-9902-e97103ff8df9", name="Potential Discovery of Windows Credential Manager Store"
+        )
     ],
     siem_rules=[],
     techniques=["T1555"],
@@ -31,5 +30,3 @@ def main():
     _common.log("Cat the contents of a sample file in credman folder")
     _common.execute([powershell, "/c", "cat", credmanfile], timeout=10)
     _common.remove_file(credmanfile)
-
-

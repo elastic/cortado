@@ -11,10 +11,7 @@ from . import _common
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_name": "Dumping of Keychain Content via Security Command",
-            "rule_id": "565d6ca5-75ba-4c82-9b13-add25353471c",
-        }
+        RuleMetadata(id="565d6ca5-75ba-4c82-9b13-add25353471c", name="Dumping of Keychain Content via Security Command")
     ],
     techniques=["T1555"],
 )
@@ -28,5 +25,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

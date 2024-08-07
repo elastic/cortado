@@ -11,10 +11,7 @@ from . import _common
     id="ea187b1f-4aa0-4ffc-bac9-9ee1d55552fd",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "Suspicious Access to Stored Browser Credentials",
-            "rule_id": "cea870d6-e6ee-4435-bc80-2c80e834c5d1",
-        }
+        RuleMetadata(id="cea870d6-e6ee-4435-bc80-2c80e834c5d1", name="Suspicious Access to Stored Browser Credentials")
     ],
     siem_rules=[RuleMetadata(id="20457e4f-d1de-4b92-ae69-142e27a4342a", name="Access of Stored Browser Credentials")],
     techniques=["T1539", "T1555"],
@@ -30,5 +27,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

@@ -16,10 +16,9 @@ from . import _common
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_id": "81fe9dc6-a2d7-4192-a2d8-eed98afc766a",
-            "rule_name": "PowerShell Suspicious Payload Encoded and Compressed",
-        }
+        RuleMetadata(
+            id="81fe9dc6-a2d7-4192-a2d8-eed98afc766a", name="PowerShell Suspicious Payload Encoded and Compressed"
+        )
     ],
     techniques=["T1140", "T1027", "T1059"],
 )
@@ -28,5 +27,3 @@ def main():
 
     command = "powershell.exe -noni -nop -w hidden -c &([scriptblock]::create((New-Object IO.StreamReader(New-Object IO.Compression.GzipStream((New-Object IO.MemoryStream(,[Convert]::FromBase64String(aaa)"  # noqa: E501
     _common.execute(command)
-
-

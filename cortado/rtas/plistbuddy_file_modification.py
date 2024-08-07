@@ -10,10 +10,9 @@ from . import _common
     id="522a18d6-0c27-499f-86d9-cd421129a38d",
     platforms=[OSType.MACOS],
     endpoint_rules=[
-        {
-            "rule_name": "Suspicious Property List File Creation or Modification",
-            "rule_id": "901f0c30-a7c5-40a5-80e3-a50c6714432f",
-        }
+        RuleMetadata(
+            id="901f0c30-a7c5-40a5-80e3-a50c6714432f", name="Suspicious Property List File Creation or Modification"
+        )
     ],
     siem_rules=[],
     techniques=["T1547", "T1543"],
@@ -29,5 +28,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

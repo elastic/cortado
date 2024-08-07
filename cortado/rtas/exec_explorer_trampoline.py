@@ -6,25 +6,21 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="5e911636-6f68-40d3-b1ef-7a951a397cc9",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "Execution of Commonly Abused Utilities via Explorer Trampoline",
-            "rule_id": "5e8498bb-8cc0-412f-9017-793d94ab76a5",
-        }
+        RuleMetadata(
+            id="5e8498bb-8cc0-412f-9017-793d94ab76a5",
+            name="Execution of Commonly Abused Utilities via Explorer Trampoline",
+        )
     ],
     siem_rules=[],
     techniques=["T1218", "T1566", "T1059"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     explorer = "C:\\Users\\Public\\explorer.exe"
     _common.copy_file(EXE_FILE, explorer)
 
@@ -39,5 +35,3 @@ def main():
         timeout=10,
     )
     _common.remove_files(explorer)
-
-

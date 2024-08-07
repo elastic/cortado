@@ -6,23 +6,23 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="6e84852e-b8a2-4158-971e-c5148d969d2a",
     platforms=[OSType.WINDOWS],
     siem_rules=[],
     endpoint_rules=[
-          {'rule_id': '5bc7a8f8-4de8-4af4-bea4-cba538e54a5c', 'rule_name': 'Suspicious Execution via DotNet Remoting'},
-          {'rule_id': '6fcbf73f-4413-4689-be33-61b0d6bd0ffc', 'rule_name': 'Suspicious ImageLoad via Windows CertOC'},
-          {'rule_id': '1faebe83-38d7-4390-b6bd-9c6b851e47c4', 'rule_name': 'Suspicious ImageLoad via ODBC Driver Configuration Program'},
-          {'rule_id': 'aafe3c78-15d9-4853-a602-663b8fada5b5', 'rule_name': 'Potential Evasion via Intel GfxDownloadWrapper'}],
-    techniques=['T1218', 'T1218.008', 'T1105'],
+        RuleMetadata(id="5bc7a8f8-4de8-4af4-bea4-cba538e54a5c", name="Suspicious Execution via DotNet Remoting"),
+        RuleMetadata(id="6fcbf73f-4413-4689-be33-61b0d6bd0ffc", name="Suspicious ImageLoad via Windows CertOC"),
+        RuleMetadata(
+            id="1faebe83-38d7-4390-b6bd-9c6b851e47c4", name="Suspicious ImageLoad via ODBC Driver Configuration Program"
+        ),
+        RuleMetadata(id="aafe3c78-15d9-4853-a602-663b8fada5b5", name="Potential Evasion via Intel GfxDownloadWrapper"),
+    ],
+    techniques=["T1218", "T1218.008", "T1105"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     addinproc = "C:\\Users\\Public\\AddInProcess.exe"
     certoc = "C:\\Users\\Public\\CertOc.exe"
     odbc = "C:\\Users\\Public\\odbcconf.exe"
@@ -44,5 +44,3 @@ def main():
     _common.remove_file(certoc)
     _common.remove_file(odbc)
     _common.remove_file(gfxdwn)
-
-

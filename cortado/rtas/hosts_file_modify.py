@@ -54,5 +54,3 @@ def main():
     _common.log("Restoring hosts from backup copy.")
     _common.copy_file(backup, hosts_file)
     os.remove(backup)
-
-

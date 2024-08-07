@@ -12,16 +12,6 @@ import os
 from . import _common
 
 
-
-@register_code_rta(
-    id="16b3d9c6-e188-49c5-8dce-d3eb5b0fcf91",
-    platforms=[OSType.WINDOWS],
-    endpoint_rules=[],
-    siem_rules=[RuleMetadata(id="7f370d54-c0eb-4270-ac5a-9a6020585dc6", name="Suspicious WMIC XSL Script Execution")],
-    techniques=["T1220"],
-)
-
-
 xsl_file = "test.xsl"
 xsl_content = """<?xml version='1.0'?>
 <stylesheet
@@ -37,7 +27,13 @@ version="1.0">
 """
 
 
-
+@register_code_rta(
+    id="16b3d9c6-e188-49c5-8dce-d3eb5b0fcf91",
+    platforms=[OSType.WINDOWS],
+    endpoint_rules=[],
+    siem_rules=[RuleMetadata(id="7f370d54-c0eb-4270-ac5a-9a6020585dc6", name="Suspicious WMIC XSL Script Execution")],
+    techniques=["T1220"],
+)
 def main():
     _common.log("Executing suspicious WMIC script")
 
@@ -48,5 +44,3 @@ def main():
     _common.execute(["wmic.exe", "os", "get", "/format:" + xsl_file])
 
     os.remove(xsl_file)
-
-

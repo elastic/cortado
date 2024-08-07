@@ -37,5 +37,3 @@ def main(dll_location="c:\\windows\\temp\\evil.dll"):
     # set_sleep_clear_key(winreg.HKEY_CURRENT_USER, subkey, "CxmDll", 1, winreg.REG_DWORD, 0)
 
     return _common.SUCCESS
-
-

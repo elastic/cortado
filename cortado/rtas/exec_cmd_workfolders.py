@@ -6,22 +6,18 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="a555c960-08af-49fe-8889-18434a604f68",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{
-        'rule_id': 'ad0d2742-9a49-11ec-8d6b-acde48001122',
-        'rule_name': 'Signed Proxy Execution via MS Work Folders'
-    }],
-    techniques=['T1218'],
+    siem_rules=[
+        RuleMetadata(id="ad0d2742-9a49-11ec-8d6b-acde48001122", name="Signed Proxy Execution via MS Work Folders")
+    ],
+    techniques=["T1218"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     workfolders = "C:\\Users\\Public\\WorkFolders.exe"
     control = "C:\\Users\\Public\\control.exe"
     _common.copy_file(EXE_FILE, workfolders)
@@ -30,5 +26,3 @@ def main():
     # Execute command
     _common.execute([workfolders, "/c", control], timeout=2, kill=True)
     _common.remove_files(workfolders, control)
-
-

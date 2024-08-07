@@ -10,20 +10,13 @@ import sys
     id="6a5977f6-ed19-446e-a441-e325cff7772b",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_name": "Potential curl CVE-2023-38545 Exploitation",
-            "rule_id": "0c188a15-30f5-445c-8655-95c7f93ace88",
-        },
+        RuleMetadata(id="0c188a15-30f5-445c-8655-95c7f93ace88", name="Potential curl CVE-2023-38545 Exploitation"),
     ],
     siem_rules=[
-        {
-            "rule_name": "Potential curl CVE-2023-38545 Exploitation",
-            "rule_id": "f41296b4-9975-44d6-9486-514c6f635b2d",
-        },
+        RuleMetadata(id="f41296b4-9975-44d6-9486-514c6f635b2d", name="Potential curl CVE-2023-38545 Exploitation"),
     ],
     techniques=["T1203"],
 )
-@_common.requires_os(metadata.platforms)
 def main() -> None:
     masquerade = "/tmp/curl"
     source = _common.get_path("bin", "linux.ditto_and_spawn")

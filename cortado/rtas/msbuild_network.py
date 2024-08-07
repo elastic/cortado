@@ -13,26 +13,21 @@
 from . import _common
 
 
+MS_BUILD_EXE = "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\msbuild.exe"
+
 
 @register_code_rta(
     id="022dc249-a496-413a-9355-c37e3ea41dda",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_id": "9d110cb3-5f4b-4c9a-b9f5-53f0a1707ae6",
-            "rule_name": "Microsoft Build Engine Started an Unusual Process",
-        }
+        RuleMetadata(
+            id="9d110cb3-5f4b-4c9a-b9f5-53f0a1707ae6", name="Microsoft Build Engine Started an Unusual Process"
+        )
     ],
     techniques=["T1027"],
+    ancillary_files=[MS_BUILD_EXE],
 )
-
-
-MS_BUILD = "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\msbuild.exe"
-
-
-
-@_common.dependencies(MS_BUILD)
 def main():
     _common.log("MsBuild Beacon")
     server, ip, port = _common.serve_web()
@@ -44,9 +39,7 @@ def main():
     new_callback = "http://%s:%d" % (ip, port)
     _common.patch_regex(target_task, _common.CALLBACK_REGEX, new_callback)
 
-    _common.execute([MS_BUILD, target_task], timeout=30, kill=True)
+    _common.execute([MS_BUILD_EXE, target_task], timeout=30, kill=True)
     _common.remove_file(target_task)
 
     server.shutdown()
-
-

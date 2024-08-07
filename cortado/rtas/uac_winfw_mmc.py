@@ -31,5 +31,3 @@ def main():
     _common.execute([dllhost, "/c", f"Rename-Item {dccwpathdll} {dccwpathdll2}"], timeout=10)
     _common.execute([mmc, "/c", "echo", "WF.msc", ";powershell"], timeout=2, kill=True)
     _common.remove_files(mmc, dllhost, dccwpathdll2)
-
-

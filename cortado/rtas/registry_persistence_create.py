@@ -16,30 +16,23 @@ import time
 from . import _common
 
 
-
-@register_code_rta(
-    id="c62c65bf-248e-4f5a-ad4f-a48736c1d6f2",
-    platforms=[OSType.WINDOWS],
-    endpoint_rules=[],
-    siem_rules=[
-        {
-            "rule_id": "7405ddf1-6c8e-41ce-818f-48bea6bcaed8",
-            "rule_name": "Potential Modification of Accessibility Binaries",
-        }
-    ],
-    techniques=["T1546"],
-)
-
-
-TARGET_APP = _common.get_path("bin", "myapp.exe")
+TARGET_APP_EXE = "bin/myapp.exe"
 
 
 def pause():
     time.sleep(0.5)
 
 
-
-@_common.dependencies(TARGET_APP)
+@register_code_rta(
+    id="c62c65bf-248e-4f5a-ad4f-a48736c1d6f2",
+    platforms=[OSType.WINDOWS],
+    endpoint_rules=[],
+    siem_rules=[
+        RuleMetadata(id="7405ddf1-6c8e-41ce-818f-48bea6bcaed8", name="Potential Modification of Accessibility Binaries")
+    ],
+    techniques=["T1546"],
+    ancillary_files=[TARGET_APP_EXE],
+)
 def main():
     _common.log("Suspicious Registry Persistence")
     winreg = _common.get_winreg()
@@ -131,5 +124,3 @@ def main():
 
     hkey.Close()
     pause()
-
-

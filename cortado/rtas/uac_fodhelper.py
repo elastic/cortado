@@ -6,7 +6,6 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="a67586fd-cceb-4fb9-bf0e-d355b9e8921a",
     platforms=[OSType.WINDOWS],
@@ -16,12 +15,9 @@ from . import _common
     siem_rules=[],
     techniques=["T1548"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     key = "Software\\Classes\\ms-settings\\shell\\open\\command"
     value = "test"
     data = "test"
@@ -35,5 +31,3 @@ def main():
 
     _common.execute([fodhelper, "/c", powershell], timeout=2, kill=True)
     _common.remove_file(fodhelper)
-
-

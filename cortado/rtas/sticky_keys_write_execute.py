@@ -20,14 +20,12 @@ from pathlib import Path
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_id": "7405ddf1-6c8e-41ce-818f-48bea6bcaed8",
-            "rule_name": "Potential Modification of Accessibility Binaries",
-        },
-        {
-            "rule_id": "68921d85-d0dc-48b3-865f-43291ca2c4f2",
-            "rule_name": "Persistence via TelemetryController Scheduled Task Hijack",
-        },
+        RuleMetadata(
+            id="7405ddf1-6c8e-41ce-818f-48bea6bcaed8", name="Potential Modification of Accessibility Binaries"
+        ),
+        RuleMetadata(
+            id="68921d85-d0dc-48b3-865f-43291ca2c4f2", name="Persistence via TelemetryController Scheduled Task Hijack"
+        ),
     ],
     techniques=["T1546", "T1053"],
 )
@@ -69,5 +67,3 @@ def main():
     # Cleanup
     time.sleep(2)
     _common.execute(["taskkill", "/F", "/im", "calculator.exe"])
-
-

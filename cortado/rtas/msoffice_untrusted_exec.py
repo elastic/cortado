@@ -6,31 +6,23 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="9d5af763-b3f9-4b89-96b6-16e0210f9755",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "Network Connection via Process with Unusual Arguments",
-            "rule_id": "95601d8b-b969-4189-9744-090140ae29e6",
-        },
-        {
-            "rule_name": "Untrusted File Execution via Microsoft Office",
-            "rule_id": "bb23a662-2d75-4714-837d-4ec9c2e772a5",
-        },
+        RuleMetadata(
+            id="95601d8b-b969-4189-9744-090140ae29e6", name="Network Connection via Process with Unusual Arguments"
+        ),
+        RuleMetadata(id="bb23a662-2d75-4714-837d-4ec9c2e772a5", name="Untrusted File Execution via Microsoft Office"),
         RuleMetadata(id="901f0c30-a7c5-40a5-80e3-a50c6744632f", name="RunDLL32/Regsvr32 Loads Dropped Executable"),
     ],
     siem_rules=[],
     techniques=["T1218", "T1036", "T1055", "T1566", "T1059"],
 )
-
-EXE_FILE = _common.get_path("bin", "regsvr32.exe")
-EXE_FILE2 = _common.get_path("bin", "renamed.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "regsvr32.exe")
+    EXE_FILE2 = _common.get_path("bin", "renamed.exe")
+
     binary = "winword.exe"
     _common.copy_file(EXE_FILE2, binary)
 
@@ -43,5 +35,3 @@ def main():
     _common.execute([binary, "/c", fake_regsvr])
 
     _common.remove_files(binary, fake_regsvr)
-
-

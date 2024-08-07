@@ -10,10 +10,7 @@ from . import _common
     id="97993aa0-7b15-442b-a180-7c158b3339c1",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_name": "Linux File Made Executable by Suspicious Parent",
-            "rule_id": "742037b3-3ef6-4a33-84ed-b26fc6ae322c",
-        }
+        RuleMetadata(id="742037b3-3ef6-4a33-84ed-b26fc6ae322c", name="Linux File Made Executable by Suspicious Parent")
     ],
     techniques=["T1222", "T1564"],
 )
@@ -29,5 +26,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

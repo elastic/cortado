@@ -42,5 +42,3 @@ def main():
     _common.log("Removing local and domain user accounts using net.exe", log_type="-")
     for cmd in cleanup_commands:
         _common.execute(cmd)
-
-

@@ -6,24 +6,19 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="ffc9ace1-3527-46e3-bc3e-86b942107edb",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{'rule_id': '36a8e048-d888-4f61-a8b9-0f9e2e40f317', 'rule_name': 'Suspicious ImagePath Service Creation'}],
-    techniques=['T1543', 'T1543.003'],
+    siem_rules=[RuleMetadata(id="36a8e048-d888-4f61-a8b9-0f9e2e40f317", name="Suspicious ImagePath Service Creation")],
+    techniques=["T1543", "T1543.003"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     key = "SYSTEM\\ControlSet001\\Services\\RTA"
     value = "ImagePath"
     data = "%COMSPEC%"
 
     with _common.temporary_reg(_common.HKLM, key, value, data):
         pass
-
-

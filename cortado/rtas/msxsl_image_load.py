@@ -6,7 +6,6 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="cd549ba9-63be-4eff-ab6c-f567445e1977",
     platforms=[OSType.WINDOWS],
@@ -17,14 +16,11 @@ from . import _common
     siem_rules=[],
     techniques=["T1220", "T1218", "T1059"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-RENAMER = _common.get_path("bin", "rcedit-x64.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+
     msxsl = "C:\\Users\\Public\\msxsl.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
     dll = "C:\\Users\\Public\\scrobj.dll"
@@ -43,5 +39,3 @@ def main():
     _common.execute([msxsl, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout=10)
 
     _common.remove_files(msxsl, dll, ps1, rcedit)
-
-

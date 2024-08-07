@@ -10,10 +10,7 @@ from . import _common
     id="37b8d4d9-5acc-40c0-bc78-aba24a2c3f80",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "UAC Bypass via DiskCleanup Scheduled Task Hijack",
-            "rule_id": "d487049e-381d-44ad-9ec9-d23e88dbf573",
-        }
+        RuleMetadata(id="d487049e-381d-44ad-9ec9-d23e88dbf573", name="UAC Bypass via DiskCleanup Scheduled Task Hijack")
     ],
     siem_rules=[],
     techniques=["T1548"],
@@ -21,5 +18,3 @@ from . import _common
 def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     _common.execute([powershell, "/autoclean", "/d"], timeout=2, kill=True)
-
-

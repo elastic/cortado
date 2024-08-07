@@ -6,29 +6,23 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="aa05a870-7075-42f9-a009-49aa75ea99fa",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "Inhibit System Recovery via Untrusted Parent Process",
-            "rule_id": "d3588fad-43ae-4f2d-badd-15a27df72132",
-        },
-        {
-            "rule_name": "Inhibit System Recovery via Microsoft Office Process",
-            "rule_id": "58a08390-e69d-4b32-9487-1d1ddb16ba09",
-        },
+        RuleMetadata(
+            id="d3588fad-43ae-4f2d-badd-15a27df72132", name="Inhibit System Recovery via Untrusted Parent Process"
+        ),
+        RuleMetadata(
+            id="58a08390-e69d-4b32-9487-1d1ddb16ba09", name="Inhibit System Recovery via Microsoft Office Process"
+        ),
     ],
     siem_rules=[],
     techniques=["T1490", "T1047", "T1566"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed.exe")
+
     binary = "winword.exe"
     _common.copy_file(EXE_FILE, binary)
 
@@ -41,5 +35,3 @@ def main():
     )
 
     _common.remove_files(binary)
-
-

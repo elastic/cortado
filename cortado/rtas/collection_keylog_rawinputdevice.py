@@ -277,5 +277,3 @@ def main():
     rir.start()
     time.sleep(5)
     rir.stop()
-
-

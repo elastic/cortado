@@ -6,26 +6,21 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="4ad6b308-f457-4805-89b9-43b99e32b24f",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "Microsoft Office Loaded a Dropped Executable File",
-            "rule_id": "a0a82ad6-98ed-4426-abd8-52e7b052e297",
-        }
+        RuleMetadata(
+            id="a0a82ad6-98ed-4426-abd8-52e7b052e297", name="Microsoft Office Loaded a Dropped Executable File"
+        )
     ],
     siem_rules=[],
     techniques=["T1566"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+
     winword = "C:\\Users\\Public\\winword.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
     dll = "C:\\Users\\Public\\a.dll"
@@ -44,5 +39,3 @@ def main():
     )
 
     _common.remove_files(winword, dll, ps1)
-
-

@@ -6,24 +6,19 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="fc1e40b8-ae2d-4479-a854-77b346982894",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{'rule_id': '06dceabf-adca-48af-ac79-ffdf4c3b1e9a', 'rule_name': 'Potential Evasion via Filter Manager'}],
-    techniques=['T1562', 'T1562.001'],
+    siem_rules=[RuleMetadata(id="06dceabf-adca-48af-ac79-ffdf4c3b1e9a", name="Potential Evasion via Filter Manager")],
+    techniques=["T1562", "T1562.001"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     fltmc = "C:\\Users\\Public\\fltmc.exe"
     _common.copy_file(EXE_FILE, fltmc)
 
     # Execute command
     _common.execute([fltmc, "/c", "echo", "unload"], timeout=10)
     _common.remove_file(fltmc)
-
-

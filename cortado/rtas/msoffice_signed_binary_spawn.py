@@ -10,10 +10,7 @@ from . import _common
     id="498c13e2-789c-4a6c-b32d-0589d2f907c2",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "Signed Binary Execution via Microsoft Office",
-            "rule_id": "321e7877-075a-4582-8eff-777dde15e787",
-        },
+        RuleMetadata(id="321e7877-075a-4582-8eff-777dde15e787", name="Signed Binary Execution via Microsoft Office"),
         RuleMetadata(id="b0207677-5041-470b-981d-13ab956cf5b4", name="Execution via Renamed Signed Binary Proxy"),
     ],
     siem_rules=[],
@@ -33,5 +30,3 @@ def main():
     _common.execute([binary, "/c", temposh], kill=True)
 
     _common.remove_files(binary, temposh)
-
-

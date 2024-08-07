@@ -6,27 +6,22 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="cfb116f0-ad83-4d77-803f-064c2cfd93fe",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="18a26e3e-e535-4d23-8ffa-a3cdba56d16e", name="Suspicious Parent-Child Relationship"),
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
-        {
-            "rule_name": "UAC Bypass Attempt via DCCW DLL Search Order Hijacking",
-            "rule_id": "093bd845-b59f-4868-a7dd-62d48b737bf6",
-        },
+        RuleMetadata(
+            id="093bd845-b59f-4868-a7dd-62d48b737bf6", name="UAC Bypass Attempt via DCCW DLL Search Order Hijacking"
+        ),
     ],
     siem_rules=[],
     techniques=["T1129", "T1548", "T1036", "T1055", "T1574"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     dccw = "C:\\Users\\Public\\dccw.exe"
     dllhost = "C:\\Users\\Public\\dllhost.exe"
     dccwpath = "C:\\Users\\Public\\dccw.exe.test"
@@ -43,5 +38,3 @@ def main():
     _common.execute([dccw, "/c", powershell], timeout=2, kill=True)
     _common.remove_files(dccw, dllhost, dccwpathdll2)
     _common.execute([powershell, "/c", f"rmdir {dccwpath} -Force"], timeout=3)
-
-

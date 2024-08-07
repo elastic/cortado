@@ -6,24 +6,20 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="9cca3284-848f-483a-9241-48562eee0605",
     platforms=[OSType.WINDOWS],
-    endpoint_rules=[{
-        'rule_id': '4b4ba027-151f-40e4-99ba-a386735c27e4',
-        'rule_name': 'Unsigned DLL Loaded by Windows Tasks Host'
-    }],
+    endpoint_rules=[
+        RuleMetadata(id="4b4ba027-151f-40e4-99ba-a386735c27e4", name="Unsigned DLL Loaded by Windows Tasks Host")
+    ],
     siem_rules=[],
-    techniques=['T1053', 'T1053.005'],
+    techniques=["T1053", "T1053.005"],
 )
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-RENAMER = _common.get_path("bin", "rcedit-x64.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+
     taskhost1 = "C:\\Users\\Public\\taskhost1.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
     dll = "C:\\Users\\Public\\unsigned.dll"
@@ -41,5 +37,3 @@ def main():
     _common.execute([taskhost1, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout=10)
 
     _common.remove_files(dll, ps1, rcedit)
-
-

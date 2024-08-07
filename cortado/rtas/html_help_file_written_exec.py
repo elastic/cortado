@@ -6,7 +6,6 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="9bbf9aea-33fc-45fc-be55-4cafc744da80",
     platforms=[OSType.WINDOWS],
@@ -16,12 +15,9 @@ from . import _common
     siem_rules=[],
     techniques=["T1218", "T1566"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     server, ip, port = _common.serve_web()
     url = f"http://{ip}:{port}/bin/renamed_posh.exe"
 
@@ -37,5 +33,3 @@ def main():
     _common.execute([hh, "/c", dropped], timeout=10, kill=True)
     _common.remove_file(hh)
     _common.remove_file(dropped)
-
-

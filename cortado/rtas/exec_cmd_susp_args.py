@@ -10,7 +10,7 @@ from . import _common
     id="4b2e6004-6685-4a0f-b483-efc84dfb2393",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {"rule_id": "8dd7588d-fc28-40c0-adfb-14789c763984", "rule_name": "Suspicious Windows Command Shell Execution"}
+        RuleMetadata(id="8dd7588d-fc28-40c0-adfb-14789c763984", name="Suspicious Windows Command Shell Execution")
     ],
     siem_rules=[],
     techniques=[""],
@@ -18,5 +18,3 @@ from . import _common
 def main():
     cmd = "C:\\Windows\\System32\\cmd.exe"
     _common.execute([cmd, "/C", "echo", "wscript"], timeout=5, kill=True)
-
-

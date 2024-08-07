@@ -45,5 +45,3 @@ def main(remote_host=None):
 
     # Execute command
     _common.execute(command, timeout=15, kill=True)
-
-

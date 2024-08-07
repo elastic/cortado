@@ -10,7 +10,7 @@ from . import _common
     id="57d4d7f4-03a6-43d3-a5af-9ac706b2eedf",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[{"rule_id": "b5877334-677f-4fb9-86d5-a9721274223b", "rule_name": "Clearing Windows Console History"}],
+    siem_rules=[RuleMetadata(id="b5877334-677f-4fb9-86d5-a9721274223b", name="Clearing Windows Console History")],
     techniques=["T1070", "T1070.003"],
 )
 def main():
@@ -18,5 +18,3 @@ def main():
 
     # Execute command
     _common.execute([powershell, "/c", "Clear-History"], timeout=10)
-
-

@@ -11,25 +11,18 @@
 from pathlib import Path
 
 
+REG = "reg.exe"
+
 
 @register_code_rta(
     id="dfdcc4f4-5aca-486a-8115-b15b653b9b4f",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_id": "a7e7bfa3-088e-4f13-b29e-3986e0e756b8",
-            "rule_name": "Credential Acquisition via Registry Hive Dumping",
-        }
+        RuleMetadata(id="a7e7bfa3-088e-4f13-b29e-3986e0e756b8", name="Credential Acquisition via Registry Hive Dumping")
     ],
     techniques=["T1003"],
 )
-
-
-REG = "reg.exe"
-
-
-
 def main():
     for hive in ["sam", "security", "system"]:
         filename = Path("%s.reg" % hive).resolve()
@@ -39,5 +32,3 @@ def main():
 
         _common.execute([REG, "save", "hklm\\%s" % hive, filename])
         _common.remove_file(filename)
-
-

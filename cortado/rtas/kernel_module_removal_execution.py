@@ -10,13 +10,8 @@ from . import _common
 @register_code_rta(
     id="900e8599-1d5f-4522-9aed-6eab82de2bad",
     platforms=[OSType.LINUX],
-    endpoint_rules=[
-        {
-            "rule_name": "Kernel Module Removal",
-            "rule_id": "e80ba5e4-b6c6-4534-87b0-8c0f4e1d97e7",
-        }
-    ],
-    siem_rules=[{"rule_name": "Kernel Module Removal", "rule_id": "cd66a5af-e34b-4bb0-8931-57d0a043f2ef"}],
+    endpoint_rules=[RuleMetadata(id="e80ba5e4-b6c6-4534-87b0-8c0f4e1d97e7", name="Kernel Module Removal")],
+    siem_rules=[RuleMetadata(id="cd66a5af-e34b-4bb0-8931-57d0a043f2ef", name="Kernel Module Removal")],
     techniques=["T1562", "T1562.001", "T1547", "T1547.006"],
 )
 def main():
@@ -30,5 +25,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

@@ -11,16 +11,14 @@ from . import _common
     id="e5a98cc9-1f15-4d14-baf2-96bebb932ae9",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_name": "Potential Linux Credential Dumping via Proc Filesystem",
-            "rule_id": "508226f9-4030-4e86-86cd-63321b7164bc",
-        }
+        RuleMetadata(
+            id="508226f9-4030-4e86-86cd-63321b7164bc", name="Potential Linux Credential Dumping via Proc Filesystem"
+        )
     ],
     siem_rules=[
-        {
-            "rule_name": "Potential Linux Credential Dumping via Proc Filesystem",
-            "rule_id": "ef100a2e-ecd4-4f72-9d1e-2f779ff3c311",
-        }
+        RuleMetadata(
+            id="ef100a2e-ecd4-4f72-9d1e-2f779ff3c311", name="Potential Linux Credential Dumping via Proc Filesystem"
+        )
     ],
     techniques=["T1212", "T1003", "T1003.007"],
 )
@@ -39,5 +37,3 @@ def main():
     # cleanup
     _common.remove_file(masquerade)
     _common.remove_file(masquerade2)
-
-

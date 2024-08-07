@@ -6,7 +6,6 @@
 from . import _common
 
 
-
 @register_code_rta(
     id="8cb1d15d-d945-4f1c-9238-b221600156bc",
     platforms=[OSType.WINDOWS],
@@ -17,12 +16,9 @@ from . import _common
     siem_rules=[],
     techniques=["T1218", "T1036"],
 )
-
-EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-
-
-
 def main():
+    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+
     msiexec = "C:\\Users\\Public\\msiexec.exe"
     _common.copy_file(EXE_FILE, msiexec)
 
@@ -34,5 +30,3 @@ def main():
     _common.execute([msiexec, "/c", set_reg_cmd, "; cmd.exe", "/V"], timeout=5, kill=True)
     _common.execute([msiexec, "/c", rem_reg_cmd], timeout=5, kill=True)
     _common.remove_file(msiexec)
-
-

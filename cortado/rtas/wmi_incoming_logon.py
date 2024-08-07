@@ -40,5 +40,3 @@ def main(remote_host=None):
 
     # this should not trigger an alert
     _common.execute(["net.exe", "time", "\\\\{}".format(remote_host)])
-
-

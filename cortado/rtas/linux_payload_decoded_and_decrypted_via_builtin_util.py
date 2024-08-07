@@ -10,10 +10,9 @@ from . import _common
     id="0638a18f-29f9-49a2-b8b5-e0dd21e99412",
     platforms=[OSType.LINUX],
     endpoint_rules=[
-        {
-            "rule_name": "Linux Payload Decoded and Decrypted via Built-In Utilities",
-            "rule_id": "bfff8d1b-c4d7-4005-9f49-f494261e5a25",
-        }
+        RuleMetadata(
+            id="bfff8d1b-c4d7-4005-9f49-f494261e5a25", name="Linux Payload Decoded and Decrypted via Built-In Utilities"
+        )
     ],
     techniques=["T1027", "T1204", "T1059"],
 )
@@ -29,5 +28,3 @@ def main():
 
     # cleanup
     _common.remove_file(masquerade)
-
-

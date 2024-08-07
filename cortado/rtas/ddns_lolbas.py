@@ -10,10 +10,10 @@ from . import _common
     id="95d34e55-789d-40bf-9988-dbb803c2d066",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
-        {
-            "rule_name": "Connection to Dynamic DNS Provider by a Signed Binary Proxy",
-            "rule_id": "fb6939a2-1b54-428c-92a2-3a831585af2a",
-        }
+        RuleMetadata(
+            id="fb6939a2-1b54-428c-92a2-3a831585af2a",
+            name="Connection to Dynamic DNS Provider by a Signed Binary Proxy",
+        )
     ],
     siem_rules=[],
     techniques=["T1218", "T1071"],
@@ -27,5 +27,3 @@ def main():
         [powershell, "/c", "iwr", "https://www.noip.com", "-UseBasicParsing"],
         timeout=10,
     )
-
-

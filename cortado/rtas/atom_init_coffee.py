@@ -12,10 +12,9 @@ from . import _common
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[
-        {
-            "rule_name": "Potential Persistence via Atom Init Script Modification",
-            "rule_id": "b4449455-f986-4b5a-82ed-e36b129331f7",
-        }
+        RuleMetadata(
+            id="b4449455-f986-4b5a-82ed-e36b129331f7", name="Potential Persistence via Atom Init Script Modification"
+        )
     ],
     techniques=["T1037"],
 )
@@ -28,5 +27,3 @@ def main():
 
     # cleanup
     _common.remove_directory(str(atom_dir))
-
-

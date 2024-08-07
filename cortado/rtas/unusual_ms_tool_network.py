@@ -14,26 +14,10 @@ import sys
 from pathlib import Path
 
 
-
 if sys.version_info > (3,):
     urlliblib = "urllib.request"
 else:
     urlliblib = "urllib"
-
-
-@register_code_rta(
-    id="cf94f5cc-5265-4287-80e5-82d9663ecf2e",
-    platforms=[OSType.WINDOWS],
-    endpoint_rules=[],
-    siem_rules=[
-        {
-            "rule_id": "1fe3b299-fbb5-4657-a937-1d746f2c711a",
-            "rule_name": "Unusual Network Activity from a Windows System Binary",
-        },
-        RuleMetadata(id="610949a1-312f-4e04-bb55-3a79b8c95267", name="Unusual Process Network Connection"),
-    ],
-    techniques=["T1127"],
-)
 
 
 process_names = [
@@ -65,7 +49,18 @@ def http_from_process(name, ip, port):
     _common.remove_file(path)
 
 
-
+@register_code_rta(
+    id="cf94f5cc-5265-4287-80e5-82d9663ecf2e",
+    platforms=[OSType.WINDOWS],
+    endpoint_rules=[],
+    siem_rules=[
+        RuleMetadata(
+            id="1fe3b299-fbb5-4657-a937-1d746f2c711a", name="Unusual Network Activity from a Windows System Binary"
+        ),
+        RuleMetadata(id="610949a1-312f-4e04-bb55-3a79b8c95267", name="Unusual Process Network Connection"),
+    ],
+    techniques=["T1127"],
+)
 def main():
     server, ip, port = _common.serve_web()
 
@@ -73,5 +68,3 @@ def main():
         http_from_process(process, ip, port)
 
     server.shutdown()
-
-
