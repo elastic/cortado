@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="abd56d74-6538-456e-bd2a-42f08d1bac3c",
+    name="sqlite_db_evasion",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

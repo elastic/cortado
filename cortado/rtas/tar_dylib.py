@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="a56d07b3-c459-4a72-adab-b93bbe008f0f",
+    name="tar_dylib",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="62cc9cf4-5440-4237-aa5b-ea8db83deb3d", name="Non-Native Dylib Extracted into New Directory")

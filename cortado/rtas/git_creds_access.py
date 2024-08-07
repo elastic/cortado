@@ -8,6 +8,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="e15ea2ec-c8a9-4203-8d01-d18d1c27fd58",
+    name="git_creds_access",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="39f60a36-8c5a-4703-8576-ad3e8c800a0f", name="Sensitive File Access - Cloud Credentials")

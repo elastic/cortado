@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="fc1e40b8-ae2d-4479-a854-77b346982894",
+    name="exec_cmd_fltmc_unload",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="06dceabf-adca-48af-ac79-ffdf4c3b1e9a", name="Potential Evasion via Filter Manager")],

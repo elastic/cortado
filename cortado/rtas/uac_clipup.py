@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="1d887a40-ea2a-493c-90b4-54e0ce4f3534",
+    name="uac_clipup",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

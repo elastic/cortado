@@ -9,6 +9,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="9e87748e-9866-4b6b-832d-5cba4dda14e8",
+    name="app_hijack",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="5d2c3833-a36a-483a-acea-5bf8cf363a81", name="Potential Default Application Hijacking")

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="4843eb25-3579-473a-b309-76d02eda3085",
+    name="darkradiation",
     platforms=["macos", "linux"],
     endpoint_rules=[RuleMetadata(id="33309858-3154-47a6-b601-eda2de62557b", name="DARKRADIATION Ransomware Infection")],
     siem_rules=[],

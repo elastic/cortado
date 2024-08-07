@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="e45cd941-dee1-4275-8c63-2f8cab2cf8a6",
+    name="privilege_escalation_tcc_bypass",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

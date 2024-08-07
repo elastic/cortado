@@ -16,6 +16,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="12b28e92-281f-49a7-a8b3-54681ba6d63e",
+    name="wevtutil_log_clear",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="d331bbe2-6db4-4941-80a5-8270db72eb61", name="Clearing Windows Event Logs")],

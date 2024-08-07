@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="dabd91c9-101e-475d-b2f2-ca255abda003",
+    name="image_load_phantomdll",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

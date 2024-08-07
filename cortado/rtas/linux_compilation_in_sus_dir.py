@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="15043951-ca9b-4fbe-b3cb-d1288a875ca7",
+    name="linux_compilation_in_sus_dir",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="52001df2-a3bf-411d-a09c-5f36a9f976b8", name="Linux Compilation in Suspicious Directory")

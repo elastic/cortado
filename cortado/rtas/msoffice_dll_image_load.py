@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="4ad6b308-f457-4805-89b9-43b99e32b24f",
+    name="msoffice_dll_image_load",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

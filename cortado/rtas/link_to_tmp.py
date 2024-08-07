@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="eb5834cf-fcd8-4318-a656-5315a664e61d",
+    name="link_to_tmp",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="ccca5e9f-2625-4b95-9b15-d5d8fc56df2c", name="Link Creation to Temp Directory"),

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="9d02871f-6338-47aa-84c4-7d622692319f",
+    name="defensive_evasion_safari_modification",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

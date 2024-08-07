@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="92da05da-5acf-473c-809c-6f4cdbced0db",
+    name="exec_cmd_auditpol",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

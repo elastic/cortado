@@ -10,6 +10,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="e061a96e-4c31-4f67-9745-6ff873f7829e",
+    name="browser_debugging",
     platforms=["windows", "macos", "linux"],
     endpoint_rules=[
         RuleMetadata(id="5d7328aa-973b-41e7-a6b3-6f40ea3094f1", name="Potential Cookies Theft via Browser Debugging")

@@ -8,6 +8,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="5432792c-d31a-42cc-a82f-0884ea230493",
+    name="file_create_ms_addins",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="2cd02bee-6774-4b93-a632-995462440371",
+    name="image_load_script_interpreter_wmiutils",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

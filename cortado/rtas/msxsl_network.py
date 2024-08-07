@@ -18,6 +18,7 @@ XSL_FILE = "bin/cscript.xsl"
 
 @register_code_rta(
     id="a8331ff5-2199-48cf-9284-88351c859835",
+    name="msxsl_network",
     platforms=[OSType.WINDOWS],
     siem_rules=[RuleMetadata(id="b86afe07-0d98-4738-b15d-8d7465f95ff5", name="Network Connection via MsXsl")],
     techniques=["T1220"],

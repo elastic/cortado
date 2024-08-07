@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="4d7ce5b3-f8e4-434c-9caa-c7e133146b27",
+    name="empire_stager",
     platforms=["macos", "linux"],
     endpoint_rules=[RuleMetadata(id="b7974ff6-82ff-4743-9e07-1c6901b1f0ea", name="Empire Stager Execution")],
     siem_rules=[],

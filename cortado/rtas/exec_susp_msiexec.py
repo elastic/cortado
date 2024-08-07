@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="c9b68802-7d8b-4806-a817-ad50032efc58",
+    name="exec_susp_msiexec",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="9d1d6c77-8acc-478b-8a1f-43da8fa151c7", name="Suspicious Execution via MSIEXEC"),

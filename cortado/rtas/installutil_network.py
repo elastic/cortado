@@ -19,6 +19,7 @@ MY_DOT_NET_EXE = "bin/mydotnet.exe"
 
 @register_code_rta(
     id="6dfa88c9-9fb2-4fb0-8bea-0bc45222b498",
+    name="installutil_network",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

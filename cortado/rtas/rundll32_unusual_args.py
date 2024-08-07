@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="3ede81fa-f4e7-48fc-a939-50ad7a9a07ca",
+    name="rundll32_unusual_args",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="b8a0a3aa-0345-4035-b41d-f758a6c59a78", name="Command Shell Activity Started via RunDLL32"),

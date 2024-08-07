@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="2a391051-b103-450b-be50-fd133b6d05c3",
+    name="exec_cmd_arp",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="0635c542-1b96-4335-9b47-126582d2c19a", name="Remote System Discovery Commands")],

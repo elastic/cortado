@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="07edc3ea-2cf8-4a8b-aa2f-6b10f1c46838",
+    name="network_connection_external_ip_lookup_non_browser",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

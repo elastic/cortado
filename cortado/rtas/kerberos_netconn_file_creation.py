@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="f8ffc63a-4a54-44a8-ac55-9c63e1bb584c",
+    name="kerberos_netconn_file_creation",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

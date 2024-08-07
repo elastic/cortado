@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="8c77b44c-fb6d-4082-b62d-147918c622d9",
+    name="network_connection_process_unusual_args",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),

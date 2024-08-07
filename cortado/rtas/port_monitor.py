@@ -13,6 +13,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="d7d1d0cf-a84a-4526-b0db-be59a210246e",
+    name="port_monitor",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

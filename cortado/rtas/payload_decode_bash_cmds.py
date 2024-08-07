@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="4406f514-0ffa-465b-9cef-2eeeb32f1096",
+    name="payload_decode_bash_cmds",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

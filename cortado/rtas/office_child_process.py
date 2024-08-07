@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="65ae1bcd-0b1c-4992-97c3-f40b0f92deb1",
+    name="office_child_process",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

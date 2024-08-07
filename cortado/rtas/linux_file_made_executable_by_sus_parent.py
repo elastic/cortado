@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="97993aa0-7b15-442b-a180-7c158b3339c1",
+    name="linux_file_made_executable_by_sus_parent",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="742037b3-3ef6-4a33-84ed-b26fc6ae322c", name="Linux File Made Executable by Suspicious Parent")

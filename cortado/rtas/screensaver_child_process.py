@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="adc70542-4d6e-4449-bf96-4cd44367bfbb",
+    name="screensaver_child_process",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

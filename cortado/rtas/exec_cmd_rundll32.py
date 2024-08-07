@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="81adc847-2965-4a4b-8d3c-91e541c85ab4",
+    name="exec_cmd_rundll32",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

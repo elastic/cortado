@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="bf2f893a-513a-41ea-9170-2c9b08a2a55f",
+    name="silentprocessexit_lsass",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[RuleMetadata(id="28969fe6-0ebe-4442-b40c-dbe9b4234f5e", name="LSA Dump via SilentProcessExit")],
     siem_rules=[],

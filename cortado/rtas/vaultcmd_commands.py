@@ -15,6 +15,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="53d071d9-36e3-4b40-83c8-d818bd831010",
+    name="vaultcmd_commands",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

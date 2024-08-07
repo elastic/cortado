@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="c4445d28-fe0f-4822-b0b0-92e188a9ca0e",
+    name="exec_vs_prebuildevent",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

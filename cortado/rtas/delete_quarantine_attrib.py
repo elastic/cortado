@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="d7a67c3c-eadb-4bfb-beb1-61ddd86b4b83",
+    name="delete_quarantine_attrib",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

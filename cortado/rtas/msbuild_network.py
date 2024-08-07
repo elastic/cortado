@@ -18,6 +18,7 @@ MS_BUILD_EXE = "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\msbuild.exe"
 
 @register_code_rta(
     id="022dc249-a496-413a-9355-c37e3ea41dda",
+    name="msbuild_network",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

@@ -9,6 +9,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="44345dc0-883f-41b7-ad34-1d84cfd57129",
+    name="calendar_file_mod",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="cb71aa62-55c8-42f0-b0dd-afb0bb0b1f51", name="Suspicious Calendar File Modification")],

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="e7f3a729-e5ee-462b-ba1c-dd778468d24d",
+    name="exec_gfxdownloadwrapper",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="aafe3c78-15d9-4853-a602-663b8fada5b5", name="Potential Evasion via Intel GfxDownloadWrapper")

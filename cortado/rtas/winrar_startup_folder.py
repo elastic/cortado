@@ -16,6 +16,7 @@ from . import _common, register_code_rta, OSType
 
 @register_code_rta(
     id="6d2d3c21-2d71-4395-8ab7-b1d0138d9225",
+    name="winrar_startup_folder",
     platforms=[OSType.WINDOWS],
 )
 def main():

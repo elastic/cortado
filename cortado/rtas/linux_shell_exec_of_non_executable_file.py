@@ -10,6 +10,7 @@ import subprocess
 
 @register_code_rta(
     id="075664b1-83db-4cb1-9280-e18309e187bc",
+    name="linux_shell_exec_of_non_executable_file",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="4c61fca2-6f77-474d-a537-2d7fd9ec75e0", name="Shell Execution of Non-Executable File")

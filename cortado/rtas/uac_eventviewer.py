@@ -16,6 +16,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="1185afa2-49aa-4cca-8702-228d238c0bd5",
+    name="uac_eventviewer",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="31b4c719-f2b4-41f6-a9bd-fce93c2eaf62", name="Bypass UAC via Event Viewer")],

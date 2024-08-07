@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="631a211d-bdaa-4b9d-a786-31d84d7bc070",
+    name="bash_cmdline_history",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="31da6564-b3d3-4fc8-9a96-75ad0b364363", name="Tampering of Bash Command-Line History")

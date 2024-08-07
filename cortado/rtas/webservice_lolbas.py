@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="b7a7d246-b1ef-4d08-85ce-92e1cfc18520",
+    name="webservice_lolbas",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

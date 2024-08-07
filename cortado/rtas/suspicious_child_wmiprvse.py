@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="1f1833da-dca4-467c-9a9d-a61cf41d6b63",
+    name="suspicious_child_wmiprvse",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

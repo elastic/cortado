@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="f9a34606-863d-46aa-b12d-eeeb68b530e3",
+    name="networksetup_vpn",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

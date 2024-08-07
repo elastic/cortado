@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="0eb19c28-f82f-4f69-b11f-3b946f310e32",
+    name="exec_cmd_set_casmailbox",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

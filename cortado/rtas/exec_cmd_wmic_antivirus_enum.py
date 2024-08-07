@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="d123ee22-aa28-4dcd-9c3b-5be047eb6eff",
+    name="exec_cmd_wmic_antivirus_enum",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="6ea55c81-e2ba-42f2-a134-bccf857ba922", name="Security Software Discovery using WMIC")],

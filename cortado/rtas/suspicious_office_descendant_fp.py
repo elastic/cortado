@@ -16,6 +16,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="e6d124ee-27d3-48a6-8c59-354072ec9e00",
+    name="suspicious_office_descendant_fp",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="a624863f-a70d-417f-a7d2-7a404638d47f", name="Suspicious MS Office Child Process")],

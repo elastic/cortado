@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="dc1baf0d-8048-481a-b142-73313181fe31",
+    name="pkexec_shell",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="30c89cc9-d93c-4134-a976-58f8413f2f32", name="Privilege Escalation via PKEXEC Exploitation")

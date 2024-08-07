@@ -10,6 +10,7 @@ from multiprocessing import Process
 
 @register_code_rta(
     id="61369084-af6a-4fd0-903f-b44467f5d6e7",
+    name="ssh_bruteforce",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="ace1e989-a541-44df-93a8-a8b0591b63c0", name="Potential SSH Brute Force Detected")],

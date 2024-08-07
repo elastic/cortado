@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="ea7c50ad-5736-48c7-bf39-50f708710826",
+    name="app_bundler_execution",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="94a891a9-3771-4a8c-a6ca-82fa66cfd7e2", name="Script Execution via macOS Application Bundle")

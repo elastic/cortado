@@ -8,6 +8,7 @@ import sys
 
 @register_code_rta(
     id="d768af98-4e0b-451a-bc29-04b0be110ee5",
+    name="linux_reverse_shell_via_utility",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="c71b9783-ca42-4532-8eb3-e8f2fe32ff39", name="Linux Reverse Shell via Suspicious Utility"),

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="b4454817-eea7-458d-8426-e4f529352e39",
+    name="discovery_builtin_cmd",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="92525741-9ca8-466e-acee-ceb14ab0dc34", name="System Discovery via Built-In Utilities")

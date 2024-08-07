@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="c5ae5daf-50f4-4cbb-84ed-d0ee7750bad0",
+    name="linux_decoded_or_decrypted_payload_written_to_sus_dir",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="5a2a5c20-73f6-4a08-a767-95d242b52708",
+    name="cscript_suspicious_args",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="ffbab5db-73ae-42fd-a33f-36bf649f41cc", name="Suspicious Windows Script Process Execution"),

@@ -13,6 +13,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="71f67037-1df3-4d5f-b8cb-eaf295ad16ed",
+    name="iqy_file_writes",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[],

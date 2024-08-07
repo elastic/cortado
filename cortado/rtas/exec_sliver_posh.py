@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="99180561-08ad-42e7-bcda-078af280ad9c",
+    name="exec_sliver_posh",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="14626cac-eb09-4e52-81f1-f87975e8f5ae", name="Potential Execution via Sliver Framework")

@@ -9,6 +9,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="5fc46f6e-5a2a-4336-98f3-5fdc27db7152",
+    name="modify_sublime_app",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

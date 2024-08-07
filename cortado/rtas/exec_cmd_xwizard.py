@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="bcdda7c2-cc0c-4555-8dda-86a3263c99ad",
+    name="exec_cmd_xwizard",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="1a6075b0-7479-450e-8fe7-b8b8438ac570", name="Execution of COM object via Xwizard")],

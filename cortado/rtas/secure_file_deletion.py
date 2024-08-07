@@ -11,6 +11,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="9cb42759-a161-4d93-b07d-3c8254dc8838",
+    name="secure_file_deletion",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="55d551c6-333b-4665-ab7e-5d14a59715ce", name="PsExec Network Connection")],

@@ -8,6 +8,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="858475a2-78a6-40f8-8691-7ce0c631cc0c",
+    name="file_ms_template_macros",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

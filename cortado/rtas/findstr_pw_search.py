@@ -13,6 +13,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="332d6bb9-845f-401d-af5a-368f1f10e27a",
+    name="findstr_pw_search",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[],

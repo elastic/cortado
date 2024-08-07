@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="23f0dde3-4803-4976-9a2a-5b5faca50b54",
+    name="exec_ms_dotnet_clickonce",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="16c84e67-e5e7-44ff-aefa-4d771bcafc0c", name="Execution from Unusual Directory"),

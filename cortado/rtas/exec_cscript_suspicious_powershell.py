@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="c562a05e-0ac8-46f9-91a2-5e99c8a1117c",
+    name="exec_cscript_suspicious_powershell",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="16c84e67-e5e7-44ff-aefa-4d771bcafc0c", name="Execution from Unusual Directory"),

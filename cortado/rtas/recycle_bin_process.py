@@ -18,6 +18,7 @@ TARGET_APP_EXE = "bin/myapp.exe"
 
 @register_code_rta(
     id="790cbe6f-ee44-4654-9998-039236dbe0d8",
+    name="recycle_bin_process",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="9e85eb9f-ee9e-4c73-8a83-14dd29a5aa80",
+    name="ddns_unsigned",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

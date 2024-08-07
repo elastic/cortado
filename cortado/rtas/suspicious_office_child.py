@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="c798f63a-f8be-459a-bb75-407e97f55faa",
+    name="suspicious_office_child",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="c34a9dca-66cf-4283-944d-1800b28ae690", name="Suspicious Microsoft Office Child Process")

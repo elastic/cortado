@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="d5643e8a-c3f5-48a7-9f64-7255f603a24a",
+    name="dseditgroup_admin_add",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="565c2b44-7a21-4818-955f-8d4737967d2e", name="Potential Admin Group Account Addition")],

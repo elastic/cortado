@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="8ce1099f-26e7-45ea-a7a9-9ab0926a2c4a",
+    name="user_mode_smb_connection",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="2fbbd139-3919-4b6b-9c50-9452b0aef005", name="Unexpected SMB Connection from User-mode Process")

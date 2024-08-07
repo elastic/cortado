@@ -14,6 +14,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="5efc844c-0c11-4f84-a904-ada611315298",
+    name="powershell_args",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[],

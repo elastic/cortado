@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="ff744c89-20cb-4be0-9725-2430d0be7f6a",
+    name="directory_service_plugin_file",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

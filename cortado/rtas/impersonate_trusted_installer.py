@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="6373e944-52c8-4199-8ca4-e88fd6361b9c",
+    name="impersonate_trusted_installer",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="cc35ee3e-d350-4319-b7f3-ea0d991ce4d9", name="Suspicious Impersonation as Trusted Installer")

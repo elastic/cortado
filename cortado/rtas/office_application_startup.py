@@ -15,6 +15,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="5a979532-2b56-4c7d-b47e-a2aa1ef9547a",
+    name="office_application_startup",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[],

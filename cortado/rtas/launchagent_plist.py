@@ -9,6 +9,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="7548a786-50f7-40e5-8f8a-b005e9e8d864",
+    name="launchagent_plist",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

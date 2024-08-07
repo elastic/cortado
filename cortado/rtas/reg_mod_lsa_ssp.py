@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="ac6b2cda-97f1-4095-b5f1-9791da2e6282",
+    name="reg_mod_lsa_ssp",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

@@ -8,6 +8,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="edb804d6-85df-4dca-a521-1b6dfee9f354",
+    name="file_susp_browser_extension",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="7df7fca3-8a91-4a54-9799-0478a90ae326", name="Suspicious Browser Files Modification")

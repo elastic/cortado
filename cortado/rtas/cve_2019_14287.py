@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="df91f5f2-a0a0-47e8-848b-d01526a43d60",
+    name="cve_2019_14287",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(

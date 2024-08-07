@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="42eed432-af05-45d3-b788-7e3220f81f9a",
+    name="wuauclt_image_load",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="a6263f00-58b4-4555-b88f-9d66a7395891",
+    name="reg_mod_shadow_rdp",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

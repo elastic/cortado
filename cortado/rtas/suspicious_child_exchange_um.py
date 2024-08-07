@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="9f58f9e7-a0f5-48e6-a924-d437fd626195",
+    name="suspicious_child_exchange_um",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

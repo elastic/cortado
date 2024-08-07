@@ -10,6 +10,7 @@ import time
 
 @register_code_rta(
     id="f9a0601a-4c36-41df-bdf6-140ae7c99de3",
+    name="linux_execution_of_file_dropped_by_openssl",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="7032dd32-8a51-4545-94d0-5997051f4610", name="Linux Execution of a File Dropped by OpenSSL")

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="32e926c2-2f33-4dd0-ac77-12545331d3e4",
+    name="exec_conhost_indirect",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="57d4d7f4-03a6-43d3-a5af-9ac706b2eedf",
+    name="exec_cmd_clear_history",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="b5877334-677f-4fb9-86d5-a9721274223b", name="Clearing Windows Console History")],

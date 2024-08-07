@@ -10,6 +10,7 @@ from time import sleep
 
 @register_code_rta(
     id="9332cece-38b7-49e1-9f8d-e879913ffdfb",
+    name="javascript_payload",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="871f0c30-a7c5-40a5-80e3-a50c6714632f", name="Download and Execution of JavaScript Payload")

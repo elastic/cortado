@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="163dbe60-28e0-4042-b2f0-173dddea877b",
+    name="gdb_init_secret_dump",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="ba70be59-bf50-48a9-8b36-0f0808a50fb8", name="Linux init (PID 1) Secret Dump via GDB")

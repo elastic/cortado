@@ -16,6 +16,7 @@ MY_APP_EXE = "bin/myapp_x64.exe"
 
 @register_code_rta(
     id="27694576-0454-40b3-9823-e29719c53750",
+    name="process_double_extension",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

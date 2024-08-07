@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="eb06a33e-bc80-412b-8ae8-f45af6682293",
+    name="image_load_rdp_client_dll",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="71c5cb27-eca5-4151-bb47-64bc3f883270", name="Suspicious RDP ActiveX Client Loaded")],

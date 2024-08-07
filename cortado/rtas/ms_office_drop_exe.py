@@ -15,6 +15,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="ce85674f-fb6c-44d5-b880-4ce9062e1028",
+    name="ms_office_drop_exe",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

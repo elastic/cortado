@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="f5c31db1-a376-47b3-9ba3-a946408e2bbc",
+    name="uac_dism_dll_side_loading",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="18a26e3e-e535-4d23-8ffa-a3cdba56d16e", name="Suspicious Parent-Child Relationship"),

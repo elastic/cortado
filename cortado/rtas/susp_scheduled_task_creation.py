@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="0a766d3c-baee-4bc2-8997-e4e450f77253",
+    name="susp_scheduled_task_creation",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="16c84e67-e5e7-44ff-aefa-4d771bcafc0c", name="Execution from Unusual Directory"),

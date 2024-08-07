@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="bf7645b2-d0cf-428d-a158-b1479160e60c",
+    name="curl_sus_payload",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

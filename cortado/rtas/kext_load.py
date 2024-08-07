@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="c4ac8740-3dca-4550-831b-e03d21de581d",
+    name="kext_load",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

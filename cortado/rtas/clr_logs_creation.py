@@ -8,6 +8,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="9bf3622b-dd76-4156-a89c-6845dca46b1f",
+    name="clr_logs_creation",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="16c84e67-e5e7-44ff-aefa-4d771bcafc0c", name="Execution from Unusual Directory"),

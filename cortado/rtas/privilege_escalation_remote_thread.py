@@ -11,6 +11,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="e1ff47b2-af5d-4cfc-bd94-e0b86828b241",
+    name="privilege_escalation_remote_thread",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="458f0b4b-be9a-45bc-8f19-a26dac267250", name="Potential Code Injection via Remote Thread")

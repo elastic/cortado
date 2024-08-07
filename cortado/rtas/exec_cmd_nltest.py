@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="c5b8e9c5-59c6-4316-8e73-cd4f5a9a2761",
+    name="exec_cmd_nltest",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

@@ -25,6 +25,7 @@ def pause():
 
 @register_code_rta(
     id="c62c65bf-248e-4f5a-ad4f-a48736c1d6f2",
+    name="registry_persistence_create",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

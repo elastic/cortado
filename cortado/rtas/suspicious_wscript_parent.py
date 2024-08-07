@@ -15,6 +15,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="a3cdd478-b817-4513-bb3d-897a5f92c836",
+    name="suspicious_wscript_parent",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

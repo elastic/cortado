@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="086c6cae-22ac-47b6-bd24-85b33d8cf3a2",
+    name="elevated_osascript_execution",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="7253d78c-8a68-4073-b20a-fbab9d4daf23",
+    name="network_connection_download_script_interpreter",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

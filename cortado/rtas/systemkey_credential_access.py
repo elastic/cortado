@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="d950ef5f-8277-4ed8-a8dd-d2433e791cef",
+    name="systemkey_credential_access",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="7d3f98bf-2111-4e5f-9787-9edef8d94dd0", name="Suspicious SystemKey Access via Command Line")

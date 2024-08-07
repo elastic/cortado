@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="3a84dc01-0202-4aee-8cd1-5fdefead9f4f",
+    name="exec_cmd_rundll32_davsetcookie",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="4682fd2c-cfae-47ed-a543-9bed37657aa6", name="Potential Local NTLM Relay via HTTP")],

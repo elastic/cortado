@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="31161e21-c290-4e51-a6d3-2865710793ff",
+    name="periodic_task_creation",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

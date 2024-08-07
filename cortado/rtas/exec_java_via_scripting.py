@@ -12,6 +12,7 @@ EXE_FILE = "bin/renamed_posh.exe"
 
 @register_code_rta(
     id="a3b26c9e-6910-43f7-93b2-84cc777e54f4",
+    name="exec_java_via_scripting",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="15b1d979-5be0-4e7f-9202-0c4cfd76b146", name="Suspicious Java Execution via a Windows Script"),

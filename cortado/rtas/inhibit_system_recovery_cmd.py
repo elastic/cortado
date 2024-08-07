@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="d64b9c0c-d4be-4af2-b820-233493fb7d75",
+    name="inhibit_system_recovery_cmd",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

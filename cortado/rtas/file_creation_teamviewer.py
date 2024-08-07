@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="0da48a27-4a5e-4974-ba6a-63cce8f602df",
+    name="file_creation_teamviewer",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="b25a7df2-120a-4db2-bd3f-3e4b86b24bee", name="Remote File Copy via TeamViewer")],

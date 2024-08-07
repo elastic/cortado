@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="9d5af763-b3f9-4b89-96b6-16e0210f9755",
+    name="msoffice_untrusted_exec",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

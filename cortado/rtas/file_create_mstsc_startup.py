@@ -10,6 +10,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="55750f93-0545-4222-a1fe-8b25a1c736f0",
+    name="file_create_mstsc_startup",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="25224a80-5a4a-4b8a-991e-6ab390465c4f", name="Lateral Movement via Startup Folder")],

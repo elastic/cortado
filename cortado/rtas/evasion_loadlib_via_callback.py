@@ -8,6 +8,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="ae4b2807-3a16-485e-bb69-5d36bbe9b7d1",
+    name="evasion_loadlib_via_callback",
     platforms=[OSType.WINDOWS],
     siem_rules=[],
     endpoint_rules=[

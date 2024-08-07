@@ -18,6 +18,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="961d7a1f-7bad-41d5-a3d9-8e8a2f59a824",
+    name="at_command",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[],

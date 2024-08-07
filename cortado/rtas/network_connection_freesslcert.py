@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="9261a9ca-53ed-483c-967a-3f7a8f93e0ea",
+    name="network_connection_freesslcert",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="456ec321-41c8-4a41-8f6f-40b8e3d1c295",
+    name="msoffice_dcom_accessvbom",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="6a714747-2671-4523-b233-744f119949b6", name="Suspicious MS Office Execution via DCOM")

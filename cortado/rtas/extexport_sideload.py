@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="bbbfc3e3-e1ba-45ad-9d30-cbbe115a0c6c",
+    name="extexport_sideload",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="e13a65b7-f46f-4c7f-85cf-7e59170071fa", name="Execution via Internet Explorer Exporter"),

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="b63e7b4a-85a6-4b4f-bf72-abe49d04b24f",
+    name="suspicious_child_childless_process",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

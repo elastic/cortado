@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="6c399694-d21c-4a19-9e58-8fa24eb399b9",
+    name="cmd_shell_via_word",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

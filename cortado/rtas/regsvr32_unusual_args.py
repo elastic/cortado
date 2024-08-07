@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="469d383a-d03f-470a-bcba-15da9dd373ed",
+    name="regsvr32_unusual_args",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="16c84e67-e5e7-44ff-aefa-4d771bcafc0c", name="Execution from Unusual Directory"),

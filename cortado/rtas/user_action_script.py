@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="4e63cb99-b56d-4c75-9cda-3a7f30861d35",
+    name="user_action_script",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="c292fa52-4115-408a-b897-e14f684b3cb7", name="Persistence via Folder Action Script")],

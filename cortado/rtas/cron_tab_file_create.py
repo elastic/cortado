@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="e85f7e39-da36-4ed4-be00-c5b29f4d763c",
+    name="cron_tab_file_create",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

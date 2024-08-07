@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="ffc9ace1-3527-46e3-bc3e-86b942107edb",
+    name="reg_mod_suspicious_service",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="36a8e048-d888-4f61-a8b9-0f9e2e40f317", name="Suspicious ImagePath Service Creation")],

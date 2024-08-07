@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="7c4e0d1e-e80a-465a-9612-a319800390f4",
+    name="exec_cmd_psexesvc",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

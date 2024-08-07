@@ -8,6 +8,7 @@ import sys
 
 @register_code_rta(
     id="43ce7648-d48a-4609-80a5-f68384e498d3",
+    name="credential_dumping",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="05f95917-6942-4aab-a904-37c6db906503", name="Potential Linux Credential Dumping via Unshadow"),

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="2e5d3ddd-6dc4-4ebf-93e3-c32698b8df40",
+    name="file_create_task_file",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="1327384f-00f3-44d5-9a8c-2373ba071e92", name="Persistence via Scheduled Job Creation")],

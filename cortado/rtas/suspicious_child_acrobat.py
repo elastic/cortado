@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="d62cd5fb-0e8f-4f20-9477-b8622772ed16",
+    name="suspicious_child_acrobat",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="53a26770-9cbd-40c5-8b57-61d01a325e14", name="Suspicious PDF Reader Child Process")],

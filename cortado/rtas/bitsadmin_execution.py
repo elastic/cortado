@@ -10,6 +10,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="e7a55d39-37b4-4f37-9519-3779b3c23bfa",
+    name="bitsadmin_execution",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="676ac66c-4899-498f-ae21-ed5620af5477", name="Suspicious Bitsadmin Activity"),

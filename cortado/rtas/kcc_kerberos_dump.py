@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="2f17286a-e4a8-41de-b3fa-595a4be6fb19",
+    name="kcc_kerberos_dump",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="dc8fa849-efb4-45d1-be1a-9472325ff746", name="Potential Access to Kerberos Cached Credentials")

@@ -10,6 +10,7 @@ import pathlib
 
 @register_code_rta(
     id="c69a06f3-3873-4d5d-8584-035e0921b4a8",
+    name="builtin_cmd_file_delete",
     platforms=["macos", "linux"],
     endpoint_rules=[
         RuleMetadata(

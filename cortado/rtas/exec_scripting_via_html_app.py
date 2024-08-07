@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="05f1f2a3-430d-4d20-9c0c-767d3b950cbb",
+    name="exec_scripting_via_html_app",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="f0630213-c4c4-4898-9514-746395eb9962", name="Script Execution via Microsoft HTML Application")

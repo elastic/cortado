@@ -14,6 +14,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="1ef2a173-a9c8-446d-9d56-f7e54a197a33",
+    name="registry_rdp_enable",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="58aa72ca-d968-4f34-b9f7-bea51d75eb50", name="RDP Enabled via Registry")],

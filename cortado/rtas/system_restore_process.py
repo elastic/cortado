@@ -13,6 +13,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="0fcf5aeb-cebd-466d-8a2e-ddb710ec845d",
+    name="system_restore_process",
     platforms=[OSType.WINDOWS],
 )
 def main():

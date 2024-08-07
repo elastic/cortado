@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="ca0cc06d-6a8f-4d9b-a9c2-9315c62f924a",
+    name="msoffice_file_drop_exec_wmi",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

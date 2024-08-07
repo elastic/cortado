@@ -14,6 +14,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="a52a72cb-6fc7-48b2-b365-8479a6cdb2e6",
+    name="obfuscated_powershell",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[],

@@ -9,6 +9,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="7e23fa7b-1812-4abb-ab42-a2350c9a4741",
+    name="file_potential_dll_hijacking",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

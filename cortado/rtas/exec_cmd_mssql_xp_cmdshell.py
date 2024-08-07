@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="f0340de4-e433-49a3-ba8c-de0ded32840d",
+    name="exec_cmd_mssql_xp_cmdshell",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

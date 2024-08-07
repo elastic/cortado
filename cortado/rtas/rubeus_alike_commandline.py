@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="85cf6796-5f53-4fed-a5cb-8b211882543c",
+    name="rubeus_alike_commandline",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="0783f666-75ad-4015-9dd5-d39baec8f6b0", name="Potential Credential Access via Rubeus")

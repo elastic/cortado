@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="a37316f1-2828-45d2-85ea-1783bb9b9982",
+    name="exec_msiexec_dllregisterserver",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="d6c94638-5c8a-40e9-9ad8-86a8f97cc043",
+    name="network_connection_nslookup",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="3a59fc81-99d3-47ea-8cd6-d48d561fca20", name="Potential DNS Tunneling via NsLookup")],

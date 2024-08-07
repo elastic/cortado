@@ -27,6 +27,7 @@ plist = """
 
 @register_code_rta(
     id="17c710a6-9070-4448-b68c-a3694657552e",
+    name="launchd_load_plist",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

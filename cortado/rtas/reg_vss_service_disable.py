@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="c4eefb59-2c59-4904-a04e-5e3a75f54a46",
+    name="reg_vss_service_disable",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

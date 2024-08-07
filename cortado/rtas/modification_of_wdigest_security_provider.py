@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="878ffa93-dea6-48f8-9441-e199bc23ec6b",
+    name="modification_of_wdigest_security_provider",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

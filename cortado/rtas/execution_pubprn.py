@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="8b5119a5-9f78-492a-8448-ff726b0e0b4f",
+    name="execution_pubprn",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="0d4454a7-c682-4085-995c-300973c5bdea", name="Scriptlet Proxy Execution via PubPrn"),

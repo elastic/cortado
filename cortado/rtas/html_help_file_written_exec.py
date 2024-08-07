@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="9bbf9aea-33fc-45fc-be55-4cafc744da80",
+    name="html_help_file_written_exec",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="9c3b13f6-bc26-4397-9721-4ba23ddd1014", name="File Execution via Microsoft HTML Help")

@@ -25,6 +25,7 @@ def create_exfil(path=Path("secret_stuff.txt").resolve()):
 
 @register_code_rta(
     id="6cd35061-278b-45e7-a9cb-86b48bc47884",
+    name="sevenzip_encrypted",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="45d273fb-1dca-457d-9855-bcb302180c21", name="Encrypting Files with WinRar or 7z")],

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="8c22e0f5-7c5b-46eb-b04c-28f32ac5b564",
+    name="exec_forfiles",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="78afa378-d1c4-4b83-a261-ce1c90f1cbf9", name="Indirect Command Execution via ForFiles")

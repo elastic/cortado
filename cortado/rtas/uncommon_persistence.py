@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="ca020d7f-f495-4f0a-a808-da615f3409b4",
+    name="uncommon_persistence",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

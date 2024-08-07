@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="41ea3472-7ec7-4c4a-baf4-b1805ba597df",
+    name="suspicious_parent_cmd",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="3b47900d-e793-49e8-968f-c90dc3526aa1", name="Unusual Parent Process for cmd.exe")],

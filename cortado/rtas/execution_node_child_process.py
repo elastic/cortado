@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="20631e46-d3c4-45c0-bfa8-37f6b287db36",
+    name="execution_node_child_process",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

@@ -9,6 +9,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="be8c9227-8266-4d91-931e-c53e07731d07",
+    name="linux_discovery_command_from_sus_dir",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(

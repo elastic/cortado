@@ -15,6 +15,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="161c5972-6bfe-47b5-92bd-e0399e025dec",
+    name="powershell_from_script",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="f545ff26-3c94-4fd0-bd33-3c7f95a3a0fc", name="Windows Script Executing PowerShell")],

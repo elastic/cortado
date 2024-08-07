@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="b12372b8-0e76-4b3d-9dfc-880664893eb9",
+    name="exec_susp_parent_child",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="18a26e3e-e535-4d23-8ffa-a3cdba56d16e", name="Suspicious Parent-Child Relationship")

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="a0b7435a-1f48-4fae-b3dc-c596dc70490d",
+    name="msequationeditor_file_written_exec",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="4b23eaa2-aa73-43ee-9c10-47ecf01e00aa",
+    name="file_create_mimilsa_log",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="ebb200e8-adf0-43f8-a0bb-4ee5b5d852c6", name="Mimikatz Memssp Log File Detected")],

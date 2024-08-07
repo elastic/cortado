@@ -8,6 +8,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="672cd0e6-fa5a-468f-80c8-04f92bead469",
+    name="modify_bootconf",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="6d660b32-23bf-434b-a588-1cdc91224664", name="BCDEdit Safe Mode Command Execution")

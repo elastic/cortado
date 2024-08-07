@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="c0f3618b-a7d9-403c-8b42-572da0b20f47",
+    name="shlayer_payload",
     platforms=[OSType.MACOS],
     endpoint_rules=[RuleMetadata(id="3dda1ac2-86ef-41f5-ad3b-d9396383e104", name="Shlayer Malware Infection")],
     siem_rules=[],

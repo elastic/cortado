@@ -8,6 +8,7 @@ import subprocess
 
 @register_code_rta(
     id="a5603982-8b43-4ea9-b8de-112d9817e12d",
+    name="linux_reverse_shell",
     platforms=[OSType.LINUX],
     endpoint_rules=[RuleMetadata(id="52206861-4570-4b8b-a73e-4ef0ea379a4c", name="Linux Reverse Shell")],
     siem_rules=[],

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="76050b81-a8da-43d2-8a83-f18b31162b94",
+    name="exec_susp_explorer",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="f8ec5b76-53cf-4989-b451-7d16abec7298", name="Suspicious Windows Explorer Execution")

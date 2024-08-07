@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="cc7b01f9-852c-4232-8c70-ada3fb5cc515",
+    name="credential_access_osascript_phishing",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="318d3d9d-ba60-40e3-bc8c-3d3304209a3c", name="Potential Credentials Phishing via OSASCRIPT")

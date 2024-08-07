@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="f2b4878b-34db-4673-8fde-81be3df7ab30",
+    name="exec_odbcconf",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

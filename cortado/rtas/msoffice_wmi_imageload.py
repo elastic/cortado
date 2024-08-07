@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="d2671cc5-87d0-4612-9e3c-0862b137d242",
+    name="msoffice_wmi_imageload",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="46952f58-6741-4280-8e74-fa43f63c9604", name="WMI Image Load via Microsoft Office")

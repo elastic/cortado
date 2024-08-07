@@ -15,6 +15,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="8ffd2053-c04a-435a-84b3-a8403a5395db",
+    name="delete_catalogs",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="581add16-df76-42bb-af8e-c979bfb39a59", name="Deleting Backup Catalogs with Wbadmin")],

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="da45a71e-fc97-492d-932f-703b11c08387",
+    name="linux_hidden_executable_netcon",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="b6b65c6a-830a-4e1c-ace7-3c98362f998b",
+    name="exec_cmd_posh_mailbox",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

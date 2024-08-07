@@ -8,6 +8,7 @@ import sys
 
 @register_code_rta(
     id="94366604-8f84-448e-9761-0eb7b45bc2fa",
+    name="linux_exec_interactive_shell",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(

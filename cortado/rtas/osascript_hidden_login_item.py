@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="d00ef4d9-4690-4eb1-aa60-7ff3ce3bd75b",
+    name="osascript_hidden_login_item",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

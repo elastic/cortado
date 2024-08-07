@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="64a7cd38-767f-4d46-9350-feb585a32c18",
+    name="rundll32_unusual_dll_extension",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

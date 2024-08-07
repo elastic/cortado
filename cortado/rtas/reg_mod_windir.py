@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="38cea037-c1a8-4749-a434-ba4c7d6e91f8",
+    name="reg_mod_windir",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

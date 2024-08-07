@@ -8,6 +8,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="1bc32d6d-c5c9-43c6-bada-6d26469b5dac",
+    name="file_create_powershell_profile",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="5cf6397e-eb91-4f31-8951-9f0eaa755a31", name="Persistence via PowerShell profile")],

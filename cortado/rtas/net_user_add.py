@@ -14,6 +14,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="7884fa56-c4d6-494f-bfa5-825851ee0fda",
+    name="net_user_add",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

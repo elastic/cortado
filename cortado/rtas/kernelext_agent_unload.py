@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="61f308d8-40c5-4c46-9181-e993cf07e92b",
+    name="kernelext_agent_unload",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

@@ -49,6 +49,7 @@ def http_from_process(name, ip, port):
 
 @register_code_rta(
     id="cf94f5cc-5265-4287-80e5-82d9663ecf2e",
+    name="unusual_ms_tool_network",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

@@ -9,6 +9,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="7e9a94f4-46aa-45eb-b95b-53da7c01a033",
+    name="uac_cdssync",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),

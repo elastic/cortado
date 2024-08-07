@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="26339b1f-05ba-4fd8-94c2-8ee1613e4590",
+    name="login_hook",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="5d0265bf-dea9-41a9-92ad-48a8dcd05080", name="Persistence via Login or Logout Hook")],

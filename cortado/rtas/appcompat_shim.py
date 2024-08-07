@@ -18,6 +18,7 @@ SHIM_FILE = "bin/CVE-2013-3893.sdb"
 
 @register_code_rta(
     id="a4a8608e-d94f-4eb1-b500-738328307bbc",
+    name="appcompat_shim",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

@@ -8,6 +8,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="3c40b5fd-afd0-4794-8af3-f7af249edf84",
+    name="file_create_outlook_vba",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="397945f3-d39a-4e6f-8bcb-9656c2031438", name="Persistence via Microsoft Outlook VBA")],

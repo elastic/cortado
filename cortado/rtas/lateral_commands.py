@@ -23,6 +23,7 @@ MY_APP_EXE = "bin/myapp.exe"
 
 @register_code_rta(
     id="389392dc-61db-4e45-846f-099f7d289c1b",
+    name="lateral_commands",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="d61cbcf8-1bc1-4cff-85ba-e7b21c5beedc", name="Service Command Lateral Movement")],

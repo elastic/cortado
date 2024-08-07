@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="f158a6dc-1974-4b98-a3e7-466f6f1afe01",
+    name="keychain_dump",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

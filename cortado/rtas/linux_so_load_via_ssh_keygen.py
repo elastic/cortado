@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="5c520396-4951-4763-8512-a53545bcff9c",
+    name="linux_so_load_via_ssh_keygen",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="cc29bf55-8d7f-45df-b8fe-212968c8951c", name="Linux Shared Object Load via SSH-Keygen")

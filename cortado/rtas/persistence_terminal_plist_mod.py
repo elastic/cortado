@@ -11,6 +11,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="c01971a7-3aa6-4c43-aee6-85d48e93b8c1",
+    name="persistence_terminal_plist_mod",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="2ac8ec88-8549-4fcb-9697-5f53e2f78bf4", name="Suspicious Terminal Plist Modification")

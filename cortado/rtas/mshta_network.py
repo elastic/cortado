@@ -16,6 +16,7 @@ HTA_FILE = "bin/beacon.hta"
 
 @register_code_rta(
     id="83465fca-25ae-4d6d-b747-c82cda75b0ae",
+    name="mshta_network",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

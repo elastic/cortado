@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="7343a543-c2f6-4215-a21c-04eb8c764656",
+    name="path_passed_to_system",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="bb1de0c7-3504-4b31-8d3e-928aa3acf64f", name="Potential Masquerading as System Binary")

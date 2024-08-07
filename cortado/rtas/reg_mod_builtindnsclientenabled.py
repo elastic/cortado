@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="2edd7889-578b-4870-befd-6b3d0f5a10fd",
+    name="reg_mod_builtindnsclientenabled",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="a22a09c2-2162-4df0-a356-9aacbeb56a04", name="DNS-over-HTTPS Enabled via Registry")],

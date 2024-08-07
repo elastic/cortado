@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="1ccbd3c6-69c8-4476-b5e5-da3d167a09f1",
+    name="powershell_unsigned_defender_exclusion",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

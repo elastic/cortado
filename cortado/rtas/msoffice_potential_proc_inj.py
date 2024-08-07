@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="afaf4f08-765e-4d4a-8db0-5a2613e1f5be",
+    name="msoffice_potential_proc_inj",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

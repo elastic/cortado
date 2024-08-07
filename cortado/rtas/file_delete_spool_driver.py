@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="3a343699-374c-454a-841c-f0d0d4a3031f",
+    name="file_delete_spool_driver",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="c4818812-d44f-47be-aaef-4cfb2f9cc799", name="Suspicious Print Spooler File Deletion")],

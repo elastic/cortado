@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="fafdfbda-add8-40a1-b2b5-640fce12413e",
+    name="exec_cmd_mklink",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="d117cbb4-7d56-41b4-b999-bdf8c25648a0", name="Symbolic Link to Shadow Copy Created")],

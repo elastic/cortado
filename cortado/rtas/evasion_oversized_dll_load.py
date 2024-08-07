@@ -16,6 +16,7 @@ WER = "c:\\windows\\system32\\werfault.exe"
 
 @register_code_rta(
     id="ec52377c-b2a8-4c44-8eb4-465376f2189a",
+    name="evasion_oversized_dll_load",
     platforms=[OSType.WINDOWS],
     siem_rules=[],
     endpoint_rules=[

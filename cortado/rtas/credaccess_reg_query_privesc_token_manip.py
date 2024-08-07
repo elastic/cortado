@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="59329aa6-852a-44d0-9b24-322fe4fbdad0",
+    name="credaccess_reg_query_privesc_token_manip",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="c5ee8453-bc89-42e7-a414-1ba4bec85119", name="Suspicious Access to LSA Secrets Registry"),

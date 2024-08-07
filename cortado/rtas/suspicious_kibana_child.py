@@ -9,6 +9,7 @@ import sys
 
 @register_code_rta(
     id="5fce12c8-642a-49ad-9a94-e21d23149afb",
+    name="suspicious_kibana_child",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="0b206183-7f90-461d-80b3-8a147147ae78", name="Suspicious Kibana Child Process"),

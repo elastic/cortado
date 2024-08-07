@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="1796555f-921a-459f-9661-0d94cf90fe81",
+    name="shove_sip_bypass",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="7dea8cfc-92db-4081-9a5d-85ead8cedd5f", name="Potential SIP Bypass via the ShoveService")

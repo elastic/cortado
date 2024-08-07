@@ -18,6 +18,7 @@ SMB_PORT = 445
 
 @register_code_rta(
     id="b0e3e1bb-dfa5-473a-8862-b2d1d42819ce",
+    name="smb_connection",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="c82c7d8f-fb9e-4874-a4bd-fd9e3f9becf1", name="Direct Outbound SMB Connection")],

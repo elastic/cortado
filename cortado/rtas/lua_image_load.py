@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="860e5968-c31f-4928-ac05-3c3c2d19450c",
+    name="lua_image_load",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="8f237d98-1825-4c27-a5cd-e38bde70882a", name="Suspicious Windows LUA Script Execution")

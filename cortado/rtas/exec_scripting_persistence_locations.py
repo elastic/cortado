@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="537de67d-8ba8-4df8-a965-75ca564d0846",
+    name="exec_scripting_persistence_locations",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="e5d376ae-d634-41fa-903c-42f35736a615",
+    name="adobe_priv_helper_tool",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

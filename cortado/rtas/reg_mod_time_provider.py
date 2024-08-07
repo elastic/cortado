@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="8b03eda5-5c01-4e69-9095-f9c00af85000",
+    name="reg_mod_time_provider",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

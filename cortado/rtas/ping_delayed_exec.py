@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="48419773-64de-498a-be98-cb1f6815e80c",
+    name="ping_delayed_exec",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[RuleMetadata(id="7615ca4b-c291-4f05-9488-114b6bf99157", name="Delayed Execution via Ping")],
     siem_rules=[],

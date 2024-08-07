@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="a86199f3-b08c-4fb5-ba92-a706a24090da",
+    name="reg_dll_control_panel",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="340bdcad-187f-4ccb-b84e-34ee70844d78", name="DLL Control Panel Items Registry Modification")

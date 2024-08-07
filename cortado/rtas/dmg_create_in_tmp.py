@@ -10,6 +10,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="4743705e-bf41-404a-b2f3-9f8f067516e6",
+    name="dmg_create_in_tmp",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="fdb0e7ed-4210-4b71-be47-d0b0d9458fa7", name="Suspicious DMG File Creation in Temp Directory")

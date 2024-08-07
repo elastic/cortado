@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="bc837b89-713a-4d21-a086-8649e8411f11",
+    name="suspicious_child_explorer",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="9a5b4e31-6cde-4295-9ff7-6be1b8567e1b", name="Suspicious Explorer Child Process")],

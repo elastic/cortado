@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="a3461218-f6c2-4178-ad85-f25b8df2d2e1",
+    name="reg_mod_run_key_unusual_proc",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="b2fcbb09-d9bd-4f6c-a08e-247548b4edcd", name="Registry Run Key Modified by Unusual Process"),

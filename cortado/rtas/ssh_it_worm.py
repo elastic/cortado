@@ -8,6 +8,7 @@ import sys
 
 @register_code_rta(
     id="3ad5efdc-c186-4dbd-b5ce-f8d1f102002c",
+    name="ssh_it_worm",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="cb351778-7329-4de9-82b5-6705f772a3af", name="Potential SSH-IT SSH Worm Downloaded"),

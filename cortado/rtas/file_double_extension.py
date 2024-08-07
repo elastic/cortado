@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="af989d34-49af-4815-8d58-ab10835bfc35",
+    name="file_double_extension",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[RuleMetadata(id="ccfca0c7-c975-4735-82bd-954ffbafd00b", name="Evasion via Double File Extension")],
     siem_rules=[],

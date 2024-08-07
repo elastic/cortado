@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="9643aa7f-fe2e-46f1-b3ef-8cf07b5aaaa0",
+    name="uac_windows_activation",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="2b07eb19-c71e-4e79-b0b6-a3850bdbf273",
+    name="disable_iptables_controls",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="02db53f7-d6de-4e69-8e05-819233583c87", name="Attempt to Disable IPTables or Firewall")

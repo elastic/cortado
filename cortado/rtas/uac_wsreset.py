@@ -9,6 +9,7 @@ from . import _common, register_code_rta, OSType, RuleMetadata
 @register_code_rta(
     id="e8612e97-2df7-4e85-94ee-e61bc58c6479",
     name="uac_wsreset",
+    name="uac_wsreset",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="11c67af9-9599-4800-9e84-bd38f2a51581", name="UAC Bypass via WSReset Execution Hijack")

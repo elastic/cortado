@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="712509fa-5326-4ebc-bb1e-82ddf28e8baa",
+    name="reg_mod_enableat",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="9aa0e1f6-52ce-42e1-abb3-09657cee2698", name="Scheduled Tasks AT Command Enabled")],

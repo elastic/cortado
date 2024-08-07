@@ -17,6 +17,7 @@ from string import ascii_letters
 
 @register_code_rta(
     id="f24491d0-720b-4150-a2a1-45b5b07238aa",
+    name="hosts_file_modify",
     platforms=["windows", "linux", "macos"],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="9c260313-c811-4ec8-ab89-8f6530e0246c", name="Hosts File Modified")],

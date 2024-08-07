@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="aec658cc-a5df-42e8-8e09-810b484b9ef2",
+    name="curl_data_exfil",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="192ec591-1d00-4c16-a717-8a7481038d23", name="MacOS Potential Data Exfiltration via Curl")

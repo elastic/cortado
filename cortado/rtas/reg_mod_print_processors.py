@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="d87a9024-5e8e-44c2-b943-0680f92ad995",
+    name="reg_mod_print_processors",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

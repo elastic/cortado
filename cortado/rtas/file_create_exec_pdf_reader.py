@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="571e229f-fb92-48cf-b0fb-dd9630b1580f",
+    name="file_create_exec_pdf_reader",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

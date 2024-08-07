@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="219dee0a-48ad-4e17-ab59-783a619a7bd5",
+    name="exec_cmd_mpcmdrun_download",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="c6453e73-90eb-4fe7-a98c-cde7bbfc504a", name="Remote File Download via MpCmdRun")],

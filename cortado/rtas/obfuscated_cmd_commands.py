@@ -14,6 +14,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="7b88c558-f732-4ff4-adaa-09c79bf02bd2",
+    name="obfuscated_cmd_commands",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[],

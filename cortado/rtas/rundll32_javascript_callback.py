@@ -15,6 +15,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="75687622-2e75-4612-b213-a31f923efdd4",
+    name="rundll32_javascript_callback",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[],

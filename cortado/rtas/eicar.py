@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="c8efd8c9-b32c-482a-90ff-f2d366a2af45",
+    name="eicar",
     platforms=["macos", "linux", "windows"],
     endpoint_rules=[RuleMetadata(id="c4539c79-9f55-4b36-b06f-8aff82563bca", name="Behavior Protection - EICAR")],
     siem_rules=[],

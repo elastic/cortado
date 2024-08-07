@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="ada7805f-e0e1-4633-952e-41f5bb392fdb",
+    name="reg_mod_base64_executable",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

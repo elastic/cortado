@@ -8,6 +8,7 @@ import sys
 
 @register_code_rta(
     id="a78663dc-9561-40a9-b4eb-f15e31c690cc",
+    name="overlayfs_privesc",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="ca9de348-a09d-4c67-af21-5645b70003d0", name="Potential Privilege Escalation via OverlayFS"),

@@ -8,6 +8,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="97979b30-908d-4c57-a33a-f3b78e55a84a",
+    name="msoffice_addins_file",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="aaa80718-1ed9-43bd-bcf7-97f2a6c93ea8", name="Persistence via Microsoft Office AddIns")

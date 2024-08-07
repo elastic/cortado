@@ -9,6 +9,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="1d486055-38f8-4cf3-aec1-7f4f72d73fb2",
+    name="uac_mmc_deserialization",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

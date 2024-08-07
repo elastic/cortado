@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="4076de6c-6caa-40b3-bfb6-548645823376",
+    name="linux_initd_unusual_binary_execution",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="4ef86185-1a6e-4dd4-915c-d0f4281f68aa",
+    name="persistence_code_extension",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="1f207515-b56f-4d15-929e-b6c0b1bb34f2", name="Suspicious Manual VScode Extension Installation")

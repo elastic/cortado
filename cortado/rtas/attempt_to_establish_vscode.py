@@ -8,6 +8,7 @@ import sys
 
 @register_code_rta(
     id="a078ecca-e8b8-4ae8-a76c-3238e74ca34d",
+    name="attempt_to_establish_vscode",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="13fd98ce-f1c3-423f-9441-45c50eb462c0", name="Attempt to etablish VScode Remote Tunnel"),

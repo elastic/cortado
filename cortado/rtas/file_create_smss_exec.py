@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="4aa10c2d-3839-4ed3-8ca6-a88fdd32bdef",
+    name="file_create_smss_exec",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

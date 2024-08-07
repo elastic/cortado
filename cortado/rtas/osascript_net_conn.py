@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="66407efa-a32e-4f4d-b339-def48e23e810",
+    name="osascript_net_conn",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

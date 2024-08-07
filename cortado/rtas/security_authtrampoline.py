@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="dd39e94e-bfd7-467c-b20d-662d84c0b97e",
+    name="security_authtrampoline",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

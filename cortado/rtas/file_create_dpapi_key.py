@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="146cf978-05f2-4492-843c-46626651db89",
+    name="file_create_dpapi_key",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="00402735-f78d-4ed6-9f8e-a1b365c42f5b",
+    name="suspicious_child_zoom",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="97aba1ef-6034-4bd3-8c1a-1e0996b27afa", name="Suspicious Zoom Child Process")],

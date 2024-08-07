@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="92407d57-e5ce-41b1-933a-7cad26158802",
+    name="discovery_virtual_machine_grep",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

@@ -9,6 +9,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="900e8599-1d5f-4522-9aed-6eab82de2bad",
+    name="kernel_module_removal_execution",
     platforms=[OSType.LINUX],
     endpoint_rules=[RuleMetadata(id="e80ba5e4-b6c6-4534-87b0-8c0f4e1d97e7", name="Kernel Module Removal")],
     siem_rules=[RuleMetadata(id="cd66a5af-e34b-4bb0-8931-57d0a043f2ef", name="Kernel Module Removal")],

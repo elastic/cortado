@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="395d0e4c-e7f5-4c77-add7-92b1d2ba169e",
+    name="evasion_patch_etw_amsi",
     platforms=[OSType.WINDOWS],
     siem_rules=[],
     endpoint_rules=[

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="b78f0255-3b97-4e39-8857-ec74d09e36ba",
+    name="credaccess_sam_from_vss",
     platforms=[OSType.WINDOWS],
     siem_rules=[],
     endpoint_rules=[

@@ -12,6 +12,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="f3ffa89b-de47-4e17-ac8e-385e0e7f8253",
+    name="linux_compress_sensitive_files",
     platforms=[OSType.LINUX],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="6b84d470-9036-4cc0-a27c-6d90bbfe81ab", name="Sensitive Files Compression")],

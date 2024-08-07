@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="e70ab2f3-7a67-4cd8-9969-ad4ebe0358bc",
+    name="reg_mod_disableantispyware",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

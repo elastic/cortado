@@ -9,6 +9,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="aac863d1-8306-463e-b81f-3d97ba925a44",
+    name="exec_privhelper_tool",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="900fdb84-2a81-4a6d-88db-b48a0fafd79e", name="Suspicious PrivilegedHelperTool Activity")

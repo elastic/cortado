@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="db2e6589-d2df-4d9d-9d88-d91af5fd57e9",
+    name="exec_dnguard_program",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="e691d379-6d01-43cc-9f1e-ab10df48a6bc", name="Execution of a DNGUard Protected Program")

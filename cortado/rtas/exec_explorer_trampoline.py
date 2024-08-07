@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="5e911636-6f68-40d3-b1ef-7a951a397cc9",
+    name="exec_explorer_trampoline",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

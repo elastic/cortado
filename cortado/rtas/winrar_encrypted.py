@@ -27,6 +27,7 @@ WINRAR_EXE = "bin/Rar.exe"
 
 @register_code_rta(
     id="6d2d3c21-2d71-4395-8ab7-b1d0138d9225",
+    name="winrar_encrypted",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="45d273fb-1dca-457d-9855-bcb302180c21", name="Encrypting Files with WinRar or 7z")],

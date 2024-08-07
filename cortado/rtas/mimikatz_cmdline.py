@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="75fdde39-92bb-4a71-a4f1-f70e9c85d6db",
+    name="mimikatz_cmdline",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="86bf5d50-7f5d-44b4-977b-dff222379727", name="Potential Credential Access via Mimikatz")

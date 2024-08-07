@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="735969b3-6a2e-4c7d-b18a-59e2f36ef13b",
+    name="reg_mod_shim_sb",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="c5ce48a6-7f57-4ee8-9313-3d0024caee10", name="Installation of Custom Shim Databases")],

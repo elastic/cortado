@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="cfb116f0-ad83-4d77-803f-064c2cfd93fe",
+    name="uac_dccw",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="18a26e3e-e535-4d23-8ffa-a3cdba56d16e", name="Suspicious Parent-Child Relationship"),

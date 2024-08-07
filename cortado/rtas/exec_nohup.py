@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="b2faa842-ffc9-41c6-baed-8008c9749a52",
+    name="exec_nohup",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="3f18726c-4897-41dc-8426-15da95b8482f", name="Suspicious Nohup Execution")],

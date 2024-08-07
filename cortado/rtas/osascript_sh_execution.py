@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="fa1dd615-73f0-46d0-b047-b495337d356b",
+    name="osascript_sh_execution",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="d461fac0-43e8-49e2-85ea-3a58fe120b4f", name="Shell Execution via Apple Scripting")],

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="2c186f11-d07c-4df6-8b86-bf9ffd6ca871",
+    name="emond_plist",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="a6bf4dd4-743e-4da8-8c03-3ebd753a6c90", name="Emond Rules Creation or Modification")],

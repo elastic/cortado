@@ -8,6 +8,7 @@ from . import _common, register_code_rta, OSType, RuleMetadata
 
 @register_code_rta(
     id="432b8bb0-03e2-4618-bda9-77c0cef7eef8",
+    name="cve_2023_0386",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="22145fc0-dc4c-4187-8397-4d20162fc391", name="CVE-2023-0386 Exploitation Attempt"),

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="762adc57-58c2-413d-a98d-258a223c07da",
+    name="launchdaemon_persistence",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

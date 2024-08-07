@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="6ef908be-9ed3-413d-8d4d-94446107eecc",
+    name="grep_software_discovery",
     platforms=["macos", "linux"],
     endpoint_rules=[
         RuleMetadata(id="13eade2e-73dd-4fab-a511-88258635559d", name="Potential Security Software Discovery via Grep")

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="f9feed6d-bae3-49c6-8952-7ed8e9b0b9ef",
+    name="root_crontab_file_modification",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

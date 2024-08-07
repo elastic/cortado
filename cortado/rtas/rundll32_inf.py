@@ -10,6 +10,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="7d139669-2b4c-4fc3-9a7c-bd1b643696dc",
+    name="rundll32_inf",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="93438ae3-becd-43fa-81de-645ce17afa8e", name="Scriptlet Execution via Rundll32"),

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="be77efd7-8f6a-4033-92b9-f47addb60866",
+    name="exec_cmd_endpoint_security_masquerading",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

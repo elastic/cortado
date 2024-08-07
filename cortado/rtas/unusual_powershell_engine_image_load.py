@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="a5d82c62-6d4e-4d31-94f2-a996c9613604",
+    name="unusual_powershell_engine_image_load",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="f57505bb-a1d2-4d3b-b7b5-1d81d7bdb80e", name="Unusual PowerShell Engine ImageLoad")

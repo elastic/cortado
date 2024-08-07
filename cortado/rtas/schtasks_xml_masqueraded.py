@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="4bb0b65e-8e78-4680-ab37-d6c0723f97a9",
+    name="schtasks_xml_masqueraded",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

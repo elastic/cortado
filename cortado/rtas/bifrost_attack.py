@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="057f2c1b-28cc-4286-92ce-75e789aa8e74",
+    name="bifrost_attack",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="fecebe4f-2d28-46e7-9bc1-71cdd8ecdd60", name="Potential Kerberos Attack via Bifrost")

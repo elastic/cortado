@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="83b04be5-ed0f-4efd-a7fd-d5db2b8ab62f",
+    name="reverse_shell",
     platforms=["macos", "linux"],
     endpoint_rules=[
         RuleMetadata(id="d0e45f6c-1f83-4d97-a8d9-c8f9eb61c15c", name="Potential Reverse Shell Activity via Terminal")

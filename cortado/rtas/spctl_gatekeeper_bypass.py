@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="cf71bf97-e3ba-474c-9b6b-538e5a8008b0",
+    name="spctl_gatekeeper_bypass",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="4da13d6e-904f-4636-81d8-6ab14b4e6ae9", name="Attempt to Disable Gatekeeper")],

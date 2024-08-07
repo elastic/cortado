@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="6a884a9a-b061-4eeb-8711-f14f6b49c9c0",
+    name="reg_mod_disable_uac",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

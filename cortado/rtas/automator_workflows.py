@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="6294e8bd-a82e-4d60-9de7-cceb639e91d9",
+    name="automator_workflows",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="e390d36d-c739-43ee-9e3d-5a76fa853bd5", name="Suspicious Automator Workflows Execution")

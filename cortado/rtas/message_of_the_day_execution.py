@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="33f3ebda-7776-4cec-933b-48e85d707d61",
+    name="message_of_the_day_execution",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="b9b3922a-59ee-407c-8773-31b98bf9b18d", name="Suspicious Process Spawned from MOTD Detected")

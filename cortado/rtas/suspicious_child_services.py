@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="a840e9b2-5aac-41a1-8c79-03ff624eb77b",
+    name="suspicious_child_services",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="0022d47d-39c7-4f69-a232-4fe9dc7a3acd", name="System Shells via Services")],

@@ -10,6 +10,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="9010739f-05c5-4fc0-b806-27753d3d6b5b",
+    name="iterm2_autolaunch",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="7e52f64b-b0be-4437-81d1-91dd4dd5cb79", name="Potential iTerm2 Autolaunch Process Hijack")

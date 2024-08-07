@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="f964558b-0674-4c97-afcc-42d4b6a813c6",
+    name="keychain_pwd_cmdline",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="77d71ede-3025-4c71-bb99-ada7c344bf89", name="Web Browsers Password Access via Command Line")

@@ -10,6 +10,7 @@ import subprocess
 
 @register_code_rta(
     id="0a3d2e78-1860-48e9-b4c8-99dcc7dc0e87",
+    name="linux_command_execution_via_env",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="a393fff6-3735-440e-8536-82509d78bfdd", name="Linux Command Execution via Env Binary")

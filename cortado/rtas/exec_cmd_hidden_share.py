@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="19b6d1cd-6342-42f0-9f1d-20185f5b3d95",
+    name="exec_cmd_hidden_share",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="fa01341d-6662-426b-9d0c-6d81e33c8a9d", name="Remote File Copy to a Hidden Share")],

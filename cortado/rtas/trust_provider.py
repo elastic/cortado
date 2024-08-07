@@ -37,6 +37,7 @@ def set_final_policy(dll_path, function_name):
 
 @register_code_rta(
     id="45541eb5-c636-477b-81c9-b6dcf184c9cc",
+    name="trust_provider",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="f2c7b914-eda3-40c2-96ac-d23ef91776ca", name="SIP Provider Modification")],

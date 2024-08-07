@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="84a9bc41-8b2e-434e-b6ae-237e9202c745",
+    name="exec_cmd_appcmd_logging",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="ebf1adea-ccf2-4943-8b96-7ab11ca173a5", name="IIS HTTP Logging Disabled")],

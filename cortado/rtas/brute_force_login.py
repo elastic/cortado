@@ -19,6 +19,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="35bb73a9-cafa-4b2c-81f0-a97e2afa5e1c",
+    name="brute_force_login",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="522a18d6-0c27-499f-86d9-cd421129a38d",
+    name="plistbuddy_file_modification",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

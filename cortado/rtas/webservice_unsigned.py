@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="049f1e5e-99a9-4a0f-afac-b7b41b96ed12",
+    name="webservice_unsigned",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="2c3efa34-fecd-4b3b-bdb6-30d547f2a1a4", name="Connection to WebService by an Unsigned Binary")

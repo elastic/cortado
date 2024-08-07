@@ -9,6 +9,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="603d77bf-cdfc-44dd-94d3-5b4016caef94",
+    name="keychain_cred_access",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="150f20b4-6b21-460b-8ae4-339695c1c86c", name="Suspicious Access to Keychain Credentials Files")

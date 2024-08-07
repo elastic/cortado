@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="ac51c9f0-d8ea-4ee1-9371-f368aab884e9",
+    name="linux_hidden_file_mount",
     platforms=[OSType.LINUX],
     endpoint_rules=[RuleMetadata(id="5b544dbb-2c66-42cd-a4ee-8d1e5afe9903", name="Linux Hidden File Mounted")],
     techniques=["T1211", "T1059"],

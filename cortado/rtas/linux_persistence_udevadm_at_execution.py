@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="2119cf83-795b-4049-a416-bb46a5aad3a0",
+    name="linux_persistence_udevadm_at_execution",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="47e5595e-1920-4fdd-9a1c-cf712e1112d1", name="At Utility Launched through Udevadm")

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="c2786f8d-d565-494d-84e2-5dcb2da711c4",
+    name="solarmaker_backdoor",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="f7e6d239-9af5-42e3-8d23-91e7188a5cb0", name="SolarMarker Backdoor Registry Modification")

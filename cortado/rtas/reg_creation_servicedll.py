@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="58b3052d-4242-4b41-9f28-b04ce5962761",
+    name="reg_creation_servicedll",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="2c624716-75a1-42d9-bcb8-1defcb9bded9", name="Suspicious Windows Service DLL Creation")

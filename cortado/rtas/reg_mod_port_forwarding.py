@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="8896c6ac-ead6-4f4e-aecf-8308fd53e78c",
+    name="reg_mod_port_forwarding",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="3535c8bb-3bd5-40f4-ae32-b7cd589d5372", name="Port Forwarding Rule Addition")],

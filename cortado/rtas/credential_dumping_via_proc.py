@@ -8,6 +8,7 @@ import sys
 
 @register_code_rta(
     id="e5a98cc9-1f15-4d14-baf2-96bebb932ae9",
+    name="credential_dumping_via_proc",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(

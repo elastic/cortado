@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="6df14bf3-6153-4ff2-aa0f-f91f2aa06b7b",
+    name="suspicious_child_svchost_sch",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="5b00c9ba-9546-47cc-8f9f-1c1a3e95f65c", name="Potential Masquerading as SVCHOST"),

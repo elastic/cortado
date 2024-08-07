@@ -9,6 +9,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="bdb54776-d643-4f4c-90cc-7719c2fa7eab",
+    name="sensitive_file_access",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="52e4ad92-e09b-4331-b827-cd0f2cbaf576", name="Sensitive File Access - Unattended Panther"),

@@ -9,6 +9,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="1d7ff305-03b5-4917-b32c-d0267018063c",
+    name="hidden_file_mount",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="c5f219ca-4bda-461b-bc54-246c0bb48143", name="MacOS Hidden File Mounted"),

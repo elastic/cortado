@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="54be1902-0608-49df-8053-40020d8a9210",
+    name="fltmc_unload",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

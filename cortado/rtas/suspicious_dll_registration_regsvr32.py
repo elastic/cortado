@@ -13,6 +13,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="cda5b0b4-5b9c-4285-8adc-f89b375e5485",
+    name="suspicious_dll_registration_regsvr32",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[],

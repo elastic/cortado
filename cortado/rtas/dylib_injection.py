@@ -9,6 +9,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="f1321e5c-101d-4b03-8f0c-6cf8bda174ec",
+    name="dylib_injection",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="2df75424-4106-43c5-8fea-f115e18588da", name="Collect DIAG Dylib Load Event"),

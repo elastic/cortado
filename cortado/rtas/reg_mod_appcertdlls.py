@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="4c0e7d24-63d1-4888-9ea4-0d920ce3fe40",
+    name="reg_mod_appcertdlls",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="513f0ffd-b317-4b9c-9494-92ce861f22c7", name="Registry Persistence via AppCert DLL")],

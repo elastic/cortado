@@ -20,6 +20,7 @@ INF_FILE = "bin/script_launch.inf"
 
 @register_code_rta(
     id="a2edc784-e969-45f4-b8d2-fe4556b42cd6",
+    name="rundll32_inf_callback",
     platforms=[OSType.WINDOWS],
     ancillary_files=[INF_FILE],
 )

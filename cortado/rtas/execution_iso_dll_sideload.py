@@ -13,6 +13,7 @@ WEB_RTA_EXE = "WER_RTA.exe"
 
 @register_code_rta(
     id="ba802fb2-f183-420e-947b-da5ce0c74d123",
+    name="execution_iso_dll_sideload",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

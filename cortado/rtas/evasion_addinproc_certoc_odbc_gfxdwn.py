@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="6e84852e-b8a2-4158-971e-c5148d969d2a",
+    name="evasion_addinproc_certoc_odbc_gfxdwn",
     platforms=[OSType.WINDOWS],
     siem_rules=[],
     endpoint_rules=[

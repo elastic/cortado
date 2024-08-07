@@ -14,6 +14,7 @@ LINK_FILE = "Invite.lnk"
 
 @register_code_rta(
     id="8bd17f51-3fc0-46a8-9e1a-662723314ad4",
+    name="execution_iso_dll_rundll32",
     platforms=[OSType.WINDOWS],
     siem_rules=[],
     endpoint_rules=[

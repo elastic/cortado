@@ -10,6 +10,7 @@ import time
 
 @register_code_rta(
     id="d8de8c03-d5d0-4118-8971-32439638d69f",
+    name="dynwrapx_image_load",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="16c84e67-e5e7-44ff-aefa-4d771bcafc0c", name="Execution from Unusual Directory"),

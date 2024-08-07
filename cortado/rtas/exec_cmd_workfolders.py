@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="a555c960-08af-49fe-8889-18434a604f68",
+    name="exec_cmd_workfolders",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

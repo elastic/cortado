@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="5781ea36-ac63-4746-8e0f-a1ebd5ec481d",
+    name="reg_mod_systemcertificates",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="4aa158f6-39ed-456f-9d8a-849052cce2f5",
+    name="exec_cscript_archive_args",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="816e1e39-e1a3-4935-9b7b-18395d244670", name="Windows Script Execution from Archive File"),

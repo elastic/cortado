@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="21d1d048-b8c9-4b6d-9748-44f8af1b444d",
+    name="exec_from_mount",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

@@ -12,6 +12,7 @@ SHELLCODE = b"\x33\xC9\x64\x8B\x41\x30\x8B\x40\x0C\x8B\x70\x14\xAD\x96\xAD\x8B\x
 
 @register_code_rta(
     id="727aa289-a1ff-4c82-b688-4cc99e07269f",
+    name="shellcode_load_ws2_32_unbacked",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

@@ -13,6 +13,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="ac739578-c978-429f-9454-0bbe82f993f4",
+    name="scrobj_com_hijack",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="16a52c14-7883-47af-8745-9357803f0d4c", name="Component Object Model Hijacking")],

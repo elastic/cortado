@@ -14,6 +14,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="7b2c1b3e-2097-4e2f-bf5c-e157a91b8001",
+    name="certutil_file_obfuscation",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="fd70c98a-c410-42dc-a2e3-761c71848acf", name="Suspicious CertUtil Commands")],

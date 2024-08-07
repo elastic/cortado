@@ -14,6 +14,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="72e0a6ca-5b2d-48f6-9d6f-a879ace9cdae",
+    name="uac_sysprep",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[],

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="127f1e70-a491-4da4-a24f-ac6bf6e5b756",
+    name="network_connection_desktopimgdownldr",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

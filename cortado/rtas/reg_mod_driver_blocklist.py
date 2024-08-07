@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="cd2154fa-de1a-4098-83c1-be1ab23da379",
+    name="reg_mod_driver_blocklist",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

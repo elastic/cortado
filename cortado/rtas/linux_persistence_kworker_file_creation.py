@@ -8,6 +8,7 @@ import sys
 
 @register_code_rta(
     id="5282c9a4-4ce9-48b8-863a-ff453143635a",
+    name="linux_persistence_kworker_file_creation",
     platforms=[OSType.LINUX],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="ae343298-97bc-47bc-9ea2-5f2ad831c16e", name="Suspicious File Creation via kworker")],

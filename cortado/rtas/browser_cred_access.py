@@ -9,6 +9,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="ea187b1f-4aa0-4ffc-bac9-9ee1d55552fd",
+    name="browser_cred_access",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="cea870d6-e6ee-4435-bc80-2c80e834c5d1", name="Suspicious Access to Stored Browser Credentials")

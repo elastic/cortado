@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="ab957b94-2c39-49dd-93cf-f1e40394ff1b",
+    name="uac_wow64log",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

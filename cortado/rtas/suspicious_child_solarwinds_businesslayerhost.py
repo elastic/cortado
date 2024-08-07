@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="e55c13d4-ab70-4a3d-ba1e-c54156000e42",
+    name="suspicious_child_solarwinds_businesslayerhost",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="93b22c0a-06a0-4131-b830-b10d5e166ff4", name="Suspicious SolarWinds Child Process")],

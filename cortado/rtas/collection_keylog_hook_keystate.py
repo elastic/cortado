@@ -15,6 +15,7 @@ hHook = None
 
 @register_code_rta(
     id="19b7c8db-0279-41fe-b07d-481818185a10",
+    name="collection_keylog_hook_keystate",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

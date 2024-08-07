@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="de7e28b2-c01d-4cd7-abb7-ddb64bce5f45",
+    name="unzip_to_tmp",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="24fa0f80-7e3a-4b27-801a-30ef53f190bf", name="Compressed File Extracted to Temp Directory")

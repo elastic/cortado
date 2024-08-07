@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="ad9c9b24-cff3-4c4e-9fba-5c51ca9e58ae",
+    name="exec_control_panel_cpl",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="a4862afb-1292-4f65-a15f-8d6a8019b5e2", name="Control Panel Process with Unusual Arguments")

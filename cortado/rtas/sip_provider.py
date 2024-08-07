@@ -47,6 +47,7 @@ TARGET_APP_EXE = "bin/myapp.exe"
 
 @register_code_rta(
     id="b0e3e1bb-dfa5-473a-8862-b2d1d42819ce",
+    name="sip_provider",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="f2c7b914-eda3-40c2-96ac-d23ef91776ca", name="SIP Provider Modification")],

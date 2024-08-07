@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="4f7261bb-d298-48ec-9cdf-b8ebe05a7f1e",
+    name="exec_officecmd",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

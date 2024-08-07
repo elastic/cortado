@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="a18454da-5f28-4223-95d6-5dc1f58c861a",
+    name="env_variable_hijacking",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

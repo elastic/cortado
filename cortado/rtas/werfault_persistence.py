@@ -19,6 +19,7 @@ MY_APP = "bin/myapp.exe"
 
 @register_code_rta(
     id="cbd90dde-02f4-4010-b654-ccabff3c3c73",
+    name="werfault_persistence",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="ac5012b8-8da8-440b-aaaf-aedafdea2dff", name="Suspicious WerFault Child Process")],

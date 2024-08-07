@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="74d0c16a-8af1-4dbb-9202-cc4b25208ea6",
+    name="double_persist",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

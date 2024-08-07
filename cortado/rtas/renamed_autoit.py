@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="43636c0c-162b-4445-bcd0-348cbd203fa3",
+    name="renamed_autoit",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[RuleMetadata(id="99f2327e-871f-4b8a-ae75-d1c4697aefe4", name="Renamed AutoIt Scripts Interpreter")],
     siem_rules=[],

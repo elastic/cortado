@@ -10,6 +10,7 @@ import os
 
 @register_code_rta(
     id="3f60cbfd-9e9b-47e4-a585-2a9d1075a3b9",
+    name="browser_exec_downloaded_file",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

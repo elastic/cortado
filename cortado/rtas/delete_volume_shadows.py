@@ -15,6 +15,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="ae6343cc-3b56-4f60-854f-7102db519ec4",
+    name="delete_volume_shadows",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="dc9c1f74-dac3-48e3-b47f-eb79db358f57", name="Volume Shadow Copy Deletion via WMIC")],

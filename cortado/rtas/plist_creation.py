@@ -10,6 +10,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="12e70377-e24e-4374-8aec-42064614d706",
+    name="plist_creation",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

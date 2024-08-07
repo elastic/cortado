@@ -16,6 +16,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="413cf7ef-0fad-46fd-ab67-e94c4e3e0f0b",
+    name="comsvcs_dump",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

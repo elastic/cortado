@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="34040af5-1231-4e97-8189-a26d6622b2e5",
+    name="macos_installer_curl",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="d40ffcba-b83e-4d0a-8d6d-84385def8e18", name="Initial Access via macOS Installer Package")

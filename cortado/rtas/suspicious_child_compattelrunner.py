@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="82e913eb-441b-4c93-bad9-6340af0cc71b",
+    name="suspicious_child_compattelrunner",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

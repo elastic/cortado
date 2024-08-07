@@ -9,6 +9,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="62eb4521-cfb8-4fb8-bc6d-792fe57273b7",
+    name="binary_masquerade",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

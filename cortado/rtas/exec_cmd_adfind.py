@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="6e84852e-b8a2-4158-971e-c5148d969d2a",
+    name="exec_cmd_adfind",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="eda499b8-a073-4e35-9733-22ec71f57f3a", name="AdFind Command Activity")],

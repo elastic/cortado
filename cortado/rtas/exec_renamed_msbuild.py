@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="465eb9a9-2f8b-458b-9ea4-e50912ce1b89",
+    name="exec_renamed_msbuild",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

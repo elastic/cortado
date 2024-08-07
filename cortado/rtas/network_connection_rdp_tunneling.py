@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="7143aab0-c4f3-43da-a11e-aca589887860",
+    name="network_connection_rdp_tunneling",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="e0db3577-879e-4ac2-bd58-691e1343afca",
+    name="exec_java_revshell_linux",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="e0db3577-879e-4ac2-bd58-691e1343afca", name="Potential Linux Reverse Shell via Java")

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="91238171-b3f1-4c0b-80bb-90a824e2ed61",
+    name="susp_control_panel_dll_explorer",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="1dbf6ac3-540a-4214-8173-9aa93232da38", name="Suspicious Control Panel DLL Loaded by Explorer")

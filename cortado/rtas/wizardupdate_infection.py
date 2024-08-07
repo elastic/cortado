@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="1048ff54-4ac4-441f-839d-e4d06a0cb211",
+    name="wizardupdate_infection",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="eb78fa0f-5e8a-4c15-a099-e904c4a226e6", name="Potential WizardUpdate Malware Infection")

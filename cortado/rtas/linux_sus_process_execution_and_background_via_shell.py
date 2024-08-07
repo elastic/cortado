@@ -10,6 +10,7 @@ import subprocess
 
 @register_code_rta(
     id="5132ee2a-25ae-4c2d-abe0-5bc3a9fbcab2",
+    name="linux_sus_process_execution_and_background_via_shell",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="21692d53-d4a5-462c-9ee6-2d8788411996", name="Linux Background Process Execution via Shell")

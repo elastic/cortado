@@ -17,6 +17,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="7dea9748-dcac-49a9-8909-bd1f5590e508",
+    name="settingcontentms_files",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

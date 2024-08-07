@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="07eaba7d-c0ff-4480-87cf-5ad39805dc92",
+    name="suspicious_parent_csc",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="201200f1-a99b-43fb-88ed-f65a45c4972c", name="Suspicious .NET Code Compilation")],

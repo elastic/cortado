@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="f4e4a28e-c845-4b26-bfdf-24128e73ef21",
+    name="disable_os_security_updates",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="741ad90d-e8d0-4d29-b91b-3d68108cb789", name="Operating System Security Updates Disabled")

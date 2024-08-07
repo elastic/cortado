@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="04fa2fff-bbcb-4b13-ad10-33225056e34e",
+    name="exec_scripting_unusual_extension",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

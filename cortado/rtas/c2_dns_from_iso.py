@@ -8,6 +8,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="ba802fb2-f183-420e-947m-da5ce0235d123",
+    name="c2_dns_from_iso",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="3bc98de7-3349-43ac-869c-58357ae2aac0", name="Suspicious DNS Query from Mounted Virtual Disk"),

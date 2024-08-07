@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="5faf9f55-c52e-41e0-8195-b183aba8b876",
+    name="exec_cmd_aspnet_regiis",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

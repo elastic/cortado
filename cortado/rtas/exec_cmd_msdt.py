@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="83332fb4-2299-4584-b5f3-7e0264d034f7",
+    name="exec_cmd_msdt",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

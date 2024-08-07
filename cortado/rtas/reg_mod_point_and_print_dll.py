@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="d2bc8d23-736f-4045-87cd-81d9f4719d2f",
+    name="reg_mod_point_and_print_dll",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

@@ -10,6 +10,7 @@ import pathlib
 
 @register_code_rta(
     id="884ae75b-d9ed-448c-9267-fb470fffb249",
+    name="persistence_shell_via_web_server",
     platforms=[OSType.LINUX],
     endpoint_rules=[RuleMetadata(id="753f83ff-437b-4952-8612-07e3c1327daf", name="Potential Shell via Web Server")],
     siem_rules=[],

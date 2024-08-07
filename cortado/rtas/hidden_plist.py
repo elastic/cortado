@@ -11,6 +11,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="6df524fe-6a1a-417f-8f70-d6140ef739e2",
+    name="hidden_plist",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

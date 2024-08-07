@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="b084e9dd-0c79-480c-b488-049ab8167b38",
+    name="dscl_hidden_account",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

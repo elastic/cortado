@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="0c0febf3-1ac3-4198-a31a-ec80b1f5ebbe",
+    name="exec_ingress_tool_posh",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="5abd98fb-ffbe-4cd6-9592-3cda7b155ff5", name="Ingress Tool Transfer via PowerShell"),

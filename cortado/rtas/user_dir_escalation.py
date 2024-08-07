@@ -16,6 +16,7 @@ from . import _common, register_code_rta, OSType
 
 @register_code_rta(
     id="dc734786-66bd-4be6-bd06-eb41fa7b6745",
+    name="user_dir_escalation",
     platforms=[OSType.WINDOWS],
     ancillary_files=[_common.PS_EXEC],
 )

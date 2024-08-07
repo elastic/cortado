@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="b48a9dd2-8fe7-41e1-9af2-65f609a54237",
+    name="ojnl_injection",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(

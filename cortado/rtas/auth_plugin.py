@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="96c3cc10-7f86-428c-b353-e9de52472a96",
+    name="auth_plugin",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="e6c98d38-633d-4b3e-9387-42112cd5ac10", name="Authorization Plugin Modification")],

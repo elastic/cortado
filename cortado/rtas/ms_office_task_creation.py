@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="804463e7-b146-41ba-a757-d131d0a021ac",
+    name="ms_office_task_creation",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="f9fd002c-0dab-42ec-8675-0cf5af6b4a85", name="Scheduled Task Creation via Microsoft Office"),

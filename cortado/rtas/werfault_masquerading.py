@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="41c82553-01c2-41d6-a15d-3499fa99b4c0",
+    name="werfault_masquerading",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="3d16f5f9-da4c-4b15-a501-505761b75ca6", name="Windows Error Manager/Reporting Masquerading")

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="9cca3284-848f-483a-9241-48562eee0605",
+    name="image_load_taskhost",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="4b4ba027-151f-40e4-99ba-a386735c27e4", name="Unsigned DLL Loaded by Windows Tasks Host")

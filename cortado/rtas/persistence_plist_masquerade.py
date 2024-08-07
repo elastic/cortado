@@ -11,6 +11,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="8bd875f2-eafb-4151-bfb7-4bd97192400d",
+    name="persistence_plist_masquerade",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="3da48cdd-262a-42a9-af2f-c82ef639b9e3", name="Persistence via a Masqueraded Plist Filename")

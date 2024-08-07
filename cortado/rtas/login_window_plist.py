@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="3c8fc2cc-fa66-4c91-ae72-c72accaa92b7",
+    name="login_window_plist",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="ac412404-57a5-476f-858f-4e8fbb4f48d8", name="Potential Persistence via Login Hook")],

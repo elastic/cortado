@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="374718be-d841-4381-a75f-ef54f0d5eb18",
+    name="credential_access_known_utilities",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="3c44fc50-2672-48b3-af77-ff43b895ac70", name="Credential Access via Known Utilities")

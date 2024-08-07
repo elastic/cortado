@@ -13,6 +13,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="d90f48c5-282a-4d29-a021-fb87e220e1a5",
+    name="msiexec_http_installer",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="d275922f-a702-4668-a77d-c60e8df58646",
+    name="mount_smbfs",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

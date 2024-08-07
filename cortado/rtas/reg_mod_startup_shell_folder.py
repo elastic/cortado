@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="16fe008f-58b5-4a8c-9e73-2784edf636b1",
+    name="reg_mod_startup_shell_folder",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

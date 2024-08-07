@@ -9,6 +9,7 @@ from multiprocessing import Process
 
 @register_code_rta(
     id="04361aca-0550-4134-ac21-939bf4a0582f",
+    name="funzip_extract_content",
     platforms=["macos", "linux"],
     endpoint_rules=[
         RuleMetadata(

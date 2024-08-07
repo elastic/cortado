@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="5b52f7e5-e2bc-4a2d-82bd-2e844c081519",
+    name="exec_cmd_netsh_advfirewall_network_discovery",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

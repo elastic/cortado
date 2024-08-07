@@ -11,6 +11,7 @@ import time, sys
 
 @register_code_rta(
     id="89f2b412-bbc7-4298-8768-2f3d3b43c93b",
+    name="collection_keylog_rawinputdevice",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="102b5c1a-7f2a-4254-8b26-6b299705fce7", name="Keystroke Input Capture via DirectInput"),

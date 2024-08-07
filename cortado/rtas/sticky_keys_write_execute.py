@@ -17,6 +17,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="398933ec-f8d4-4d81-93ed-e7d7adcb9d97",
+    name="sticky_keys_write_execute",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="ad0986cb-b5ef-41ad-9b40-8d708dc28844",
+    name="exec_vsls_agent",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="a5416b1f-fc3f-4162-936d-34086689c3b0", name="DLL Execution via Visual Studio Live Share")

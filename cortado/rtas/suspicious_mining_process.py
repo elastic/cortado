@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="425ba45e-10eb-4067-93f4-95701d26da3d",
+    name="suspicious_mining_process",
     platforms=[OSType.LINUX],
     endpoint_rules=[RuleMetadata(id="fbf9342e-3d1e-4fba-a828-92fa0fb4d21b", name="Suspicious Mining Process Events")],
     siem_rules=[],

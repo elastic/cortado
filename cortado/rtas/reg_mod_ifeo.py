@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="2bb1016f-b3e9-455d-b665-02a0aafc797a",
+    name="reg_mod_ifeo",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

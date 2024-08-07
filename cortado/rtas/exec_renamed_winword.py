@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="c5a8bbf2-0920-40ee-a08f-f897c2895eba",
+    name="exec_renamed_winword",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

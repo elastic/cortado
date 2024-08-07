@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="9332cece-38b7-49e1-9f8d-e879913ffdfb",
+    name="exec_tclsh",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

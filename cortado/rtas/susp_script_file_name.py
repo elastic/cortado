@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="84579cd0-2b30-4846-9b4e-9663ae2c400a",
+    name="susp_script_file_name",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="8c69476a-d8ea-46da-8052-6a4f9254125c", name="Suspicious Windows Script File Name"),

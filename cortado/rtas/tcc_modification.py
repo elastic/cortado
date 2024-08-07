@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="34cddcb3-bd49-4363-8092-677307abaa82",
+    name="tcc_modification",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

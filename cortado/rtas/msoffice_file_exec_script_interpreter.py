@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="3206f2b2-c731-479f-a258-d486dac8a055",
+    name="msoffice_file_exec_script_interpreter",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

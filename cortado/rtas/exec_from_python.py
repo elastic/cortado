@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="54041e42-7a4b-417e-ac40-cd50c7085e48",
+    name="exec_from_python",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

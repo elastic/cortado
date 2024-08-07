@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="b88c08af-eee5-4683-a56a-36e91e6386d5",
+    name="enumeration_linpeas",
     platforms=["macos", "linux"],
     endpoint_rules=[
         RuleMetadata(id="92bb2a27-745b-4291-90a1-b7b654df1379", name="Privilege Escalation Enumeration via LinPEAS")

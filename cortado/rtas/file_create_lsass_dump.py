@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="a330f58c-c808-45d9-b8be-9c2054285c08",
+    name="file_create_lsass_dump",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="f2f46686-6f3c-4724-bd7d-24e31c70f98f", name="LSASS Memory Dump Creation")],

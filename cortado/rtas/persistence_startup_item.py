@@ -11,6 +11,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="7a8c8ab6-4994-47d1-b8b6-d1dca4499289",
+    name="persistence_startup_item",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="eaf68cce-b250-4a17-a3c3-3c9c4cf1ec14", name="Persistence Attempt via StartupItems")

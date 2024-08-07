@@ -12,6 +12,7 @@ SHELLCODE = b"\x48\x31\xff\x48\xf7\xe7\x65\x48\x8b\x58\x60\x48\x8b\x5b\x18\x48\x
 
 @register_code_rta(
     id="979b8d18-e266-41ad-bab4-6e68971398ea",
+    name="shellcode_winexec_calc",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="58b996a5-634c-4205-9ffa-a6f2b8ebc1ad", name="Potential Process Creation via ShellCode"),

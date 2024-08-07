@@ -8,6 +8,7 @@ import sys
 
 @register_code_rta(
     id="4eceac28-10c3-425f-a007-c03a9b57956f",
+    name="disable_security_controls",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(

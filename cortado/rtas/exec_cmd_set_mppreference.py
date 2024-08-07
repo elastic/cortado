@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="2730b84c-9e39-4647-ba96-0b438aca9575",
+    name="exec_cmd_set_mppreference",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

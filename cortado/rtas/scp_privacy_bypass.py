@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="75fec962-54a4-4bb1-80ea-995269e90b30",
+    name="scp_privacy_bypass",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="498c13e2-789c-4a6c-b32d-0589d2f907c2",
+    name="msoffice_signed_binary_spawn",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="321e7877-075a-4582-8eff-777dde15e787", name="Signed Binary Execution via Microsoft Office"),

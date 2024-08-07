@@ -10,6 +10,7 @@ import time
 
 @register_code_rta(
     id="c80653a4-26fa-4a9e-b06c-12d12680c4e7",
+    name="msoffice_file_dll_sideload",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

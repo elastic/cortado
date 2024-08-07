@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="4c02d7e0-51c3-4fff-ae90-4b560f497c94",
+    name="linux_powershell_sus_child_process",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="e9731cea-c3fc-4183-a76c-9a798ae0a2b0", name="Linux Powershell Suspicious Child Process")

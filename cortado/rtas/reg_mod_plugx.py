@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="31fdd029-5fac-474f-9201-3b7bfb60e0cf",
+    name="reg_mod_plugx",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="7a201712-9f3c-4f40-b4fc-2418a44b8ecb", name="Potential PlugX Registry Modification")

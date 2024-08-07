@@ -9,6 +9,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="c5cecd6d-a7c4-4e3b-970d-6ca5cfc5c662",
+    name="unshadow_execution",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="05f95917-6942-4aab-a904-37c6db906503", name="Potential Linux Credential Dumping via Unshadow")

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="b39cddfa-97ec-41c7-8d4d-7cf0d5a7ddd4",
+    name="exec_certoc_dll",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="6fcbf73f-4413-4689-be33-61b0d6bd0ffc", name="Suspicious ImageLoad via Windows CertOC")

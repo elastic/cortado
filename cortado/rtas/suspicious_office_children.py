@@ -14,6 +14,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="cd8e06c0-fc62-4932-8ef7-b767570e88eb",
+    name="suspicious_office_children",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

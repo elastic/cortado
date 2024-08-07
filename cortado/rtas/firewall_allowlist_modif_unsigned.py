@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="a0245bfc-d934-4b58-9a7c-a80eca05214b",
+    name="firewall_allowlist_modif_unsigned",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

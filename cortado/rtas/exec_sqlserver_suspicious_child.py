@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="0885b643-a199-4453-95e0-be0d1f29aafc",
+    name="exec_sqlserver_suspicious_child",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="547636af-cad2-4be0-a74e-613c7bb86664", name="Suspicious Execution from MSSQL Service")

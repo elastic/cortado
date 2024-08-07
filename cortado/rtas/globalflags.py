@@ -14,6 +14,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="e09d904a-f3bb-4d36-8eb8-8c234812807c",
+    name="globalflags",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="6839c821-011d-43bd-bd5b-acff00257226", name="Image File Execution Options Injection")],

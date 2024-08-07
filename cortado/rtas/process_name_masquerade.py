@@ -11,6 +11,7 @@ CMD_PATH = "c:\\windows\\system32\\cmd.exe"
 
 @register_code_rta(
     id="98adf0ff-2d8e-4eea-8d68-42084204bb74",
+    name="process_name_masquerade",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),

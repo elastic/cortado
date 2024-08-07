@@ -16,6 +16,7 @@ REG = "reg.exe"
 
 @register_code_rta(
     id="dfdcc4f4-5aca-486a-8115-b15b653b9b4f",
+    name="registry_hive_export",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

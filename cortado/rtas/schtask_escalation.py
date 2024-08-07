@@ -17,6 +17,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="1a61241e-5b1b-44ec-8c9f-3ae4652550be",
+    name="schtask_escalation",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

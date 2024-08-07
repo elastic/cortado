@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="aef45f58-14c8-4934-8518-62a254d96b77",
+    name="masquerading_untrusted_path",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="e216abf2-1961-43fb-bef2-0c4b34c78600", name="Linux Binary Masquerading via Untrusted Path")

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="775ffaa8-7a44-490b-b13d-1bfa2100b1ae",
+    name="crashdump_disabled",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="77ca3fcc-f607-45e0-837e-e4173e4ffc2a", name="CrashDump Disabled via Registry Modification")

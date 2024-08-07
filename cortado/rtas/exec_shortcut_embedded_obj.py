@@ -11,6 +11,7 @@ EXE_FILE = "bin/renamed_posh.exe"
 
 @register_code_rta(
     id="32faebaa-b581-464c-bca9-6936fe0948dc",
+    name="exec_shortcut_embedded_obj",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="8076640d-ec66-4d24-a252-ee2f054e00a1", name="Windows Shortcut File Embedded Object Execution"),

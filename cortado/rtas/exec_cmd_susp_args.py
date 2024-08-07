@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="4b2e6004-6685-4a0f-b483-efc84dfb2393",
+    name="exec_cmd_susp_args",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="8dd7588d-fc28-40c0-adfb-14789c763984", name="Suspicious Windows Command Shell Execution")

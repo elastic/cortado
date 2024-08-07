@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="2145af1a-0781-47ab-8d73-2d50e93b5ff7",
+    name="image_load_vaultcli",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[RuleMetadata(id="048737fe-80d6-4462-aa80-ffeed853103e", name="Suspicious Vault Client Image Load")],
     siem_rules=[],

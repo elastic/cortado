@@ -8,6 +8,7 @@ import sys
 
 @register_code_rta(
     id="6a5977f6-ed19-446e-a441-e325cff7772b",
+    name="execution_linux_curl_cve_2023_38545",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="0c188a15-30f5-445c-8655-95c7f93ace88", name="Potential curl CVE-2023-38545 Exploitation"),

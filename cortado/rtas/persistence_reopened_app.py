@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="8a6aee3d-fa5f-41ca-83f6-d0669fc159ac",
+    name="persistence_reopened_app",
     platforms=[OSType.MACOS],
     endpoint_rules=[RuleMetadata(id="57e9e13a-4eda-4b5f-b39a-d38c8104ab0f", name="Re-Opened Application Persistence")],
     siem_rules=[],

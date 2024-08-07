@@ -13,6 +13,7 @@ PROC_EXE = "cmd.exe"
 
 @register_code_rta(
     id="a4355bfc-aa15-43f6-a36d-523aa637127b",
+    name="exec_persistence_from_iso",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

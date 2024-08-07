@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="9e31b8ae-c0a6-46c9-9634-d1aebceea541",
+    name="unusual_parent_chrome_extension",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="d7fda3d7-fe77-49c2-8b50-d28a6da206c4", name="Chromium Extension Loaded from Unusual Parent")

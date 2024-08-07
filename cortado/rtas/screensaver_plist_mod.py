@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="ce87d15a-9b72-42c4-8721-ae4bcff86a05",
+    name="screensaver_plist_mod",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

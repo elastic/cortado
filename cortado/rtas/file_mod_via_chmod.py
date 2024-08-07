@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="dbbfda7f-376d-482d-b7ea-3bb1e8918584",
+    name="file_mod_via_chmod",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

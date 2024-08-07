@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="be6619a2-324a-443b-9f23-2dc84733c847",
+    name="child_w3wp",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="89c9c5a0-a136-41e9-8cc8-f21ef5ad894b", name="Suspicious Microsoft IIS Worker Descendant")

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="43331e29-57ba-438f-8d61-99f5d6471aaa",
+    name="inhibit_system_recovery_and_rename",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

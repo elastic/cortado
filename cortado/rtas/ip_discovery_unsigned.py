@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="5e1ca4f9-16cc-4dd3-bfba-4bd5c7579f4a",
+    name="ip_discovery_unsigned",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

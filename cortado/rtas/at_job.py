@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="084c5d8f-2578-4fe0-bc6f-f6c44205804a",
+    name="at_job",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

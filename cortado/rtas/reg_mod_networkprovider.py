@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="1b4050d9-e3fa-4559-b188-522b620584c8",
+    name="reg_mod_networkprovider",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

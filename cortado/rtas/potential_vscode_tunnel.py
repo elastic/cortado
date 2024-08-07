@@ -10,6 +10,7 @@ import sys
 
 @register_code_rta(
     id="fb5cd755-cc31-4142-969a-cd14d3142b36",
+    name="potential_vscode_tunnel",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="aec74eb4-9618-42ff-96eb-2d13e6959d47", name="Potential VScode Remote Tunnel Established"),

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="aafeb270-4704-4b5f-aa1b-1286dc14c5a9",
+    name="suspicious_parent_msbuild_script",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

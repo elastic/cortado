@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="4d9af153-a878-4ae3-b6c4-b3f14e516f25",
+    name="persistence_chrome_extension",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

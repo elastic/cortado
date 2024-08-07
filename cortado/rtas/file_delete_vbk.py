@@ -8,6 +8,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="a6c80b08-ca72-4c3e-93c7-ac3421e4235e",
+    name="file_delete_vbk",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

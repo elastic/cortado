@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="d4b4f924-974b-4033-9728-bb6a736bf7ef",
+    name="image_load_msbuild_vaultcli",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

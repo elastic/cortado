@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="78e59247-db65-412a-898c-2e757d695851",
+    name="unusual_kerberos_client",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="9ba39516-651e-489f-8b6a-f5501e0c492d", name="Execution from Suspicious Directory"),

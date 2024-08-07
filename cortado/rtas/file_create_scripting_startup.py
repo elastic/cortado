@@ -8,6 +8,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="e56f77bc-d9a7-4e02-97e2-b3056f3d4171",
+    name="file_create_scripting_startup",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

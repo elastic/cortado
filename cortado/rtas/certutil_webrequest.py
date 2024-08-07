@@ -16,6 +16,7 @@ MY_DLL = "bin/mydll.dll"
 
 @register_code_rta(
     id="10609a63-0013-4fd0-9322-66c86c1c9501",
+    name="certutil_webrequest",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="3838e0e3-1850-4850-a411-2e8c5ba40ba8", name="Network Connection via Certutil")],

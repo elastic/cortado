@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="1a483c55-443d-4d01-a9de-e2c69df744f3",
+    name="office_app_execution",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

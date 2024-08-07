@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="4fd98e1e-6a58-4684-b565-aa7a09b29d6b",
+    name="msoffice_onenote_susp_child",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="28297d1e-c2a9-442c-9e48-98fe8ce36fab", name="Suspicious Microsoft OneNote Child Process")

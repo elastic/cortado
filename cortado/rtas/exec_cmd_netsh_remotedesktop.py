@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="0b3a3f97-f09e-4a42-b592-6be2b5467c08",
+    name="exec_cmd_netsh_remotedesktop",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

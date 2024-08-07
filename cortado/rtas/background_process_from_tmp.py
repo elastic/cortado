@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="fa2bbba7-66f4-4fd6-9c81-599d58fe67e8",
+    name="background_process_from_tmp",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="603ac59e-9cca-4c48-9750-e38399079043", name="Background Process Execution via Shell")

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="0a6fcfaa-db5e-498f-9253-0f76b8a18687",
+    name="credential_access_dump_hashes_via_cmd",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="2ed766db-e0b0-4a07-8ec1-4e41dd406b64", name="Dumping Account Hashes via Built-In Commands")

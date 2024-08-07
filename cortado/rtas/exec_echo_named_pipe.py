@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="f94f70a3-7c63-4f75-b5bc-f2227e284934",
+    name="exec_echo_named_pipe",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

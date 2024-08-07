@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="2bb1f4df-dc38-45a6-a0f4-54660c93a652",
+    name="reg_mod_netwire",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[RuleMetadata(id="102f340f-1839-4bad-8493-824cc02c4e69", name="NetWire RAT Registry Modification")],
     siem_rules=[],

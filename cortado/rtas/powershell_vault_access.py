@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="88905741-350f-4a20-a363-22be1e71840c",
+    name="powershell_vault_access",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="7a4d1be2-db47-4545-a08c-9d4b20bad0d0", name="Access to Windows Passwords Vault via Powershell")

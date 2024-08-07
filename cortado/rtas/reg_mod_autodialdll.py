@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="32462f3e-d5af-4ef9-8260-aa9fbeb6e117",
+    name="reg_mod_autodialdll",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

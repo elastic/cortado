@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="b023cf4b-2856-4170-9ea0-884041904159",
+    name="defensive_evasion_reflective_loading",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(id="16fba7a9-f8f6-43ce-ae24-6a392a48e49c", name="MacOS Monterey Reflective Code Loading")

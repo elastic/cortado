@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="2182f7e5-fc4b-4476-86c3-e7128dfcaa7a",
+    name="echo_tmp_file_create",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

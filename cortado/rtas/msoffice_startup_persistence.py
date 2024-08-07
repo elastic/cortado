@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="ea9a54fe-62ed-4825-b302-0ebbee22233f",
+    name="msoffice_startup_persistence",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

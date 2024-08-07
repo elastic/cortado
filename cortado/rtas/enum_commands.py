@@ -16,6 +16,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="9b19f4a3-7287-45d2-ab0f-9a9c0b1bc8e1",
+    name="enum_commands",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

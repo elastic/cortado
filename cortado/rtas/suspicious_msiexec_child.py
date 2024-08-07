@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="2cefb7c2-5ffc-4410-a63c-bded93b258c3",
+    name="suspicious_msiexec_child",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="877c6bd9-8df1-4a15-aa97-2a091731b15d", name="Suspicious MsiExec Child Process"),

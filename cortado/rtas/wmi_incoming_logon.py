@@ -15,6 +15,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="3adf005f-94b8-4b34-8994-d5a3dc6666c2",
+    name="wmi_incoming_logon",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="f3475224-b179-4f78-8877-c2bd64c26b88", name="WMI Incoming Lateral Movement")],

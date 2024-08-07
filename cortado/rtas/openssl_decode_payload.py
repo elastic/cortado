@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="fd86ee85-a3ee-4824-875b-bb386a23a578",
+    name="openssl_decode_payload",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

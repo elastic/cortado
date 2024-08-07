@@ -11,6 +11,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="a9754fdb-2beb-454a-b918-36a56c5bf7bd",
+    name="persistence_mail_plist",
     platforms=[OSType.MACOS],
     endpoint_rules=[
         RuleMetadata(

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="ffddb3f7-75ac-49e8-9042-ae1bf5c199e8",
+    name="file_ads_creation",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="bc4c85e7-c2c6-497c-a52e-7c8896a79ab2",
+    name="suspicious_bits_job_notify",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

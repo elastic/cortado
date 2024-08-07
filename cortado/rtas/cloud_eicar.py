@@ -8,6 +8,7 @@ import sys
 
 @register_code_rta(
     id="8d6f2979-747a-42d9-813a-ddadd90650d2",
+    name="cloud_eicar",
     platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="7b9ddfc8-8ea8-45d5-b62f-3fbd142c8f08", name="Behavior Protection - Cloud Reputation EICAR"),

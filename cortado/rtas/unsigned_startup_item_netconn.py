@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="245fcf03-6df8-4731-af94-f2ba4ed60670",
+    name="unsigned_startup_item_netconn",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

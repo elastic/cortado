@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="370c3432-65f5-4068-b879-916bc1297c60",
+    name="ldapsearch_group_enumeration",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

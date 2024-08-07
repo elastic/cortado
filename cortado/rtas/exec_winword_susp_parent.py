@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="65c661e6-7a15-45c0-97ad-0635eda560ba",
+    name="exec_winword_susp_parent",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(

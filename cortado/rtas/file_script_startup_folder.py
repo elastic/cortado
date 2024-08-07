@@ -8,6 +8,7 @@ from pathlib import Path
 
 @register_code_rta(
     id="b8dcb997-e099-472e-8f2f-15a80c8dfe1a",
+    name="file_script_startup_folder",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="dec8781c-ef73-4037-9684-ef28c0322fa4", name="Script File Written to Startup Folder"),

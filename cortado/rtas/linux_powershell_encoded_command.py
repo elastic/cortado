@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="a960d54a-685b-4058-bb88-a67ff002a280",
+    name="linux_powershell_encoded_command",
     platforms=[OSType.LINUX],
     endpoint_rules=[RuleMetadata(id="cd6e64ec-2890-4bd8-9d07-bef06465b06f", name="Linux Powershell Encoded Command")],
     techniques=["T1059"],

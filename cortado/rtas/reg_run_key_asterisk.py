@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="13fbcfdc-ba84-414b-aaa6-49b416806c8e",
+    name="reg_run_key_asterisk",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="94d35931-5c48-49ed-8c18-d601c4f8aeaa", name="Registry Run Key Prefixed with Asterisk")

@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="3c2c32fd-0856-4fc9-8a2d-81ed85e568b0",
+    name="exec_cmd_wmi_subscription",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="9b6813a1-daf1-457e-b0e6-0bb4e55b8a4c", name="Persistence via WMI Event Subscription")],

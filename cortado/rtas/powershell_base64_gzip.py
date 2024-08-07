@@ -13,6 +13,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="38defc7e-7234-45a2-83ef-e845d0eba3f2",
+    name="powershell_base64_gzip",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

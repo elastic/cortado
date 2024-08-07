@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="7cc740ff-2e6c-4740-9323-46dcbb4dbfbc",
+    name="uac_computerdefaults",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="7c0048d5-356d-4f69-839e-10c1e194958f", name="UAC Bypass via ComputerDefaults Execution Hijack")

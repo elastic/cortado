@@ -15,6 +15,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="7f4cfcf6-881b-48b0-864d-21eba06e57cc",
+    name="dcom_lateral_movement_with_mmc",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[

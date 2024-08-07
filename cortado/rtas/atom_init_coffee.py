@@ -9,6 +9,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="72c2470b-c96e-4b44-88ec-1a67c4ec091c",
+    name="atom_init_coffee",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

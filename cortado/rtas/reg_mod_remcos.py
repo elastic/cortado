@@ -8,6 +8,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 
 @register_code_rta(
     id="0e5a4099-f76d-43f8-aa91-0ed1ad5fed81",
+    name="reg_mod_remcos",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
         RuleMetadata(id="9769d372-4115-4ef8-8d7b-aaad05dad9ae", name="Remcos RAT Registry or File Modification")
