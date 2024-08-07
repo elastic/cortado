@@ -1,0 +1,37 @@
+[project]
+name = "cortado"
+version = "0.1.0"
+description = "Consolidated RTAs and orchestration code"
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+  "Topic :: Software Development :: Build Tools",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Security",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Software Development :: Testing",
+  "Topic :: Software Development",
+  "Topic :: Utilities"
+]
+dependencies = [
+]
+[project.optional-dependencies]
+dev = ["pytest>=8.3.2"]
+
+[tool.black]
+line-length = 120
+
+[tool.ruff]
+line-length = 120
+
+[tool.pyright]
+reportMissingTypeStubs = true
+reportUnusedCallResult = "error"
+typeCheckingMode = "strict"
+
+[build-system]
+requires = ["setuptools", "wheel", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
