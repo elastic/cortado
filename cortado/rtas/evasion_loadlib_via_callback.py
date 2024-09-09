@@ -4,13 +4,13 @@
 # 2.0.
 
 from pathlib import Path
+from . import _common, register_code_rta, OSType, RuleMetadata
 
 
 @register_code_rta(
     id="ae4b2807-3a16-485e-bb69-5d36bbe9b7d1",
     name="evasion_loadlib_via_callback",
     platforms=[OSType.WINDOWS],
-    siem_rules=[],
     endpoint_rules=[
         RuleMetadata(id="fae9f554-d3bc-4d48-8863-54d0dd68db54", name="Library Loaded via a CallBack Function")
     ],

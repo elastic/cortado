@@ -6,6 +6,8 @@
 import os
 from pathlib import Path
 
+from . import _common, register_code_rta, OSType, RuleMetadata
+
 
 # testing DLL that will spawn notepad once DllMain is invoked
 DLL = "bin/faultrep.dll"

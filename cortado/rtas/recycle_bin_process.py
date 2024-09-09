@@ -11,6 +11,8 @@
 import time
 from pathlib import Path
 
+from . import _common, register_code_rta, OSType, RuleMetadata
+
 
 RECYCLE_PATHS = ["C:\\$Recycle.Bin", "C:\\Recycler"]
 TARGET_APP_EXE = "bin/myapp.exe"

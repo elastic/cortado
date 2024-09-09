@@ -9,7 +9,7 @@
 # Description: Copies mock malware into the System Volume Information directory and executes.
 
 from pathlib import Path
-
+from . import _common, register_code_rta, OSType
 
 @register_code_rta(
     id="0fcf5aeb-cebd-466d-8a2e-ddb710ec845d",

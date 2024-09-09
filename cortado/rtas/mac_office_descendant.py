@@ -9,9 +9,13 @@
 
 from pathlib import Path
 
+from . import _common, register_code_rta, OSType
+
 
 @register_code_rta(
-    id="bb523eb1-db67-4ae6-9369-af1a93322817", platforms=[OSType.MACOS], endpoint_rules=[], siem_rules=[], techniques=[]
+    id="bb523eb1-db67-4ae6-9369-af1a93322817",
+    name="mac_office_descendant",
+    platforms=[OSType.MACOS],
 )
 def main():
     _common.log("Emulating Microsoft Word running enumeration commands")

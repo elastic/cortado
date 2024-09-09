@@ -8,6 +8,7 @@ import subprocess
 import tempfile
 from pathlib import Path
 
+from . import _common, register_code_rta, OSType, RuleMetadata
 
 @register_code_rta(
     id="9cb42759-a161-4d93-b07d-3c8254dc8838",

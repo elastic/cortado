@@ -5,13 +5,13 @@
 
 from pathlib import Path
 
+from . import _common, register_code_rta, OSType, RuleMetadata
 
 @register_code_rta(
     id="bbad34f5-3542-4484-9b23-5ef05af94c0f",
     name="exec_dll_file_compressed",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[RuleMetadata(id="08fba401-b76f-4c7b-9a88-4f3b17fe00c1", name="DLL Loaded from an Archive File")],
-    siem_rules=[],
     techniques=["T1204", "T1204.002", "T1574", "T1574.002"],
 )
 def main():

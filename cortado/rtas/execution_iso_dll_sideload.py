@@ -5,6 +5,7 @@
 
 from pathlib import Path
 
+from . import _common, register_code_rta, OSType, RuleMetadata
 
 # iso contains WerFault.exe and a testing faultrep.dll to be sideloaded
 ISO_FILE = "bin/werfault_iso.iso"

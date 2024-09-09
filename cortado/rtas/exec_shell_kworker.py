@@ -7,6 +7,7 @@ import os
 import sys
 from pathlib import Path
 
+from . import register_code_rta, OSType, RuleMetadata
 
 @register_code_rta(
     id="11b447ca-6ad4-4597-a048-2585b27762ea",
@@ -15,7 +16,6 @@ from pathlib import Path
     endpoint_rules=[
         RuleMetadata(id="94943f02-5580-4d1d-a763-09e958bd0f57", name="Shell Command Execution via kworker")
     ],
-    siem_rules=[],
     techniques=["T1036", "T1059"],
 )
 def main() -> None:

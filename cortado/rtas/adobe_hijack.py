@@ -10,8 +10,7 @@
 import sys
 from pathlib import Path
 
-from . import register_code_rta, RuleMetadata
-
+from . import _common, register_code_rta, OSType, RuleMetadata
 
 @register_code_rta(
     id="2df08481-31db-44a8-b01d-1c0df827bddb",

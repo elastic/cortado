@@ -4,6 +4,7 @@
 # 2.0.
 
 import sys
+from . import register_code_rta, OSType, RuleMetadata
 
 
 @register_code_rta(

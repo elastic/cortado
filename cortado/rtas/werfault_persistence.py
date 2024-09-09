@@ -14,7 +14,7 @@ import time
 from . import _common, RuleMetadata, register_code_rta, OSType
 
 
-MY_APP = "bin/myapp.exe"
+MY_APP_EXE = "bin/myapp.exe"
 
 
 @register_code_rta(

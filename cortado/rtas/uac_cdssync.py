@@ -6,6 +6,7 @@
 import shutil
 from pathlib import Path
 
+from . import _common, register_code_rta, OSType, RuleMetadata
 
 @register_code_rta(
     id="7e9a94f4-46aa-45eb-b95b-53da7c01a033",

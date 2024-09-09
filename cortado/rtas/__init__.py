@@ -2,17 +2,13 @@ import enum
 import functools
 import importlib
 import importlib.resources
-from pathlib import Path
+import logging
 from dataclasses import dataclass, KW_ONLY, field
 from typing import Callable
-from typing import Callable, ParamSpec, Concatenate, TypeVar
+from types import MappingProxyType
 
-import logging
-
+logging.basicConfig(level=logging.DEBUG)
 log = logging.getLogger(__name__)
-
-
-REGISTRY = {}
 
 
 class OSType(enum.StrEnum):
@@ -28,11 +24,12 @@ class RuleMetadata:
 
 
 @dataclass(frozen=True)
-class RtaDetails:
+class Rta:
     id: str
     name: str
     platforms: list[OSType]
 
+    # https://docs.python.org/3/library/dataclasses.html#dataclasses.KW_ONLY
     _: KW_ONLY
 
     endpoint_rules: list[RuleMetadata] = field(default_factory=list)
@@ -45,13 +42,17 @@ class RtaDetails:
 
 
 @dataclass(kw_only=True, frozen=True)
-class CodeRtaDetails(RtaDetails):
+class CodeRta(Rta):
     code_func: Callable[[], None]
+    ancillary_files: list[str] = field(default_factory=list)
 
 
 @dataclass(kw_only=True, frozen=True)
-class HashRtaDetails(RtaDetails):
+class HashRta(Rta):
     sample_hash: str
+
+
+REGISTRY: dict[str, Rta] = {}
 
 
 def register_code_rta(
@@ -61,9 +62,10 @@ def register_code_rta(
     endpoint_rules: list[RuleMetadata] = [],
     siem_rules: list[RuleMetadata] = [],
     techniques: list[str] = [],
+    ancillary_files: list[str] = [],
 ) -> Callable[[Callable[[], None]], Callable[[], None]]:
     def decorator(func: Callable[[], None]) -> Callable[[], None]:
-        REGISTRY[name] = CodeRtaDetails(
+        REGISTRY[name] = CodeRta(
             id=id,
             name=name,
             platforms=platforms,
@@ -71,6 +73,7 @@ def register_code_rta(
             siem_rules=siem_rules,
             techniques=techniques,
             code_func=func,
+            ancillary_files=ancillary_files,
         )
         log.debug(f"Code RTA registered: ${name}")
 
@@ -93,7 +96,7 @@ def register_hash_rta(
     siem_rules: list[RuleMetadata] = [],
     techniques: list[str] = [],
 ):
-    REGISTRY[name] = HashRtaDetails(
+    REGISTRY[name] = HashRta(
         id=id,
         name=name,
         platforms=platforms,
@@ -105,9 +108,33 @@ def register_hash_rta(
     log.debug(f"Hash RTA registered: ${name}")
 
 
-def load_all():
+def get_registry() -> MappingProxyType[str, Rta]:
+    # Wrap a registry dict into a read-only mapping to prevent from any changes
+    # https://docs.python.org/3/library/types.html#types.MappingProxyType
+    return MappingProxyType(REGISTRY)
+
+
+def load_all_modules():
     dir_path = importlib.resources.files("cortado.rtas")
-    module_file: Path
+
+    failed_imports: list[str] = []
     for module_file in dir_path.glob("*.py"):  # type: ignore
         name = module_file.stem  # type: ignore
-        _ = importlib.import_module(f".{name}", package="cortado.rtas")
+        try:
+            _ = importlib.import_module(f".{name}", package="cortado.rtas")
+        except Exception:
+            failed_imports.append(f"{name}")
+            log.error(f"Can't import module `{name}`, skipping", exc_info=True)
+            continue
+
+    if len(failed_imports) > 0:
+        log.warning(f"{len(failed_imports)} failed module imports")
+
+    log.info(f"RTAs loaded: {len(REGISTRY)}")
+
+
+def load_module(module_name: str):
+    try:
+        _ = importlib.import_module(f".{module_name}", package="cortado.rtas")
+    except Exception:
+        raise ValueError("Can't import RTA from the module named {name}")

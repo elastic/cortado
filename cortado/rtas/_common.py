@@ -47,6 +47,13 @@ EXPAND_SZ = "expand_sz"
 MULTI_SZ = "multi_sz"
 DWORD = "dword"
 
+def get_path(*path_blocks: list[str]) -> str:
+    # FIXME
+    return "<>".join(path_blocks)
+
+
+# FIXME
+CMD_PATH = ""
 PS_EXEC = get_path("bin", "PsExec.exe")
 
 
@@ -163,11 +170,6 @@ def execute_command(  # noqa
             close()
 
         return p
-
-
-def get_path():
-    # FIXME
-    return None
 
 
 def log(message, log_type="+"):

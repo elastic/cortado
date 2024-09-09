@@ -12,6 +12,7 @@
 import subprocess
 from pathlib import Path
 
+from . import _common, register_code_rta, OSType, RuleMetadata
 
 @register_code_rta(
     id="aee48793-01ec-428f-9890-c5db9df07830",

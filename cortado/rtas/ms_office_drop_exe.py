@@ -12,6 +12,7 @@ import os
 import time
 from pathlib import Path
 
+from . import register_code_rta, OSType, RuleMetadata
 
 @register_code_rta(
     id="ce85674f-fb6c-44d5-b880-4ce9062e1028",

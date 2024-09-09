@@ -5,6 +5,8 @@
 
 from pathlib import Path
 
+from . import _common, register_code_rta, OSType, RuleMetadata
+
 
 # iso contains cmd.exe to test for rules looking for persistence from a PE from a mounted ISO or its descendants
 ISO_FILE = "bin/cmd_from_iso.iso"
