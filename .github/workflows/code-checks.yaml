@@ -7,7 +7,7 @@ on:
       - "*.py"
       - "**/*.py"
 jobs:
-  lint:
+  linting:
     runs-on: ubuntu-latest 
     steps:
       - uses: actions/checkout@v4
@@ -31,11 +31,11 @@ jobs:
           poetry config installer.parallel false
           poetry install --with dev
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-      - name: List
+      - name: Lint
         run: |
           poetry run ruff check ./cortado
 
-  unittests:
+  unit-tests:
     runs-on: ubuntu-latest 
     steps:
       - uses: actions/checkout@v4
