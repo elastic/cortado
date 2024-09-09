@@ -1,0 +1,58 @@
+name: Code checks
+
+on:
+  pull_request:
+    branches: [ "*" ]
+    paths:
+      - "*.py"
+      - "**/*.py"
+jobs:
+  lint:
+    runs-on: ubuntu-latest 
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+      - name: Set up cache
+        uses: actions/cache@v4
+        id: cached-poetry-dependencies
+        with:
+          path: ./.venv
+          key: venv-${{ hashFiles('**/poetry.lock') }}
+      - name: Create a virtual env
+        run: python3 -m venv ./.venv
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+          poetry config installer.parallel false
+          poetry install --with dev
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+      - name: List
+        run: |
+          poetry run ruff check ./cortado
+
+  unittests:
+    runs-on: ubuntu-latest 
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+      - name: Set up cache
+        uses: actions/cache@v4
+        id: cached-poetry-dependencies
+        with:
+          path: ./.venv
+          key: venv-${{ hashFiles('**/poetry.lock') }}
+      - name: Create a virtual env
+        run: python3 -m venv ./.venv
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+          poetry config installer.parallel false
+          poetry install --with dev
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+      - name: Run tests
+        run: |
+          poetry run pytest tests/
