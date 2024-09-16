@@ -1,7 +1,7 @@
 [project]
 name = "cortado"
 version = "0.1.0"
-description = "Consolidated RTAs and orchestration code"
+description = "Consolidated RTAs and corresponding orchestration code"
 readme = "README.md"
 requires-python = ">=3.12"
 classifiers = [
@@ -16,10 +16,30 @@ classifiers = [
   "Topic :: Software Development",
   "Topic :: Utilities"
 ]
-dependencies = [
-]
-[project.optional-dependencies]
-dev = ["pytest>=8.3.2"]
+
+# To become unnecessary with https://github.com/python-poetry/poetry/pull/9135
+[tool.poetry]
+name = "cortado"
+version = "0.1.0"
+description = "Consolidated RTAs and corresponding orchestration code"
+authors = ["Elastic TRADE team"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.12"
+typer = { version = "^0.12", optional = true }
+structlog = { version = "^24.4", optional = true }
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.6"
+pytest = "^8.3"
+
+[tool.poetry.extras]
+utils = ["typer", "structlog"]
+
+[tool.poetry.scripts]
+cortado-run-rta = "cortado.rta_cli:run_rta"
+cortado-print-rtas = "cortado.rta_cli:print_rtas"
 
 [tool.black]
 line-length = 120
@@ -35,3 +55,4 @@ typeCheckingMode = "strict"
 [build-system]
 requires = ["setuptools", "wheel", "setuptools_scm"]
 build-backend = "setuptools.build_meta"
+
