@@ -10,6 +10,7 @@
 # Description: Uses certutil to create an encoded copy of cmd.exe. Then uses certutil to decode that copy.
 
 from pathlib import Path
+from . import register_code_rta, OSType, RuleMetadata
 
 
 @register_code_rta(

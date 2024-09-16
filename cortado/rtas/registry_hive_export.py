@@ -10,8 +10,9 @@
 
 from pathlib import Path
 
+from . import _common, register_code_rta, OSType, RuleMetadata
 
-REG = "reg.exe"
+REG_EXE = "reg.exe"
 
 
 @register_code_rta(
@@ -28,8 +29,8 @@ def main():
     for hive in ["sam", "security", "system"]:
         filename = Path("%s.reg" % hive).resolve()
         _common.log("Exporting %s hive to %s" % (hive, filename))
-        _common.execute([REG, "save", "hkey_local_machine\\%s" % hive, filename])
+        _common.execute([REG_EXE, "save", "hkey_local_machine\\%s" % hive, filename])
         _common.remove_file(filename)
 
-        _common.execute([REG, "save", "hklm\\%s" % hive, filename])
+        _common.execute([REG_EXE, "save", "hklm\\%s" % hive, filename])
         _common.remove_file(filename)

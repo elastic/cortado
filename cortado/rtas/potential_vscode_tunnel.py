@@ -5,8 +5,8 @@
 
 import os
 import pathlib
-import sys
 
+from . import _common, register_code_rta, OSType, RuleMetadata
 
 @register_code_rta(
     id="fb5cd755-cc31-4142-969a-cd14d3142b36",
@@ -31,7 +31,3 @@ def main() -> None:
 
     # cleanup
     _common.remove_file(masquerade)
-
-
-if __name__ == "__main__":
-    sys.exit(main())

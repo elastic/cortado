@@ -5,6 +5,7 @@
 
 import sys
 
+from . import _common, register_code_rta, OSType, RuleMetadata
 
 @register_code_rta(
     id="4eceac28-10c3-425f-a007-c03a9b57956f",

@@ -3,12 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import __common, register_code_rta, OSType, RuleMetadata
+from . import _common, register_code_rta, OSType, RuleMetadata
 
 
 @register_code_rta(
     id="bf7645b2-d0cf-428d-a158-b1479160e60c",
-    name="curl_payload_download",
     name="curl_payload_download",
     platforms=[OSType.MACOS],
     endpoint_rules=[
@@ -21,11 +20,11 @@ from . import __common, register_code_rta, OSType, RuleMetadata
 )
 def main():
     masquerade = "/tmp/testfile"
-    __common.create_macos_masquerade(masquerade)
+    _common.create_macos_masquerade(masquerade)
 
     # Execute command
-    __common.log("Launching fake curl commands to download payload")
-    __common.execute([masquerade, "childprocess", "curl", "portquiz.net"], timeout=5, kill=True)
+    _common.log("Launching fake curl commands to download payload")
+    _common.execute([masquerade, "childprocess", "curl", "portquiz.net"], timeout=5, kill=True)
 
     # cleanup
-    __common.remove_file(masquerade)
+    _common.remove_file(masquerade)

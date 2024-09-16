@@ -11,6 +11,7 @@ import os
 import time
 from pathlib import Path
 
+from . import _common, register_code_rta, OSType, RuleMetadata
 
 VBS = "bin/persistent_script.vbs"
 NAME = "rta-vbs-persistence"
@@ -20,7 +21,6 @@ NAME = "rta-vbs-persistence"
     id="2ab62c28-1abb-4ac5-a16d-2f4f75d01d02",
     name="persistent_scripts",
     platforms=[OSType.WINDOWS],
-    endpoint_rules=[],
     siem_rules=[RuleMetadata(id="afcce5ad-65de-4ed2-8516-5e093d3ac99a", name="Local Scheduled Task Creation")],
     techniques=["T1053"],
     ancillary_files=[VBS, _common.PS_EXEC],

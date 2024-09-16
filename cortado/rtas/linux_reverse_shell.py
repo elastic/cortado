@@ -5,6 +5,7 @@
 
 import subprocess
 
+from . import _common, register_code_rta, OSType, RuleMetadata
 
 @register_code_rta(
     id="a5603982-8b43-4ea9-b8de-112d9817e12d",

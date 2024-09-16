@@ -9,9 +9,9 @@
 # Description: Uses "bin\.exe" to perform encryption of archives and archive headers.
 
 import base64
-import sys
 from pathlib import Path
 
+from . import _common, register_code_rta, OSType, RuleMetadata
 
 SEVENZIP_EXE = "bin/7za.exe"
 

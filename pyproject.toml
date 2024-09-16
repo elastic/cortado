@@ -38,8 +38,8 @@ pytest = "^8.3"
 utils = ["typer", "structlog"]
 
 [tool.poetry.scripts]
-cortado-run-rta = "cortado.rta_cli:run_rta"
-cortado-print-rtas = "cortado.rta_cli:print_rtas"
+cortado-run-rta = "cortado.rtas_cli:run_rta"
+cortado-print-rtas = "cortado.cli:print_rtas"
 
 [tool.black]
 line-length = 120

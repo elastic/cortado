@@ -13,7 +13,7 @@ import shutil
 import sys
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType
+from . import _common, register_code_rta, OSType, RuleMetadata
 
 
 urlliblib = "urllib.request"

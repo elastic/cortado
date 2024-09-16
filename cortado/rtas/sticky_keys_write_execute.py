@@ -14,12 +14,12 @@
 import time
 from pathlib import Path
 
+from . import _common, register_code_rta, OSType, RuleMetadata
 
 @register_code_rta(
     id="398933ec-f8d4-4d81-93ed-e7d7adcb9d97",
     name="sticky_keys_write_execute",
     platforms=[OSType.WINDOWS],
-    endpoint_rules=[],
     siem_rules=[
         RuleMetadata(
             id="7405ddf1-6c8e-41ce-818f-48bea6bcaed8", name="Potential Modification of Accessibility Binaries"

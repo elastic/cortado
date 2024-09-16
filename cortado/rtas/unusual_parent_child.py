@@ -12,6 +12,7 @@
 import sys
 from pathlib import Path
 
+from . import _common, register_code_rta, OSType, RuleMetadata
 
 @register_code_rta(
     id="6cf12026-f99f-4e5c-8cd4-3dbc7bce3e67",

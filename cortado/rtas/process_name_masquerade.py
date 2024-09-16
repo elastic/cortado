@@ -5,6 +5,7 @@
 
 from pathlib import Path
 
+from . import _common, register_code_rta, OSType, RuleMetadata
 
 CMD_PATH = "c:\\windows\\system32\\cmd.exe"
 

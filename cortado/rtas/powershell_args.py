@@ -11,14 +11,12 @@
 import base64
 from pathlib import Path
 
+from . import _common, register_code_rta, OSType
 
 @register_code_rta(
     id="5efc844c-0c11-4f84-a904-ada611315298",
     name="powershell_args",
     platforms=[OSType.WINDOWS],
-    endpoint_rules=[],
-    siem_rules=[],
-    techniques=[],
 )
 def encode(command):
     return base64.b64encode(command.encode("utf-16le"))

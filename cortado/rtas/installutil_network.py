@@ -13,6 +13,7 @@
 import sys
 from pathlib import Path
 
+from . import register_code_rta, OSType, RuleMetadata
 
 MY_DOT_NET_EXE = "bin/mydotnet.exe"
 

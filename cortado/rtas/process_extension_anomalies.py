@@ -8,13 +8,18 @@
 # ATT&CK: T1036
 # Description: Creates processes with anomalous extensions
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import _common, register_code_rta, OSType
 
 
 MY_APP_EXE = "bin/myapp.exe"
 
 
-@register_code_rta(id="c7d9d63d-09ff-40e9-b990-4c273281d6a0", platforms=[OSType.WINDOWS], ancillary_files=[MY_APP_EXE])
+@register_code_rta(
+    id="c7d9d63d-09ff-40e9-b990-4c273281d6a0",
+    name="process_extension_anomalies",
+    platforms=[OSType.WINDOWS],
+    ancillary_files=[MY_APP_EXE],
+)
 def main():
     anomalies = [
         "bad.pif",

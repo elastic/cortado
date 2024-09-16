@@ -9,6 +9,7 @@
 # Description: Generates four file writes related to file extensions (PUB, IQY)
 
 from pathlib import Path
+from . import register_code_rta, OSType
 
 
 @register_code_rta(

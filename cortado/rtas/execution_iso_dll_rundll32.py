@@ -5,6 +5,7 @@
 
 from pathlib import Path
 
+from . import _common, register_code_rta, OSType, RuleMetadata
 
 # iso contains shortcut to start Rundll32 to load a testing DLL that when executed it will spawn notepad.exe
 ISO_FILE = "bin/lnk_from_iso_rundll.iso"

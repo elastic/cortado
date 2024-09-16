@@ -14,11 +14,12 @@ import time
 from pathlib import Path
 from string import ascii_letters
 
+from . import _common, register_code_rta, OSType, RuleMetadata
 
 @register_code_rta(
     id="f24491d0-720b-4150-a2a1-45b5b07238aa",
     name="hosts_file_modify",
-    platforms=["windows", "linux", "macos"],
+    platforms=[OSType.WINDOWS, OSType.LINUX, OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="9c260313-c811-4ec8-ab89-8f6530e0246c", name="Hosts File Modified")],
     techniques=["T1565"],

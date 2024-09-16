@@ -11,13 +11,13 @@
 #  configuration, finally restoring the original.
 
 from pathlib import Path
+from . import _common, register_code_rta, OSType, RuleMetadata
 
 
 @register_code_rta(
     id="eaf71384-2e38-4970-b170-9645ccde1d2b",
     name="delete_bootconf",
     platforms=[OSType.WINDOWS],
-    endpoint_rules=[],
     siem_rules=[RuleMetadata(id="69c251fb-a5d6-4035-b5ec-40438bd829ff", name="Modification of Boot Configuration")],
     techniques=["T1490"],
 )

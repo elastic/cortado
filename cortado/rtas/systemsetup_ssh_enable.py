@@ -9,7 +9,6 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 @register_code_rta(
     id="23997dfa-9e30-4091-9ee2-8bd45a2da70a",
     name="systemsetup_ssh_enable",
-    name="systemsetup_ssh_enable",
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[

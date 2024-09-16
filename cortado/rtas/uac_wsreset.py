@@ -5,10 +5,8 @@
 
 from . import _common, register_code_rta, OSType, RuleMetadata
 
-
 @register_code_rta(
     id="e8612e97-2df7-4e85-94ee-e61bc58c6479",
-    name="uac_wsreset",
     name="uac_wsreset",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

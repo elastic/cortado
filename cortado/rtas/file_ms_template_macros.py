@@ -5,6 +5,8 @@
 
 from pathlib import Path
 
+from . import _common, register_code_rta, OSType, RuleMetadata
+
 
 @register_code_rta(
     id="858475a2-78a6-40f8-8691-7ce0c631cc0c",

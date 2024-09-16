@@ -3,9 +3,8 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-import os
 from pathlib import Path
-
+from . import register_code_rta, OSType, RuleMetadata
 
 EXE_FILE = "bin/renamed_posh.exe"
 
