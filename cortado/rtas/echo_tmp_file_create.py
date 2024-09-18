@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -24,9 +28,9 @@ def main():
     _common.create_macos_masquerade(masquerade)
 
     # Execute command
-    _common.log("Launching fake bash commands to abnormal echo shell commands")
+    log.info("Launching fake bash commands to abnormal echo shell commands")
     command = f"bash -c 'echo* > {file_path}'"
-    _common.execute([masquerade, "childprocess", command], timeout=10, kill=True, shell=True)
+    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=10, kill=True, shell=True)
 
     # cleanup
     _common.remove_file(masquerade)

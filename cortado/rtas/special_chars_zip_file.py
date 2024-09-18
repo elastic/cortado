@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -17,5 +21,5 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1497"],
 )
 def main():
-    _common.log("Creating suspicious zip file with special characters to mimic evasion of sanboxed office apps.")
-    _common.temporary_file_helper("testing", file_name="/tmp/~$test.zip")
+    log.info("Creating suspicious zip file with special characters to mimic evasion of sanboxed office apps.")
+    _common.create_file_with_data("/tmp/~$test.zip", "testing")

@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -26,10 +30,10 @@ def main():
     _common.create_macos_masquerade(masquerade3)
 
     # Execute command
-    _common.log("Launching fake macOS application bundler commands")
+    log.info("Launching fake macOS application bundler commands")
     command = f"{masquerade2} test.app/Contents/MacOS/test-psntest"
-    _common.execute([masquerade, "childprocess", command], timeout=10, kill=True)
-    _common.execute([masquerade2, "childprocess", masquerade3], timeout=10, kill=True)
+    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade2, "childprocess", masquerade3], timeout_secs=10, kill=True)
 
     # cleanup
     _common.remove_file(masquerade)

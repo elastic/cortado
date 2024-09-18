@@ -3,8 +3,13 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
 
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
+
+log = logging.getLogger(__name__)
 
 @register_code_rta(
     id="b9d5427a-33c4-4b1d-838d-f47c5f3b0b43",
@@ -17,7 +22,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1220", "T1047", "T1036"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
     PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
 
     wmic = "C:\\Users\\Public\\wmic.exe"
@@ -28,10 +33,10 @@ def main():
     _common.copy_file(user32, dll)
     _common.copy_file(PS1_FILE, ps1)
 
-    _common.log("Loading jscript.dll into fake wmic")
-    _common.execute(
+    log.info("Loading jscript.dll into fake wmic")
+    _ = _common.execute_command(
         [wmic, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}; echo /format:"],
-        timeout=10,
+        timeout_secs=10,
     )
 
-    _common.remove_files(wmic, dll, ps1)
+    _common.remove_files([wmic, dll, ps1])

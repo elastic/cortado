@@ -1,14 +1,15 @@
-import sys
 import logging
+import sys
 
-from cortado.rtas import load_module, get_registry, CodeRta
+from cortado.rtas import CodeRta, get_registry, load_module
 
-logging.basicConfig(level=logging.DEBUG)
 log = logging.getLogger(__name__)
 
 # CLI interface with the bare-minimum dependencies
 
 def run_rta():
+    logging.basicConfig(level=logging.DEBUG)
+
     if len(sys.argv) != 2:
         log.error("RTA name argument is not provided")
         sys.exit(1)
@@ -37,6 +38,6 @@ def run_rta():
         if isinstance(rta_details, CodeRta):
             rta_details.code_func()
         else:
-            log.error("`{rta_name}` is a hash RTA that can't be executed")
+            log.error(f"`{rta_name}` is a hash RTA that can't be executed")
             sys.exit(1)
 

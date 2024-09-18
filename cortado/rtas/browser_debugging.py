@@ -3,9 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 import platform
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -21,7 +24,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1539"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     param1 = "--remote-debugging-port=9222"
     param2 = "--user-data-dir=remote-profile"
@@ -35,8 +38,8 @@ def main():
         chrome = "/tmp/google-chrome"
         _common.copy_file(source, chrome)
 
-        _common.log("Starting browser on debug mode")
-        _common.execute([chrome, param1, param2], timeout=10, kill=True)
+        log.info("Starting browser on debug mode")
+        _ = _common.execute_command([chrome, param1, param2], timeout_secs=10, kill=True)
 
     elif _common.CURRENT_OS == "linux":
         name = "linux.ditto_and_spawn"
@@ -44,13 +47,13 @@ def main():
         chrome = "/tmp/google-chrome"
         _common.copy_file(source, chrome)
 
-        _common.log("Starting browser on debug mode")
-        _common.execute([chrome, param1, param2], timeout=10, kill=True)
+        log.info("Starting browser on debug mode")
+        _ = _common.execute_command([chrome, param1, param2], timeout_secs=10, kill=True)
     else:
         chrome = "C:\\Users\\Public\\chrome.exe"
         _common.copy_file(EXE_FILE, chrome)
 
         # Execute command
-        _common.log("Mimicking the start of a browser on debug mode")
-        _common.execute([chrome, "/c", "echo", param1, param2], timeout=10)
+        log.info("Mimicking the start of a browser on debug mode")
+        _ = _common.execute_command([chrome, "/c", "echo", param1, param2], timeout_secs=10)
         _common.remove_file(chrome)

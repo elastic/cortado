@@ -8,7 +8,11 @@
 # ATT&CK: TBD
 # Description: Registers a mock SIP provider to bypass code integrity checks and execute mock malware.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 CRYPTO_ROOT = "SOFTWARE\\Microsoft\\Cryptography\\OID\\EncodingType 0"
@@ -20,18 +24,18 @@ def register_sip_provider(dll_path, verify_function, getsig_function):
     winreg = _common.get_winreg()
     hkey = winreg.CreateKey(winreg.HKEY_LOCAL_MACHINE, VERIFY_DLL_KEY)
 
-    _common.log("Setting verify dll path: %s" % dll_path)
+    log.info("Setting verify dll path: %s" % dll_path)
     winreg.SetValueEx(hkey, "Dll", 0, winreg.REG_SZ, dll_path)
 
-    _common.log("Setting verify function name: %s" % verify_function)
+    log.info("Setting verify function name: %s" % verify_function)
     winreg.SetValueEx(hkey, "FuncName", 0, winreg.REG_SZ, verify_function)
 
     hkey = winreg.CreateKey(winreg.HKEY_LOCAL_MACHINE, GETSIG_KEY)
 
-    _common.log("Setting getsig dll path: %s" % dll_path)
+    log.info("Setting getsig dll path: %s" % dll_path)
     winreg.SetValueEx(hkey, "Dll", 0, winreg.REG_SZ, dll_path)
 
-    _common.log("Setting getsig function name: %s" % getsig_function)
+    log.info("Setting getsig function name: %s" % getsig_function)
     winreg.SetValueEx(hkey, "FuncName", 0, winreg.REG_SZ, getsig_function)
 
 
@@ -55,12 +59,12 @@ TARGET_APP_EXE = "bin/myapp.exe"
     ancillary_files=[SIGCHECK_EXE, TRUST_PROVIDER_DLL, TARGET_APP_EXE],
 )
 def main():
-    _common.log("Registering SIP provider")
+    log.info("Registering SIP provider")
     register_sip_provider(TRUST_PROVIDER_DLL, "VerifyFunction", "GetSignature")
 
-    _common.log("Launching sigcheck")
-    _common.execute([SIGCHECK_EXE, "-accepteula", TARGET_APP])
+    log.info("Launching sigcheck")
+    _ = _common.execute_command([SIGCHECK_EXE, "-accepteula", TARGET_APP])
 
-    _common.log("Cleaning up", log_type="-")
+    log.info("Cleaning up", log_type="-")
     wintrust = "C:\\Windows\\System32\\WINTRUST.dll"
     register_sip_provider(wintrust, "CryptSIPVerifyIndirectData", "CryptSIPGetSignedDataMsg")

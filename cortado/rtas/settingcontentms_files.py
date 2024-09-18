@@ -10,9 +10,12 @@
 # ATT&CK: T1193, T1204, T1064
 # Description: SettingContent-ms file written to specific path or by risky process
 
+import logging
 import time
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -27,6 +30,6 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 )
 def main():
     # Write to AppData\Local\
-    _common.execute(["cmd", "/c", "echo", "test", ">", "%APPDATA%\\test.SettingContent-ms"])
+    _ = _common.execute_command(["cmd", "/c", "echo", "test", ">", "%APPDATA%\\test.SettingContent-ms"])
     time.sleep(1)
-    _common.execute(["cmd", "/c", "del", "%APPDATA%\\test.SettingContent-ms"])
+    _ = _common.execute_command(["cmd", "/c", "del", "%APPDATA%\\test.SettingContent-ms"])

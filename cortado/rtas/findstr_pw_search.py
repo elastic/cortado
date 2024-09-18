@@ -8,7 +8,11 @@
 # ATT&CK: T1081
 # Description: Recursively searches files looking for the string "password".
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -21,5 +25,5 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 )
 def main():
     path = "c:\\rta"
-    _common.log("Searching for passwords on %s" % path)
-    _common.execute(["dir", path, "/s", "/b", "|", "findstr", "password"], shell=True, timeout=15)
+    log.info("Searching for passwords on %s" % path)
+    _ = _common.execute_command(["dir", path, "/s", "/b", "|", "findstr", "password"], shell=True, timeout_secs=15)

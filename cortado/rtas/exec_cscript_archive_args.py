@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -20,7 +24,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1059", "T1059.007", "T1566", "T1566.001"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
     RENAMER = _common.get_path("bin", "rcedit-x64.exe")
 
     cscript = "C:\\Users\\Public\\cscript.exe"
@@ -28,8 +32,8 @@ def main():
     _common.copy_file(EXE_FILE, cscript)
     _common.copy_file(RENAMER, rcedit)
 
-    _common.log("Modifying the OriginalFileName attribute")
-    _common.execute([rcedit, cscript, "--set-version-string", "OriginalFilename", "cscript.exe"])
+    log.info("Modifying the OriginalFileName attribute")
+    _ = _common.execute_command([rcedit, cscript, "--set-version-string", "OriginalFilename", "cscript.exe"])
 
-    _common.execute([cscript, "/c", "echo", "C:\\Users\\A\\Temp\\7zip"], timeout=5, kill=True)
-    _common.remove_files(cscript)
+    _ = _common.execute_command([cscript, "/c", "echo", "C:\\Users\\A\\Temp\\7zip"], timeout_secs=5, kill=True)
+    _common.remove_files([cscript])

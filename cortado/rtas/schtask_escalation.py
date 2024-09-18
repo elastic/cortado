@@ -11,9 +11,13 @@
 # signal.rule.name: Net command via SYSTEM account
 # ATT&CK: T1053
 
+import logging
 import time
 from pathlib import Path
-from . import register_code_rta, OSType, RuleMetadata
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -33,7 +37,7 @@ def schtasks(*args, **kwargs):
 
 
 def main():
-    _common.log("Scheduled Task Privilege Escalation")
+    log.info("Scheduled Task Privilege Escalation")
 
     task_name = "test-task-rta"
     file_path = Path("task.log").resolve()
@@ -46,7 +50,7 @@ def main():
 
     code, output = schtasks("/create", "/tn", task_name, "/ru", "system", "/tr", command, "/sc", "onlogon")
     if code != 0:
-        _common.log("Error creating task", log_type="!")
+        log.info("Error creating task", log_type="!")
         return
 
     # Run the task and grab the file

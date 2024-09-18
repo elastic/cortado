@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -20,12 +24,12 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1218", "T1218.007"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     msiexec = "C:\\Users\\Public\\msiexec.exe"
     regsvr32 = "C:\\Users\\Public\\regsvr32.exe"
     _common.copy_file(EXE_FILE, msiexec)
     _common.copy_file(EXE_FILE, regsvr32)
 
-    _common.execute([msiexec, "/c", regsvr32, "echo", "scrobj.dll"], timeout=5, kill=True)
-    _common.remove_files(msiexec)
+    _ = _common.execute_command([msiexec, "/c", regsvr32, "echo", "scrobj.dll"], timeout_secs=5, kill=True)
+    _common.remove_files([msiexec])

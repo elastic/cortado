@@ -3,9 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 import sys
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 @register_code_rta(
     id="a078ecca-e8b8-4ae8-a76c-3238e74ca34d",
@@ -19,12 +22,12 @@ from . import _common, register_code_rta, OSType, RuleMetadata
 )
 def main() -> None:
     masquerade = "/tmp/code"
-    source = _common.get_path("bin", "linux.ditto_and_spawn")
+    source = _common.get_resource_path("bin/linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)
 
     # Execute command
-    _common.log("Executing Fake commands to test Attempt to etablish VScode Remote Tunnel")
-    _common.execute([masquerade, "tunnel"], timeout=10, kill=True)
+    log.info("Executing Fake commands to test Attempt to etablish VScode Remote Tunnel")
+    _ = _common.execute_command([masquerade, "tunnel"], timeout_secs=10, kill=True)
 
     # cleanup
     _common.remove_file(masquerade)

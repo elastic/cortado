@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -45,17 +49,17 @@ def main():
         print(f"[+] - Attempting to Open {sam_path}")
         hf = win32file.CreateFile(sam_path, win32file.GENERIC_READ, 0, None, 3, 0, None)
         if hf:
-            print(f"[+] - RTA Done!")
+            print("[+] - RTA Done!")
             win32file.CloseHandle(hf)
         else:
-            print(f"[x] - RTA Failed :(")
+            print("[x] - RTA Failed :(")
 
     else:
         vss_list = vss_create()
         sam_path = f"{vss_list[0]}\\Windows\\System32\\config\\SAM"
         hf = win32file.CreateFile(sam_path, win32file.GENERIC_READ, 0, None, 3, 0, None)
         if hf:
-            print(f"[+] - RTA Done!")
+            print("[+] - RTA Done!")
             win32file.CloseHandle(hf)
         else:
-            print(f"[x] - RTA Failed :(")
+            print("[x] - RTA Failed :(")

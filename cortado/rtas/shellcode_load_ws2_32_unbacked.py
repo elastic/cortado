@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 # shellcode to load ws2_32.dll from unbacked memory to trigger <Network Module Loaded from Suspicious Unbacked Memory>
@@ -26,4 +30,4 @@ def main():
     # Inject shellcode into WerFault.exe to trigger <Potential Masquerading as Windows Error Manager>
     _common.Inject("C:\\Windows\\SysWOw64\\WerFault.exe", SHELLCODE)
     # time.sleep(2)
-    _common.execute(["taskkill", "/f", "/im", "WerFault.exe"])
+    _ = _common.execute_command(["taskkill", "/f", "/im", "WerFault.exe"])

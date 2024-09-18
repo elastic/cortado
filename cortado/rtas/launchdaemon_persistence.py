@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -27,8 +31,8 @@ def main():
     _common.temporary_file_helper("testing", file_name=payload_file)
 
     # Execute command
-    _common.log("Launching fake launchctl command to mimic LaunchDaemons payload persistence")
-    _common.execute([masquerade, "load"], timeout=10, kill=True)
+    log.info("Launching fake launchctl command to mimic LaunchDaemons payload persistence")
+    _ = _common.execute_command([masquerade, "load"], timeout_secs=10, kill=True)
 
     # cleanup
     _common.remove_file(masquerade)

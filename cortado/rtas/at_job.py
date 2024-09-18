@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -19,5 +23,5 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1053", "T1053.002"],
 )
 def main():
-    _common.log("Executing file creation on /private/var/at/jobs/test.")
-    _common.temporary_file_helper("testing", file_name="/private/var/at/jobs/test")
+    log.info("Executing file creation on /private/var/at/jobs/test.")
+    _common.create_file_with_data("/private/var/at/jobs/test", "testing")

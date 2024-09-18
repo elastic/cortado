@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -20,11 +24,11 @@ def main():
     masquerade = "/tmp/testbin"
 
     # Execute command
-    _common.log("Launching bash commands for file creation via openssl")
-    _common.execute(["openssl", "rand", "-base64", 2, "-out", masquerade], timeout=10, kill=True)
+    log.info("Launching bash commands for file creation via openssl")
+    _ = _common.execute_command(["openssl", "rand", "-base64", 2, "-out", masquerade], timeout_secs=10, kill=True)
 
     _common.create_macos_masquerade(masquerade)
-    _common.execute([masquerade, "ls"], timeout=10, kill=True)
+    _ = _common.execute_command([masquerade, "ls"], timeout_secs=10, kill=True)
 
     # cleanup
     _common.remove_file(masquerade)

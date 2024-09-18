@@ -8,7 +8,11 @@
 # ATT&CK: T1023,T1204,T1193,T1192
 # Description: Create a .lnk file using cmd.exe
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -20,9 +24,9 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=[],
 )
 def main():
-    _common.log("Writing dummy shortcut file")
+    log.info("Writing dummy shortcut file")
     shortcut_path = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\StartUp\\evil.lnk"
-    _common.execute(["cmd", "/c", "echo", "dummy_shortcut", ">", shortcut_path])
+    _ = _common.execute_command(["cmd", "/c", "echo", "dummy_shortcut", ">", shortcut_path])
 
-    _common.log("Deleting dummy shortcut file")
+    log.info("Deleting dummy shortcut file")
     _common.remove_file(shortcut_path)

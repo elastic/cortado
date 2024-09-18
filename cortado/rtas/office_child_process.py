@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -23,8 +27,8 @@ def main():
     _common.create_macos_masquerade(masquerade)
     _common.create_macos_masquerade(masquerade2)
 
-    _common.log("Executing fake Microsoft commands to mimic suspicious child processes.")
-    _common.execute([masquerade, "childprocess", masquerade2], timeout=10, kill=True)
+    log.info("Executing fake Microsoft commands to mimic suspicious child processes.")
+    _ = _common.execute_command([masquerade, "childprocess", masquerade2], timeout_secs=10, kill=True)
 
     # cleanup
     _common.remove_file(masquerade)

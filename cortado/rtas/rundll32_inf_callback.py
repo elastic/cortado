@@ -10,9 +10,12 @@
 # ATT&CK: T1105
 # Description: Loads RunDll32 with a suspicious .inf file that makes a local http GET
 
+import logging
 import time
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import OSType, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 INF_FILE = "bin/script_launch.inf"
@@ -27,8 +30,8 @@ INF_FILE = "bin/script_launch.inf"
 def main():
     # http server will terminate on main thread exit
     # if daemon is True
-    _common.log("RunDLL32 with Script Object and Network Callback")
-    server, ip, port = _common.serve_web()
+    log.info("RunDLL32 with Script Object and Network Callback")
+    server, ip, port = _common.serve_dir_over_http()
     callback = "http://%s:%d" % (ip, port)
     _common.clear_web_cache()
 
@@ -36,9 +39,9 @@ def main():
 
     rundll32 = "rundll32.exe"
     dll_entrypoint = "setupapi.dll,InstallHinfSection"
-    _common.execute([rundll32, dll_entrypoint, "DefaultInstall", "128", INF_FILE], shell=False)
+    _ = _common.execute_command([rundll32, dll_entrypoint, "DefaultInstall", "128", INF_FILE], shell=False)
 
     time.sleep(1)
-    _common.log("Cleanup", log_type="-")
-    _common.execute(["taskkill", "/f", "/im", "notepad.exe"])
+    log.info("Cleanup", log_type="-")
+    _ = _common.execute_command(["taskkill", "/f", "/im", "notepad.exe"])
     server.shutdown()

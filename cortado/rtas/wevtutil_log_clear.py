@@ -9,9 +9,12 @@
 # ATT&CK: T1070
 # Description: Uses the native Windows Event utility to clear the Security, Application and System event logs.
 
+import logging
 import time
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -23,10 +26,10 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1070"],
 )
 def main():
-    _common.log("Clearing Windows Event Logs")
-    _common.log("WARNING - About to clear logs from Windows Event Viewer", log_type="!")
+    log.info("Clearing Windows Event Logs")
+    log.info("WARNING - About to clear logs from Windows Event Viewer", log_type="!")
     time.sleep(3)
     wevtutil = "wevtutil.exe"
 
     for log in ["security", "application", "system"]:
-        _common.execute([wevtutil, "cl", log])
+        _ = _common.execute_command([wevtutil, "cl", log])

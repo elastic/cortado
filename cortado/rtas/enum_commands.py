@@ -9,9 +9,12 @@
 # Description: Executes a list of administration tools _commonly used by attackers for enumeration.
 
 import argparse
+import logging
 import random
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -71,11 +74,11 @@ def main(args=None):
     if sample < len(commands):
         random.shuffle(commands)
 
-    _common.log("Running {} out of {} enumeration commands\n".format(sample, len(commands)))
+    log.info("Running {} out of {} enumeration commands\n".format(sample, len(commands)))
     for command in commands[0:sample]:
-        _common.log("About to call {}".format(command))
+        log.info("About to call {}".format(command))
         if command in slow_commands:
-            _common.execute(command, kill=True, timeout=15)
-            _common.log("[output suppressed]", log_type="-")
+            _ = _common.execute_command(command, kill=True, timeout_secs=15)
+            log.info("[output suppressed]", log_type="-")
         else:
-            _common.execute(command)
+            _ = _common.execute_command(command)

@@ -3,8 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 from pathlib import Path
-from . import register_code_rta, OSType, RuleMetadata
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -21,7 +25,7 @@ from . import register_code_rta, OSType, RuleMetadata
     techniques=["T1220", "T1218", "T1055", "T1059"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     msxsl = "C:\\Users\\Public\\msxsl.exe"
     fake_clr_path = "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\CLR_v4.0\\UsageLogs"
@@ -29,6 +33,6 @@ def main():
     _common.copy_file(EXE_FILE, msxsl)
 
     Path(fake_clr_path).mkdir(parents=True, exist_ok=True)
-    _common.log("Creating a fake clr log file")
-    _common.execute([msxsl, "-c", f"echo RTA > {fake_clr_logs}"], timeout=10)
-    _common.remove_files(msxsl, fake_clr_logs)
+    log.info("Creating a fake clr log file")
+    _ = _common.execute_command([msxsl, "-c", f"echo RTA > {fake_clr_logs}"], timeout_secs=10)
+    _common.remove_files([msxsl, fake_clr_logs])

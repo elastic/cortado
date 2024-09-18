@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -18,15 +22,15 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 )
 def main():
     masquerade = "/tmp/curl"
-    source = _common.get_path("bin", "linux.ditto_and_spawn")
+    source = _common.get_resource_path("bin/linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)
 
     # Execute command
-    _common.log("Launching fake commands to mimic multi arch file downloads")
+    log.info("Launching fake commands to mimic multi arch file downloads")
     command = "http://fake/mipsel"
 
     for i in range(8):
-        _common.execute([masquerade, command], timeout=0.3, kill=True)
+        _ = _common.execute_command([masquerade, command], timeout_secs=0.3, kill=True)
 
     # cleanup
     _common.remove_file(masquerade)

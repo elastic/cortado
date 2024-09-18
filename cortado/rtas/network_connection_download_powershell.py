@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -19,7 +23,7 @@ def main():
     fake_exe = "C:\\Users\\Public\\a.exe"
 
     # Execute command
-    _common.execute(
-        [powershell, "/c", f"Test-NetConnection -ComputerName google.com -Port 443 | Out-File {fake_exe}"], timeout=10
+    _ = _common.execute_command(
+        [powershell, "/c", f"Test-NetConnection -ComputerName google.com -Port 443 | Out-File {fake_exe}"], timeout_secs=10
     )
     _common.remove_file(fake_exe)

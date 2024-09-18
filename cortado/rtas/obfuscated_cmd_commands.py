@@ -3,13 +3,16 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 # Name: Emulate Obfuscated cmd Commands
 # RTA: obfuscated_cmd_commands.py
 # ATT&CK: T1036
 # Description: Runs commands through cmd that are obfuscated using multiple techniques.
 import time
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import OSType, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -34,11 +37,11 @@ def main():
     commands = [c.strip() for c in commands.splitlines()]
 
     for a in commands:
-        _common.execute(a, shell=True, mute=True)
+        _ = _common.execute_command(a, shell=True, mute=True)
         time.sleep(1)
 
-    _common.execute(["taskkill", "/F", "/im", "calc.exe"])
-    _common.execute(["taskkill", "/F", "/im", "calculator.exe"])
+    _ = _common.execute_command(["taskkill", "/F", "/im", "calc.exe"])
+    _ = _common.execute_command(["taskkill", "/F", "/im", "calculator.exe"])
 
 
 if __name__ == "__main__":

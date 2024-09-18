@@ -8,7 +8,11 @@
 # ATT&CK: T1170
 # Description: Generates network traffic from mshta.exe
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 HTA_FILE = "bin/beacon.hta"
@@ -32,14 +36,14 @@ HTA_FILE = "bin/beacon.hta"
 def main():
     # http server will terminate on main thread exit
     # if daemon is True
-    _common.log("MsHta Beacon")
-    server, ip, port = _common.serve_web()
+    log.info("MsHta Beacon")
+    server, ip, port = _common.serve_dir_over_http()
     _common.clear_web_cache()
 
     new_callback = "http://%s:%d" % (ip, port)
-    _common.log("Updating the callback to %s" % new_callback)
+    log.info("Updating the callback to %s" % new_callback)
     _common.patch_regex(HTA_FILE, _common.CALLBACK_REGEX, new_callback)
 
     mshta = "mshta.exe"
-    _common.execute([mshta, HTA_FILE], timeout=3, kill=True)
+    _ = _common.execute_command([mshta, HTA_FILE], timeout_secs=3, kill=True)
     server.shutdown()

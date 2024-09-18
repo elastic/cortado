@@ -8,9 +8,12 @@
 # ATT&CK: T1035, T1077
 # Description: Runs PSExec to move laterally
 
-import sys
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -24,5 +27,5 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 )
 def main(remote_host=None):
     remote_host = remote_host or _common.get_ip()
-    _common.log("Performing PsExec to %s" % remote_host)
-    _common.execute([_common.PS_EXEC, "\\\\%s" % remote_host, "-accepteula", "ipconfig"])
+    log.info("Performing PsExec to %s" % remote_host)
+    _ = _common.execute_command([_common.PS_EXEC, "\\\\%s" % remote_host, "-accepteula", "ipconfig"])

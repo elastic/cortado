@@ -8,7 +8,11 @@
 # ATT&CK: T1036
 # Description: Create and run a process with a double extension.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 MY_APP_EXE = "bin/myapp_x64.exe"
@@ -31,7 +35,7 @@ def main():
     anomalies = ["test.txt.exe"]
 
     for path in anomalies:
-        _common.log(f"Masquerading process as {path}")
+        log.info(f"Masquerading process as {path}")
         _common.copy_file(MY_APP_EXE, path)
-        _common.execute([path])
+        _ = _common.execute_command([path])
         _common.remove_file(path)

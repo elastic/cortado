@@ -9,9 +9,12 @@
 # signal.rule.name: Delete Volume USN Journal with Fsutil
 # Description: Uses fsutil to delete the USN journal.
 
+import logging
 import time
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -24,6 +27,6 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 )
 def main():
     message = "Deleting the USN journal may have unintended consequences"
-    _common.log("WARNING: %s" % message, log_type="!")
+    log.info("WARNING: %s" % message, log_type="!")
     time.sleep(2.5)
-    _common.execute(["fsutil", "usn", "deletejournal", "/d", "C:"])
+    _ = _common.execute_command(["fsutil", "usn", "deletejournal", "/d", "C:"])

@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -25,8 +29,8 @@ def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 
     # Execute command
-    _common.log("Retrieving the public IP Address using ipify")
-    _common.execute(
+    log.info("Retrieving the public IP Address using ipify")
+    _ = _common.execute_command(
         [powershell, "/c", "iwr", "http://api.ipify.org/", "-UseBasicParsing"],
-        timeout=10,
+        timeout_secs=10,
     )

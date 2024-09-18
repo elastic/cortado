@@ -3,12 +3,15 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 import os
 import subprocess
 import tempfile
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 @register_code_rta(
     id="9cb42759-a161-4d93-b07d-3c8254dc8838",
@@ -20,7 +23,7 @@ from . import _common, register_code_rta, OSType, RuleMetadata
 )
 def main():
     temp_path = Path(tempfile.gettempdir()) / os.urandom(16).encode("hex")
-    sdelete_path = _common.get_path("bin", "sdelete.exe")
+    sdelete_path = _common.get_resource_path("bin/sdelete.exe")
 
     try:
         # Create a temporary file and close handles so it can be deleted

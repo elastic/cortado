@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -17,12 +21,12 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1047", "T1018", "T1087", "T1518"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     wmiprvse = "C:\\Users\\Public\\wmiprvse.exe"
     arp = "C:\\Windows\\System32\\arp.exe"
     _common.copy_file(EXE_FILE, wmiprvse)
 
     # Execute command
-    _common.execute([wmiprvse, "/c", arp], timeout=2, kill=True)
+    _ = _common.execute_command([wmiprvse, "/c", arp], timeout_secs=2, kill=True)
     _common.remove_file(wmiprvse)

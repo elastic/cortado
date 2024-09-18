@@ -3,9 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 import sys
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 @register_code_rta(
     id="6a5977f6-ed19-446e-a441-e325cff7772b",
@@ -21,7 +24,7 @@ from . import _common, register_code_rta, OSType, RuleMetadata
 )
 def main() -> None:
     masquerade = "/tmp/curl"
-    source = _common.get_path("bin", "linux.ditto_and_spawn")
+    source = _common.get_resource_path("bin/linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)
 
     payload = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -29,8 +32,8 @@ def main() -> None:
     payload += "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 
     # Execute command
-    _common.log("Launching fake command to simulate a buffer overflow")
-    _common.execute([masquerade, "--proxy", payload], timeout=5, kill=True)
+    log.info("Launching fake command to simulate a buffer overflow")
+    _ = _common.execute_command([masquerade, "--proxy", payload], timeout_secs=5, kill=True)
 
     # cleanup
     _common.remove_file(masquerade)

@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -19,7 +23,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1218"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
     PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
     RENAMER = _common.get_path("bin", "rcedit-x64.exe")
 
@@ -34,11 +38,11 @@ def main():
     _common.copy_file(RENAMER, rcedit)
 
     # Modify the originalfilename to invalidate the code sig
-    _common.log("Modifying the OriginalFileName attribute")
-    _common.execute([rcedit, dll, "--set-version-string", "OriginalFilename", "unsigned.exe"])
+    log.info("Modifying the OriginalFileName attribute")
+    _ = _common.execute_command([rcedit, dll, "--set-version-string", "OriginalFilename", "unsigned.exe"])
 
-    _common.log("Loading unsigned.dll into fake wuauclt")
-    _common.execute(
+    log.info("Loading unsigned.dll into fake wuauclt")
+    _ = _common.execute_command(
         [
             wuauclt,
             "-c",
@@ -48,7 +52,7 @@ def main():
             ";echo",
             "/UpdateDeploymentProvider",
         ],
-        timeout=10,
+        timeout_secs=10,
     )
 
-    _common.remove_files(wuauclt, dll, ps1, rcedit)
+    _common.remove_files([wuauclt, dll, ps1, rcedit])

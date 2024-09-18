@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -19,7 +23,7 @@ def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 
     # Execute command
-    _common.log("Deleting Shadow Copies and writing ransom note")
-    _common.execute([vssadmin, "delete", "shadows", "/For=C:"], timeout=10)
+    log.info("Deleting Shadow Copies and writing ransom note")
+    _ = _common.execute_command([vssadmin, "delete", "shadows", "/For=C:"], timeout_secs=10)
 
-    _common.execute([powershell, "/c", "echo 'Ooops! All your' > readme.txt"], timeout=10)
+    _ = _common.execute_command([powershell, "/c", "echo 'Ooops! All your' > readme.txt"], timeout_secs=10)

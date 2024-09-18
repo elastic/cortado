@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -20,5 +24,5 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1068"],
 )
 def main():
-    _common.log("Executing deletion on /tmp/TCC.db file.")
-    _common.temporary_file_helper("testing", file_name="/tmp/TCC.db")
+    log.info("Executing deletion on /tmp/TCC.db file.")
+    _common.create_file_with_data("/tmp/TCC.db", "testing")

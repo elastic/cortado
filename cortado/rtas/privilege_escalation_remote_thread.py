@@ -3,10 +3,13 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 import os
 import platform
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -26,7 +29,7 @@ def main():
     else:
         name = "thread_injector_intel"
         sleep_name = "com.apple.sleep_intel"
-    sleep_path = _common.get_path("bin", sleep_name)
+    sleep_path = _common.get_resource_path("bin", sleep_name)
     os.system(f"{sleep_path} 5000 &")
 
     path = _common.get_path("bin", name)

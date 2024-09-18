@@ -3,9 +3,13 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
-
+import logging
 import time
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
+
 
 
 @register_code_rta(
@@ -22,7 +26,7 @@ import time
     techniques=["T1574", "T1574.001", "T1574.002", "T1566", "T1566.001", "T1105", "T1059", "T1059.005", "T1059.007"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
     PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
     RENAMER = _common.get_path("bin", "rcedit-x64.exe")
 
@@ -37,12 +41,12 @@ def main():
     _common.copy_file(PS1_FILE, ps1)
     _common.copy_file(RENAMER, rcedit)
 
-    _common.execute([winword, "/c", f"Copy-Item {user32} '{dll}'"])
+    _ = _common.execute_command([winword, "/c", f"Copy-Item {user32} '{dll}'"])
 
-    _common.log("Modifying the OriginalFileName attribute to invalidate the signature")
-    _common.execute([rcedit, dll, "--set-version-string", "OriginalFilename", "unsigned.dll"])
+    log.info("Modifying the OriginalFileName attribute to invalidate the signature")
+    _ = _common.execute_command([rcedit, dll, "--set-version-string", "OriginalFilename", "unsigned.dll"])
 
-    _common.log("Loading targetdll.dll into fake proc")
-    _common.execute([powershell, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout=10)
+    log.info("Loading targetdll.dll into fake proc")
+    _ = _common.execute_command([powershell, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout_secs=10)
     time.sleep(3)
-    _common.remove_files(rcedit, dll, ps1, winword)
+    _common.remove_files([rcedit, dll, ps1, winword])

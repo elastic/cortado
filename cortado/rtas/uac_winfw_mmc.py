@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -23,12 +27,12 @@ def main():
     dllhost = "C:\\Users\\Public\\dllhost.exe"
     dccwpathdll = "C:\\Windows\\assembly\\temp\\a.dll"
     dccwpathdll2 = "C:\\Windows\\assembly\\temp\\Accessibility.ni.dll"
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     _common.copy_file(EXE_FILE, mmc)
     _common.copy_file(EXE_FILE, dllhost)
 
     _common.copy_file(EXE_FILE, dccwpathdll)
-    _common.execute([dllhost, "/c", f"Rename-Item {dccwpathdll} {dccwpathdll2}"], timeout=10)
-    _common.execute([mmc, "/c", "echo", "WF.msc", ";powershell"], timeout=2, kill=True)
-    _common.remove_files(mmc, dllhost, dccwpathdll2)
+    _ = _common.execute_command([dllhost, "/c", f"Rename-Item {dccwpathdll} {dccwpathdll2}"], timeout_secs=10)
+    _ = _common.execute_command([mmc, "/c", "echo", "WF.msc", ";powershell"], timeout_secs=2, kill=True)
+    _common.remove_files([mmc, dllhost, dccwpathdll2])

@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -19,7 +23,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1071", "T1559", "T1559.001"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
     PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
     RENAMER = _common.get_path("bin", "rcedit-x64.exe")
 
@@ -35,13 +39,13 @@ def main():
     _common.copy_file(EXE_FILE, rundll32)
     _common.copy_file(EXE_FILE, iexplore)
 
-    _common.log("Modifying the OriginalFileName attribute")
-    _common.execute([rcedit, dll, "--set-version-string", "OriginalFilename", "IEProxy.dll"])
+    log.info("Modifying the OriginalFileName attribute")
+    _ = _common.execute_command([rcedit, dll, "--set-version-string", "OriginalFilename", "IEProxy.dll"])
 
-    _common.log("Loading IEProxy.dll")
-    _common.execute([rundll32, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout=10)
+    log.info("Loading IEProxy.dll")
+    _ = _common.execute_command([rundll32, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout_secs=10)
 
-    _common.execute([iexplore, "/c", "echo", "-Embedding", f";{iexplore}"], timeout=2, kill=True)
-    _common.execute([iexplore, "/c", "Test-NetConnection -ComputerName google.com -Port 443"], timeout=10)
+    _ = _common.execute_command([iexplore, "/c", "echo", "-Embedding", f";{iexplore}"], timeout_secs=2, kill=True)
+    _ = _common.execute_command([iexplore, "/c", "Test-NetConnection -ComputerName google.com -Port 443"], timeout_secs=10)
 
-    _common.remove_files(dll, ps1, rcedit, rundll32, iexplore)
+    _common.remove_files([dll, ps1, rcedit, rundll32, iexplore])

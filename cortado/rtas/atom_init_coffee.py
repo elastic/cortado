@@ -3,8 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 from pathlib import Path
-from . import _common, RuleMetadata, register_code_rta, OSType
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -23,7 +27,7 @@ def main():
     atom_dir = Path.home().joinpath(".atom")
     atom_dir.mkdir(parents=True, exist_ok=True)
     atom_path = atom_dir.joinpath("init.coffee")
-    _common.log(f"Executing file modification on {atom_path} to mimic malicious Atom init file.")
+    log.info(f"Executing file modification on {atom_path} to mimic malicious Atom init file.")
     _common.temporary_file_helper("testing", file_name=atom_path)
 
     # cleanup

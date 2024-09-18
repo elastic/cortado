@@ -3,9 +3,13 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
-
+import logging
 import subprocess
+
+from . import OSType, register_code_rta
+
+log = logging.getLogger(__name__)
+
 
 
 @register_code_rta(
@@ -23,7 +27,7 @@ def main():
     env_command = f"/usr/bin/env {command}"
 
     # Execute the 'env' command which in turn executes the child command
-    _common.log(f"Executing 'env' with child command: {command}")
+    log.info(f"Executing 'env' with child command: {command}")
     subprocess.Popen(env_command, shell=True)
 
-    _common.log("RTA execution completed.")
+    log.info("RTA execution completed.")

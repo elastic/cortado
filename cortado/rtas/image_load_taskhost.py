@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -17,7 +21,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1053", "T1053.005"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
     PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
     RENAMER = _common.get_path("bin", "rcedit-x64.exe")
 
@@ -31,10 +35,10 @@ def main():
     _common.copy_file(PS1_FILE, ps1)
     _common.copy_file(RENAMER, rcedit)
 
-    _common.log("Modifying the OriginalFileName attribute")
-    _common.execute([rcedit, dll, "--set-version-string", "OriginalFilename", "unsigned.dll"])
+    log.info("Modifying the OriginalFileName attribute")
+    _ = _common.execute_command([rcedit, dll, "--set-version-string", "OriginalFilename", "unsigned.dll"])
 
-    _common.log("Loading unsigned DLL into fake taskhost")
-    _common.execute([taskhost1, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout=10)
+    log.info("Loading unsigned DLL into fake taskhost")
+    _ = _common.execute_command([taskhost1, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout_secs=10)
 
-    _common.remove_files(dll, ps1, rcedit)
+    _common.remove_files([dll, ps1, rcedit])

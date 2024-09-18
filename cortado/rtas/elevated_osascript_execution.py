@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -28,9 +32,9 @@ def main():
     _common.copy_macos_masquerade(masquerade)
 
     # Execute commands
-    _common.log("Launching fake osascript commands to mimic apple script execution")
+    log.info("Launching fake osascript commands to mimic apple script execution")
     command = "osascript with administrator privileges"
-    _common.execute([masquerade, "childprocess", command], shell=True, timeout=5, kill=True)
+    _ = _common.execute_command([masquerade, "childprocess", command], shell=True, timeout_secs=5, kill=True)
 
     # cleanup
     _common.remove_file(masquerade)

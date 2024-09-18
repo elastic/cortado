@@ -9,7 +9,11 @@
 # ATT&CK: T1064
 # Description: Generates network traffic various children processes from emulated Office processes.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -30,9 +34,9 @@ def main():
         _common.copy_file(cmd_path, binary)
 
     # Execute a handful of commands
-    _common.execute(["adobe.exe", "/c", "regsvr32.exe", "/s", "/?"], timeout=5, kill=True)
-    _common.execute(["winword.exe", "/c", "certutil.exe"], timeout=5, kill=True)
-    _common.execute(["outlook.exe", "/c", "powershell.exe", "-c", "whoami"], timeout=5, kill=True)
-    _common.execute(["excel.exe", "/c", "cscript.exe", "-x"], timeout=5, kill=True)
+    _ = _common.execute_command(["adobe.exe", "/c", "regsvr32.exe", "/s", "/?"], timeout_secs=5, kill=True)
+    _ = _common.execute_command(["winword.exe", "/c", "certutil.exe"], timeout_secs=5, kill=True)
+    _ = _common.execute_command(["outlook.exe", "/c", "powershell.exe", "-c", "whoami"], timeout_secs=5, kill=True)
+    _ = _common.execute_command(["excel.exe", "/c", "cscript.exe", "-x"], timeout_secs=5, kill=True)
 
-    _common.remove_files(*binaries)
+    _common.remove_files([*binaries])

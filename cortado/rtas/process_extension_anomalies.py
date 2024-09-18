@@ -8,7 +8,11 @@
 # ATT&CK: T1036
 # Description: Creates processes with anomalous extensions
 
-from . import _common, register_code_rta, OSType
+import logging
+
+from . import OSType, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 MY_APP_EXE = "bin/myapp.exe"
@@ -32,7 +36,7 @@ def main():
     ]
 
     for path in anomalies:
-        _common.log(f"Masquerading python as {path}")
+        log.info(f"Masquerading python as {path}")
         _common.copy_file(MY_APP_EXE, path)
-        _common.execute([path])
+        _ = _common.execute_command([path])
         _common.remove_file(path)

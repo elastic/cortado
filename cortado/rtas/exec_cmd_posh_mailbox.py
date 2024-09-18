@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -17,9 +21,9 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1005", "T1114", "T1114.002"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 
     # Execute command
-    _common.execute([powershell, "/c", "echo", "New-MailboxExportRequest"], timeout=10)
+    _ = _common.execute_command([powershell, "/c", "echo", "New-MailboxExportRequest"], timeout_secs=10)

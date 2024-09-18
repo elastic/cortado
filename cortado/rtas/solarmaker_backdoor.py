@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -27,8 +31,8 @@ def main():
     regpath = "HKEY_CURRENT_USER\\Software\\Classes\\simul8\\shell\\open"
 
     # Execute command
-    _common.log("Creating reg key using fake msiexec")
-    _common.execute(
+    log.info("Creating reg key using fake msiexec")
+    _ = _common.execute_command(
         [
             reg,
             "add",
@@ -41,8 +45,8 @@ def main():
             payloadcontent,
             "/f",
         ],
-        timeout=5,
+        timeout_secs=5,
         kill=True,
     )
 
-    _common.execute([reg, "delete", regpath, "/f"], timeout=5, kill=True)
+    _ = _common.execute_command([reg, "delete", regpath, "/f"], timeout_secs=5, kill=True)

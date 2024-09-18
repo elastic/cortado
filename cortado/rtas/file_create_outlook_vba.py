@@ -3,9 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 @register_code_rta(
     id="3c40b5fd-afd0-4794-8af3-f7af249edf84",
@@ -16,11 +19,11 @@ from . import _common, register_code_rta, OSType, RuleMetadata
     techniques=["T1137"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     path = "C:\\Users\\Public\\AppData\\Roaming\\Microsoft\\Outlook"
     Path(path).mkdir(parents=True, exist_ok=True)
     file = path + "\\VbaProject.OTM"
     _common.copy_file(EXE_FILE, file)
 
-    _common.remove_files(file)
+    _common.remove_files([file])

@@ -8,9 +8,12 @@
 # ATT&CK: T1137
 # Description: Modifies the registry to persist a DLL on Office Startup.
 
-import sys
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(

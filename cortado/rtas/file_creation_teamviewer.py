@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -15,12 +19,12 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1105", "T1219"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     teamviewer = "C:\\Users\\Public\\teamviewer.exe"
     fake_exe = "C:\\Users\\Public\\a.exe"
     _common.copy_file(EXE_FILE, teamviewer)
 
     # Execute command
-    _common.execute([teamviewer, "/c", f"echo AAAAAAAAAA | Out-File {fake_exe}"], timeout=10)
-    _common.remove_files(fake_exe, teamviewer)
+    _ = _common.execute_command([teamviewer, "/c", f"echo AAAAAAAAAA | Out-File {fake_exe}"], timeout_secs=10)
+    _common.remove_files([fake_exe, teamviewer])

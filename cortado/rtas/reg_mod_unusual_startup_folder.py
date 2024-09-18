@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -17,7 +21,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1547", "T1547.001", "T1112"],
 )
 def main():
-    _common.log("Temp Registry mod: Common Startup Folder")
+    log.info("Temp Registry mod: Common Startup Folder")
 
     key = "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders"
     value = "Common Startup"

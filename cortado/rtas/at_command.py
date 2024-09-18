@@ -10,10 +10,12 @@
 #  status of that task, and deletes the task.
 
 import datetime
+import logging
 import re
-import sys
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import OSType, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -51,18 +53,18 @@ def main(target_host=None):
     time_string = "%d:%d" % (task_time.hour, task_time.minute)
 
     # Enumerate all remote tasks
-    _common.execute(["at.exe", host_str])
+    _ = _common.execute_command(["at.exe", host_str])
 
     # Create a job 1 hour into the future
     code, output = _common.execute(["at", host_str, time_string, "cmd /c echo hello world"])
 
     if code == 1 and "deprecated" in output:
-        _common.log("Unable to continue RTA. Not supported in this version of Windows")
+        log.info("Unable to continue RTA. Not supported in this version of Windows")
         return _common.UNSUPPORTED_RTA
 
     if code == 0:
         job_id = re.search("ID = (\d+)", output).group(1)
 
         # Check status and delete
-        _common.execute(["at.exe", host_str, job_id])
-        _common.execute(["at.exe", host_str, job_id, "/delete"])
+        _ = _common.execute_command(["at.exe", host_str, job_id])
+        _ = _common.execute_command(["at.exe", host_str, job_id, "/delete"])

@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -25,15 +29,17 @@ def startsvc_trustedinstaller():
         win32service.StartService(hs, "30")
         win32service.CloseServiceHandle(hscm)
         win32service.CloseServiceHandle(hs)
-        print(f"[+] - TrustedInstaller service started")
-    except Exception as e:
-        print(f"[x] - Failed to start TrustedInstaller service, probably already started")
+        print("[+] - TrustedInstaller service started")
+    except Exception:
+        print("[x] - Failed to start TrustedInstaller service, probably already started")
         pass
 
 
 def impersonate_trusted_installer():
     try:
-        import win32api, win32security, win32file
+        import win32api
+        import win32file
+        import win32security
 
         hp = win32api.OpenProcess(_common.PROCESS_QUERY_LIMITED_INFORMATION, 0, _common.getppid("TrustedInstaller.exe"))
         th = win32security.OpenProcessToken(hp, _common.TOKEN_ALL_ACCESS)
@@ -41,16 +47,16 @@ def impersonate_trusted_installer():
             th, 2, _common.TOKEN_ALL_ACCESS, win32security.TokenImpersonation, win32security.SECURITY_ATTRIBUTES()
         )
         win32security.ImpersonateLoggedOnUser(new_tokenh)
-        print(f"[+] - Impersonated TrustedInstaller service")
+        print("[+] - Impersonated TrustedInstaller service")
         hf = win32file.CreateFile("rta_ti.txt", win32file.GENERIC_WRITE, 0, None, 2, 0, None)
         win32file.WriteFile(hf, ("AAAAAAAA").encode())
         win32file.CloseHandle(hf)
         win32api.CloseHandle(hp)
-        print(f"[+] - Created File rta_ti.txt as the TrustedInstaller service")
+        print("[+] - Created File rta_ti.txt as the TrustedInstaller service")
         win32file.DeleteFile("rta_ti.txt")
-        print(f"[+] - Deleted rta_ti.txt")
-    except Exception as e:
-        print(f"[x] - Failed TrustedInstaller Impersonation")
+        print("[+] - Deleted rta_ti.txt")
+    except Exception:
+        print("[x] - Failed TrustedInstaller Impersonation")
         pass
 
 

@@ -8,13 +8,16 @@
 # ATT&CK: T1492
 # Description: Modifies the hosts file
 
+import logging
 import os
 import random
 import time
 from pathlib import Path
 from string import ascii_letters
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 @register_code_rta(
     id="f24491d0-720b-4150-a2a1-45b5b07238aa",
@@ -33,7 +36,7 @@ def main():
     hosts_file = hosts_files[_common.CURRENT_OS]
 
     backup = Path(hosts_file + "_backup").resolve()
-    _common.log("Backing up original 'hosts' file.")
+    log.info("Backing up original 'hosts' file.")
     _common.copy_file(hosts_file, backup)
 
     # add randomness for diffs for FIM module
@@ -46,13 +49,13 @@ def main():
     with open(hosts_file, "a") as f:
         f.write("\n".join(entry))
 
-    _common.log("Updated hosts file")
+    log.info("Updated hosts file")
     with open(hosts_file, "r") as f:
-        _common.log(f.read())
+        log.info(f.read())
 
     time.sleep(2)
 
     # cleanup
-    _common.log("Restoring hosts from backup copy.")
+    log.info("Restoring hosts from backup copy.")
     _common.copy_file(backup, hosts_file)
     os.remove(backup)

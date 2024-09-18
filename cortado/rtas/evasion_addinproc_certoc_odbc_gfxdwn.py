@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -22,7 +26,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1218", "T1218.008", "T1105"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     addinproc = "C:\\Users\\Public\\AddInProcess.exe"
     certoc = "C:\\Users\\Public\\CertOc.exe"
@@ -35,10 +39,10 @@ def main():
     _common.copy_file(EXE_FILE, gfxdwn)
 
     # Execute command
-    _common.execute([addinproc, "/guid:32a91b0f-30cd-4c75-be79-ccbd6345de99", "/pid:123"], timeout=10)
-    _common.execute([certoc, "-LoadDLL"], timeout=10)
-    _common.execute([odbc, "-a", "-f"], timeout=10)
-    _common.execute([gfxdwn, "run", "2", "0"], timeout=10)
+    _ = _common.execute_command([addinproc, "/guid:32a91b0f-30cd-4c75-be79-ccbd6345de99", "/pid:123"], timeout_secs=10)
+    _ = _common.execute_command([certoc, "-LoadDLL"], timeout_secs=10)
+    _ = _common.execute_command([odbc, "-a", "-f"], timeout_secs=10)
+    _ = _common.execute_command([gfxdwn, "run", "2", "0"], timeout_secs=10)
 
     # Cleanup
     _common.remove_file(addinproc)

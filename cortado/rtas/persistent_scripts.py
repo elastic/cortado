@@ -7,11 +7,14 @@
 # RTA: persistent_scripts.py
 # ATT&CK: T1064 (Scripting), T1086 (PowerShell)
 
+import logging
 import os
 import time
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 VBS = "bin/persistent_script.vbs"
 NAME = "rta-vbs-persistence"
@@ -26,10 +29,10 @@ NAME = "rta-vbs-persistence"
     ancillary_files=[VBS, _common.PS_EXEC],
 )
 def main():
-    _common.log("Persistent Scripts")
+    log.info("Persistent Scripts")
 
     if _common.check_system():
-        _common.log("Must be run as a non-SYSTEM user", log_type="!")
+        log.info("Must be run as a non-SYSTEM user", log_type="!")
         return 1
 
     # Remove any existing profiles
@@ -39,8 +42,8 @@ def main():
     # Remove log file if exists
     _common.remove_file(log_file)
 
-    _common.log("Running VBS")
-    _common.execute(["cscript.exe", VBS])
+    log.info("Running VBS")
+    _ = _common.execute_command(["cscript.exe", VBS])
 
     # Let the script establish persistence, then read the log file back
     time.sleep(5)
@@ -48,18 +51,18 @@ def main():
     _common.remove_file(log_file)
 
     # Now trigger a 'logon' event which causes persistence to run
-    _common.log("Simulating user logon and loading of profile")
+    log.info("Simulating user logon and loading of profile")
     # _common.execute(["taskkill.exe", "/f", "/im", "explorer.exe"])
     # time.sleep(2)
 
-    _common.execute(["C:\\Windows\\System32\\userinit.exe"], wait=True)
-    _common.execute(["schtasks.exe", "/run", "/tn", NAME])
+    _ = _common.execute_command(["C:\\Windows\\System32\\userinit.exe"], wait=True)
+    _ = _common.execute_command(["schtasks.exe", "/run", "/tn", NAME])
 
     # Wait for the "logon" to finish
     time.sleep(30)
     _common.print_file(log_file)
 
     # Now delete the user profile
-    _common.log("Cleanup", log_type="-")
+    log.info("Cleanup", log_type="-")
     _common.remove_file(log_file)
-    _common.execute(["schtasks.exe", "/delete", "/tn", NAME, "/f"])
+    _ = _common.execute_command(["schtasks.exe", "/delete", "/tn", NAME, "/f"])

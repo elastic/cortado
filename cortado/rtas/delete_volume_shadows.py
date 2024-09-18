@@ -10,7 +10,11 @@
 # ATT&CK: T1107
 # Description: Uses both vssadmin.exe and wmic.exe to delete volume shadow copies.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -22,8 +26,8 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1490"],
 )
 def main():
-    _common.log("Deleting volume shadow copies...")
-    _common.execute(["vssadmin.exe", "delete", "shadows", "/for=c:", "/oldest", "/quiet"])
+    log.info("Deleting volume shadow copies...")
+    _ = _common.execute_command(["vssadmin.exe", "delete", "shadows", "/for=c:", "/oldest", "/quiet"])
     # Create a volume shadow copy so that there is at least one to delete
-    _common.execute(["wmic.exe", "shadowcopy", "call", "create", "volume=c:\\"])
-    _common.execute(["wmic.exe", "shadowcopy", "delete", "/nointeractive"])
+    _ = _common.execute_command(["wmic.exe", "shadowcopy", "call", "create", "volume=c:\\"])
+    _ = _common.execute_command(["wmic.exe", "shadowcopy", "delete", "/nointeractive"])

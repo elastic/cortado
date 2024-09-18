@@ -11,10 +11,13 @@
 # ATT&CK: T1015
 # Description: Writes different binaries into various accessibility locations.
 
+import logging
 import time
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 @register_code_rta(
     id="398933ec-f8d4-4d81-93ed-e7d7adcb9d97",
@@ -52,19 +55,19 @@ def main():
         _common.copy_file(bin_path, temp)
 
         # Change Permissions to allow modification
-        _common.execute(["takeown", "/F", bin_path, "/A"])
-        _common.execute(["icacls", bin_path, "/grant", "Administrators:F"])
+        _ = _common.execute_command(["takeown", "/F", bin_path, "/A"])
+        _ = _common.execute_command(["icacls", bin_path, "/grant", "Administrators:F"])
 
         # Copy Calc to overwrite binary, then run it
         _common.copy_file(calc, bin_path)
-        _common.execute(bin_path, kill=True, timeout=1)
+        _ = _common.execute_command(bin_path, kill=True, timeout_secs=1)
 
         # Restore Original File and Permissions on file
         _common.copy_file(temp, bin_path)
-        _common.execute(["icacls", bin_path, "/setowner", "NT SERVICE\\TrustedInstaller"])
-        _common.execute(["icacls", bin_path, "/grant:r", "Administrators:RX"])
+        _ = _common.execute_command(["icacls", bin_path, "/setowner", "NT SERVICE\\TrustedInstaller"])
+        _ = _common.execute_command(["icacls", bin_path, "/grant:r", "Administrators:RX"])
         _common.remove_file(temp)
 
     # Cleanup
     time.sleep(2)
-    _common.execute(["taskkill", "/F", "/im", "calculator.exe"])
+    _ = _common.execute_command(["taskkill", "/F", "/im", "calculator.exe"])

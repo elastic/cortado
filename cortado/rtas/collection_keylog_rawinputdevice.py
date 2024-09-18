@@ -4,9 +4,13 @@
 # 2.0.
 # Adjusted version of https://github.com/XRoemer/Organon/blob/master/source/py/rawinputdata.py
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+import time
 
-import time, sys
+from . import OSType, register_code_rta
+
+log = logging.getLogger(__name__)
+
 
 
 @register_code_rta(
@@ -23,10 +27,10 @@ import time, sys
     techniques=["T1056", "T1056.001"],
 )
 def main():
-    from ctypes import c_long, c_int, c_uint, c_ushort, Structure, Union
-    from ctypes import WINFUNCTYPE, windll, byref, sizeof, pointer, WinError
-    from ctypes.wintypes import DWORD, HWND, HANDLE, WPARAM, ULONG, LONG, UINT
-    from ctypes.wintypes import BYTE, LPCSTR, HINSTANCE, LPVOID
+    from ctypes import (WINFUNCTYPE, Structure, Union, WinError, byref, c_int,
+                        c_long, c_uint, c_ushort, pointer, sizeof, windll)
+    from ctypes.wintypes import (BYTE, DWORD, HANDLE, HINSTANCE, HWND, LONG,
+                                 LPCSTR, LPVOID, UINT, ULONG, WPARAM)
 
     wndproc = WINFUNCTYPE(c_long, c_int, c_uint, c_int, c_int)
 

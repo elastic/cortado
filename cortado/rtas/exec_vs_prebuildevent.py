@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -21,14 +25,14 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1127", "T1127.001"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     msbuild = "C:\\Users\\Public\\msbuild.exe"
     cmd = "C:\\Users\\Public\\cmd.exe"
     _common.copy_file(EXE_FILE, cmd)
     _common.copy_file(EXE_FILE, msbuild)
 
-    _common.execute(
-        [msbuild, "/c", cmd, "/c", cmd, "echo C:\\Users\\A\\AppData\\Local\\Temp\\tmpa.exec.cmd"], timeout=10, kill=True
+    _ = _common.execute_command(
+        [msbuild, "/c", cmd, "/c", cmd, "echo C:\\Users\\A\\AppData\\Local\\Temp\\tmpa.exec.cmd"], timeout_secs=10, kill=True
     )
-    _common.remove_files(cmd, msbuild)
+    _common.remove_files([cmd, msbuild])

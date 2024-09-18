@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -21,12 +25,12 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1218", "T1036", "T1059"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     cscript = "C:\\Users\\Public\\cscript.exe"
     _common.copy_file(EXE_FILE, cscript)
 
     cmd = "powershell -c echo https://raw.githubusercontent.com/"
     # Execute command
-    _common.execute([cscript, "/c", cmd], timeout=10)
+    _ = _common.execute_command([cscript, "/c", cmd], timeout_secs=10)
     _common.remove_file(cscript)

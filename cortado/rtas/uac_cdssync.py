@@ -3,10 +3,13 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 import shutil
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 @register_code_rta(
     id="7e9a94f4-46aa-45eb-b95b-53da7c01a033",
@@ -22,7 +25,7 @@ from . import _common, register_code_rta, OSType, RuleMetadata
     techniques=["T1574", "T1548", "T1036"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
     PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
 
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
@@ -34,7 +37,7 @@ def main():
     _common.copy_file(user32, dll)
     _common.copy_file(EXE_FILE, taskhostw)
 
-    _common.log("Spawning PowerShell from fake taskhostw")
-    _common.execute([taskhostw, "/c", powershell], timeout=10, kill=True)
-    _common.remove_files(dll, taskhostw)
+    log.info("Spawning PowerShell from fake taskhostw")
+    _ = _common.execute_command([taskhostw, "/c", powershell], timeout_secs=10, kill=True)
+    _common.remove_files([dll, taskhostw])
     shutil.rmtree(path)

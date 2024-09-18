@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -17,12 +21,12 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1564", "T1564.004"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     exe = "C:\\Users\\Public\\a.exe"
     _common.copy_file(EXE_FILE, exe)
 
     # Execute command
-    _common.execute([powershell, "/c", f"Set-Content -Stream RtaTest -value Heyo -Path {exe}"], timeout=10)
-    _common.remove_files(exe)
+    _ = _common.execute_command([powershell, "/c", f"Set-Content -Stream RtaTest -value Heyo -Path {exe}"], timeout_secs=10)
+    _common.remove_files([exe])

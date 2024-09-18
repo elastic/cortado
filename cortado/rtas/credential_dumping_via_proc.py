@@ -3,8 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 import sys
-from . import register_code_rta, OSType, RuleMetadata
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -26,14 +30,14 @@ from . import register_code_rta, OSType, RuleMetadata
 def main() -> None:
     masquerade = "/tmp/ps"
     masquerade2 = "/tmp/strings"
-    source = _common.get_path("bin", "linux.ditto_and_spawn")
+    source = _common.get_resource_path("bin/linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)
     _common.copy_file(source, masquerade2)
 
     # Execute command
-    _common.log("Launching fake commands to dump credential via proc")
-    _common.execute([masquerade, "-eo", "pid", "command"], timeout=5, kill=True)
-    _common.execute([masquerade2, "/tmp/test"], timeout=5, kill=True)
+    log.info("Launching fake commands to dump credential via proc")
+    _ = _common.execute_command([masquerade, "-eo", "pid", "command"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([masquerade2, "/tmp/test"], timeout_secs=5, kill=True)
 
     # cleanup
     _common.remove_file(masquerade)

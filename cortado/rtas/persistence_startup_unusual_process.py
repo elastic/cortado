@@ -3,9 +3,13 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
-
+import logging
 import time
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
+
 
 
 @register_code_rta(
@@ -30,7 +34,7 @@ import time
     techniques=["T1547", "T1218", "T1036", "T1059"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     tempowershell = "C:\\Windows\\notp0sh.exe"
@@ -38,5 +42,5 @@ def main():
     _common.copy_file(powershell, tempowershell)
 
     time.sleep(2)
-    _common.execute([tempowershell, "-c", "Copy-Item", powershell, tempowershell])
-    _common.remove_files(tempowershell, posh)
+    _ = _common.execute_command([tempowershell, "-c", "Copy-Item", powershell, tempowershell])
+    _common.remove_files([tempowershell, posh])

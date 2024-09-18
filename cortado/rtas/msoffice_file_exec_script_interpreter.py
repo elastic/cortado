@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -19,17 +23,17 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1566"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed.exe")
 
     binary = "winword.exe"
     _common.copy_file(EXE_FILE, binary)
 
     # Execute command
-    _common.log("Dropping executable using fake winword")
-    _common.execute([binary, "/c", "copy C:\\Windows\\System32\\cmd.exe cmd.exe"])
+    log.info("Dropping executable using fake winword")
+    _ = _common.execute_command([binary, "/c", "copy C:\\Windows\\System32\\cmd.exe cmd.exe"])
 
-    _common.log("Executing it using scripting program")
-    _common.execute(
+    log.info("Executing it using scripting program")
+    _ = _common.execute_command(
         [
             "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
             "-C",
@@ -37,4 +41,4 @@ def main():
         ]
     )
 
-    _common.remove_files(binary, "cmd.exe")
+    _common.remove_files([binary, "cmd.exe"])

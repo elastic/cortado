@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -21,9 +25,9 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1047", "T1566"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
-    server, ip, port = _common.serve_web()
+    server, ip, port = _common.serve_dir_over_http()
     url = f"http://{ip}:{port}/bin/renamed_posh.exe"
 
     winword = "C:\\Users\\Public\\winword.exe"
@@ -36,7 +40,7 @@ def main():
     cmd = f"Invoke-WebRequest -Uri {url} -OutFile {dropped}"
 
     # Execute command
-    _common.execute([winword, "/c", cmd], timeout=10)
-    _common.execute([wmiprvse, "/c", dropped], timeout=10, kill=True)
+    _ = _common.execute_command([winword, "/c", cmd], timeout_secs=10)
+    _ = _common.execute_command([wmiprvse, "/c", dropped], timeout_secs=10, kill=True)
     _common.remove_file(winword)
     _common.remove_file(dropped)

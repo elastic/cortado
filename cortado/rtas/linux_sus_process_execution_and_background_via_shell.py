@@ -3,9 +3,13 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
-
+import logging
 import subprocess
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
+
 
 
 @register_code_rta(
@@ -28,13 +32,13 @@ def main():
         script.write(f"{shell_command} {shell_args}\n")
 
     # Make the script executable
-    _common.execute(["chmod", "+x", parent_process])
+    _ = _common.execute_command(["chmod", "+x", parent_process])
 
     # Execute the fake parent process script
-    _common.log("Executing the fake parent process script")
+    log.info("Executing the fake parent process script")
     subprocess.Popen([parent_process])
 
-    _common.log("RTA execution completed.")
+    log.info("RTA execution completed.")
 
     # Cleanup
     _common.remove_file(parent_process)

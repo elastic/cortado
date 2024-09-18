@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -17,7 +21,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1036"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
     RENAMER = _common.get_path("bin", "rcedit-x64.exe")
 
     autohotkey = "C:\\Users\\Public\\notaut0hotkey.exe"
@@ -26,8 +30,8 @@ def main():
     _common.copy_file(RENAMER, rcedit)
 
     # Execute command
-    _common.log("Modifying the OriginalFileName attribute")
-    _common.execute(
+    log.info("Modifying the OriginalFileName attribute")
+    _ = _common.execute_command(
         [
             rcedit,
             autohotkey,
@@ -37,6 +41,6 @@ def main():
         ]
     )
 
-    _common.execute([autohotkey], timeout=10, kill=True)
+    _ = _common.execute_command([autohotkey], timeout_secs=10, kill=True)
 
-    _common.remove_files(autohotkey, rcedit)
+    _common.remove_files([autohotkey, rcedit])

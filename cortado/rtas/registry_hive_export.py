@@ -8,9 +8,12 @@
 # ATT&CK: TBD
 # Description: Exports the SAM, SECURITY and SYSTEM hives - useful in credential harvesting and discovery attacks.
 
+import logging
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 REG_EXE = "reg.exe"
 
@@ -28,9 +31,9 @@ REG_EXE = "reg.exe"
 def main():
     for hive in ["sam", "security", "system"]:
         filename = Path("%s.reg" % hive).resolve()
-        _common.log("Exporting %s hive to %s" % (hive, filename))
-        _common.execute([REG_EXE, "save", "hkey_local_machine\\%s" % hive, filename])
+        log.info("Exporting %s hive to %s" % (hive, filename))
+        _ = _common.execute_command([REG_EXE, "save", "hkey_local_machine\\%s" % hive, filename])
         _common.remove_file(filename)
 
-        _common.execute([REG_EXE, "save", "hklm\\%s" % hive, filename])
+        _ = _common.execute_command([REG_EXE, "save", "hklm\\%s" % hive, filename])
         _common.remove_file(filename)

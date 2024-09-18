@@ -8,10 +8,13 @@
 # ATT&CK: T1064
 # Description: Generates various children processes from emulated Office processes.
 
-from pathlib import Path
+import logging
 import time
+from pathlib import Path
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -23,7 +26,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1566"],
 )
 def main():
-    _common.log("MS Office unusual child process emulation")
+    log.info("MS Office unusual child process emulation")
     suspicious_apps = [
         "msiexec.exe /i blah /quiet",
         "powershell.exe exit",
@@ -34,21 +37,21 @@ def main():
     _common.copy_file(cmd_path, browser_path)
 
     for office_app in ["winword.exe", "excel.exe"]:
-        _common.log("Emulating %s" % office_app)
+        log.info("Emulating %s" % office_app)
         office_path = Path(office_app).resolve()
         _common.copy_file(cmd_path, office_path)
 
         for command in suspicious_apps:
-            _common.execute(
+            _ = _common.execute_command(
                 "%s /c %s /c %s" % (office_path, browser_path, command),
-                timeout=5,
+                timeout_secs=5,
                 kill=True,
             )
 
-        _common.log("Cleanup %s" % office_path)
+        log.info("Cleanup %s" % office_path)
         _common.remove_file(office_path)
 
-    _common.log("Sleep 5 to allow processes to finish")
+    log.info("Sleep 5 to allow processes to finish")
     time.sleep(5)
-    _common.log("Cleanup %s" % browser_path)
+    log.info("Cleanup %s" % browser_path)
     _common.remove_file(browser_path)

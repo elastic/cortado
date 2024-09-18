@@ -8,10 +8,13 @@
 # ATT&CK: T1044
 # Description: Spawns mock malware written to a regular user directory and executes as System.
 
+import logging
 import os
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType
+from . import OSType, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -26,8 +29,8 @@ def main() -> None:
     if status is not None:
         return status
 
-    _common.log("Run a user-writeable file as system")
-    source_path = _common.get_path("bin", "myapp.exe")
+    log.info("Run a user-writeable file as system")
+    source_path = _common.get_resource_path("bin/myapp.exe")
 
     target_directory = "c:\\users\\fake_user_rta-%d" % os.getpid()
     if not Path(target_directory).is_dir():
@@ -35,6 +38,6 @@ def main() -> None:
 
     target_path = Path(target_directory) / "user_file.exe"
     _common.copy_file(source_path, target_path)
-    _common.execute([target_path])
+    _ = _common.execute_command([target_path])
 
     _common.remove_directory(target_directory)

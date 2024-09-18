@@ -9,15 +9,18 @@
 # Description: Uses "bin\.exe" to perform encryption of archives and archive headers.
 
 import base64
+import logging
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 SEVENZIP_EXE = "bin/7za.exe"
 
 
 def create_exfil(path=Path("secret_stuff.txt").resolve()):
-    _common.log("Writing dummy exfil to %s" % path)
+    log.info("Writing dummy exfil to %s" % path)
     with open(path, "wb") as f:
         f.write(base64.b64encode(b"This is really secret stuff\n" * 100))
     return path
@@ -44,15 +47,15 @@ def main(password="s0l33t"):
     for ext in exts:
         # Write archive for each type
         out_file = Path("out." + ext).resolve()
-        _common.execute([svnz2, "a", out_file, "-p" + password, exfil], mute=True)
+        _ = _common.execute_command([svnz2, "a", out_file, "-p" + password, exfil], mute=True)
         _common.remove_file(out_file)
 
         # Write archive for each type with -t flag
         if ext == "bz2":
             continue
 
-        _common.execute([svnz2, "a", out_jpg, "-p" + password, "-t" + ext, exfil], mute=True)
+        _ = _common.execute_command([svnz2, "a", out_jpg, "-p" + password, "-t" + ext, exfil], mute=True)
         _common.remove_file(out_jpg)
 
-    _common.execute([SEVENZIP, "a", out_jpg, "-p" + password, exfil], mute=True)
-    _common.remove_files(exfil, svnz2, out_jpg)
+    _ = _common.execute_command([SEVENZIP, "a", out_jpg, "-p" + password, exfil], mute=True)
+    _common.remove_files([exfil, svnz2, out_jpg])

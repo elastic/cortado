@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -19,7 +23,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1547", "T1566"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     powershell = "C:\\Users\\Public\\posh.exe"
     temp = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\StartUp\\temp_persist.exe"
@@ -28,7 +32,7 @@ def main():
     _common.copy_file(powershell, binary)
 
     # Execute command
-    _common.log("Writing to startup folder using fake winword")
-    _common.execute([binary, "/c", f"Copy-Item {powershell} '{temp}'"])
+    log.info("Writing to startup folder using fake winword")
+    _ = _common.execute_command([binary, "/c", f"Copy-Item {powershell} '{temp}'"])
 
-    _common.remove_files(binary, temp)
+    _common.remove_files([binary, temp])

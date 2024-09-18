@@ -9,7 +9,11 @@
 # ATT&CK: T1076
 # Description: Identifies registry write modification to enable RDP access.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -21,7 +25,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1021", "T1021.001"],
 )
 def main():
-    _common.log("Enabling RDP Through Registry")
+    log.info("Enabling RDP Through Registry")
 
     # get the current value
     key = "System\\CurrentControlSet\\Control\\Terminal Server"

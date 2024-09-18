@@ -3,9 +3,14 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+import sys
+import time
 
-import time, sys
+from . import OSType, register_code_rta
+
+log = logging.getLogger(__name__)
+
 
 WH_KEYBOARD_LL = 13
 WM_KEYDOWN = 0x0100

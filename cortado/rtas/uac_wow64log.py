@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -19,7 +23,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1574", "T1548"],
 )
 def main():
-    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+    PS1_FILE = _common.get_resource_path("bin/Invoke-ImageLoad.ps1")
     RENAMER = _common.get_path("bin", "rcedit-x64.exe")
 
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
@@ -31,13 +35,13 @@ def main():
     _common.copy_file(PS1_FILE, ps1)
     _common.copy_file(RENAMER, rcedit)
 
-    _common.log("Modifying the OriginalFileName attribute to invalidate the signature")
-    _common.execute([rcedit, dll, "--set-version-string", "OriginalFilename", "wow64log.dll"])
+    log.info("Modifying the OriginalFileName attribute to invalidate the signature")
+    _ = _common.execute_command([rcedit, dll, "--set-version-string", "OriginalFilename", "wow64log.dll"])
 
-    _common.log("Loading wow64log.dll and spawning a high integrity process")
-    _common.execute(
+    log.info("Loading wow64log.dll and spawning a high integrity process")
+    _ = _common.execute_command(
         [powershell, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}; powershell"],
-        timeout=10,
+        timeout_secs=10,
     )
 
-    _common.remove_files(dll, ps1, rcedit)
+    _common.remove_files([dll, ps1, rcedit])

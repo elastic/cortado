@@ -3,10 +3,13 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 import os
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 # testing DLL that will spawn notepad once DllMain is invoked
@@ -53,16 +56,16 @@ def main():
             binfile.write(b"\x00")
 
         # copied via cmd to trigger the rule - python is signed and won't trigger the file mod part of the rule
-        _common.execute(["cmd.exe", "/c", "copy", tempc, rta_dll])
+        _ = _common.execute_command(["cmd.exe", "/c", "copy", tempc, rta_dll])
         if Path(rta_dll).is_file() and Path(rta_pe).is_file():
             # should trigger rundll32 rules
-            _common.execute(["rundll32.exe", rta_dll, "DllMain"])
+            _ = _common.execute_command(["rundll32.exe", rta_dll, "DllMain"])
             # should trigger dll sideload from current dir
-            _common.execute(rta_pe)
+            _ = _common.execute_command(rta_pe)
         # cleanup
-        _common.execute(["taskkill", "/f", "/im", "notepad.exe"])
-        print(f"[+] - Cleanup.")
+        _ = _common.execute_command(["taskkill", "/f", "/im", "notepad.exe"])
+        print("[+] - Cleanup.")
         win32file.DeleteFile(tempc)
         win32file.DeleteFile(rta_dll)
         win32file.DeleteFile(rta_pe)
-        print(f"[+] - RTA Done!")
+        print("[+] - RTA Done!")

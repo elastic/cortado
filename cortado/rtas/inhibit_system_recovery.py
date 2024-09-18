@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -17,9 +21,9 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1490", "T1047", "T1059"],
 )
 def main():
-    _common.log("Deleting volume shadow copies...")
+    log.info("Deleting volume shadow copies...")
 
-    _common.execute(
+    _ = _common.execute_command(
         [
             "powershell.exe",
             "Invoke-Expression",
@@ -34,7 +38,7 @@ def main():
     )
 
     # Create a volume shadow copy so that there is at least one to delete
-    _common.execute(
+    _ = _common.execute_command(
         [
             "powershell.exe",
             "Invoke-Expression",
@@ -46,7 +50,7 @@ def main():
             "volume=c:\\'",
         ]
     )
-    _common.execute(
+    _ = _common.execute_command(
         [
             "powershell.exe",
             "Invoke-Expression",

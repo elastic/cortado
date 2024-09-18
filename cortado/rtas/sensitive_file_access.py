@@ -4,7 +4,11 @@
 # 2.0.
 
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -32,6 +36,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 )
 def main():
     from os import path
+
     import win32file
 
     files = [
@@ -55,6 +60,6 @@ def main():
         try:
             win32file.CreateFile(path.expandvars(item), win32file.GENERIC_READ, 0, None, 3, 0, None)
             time.sleep(2)
-        except Exception as e:
+        except Exception:
             print(f"[x] - Failed to open {item}")
             pass

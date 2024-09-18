@@ -9,7 +9,11 @@
 # Description: Use CRYPTBASE.dll opportunity to do Dll Sideloading with SysPrep for a UAC bypass
 
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -21,11 +25,11 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=[],
 )
 def main():
-    _common.log("Bypass UAC with CRYPTBASE.dll")
+    log.info("Bypass UAC with CRYPTBASE.dll")
 
     _common.copy_file(
         "C:\\windows\\system32\\kernel32.dll",
         "C:\\Windows\\system32\sysprep\\CRYPTBASE.DLL",
     )
-    _common.execute(["C:\\Windows\\system32\sysprep\\sysprep.exe"], timeout=5, kill=True)
+    _ = _common.execute_command(["C:\\Windows\\system32\sysprep\\sysprep.exe"], timeout_secs=5, kill=True)
     _common.remove_file("C:\\Windows\\system32\sysprep\\CRYPTBASE.DLL")

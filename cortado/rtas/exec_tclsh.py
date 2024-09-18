@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -22,5 +26,5 @@ def main():
     masquerade = "/tmp/tclsh"
     _common.copy_file("/usr/bin/curl", masquerade)
 
-    _common.log("Executing commands to mimic network activity from tclsh")
-    _common.execute([masquerade, url], shell=True)
+    log.info("Executing commands to mimic network activity from tclsh")
+    _ = _common.execute_command([masquerade, url], shell=True)

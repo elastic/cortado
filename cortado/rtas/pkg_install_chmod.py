@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -28,9 +32,9 @@ def main():
 
     # Execute command
     command = f"chmod +x {source_file}"
-    _common.log("Launching fake bash commands to execute chmod on file via pkg install")
+    log.info("Launching fake bash commands to execute chmod on file via pkg install")
     with _common.temporary_file("testing", source_file):
-        _common.execute(
+        _ = _common.execute_command(
             [
                 masquerade,
                 "childprocess",
@@ -40,7 +44,7 @@ def main():
                 "childprocess",
                 "/tmp/PKInstallSandbox.*/Scripts/*/postinstall",
             ],
-            timeout=10,
+            timeout_secs=10,
             kill=True,
         )
 

@@ -9,9 +9,12 @@
 # ATT&CK: T1112
 # Description: Sets an executable to run when WerFault is run with -rp flags and runs it
 
+import logging
 import time
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 MY_APP_EXE = "bin/myapp.exe"
@@ -33,8 +36,8 @@ def main():
     commands = ["C:\\Windows\\system32\\calc.exe", "'powershell -c calc.exe'", MY_APP]
 
     for command in commands:
-        _common.log("Setting WerFault reg key to {}".format(command))
-        _common.execute(
+        log.info("Setting WerFault reg key to {}".format(command))
+        _ = _common.execute_command(
             [
                 "powershell",
                 "-c",
@@ -50,11 +53,11 @@ def main():
         )
         time.sleep(1)
 
-        _common.log("Running WerFault.exe -pr 1")
-        _common.execute(["werfault", "-pr", "1"], wait=False)
+        log.info("Running WerFault.exe -pr 1")
+        _ = _common.execute_command(["werfault", "-pr", "1"], wait=False)
         time.sleep(2.5)
 
-        _common.execute(
+        _ = _common.execute_command(
             [
                 "powershell",
                 "-c",
@@ -66,8 +69,8 @@ def main():
             ]
         )
 
-    _common.log("Cleaning up")
+    log.info("Cleaning up")
 
-    _common.execute(["taskkill", "/F", "/im", "calc.exe"])
-    _common.execute(["taskkill", "/F", "/im", "calculator.exe"])
-    _common.execute(["taskkill", "/F", "/im", "myapp.exe"])
+    _ = _common.execute_command(["taskkill", "/F", "/im", "calc.exe"])
+    _ = _common.execute_command(["taskkill", "/F", "/im", "calculator.exe"])
+    _ = _common.execute_command(["taskkill", "/F", "/im", "myapp.exe"])

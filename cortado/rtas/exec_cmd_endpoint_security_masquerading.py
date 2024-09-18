@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -17,11 +21,11 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1036"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     esensor = "C:\\Users\\Public\\esensor.exe"
     _common.copy_file(EXE_FILE, esensor)
 
     # Execute command
-    _common.execute([esensor], timeout=2, kill=True)
-    _common.remove_files(esensor)
+    _ = _common.execute_command([esensor], timeout_secs=2, kill=True)
+    _common.remove_files([esensor])

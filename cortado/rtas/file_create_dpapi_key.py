@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -20,11 +24,11 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1552", "T1552.004", "T1555"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     fake_dpapi = "C:\\Users\\Public\\ntds_capi_test.pfx"
 
     # Execute command
-    _common.execute([powershell, "/c", f"echo AAAAAAAAAA | Out-File {fake_dpapi}"], timeout=10)
-    _common.remove_files(fake_dpapi)
+    _ = _common.execute_command([powershell, "/c", f"echo AAAAAAAAAA | Out-File {fake_dpapi}"], timeout_secs=10)
+    _common.remove_files([fake_dpapi])

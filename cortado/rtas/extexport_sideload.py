@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -18,7 +22,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1218"],
 )
 def main():
-    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+    RENAMER = _common.get_resource_path("bin/rcedit-x64.exe")
     EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
 
     dll = "C:\\Users\\Public\\sqlite3.dll"
@@ -29,10 +33,10 @@ def main():
     _common.copy_file(EXE_FILE, posh)
 
     # Execute command
-    _common.log("Modifying the OriginalFileName attribute")
-    _common.execute([rcedit, posh, "--set-version-string", "OriginalFilename", "extexport.exe"])
+    log.info("Modifying the OriginalFileName attribute")
+    _ = _common.execute_command([rcedit, posh, "--set-version-string", "OriginalFilename", "extexport.exe"])
 
-    _common.log("Executing modified binary with extexport.exe original file name")
-    _common.execute([posh], timeout=10, kill=True)
+    log.info("Executing modified binary with extexport.exe original file name")
+    _ = _common.execute_command([posh], timeout_secs=10, kill=True)
 
-    _common.remove_files(dll, posh, rcedit)
+    _common.remove_files([dll, posh, rcedit])

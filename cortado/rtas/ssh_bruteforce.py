@@ -3,9 +3,13 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
-
+import logging
 from multiprocessing import Process
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
+
 
 
 @register_code_rta(
@@ -17,7 +21,7 @@ from multiprocessing import Process
     techniques=["T1110"],
 )
 def test(masquerade, masquerade2):
-    _common.execute([masquerade2, "childprocess", masquerade], timeout=0.3, kill=True)
+    _ = _common.execute_command([masquerade2, "childprocess", masquerade], timeout_secs=0.3, kill=True)
 
 
 def main():
@@ -27,7 +31,7 @@ def main():
     _common.create_macos_masquerade(masquerade2)
 
     # Execute command
-    _common.log("Launching fake ssh keygen commands to mimic ssh bruteforce")
+    log.info("Launching fake ssh keygen commands to mimic ssh bruteforce")
     processes = []
 
     for i in range(25):

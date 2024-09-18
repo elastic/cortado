@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -18,4 +22,4 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 )
 def main():
     cmd = "C:\\Windows\\System32\\cmd.exe"
-    _common.execute([cmd, "/C", "echo", "wscript"], timeout=5, kill=True)
+    _ = _common.execute_command([cmd, "/C", "echo", "wscript"], timeout_secs=5, kill=True)

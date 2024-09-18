@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -15,7 +19,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1036"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
     RENAMER = _common.get_path("bin", "rcedit-x64.exe")
 
     autoit = "C:\\Users\\Public\\rta.exe"
@@ -25,11 +29,11 @@ def main():
     _common.copy_file(EXE_FILE, autoit)
 
     # Execute command
-    _common.log("Modifying the OriginalFileName attribute")
-    _common.execute(
+    log.info("Modifying the OriginalFileName attribute")
+    _ = _common.execute_command(
         [rcedit, autoit, "--set-version-string", "OriginalFileName", "autoitrta.exe"],
-        timeout=10,
+        timeout_secs=10,
     )
-    _common.execute([autoit], timeout=5, kill=True)
+    _ = _common.execute_command([autoit], timeout_secs=5, kill=True)
 
-    _common.remove_files(autoit, rcedit)
+    _common.remove_files([autoit, rcedit])

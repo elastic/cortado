@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -17,10 +21,10 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1218", "T1105"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     gfx = "C:\\Users\\Public\\GfxDownloadWrapper.exe"
     _common.copy_file(EXE_FILE, gfx)
 
-    _common.execute([gfx, "/c", "echo", "run", "0", "http"], timeout=5, kill=True)
-    _common.remove_files(gfx)
+    _ = _common.execute_command([gfx, "/c", "echo", "run", "0", "http"], timeout_secs=5, kill=True)
+    _common.remove_files([gfx])

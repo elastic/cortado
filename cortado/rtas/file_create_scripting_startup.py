@@ -3,9 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 @register_code_rta(
     id="e56f77bc-d9a7-4e02-97e2-b3056f3d4171",
@@ -18,7 +21,7 @@ from . import _common, register_code_rta, OSType, RuleMetadata
     techniques=["T1547", "T1547.001"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     path = "C:\\Users\\Public\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"
@@ -26,5 +29,5 @@ def main():
     Path(path).mkdir(parents=True, exist_ok=True)
     file = argpath + "\\file.exe"
 
-    _common.execute([powershell, "/c", f"echo AAAAAAAA | Out-File {file}"], timeout=10, kill=True)
-    _common.remove_files(file)
+    _ = _common.execute_command([powershell, "/c", f"echo AAAAAAAA | Out-File {file}"], timeout_secs=10, kill=True)
+    _common.remove_files([file])

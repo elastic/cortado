@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -27,10 +31,10 @@ def main():
     _common.create_macos_masquerade(masquerade)
 
     # Execute command
-    _common.log("Spawning fake node commands to mimic Electon child process.")
-    _common.execute(
+    log.info("Spawning fake node commands to mimic Electon child process.")
+    _ = _common.execute_command(
         [masquerade, "-e", "const { fork } = require('child_process');"],
-        timeout=10,
+        timeout_secs=10,
         kill=True,
     )
 

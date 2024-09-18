@@ -3,9 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 from pathlib import Path
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -24,8 +27,8 @@ def main():
     tmp_dir.mkdir(parents=True, exist_ok=True)
 
     # Execute command
-    _common.log("Launching hdiutil commands to create a dmg in tmp directory")
-    _common.execute(["hdiutil", "create", "-size", "50m", "-volname", str(tmp_dir), "-ov", tmp_dmg], kill=True)
+    log.info("Launching hdiutil commands to create a dmg in tmp directory")
+    _ = _common.execute_command(["hdiutil", "create", "-size", "50m", "-volname", str(tmp_dir), "-ov", tmp_dmg], kill=True)
 
     # cleanup
     _common.remove_directory(str(tmp_dir))

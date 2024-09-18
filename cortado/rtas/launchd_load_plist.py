@@ -3,8 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 from pathlib import Path
-from . import _common, RuleMetadata, register_code_rta, OSType
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 plist = """
@@ -46,5 +50,5 @@ def main():
     # with _common.temporary_file(plist, file_name=plist_path):
     with open(plist_path, "w") as f:
         f.write(plist)
-        _common.execute(["launchctl", "load", plist_path], kill=True)
-        _common.execute(["launchctl", "unload", plist_path], kill=True)
+        _ = _common.execute_command(["launchctl", "load", plist_path], kill=True)
+        _ = _common.execute_command(["launchctl", "unload", plist_path], kill=True)

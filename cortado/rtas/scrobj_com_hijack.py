@@ -8,7 +8,11 @@
 # ATT&CK: T1122
 # Description: Modifies the Registry to create a new user-defined COM broker, "scrobj.dll".
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(

@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -17,16 +21,16 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 def main():
     masquerade = "/tmp/bash"
     if _common.CURRENT_OS == "linux":
-        source = _common.get_path("bin", "linux.ditto_and_spawn")
+        source = _common.get_resource_path("bin/linux.ditto_and_spawn")
         _common.copy_file(source, masquerade)
     else:
         _common.create_macos_masquerade(masquerade)
 
     # Execute command
-    _common.log("Launching fake bash with base64 decode commands")
-    _common.execute(
+    log.info("Launching fake bash with base64 decode commands")
+    _ = _common.execute_command(
         [masquerade, "exec(base64.b64decode*aW1wb3J0IHN5cztpbXBvcnQg)"],
-        timeout=10,
+        timeout_secs=10,
         kill=True,
     )
 

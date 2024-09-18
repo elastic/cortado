@@ -3,8 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 from pathlib import Path
-from . import _common, RuleMetadata, register_code_rta, OSType
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -24,7 +28,7 @@ def main():
     sublime_packages = sublime_dir.joinpath("Packages")
     sublime_packages.mkdir(parents=True, exist_ok=True)
     sublime_path = str(sublime_packages.joinpath("test.py"))
-    _common.log(f"Executing hidden plist creation on {sublime_path}")
+    log.info(f"Executing hidden plist creation on {sublime_path}")
     _common.temporary_file_helper("testing", file_name=sublime_path)
 
     # cleanup

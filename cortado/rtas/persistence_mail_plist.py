@@ -3,10 +3,14 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
-
-
+import logging
 from pathlib import Path
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
+
+
 
 
 @register_code_rta(
@@ -22,7 +26,7 @@ from pathlib import Path
     techniques=[""],
 )
 def main():
-    _common.log("Executing deletion on SyncedRules.plist file.")
+    log.info("Executing deletion on SyncedRules.plist file.")
     plist = f"{Path.home()}/Library/Mobile Documents/com.apple.mail/Data/test/MailData/SyncedRules.plist"
     output_file = Path(plist)
     output_file.parent.mkdir(exist_ok=True, parents=True)

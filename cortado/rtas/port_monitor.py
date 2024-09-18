@@ -8,7 +8,11 @@
 # ATT&CK: T1013
 # Description: Drops dummy DLL to Monitors registry path as non-system user, which would be executed with SYSTEM privs.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -25,7 +29,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1547"],
 )
 def main():
-    _common.log("Writing registry key and dummy dll")
+    log.info("Writing registry key and dummy dll")
 
     key = "System\\CurrentControlSet\\Control\\Print\\Monitors\\blah"
     value = "test"

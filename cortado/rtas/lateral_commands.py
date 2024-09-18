@@ -11,11 +11,13 @@
 # ATT&CK: T1021, T1047, T1077, T1124, T1126
 # Description: Runs various Windows commands typically used by attackers to move laterally from the local machine.
 
+import logging
 import os
 import re
-import sys
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 MY_APP_EXE = "bin/myapp.exe"
@@ -32,10 +34,10 @@ MY_APP_EXE = "bin/myapp.exe"
 )
 def main(remote_host=None):
     remote_host = remote_host or _common.get_ip()
-    _common.log("Attempting to laterally move to %s" % remote_host)
+    log.info("Attempting to laterally move to %s" % remote_host)
 
     remote_host = _common.get_ipv4_address(remote_host)
-    _common.log("Using ip address %s" % remote_host)
+    log.info("Using ip address %s" % remote_host)
 
     # Put the hostname in quotes for WMIC, but leave it as is
     if not re.match(_common.IP_REGEX, remote_host):
@@ -59,7 +61,7 @@ def main(remote_host=None):
     ]
 
     for command in commands:
-        _common.execute(command.format(host=remote_host, wmi_node=wmi_node))
+        _ = _common.execute_command(command.format(host=remote_host, wmi_node=wmi_node))
 
     _, whoami = _common.execute(["whoami"])
     _, hostname = _common.execute(["hostname"])
@@ -70,7 +72,7 @@ def main(remote_host=None):
 
     # Check if the account is local or a domain
     if domain in (hostname, "NT AUTHORITY"):
-        _common.log(
+        log.info(
             "Need password for remote scheduled task in workgroup. Performing instead on %s." % _common.get_ip()
         )
         schtasks_host = _common.get_ip()
@@ -85,7 +87,7 @@ def main(remote_host=None):
 
     for command in schtask_commands:
         command = command.format(host=schtasks_host, name=task_name)
-        _common.execute(command)
+        _ = _common.execute_command(command)
 
     # Remote powershell
-    _common.execute(["C:\\Windows\\system32\\wsmprovhost.exe", "-Embedding"], timeout=5, kill=True)
+    _ = _common.execute_command(["C:\\Windows\\system32\\wsmprovhost.exe", "-Embedding"], timeout_secs=5, kill=True)

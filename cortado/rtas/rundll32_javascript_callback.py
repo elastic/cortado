@@ -10,7 +10,11 @@
 # ATT&CK: T1085
 # Description: Executes javascript code with an AJAX call via RunDll32.exe
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -22,8 +26,8 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=[],
 )
 def main():
-    _common.log("RunDLL32 with Javascript Callback")
-    server, ip, port = _common.serve_web()
+    log.info("RunDLL32 with Javascript Callback")
+    server, ip, port = _common.serve_dir_over_http()
     _common.clear_web_cache()
 
     url = "http://%s:%d" % (ip, port)
@@ -37,5 +41,5 @@ def main():
     )
     packed_js = "".join(s.strip() for s in js.splitlines())
 
-    _common.execute([rundll32, packed_js])
+    _ = _common.execute_command([rundll32, packed_js])
     server.shutdown()

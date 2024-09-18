@@ -9,9 +9,12 @@
 # Description: Calls PowerShell with suspicious command line arguments.
 
 import base64
+import logging
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType
+from . import OSType, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 @register_code_rta(
     id="5efc844c-0c11-4f84-a904-ada611315298",
@@ -23,7 +26,7 @@ def encode(command):
 
 
 def main():
-    _common.log("PowerShell Suspicious Commands")
+    log.info("PowerShell Suspicious Commands")
     temp_script = Path("tmp.ps1").resolve()
 
     # Create an empty script
@@ -37,6 +40,6 @@ def main():
     ]
 
     for command in powershell_commands:
-        _common.execute(command)
+        _ = _common.execute_command(command)
 
     _common.remove_file(temp_script)

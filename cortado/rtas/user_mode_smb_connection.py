@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -22,8 +26,8 @@ def main():
 
     # Execute command
     _common.copy_file(powershell, posh)
-    _common.log("Testing connection to Portquiz at Port 445")
-    _common.execute(
+    log.info("Testing connection to Portquiz at Port 445")
+    _ = _common.execute_command(
         [
             posh,
             "/c",
@@ -33,6 +37,6 @@ def main():
             "-Port",
             "445",
         ],
-        timeout=10,
+        timeout_secs=10,
     )
-    _common.remove_files(posh)
+    _common.remove_files([posh])

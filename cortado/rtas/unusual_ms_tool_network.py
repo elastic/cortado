@@ -9,11 +9,14 @@
 # Description: Creates network traffic from a process which is named to match _common administration and developer tools
 #              that do not typically make network traffic unless being used maliciously.
 
+import logging
 import shutil
 import sys
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 urlliblib = "urllib.request"
@@ -35,9 +38,9 @@ process_names = [
 
 def http_from_process(name, ip, port):
     path = Path(_common.BASE_DIR) / name
-    _common.log("Making HTTP GET from %s" % path)
+    log.info("Making HTTP GET from %s" % path)
     shutil.copy(sys.executable, path)
-    _common.execute(
+    _ = _common.execute_command(
         [
             path,
             "-c",
@@ -61,7 +64,7 @@ def http_from_process(name, ip, port):
     techniques=["T1127"],
 )
 def main():
-    server, ip, port = _common.serve_web()
+    server, ip, port = _common.serve_dir_over_http()
 
     for process in process_names:
         http_from_process(process, ip, port)
