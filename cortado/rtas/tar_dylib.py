@@ -26,7 +26,10 @@ def main():
     _ = _common.execute_command(["mkdir"], timeout_secs=10)
 
     with _common.temporary_file("testing", "/tmp/test.txt"):
-        _ = _common.execute_command(["tar", "-cf", "test.dylib", "/tmp/test.txt"], timeout_secs=10, kill=True)
+        _ = _common.execute_command(
+            ["tar", "-cf", "test.dylib", "/tmp/test.txt"],
+            timeout_secs=10,
+        )
 
     # cleanup
     _common.remove_file("test.dylib")

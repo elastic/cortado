@@ -43,7 +43,7 @@ def main() -> None:
 
     # Execute the fake executable
     log.info("Launching whoami as a child of fake executable")
-    _ = _common.execute_command([fake_executable], timeout_secs=5, kill=True, shell=True)  # noqa: S604
+    _ = _common.execute_command([fake_executable], timeout_secs=5, shell=True)  # noqa: S604
 
     # Cleanup
     _common.remove_file(fake_executable)

@@ -11,6 +11,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="20b96aa7-609e-473f-ac35-5ac19d10f9a5",
     name="suspicious_powershell_download",

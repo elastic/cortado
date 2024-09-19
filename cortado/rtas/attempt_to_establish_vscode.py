@@ -10,6 +10,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="a078ecca-e8b8-4ae8-a76c-3238e74ca34d",
     name="attempt_to_establish_vscode",

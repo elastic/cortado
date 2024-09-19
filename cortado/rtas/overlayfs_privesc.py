@@ -10,6 +10,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="a78663dc-9561-40a9-b4eb-f15e31c690cc",
     name="overlayfs_privesc",
@@ -39,7 +40,10 @@ def main() -> None:
 
     sudo_commands = ["sudo", "su"]
 
-    _ = _common.execute_command([*sudo_commands], timeout_secs=2, kill=True)
+    _ = _common.execute_command(
+        [*sudo_commands],
+        timeout_secs=2,
+    )
 
     log.info("Uid change simulation succesful")
 

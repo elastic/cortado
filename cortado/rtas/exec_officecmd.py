@@ -29,6 +29,7 @@ def main():
     _common.copy_file(EXE_FILE, localbridge)
 
     _ = _common.execute_command(
-        [localbridge, "/c", "echo", "ms-officecmd.LaunchOfficeAppForResult.--gpu-launcher"], timeout_secs=2, kill=True
+        [localbridge, "/c", "echo", "ms-officecmd.LaunchOfficeAppForResult.--gpu-launcher"],
+        timeout_secs=2,
     )
     _common.remove_file(localbridge)

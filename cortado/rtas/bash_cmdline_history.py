@@ -28,6 +28,6 @@ def main():
     # Execute command
     log.info("Launching fake builtin commands for tampering of bash command line history")
     command = "-c"
-    _ = _common.execute_command([masquerade, command], timeout_secs=10, kill=True, shell=True)
+    _ = _common.execute_command([masquerade, command], timeout_secs=10, shell=True)
     # cleanup
     _common.remove_file(masquerade)

@@ -11,7 +11,7 @@ log = logging.getLogger(__name__)
 
 
 def get_vss_list():
-    import win32com.client # type: ignore
+    import win32com.client  # type: ignore
 
     wcd = win32com.client.Dispatch("WbemScripting.SWbemLocator")
     wmi = wcd.ConnectServer(".", "root\\cimv2")
@@ -20,7 +20,7 @@ def get_vss_list():
 
 
 def vss_create():
-    import win32com.client # type: ignore
+    import win32com.client  # type: ignore
 
     wmi = win32com.client.GetObject("winmgmts:\\\\.\\root\\cimv2:Win32_ShadowCopy")
     createmethod = wmi.Methods_("Create")
@@ -50,7 +50,7 @@ def main():
         hf = win32file.CreateFile(sam_path, win32file.GENERIC_READ, 0, None, 3, 0, None)
         if hf:
             log.info("RTA Done!")
-            win32file.CloseHandle(hf) # type: ignore
+            win32file.CloseHandle(hf)  # type: ignore
         else:
             log.info("RTA Failed")
 
@@ -60,6 +60,6 @@ def main():
         hf = win32file.CreateFile(sam_path, win32file.GENERIC_READ, 0, None, 3, 0, None)
         if hf:
             log.info("RTA Done!")
-            win32file.CloseHandle(hf) # type: ignore
+            win32file.CloseHandle(hf)  # type: ignore
         else:
             log.info("RTA Failed")

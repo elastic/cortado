@@ -46,6 +46,8 @@ def main():
     _ = _common.execute_command([rundll32, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout_secs=10)
 
     _ = _common.execute_command([iexplore, "/c", "echo", "-Embedding", f";{iexplore}"], timeout_secs=2)
-    _ = _common.execute_command([iexplore, "/c", "Test-NetConnection -ComputerName google.com -Port 443"], timeout_secs=10)
+    _ = _common.execute_command(
+        [iexplore, "/c", "Test-NetConnection -ComputerName google.com -Port 443"], timeout_secs=10
+    )
 
     _common.remove_files([dll, ps1, rcedit, rundll32, iexplore])

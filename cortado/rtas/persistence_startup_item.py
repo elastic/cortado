@@ -11,8 +11,6 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 log = logging.getLogger(__name__)
 
 
-
-
 @register_code_rta(
     id="7a8c8ab6-4994-47d1-b8b6-d1dca4499289",
     name="persistence_startup_item",

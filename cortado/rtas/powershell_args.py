@@ -16,6 +16,7 @@ from . import OSType, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="5efc844c-0c11-4f84-a904-ada611315298",
     name="powershell_args",

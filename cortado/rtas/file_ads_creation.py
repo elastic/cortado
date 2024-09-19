@@ -28,5 +28,7 @@ def main():
     _common.copy_file(EXE_FILE, exe)
 
     # Execute command
-    _ = _common.execute_command([powershell, "/c", f"Set-Content -Stream RtaTest -value Heyo -Path {exe}"], timeout_secs=10)
+    _ = _common.execute_command(
+        [powershell, "/c", f"Set-Content -Stream RtaTest -value Heyo -Path {exe}"], timeout_secs=10
+    )
     _common.remove_files([exe])

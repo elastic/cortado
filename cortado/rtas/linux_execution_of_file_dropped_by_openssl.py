@@ -11,7 +11,6 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 log = logging.getLogger(__name__)
 
 
-
 @register_code_rta(
     id="f9a0601a-4c36-41df-bdf6-140ae7c99de3",
     name="linux_execution_of_file_dropped_by_openssl",

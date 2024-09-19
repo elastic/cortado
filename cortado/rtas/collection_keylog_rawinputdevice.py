@@ -241,28 +241,28 @@ def main():
 
             pm_remove = 1
 
-            while windll.user32.PeekMessageA(pmsg, self.hwnd, 0, 0, pm_remove) != 0: # type: ignore
-                windll.user32.DispatchMessageA(pmsg) # type: ignore
+            while windll.user32.PeekMessageA(pmsg, self.hwnd, 0, 0, pm_remove) != 0:  # type: ignore
+                windll.user32.DispatchMessageA(pmsg)  # type: ignore
 
         def __del__(self):
             pass
 
         def stop(self):
             self.Rid[0].dwFlags = 0x00000001
-            windll.user32.DestroyWindow(self.hwnd) # type: ignore
+            windll.user32.DestroyWindow(self.hwnd)  # type: ignore
 
-        def wndproc(self, hwnd, message, wparam, lparam): # type: ignore
+        def wndproc(self, hwnd, message, wparam, lparam):  # type: ignore
             try:
                 wm_input = 255
                 ri_mouse_wheel = 0x0400
                 wm_destroy = 2
 
                 if message == wm_destroy:
-                    windll.user32.PostQuitMessage(0) # type: ignore
+                    windll.user32.PostQuitMessage(0)  # type: ignore
                     return 0
 
                 elif message == wm_input:
-                    get_raw_input_data = windll.user32.get_raw_input_data # type: ignore
+                    get_raw_input_data = windll.user32.get_raw_input_data  # type: ignore
                     null = c_int(0)
                     dw_size = c_uint()
                     rid_input = 0x10000003
@@ -282,7 +282,7 @@ def main():
                                 if raw.mouse._u1._s2.usButtonFlags != ri_mouse_wheel:
                                     return 0
 
-                return windll.user32.DefWindowProcA(c_int(hwnd), c_int(message), c_int(wparam), c_int(lparam)) # type: ignore
+                return windll.user32.DefWindowProcA(c_int(hwnd), c_int(message), c_int(wparam), c_int(lparam))  # type: ignore
 
             except Exception as e:
                 print("general exception in wndproc")

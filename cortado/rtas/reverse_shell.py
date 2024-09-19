@@ -9,6 +9,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="83b04be5-ed0f-4efd-a7fd-d5db2b8ab62f",
     name="reverse_shell",

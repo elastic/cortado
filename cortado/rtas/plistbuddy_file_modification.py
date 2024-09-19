@@ -29,7 +29,10 @@ def main():
     # Execute command
     log.info("Launching fake plistbuddy command to modify plist files")
     _ = _common.execute_command([masquerade, "testRunAtLoad testLaunchAgentstest"], timeout_secs=10)
-    _ = _common.execute_command([masquerade, "testProgramArgumentstest"], timeout_secs=10, kill=True)
+    _ = _common.execute_command(
+        [masquerade, "testProgramArgumentstest"],
+        timeout_secs=10,
+    )
 
     # cleanup
     _common.remove_file(masquerade)

@@ -27,5 +27,7 @@ def main():
     _common.copy_file(EXE_FILE, netsh)
 
     # Execute command
-    _ = _common.execute_command([netsh, "/c", "echo", "advfirewall", "group=Network Discovery", "enable=Yes"], timeout_secs=2)
+    _ = _common.execute_command(
+        [netsh, "/c", "echo", "advfirewall", "group=Network Discovery", "enable=Yes"], timeout_secs=2
+    )
     _common.remove_file(netsh)

@@ -10,6 +10,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="1b7fe2e7-29c0-4d10-9ced-8b9cd158835d",
     name="binary_execution_from_shared_memory",

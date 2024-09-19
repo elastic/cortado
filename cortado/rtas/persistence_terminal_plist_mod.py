@@ -11,8 +11,6 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 log = logging.getLogger(__name__)
 
 
-
-
 @register_code_rta(
     id="c01971a7-3aa6-4c43-aee6-85d48e93b8c1",
     name="persistence_terminal_plist_mod",

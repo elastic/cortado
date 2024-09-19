@@ -13,6 +13,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="9cb42759-a161-4d93-b07d-3c8254dc8838",
     name="secure_file_deletion",

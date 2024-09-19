@@ -11,7 +11,6 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 log = logging.getLogger(__name__)
 
 
-
 @register_code_rta(
     id="9332cece-38b7-49e1-9f8d-e879913ffdfb",
     name="javascript_payload",

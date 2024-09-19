@@ -35,4 +35,4 @@ def main():
         name = "com.apple.sleep_intel"
         dylib = "inject_intel.dylib"
     target_bin = _common.get_resource_path("bin", name)
-    _ = _common.execute_command([f"DYLD_INSERT_LIBRARIES={dylib}", target_bin, "5"], kill=True, shell=True)
+    _ = _common.execute_command([f"DYLD_INSERT_LIBRARIES={dylib}", target_bin, "5"], shell=True)

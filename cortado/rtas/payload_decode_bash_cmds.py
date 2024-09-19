@@ -36,7 +36,10 @@ def main():
     _ = _common.execute_command([masquerade], timeout_secs=10)
 
     command = f"{masquerade3} enc -base64 -d"
-    _ = _common.execute_command([masquerade2, "childprocess", command, "/Volumes/test"], timeout_secs=10, kill=True)
+    _ = _common.execute_command(
+        [masquerade2, "childprocess", command, "/Volumes/test"],
+        timeout_secs=10,
+    )
 
     # cleanup
     _common.remove_file(masquerade)

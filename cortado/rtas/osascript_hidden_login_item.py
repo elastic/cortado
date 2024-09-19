@@ -30,7 +30,6 @@ def main():
         [masquerade, "childprocess", "osascript login item hidden:true"],
         shell=True,
         timeout_secs=5,
-        kill=True,
     )
 
     # cleanup

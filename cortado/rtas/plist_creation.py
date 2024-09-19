@@ -11,7 +11,6 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 log = logging.getLogger(__name__)
 
 
-
 @register_code_rta(
     id="12e70377-e24e-4374-8aec-42064614d706",
     name="plist_creation",

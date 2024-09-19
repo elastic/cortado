@@ -10,6 +10,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="5432792c-d31a-42cc-a82f-0884ea230493",
     name="file_create_ms_addins",

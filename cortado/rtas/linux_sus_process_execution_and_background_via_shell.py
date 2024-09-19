@@ -11,7 +11,6 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 log = logging.getLogger(__name__)
 
 
-
 @register_code_rta(
     id="5132ee2a-25ae-4c2d-abe0-5bc3a9fbcab2",
     name="linux_sus_process_execution_and_background_via_shell",

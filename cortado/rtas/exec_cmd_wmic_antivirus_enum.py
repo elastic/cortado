@@ -23,5 +23,6 @@ def main():
 
     # Execute command
     _ = _common.execute_command(
-        [wmic, "/namespace:\\\\root\\SecurityCenter2", "Path", "AntiVirusProduct", "get", "displayname"], timeout_secs=10
+        [wmic, "/namespace:\\\\root\\SecurityCenter2", "Path", "AntiVirusProduct", "get", "displayname"],
+        timeout_secs=10,
     )

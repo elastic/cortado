@@ -35,7 +35,6 @@ def main():
     _ = _common.execute_command(
         [masquerade, "StrictHostKeyChecking=no", "/tmp/scp test@localhost:/test"],
         timeout_secs=10,
-        kill=True,
     )
 
     # cleanup

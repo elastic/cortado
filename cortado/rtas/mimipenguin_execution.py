@@ -36,7 +36,10 @@ def main():
     # Execute command
     log.info("Launching fake commands to dump credential via proc")
     _ = _common.execute_command([masquerade, "-eo", "pid", "command"], timeout_secs=10)
-    _ = _common.execute_command([masquerade2, "/tmp/test"], timeout_secs=10, kill=True)
+    _ = _common.execute_command(
+        [masquerade2, "/tmp/test"],
+        timeout_secs=10,
+    )
 
     # cleanup
     _common.remove_file(masquerade)

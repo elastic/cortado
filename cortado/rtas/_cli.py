@@ -7,6 +7,7 @@ log = logging.getLogger(__name__)
 
 # CLI interface with the bare-minimum dependencies
 
+
 def run_rta():
     logging.basicConfig(level=logging.DEBUG)
 
@@ -29,7 +30,6 @@ def run_rta():
     log.info(f"RTAs loaded: {len(registry)}")
 
     for rta_name, rta_details in registry.items():
-
         if rta_name != rta_to_run:
             continue
 
@@ -40,4 +40,3 @@ def run_rta():
         else:
             log.error(f"`{rta_name}` is a hash RTA that can't be executed")
             sys.exit(1)
-

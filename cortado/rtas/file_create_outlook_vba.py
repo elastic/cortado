@@ -10,6 +10,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="3c40b5fd-afd0-4794-8af3-f7af249edf84",
     name="file_create_outlook_vba",

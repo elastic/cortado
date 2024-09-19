@@ -11,6 +11,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="7e9a94f4-46aa-45eb-b95b-53da7c01a033",
     name="uac_cdssync",

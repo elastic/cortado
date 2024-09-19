@@ -29,9 +29,13 @@ def main():
     ifeo_subkey = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\netstat.exe"
     spe_subkey = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\SilentProcessExit\\netstat.exe"
 
-    with _common.temp_registry_value(_const.REG_HKLM, ifeo_subkey, "GlobalFlag", 512, _common.DWORD), _common.temp_registry_value(
+    with _common.temp_registry_value(
+        _const.REG_HKLM, ifeo_subkey, "GlobalFlag", 512, _common.DWORD
+    ), _common.temp_registry_value(
         _const.REG_HKLM, spe_subkey, "ReportingMode", 1, _common.DWORD
-    ), _common.temp_registry_value(_const.REG_HKLM, spe_subkey, "MonitorProcess", "C:\\Windows\\system32\\whoami.exe"):
+    ), _common.temp_registry_value(
+        _const.REG_HKLM, spe_subkey, "MonitorProcess", "C:\\Windows\\system32\\whoami.exe"
+    ):
         log.info("Opening and closing netstat")
         _ = _common.execute_command(["whoami"], shell=True)
         _ = _common.execute_command(["taskkill", "/F", "/IM", "netstat.exe"])

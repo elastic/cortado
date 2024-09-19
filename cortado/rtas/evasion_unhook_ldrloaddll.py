@@ -10,6 +10,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="7fcf2f31-b510-45f8-9de4-7dc8f5ecb68b",
     name="evasion_unhook_ldrloaddll",

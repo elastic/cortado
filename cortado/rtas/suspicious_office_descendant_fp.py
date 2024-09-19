@@ -45,7 +45,6 @@ def main():
             _ = _common.execute_command(
                 "%s /c %s /c %s" % (office_path, browser_path, command),
                 timeout_secs=5,
-                kill=True,
             )
 
         log.info("Cleanup %s" % office_path)

@@ -40,14 +40,12 @@ def main():
             "NO",
         ],
         timeout_secs=10,
-        kill=True,
     )
 
     # DR
     _ = _common.execute_command(
         [masquerade, "write", "-bool", "com.apple.SoftwareUpdate", "NO"],
         timeout_secs=10,
-        kill=True,
     )
 
     # cleanup

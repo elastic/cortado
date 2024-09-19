@@ -38,7 +38,7 @@ def main() -> None:
         f"{masquerade2} /bin/sh -c lsb_release -a , "
         f"/bin/sh -c git rev-parse --short HEAD echo --unhandled-rejections=warn"
     )
-    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=10, kill=True, shell=True)  # noqa: S604
+    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=10, shell=True)  # noqa: S604
 
     # cleanup
     _common.remove_file(masquerade)

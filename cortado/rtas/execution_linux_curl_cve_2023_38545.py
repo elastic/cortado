@@ -10,6 +10,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="6a5977f6-ed19-446e-a441-e325cff7772b",
     name="execution_linux_curl_cve_2023_38545",

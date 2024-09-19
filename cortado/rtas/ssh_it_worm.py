@@ -10,6 +10,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="3ad5efdc-c186-4dbd-b5ce-f8d1f102002c",
     name="ssh_it_worm",

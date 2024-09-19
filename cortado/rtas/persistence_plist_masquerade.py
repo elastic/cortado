@@ -11,8 +11,6 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 log = logging.getLogger(__name__)
 
 
-
-
 @register_code_rta(
     id="8bd875f2-eafb-4151-bfb7-4bd97192400d",
     name="persistence_plist_masquerade",
@@ -43,7 +41,11 @@ def main():
     # Execute commands
     log.info("Launching fake commands to modify com.apple.test.plist")
     command = f"{masquerade} -c echo '1' >> {tmp_file}"
-    _ = _common.execute_command([masquerade2, "childprocess", command], shell=True, timeout_secs=5, kill=True)
+    _ = _common.execute_command(
+        [masquerade2, "childprocess", command],
+        shell=True,
+        timeout_secs=5,
+    )
 
     # cleanup
     _common.remove_file(masquerade)

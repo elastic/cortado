@@ -13,6 +13,7 @@ from . import OSType, register_code_rta, RuleMetadata
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="e6d5315f-4c70-4788-8564-e7c23786a4d0",
     name="evasion_ntdll_from_unusual_path",
@@ -22,18 +23,17 @@ log = logging.getLogger(__name__)
     techniques=["T1055"],
 )
 def main():
-
     import win32api  # type: ignore
     import win32file  # type: ignore
 
     ntdll_path = os.path.expandvars("%systemroot%\\system32\\ntdll.dll")
     notntdll_path = os.path.expandvars("%localappdata%\\Temp\\notntdll.dll")
 
-    win32file.CopyFile(ntdll_path, notntdll_path, 0) # type: ignore
+    win32file.CopyFile(ntdll_path, notntdll_path, 0)  # type: ignore
 
     if Path(notntdll_path).is_file():
         log.info("NTDLL copied")
-        r = win32api.LoadLibrary(notntdll_path) # type: ignore
+        r = win32api.LoadLibrary(notntdll_path)  # type: ignore
         if r > 0:
             log.info("NTDLL copy loaded")
             time.sleep(1)

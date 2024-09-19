@@ -58,7 +58,6 @@ def register_sip_provider(dll_path: str, verify_function: str, getsig_function: 
     ancillary_files=[SIGCHECK_32_EXE, SIGCHECK_64_EXE, TRUST_PROVIDER_32_DLL, TRUST_PROVIDER_64_DLL, TARGET_APP_EXE],
 )
 def main():
-
     if _common.is_64bit():
         sigcheck_exe = SIGCHECK_64_EXE
         trust_provider_dll = TRUST_PROVIDER_64_DLL

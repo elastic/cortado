@@ -32,7 +32,10 @@ def main():
     _ = _common.execute_command([masquerade], timeout_secs=10)
 
     command = f"{masquerade2} test.amazonaws.comtest "
-    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=10, kill=True)
+    _ = _common.execute_command(
+        [masquerade, "childprocess", command],
+        timeout_secs=10,
+    )
 
     # cleanup
     _common.remove_file(masquerade)

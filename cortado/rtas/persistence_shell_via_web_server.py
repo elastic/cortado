@@ -39,7 +39,7 @@ def main():
     # Execute command
     log.info("Launching fake commands for potential shell via webserver")
     command = f"{masquerade2} pwd"
-    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=10, kill=True, shell=True)
+    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=10, shell=True)
     # cleanup
     _common.remove_file(masquerade)
     _common.remove_file(masquerade2)

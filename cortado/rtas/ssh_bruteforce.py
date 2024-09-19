@@ -11,7 +11,6 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 log = logging.getLogger(__name__)
 
 
-
 @register_code_rta(
     id="61369084-af6a-4fd0-903f-b44467f5d6e7",
     name="ssh_bruteforce",

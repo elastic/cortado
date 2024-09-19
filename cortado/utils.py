@@ -125,7 +125,7 @@ def configure_logging(logging_level: int = logging.DEBUG, as_json: bool = False,
         processors=[
             structlog.stdlib.ProcessorFormatter.remove_processors_meta,
             renderer,
-        ]
+        ],
     )
 
     # https://www.structlog.org/en/stable/standard-library.html#rendering-using-structlog-based-formatters-within-logging

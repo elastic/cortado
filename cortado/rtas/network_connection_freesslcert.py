@@ -27,4 +27,6 @@ def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 
     # Execute command
-    _ = _common.execute_command([powershell, "/c", "Test-NetConnection -ComputerName www.letsencrypt.org -Port 443"], timeout_secs=10)
+    _ = _common.execute_command(
+        [powershell, "/c", "Test-NetConnection -ComputerName www.letsencrypt.org -Port 443"], timeout_secs=10
+    )

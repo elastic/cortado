@@ -11,7 +11,6 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 log = logging.getLogger(__name__)
 
 
-
 @register_code_rta(
     id="55750f93-0545-4222-a1fe-8b25a1c736f0",
     name="file_create_mstsc_startup",

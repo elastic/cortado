@@ -11,6 +11,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="fb5cd755-cc31-4142-969a-cd14d3142b36",
     name="potential_vscode_tunnel",

@@ -32,5 +32,4 @@ def main():
             "rundll32.exe javascript:\\..\\mshtml.dll,RunHTMLApplication",
         ],
         timeout_secs=5,
-        kill=True,
     )

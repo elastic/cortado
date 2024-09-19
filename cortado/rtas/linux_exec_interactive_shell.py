@@ -10,6 +10,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="94366604-8f84-448e-9761-0eb7b45bc2fa",
     name="linux_exec_interactive_shell",

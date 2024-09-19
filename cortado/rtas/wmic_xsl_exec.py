@@ -11,6 +11,7 @@ log = logging.getLogger(__name__)
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="b9d5427a-33c4-4b1d-838d-f47c5f3b0b43",
     name="wmic_xsl_exec",

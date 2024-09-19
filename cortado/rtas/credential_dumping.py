@@ -10,6 +10,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="43ce7648-d48a-4609-80a5-f68384e498d3",
     name="credential_dumping",

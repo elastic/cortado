@@ -26,6 +26,7 @@ def main():
 
     # Execute command
     _ = _common.execute_command(
-        [rundll32, "/c", "echo", "C:\\Windows\\System32\\davclnt.dll,DavSetCookie", "https*/print/pipe/"], timeout_secs=10
+        [rundll32, "/c", "echo", "C:\\Windows\\System32\\davclnt.dll,DavSetCookie", "https*/print/pipe/"],
+        timeout_secs=10,
     )
     _common.remove_file(rundll32)

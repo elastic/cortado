@@ -11,7 +11,6 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 log = logging.getLogger(__name__)
 
 
-
 @register_code_rta(
     id="0debe15f-1c9b-4ff8-9e4c-478647ca45e2",
     name="file_html_smuggling",
@@ -43,7 +42,6 @@ def main():
             f"{userprofile}\\Downloads\\a.html",
         ],
         timeout_secs=10,
-        kill=True,
     )
     _ = _common.execute_command([chrome, "/c", f"New-Item -Path {partial} -Type File"], timeout_secs=10)
     _ = _common.execute_command([chrome, "/c", f"Rename-Item {partial} {file}"], timeout_secs=10)

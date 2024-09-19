@@ -4,6 +4,7 @@
 # 2.0.
 
 import logging
+
 # Name: Suspicious WMIC script execution
 # RTA: suspicious_wmic_script.py
 # Description: Uses the WMI command-line utility to execute built-in Windows commands which are unusual or unexpected.

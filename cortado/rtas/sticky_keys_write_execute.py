@@ -19,6 +19,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="398933ec-f8d4-4d81-93ed-e7d7adcb9d97",
     name="sticky_keys_write_execute",
@@ -60,7 +61,7 @@ def main():
 
         # Copy Calc to overwrite binary, then run it
         _common.copy_file(calc, bin_path)
-        _ = _common.execute_command(bin_path, kill=True, timeout_secs=1)
+        _ = _common.execute_command(bin_path, timeout_secs=1)
 
         # Restore Original File and Permissions on file
         _common.copy_file(temp, bin_path)

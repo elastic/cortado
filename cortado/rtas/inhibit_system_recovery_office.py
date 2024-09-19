@@ -36,7 +36,6 @@ def main():
     _ = _common.execute_command(
         [binary, "/c", "vssadmin.exe", "delete", "shadows", "/all", "/quiet"],
         timeout_secs=5,
-        kill=True,
     )
 
     _common.remove_files([binary])

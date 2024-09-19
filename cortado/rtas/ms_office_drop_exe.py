@@ -17,6 +17,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="ce85674f-fb6c-44d5-b880-4ce9062e1028",
     name="ms_office_drop_exe",

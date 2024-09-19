@@ -38,7 +38,7 @@ def main():
 
     # Execute the fake pwsh script
     log.info("Launching nc as a child of fake pwsh")
-    _ = _common.execute_command([fake_pwsh_script], timeout_secs=5, kill=True, shell=True)
+    _ = _common.execute_command([fake_pwsh_script], timeout_secs=5, shell=True)
 
     # Cleanup
     _common.remove_file(fake_pwsh_script)

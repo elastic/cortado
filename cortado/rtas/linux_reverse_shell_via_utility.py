@@ -10,6 +10,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="d768af98-4e0b-451a-bc29-04b0be110ee5",
     name="linux_reverse_shell_via_utility",

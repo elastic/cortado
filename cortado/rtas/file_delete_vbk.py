@@ -10,6 +10,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="a6c80b08-ca72-4c3e-93c7-ac3421e4235e",
     name="file_delete_vbk",

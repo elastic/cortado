@@ -33,6 +33,5 @@ def main():
     _ = _common.execute_command(
         [dllhost, "/c", "echo 3E5FC7F9-9A51-4367-9063-A120244FBEC7; powershell"],
         timeout_secs=2,
-        kill=True,
     )
     _common.remove_file(dllhost)

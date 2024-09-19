@@ -31,7 +31,6 @@ def main():
     _ = _common.execute_command(
         [masquerade, "/test/Application Support/com.apple.TCC/TCC.db"],
         timeout_secs=10,
-        kill=True,
     )
 
     # cleanup

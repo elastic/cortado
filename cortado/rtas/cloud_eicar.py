@@ -10,6 +10,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="8d6f2979-747a-42d9-813a-ddadd90650d2",
     name="cloud_eicar",

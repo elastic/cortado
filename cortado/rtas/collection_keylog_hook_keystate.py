@@ -21,7 +21,7 @@ hHook = None
 def GetAsyncKeyState():
     from ctypes import windll  # type: ignore
 
-    user32 = windll.user32 # type: ignore
+    user32 = windll.user32  # type: ignore
 
     special_keys = {
         0x08: "BS",

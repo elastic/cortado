@@ -33,5 +33,8 @@ def main():
     # Execute command
     log.info("Creating reg key using fake msiexec")
     _ = _common.execute_command([msiexec, "/c", set_reg_cmd, "; cmd.exe", "/V"], timeout_secs=5)
-    _ = _common.execute_command([msiexec, "/c", rem_reg_cmd], timeout_secs=5, kill=True)
+    _ = _common.execute_command(
+        [msiexec, "/c", rem_reg_cmd],
+        timeout_secs=5,
+    )
     _common.remove_file(msiexec)

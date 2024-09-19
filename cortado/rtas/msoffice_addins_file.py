@@ -10,6 +10,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="97979b30-908d-4c57-a33a-f3b78e55a84a",
     name="msoffice_addins_file",

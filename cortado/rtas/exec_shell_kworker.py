@@ -10,6 +10,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="11b447ca-6ad4-4597-a048-2585b27762ea",
     name="exec_shell_kworker",

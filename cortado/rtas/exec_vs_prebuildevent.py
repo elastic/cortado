@@ -33,6 +33,7 @@ def main():
     _common.copy_file(EXE_FILE, msbuild)
 
     _ = _common.execute_command(
-        [msbuild, "/c", cmd, "/c", cmd, "echo C:\\Users\\A\\AppData\\Local\\Temp\\tmpa.exec.cmd"], timeout_secs=10, kill=True
+        [msbuild, "/c", cmd, "/c", cmd, "echo C:\\Users\\A\\AppData\\Local\\Temp\\tmpa.exec.cmd"],
+        timeout_secs=10,
     )
     _common.remove_files([cmd, msbuild])

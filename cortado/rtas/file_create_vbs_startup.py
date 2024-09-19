@@ -10,6 +10,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="7cee9313-5e55-472b-9d61-a95b0c9725d6",
     name="file_create_vbs_startup",

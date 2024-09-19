@@ -4,6 +4,7 @@
 # 2.0.
 
 import logging
+
 # Name: Emulate Obfuscated cmd Commands
 # RTA: obfuscated_cmd_commands.py
 # ATT&CK: T1036

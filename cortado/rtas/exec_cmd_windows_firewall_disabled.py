@@ -24,4 +24,6 @@ def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 
     # Execute command
-    _ = _common.execute_command([powershell, "/c", "echo", "Set-NetFirewallProfile", "-Enabled", "False", "-All"], timeout_secs=2)
+    _ = _common.execute_command(
+        [powershell, "/c", "echo", "Set-NetFirewallProfile", "-Enabled", "False", "-All"], timeout_secs=2
+    )

@@ -24,5 +24,4 @@ def main():
     _ = _common.execute_command(
         ["msiexec.exe", "/q", "/i", "https://8.8.8.8/bin/Installer.msi"],
         timeout_secs=5,
-        kill=True,
     )

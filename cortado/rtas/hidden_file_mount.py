@@ -29,7 +29,9 @@ def main():
 
     # attach disk image to mount point
     log.info("Launching hdutil commands to mount dummy dmg")
-    _ = _common.execute_command(["hdiutil", "attach", "-mountpoint", mount_dir, disk_file], kill=True)
+    _ = _common.execute_command(
+        ["hdiutil", "attach", "-mountpoint", mount_dir, disk_file],
+    )
 
     # cleanup
     _ = _common.execute_command(["hdiutil", "eject", "/tmp/.exploit"], timeout_secs=10, kill=True)

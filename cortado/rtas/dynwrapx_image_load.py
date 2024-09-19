@@ -11,7 +11,6 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 log = logging.getLogger(__name__)
 
 
-
 @register_code_rta(
     id="d8de8c03-d5d0-4118-8971-32439638d69f",
     name="dynwrapx_image_load",

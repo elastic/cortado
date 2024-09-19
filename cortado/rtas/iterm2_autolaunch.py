@@ -11,7 +11,6 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 log = logging.getLogger(__name__)
 
 
-
 @register_code_rta(
     id="9010739f-05c5-4fc0-b806-27753d3d6b5b",
     name="iterm2_autolaunch",

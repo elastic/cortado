@@ -32,7 +32,6 @@ def main():
     _common.copy_file("C:\\Windows\\System32\\cmd.exe", ace_loader_path)
     _ = _common.execute_command(
         [win_rar_path, "/c", ace_loader_path, "/c", "echo", "test", "^>", startup_path],
-        kill=True,
     )
     _common.remove_file(startup_path)
     _common.remove_file(ace_loader_path)

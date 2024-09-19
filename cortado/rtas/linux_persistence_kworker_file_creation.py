@@ -10,6 +10,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="5282c9a4-4ce9-48b8-863a-ff453143635a",
     name="linux_persistence_kworker_file_creation",

@@ -45,7 +45,6 @@ def main():
                 "/tmp/PKInstallSandbox.*/Scripts/*/postinstall",
             ],
             timeout_secs=10,
-            kill=True,
         )
 
     # cleanup

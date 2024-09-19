@@ -11,8 +11,6 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 log = logging.getLogger(__name__)
 
 
-
-
 @register_code_rta(
     id="4693d845-6b2f-435a-92aa-54421071e599",
     name="xcsset_infection",
@@ -28,7 +26,9 @@ def main():
     # Execute commands
     log.info("Launching fake XCSSET commands to zip the Group Containers directory")
     _ = _common.execute_command(
-        [masquerade, "-r", f"{Path.home()}/Library/Group Containers/test"], shell=True, timeout_secs=5, kill=True
+        [masquerade, "-r", f"{Path.home()}/Library/Group Containers/test"],
+        shell=True,
+        timeout_secs=5,
     )
 
     # cleanup

@@ -32,6 +32,7 @@ def main():
     _common.copy_file(EXE_FILE, dllhost)
 
     _ = _common.execute_command(
-        [dllhost, "echo", "/Processid:{BD54C901-076B-434E-B6C7-17C531F4AB41}", ";", clipup], timeout_secs=5, kill=True
+        [dllhost, "echo", "/Processid:{BD54C901-076B-434E-B6C7-17C531F4AB41}", ";", clipup],
+        timeout_secs=5,
     )
     _common.remove_files([clipup, dllhost])

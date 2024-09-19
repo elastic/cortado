@@ -16,6 +16,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="75e14e5a-1188-47ea-9b96-2cf6e9443fc2",
     name="disable_windows_fw",

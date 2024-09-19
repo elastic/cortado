@@ -33,6 +33,6 @@ def main():
 
     # Execute command
     _ = _common.execute_command(
-        [cmd, "/c", f"Copy-Item {EXE_FILE} '{tempfile}'; echo 'finda.a.lnk >1&'; {rta}"], kill=True, timeout_secs=10
+        [cmd, "/c", f"Copy-Item {EXE_FILE} '{tempfile}'; echo 'finda.a.lnk >1&'; {rta}"], timeout_secs=10
     )
     _common.remove_files([cmd, rta, tempfile])

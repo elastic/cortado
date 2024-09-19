@@ -17,6 +17,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="aee48793-01ec-428f-9890-c5db9df07830",
     name="bitsadmin_download",

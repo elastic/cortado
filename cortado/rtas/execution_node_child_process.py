@@ -35,7 +35,6 @@ def main():
     _ = _common.execute_command(
         [masquerade, "-e", "const { fork } = require('child_process');"],
         timeout_secs=10,
-        kill=True,
     )
 
     # cleanup

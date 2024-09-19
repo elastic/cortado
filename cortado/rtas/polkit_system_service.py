@@ -10,6 +10,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="32a4b4dd-24b3-4aed-bbce-2ca6ed5e1d69",
     name="polkit_system_service",
@@ -36,7 +37,6 @@ def main() -> None:
             "org.freedesktop.Accounts.DeleteUser",
         ],
         timeout_secs=10,
-        kill=True,
     )
 
     # cleanup

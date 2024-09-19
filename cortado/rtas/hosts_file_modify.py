@@ -19,6 +19,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="f24491d0-720b-4150-a2a1-45b5b07238aa",
     name="hosts_file_modify",

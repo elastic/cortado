@@ -10,6 +10,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="29eb99a6-14cc-4d37-81dd-c2e78cda8c74",
     name="file_create_exchange_um",

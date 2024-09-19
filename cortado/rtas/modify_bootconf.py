@@ -10,6 +10,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="672cd0e6-fa5a-468f-80c8-04f92bead469",
     name="modify_bootconf",

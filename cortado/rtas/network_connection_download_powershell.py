@@ -24,6 +24,7 @@ def main():
 
     # Execute command
     _ = _common.execute_command(
-        [powershell, "/c", f"Test-NetConnection -ComputerName google.com -Port 443 | Out-File {fake_exe}"], timeout_secs=10
+        [powershell, "/c", f"Test-NetConnection -ComputerName google.com -Port 443 | Out-File {fake_exe}"],
+        timeout_secs=10,
     )
     _common.remove_file(fake_exe)

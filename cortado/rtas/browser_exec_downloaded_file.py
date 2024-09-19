@@ -11,7 +11,6 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 log = logging.getLogger(__name__)
 
 
-
 @register_code_rta(
     id="3f60cbfd-9e9b-47e4-a585-2a9d1075a3b9",
     name="browser_exec_downloaded_file",

@@ -10,6 +10,7 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="bbad34f5-3542-4484-9b23-5ef05af94c0f",
     name="exec_dll_file_compressed",

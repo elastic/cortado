@@ -27,7 +27,6 @@ def main():
     _ = _common.execute_command(
         [masquerade, "JavaScript", "eval('curl http://www.test')"],
         timeout_secs=10,
-        kill=True,
     )
 
     # cleanup

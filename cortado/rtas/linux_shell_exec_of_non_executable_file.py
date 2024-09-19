@@ -11,7 +11,6 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 log = logging.getLogger(__name__)
 
 
-
 @register_code_rta(
     id="075664b1-83db-4cb1-9280-e18309e187bc",
     name="linux_shell_exec_of_non_executable_file",

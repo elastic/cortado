@@ -11,7 +11,6 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 log = logging.getLogger(__name__)
 
 
-
 @register_code_rta(
     id="d12e0abb-017f-4321-adf2-20843f62b55d",
     name="credman_discovery",
