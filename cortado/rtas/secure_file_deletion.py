@@ -4,7 +4,6 @@
 # 2.0.
 
 import logging
-import os
 import subprocess
 import tempfile
 from pathlib import Path
@@ -23,15 +22,8 @@ log = logging.getLogger(__name__)
     techniques=["T1569"],
 )
 def main():
-    temp_path = Path(tempfile.gettempdir()) / os.urandom(16).encode("hex")
+    temp_path = Path(tempfile.gettempdir()) / "test-name"
     sdelete_path = _common.get_resource_path("bin/sdelete.exe")
 
-    try:
-        # Create a temporary file and close handles so it can be deleted
-        with open(temp_path, "wb") as f_out:
-            f_out.write("A")
-
-        subprocess.check_call([sdelete_path, "/accepteula", temp_path])
-
-    finally:
-        _common.remove_file(temp_path)
+    with _common.file_with_data(temp_path, "A"):
+        _ = subprocess.check_call([sdelete_path, "/accepteula", temp_path])

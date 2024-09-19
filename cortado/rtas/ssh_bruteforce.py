@@ -4,11 +4,16 @@
 # 2.0.
 
 import logging
+from pathlib import Path
 from multiprocessing import Process
 
 from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
+
+
+def test(masquerade: Path, masquerade2: Path):
+    _ = _common.execute_command([str(masquerade2), "childprocess", str(masquerade)], timeout_secs=0.3)
 
 
 @register_code_rta(
@@ -19,10 +24,6 @@ log = logging.getLogger(__name__)
     siem_rules=[RuleMetadata(id="ace1e989-a541-44df-93a8-a8b0591b63c0", name="Potential SSH Brute Force Detected")],
     techniques=["T1110"],
 )
-def test(masquerade, masquerade2):
-    _ = _common.execute_command([masquerade2, "childprocess", masquerade], timeout_secs=0.3)
-
-
 def main():
     masquerade = "/tmp/sshd-keygen-wrapper"
     masquerade2 = "/tmp/launchd"
@@ -31,7 +32,7 @@ def main():
 
     # Execute command
     log.info("Launching fake ssh keygen commands to mimic ssh bruteforce")
-    processes = []
+    processes: list[Process] = []
 
     for i in range(25):
         p = Process(

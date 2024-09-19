@@ -13,7 +13,7 @@
 import logging
 import time
 
-from . import OSType, _common, register_code_rta
+from . import OSType, _common, register_code_rta, _const
 
 log = logging.getLogger(__name__)
 
@@ -35,7 +35,9 @@ def main():
     callback = "http://%s:%d" % (ip, port)
     _common.clear_web_cache()
 
-    _common.patch_regex(INF_FILE, _common.CALLBACK_REGEX, callback)
+    inf_file = _common.get_resource_path(INF_FILE)
+
+    _common.patch_file_with_regex(inf_file, _const.CALLBACK_REGEX, callback)
 
     rundll32 = "rundll32.exe"
     dll_entrypoint = "setupapi.dll,InstallHinfSection"

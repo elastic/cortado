@@ -6,7 +6,7 @@
 import logging
 import time
 
-from . import OSType, RuleMetadata, _common, register_code_rta
+from . import OSType, RuleMetadata, _common, register_code_rta, _const
 
 log = logging.getLogger(__name__)
 
@@ -23,7 +23,7 @@ log = logging.getLogger(__name__)
     techniques=["T1218", "T1059"],
 )
 def main():
-    INF_FILE = _common.get_resource_path("bin/notepad_launch.inf")
+    inf_file = _common.get_resource_path("bin/notepad_launch.inf")
 
     # http server will terminate on main thread exit
     # if daemon is True
@@ -31,19 +31,16 @@ def main():
     server, ip, port = _common.serve_dir_over_http()
     callback = "http://%s:%d" % (ip, port)
     _common.clear_web_cache()
-
-    _common.patch_regex(INF_FILE, _common.CALLBACK_REGEX, callback)
+    _common.patch_file_with_regex(inf_file, _const.CALLBACK_REGEX, callback.encode("utf-8"))
 
     rundll32 = "rundll32.exe"
     _ = _common.execute_command(
         [
             rundll32,
             "advpack.dll," + "LaunchINFSection",
-            INF_FILE + ",DefaultInstall_SingleUser,1,",
+            f"{inf_file},DefaultInstall_SingleUser,1,",
         ],
-        shell=False,
     )
-
     time.sleep(1)
     log.info("Cleanup")
     _ = _common.execute_command(["taskkill", "/f", "/im", "notepad.exe"])

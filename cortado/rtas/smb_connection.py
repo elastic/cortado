@@ -26,15 +26,15 @@ SMB_PORT = 445
     siem_rules=[RuleMetadata(id="c82c7d8f-fb9e-4874-a4bd-fd9e3f9becf1", name="Direct Outbound SMB Connection")],
     techniques=["T1021"],
 )
-def main(ip=None):
-    ip = ip or _common.get_ip()
+def main():
+    ip = _common.get_host_ip()
 
     # connect to rpc
     log.info("Connecting to {}:{}".format(ip, SMB_PORT))
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((ip, 445))
     log.info("Sending HELLO")
-    s.send(b"HELLO!")
+    _ = s.send(b"HELLO!")
     log.info("Shutting down the connection...")
     s.close()
     log.info("Closed connection to {}:{}".format(ip, SMB_PORT))

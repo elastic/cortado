@@ -33,9 +33,8 @@ def main():
     script_data = """
         WScript.CreateObject("wscript.shell")
     """
-    script_path = ".\\hello.vbs"
-    with open(script_path, "w") as f:
-        f.write(script_data)
+    script_path = Path(".\\hello.vbs")
+    _ = script_path.write_text(script_data)
 
     cmd_path = "c:\\windows\\system32\\cmd.exe"
 
@@ -44,10 +43,10 @@ def main():
         app_path = Path(application).resolve()
         _common.copy_file(cmd_path, app_path)
 
-        _ = _common.execute_command([app_path, "/c", "wscript.exe", "script_path"], timeout_secs=1)
+        _ = _common.execute_command([str(app_path), "/c", "wscript.exe", "script_path"], timeout_secs=1)
 
         log.info("Killing wscript window")
-        _ = _common.execute_command("taskkill /IM wscript.exe")
+        _ = _common.execute_command(["taskkill /IM wscript.exe"], shell=True)
 
         log.info("Cleanup %s" % app_path)
         _common.remove_file(app_path)

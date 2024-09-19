@@ -25,16 +25,16 @@ log = logging.getLogger(__name__)
     techniques=["T1218", "T1036", "T1059"],
 )
 def main():
-    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
-    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+    exe_file = _common.get_resource_path("bin/renamed_posh.exe")
+    ps1_file = _common.get_resource_path("bin/Invoke-ImageLoad.ps1")
 
     rundll32 = "C:\\Users\\Public\\rundll32.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
     dll = "C:\\Users\\Public\\a.rta"
     ps1 = "C:\\Users\\Public\\Invoke-ImageLoad.ps1"
-    _common.copy_file(EXE_FILE, rundll32)
+    _common.copy_file(exe_file, rundll32)
     _common.copy_file(user32, dll)
-    _common.copy_file(PS1_FILE, ps1)
+    _common.copy_file(ps1_file, ps1)
 
     # Execute command
 

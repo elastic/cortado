@@ -23,8 +23,8 @@ log = logging.getLogger(__name__)
     techniques=["T1574", "T1548"],
 )
 def main():
-    PS1_FILE = _common.get_resource_path("bin/Invoke-ImageLoad.ps1")
-    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+    ps1_file = _common.get_resource_path("bin/Invoke-ImageLoad.ps1")
+    renamer = _common.get_resource_path("bin/rcedit-x64.exe")
 
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
@@ -32,8 +32,8 @@ def main():
     ps1 = "C:\\Users\\Public\\Invoke-ImageLoad.ps1"
     rcedit = "C:\\Users\\Public\\rcedit.exe"
     _common.copy_file(user32, dll)
-    _common.copy_file(PS1_FILE, ps1)
-    _common.copy_file(RENAMER, rcedit)
+    _common.copy_file(ps1_file, ps1)
+    _common.copy_file(renamer, rcedit)
 
     log.info("Modifying the OriginalFileName attribute to invalidate the signature")
     _ = _common.execute_command([rcedit, dll, "--set-version-string", "OriginalFilename", "wow64log.dll"])

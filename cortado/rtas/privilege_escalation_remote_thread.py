@@ -4,7 +4,6 @@
 # 2.0.
 
 import logging
-import os
 import platform
 
 from . import OSType, RuleMetadata, _common, register_code_rta
@@ -19,7 +18,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="458f0b4b-be9a-45bc-8f19-a26dac267250", name="Potential Code Injection via Remote Thread")
     ],
-    siem_rules=[],
     techniques=["T1055"],
 )
 def main():
@@ -29,8 +27,8 @@ def main():
     else:
         name = "thread_injector_intel"
         sleep_name = "com.apple.sleep_intel"
-    sleep_path = _common.get_resource_path("bin", sleep_name)
-    os.system(f"{sleep_path} 5000 &")
+    sleep_path = _common.get_resource_path(f"bin/{sleep_name}")
+    _ = _common.execute_command([f"{sleep_path} 5000 &"], shell=True)
 
-    path = _common.get_path("bin", name)
-    os.system(f"{path} `pgrep {sleep_name}`")
+    path = _common.get_resource_path(f"bin/{name}")
+    _ = _common.execute_command([f"{path} `pgrep {sleep_name}`"], shell=True)
