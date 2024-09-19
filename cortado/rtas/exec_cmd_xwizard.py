@@ -20,7 +20,7 @@ log = logging.getLogger(__name__)
 )
 def main():
     EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
-    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+    RENAMER = _common.get_resource_path("bin/rcedit-x64.exe")
 
     xwizard = "C:\\Users\\Public\\xwizard.exe"
     rcedit = "C:\\Users\\Public\\rcedit.exe"

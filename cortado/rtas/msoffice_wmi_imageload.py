@@ -22,7 +22,7 @@ log = logging.getLogger(__name__)
 )
 def main():
     EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
-    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+    PS1_FILE = _common.get_resource_path("bin/Invoke-ImageLoad.ps1")
 
     winword = "C:\\Users\\Public\\winword.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"

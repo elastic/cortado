@@ -20,7 +20,7 @@ log = logging.getLogger(__name__)
 )
 def main():
     PS1_FILE = _common.get_resource_path("bin/Invoke-ImageLoad.ps1")
-    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+    RENAMER = _common.get_resource_path("bin/rcedit-x64.exe")
 
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"

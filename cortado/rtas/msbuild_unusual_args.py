@@ -23,7 +23,7 @@ log = logging.getLogger(__name__)
 )
 def main():
     RENAMER = _common.get_resource_path("bin/rcedit-x64.exe")
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     msbuild = "C:\\Users\\Public\\posh.exe"
     rcedit = "C:\\Users\\Public\\rcedit.exe"

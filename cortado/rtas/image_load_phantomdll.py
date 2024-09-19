@@ -25,8 +25,8 @@ log = logging.getLogger(__name__)
 )
 def main():
     EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
-    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+    PS1_FILE = _common.get_resource_path("bin/Invoke-ImageLoad.ps1")
+    RENAMER = _common.get_resource_path("bin/rcedit-x64.exe")
 
     proc = "C:\\Users\\Public\\proc.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"

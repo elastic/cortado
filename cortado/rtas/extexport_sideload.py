@@ -23,7 +23,7 @@ log = logging.getLogger(__name__)
 )
 def main():
     RENAMER = _common.get_resource_path("bin/rcedit-x64.exe")
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     dll = "C:\\Users\\Public\\sqlite3.dll"
     posh = "C:\\Users\\Public\\posh.exe"

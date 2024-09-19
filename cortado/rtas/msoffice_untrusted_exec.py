@@ -26,7 +26,7 @@ log = logging.getLogger(__name__)
 )
 def main():
     EXE_FILE = _common.get_resource_path("bin/regsvr32.exe")
-    EXE_FILE2 = _common.get_path("bin", "renamed.exe")
+    EXE_FILE2 = _common.get_resource_path("bin/renamed.exe")
 
     binary = "winword.exe"
     _common.copy_file(EXE_FILE2, binary)

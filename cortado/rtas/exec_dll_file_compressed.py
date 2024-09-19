@@ -20,8 +20,8 @@ log = logging.getLogger(__name__)
 )
 def main():
     EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
-    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+    PS1_FILE = _common.get_resource_path("bin/Invoke-ImageLoad.ps1")
+    RENAMER = _common.get_resource_path("bin/rcedit-x64.exe")
 
     path = "C:\\Users\\Public\\Temp\\7z\\"
     Path(path).mkdir(parents=True, exist_ok=True)

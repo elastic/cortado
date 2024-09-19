@@ -26,7 +26,7 @@ def main():
     commands = [masquerade, "/dev/shm/evil"]
 
     masquerade_file = "/tmp/openssl"
-    source = _common.get_path("bin", "create_file.elf")
+    source = _common.get_resource_path("bin/create_file.elf")
     _common.copy_file(source, masquerade_file)
 
     log.info("Granting execute permissions...")

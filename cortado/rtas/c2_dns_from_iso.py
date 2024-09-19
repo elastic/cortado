@@ -30,7 +30,7 @@ def main():
     PROC = "ping.exe"
 
     # ps script to mount, execute a file and unmount ISO device
-    PS_SCRIPT = _common.get_path("bin", "ExecFromISOFile.ps1")
+    PS_SCRIPT = _common.get_resource_path("bin/ExecFromISOFile.ps1")
 
     if Path(ISO).is_file() and Path(PS_SCRIPT).is_file():
         print(f"[+] - ISO File {ISO} will be mounted and executed via powershell")
