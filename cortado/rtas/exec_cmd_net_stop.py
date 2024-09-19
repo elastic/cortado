@@ -29,6 +29,6 @@ def main():
     _common.copy_file(EXE_FILE, net)
 
     # Execute command
-    for i in range(0, 10):
+    for _ in range(0, 10):
         _ = _common.execute_command([net, "/c", "echo", "stop"], timeout_secs=10)
     _common.remove_file(net)

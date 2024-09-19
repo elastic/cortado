@@ -43,8 +43,9 @@ def main():
 
         for command in suspicious_apps:
             _ = _common.execute_command(
-                "%s /c %s /c %s" % (office_path, browser_path, command),
+                ["%s /c %s /c %s" % (office_path, browser_path, command)],
                 timeout_secs=5,
+                shell=True,
             )
 
         log.info("Cleanup %s" % office_path)

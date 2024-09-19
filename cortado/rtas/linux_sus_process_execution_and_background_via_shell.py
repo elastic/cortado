@@ -27,15 +27,15 @@ def main():
 
     # Create the fake parent process script
     with open(parent_process, "w") as script:
-        script.write("#!/bin/sh\n")
-        script.write(f"{shell_command} {shell_args}\n")
+        _ = script.write("#!/bin/sh\n")
+        _ = script.write(f"{shell_command} {shell_args}\n")
 
     # Make the script executable
     _ = _common.execute_command(["chmod", "+x", parent_process])
 
     # Execute the fake parent process script
     log.info("Executing the fake parent process script")
-    subprocess.Popen([parent_process])
+    _ = subprocess.Popen([parent_process])
 
     log.info("RTA execution completed.")
 

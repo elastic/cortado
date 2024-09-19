@@ -28,7 +28,7 @@ log = logging.getLogger(__name__)
 )
 def main():
     log.info("Running Windows BitsAdmin to Download")
-    server, ip, port = _common.serve_dir_over_http()
+    _, ip, port = _common.serve_dir_over_http()
     url = "http://" + ip + ":" + str(port) + "/bin/myapp.exe"
     dest_path = Path("myapp-test.exe").resolve()
     fake_word = Path("winword.exe").resolve()

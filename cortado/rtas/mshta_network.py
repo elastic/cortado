@@ -10,7 +10,7 @@
 
 import logging
 
-from . import OSType, RuleMetadata, _common, register_code_rta
+from . import OSType, RuleMetadata, _common, register_code_rta, _const
 
 log = logging.getLogger(__name__)
 
@@ -42,7 +42,7 @@ def main():
 
     new_callback = "http://%s:%d" % (ip, port)
     log.info("Updating the callback to %s" % new_callback)
-    _common.patch_regex(HTA_FILE, _common.CALLBACK_REGEX, new_callback)
+    _common.patch_file_with_regex(HTA_FILE, _const.CALLBACK_REGEX, new_callback)
 
     mshta = "mshta.exe"
     _ = _common.execute_command([mshta, HTA_FILE], timeout_secs=3)

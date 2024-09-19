@@ -30,9 +30,9 @@ def main():
     spe_subkey = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\SilentProcessExit\\netstat.exe"
 
     with _common.temp_registry_value(
-        _const.REG_HKLM, ifeo_subkey, "GlobalFlag", 512, _common.DWORD
+        _const.REG_HKLM, ifeo_subkey, "GlobalFlag", 512, _const.DWORD
     ), _common.temp_registry_value(
-        _const.REG_HKLM, spe_subkey, "ReportingMode", 1, _common.DWORD
+        _const.REG_HKLM, spe_subkey, "ReportingMode", 1, _const.DWORD
     ), _common.temp_registry_value(
         _const.REG_HKLM, spe_subkey, "MonitorProcess", "C:\\Windows\\system32\\whoami.exe"
     ):

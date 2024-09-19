@@ -10,7 +10,7 @@
 
 import logging
 
-from . import OSType, RuleMetadata, _common, register_code_rta
+from . import OSType, RuleMetadata, _common, register_code_rta, _const
 
 log = logging.getLogger(__name__)
 
@@ -35,7 +35,7 @@ def main():
 
     new_callback = "http://%s:%d" % (ip, port)
     log.info("Updating the callback to %s" % new_callback)
-    _common.patch_regex(XSL_FILE, _common.CALLBACK_REGEX, new_callback)
+    _common.patch_file_with_regex(XSL_FILE, _const.CALLBACK_REGEX, new_callback)
 
     _ = _common.execute_command([MS_XSL_EXE, XML_FILE, XSL_FILE])
     server.shutdown()

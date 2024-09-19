@@ -12,7 +12,7 @@
 
 import logging
 
-from . import OSType, RuleMetadata, _common, register_code_rta
+from . import OSType, RuleMetadata, _common, register_code_rta, _const
 
 log = logging.getLogger(__name__)
 
@@ -42,7 +42,7 @@ def main():
     target_task = "tmp-file.csproj"
     _common.copy_file(_common.get_resource_path("bin/BadTasks.csproj"), target_task)
     new_callback = "http://%s:%d" % (ip, port)
-    _common.patch_regex(target_task, _common.CALLBACK_REGEX, new_callback)
+    _common.patch_file_with_regex(target_task, _const.CALLBACK_REGEX, new_callback)
 
     _ = _common.execute_command([MS_BUILD_EXE, target_task], timeout_secs=30)
     _common.remove_file(target_task)

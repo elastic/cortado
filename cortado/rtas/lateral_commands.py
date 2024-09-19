@@ -73,7 +73,7 @@ def main():
     whoami = whoami.lower()
 
     separator = "\\\\"
-    domain, _, _ = whoami.partition(separator)
+    domain, _, _ = whoami.partition(separator)  # type: ignore
     hostname = hostname.lower()
     schtasks_host = remote_host
 
@@ -92,7 +92,7 @@ def main():
 
     for command in schtask_commands:
         command = command.format(host=schtasks_host, name=task_name)
-        _ = _common.execute_command(command)
+        _ = _common.execute_command([command], shell=True)
 
     # Remote powershell
     _ = _common.execute_command(["C:\\Windows\\system32\\wsmprovhost.exe", "-Embedding"], timeout_secs=5)

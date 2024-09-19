@@ -8,7 +8,6 @@
 # ATT&CK: T1007, T1016, T1018, T1035, T1049, T1057, T1063, T1069, T1077, T1082, T1087, T1124, T1135
 # Description: Executes a list of administration tools _commonly used by attackers for enumeration.
 
-import argparse
 import logging
 import random
 
@@ -28,7 +27,10 @@ log = logging.getLogger(__name__)
     ],
     techniques=["T1135", "T1069", "T1087", "T1018"],
 )
-def main(args=None):
+def main():
+
+    sample_size = 6
+
     slow_commands = ["gpresult.exe /z", "systeminfo.exe"]
 
     commands = [
@@ -58,27 +60,16 @@ def main(args=None):
     ]
 
     commands.extend(slow_commands)
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "-s",
-        "--sample",
-        dest="sample",
-        default=len(commands),
-        type=int,
-        help="Number of commands to run, chosen at random from the list of enumeration commands",
-    )
-    args = parser.parse_args(args)
-    sample = min(len(commands), args.sample)
+    sample = min(len(commands), sample_size)
 
     if sample < len(commands):
         random.shuffle(commands)
 
     log.info("Running {} out of {} enumeration commands\n".format(sample, len(commands)))
     for command in commands[0:sample]:
-        log.info("About to call {}".format(command))
+        log.info("Running `{command}`")
         if command in slow_commands:
-            _ = _common.execute_command(command, timeout_secs=15)
-            log.info("[output suppressed]")
+            code, _, _ = _common.execute_command([command], shell=True, timeout_secs=15)
         else:
-            _ = _common.execute_command(command)
+            code, _, _ = _common.execute_command([command], shell=True)
+        log.info(f"Retcode for `{command}`: {code}")

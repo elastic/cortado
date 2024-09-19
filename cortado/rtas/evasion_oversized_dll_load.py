@@ -38,22 +38,22 @@ WER = "c:\\windows\\system32\\werfault.exe"
     techniques=["T1027", "T1574"],
 )
 def main():
-    import win32file
+    import win32file  # type: ignore
 
     if Path(DLL).is_file():
         tempc = os.path.expandvars("%localappdata%\\Temp\\oversized.dll")
         rta_dll = os.path.expandvars("%localappdata%\\Temp\\faultrep.dll")
         rta_pe = os.path.expandvars("%localappdata%\\Temp\\wer.exe")
         # copy files to temp
-        win32file.CopyFile(DLL, tempc, 0)
-        win32file.CopyFile(WER, rta_pe, 0)
+        win32file.CopyFile(DLL, tempc, 0) # type: ignore
+        win32file.CopyFile(WER, rta_pe, 0) # type: ignore
         if Path(tempc).is_file():
-            print(f"[+] - {DLL} copied to {tempc}")
-        print(f"[+] - File {tempc} will be appended with null bytes to reach 90MB in size.")
+            log.info(f"{DLL} copied to {tempc}")
+        log.info(f"File {tempc} will be appended with null bytes to reach 90MB in size.")
         # append null bytes to makde the DLL oversized 90+MB in size
         with open(tempc, "rb+") as binfile:
-            binfile.seek(100000000)
-            binfile.write(b"\x00")
+            _ = binfile.seek(100000000)
+            _ = binfile.write(b"\x00")
 
         # copied via cmd to trigger the rule - python is signed and won't trigger the file mod part of the rule
         _ = _common.execute_command(["cmd.exe", "/c", "copy", tempc, rta_dll])
@@ -61,11 +61,11 @@ def main():
             # should trigger rundll32 rules
             _ = _common.execute_command(["rundll32.exe", rta_dll, "DllMain"])
             # should trigger dll sideload from current dir
-            _ = _common.execute_command(rta_pe)
+            _ = _common.execute_command([rta_pe])
         # cleanup
         _ = _common.execute_command(["taskkill", "/f", "/im", "notepad.exe"])
-        print("[+] - Cleanup.")
+        log.info("Cleanup.")
         win32file.DeleteFile(tempc)
         win32file.DeleteFile(rta_dll)
         win32file.DeleteFile(rta_pe)
-        print("[+] - RTA Done!")
+        log.info("RTA Done!")

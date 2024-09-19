@@ -29,7 +29,7 @@ log = logging.getLogger(__name__)
 def main():
     # create masquerades
     masquerade = "/tmp/bash"
-    _common.copy_macos_masquerade(masquerade)
+    _common.create_macos_masquerade(masquerade)
 
     # Execute commands
     log.info("Launching fake osascript commands to mimic apple script execution")

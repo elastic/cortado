@@ -52,6 +52,8 @@ def main():
     )
 
     _common.remove_files(
-        "C:\\Documents and Settings\\All Users\\Start Menu\\Programs\\Startup\\cmd2.exe",
-        "C:\\Documents and Settings\\All Users\\Start Menu\\Programs\\Startup\\cmd.exe",
+        [
+            "C:\\Documents and Settings\\All Users\\Start Menu\\Programs\\Startup\\cmd2.exe",
+            "C:\\Documents and Settings\\All Users\\Start Menu\\Programs\\Startup\\cmd.exe",
+        ]
     )

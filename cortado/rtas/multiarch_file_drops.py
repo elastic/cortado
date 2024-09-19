@@ -29,7 +29,7 @@ def main():
     log.info("Launching fake commands to mimic multi arch file downloads")
     command = "http://fake/mipsel"
 
-    for i in range(8):
+    for _ in range(8):
         _ = _common.execute_command([masquerade, command], timeout_secs=0.3)
 
     # cleanup

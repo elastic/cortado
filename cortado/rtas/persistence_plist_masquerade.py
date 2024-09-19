@@ -25,11 +25,11 @@ def main():
     masquerade = "/tmp/bash"
     masquerade2 = "/tmp/testmodify"
 
-    tmp_file = f"{Path.home()}/Library/LaunchAgents/com.apple.test.plist"
+    tmp_file = Path(f"{Path.home()}/Library/LaunchAgents/com.apple.test.plist")
 
     # create tmp file
-    if not Path(tmp_file).exists():
-        Path(tmp_file).write_text("test")
+    if not tmp_file.exists():
+        _ =tmp_file.write_text("test")
 
     # create masquerades
     _common.copy_file("/bin/bash", masquerade)

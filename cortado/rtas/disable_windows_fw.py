@@ -42,7 +42,7 @@ def main():
     log.info("Disabling the firewall")
     _ = _common.execute_command([netsh, "advfirewall", "set", "allprofiles", "state", "off"])
 
-    log.info("Undoing the firewall change", log_type="-")
+    log.info("Undoing the firewall change")
     _ = _common.execute_command([netsh, "advfirewall", "import", rules_file])
 
     _common.remove_file(rules_file)

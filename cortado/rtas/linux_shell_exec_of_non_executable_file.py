@@ -27,11 +27,11 @@ def main():
     # Create a dummy file
     dummy_file = "/tmp/evil"
     with open(dummy_file, "w") as script:
-        script.write("This is a dummy log file.\n")
+        _ = script.write("This is a dummy log file.\n")
 
     # Execute the shell command with the file pattern command as an argument
     log.info("Launching shell command to simulate non-executable file execution")
-    subprocess.Popen([shell_command, "-c", file_pattern])
+    _ = subprocess.Popen([shell_command, "-c", file_pattern])
 
     log.info("RTA execution completed.")
 

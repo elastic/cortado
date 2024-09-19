@@ -43,7 +43,7 @@ def main():
     log.info("Executing suspicious WMIC script")
 
     with open(xsl_file, "w") as f:
-        f.write(xsl_content)
+        _ = f.write(xsl_content)
 
     # Many variations on this command. For example, -format:, /  format : , etc
     _ = _common.execute_command(["wmic.exe", "os", "get", "/format:" + xsl_file])

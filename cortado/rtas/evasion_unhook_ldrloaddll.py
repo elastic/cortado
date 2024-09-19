@@ -30,7 +30,7 @@ def main():
     BIN = _common.get_resource_path("bin/rta_unhook_ldrload.exe")
 
     if Path(BIN).is_file():
-        print(f"[+] - File {BIN} will be executed")
-        _ = _common.execute_command(BIN)
+        log.info(f"File {BIN} will be executed")
+        _ = _common.execute_command([BIN])
         # cleanup
         _ = _common.execute_command(["taskkill", "/f", "/im", "notepad.exe"])

@@ -53,5 +53,6 @@ def main():
     # cleanup
     _common.remove_file(masquerade)
     _common.remove_file(masquerade2)
-    if _common.CURRENT_OS == "linux":
+    current_os = _common.get_current_os()
+    if current_os == OSType.LINUX:
         _common.remove_directory(working_dir)

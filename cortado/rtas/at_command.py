@@ -26,13 +26,21 @@ log = logging.getLogger(__name__)
     siem_rules=[],
     techniques=[],
 )
-def main(target_host=None):
-    target_host = target_host or _common.get_host_ip()
+def main():
+    target_host = _common.get_host_ip()
     host_str = "\\\\%s" % target_host
 
     # Current time at \\localhost is 11/16/2017 11:25:50 AM
-    code, output = _common.execute(["net", "time", host_str])
-    match = re.search(r"Current time at .*? is (\d+)/(\d+)/(\d+) (\d+):(\d+):(\d+) (AM|PM)", output)
+    _, output, _ = _common.execute_command(["net", "time", host_str])
+
+    if not output:
+        raise _common.ExecutionError("Can't get time from the host")
+
+    output_str = output.decode("utf-8")
+    match = re.search(r"Current time at .*? is (\d+)/(\d+)/(\d+) (\d+):(\d+):(\d+) (AM|PM)", output_str)
+    if not match:
+        raise _common.ExecutionError("No matches found in `net time` output")
+
     groups = match.groups()
     m, d, y, hh, mm, ss, period = groups
     now = datetime.datetime(
@@ -56,15 +64,27 @@ def main(target_host=None):
     _ = _common.execute_command(["at.exe", host_str])
 
     # Create a job 1 hour into the future
-    code, output = _common.execute(["at", host_str, time_string, "cmd /c echo hello world"])
+    retcode, output, stderr = _common.execute_command(["at", host_str, time_string, "cmd /c echo hello world"])
 
-    if code == 1 and "deprecated" in output:
-        log.info("Unable to continue RTA. Not supported in this version of Windows")
-        return _common.UNSUPPORTED_RTA
+    if not output:
+        raise _common.ExecutionError("No output from `at` command")
 
-    if code == 0:
-        job_id = re.search("ID = (\d+)", output).group(1)
+    output_str = output.decode("utf-8")
 
-        # Check status and delete
-        _ = _common.execute_command(["at.exe", host_str, job_id])
-        _ = _common.execute_command(["at.exe", host_str, job_id, "/delete"])
+    if retcode == 1 and "deprecated" in output_str:
+        log.error(f"Error while running `at`, not supported in this version of Windows: {output_str}")
+        raise _common.ExecutionError("Error while running `at`")
+
+    if retcode != 0:
+        log.error(f"Error while running `at`: {stderr}")
+        raise _common.ExecutionError("Error while running `at`")
+
+    match = re.search(r"ID = (\d+)", output_str)
+    if not match:
+        raise _common.ExecutionError("No matches in `at` output")
+
+    job_id = match.group(1)
+
+    # Check status and delete
+    _ = _common.execute_command(["at.exe", host_str, job_id])
+    _ = _common.execute_command(["at.exe", host_str, job_id, "/delete"])

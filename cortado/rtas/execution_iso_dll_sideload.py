@@ -31,9 +31,9 @@ def main():
     PS_SCRIPT = _common.get_resource_path("bin/ExecFromISOFile.ps1")
 
     if Path(ISO_FILE).is_file() and Path(PS_SCRIPT).is_file():
-        print(f"[+] - ISO File {ISO_FILE} will be mounted and executed via powershell")
+        log.info(f"ISO File {ISO_FILE} will be mounted and executed via powershell")
 
         # import ExecFromISO function that takes two args -ISOFIle pointing to ISO file path and -procname pointing to the filename to execute
         command = f"powershell.exe -ExecutionPol Bypass -c import-module {PS_SCRIPT}; ExecFromISO -ISOFile {ISO_FILE} -procname {WEB_RTA_EXE};"
-        _ = _common.execute_command(command)
-        print("[+] - RTA Done!")
+        _ = _common.execute_command([command], shell=True)
+        log.info("RTA Done!")

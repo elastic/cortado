@@ -145,7 +145,7 @@ def copy_file(source: str | Path, target: str | Path):
     shutil.copy(source, target)
 
 
-def patch_file_with_bytes(source_file: Path, old_bytes: bytes, new_bytes: bytes, target_file: Path | None = None):
+def patch_file_with_bytes(source_file: Path | str, old_bytes: bytes, new_bytes: bytes, target_file: Path | str | None = None):
     target_file = target_file or source_file
     log.info(
         f"Patching `{source_file}`, replacing `{binascii.b2a_hex(old_bytes)}` bytes with "
@@ -159,7 +159,7 @@ def patch_file_with_bytes(source_file: Path, old_bytes: bytes, new_bytes: bytes,
     _ = Path(target_file).write_bytes(patched_data)
 
 
-def patch_file_with_regex(source_file: Path, regex: bytes | str, new_data: bytes | str, target_file: Path | None = None):
+def patch_file_with_regex(source_file: Path | str, regex: bytes | str, new_data: bytes | str, target_file: Path | str | None = None):
     target_file = target_file or source_file
     data = new_data if isinstance(new_data, bytes) else new_data.encode("utf-8")
     log.info(

@@ -23,7 +23,7 @@ log = logging.getLogger(__name__)
 )
 def main():
     # Setup web server
-    _common.serve_dir_over_http()
+    _ = _common.serve_dir_over_http()
 
     log.info("Executing commands to download and execute JavaScript payload")
     _ = _common.execute_command(["curl", "http://127.0.0.1:8000/payload.js"], shell=True)

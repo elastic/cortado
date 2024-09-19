@@ -30,8 +30,8 @@ def main():
 
     # Create a fake udevadm script that launches at
     with open(fake_udevadm, "w") as script:
-        script.write("#!/bin/bash\n")
-        script.write("/tmp/at\n")
+        _ = script.write("#!/bin/bash\n")
+        _ = script.write("/tmp/at\n")
 
     # Make the script executable
     _ = _common.execute_command(["chmod", "+x", fake_udevadm])

@@ -27,8 +27,8 @@ def main():
     BIN = _common.get_resource_path("bin/LoadLib-Callback64.exe")
 
     if Path(BIN).is_file():
-        print(f"[+] - File {BIN} will be executed")
-        _ = _common.execute_command(BIN)
+        log.info(f"File {BIN} will be executed")
+        _ = _common.execute_command([BIN])
         # cleanup
         _ = _common.execute_command(["taskkill", "/f", "/im", "LoadLib-Callback64.exe"])
-        print("[+] - RTA Done!")
+        log.info("RTA Done!")

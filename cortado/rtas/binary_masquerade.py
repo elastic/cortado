@@ -28,5 +28,5 @@ def main():
         name = "com.apple.sleep_arm"
     else:
         name = "com.apple.sleep_intel"
-    path = _common.get_resource_path("bin", name)
+    path = _common.get_resource_path(f"bin/{name}")
     _ = _common.execute_command([path, "5"])

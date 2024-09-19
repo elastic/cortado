@@ -22,4 +22,4 @@ log = logging.getLogger(__name__)
 )
 def main():
     log.info("Executing file modification on periodic file test.conf to mimic periodic tasks creation")
-    _common.create_file_with_content("/private/etc/periodic/test.conf", "testing")
+    _common.create_file_with_data("/private/etc/periodic/test.conf", "testing")

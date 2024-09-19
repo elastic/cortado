@@ -32,12 +32,12 @@ def main():
     PS_SCRIPT = _common.get_resource_path("bin/ExecFromISOFile.ps1")
 
     if Path(ISO_FILE).is_file() and Path(PS_SCRIPT).is_file():
-        print(f"[+] - ISO File {ISO_FILE} will be mounted and executed via powershell")
+        log.info(f"ISO File {ISO_FILE} will be mounted and executed via powershell")
 
         # import ExecFromISO function that takes two args -ISOFIle pointing to ISO file path and -procname pointing to the filename to execute
         command = f"powershell.exe -ExecutionPol Bypass -c import-module {PS_SCRIPT}; ExecFromISO -ISOFile {ISO_FILE} -procname {LINK_FILE};"
-        _ = _common.execute_command(command)
+        _ = _common.execute_command([command], shell=True)
 
         # terminate notepad.exe spawned as a result of the DLL execution
         _ = _common.execute_command(["taskkill", "/f", "/im", "notepad.exe"])
-        print("[+] - RTA Done!")
+        log.info("RTA Done!")

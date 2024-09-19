@@ -23,7 +23,7 @@ log = logging.getLogger(__name__)
 def main():
     EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
-    server, ip, port = _common.serve_dir_over_http()
+    _, ip, port = _common.serve_dir_over_http()
     url = f"http://{ip}:{port}/bin/renamed_posh.exe"
 
     hh = "C:\\Users\\Public\\hh.exe"
