@@ -25,7 +25,6 @@ jobs:
         name: Create a virtual env
         run: python3 -m venv ./.venv
       - if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        needs: setup
         name: Install dependencies
         run: |
           . .venv/bin/activate
