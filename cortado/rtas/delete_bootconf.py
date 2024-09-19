@@ -33,7 +33,7 @@ def main():
     _ = _common.execute_command(["bcdedit.exe", "/export", backup_file])
 
     # WARNING: this is a destructive command which might be super bad to run
-    log.info("Changing boot configuration", log_type="!")
+    log.info("Changing boot configuration")
     _ = _common.execute_command([bcdedit, "/set", "{current}", "bootstatuspolicy", "ignoreallfailures"])
     _ = _common.execute_command([bcdedit, "/set", "{current}", "recoveryenabled", "no"])
 

@@ -56,7 +56,7 @@ def main(password="s0l33t"):
 
     # use case: rar with -hp to generate new rar file w/ .rar
 
-    log.info("Test case 1: Basic use new rar out", log_type="!")
+    log.info("Test case 1: Basic use new rar out")
     exfil = create_exfil()
     _ = _common.execute_command([WINRAR_EXE, "a", rar_file, "-hp" + password, exfil])
 

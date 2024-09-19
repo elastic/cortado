@@ -36,5 +36,5 @@ def main():
     _ = _common.execute_command(["sdbinst.exe", "-q", "-p", SHIM_FILE])
     time.sleep(2)
 
-    log.info("Removing installed shim", log_type="-")
+    log.info("Removing installed shim")
     _ = _common.execute_command(["sdbinst.exe", "-u", SHIM_FILE])

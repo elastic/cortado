@@ -33,7 +33,7 @@ def main():
     _ = _common.execute_command([bcdedit, "/export", backup_file])
 
     # WARNING: this sets up computer to boot into Safe Mode upon reboot
-    log.info("Changing boot configuration", log_type="!")
+    log.info("Changing boot configuration")
     _ = _common.execute_command([binary, "/c", bcdedit, "/set", "{default}", "safeboot", "minimal"])
 
     # Delete value to not boot into Safe Mode

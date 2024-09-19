@@ -32,7 +32,7 @@ def main():
     server, ip, port = _common.serve_dir_over_http()
     _common.clear_web_cache()
     _ = _common.execute_command(["msiexec.exe", "/quiet", "/i", "http://%s:%d/bin/Installer.msi" % (ip, port)])
-    log.info("Cleanup", log_type="-")
+    log.info("Cleanup")
     _ = _common.execute_command(
         [
             "msiexec",

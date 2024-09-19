@@ -27,6 +27,6 @@ log = logging.getLogger(__name__)
 )
 def main():
     message = "Deleting the USN journal may have unintended consequences"
-    log.info("WARNING: %s" % message, log_type="!")
+    log.info("WARNING: %s" % message)
     time.sleep(2.5)
     _ = _common.execute_command(["fsutil", "usn", "deletejournal", "/d", "C:"])

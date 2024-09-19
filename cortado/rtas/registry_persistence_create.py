@@ -51,7 +51,7 @@ def _winreg_calls():
     pause()
 
     # delete Service subkey for "ServiceTest"
-    log.info("Removing ServiceTest", log_type="-")
+    log.info("Removing ServiceTest")
     hkey = winreg.CreateKey(hklm, "System\\CurrentControlSet\\Services\\")
     winreg.DeleteKeyEx(hkey, "ServiceTest")
 

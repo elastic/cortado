@@ -45,6 +45,6 @@ def main():
     )
 
     time.sleep(1)
-    log.info("Cleanup", log_type="-")
+    log.info("Cleanup")
     _ = _common.execute_command(["taskkill", "/f", "/im", "notepad.exe"])
     server.shutdown()

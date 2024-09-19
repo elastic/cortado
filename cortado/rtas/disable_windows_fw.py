@@ -27,7 +27,7 @@ log = logging.getLogger(__name__)
     techniques=["T1562"],
 )
 def main():
-    log.info("NetSH Advanced Firewall Configuration", log_type="~")
+    log.info("NetSH Advanced Firewall Configuration")
     netsh = "netsh.exe"
 
     rules_file = Path("fw.rules").resolve()

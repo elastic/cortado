@@ -50,7 +50,7 @@ def main():
 
     code, output = schtasks("/create", "/tn", task_name, "/ru", "system", "/tr", command, "/sc", "onlogon")
     if code != 0:
-        log.info("Error creating task", log_type="!")
+        log.info("Error creating task")
         return
 
     # Run the task and grab the file

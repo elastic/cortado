@@ -79,6 +79,6 @@ def main(args=None):
         log.info("About to call {}".format(command))
         if command in slow_commands:
             _ = _common.execute_command(command, kill=True, timeout_secs=15)
-            log.info("[output suppressed]", log_type="-")
+            log.info("[output suppressed]")
         else:
             _ = _common.execute_command(command)

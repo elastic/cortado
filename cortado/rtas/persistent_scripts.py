@@ -32,7 +32,7 @@ def main():
     log.info("Persistent Scripts")
 
     if _common.check_system():
-        log.info("Must be run as a non-SYSTEM user", log_type="!")
+        log.info("Must be run as a non-SYSTEM user")
         return 1
 
     # Remove any existing profiles

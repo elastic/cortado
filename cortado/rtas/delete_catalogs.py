@@ -26,7 +26,7 @@ log = logging.getLogger(__name__)
 )
 def main():
     warning = "Deleting the backup catalog may have unexpected consequences. Operational issues are unknown."
-    log.info("WARNING: %s" % warning, log_type="!")
+    log.info("WARNING: %s" % warning)
     time.sleep(2.5)
 
     _ = _common.execute_command(["wbadmin", "delete", "catalog", "-quiet"])

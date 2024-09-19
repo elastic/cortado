@@ -44,6 +44,6 @@ def main():
         "net.exe user macgyver /delete /domain",
     ]
 
-    log.info("Removing local and domain user accounts using net.exe", log_type="-")
+    log.info("Removing local and domain user accounts using net.exe")
     for cmd in cleanup_commands:
         _ = _common.execute_command(cmd)

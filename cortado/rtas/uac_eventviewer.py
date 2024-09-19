@@ -43,7 +43,7 @@ def main(target_file=_common.get_resource_path("bin/myapp.exe")):
     _ = _common.execute_command(["c:\\windows\\system32\\eventvwr.exe"])
 
     time.sleep(3)
-    log.info("Killing MMC", log_type="!")
+    log.info("Killing MMC")
     _ = _common.execute_command(["taskkill", "/f", "/im", "mmc.exe"])
 
     log.info("Restoring registry key", log_type="-")
