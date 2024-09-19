@@ -7,7 +7,7 @@ import logging
 import os
 import pathlib
 
-from . import _common, register_code_rta, RuleMetadata, OSType
+from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 

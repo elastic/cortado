@@ -7,7 +7,7 @@
 import logging
 import time
 
-from . import register_code_rta, RuleMetadata, OSType
+from . import OSType, RuleMetadata, register_code_rta
 
 log = logging.getLogger(__name__)
 
@@ -26,21 +26,15 @@ log = logging.getLogger(__name__)
     techniques=["T1056", "T1056.001"],
 )
 def main():
-    from ctypes import (
-        WINFUNCTYPE,  # type: ignore
-        Structure,
-        Union,  # type: ignore
-        WinError,  # type: ignore
-        byref,
-        c_int,
-        c_long,
-        c_uint,
-        c_ushort,
-        pointer,
-        sizeof,  # type: ignore
-        windll,  # type: ignore
-    )
-    from ctypes.wintypes import BYTE, DWORD, HANDLE, HINSTANCE, HWND, LONG, LPCSTR, LPVOID, UINT, ULONG, WPARAM
+    from ctypes import WINFUNCTYPE  # type: ignore
+    from ctypes import Union  # type: ignore
+    from ctypes import WinError  # type: ignore
+    from ctypes import sizeof  # type: ignore
+    from ctypes import windll  # type: ignore
+    from ctypes import (Structure, byref, c_int, c_long, c_uint, c_ushort,
+                        pointer)
+    from ctypes.wintypes import (BYTE, DWORD, HANDLE, HINSTANCE, HWND, LONG,
+                                 LPCSTR, LPVOID, UINT, ULONG, WPARAM)
 
     wndproc = WINFUNCTYPE(c_long, c_int, c_uint, c_int, c_int)  # type: ignore
 

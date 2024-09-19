@@ -5,7 +5,7 @@
 
 import logging
 
-from . import OSType, register_code_rta, RuleMetadata, _common
+from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 

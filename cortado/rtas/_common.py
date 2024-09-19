@@ -1,6 +1,5 @@
 import binascii
 import contextlib
-import typing
 import errno
 import getpass
 import logging
@@ -13,20 +12,15 @@ import subprocess
 import sys
 import threading
 import time
+import typing
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
 from typing import Any
 
 from cortado.rtas import OSType
-from cortado.rtas._const import (
-    ACCESS_DENIED_RETURNCODE,
-    PS_EXEC_EXE,
-    REG_HKCR,
-    REG_HKCU,
-    REG_HKLM,
-    REG_HKU,
-    RTA_SUBPROCESS_TIMEOUT_RETURNCODE,
-)
+from cortado.rtas._const import (ACCESS_DENIED_RETURNCODE, PS_EXEC_EXE,
+                                 REG_HKCR, REG_HKCU, REG_HKLM, REG_HKU,
+                                 RTA_SUBPROCESS_TIMEOUT_RETURNCODE)
 
 log = logging.getLogger("cortado.rtas")
 
@@ -145,7 +139,9 @@ def copy_file(source: str | Path, target: str | Path):
     shutil.copy(source, target)
 
 
-def patch_file_with_bytes(source_file: Path | str, old_bytes: bytes, new_bytes: bytes, target_file: Path | str | None = None):
+def patch_file_with_bytes(
+    source_file: Path | str, old_bytes: bytes, new_bytes: bytes, target_file: Path | str | None = None
+):
     target_file = target_file or source_file
     log.info(
         f"Patching `{source_file}`, replacing `{binascii.b2a_hex(old_bytes)}` bytes with "
@@ -159,7 +155,9 @@ def patch_file_with_bytes(source_file: Path | str, old_bytes: bytes, new_bytes: 
     _ = Path(target_file).write_bytes(patched_data)
 
 
-def patch_file_with_regex(source_file: Path | str, regex: bytes | str, new_data: bytes | str, target_file: Path | str | None = None):
+def patch_file_with_regex(
+    source_file: Path | str, regex: bytes | str, new_data: bytes | str, target_file: Path | str | None = None
+):
     target_file = target_file or source_file
     data = new_data if isinstance(new_data, bytes) else new_data.encode("utf-8")
     log.info(
@@ -314,6 +312,7 @@ def serve_dir_over_http(
 
 
 ## Unilities
+
 
 def as_wchar(s: str) -> bytes:
     return s.encode("utf-16le")
@@ -545,13 +544,9 @@ def get_process_pid(pname: str) -> int | None:
 def inject_shellcode(path: Path, shellcode: bytes):
     import ctypes
     import ctypes.wintypes
-
     from ctypes import windll
-    from ctypes.wintypes import BOOL
-    from ctypes.wintypes import DWORD
-    from ctypes.wintypes import HANDLE
-    from ctypes.wintypes import LPVOID
-    from ctypes.wintypes import LPCVOID
+    from ctypes.wintypes import BOOL, DWORD, HANDLE, LPCVOID, LPVOID
+
     import win32process
 
     # created suspended process

@@ -1,11 +1,10 @@
 import logging
+from typing import Any
 
+import ecs_logging
 import structlog
 from elasticapm.handlers.structlog import structlog_processor  # type: ignore
 from structlog.processors import CallsiteParameter
-
-import ecs_logging
-from typing import Any
 
 CUSTOM_ECS_FIELDS_ROOT_KEY = "cortado"
 

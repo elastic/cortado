@@ -4,8 +4,8 @@
 # 2.0.
 
 import logging
-from pathlib import Path
 from multiprocessing import Process
+from pathlib import Path
 
 from . import OSType, RuleMetadata, _common, register_code_rta
 

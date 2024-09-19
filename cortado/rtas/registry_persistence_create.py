@@ -10,11 +10,11 @@
 # ATT&CK: T1015, T1103
 # Description: Creates registry persistence for mock malware in Run and RunOnce keys, Services, NetSH and debuggers.
 
-import typing
 import logging
 import time
+import typing
 
-from . import OSType, RuleMetadata, _common, register_code_rta, _const
+from . import OSType, RuleMetadata, _common, _const, register_code_rta
 
 log = logging.getLogger(__name__)
 

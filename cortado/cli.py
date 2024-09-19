@@ -1,8 +1,9 @@
-import typer
 import logging
-import structlog
 
-from cortado.rtas import load_all_modules, get_registry
+import structlog
+import typer
+
+from cortado.rtas import get_registry, load_all_modules
 from cortado.utils import configure_logging
 
 app = typer.Typer()

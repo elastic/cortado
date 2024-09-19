@@ -25,7 +25,6 @@ log = logging.getLogger(__name__)
     techniques=["T1047"],
 )
 def main():
-
     remote_host = None
 
     if not remote_host:

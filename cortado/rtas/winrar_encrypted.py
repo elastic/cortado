@@ -38,7 +38,6 @@ def create_exfil(path: Path | None = None) -> Path:
     ancillary_files=[MY_APP_EXE, WINRAR_EXE],
 )
 def main():
-
     password = "s0l33t"
 
     my_app_exe = _common.get_resource_path(MY_APP_EXE)

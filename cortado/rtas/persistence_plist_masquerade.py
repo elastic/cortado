@@ -29,7 +29,7 @@ def main():
 
     # create tmp file
     if not tmp_file.exists():
-        _ =tmp_file.write_text("test")
+        _ = tmp_file.write_text("test")
 
     # create masquerades
     _common.copy_file("/bin/bash", masquerade)

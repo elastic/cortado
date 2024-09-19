@@ -20,6 +20,7 @@ log = logging.getLogger(__name__)
 def encode(command: str) -> str:
     return base64.b64encode(command.encode("utf-16le")).decode("utf-8")
 
+
 @register_code_rta(
     id="5efc844c-0c11-4f84-a904-ada611315298",
     name="powershell_args",

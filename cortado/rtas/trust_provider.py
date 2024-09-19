@@ -8,8 +8,8 @@
 # ATT&CK: T1116
 # Description: Substitutes an invalid code authentication policy, enabling trust policy bypass.
 
-import typing
 import logging
+import typing
 
 from . import OSType, RuleMetadata, _common, register_code_rta
 

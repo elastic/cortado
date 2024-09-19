@@ -3,8 +3,8 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-import time
 import logging
+import time
 from pathlib import Path
 
 from . import OSType, RuleMetadata, _common, register_code_rta

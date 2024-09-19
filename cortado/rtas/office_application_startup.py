@@ -11,7 +11,7 @@
 
 import logging
 
-from . import OSType, _common, register_code_rta, _const
+from . import OSType, _common, _const, register_code_rta
 
 log = logging.getLogger(__name__)
 

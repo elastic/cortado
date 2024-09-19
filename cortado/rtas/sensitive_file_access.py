@@ -4,9 +4,9 @@
 # 2.0.
 
 
-import time
-import os
 import logging
+import os
+import time
 
 from . import OSType, RuleMetadata, register_code_rta
 

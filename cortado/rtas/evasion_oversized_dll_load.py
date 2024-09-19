@@ -45,8 +45,8 @@ def main():
         rta_dll = os.path.expandvars("%localappdata%\\Temp\\faultrep.dll")
         rta_pe = os.path.expandvars("%localappdata%\\Temp\\wer.exe")
         # copy files to temp
-        win32file.CopyFile(DLL, tempc, 0) # type: ignore
-        win32file.CopyFile(WER, rta_pe, 0) # type: ignore
+        win32file.CopyFile(DLL, tempc, 0)  # type: ignore
+        win32file.CopyFile(WER, rta_pe, 0)  # type: ignore
         if Path(tempc).is_file():
             log.info(f"{DLL} copied to {tempc}")
         log.info(f"File {tempc} will be appended with null bytes to reach 90MB in size.")

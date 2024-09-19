@@ -15,7 +15,7 @@ import logging
 import os
 import re
 
-from . import OSType, RuleMetadata, _common, register_code_rta, _const
+from . import OSType, RuleMetadata, _common, _const, register_code_rta
 
 log = logging.getLogger(__name__)
 
@@ -79,7 +79,9 @@ def main():
 
     # Check if the account is local or a domain
     if domain in (hostname, "NT AUTHORITY"):
-        log.info("Need password for remote scheduled task in workgroup. Performing instead on %s." % _common.get_host_ip())
+        log.info(
+            "Need password for remote scheduled task in workgroup. Performing instead on %s." % _common.get_host_ip()
+        )
         schtasks_host = _common.get_host_ip()
 
     task_name = "test_task-%d" % os.getpid()

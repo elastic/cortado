@@ -4,12 +4,12 @@
 # 2.0.
 
 
-import time
-import os
 import logging
+import os
+import time
 from pathlib import Path
 
-from . import OSType, register_code_rta, RuleMetadata
+from . import OSType, RuleMetadata, register_code_rta
 
 log = logging.getLogger(__name__)
 

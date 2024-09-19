@@ -19,6 +19,7 @@ log = logging.getLogger(__name__)
 VBS = "bin/persistent_script.vbs"
 NAME = "rta-vbs-persistence"
 
+
 @register_code_rta(
     id="2ab62c28-1abb-4ac5-a16d-2f4f75d01d02",
     name="persistent_scripts",

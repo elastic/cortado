@@ -7,7 +7,7 @@ import logging
 import sys
 import time
 
-from . import register_code_rta, RuleMetadata, OSType
+from . import OSType, RuleMetadata, register_code_rta
 
 log = logging.getLogger(__name__)
 

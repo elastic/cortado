@@ -28,7 +28,6 @@ log = logging.getLogger(__name__)
     techniques=["T1135", "T1069", "T1087", "T1018"],
 )
 def main():
-
     sample_size = 6
 
     slow_commands = ["gpresult.exe /z", "systeminfo.exe"]

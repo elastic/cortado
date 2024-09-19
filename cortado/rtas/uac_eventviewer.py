@@ -9,8 +9,8 @@
 # Description: Modifies the Registry value to change the handler for MSC files, bypassing UAC.
 
 import logging
-import typing
 import time
+import typing
 
 from . import OSType, RuleMetadata, _common, register_code_rta
 
