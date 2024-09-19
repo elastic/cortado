@@ -30,6 +30,6 @@ def main():
     _common.copy_file(EXE_FILE, mmc)
     _common.copy_file(EXE_FILE, msc)
 
-    _ = _common.execute_command([mmc, "/c", "echo", "a.msc b.msc"], timeout_secs=2, kill=True)
+    _ = _common.execute_command([mmc, "/c", "echo", "a.msc b.msc"], timeout_secs=2)
     _ = _common.execute_command([mmc, "/c", powershell], timeout_secs=2, kill=True)
     _common.remove_files([mmc, msc])

@@ -24,5 +24,5 @@ def main():
     wmic = "C:\\Users\\Public\\wmic.exe"
     _common.copy_file(EXE_FILE, wmic)
 
-    _ = _common.execute_command([wmic, "/c", "echo", "create", "ActiveScriptEventConsumer"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([wmic, "/c", "echo", "create", "ActiveScriptEventConsumer"], timeout_secs=5)
     _common.remove_files([wmic])

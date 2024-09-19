@@ -26,7 +26,7 @@ def main():
 
     # Execute command
     log.info("Launching fake kcc command to load Kerberos tickets")
-    _ = _common.execute_command([masquerade, "copy_cred_cache"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "copy_cred_cache"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

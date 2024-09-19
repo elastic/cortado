@@ -29,7 +29,7 @@ def main():
 
     # Execute command
     log.info("Launching fake curl commands to download payload")
-    _ = _common.execute_command([masquerade, "childprocess", "curl", "-k", "http://portquiz.net/"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([masquerade, "childprocess", "curl", "-k", "http://portquiz.net/"], timeout_secs=5)
 
     # cleanup
     _common.remove_file(masquerade)

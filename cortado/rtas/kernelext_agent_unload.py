@@ -34,7 +34,7 @@ def main():
 
     # Execute command
     log.info("Launching fake kernel ext commands to unload elastic agent")
-    _ = _common.execute_command([masquerade, "EndpointSecurity.kext"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "EndpointSecurity.kext"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

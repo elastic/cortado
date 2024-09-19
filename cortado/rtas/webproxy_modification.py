@@ -24,7 +24,7 @@ def main():
 
     # Execute command
     log.info("Launching fake networksetup commands to configure webproxy settings")
-    _ = _common.execute_command([masquerade, "-setwebproxy"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "-setwebproxy"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

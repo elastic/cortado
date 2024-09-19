@@ -30,5 +30,5 @@ def main():
     for name in masquerades:
         path = Path(name).resolve()
         _common.copy_file(CMD_PATH, path)
-        _ = _common.execute_command(path, timeout_secs=3, kill=True)
+        _ = _common.execute_command(path, timeout_secs=3)
         _common.remove_file(path)

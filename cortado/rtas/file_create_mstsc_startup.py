@@ -30,5 +30,5 @@ def main():
     Path(path).mkdir(parents=True, exist_ok=True)
     file = argpath + "\\file.exe"
 
-    _ = _common.execute_command([mstsc, "/c", f"echo AAAAAAAA | Out-File {file}"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([mstsc, "/c", f"echo AAAAAAAA | Out-File {file}"], timeout_secs=10)
     _common.remove_files([mstsc])

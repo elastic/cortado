@@ -26,5 +26,5 @@ def main():
     _common.copy_file(EXE_FILE, pwsh)
     _common.copy_file(EXE_FILE, services)
 
-    _ = _common.execute_command([services, "/c", pwsh], timeout_secs=5, kill=True)
+    _ = _common.execute_command([services, "/c", pwsh], timeout_secs=5)
     _common.remove_files([pwsh, services])

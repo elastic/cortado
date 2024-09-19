@@ -27,5 +27,5 @@ def main():
     sdclt = "C:\\Users\\Public\\sdclt.exe"
     _common.copy_file(EXE_FILE, sdclt)
 
-    _ = _common.execute_command([sdclt, "/c", "echo", "/kickoffelev; powershell"], timeout_secs=2, kill=True)
+    _ = _common.execute_command([sdclt, "/c", "echo", "/kickoffelev; powershell"], timeout_secs=2)
     _common.remove_files([sdclt])

@@ -28,7 +28,7 @@ def main():
 
     # Execute command
     log.info("Launching hdiutil commands to create a dmg in tmp directory")
-    _ = _common.execute_command(["hdiutil", "create", "-size", "50m", "-volname", str(tmp_dir), "-ov", tmp_dmg], kill=True)
+    _ = _common.execute_command(["hdiutil", "create", "-size", "50m", "-volname", str(tmp_dir), "-ov", tmp_dmg])
 
     # cleanup
     _common.remove_directory(str(tmp_dir))

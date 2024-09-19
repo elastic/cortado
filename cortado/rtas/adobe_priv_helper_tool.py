@@ -29,7 +29,7 @@ def main():
 
     # Execute command
     log.info("Launching fake com.adobe.ARMDC.SMJobBlessHelper commands to adobe mimic privesc")
-    _ = _common.execute_command([masquerade, "childprocess", masquerade], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "childprocess", masquerade], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

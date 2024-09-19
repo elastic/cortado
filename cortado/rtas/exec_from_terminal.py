@@ -27,7 +27,7 @@ def main():
     # Execute command
     command = "bash -c '/tmp/*'"
     log.info("Launching bash commands to mimic terminal activity")
-    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

@@ -26,7 +26,7 @@ def main():
 
     # Execute command
     log.info("Launching fake mount_apfs command to mount the APFS snapshot")
-    _ = _common.execute_command([masquerade, "/System/Volumes/Data", "noowners"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "/System/Volumes/Data", "noowners"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

@@ -45,5 +45,5 @@ def main():
     _common.patch_regex(HTA_FILE, _common.CALLBACK_REGEX, new_callback)
 
     mshta = "mshta.exe"
-    _ = _common.execute_command([mshta, HTA_FILE], timeout_secs=3, kill=True)
+    _ = _common.execute_command([mshta, HTA_FILE], timeout_secs=3)
     server.shutdown()

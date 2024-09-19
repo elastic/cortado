@@ -28,7 +28,7 @@ def main():
 
     # Execute command
     log.info("Launching fake openssl commands to decode payload")
-    _ = _common.execute_command([masquerade, "-out", "/tmp/test", "enc", "-d"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "-out", "/tmp/test", "enc", "-d"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

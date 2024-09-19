@@ -27,7 +27,7 @@ def main():
 
     # Execute command
     log.info("Launching fake commands to mimic modification of a Folder Action script")
-    _ = _common.execute_command([masquerade, "childprocess", masquerade2], timeout_secs=1, kill=True)
+    _ = _common.execute_command([masquerade, "childprocess", masquerade2], timeout_secs=1)
 
     # cleanup
     _common.remove_file(masquerade)

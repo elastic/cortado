@@ -24,7 +24,7 @@ def main():
 
     # Execute command
     log.info("Launching fake dseditgroup commands to mimic adding a user to an admin group")
-    _ = _common.execute_command([masquerade, "admin", "-append"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "admin", "-append"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

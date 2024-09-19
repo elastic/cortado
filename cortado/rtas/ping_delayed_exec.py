@@ -23,4 +23,4 @@ def main():
 
     # Execute command
     log.info("Delaying rundll32 execution using ping...")
-    _ = _common.execute_command([cmd, "/c", "ping -n 3 127.0.0.1 && rundll32.exe"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([cmd, "/c", "ping -n 3 127.0.0.1 && rundll32.exe"], timeout_secs=5)

@@ -29,5 +29,5 @@ def main():
     _common.copy_file(EXE_FILE, conhost)
 
     # Execute command
-    _ = _common.execute_command([smss, "/c", conhost], timeout_secs=2, kill=True)
+    _ = _common.execute_command([smss, "/c", conhost], timeout_secs=2)
     _common.remove_files([smss, conhost])

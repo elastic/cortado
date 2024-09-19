@@ -27,7 +27,7 @@ def main():
     command = f"nohup {test_file}"
     log.info("Launching bash commands to mimic suspicious nohup execution")
     with _common.temporary_file("testing", test_file):
-        _ = _common.execute_command([masquerade, "childprocess", command, "&"], timeout_secs=10, kill=True)
+        _ = _common.execute_command([masquerade, "childprocess", command, "&"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

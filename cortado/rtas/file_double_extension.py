@@ -23,5 +23,5 @@ def main():
     doubleext = "C:\\Users\\Public\\powershell.pdf.exe"
     _common.copy_file(powershell, doubleext)
 
-    _ = _common.execute_command([doubleext], timeout_secs=1, kill=True)
+    _ = _common.execute_command([doubleext], timeout_secs=1)
     _common.remove_file(doubleext)

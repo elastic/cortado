@@ -29,7 +29,7 @@ def main():
 
     # Execute command"
     log.info("Launching fake commands load Kext file.")
-    _ = _common.execute_command([masquerade, "/System/Library/Extensions/*.kext"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "/System/Library/Extensions/*.kext"], timeout_secs=10)
     _ = _common.execute_command(["kextload", "test.kext"], timeout_secs=10, kill=True)
 
     # cleanup

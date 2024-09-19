@@ -28,5 +28,5 @@ def main():
     _common.copy_file(EXE_FILE, proc)
     _common.copy_file(EXE_FILE, childproc)
 
-    _ = _common.execute_command([proc, "/c", "echo", f"--load-extension; & {childproc}"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([proc, "/c", "echo", f"--load-extension; & {childproc}"], timeout_secs=5)
     _common.remove_files([childproc, proc])

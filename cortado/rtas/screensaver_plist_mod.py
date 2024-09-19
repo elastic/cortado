@@ -36,7 +36,7 @@ def main():
         "testing",
         file_name="/Library/Managed Preferences/com.apple.screensaver.test.plist",
     )
-    _ = _common.execute_command([masquerade, "cfprefsd"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "cfprefsd"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

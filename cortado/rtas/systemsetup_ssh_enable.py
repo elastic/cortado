@@ -26,7 +26,7 @@ def main():
 
     # Execute command
     log.info("Launching fake systemsetup command to mimic enabling remote SSH.")
-    _ = _common.execute_command([masquerade, "-setremotelogin", "on"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "-setremotelogin", "on"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

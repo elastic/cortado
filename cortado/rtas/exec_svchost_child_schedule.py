@@ -28,5 +28,5 @@ def main():
     svchost = "C:\\Users\\Public\\svchost.exe"
     _common.copy_file(EXE_FILE, svchost)
 
-    _ = _common.execute_command([svchost, "/c", "echo", "Schedule", "; mshta"], timeout_secs=1, kill=True)
+    _ = _common.execute_command([svchost, "/c", "echo", "Schedule", "; mshta"], timeout_secs=1)
     _common.remove_file(svchost)

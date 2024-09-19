@@ -27,5 +27,5 @@ def main():
     powershell = "C:\\Users\\Public\\powershell.exe"
     _common.copy_file(EXE_FILE, powershell)
 
-    _ = _common.execute_command([powershell, "echo http;", powershell], timeout_secs=5, kill=True)
+    _ = _common.execute_command([powershell, "echo http;", powershell], timeout_secs=5)
     _common.remove_files([powershell])

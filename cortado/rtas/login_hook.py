@@ -24,7 +24,7 @@ def main():
 
     # Execute command
     log.info("Launching fake defaults command to mimic installing a login hook.")
-    _ = _common.execute_command([masquerade, "write", "LoginHook"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "write", "LoginHook"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

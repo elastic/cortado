@@ -31,5 +31,5 @@ def main():
     _common.copy_file(EXE_FILE, msbuild)
 
     # Execute command
-    _ = _common.execute_command([explorer, "/c", msbuild], timeout_secs=2, kill=True)
+    _ = _common.execute_command([explorer, "/c", msbuild], timeout_secs=2)
     _common.remove_files([explorer, msbuild])

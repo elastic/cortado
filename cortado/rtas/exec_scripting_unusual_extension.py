@@ -24,4 +24,4 @@ log = logging.getLogger(__name__)
 )
 def main():
     log.info("Executing cscript against .exe")
-    _ = _common.execute_command(["cmd.exe", "/c", "cscript.exe", "/e:Vbscript", "cmd.exe"], timeout_secs=5, kill=True)
+    _ = _common.execute_command(["cmd.exe", "/c", "cscript.exe", "/e:Vbscript", "cmd.exe"], timeout_secs=5)

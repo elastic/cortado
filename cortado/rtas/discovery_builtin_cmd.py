@@ -26,7 +26,7 @@ def main():
 
     # Execute command
     log.info("Launching fake commands for system discovery with builtin cmds")
-    _ = _common.execute_command([masquerade, "testhdiutil test", "test perltest -test"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "testhdiutil test", "test perltest -test"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

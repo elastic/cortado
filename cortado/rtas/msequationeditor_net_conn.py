@@ -30,4 +30,4 @@ def main():
 
     _common.copy_file(EXE_FILE, eqnedt32)
     log.info("Making connection using fake eqnedt32.exe")
-    _ = _common.execute_command([eqnedt32, "-Embedding"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([eqnedt32, "-Embedding"], timeout_secs=10)

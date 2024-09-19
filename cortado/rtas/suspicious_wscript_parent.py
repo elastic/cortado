@@ -43,7 +43,7 @@ def main():
         app_path = Path(application).resolve()
         _common.copy_file(cmd_path, app_path)
 
-        _ = _common.execute_command([app_path, "/c", "wscript.exe", "script_path"], timeout_secs=1, kill=True)
+        _ = _common.execute_command([app_path, "/c", "wscript.exe", "script_path"], timeout_secs=1)
 
         log.info("Killing wscript window")
         _ = _common.execute_command("taskkill /IM wscript.exe")

@@ -27,5 +27,5 @@ def main():
     _common.copy_file(EXE_FILE, csc)
 
     # Execute command
-    _ = _common.execute_command([wscript, "/c", csc], timeout_secs=2, kill=True)
+    _ = _common.execute_command([wscript, "/c", csc], timeout_secs=2)
     _common.remove_files([wscript, csc])

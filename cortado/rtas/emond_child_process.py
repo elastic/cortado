@@ -27,7 +27,7 @@ def main():
 
     # Execute commands
     log.info("Launching fake emond commands to mimic spawning child process.")
-    _ = _common.execute_command([masquerade, "childprocess", masquerade2], timeout_secs=5, kill=True)
+    _ = _common.execute_command([masquerade, "childprocess", masquerade2], timeout_secs=5)
 
     # cleanup
     _common.remove_file(masquerade)

@@ -33,5 +33,5 @@ def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     _common.copy_file(exe_file, wsreset)
 
-    _ = _common.execute_command([wsreset, "/c", powershell], timeout_secs=2, kill=True)
+    _ = _common.execute_command([wsreset, "/c", powershell], timeout_secs=2)
     _common.remove_file(wsreset)

@@ -44,7 +44,7 @@ def main():
     new_callback = "http://%s:%d" % (ip, port)
     _common.patch_regex(target_task, _common.CALLBACK_REGEX, new_callback)
 
-    _ = _common.execute_command([MS_BUILD_EXE, target_task], timeout_secs=30, kill=True)
+    _ = _common.execute_command([MS_BUILD_EXE, target_task], timeout_secs=30)
     _common.remove_file(target_task)
 
     server.shutdown()

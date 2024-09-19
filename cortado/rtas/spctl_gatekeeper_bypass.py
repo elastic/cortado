@@ -24,7 +24,7 @@ def main():
 
     # Execute command
     log.info("Executing fake spctl for Gatekeeper defensive evasion.")
-    _ = _common.execute_command([masquerade, "spctl", "--master-disable"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "spctl", "--master-disable"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

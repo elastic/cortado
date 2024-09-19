@@ -35,6 +35,6 @@ def main():
     _ = _common.execute_command([rcedit, msbuild, "--set-version-string", "OriginalFilename", "MSBuild.exe"])
 
     log.info("Executing modified binary with extexport.exe original file name")
-    _ = _common.execute_command([msbuild, "-Version"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([msbuild, "-Version"], timeout_secs=10)
 
     _common.remove_files([msbuild, rcedit])

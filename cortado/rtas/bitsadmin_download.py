@@ -36,7 +36,7 @@ def main():
     _common.copy_file("C:\\Windows\\System32\\cmd.exe", fake_word)
 
     command = subprocess.list2cmdline(["bitsadmin.exe", "/Transfer", "/Download", url, dest_path])
-    _ = _common.execute_command([fake_word, "/c", command], timeout_secs=15, kill=True)
+    _ = _common.execute_command([fake_word, "/c", command], timeout_secs=15)
     _ = _common.execute_command(["taskkill", "/f", "/im", "bitsadmin.exe"])
 
     _common.remove_files([dest_path, fake_word])

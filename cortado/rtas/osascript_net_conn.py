@@ -28,7 +28,7 @@ def main():
 
     # Execute command
     log.info("Launching fake commands to mimic creating a network connection with osascript")
-    _ = _common.execute_command([masquerade, "portquiz.net"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "portquiz.net"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

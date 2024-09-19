@@ -30,7 +30,7 @@ def main():
     # Execute command
     log.info("Launching bash commands to mimic python package execution")
     parent_args = "*/lib/python*/site-packages/*"
-    _ = _common.execute_command([masquerade, "childprocess", parent_args, "-c"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "childprocess", parent_args, "-c"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

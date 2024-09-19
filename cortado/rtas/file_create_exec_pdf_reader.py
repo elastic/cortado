@@ -33,5 +33,5 @@ def main():
 
     # Execute command
     _ = _common.execute_command([rdrcef, "/c", "Copy-Item", arp, temp], timeout_secs=5)
-    _ = _common.execute_command([temp], timeout_secs=5, kill=True)
+    _ = _common.execute_command([temp], timeout_secs=5)
     _common.remove_files([rdrcef, arp, temp])

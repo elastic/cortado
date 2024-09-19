@@ -28,5 +28,5 @@ def main():
     _common.copy_file(EXE_FILE, hh)
 
     # Execute command
-    _ = _common.execute_command([hh, "/c", mshta], timeout_secs=2, kill=True)
+    _ = _common.execute_command([hh, "/c", mshta], timeout_secs=2)
     _common.remove_file(hh)

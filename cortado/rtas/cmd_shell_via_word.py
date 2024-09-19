@@ -29,6 +29,6 @@ def main():
     _common.copy_file(EXE_FILE, binary)
 
     # Execute command
-    _ = _common.execute_command([binary, "/c", "cmd.exe /c 'echo comspec'"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([binary, "/c", "cmd.exe /c 'echo comspec'"], timeout_secs=5)
 
     _common.remove_files([binary])

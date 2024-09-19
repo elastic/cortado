@@ -27,7 +27,7 @@ def main() -> None:
 
     # Execute command
     log.info("Executing Fake commands to test Credential Dumping via Unshadow")
-    _ = _common.execute_command([masquerade, "shadow password"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "shadow password"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

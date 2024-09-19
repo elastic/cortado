@@ -28,7 +28,7 @@ def main():
 
     # Execute command
     log.info("Launching fake commands to collect credentials")
-    _ = _common.execute_command([masquerade, "-wa", "find-generic-password", "Chrome"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "-wa", "find-generic-password", "Chrome"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

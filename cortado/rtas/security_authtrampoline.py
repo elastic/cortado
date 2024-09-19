@@ -29,7 +29,7 @@ def main():
 
     # Execute commands
     log.info("Launching fake security_authtrampoline process commands to mimic root execution.")
-    _ = _common.execute_command([masquerade], timeout_secs=5, kill=True)
+    _ = _common.execute_command([masquerade], timeout_secs=5)
 
     # cleanup
     _common.remove_file(masquerade)

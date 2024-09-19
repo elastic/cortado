@@ -32,6 +32,6 @@ def main():
     log.info("Modifying the OriginalFileName attribute")
     _ = _common.execute_command([rcedit, rta, "--set-version-string", "OriginalFilename", "rta.exe"])
 
-    _ = _common.execute_command([rta], timeout_secs=2, kill=True)
+    _ = _common.execute_command([rta], timeout_secs=2)
 
     _common.remove_files([rcedit, rta])

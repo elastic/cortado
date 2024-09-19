@@ -26,7 +26,7 @@ def main():
 
     # Execute command
     log.info("Launching fake commands to aquire keychain credentials")
-    _ = _common.execute_command([masquerade, "/private/var/db/SystemKey"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "/private/var/db/SystemKey"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

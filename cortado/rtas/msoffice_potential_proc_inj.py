@@ -29,5 +29,5 @@ def main():
     cmd = "C:\\Windows\\System32\\cmd.exe"
     _common.copy_file(EXE_FILE, winword)
 
-    _ = _common.execute_command([winword, "/c", cmd], timeout_secs=5, kill=True)
+    _ = _common.execute_command([winword, "/c", cmd], timeout_secs=5)
     _common.remove_files([winword])

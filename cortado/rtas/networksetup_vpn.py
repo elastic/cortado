@@ -26,7 +26,7 @@ def main():
 
     # Execute command
     log.info("Launching fake networksetup commands to connect to a VPN.")
-    _ = _common.execute_command([masquerade, "-connectpppoeservice"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "-connectpppoeservice"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

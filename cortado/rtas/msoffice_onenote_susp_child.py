@@ -26,5 +26,5 @@ def main():
     onenote = "C:\\Users\\Public\\onenote.exe"
     _common.copy_file(EXE_FILE, onenote)
 
-    _ = _common.execute_command([onenote, "/c", "powershell"], timeout_secs=1, kill=True)
+    _ = _common.execute_command([onenote, "/c", "powershell"], timeout_secs=1)
     _common.remove_file(onenote)

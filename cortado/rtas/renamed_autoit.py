@@ -34,6 +34,6 @@ def main():
         [rcedit, autoit, "--set-version-string", "OriginalFileName", "autoitrta.exe"],
         timeout_secs=10,
     )
-    _ = _common.execute_command([autoit], timeout_secs=5, kill=True)
+    _ = _common.execute_command([autoit], timeout_secs=5)
 
     _common.remove_files([autoit, rcedit])

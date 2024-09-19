@@ -27,5 +27,5 @@ def main():
     sc = "C:\\Users\\Public\\sc.exe"
     _common.copy_file(EXE_FILE, sc)
 
-    _ = _common.execute_command([powershell, "/c", sc, "echo", "create"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([powershell, "/c", sc, "echo", "create"], timeout_secs=5)
     _common.remove_files([sc])

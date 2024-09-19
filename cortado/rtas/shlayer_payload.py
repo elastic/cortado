@@ -24,7 +24,7 @@ def main():
 
     # Execute command
     log.info("Launching fake curl command to download Shlayer payloads")
-    _ = _common.execute_command([masquerade, "-f0L"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "-f0L"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

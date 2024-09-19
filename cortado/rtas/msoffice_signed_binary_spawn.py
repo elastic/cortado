@@ -32,6 +32,6 @@ def main():
     _ = _common.execute_command([binary, "/c", f"Copy-Item {powershell} {temposh}"], timeout_secs=10)
 
     log.info("Executing it using fake winword")
-    _ = _common.execute_command([binary, "/c", temposh], kill=True)
+    _ = _common.execute_command([binary, "/c", temposh])
 
     _common.remove_files([binary, temposh])

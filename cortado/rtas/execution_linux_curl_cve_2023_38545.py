@@ -33,7 +33,7 @@ def main() -> None:
 
     # Execute command
     log.info("Launching fake command to simulate a buffer overflow")
-    _ = _common.execute_command([masquerade, "--proxy", payload], timeout_secs=5, kill=True)
+    _ = _common.execute_command([masquerade, "--proxy", payload], timeout_secs=5)
 
     # cleanup
     _common.remove_file(masquerade)

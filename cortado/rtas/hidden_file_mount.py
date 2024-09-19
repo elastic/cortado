@@ -25,7 +25,7 @@ def main():
     disk_file = "disk.dmg"
 
     # create disk image
-    _ = _common.execute_command(["hdiutil", "create", "-size", "50b", "-volname", ".exploit", "-ov", disk_file], kill=True)
+    _ = _common.execute_command(["hdiutil", "create", "-size", "50b", "-volname", ".exploit", "-ov", disk_file])
 
     # attach disk image to mount point
     log.info("Launching hdutil commands to mount dummy dmg")

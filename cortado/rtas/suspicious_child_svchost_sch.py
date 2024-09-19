@@ -29,5 +29,5 @@ def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     _common.copy_file(EXE_FILE, svchost)
 
-    _ = _common.execute_command([svchost, "/c", "echo", "schedule", f";{powershell}", "C:\\Users\\A"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([svchost, "/c", "echo", "schedule", f";{powershell}", "C:\\Users\\A"], timeout_secs=5)
     _common.remove_files([svchost])

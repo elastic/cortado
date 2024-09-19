@@ -29,7 +29,7 @@ def main() -> None:
 
     # Execute command
     log.info("Executing Fake binary from Shared Memory")
-    _ = _common.execute_command([masquerade, "test"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "test"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

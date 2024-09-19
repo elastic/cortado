@@ -32,7 +32,7 @@ def main():
     # Execute command
     log.info("Launching fake open commands to mimic hijacking applications")
     command = f"{masquerade2} -a /System/Applications/*"
-    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=10)
 
     # cleanup
     _common.remove_directory(str(app_dir))

@@ -26,5 +26,5 @@ def main():
     _common.copy_file(EXE_FILE, buzz)
 
     # Execute command
-    _ = _common.execute_command([buzz, "/c", powershell], timeout_secs=2, kill=True)
+    _ = _common.execute_command([buzz, "/c", powershell], timeout_secs=2)
     _common.remove_file(buzz)

@@ -28,5 +28,5 @@ def main():
     _common.copy_file(EXE_FILE, child)
     _common.copy_file(EXE_FILE, svchost)
 
-    _ = _common.execute_command([svchost, "echo", "BITS", ";", child], timeout_secs=5, kill=True)
+    _ = _common.execute_command([svchost, "echo", "BITS", ";", child], timeout_secs=5)
     _common.remove_files([child, svchost])

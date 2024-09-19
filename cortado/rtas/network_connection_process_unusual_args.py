@@ -27,4 +27,4 @@ def main():
     EXE_FILE = _common.get_resource_path("bin/regsvr32.exe")
 
     log.info("Making connection using fake regsvr32.exe")
-    _ = _common.execute_command([EXE_FILE], timeout_secs=10, kill=True)
+    _ = _common.execute_command([EXE_FILE], timeout_secs=10)

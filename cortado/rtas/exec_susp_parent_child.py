@@ -29,5 +29,5 @@ def main():
     _common.copy_file(EXE_FILE, tiworker)
 
     # Execute command
-    _ = _common.execute_command([posh, "/c", tiworker], timeout_secs=3, kill=True)
+    _ = _common.execute_command([posh, "/c", tiworker], timeout_secs=3)
     _common.remove_files([posh, tiworker])

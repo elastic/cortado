@@ -35,5 +35,5 @@ def main():
     log.info("Modifying the OriginalFileName attribute")
     _ = _common.execute_command([rcedit, cscript, "--set-version-string", "OriginalFilename", "cscript.exe"])
 
-    _ = _common.execute_command([cscript, "/c", "echo", "C:\\Users\\A\\Temp\\7zip"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([cscript, "/c", "echo", "C:\\Users\\A\\Temp\\7zip"], timeout_secs=5)
     _common.remove_files([cscript])

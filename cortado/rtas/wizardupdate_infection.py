@@ -26,7 +26,7 @@ def main():
 
     # Execute commands
     log.info("Launching fake curl commands to mimic WizardUpdate infection")
-    _ = _common.execute_command([masquerade, "test_intermediate_agent_testmachine_idtest"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([masquerade, "test_intermediate_agent_testmachine_idtest"], timeout_secs=5)
 
     # cleanup
     _common.remove_file(masquerade)

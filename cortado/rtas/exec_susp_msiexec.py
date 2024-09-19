@@ -29,5 +29,5 @@ def main():
     _common.copy_file(EXE_FILE, msiexec)
 
     # Execute command
-    _ = _common.execute_command([powershell, "/c", msiexec], timeout_secs=10, kill=True)
+    _ = _common.execute_command([powershell, "/c", msiexec], timeout_secs=10)
     _common.remove_file(msiexec)

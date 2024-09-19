@@ -29,6 +29,6 @@ def main():
     _common.copy_file(EXE_FILE, binary)
 
     # Execute Command
-    _ = _common.execute_command([binary, "cd", "C:\\Users\\Public\\"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([binary, "cd", "C:\\Users\\Public\\"], timeout_secs=10)
 
     _common.remove_file(binary)

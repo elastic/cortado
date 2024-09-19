@@ -41,6 +41,6 @@ def main():
 
     # Execute command
     _ = _common.execute_command([winword, "/c", cmd], timeout_secs=10)
-    _ = _common.execute_command([wmiprvse, "/c", dropped], timeout_secs=10, kill=True)
+    _ = _common.execute_command([wmiprvse, "/c", dropped], timeout_secs=10)
     _common.remove_file(winword)
     _common.remove_file(dropped)

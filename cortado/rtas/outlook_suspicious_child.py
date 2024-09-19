@@ -31,6 +31,6 @@ def main():
     _common.copy_file(EXE_FILE, svchost)
 
     log.info("Fake outlook spawning powershell")
-    _ = _common.execute_command([svchost, "/c", outlook, "/c", "powershell -Embedding"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([svchost, "/c", outlook, "/c", "powershell -Embedding"], timeout_secs=10)
 
     _common.remove_files([outlook, svchost])

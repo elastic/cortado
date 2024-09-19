@@ -29,7 +29,7 @@ def main():
 
     # Execute command
     log.info("Launching fake command to simulate file decoding & decryption via OpenSSL")
-    _ = _common.execute_command([*commands], timeout_secs=5, kill=True)
+    _ = _common.execute_command([*commands], timeout_secs=5)
 
     # cleanup
     _common.remove_file(masquerade)

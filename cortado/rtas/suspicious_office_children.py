@@ -34,7 +34,7 @@ def main():
         _common.copy_file(cmd_path, binary)
 
     # Execute a handful of commands
-    _ = _common.execute_command(["adobe.exe", "/c", "regsvr32.exe", "/s", "/?"], timeout_secs=5, kill=True)
+    _ = _common.execute_command(["adobe.exe", "/c", "regsvr32.exe", "/s", "/?"], timeout_secs=5)
     _ = _common.execute_command(["winword.exe", "/c", "certutil.exe"], timeout_secs=5, kill=True)
     _ = _common.execute_command(["outlook.exe", "/c", "powershell.exe", "-c", "whoami"], timeout_secs=5, kill=True)
     _ = _common.execute_command(["excel.exe", "/c", "cscript.exe", "-x"], timeout_secs=5, kill=True)

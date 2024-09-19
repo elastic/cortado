@@ -44,7 +44,7 @@ def main():
 
     _common.copy_file(source, masquerade)
     log.info("Launching fake command to simulate OpenSSL execution")
-    _ = _common.execute_command([*commands], timeout_secs=5, kill=True)
+    _ = _common.execute_command([*commands], timeout_secs=5)
 
     log.info("Cleaning...")
     _common.remove_file(masquerade)

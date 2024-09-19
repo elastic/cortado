@@ -30,5 +30,5 @@ def main():
     _common.copy_file(EXE_FILE, rta)
     _common.copy_file(EXE_FILE, svchost)
 
-    _ = _common.execute_command([svchost, "echo", "WdiSystemHost", ";", rta], timeout_secs=5, kill=True)
+    _ = _common.execute_command([svchost, "echo", "WdiSystemHost", ";", rta], timeout_secs=5)
     _common.remove_files([rta, svchost])

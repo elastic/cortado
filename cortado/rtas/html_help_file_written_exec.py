@@ -35,6 +35,6 @@ def main():
     # Execute command
     log.info("Using a fake hh to drop and execute an .exe")
     _ = _common.execute_command([hh, "/c", cmd], timeout_secs=10)
-    _ = _common.execute_command([hh, "/c", dropped], timeout_secs=10, kill=True)
+    _ = _common.execute_command([hh, "/c", dropped], timeout_secs=10)
     _common.remove_file(hh)
     _common.remove_file(dropped)

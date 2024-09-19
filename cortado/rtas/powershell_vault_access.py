@@ -27,4 +27,4 @@ def main():
     "ContentType=WindowsRuntime').RetrieveAll()"
 
     # Execute command
-    _ = _common.execute_command([powershell, "/c", cmd], timeout_secs=5, kill=True)
+    _ = _common.execute_command([powershell, "/c", cmd], timeout_secs=5)

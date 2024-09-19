@@ -23,7 +23,7 @@ log = logging.getLogger(__name__)
 def main():
     # Execute command"
     log.info("Launching commands to tar tmp dir.")
-    _ = _common.execute_command(["mkdir"], timeout_secs=10, kill=True)
+    _ = _common.execute_command(["mkdir"], timeout_secs=10)
 
     with _common.temporary_file("testing", "/tmp/test.txt"):
         _ = _common.execute_command(["tar", "-cf", "test.dylib", "/tmp/test.txt"], timeout_secs=10, kill=True)

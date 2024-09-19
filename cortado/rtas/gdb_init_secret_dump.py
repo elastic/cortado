@@ -27,7 +27,7 @@ def main():
 
     # Execute command
     log.info("Launching fake GDB commands to hook the init process")
-    _ = _common.execute_command([masquerade, "--pid", "1"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([masquerade, "--pid", "1"], timeout_secs=5)
 
     # cleanup
     _common.remove_file(masquerade)

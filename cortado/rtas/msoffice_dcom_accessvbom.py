@@ -32,5 +32,5 @@ def main():
 
     with _common.temp_registry_value(_const.REG_HKCU, key, value, data):
         pass
-    _ = _common.execute_command([winword, "-c", "echo", "-Embedding", ";powershell"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([winword, "-c", "echo", "-Embedding", ";powershell"], timeout_secs=5)
     _common.remove_file(winword)

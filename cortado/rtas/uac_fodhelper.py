@@ -34,5 +34,5 @@ def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     _common.copy_file(EXE_FILE, fodhelper)
 
-    _ = _common.execute_command([fodhelper, "/c", powershell], timeout_secs=2, kill=True)
+    _ = _common.execute_command([fodhelper, "/c", powershell], timeout_secs=2)
     _common.remove_file(fodhelper)

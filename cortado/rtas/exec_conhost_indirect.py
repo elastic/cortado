@@ -30,5 +30,5 @@ def main():
     _common.copy_file(EXE_FILE, conhost)
     _common.copy_file(EXE_FILE, posh)
 
-    _ = _common.execute_command([conhost, posh], timeout_secs=10, kill=True)
+    _ = _common.execute_command([conhost, posh], timeout_secs=10)
     _common.remove_files([conhost, posh])

@@ -49,4 +49,4 @@ def main():
         kill=True,
     )
 
-    _ = _common.execute_command([reg, "delete", regpath, "/f"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([reg, "delete", regpath, "/f"], timeout_secs=5)

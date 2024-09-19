@@ -24,5 +24,5 @@ def main():
     explorer = "C:\\Users\\Public\\explorer.exe"
     _common.copy_file(EXE_FILE, explorer)
 
-    _ = _common.execute_command([explorer, "-c", "echo", "-Embedding", ";powershell"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([explorer, "-c", "echo", "-Embedding", ";powershell"], timeout_secs=5)
     _common.remove_file(explorer)

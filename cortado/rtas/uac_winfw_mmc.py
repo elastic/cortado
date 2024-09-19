@@ -34,5 +34,5 @@ def main():
 
     _common.copy_file(EXE_FILE, dccwpathdll)
     _ = _common.execute_command([dllhost, "/c", f"Rename-Item {dccwpathdll} {dccwpathdll2}"], timeout_secs=10)
-    _ = _common.execute_command([mmc, "/c", "echo", "WF.msc", ";powershell"], timeout_secs=2, kill=True)
+    _ = _common.execute_command([mmc, "/c", "echo", "WF.msc", ";powershell"], timeout_secs=2)
     _common.remove_files([mmc, dllhost, dccwpathdll2])

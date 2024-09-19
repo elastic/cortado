@@ -27,7 +27,7 @@ def main() -> None:
 
     # Execute command
     log.info("Executing Fake commands to test Attempt to etablish VScode Remote Tunnel")
-    _ = _common.execute_command([masquerade, "tunnel"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "tunnel"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

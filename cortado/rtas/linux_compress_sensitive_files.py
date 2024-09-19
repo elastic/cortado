@@ -42,7 +42,7 @@ def main():
         masquerade_command[0] = masquerade
 
         try:
-            _ = _common.execute_command(masquerade_command, timeout_secs=2, kill=True)
+            _ = _common.execute_command(masquerade_command, timeout_secs=2)
         except OSError as exc:
             # command doesn't exist on distro - the rule only needs one to trigger
             # also means we will eventually need to explore per distro ground truth when we expand as counts will vary

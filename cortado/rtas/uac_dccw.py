@@ -40,6 +40,6 @@ def main():
     _ = _common.execute_command([powershell, "/c", f"New-Item -Path {dccwpath} -Type Directory"], timeout_secs=10)
     _common.copy_file(EXE_FILE, dccwpathdll)
     _ = _common.execute_command([dllhost, "/c", f"Rename-Item {dccwpathdll} {dccwpathdll2}"], timeout_secs=10)
-    _ = _common.execute_command([dccw, "/c", powershell], timeout_secs=2, kill=True)
+    _ = _common.execute_command([dccw, "/c", powershell], timeout_secs=2)
     _common.remove_files([dccw, dllhost, dccwpathdll2])
     _ = _common.execute_command([powershell, "/c", f"rmdir {dccwpath} -Force"], timeout_secs=3)

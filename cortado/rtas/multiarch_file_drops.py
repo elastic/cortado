@@ -30,7 +30,7 @@ def main():
     command = "http://fake/mipsel"
 
     for i in range(8):
-        _ = _common.execute_command([masquerade, command], timeout_secs=0.3, kill=True)
+        _ = _common.execute_command([masquerade, command], timeout_secs=0.3)
 
     # cleanup
     _common.remove_file(masquerade)

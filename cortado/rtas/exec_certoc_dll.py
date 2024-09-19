@@ -26,5 +26,5 @@ def main():
     certoc = "C:\\Users\\Public\\certoc.exe"
     _common.copy_file(EXE_FILE, certoc)
 
-    _ = _common.execute_command([certoc, "-LoadDLL"], timeout_secs=1, kill=True)
+    _ = _common.execute_command([certoc, "-LoadDLL"], timeout_secs=1)
     _common.remove_file(certoc)

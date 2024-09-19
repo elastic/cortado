@@ -26,7 +26,7 @@ def main():
 
     # Execute command
     log.info("Launching fake osascript commands to display passwords")
-    _ = _common.execute_command([masquerade, "osascript*display dialog*password*"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "osascript*display dialog*password*"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

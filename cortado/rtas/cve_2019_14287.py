@@ -33,7 +33,7 @@ def main():
 
     # Execute command
     log.info("Launching fake sudo command to simulate CVE-2019-14287")
-    _ = _common.execute_command([masquerade, "-u#-1"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([masquerade, "-u#-1"], timeout_secs=5)
 
     # cleanup
     _common.remove_file(masquerade)

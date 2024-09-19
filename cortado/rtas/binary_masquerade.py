@@ -29,4 +29,4 @@ def main():
     else:
         name = "com.apple.sleep_intel"
     path = _common.get_resource_path("bin", name)
-    _ = _common.execute_command([path, "5"], kill=True)
+    _ = _common.execute_command([path, "5"])

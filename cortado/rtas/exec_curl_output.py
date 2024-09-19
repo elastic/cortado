@@ -25,6 +25,6 @@ def main():
     _common.copy_file(EXE_FILE, curl)
 
     # Execute command
-    _ = _common.execute_command([curl, "-o"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([curl, "-o"], timeout_secs=10)
 
     _common.remove_file(curl)

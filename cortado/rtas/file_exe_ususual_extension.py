@@ -27,5 +27,5 @@ def main():
     unusualext = "C:\\Users\\Public\\powershell.exe.pdf"
     _common.copy_file(powershell, unusualext)
 
-    _ = _common.execute_command([unusualext], timeout_secs=1, kill=True)
+    _ = _common.execute_command([unusualext], timeout_secs=1)
     _common.remove_file(unusualext)

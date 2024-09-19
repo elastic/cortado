@@ -26,7 +26,7 @@ def main():
 
     # Execute command
     log.info("Launching fake dscl commands to mimic creating a local hidden account.")
-    _ = _common.execute_command([masquerade, "IsHidden", "create", "true"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "IsHidden", "create", "true"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

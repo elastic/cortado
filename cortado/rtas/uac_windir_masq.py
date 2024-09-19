@@ -28,5 +28,5 @@ def main():
     proc = "C:\\Users\\Public\\proc.exe"
     _common.copy_file(EXE_FILE, proc)
 
-    _ = _common.execute_command([proc, "/c", "echo", "C:\\Windows \\System32\\a.exe"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([proc, "/c", "echo", "C:\\Windows \\System32\\a.exe"], timeout_secs=5)
     _common.remove_files([proc])

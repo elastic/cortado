@@ -38,7 +38,7 @@ def main():
     _common.create_macos_masquerade(masquerade2)
 
     # remove signature
-    _ = _common.execute_command(["codesign", "--remove-signature", masquerade], timeout_secs=5, kill=True)
+    _ = _common.execute_command(["codesign", "--remove-signature", masquerade], timeout_secs=5)
 
     # Execute commands
     log.info("Launching fake commands to modify com.apple.test.plist")

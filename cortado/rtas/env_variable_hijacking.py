@@ -28,7 +28,7 @@ def main():
 
     # Execute command
     log.info("Launching fake launchctl command to mimic env variable hijacking")
-    _ = _common.execute_command([masquerade, "setenv"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "setenv"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

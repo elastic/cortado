@@ -28,7 +28,7 @@ def main():
     _common.create_macos_masquerade(masquerade2)
 
     log.info("Executing fake Microsoft commands to mimic suspicious child processes.")
-    _ = _common.execute_command([masquerade, "childprocess", masquerade2], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "childprocess", masquerade2], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

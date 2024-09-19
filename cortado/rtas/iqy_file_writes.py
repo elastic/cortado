@@ -20,18 +20,18 @@ log = logging.getLogger(__name__)
     id="71f67037-1df3-4d5f-b8cb-eaf295ad16ed",
     name="iqy_file_writes",
     platforms=[OSType.WINDOWS],
-    endpoint_rules=[],
-    siem_rules=[],
-    techniques=[],
 )
 def main():
     log.info("Suspicious File Writes (IQY, PUB)")
     adobe_path = Path("AcroRd32.exe").resolve()
     msoffice_path = Path("winword.exe").resolve()
     browser_path = Path("iexplore.exe").resolve()
-    _common.copy_file(_common.CMD_PATH, adobe_path)
-    _common.copy_file(_common.CMD_PATH, msoffice_path)
-    _common.copy_file(_common.CMD_PATH, browser_path)
+
+    cmd_path = _common.get_cmd_path()
+
+    _common.copy_file(cmd_path, adobe_path)
+    _common.copy_file(cmd_path, msoffice_path)
+    _common.copy_file(cmd_path, browser_path)
     log.info("Writing files")
 
     # write file as adobe, then run it
@@ -40,19 +40,19 @@ def main():
 
     # PDF writing IQY file
     fake_iqy = Path("test.iqy").resolve()
-    _ = _common.execute_command([adobe_path, "/c", "echo", "test", ">", fake_iqy])
+    _ = _common.execute_command([str(adobe_path), "/c", "echo", "test", ">", str(fake_iqy)])
 
     # PDF writing PUB file
     fake_pub = Path("test.pub").resolve()
-    _ = _common.execute_command([adobe_path, "/c", "echo", "test", ">", fake_pub])
+    _ = _common.execute_command([str(adobe_path), "/c", "echo", "test", ">", str(fake_pub)])
 
     # Winword writing IQY file
     fake_doc_iqy = Path("test_word.iqy").resolve()
-    _ = _common.execute_command([msoffice_path, "/c", "echo", "test", ">", fake_doc_iqy])
+    _ = _common.execute_command([str(msoffice_path), "/c", "echo", "test", ">", str(fake_doc_iqy)])
 
     # Browser writing IQY file
     fake_browser_iqy = Path("test_browser.iqy").resolve()
-    _ = _common.execute_command([browser_path, "/c", "echo", "test", ">", fake_browser_iqy])
+    _ = _common.execute_command([str(browser_path), "/c", "echo", "test", ">", str(fake_browser_iqy)])
 
     # cleanup
     _common.remove_files([adobe_path, bad_path, fake_iqy])

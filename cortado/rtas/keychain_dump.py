@@ -26,7 +26,7 @@ def main():
 
     # Execute command
     log.info("Launching fake commands to dump keychain credentials")
-    _ = _common.execute_command([masquerade, "dump-keychain", "-d"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "dump-keychain", "-d"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

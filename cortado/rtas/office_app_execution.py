@@ -29,7 +29,7 @@ def main():
 
     # Execute command
     log.info("Launching fake Microsoft Office process")
-    _ = _common.execute_command([masquerade], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

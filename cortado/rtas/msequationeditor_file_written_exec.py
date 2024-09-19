@@ -39,6 +39,6 @@ def main():
     # Execute command
     log.info("Using a fake eqnedt32 to drop and execute an .exe")
     _ = _common.execute_command([eqnedt32, "/c", cmd], timeout_secs=10)
-    _ = _common.execute_command([eqnedt32, "/c", dropped], timeout_secs=10, kill=True)
+    _ = _common.execute_command([eqnedt32, "/c", dropped], timeout_secs=10)
     _common.remove_file(eqnedt32)
     _common.remove_file(dropped)

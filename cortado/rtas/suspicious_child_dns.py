@@ -27,5 +27,5 @@ def main():
     dns = "C:\\Users\\Public\\dns.exe"
     _common.copy_file(EXE_FILE, dns)
 
-    _ = _common.execute_command([dns, "/c", EXE_FILE, "echo AAAAAA | Out-File a.txt"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([dns, "/c", EXE_FILE, "echo AAAAAA | Out-File a.txt"], timeout_secs=5)
     _common.remove_files([dns])

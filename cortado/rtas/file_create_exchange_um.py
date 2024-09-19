@@ -32,5 +32,5 @@ def main():
     Path(path).mkdir(parents=True, exist_ok=True)
     file = argpath + "\\shell.php"
 
-    _ = _common.execute_command([proc, "/c", f"echo AAAAAAAA | Out-File {file}"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([proc, "/c", f"echo AAAAAAAA | Out-File {file}"], timeout_secs=10)
     _common.remove_files([proc])

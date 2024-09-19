@@ -39,7 +39,7 @@ def main():
     # Execute command
     log.info("Spawning bash from fake iterm2 commands")
     command = f"{masquerade_bash} /Users/test/.config/iterm2/AppSupport/Scripts/test"
-    _ = _common.execute_command([iterm2, "childprocess", command], timeout_secs=10, kill=True)
+    _ = _common.execute_command([iterm2, "childprocess", command], timeout_secs=10)
 
     # reset iterm2 and cleanup
     if restore_backup:

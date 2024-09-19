@@ -22,4 +22,4 @@ log = logging.getLogger(__name__)
 )
 def main():
     cmd = "C:\\Windows\\System32\\cmd.exe"
-    _ = _common.execute_command([cmd, "/C", "echo", "wscript"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([cmd, "/C", "echo", "wscript"], timeout_secs=5)

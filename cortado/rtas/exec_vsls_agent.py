@@ -26,5 +26,5 @@ def main():
     vslsagent = "C:\\Users\\Public\\vsls-agent.exe"
     _common.copy_file(EXE_FILE, vslsagent)
 
-    _ = _common.execute_command([vslsagent, "/c", "echo", "--agentExtensionPath"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([vslsagent, "/c", "echo", "--agentExtensionPath"], timeout_secs=5)
     _common.remove_files([vslsagent])

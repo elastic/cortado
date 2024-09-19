@@ -26,7 +26,7 @@ def main():
 
     log.info("Executing shove processes to mimic sip bypass.")
     command = "/System/Library/PrivateFrameworks/PackageKit.framework/Versions/A/Resources/shove -x"
-    _ = _common.execute_command([masquerade, "childprocess", command], shell=True, timeout_secs=5, kill=True)
+    _ = _common.execute_command([masquerade, "childprocess", command], shell=True, timeout_secs=5)
 
     # cleanup
     _common.remove_file(masquerade)

@@ -22,4 +22,4 @@ log = logging.getLogger(__name__)
 )
 def main():
     explorer = "C:\\Windows\\explorer.exe"
-    _ = _common.execute_command([explorer, "easyminerRTA"], timeout_secs=1, kill=True)
+    _ = _common.execute_command([explorer, "easyminerRTA"], timeout_secs=1)

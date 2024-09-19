@@ -28,5 +28,5 @@ def main():
     _common.copy_file(EXE_FILE, rundll32)
 
     # Execute command
-    _ = _common.execute_command([rundll32, "/c", cmd], timeout_secs=2, kill=True)
+    _ = _common.execute_command([rundll32, "/c", cmd], timeout_secs=2)
     _common.remove_file(rundll32)

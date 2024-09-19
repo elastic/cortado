@@ -50,5 +50,5 @@ def main():
     # with _common.temporary_file(plist, file_name=plist_path):
     with open(plist_path, "w") as f:
         f.write(plist)
-        _ = _common.execute_command(["launchctl", "load", plist_path], kill=True)
+        _ = _common.execute_command(["launchctl", "load", plist_path])
         _ = _common.execute_command(["launchctl", "unload", plist_path], kill=True)

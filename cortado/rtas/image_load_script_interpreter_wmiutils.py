@@ -38,5 +38,5 @@ def main():
 
     log.info("Loading wmiutils.dll into fake cscript")
     _ = _common.execute_command([cscript, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout_secs=10)
-    _ = _common.execute_command([wmiprvse, "/c", cscript], timeout_secs=1, kill=True)
+    _ = _common.execute_command([wmiprvse, "/c", cscript], timeout_secs=1)
     _common.remove_files([cscript, dll, ps1])

@@ -28,6 +28,6 @@ def main():
 
     # Execute command
     log.info("Executing cscript from unusual directory")
-    _ = _common.execute_command([binary], timeout_secs=5, kill=True)
+    _ = _common.execute_command([binary], timeout_secs=5)
 
     _common.remove_files([binary])

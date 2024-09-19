@@ -30,7 +30,7 @@ def main():
     _ = _common.execute_command(["chmod", "+x", masquerade])
 
     commands = [masquerade, "netcon", "-h", "8.8.8.8", "-p", "53"]
-    _ = _common.execute_command([*commands], timeout_secs=5, kill=True)
+    _ = _common.execute_command([*commands], timeout_secs=5)
     log.info("Cleaning...")
     _common.remove_file(masquerade)
     log.info("Simulation successfull!")

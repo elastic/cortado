@@ -28,7 +28,7 @@ def main():
 
     # Execute command
     log.info("Launching fake ldapsearch commands to mimic user or group enumeration")
-    _ = _common.execute_command([masquerade, "testing"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "testing"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

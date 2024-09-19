@@ -97,4 +97,4 @@ def main():
         _ = _common.execute_command(command)
 
     # Remote powershell
-    _ = _common.execute_command(["C:\\Windows\\system32\\wsmprovhost.exe", "-Embedding"], timeout_secs=5, kill=True)
+    _ = _common.execute_command(["C:\\Windows\\system32\\wsmprovhost.exe", "-Embedding"], timeout_secs=5)

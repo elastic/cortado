@@ -22,4 +22,4 @@ log = logging.getLogger(__name__)
 )
 def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
-    _ = _common.execute_command([powershell, "/autoclean", "/d"], timeout_secs=2, kill=True)
+    _ = _common.execute_command([powershell, "/autoclean", "/d"], timeout_secs=2)

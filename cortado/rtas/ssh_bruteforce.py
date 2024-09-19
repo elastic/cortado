@@ -21,7 +21,7 @@ log = logging.getLogger(__name__)
     techniques=["T1110"],
 )
 def test(masquerade, masquerade2):
-    _ = _common.execute_command([masquerade2, "childprocess", masquerade], timeout_secs=0.3, kill=True)
+    _ = _common.execute_command([masquerade2, "childprocess", masquerade], timeout_secs=0.3)
 
 
 def main():

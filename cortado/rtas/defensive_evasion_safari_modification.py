@@ -32,7 +32,7 @@ def main():
 
     # Execute command
     log.info("Launching commands to mimic defaults modifying safari configurations.")
-    _ = _common.execute_command([masquerade, "write", "com.apple.Safari", "JavaScript"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "write", "com.apple.Safari", "JavaScript"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

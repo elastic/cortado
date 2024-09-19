@@ -25,7 +25,7 @@ def main():
 
     # Execute command
     log.info("Launching bash commands for file creation via openssl")
-    _ = _common.execute_command(["openssl", "rand", "-base64", 2, "-out", masquerade], timeout_secs=10, kill=True)
+    _ = _common.execute_command(["openssl", "rand", "-base64", 2, "-out", masquerade], timeout_secs=10)
 
     _common.create_macos_masquerade(masquerade)
     _ = _common.execute_command([masquerade, "ls"], timeout_secs=10, kill=True)

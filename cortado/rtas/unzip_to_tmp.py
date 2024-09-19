@@ -27,4 +27,4 @@ def main():
     command = 'bash -c "unzip * /tmp/* -d *"'
 
     log.info("Executing unzip to tmp directory.")
-    _ = _common.execute_command([masquerade, "childprocess", command], shell=True, timeout_secs=5, kill=True)
+    _ = _common.execute_command([masquerade, "childprocess", command], shell=True, timeout_secs=5)

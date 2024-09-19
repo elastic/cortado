@@ -27,6 +27,6 @@ def main():
     _common.copy_file(EXE_FILE, forfiles)
 
     # Execute command
-    _ = _common.execute_command([forfiles, "/c", "/m", "/p"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([forfiles, "/c", "/m", "/p"], timeout_secs=10)
 
     _common.remove_file(forfiles)

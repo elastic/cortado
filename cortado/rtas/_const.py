@@ -17,11 +17,6 @@ DWORD = "dword"
 
 PS_EXEC_EXE = "bin\\PsExec.exe"
 
-
-# FIXME
-CMD_PATH = ""
-
-
 # Return codes
 
 ## Custom code for Cortado code

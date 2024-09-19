@@ -32,7 +32,7 @@ def main():
     # Execute command
     log.info("Launching fake macOS application bundler commands")
     command = f"{masquerade2} test.app/Contents/MacOS/test-psntest"
-    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=10)
     _ = _common.execute_command([masquerade2, "childprocess", masquerade3], timeout_secs=10, kill=True)
 
     # cleanup

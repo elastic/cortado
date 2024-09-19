@@ -25,5 +25,5 @@ log = logging.getLogger(__name__)
 def main():
     msiexec = "C:\\Windows\\System32\\msiexec.exe"
 
-    _ = _common.execute_command([msiexec, "/z"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([msiexec, "/z"], timeout_secs=5)
     _common.remove_files([msiexec])

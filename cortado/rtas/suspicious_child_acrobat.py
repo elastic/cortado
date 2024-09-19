@@ -26,5 +26,5 @@ def main():
     _common.copy_file(EXE_FILE, acrobat)
 
     # Execute command
-    _ = _common.execute_command([acrobat, "/c", arp], timeout_secs=2, kill=True)
+    _ = _common.execute_command([acrobat, "/c", arp], timeout_secs=2)
     _common.remove_file(acrobat)

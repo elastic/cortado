@@ -26,7 +26,7 @@ def main():
 
     # Execute command
     log.info("Launching fake commands to miic finder sync plugins.")
-    _ = _common.execute_command([masquerade, "-a"], timeout_secs=1, kill=True)
+    _ = _common.execute_command([masquerade, "-a"], timeout_secs=1)
     _ = _common.execute_command([masquerade, "-e", "use", "-i"], timeout_secs=1, kill=True)
 
     # cleanup

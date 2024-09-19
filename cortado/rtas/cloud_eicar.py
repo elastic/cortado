@@ -27,7 +27,7 @@ def main() -> None:
 
     # Execute command
     log.info("Launching Behavior Protection - Cloud Reputation EICAR")
-    _ = _common.execute_command([masquerade, "test-cloudreputationrule-5020a0031cad"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "test-cloudreputationrule-5020a0031cad"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

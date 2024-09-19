@@ -48,4 +48,4 @@ def main(remote_host=None):
     command = ["powershell", "-c", ps_command]
 
     # Execute command
-    _ = _common.execute_command(command, timeout_secs=15, kill=True)
+    _ = _common.execute_command(command, timeout_secs=15)

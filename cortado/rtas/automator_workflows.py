@@ -31,7 +31,7 @@ def main():
 
     # Execute command
     log.info("Launching fake commands to launch Automator workflows")
-    _ = _common.execute_command([masquerade], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade], timeout_secs=10)
     _ = _common.execute_command([masquerade2, "portquiz.net"], timeout_secs=10, kill=True)
 
     # cleanup

@@ -43,6 +43,6 @@ def main():
     # Execute command
     log.info("Using a fake mshta to drop and execute an .exe")
     _ = _common.execute_command([mshta, "/c", cmd], timeout_secs=10)
-    _ = _common.execute_command([mshta, "/c", dropped], timeout_secs=10, kill=True)
+    _ = _common.execute_command([mshta, "/c", dropped], timeout_secs=10)
     _common.remove_file(mshta)
     _common.remove_file(dropped)

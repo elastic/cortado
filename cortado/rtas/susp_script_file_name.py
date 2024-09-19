@@ -40,6 +40,6 @@ def main():
         [rcedit, mshta, "--set-version-string", "OriginalFileName", "mshta.exe"],
         timeout_secs=10,
     )
-    _ = _common.execute_command([mshta, "/c", cmd], timeout_secs=5, kill=True)
+    _ = _common.execute_command([mshta, "/c", cmd], timeout_secs=5)
 
     _common.remove_files([mshta, rcedit])

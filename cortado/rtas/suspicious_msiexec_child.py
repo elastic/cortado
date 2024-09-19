@@ -31,5 +31,5 @@ def main():
     _common.copy_file(EXE_FILE, msiexec)
     _common.copy_file(EXE_FILE, regsvr32)
 
-    _ = _common.execute_command([msiexec, "/c", regsvr32, "echo", "scrobj.dll"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([msiexec, "/c", regsvr32, "echo", "scrobj.dll"], timeout_secs=5)
     _common.remove_files([msiexec])

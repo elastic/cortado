@@ -39,6 +39,6 @@ def main():
         [rcedit, cscript, "--set-version-string", "OriginalFileName", "cscript.exe"],
         timeout_secs=10,
     )
-    _ = _common.execute_command([cscript, "/c", "echo", cmd], timeout_secs=5, kill=True)
+    _ = _common.execute_command([cscript, "/c", "echo", cmd], timeout_secs=5)
 
     _common.remove_files([cscript, rcedit])

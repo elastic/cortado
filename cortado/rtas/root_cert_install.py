@@ -24,7 +24,7 @@ def main():
 
     # Execute command
     log.info("Executing fake security commands to add a root cert.")
-    _ = _common.execute_command([masquerade, "add-trusted-cert"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "add-trusted-cert"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

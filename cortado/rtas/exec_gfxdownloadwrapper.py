@@ -26,5 +26,5 @@ def main():
     gfx = "C:\\Users\\Public\\GfxDownloadWrapper.exe"
     _common.copy_file(EXE_FILE, gfx)
 
-    _ = _common.execute_command([gfx, "/c", "echo", "run", "0", "http"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([gfx, "/c", "echo", "run", "0", "http"], timeout_secs=5)
     _common.remove_files([gfx])
