@@ -79,8 +79,8 @@ def main():
 
     # Check if the account is local or a domain
     if domain in (hostname, "NT AUTHORITY"):
-        log.info("Need password for remote scheduled task in workgroup. Performing instead on %s." % _common.get_ip())
-        schtasks_host = _common.get_ip()
+        log.info("Need password for remote scheduled task in workgroup. Performing instead on %s." % _common.get_host_ip())
+        schtasks_host = _common.get_host_ip()
 
     task_name = "test_task-%d" % os.getpid()
     schtask_commands = [

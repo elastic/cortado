@@ -26,12 +26,12 @@ log = logging.getLogger(__name__)
     ],
     techniques=["T1021"],
 )
-def main(remote_host=None):
-    remote_host = remote_host or _common.get_ip()
+def main():
+    remote_host = _common.get_host_ip()
     log.info("DCOM Lateral Movement with MMC")
 
     log.info("Attempting to move laterally to {}".format(remote_host))
-    remote_host = _common.get_ipv4_address(remote_host)
+    remote_host = _common.resolve_hostname(remote_host)
     log.info("Using IP address {}".format(remote_host))
 
     # Prepare PowerShell command for DCOM lateral movement

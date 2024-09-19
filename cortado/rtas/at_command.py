@@ -27,7 +27,7 @@ log = logging.getLogger(__name__)
     techniques=[],
 )
 def main(target_host=None):
-    target_host = target_host or _common.get_ip()
+    target_host = target_host or _common.get_host_ip()
     host_str = "\\\\%s" % target_host
 
     # Current time at \\localhost is 11/16/2017 11:25:50 AM
