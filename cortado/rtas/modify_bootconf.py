@@ -38,11 +38,11 @@ def main():
     _ = _common.execute_command([binary, "/c", bcdedit, "/set", "{default}", "safeboot", "minimal"])
 
     # Delete value to not boot into Safe Mode
-    log.info("Reset boot configuration", log_type="!")
+    log.info("Reset boot configuration")
     _ = _common.execute_command([binary, "/c", bcdedit, "/deletevalue", "safeboot"])
 
     # Restore the boot configuration
-    log.info("Restoring boot configuration from %s" % backup_file, log_type="-")
+    log.info("Restoring boot configuration from %s" % backup_file)
     _ = _common.execute_command([bcdedit, "/import", backup_file])
 
     _common.remove_files([binary])

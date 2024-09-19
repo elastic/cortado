@@ -31,4 +31,4 @@ def main():
     log.info("PowerShell with base64/gzip")
 
     command = "powershell.exe -noni -nop -w hidden -c &([scriptblock]::create((New-Object IO.StreamReader(New-Object IO.Compression.GzipStream((New-Object IO.MemoryStream(,[Convert]::FromBase64String(aaa)"  # noqa: E501
-    _ = _common.execute_command(command)
+    _ = _common.execute_command([command], shell=True)

@@ -11,7 +11,7 @@
 
 import logging
 
-from . import OSType, RuleMetadata, _common, register_code_rta
+from . import OSType, RuleMetadata, _common, register_code_rta, _const
 
 log = logging.getLogger(__name__)
 
@@ -23,9 +23,10 @@ log = logging.getLogger(__name__)
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="55d551c6-333b-4665-ab7e-5d14a59715ce", name="PsExec Network Connection")],
     techniques=["T1569"],
-    ancillary_files=[_common.PS_EXEC],
+    ancillary_files=[_const.PS_EXEC_EXE],
 )
-def main(remote_host=None):
-    remote_host = remote_host or _common.get_ip()
+def main():
+    remote_host = _common.get_host_ip()
     log.info("Performing PsExec to %s" % remote_host)
-    _ = _common.execute_command([_common.PS_EXEC, "\\\\%s" % remote_host, "-accepteula", "ipconfig"])
+    ps_exec = _common.get_resource_path(_common.PS_EXEC_EXE)
+    _ = _common.execute_command([ps_exec, "\\\\%s" % remote_host, "-accepteula", "ipconfig"])

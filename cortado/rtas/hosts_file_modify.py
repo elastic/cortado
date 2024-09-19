@@ -30,11 +30,12 @@ log = logging.getLogger(__name__)
 )
 def main():
     hosts_files = {
-        _common.WINDOWS: "C:\\Windows\\system32\\drivers\\etc\\hosts",
-        _common.LINUX: "/etc/hosts",
-        _common.MACOS: "/private/etc/hosts",
+        OSType.WINDOWS: "C:\\Windows\\system32\\drivers\\etc\\hosts",
+        OSType.LINUX: "/etc/hosts",
+        OSType.MACOS: "/private/etc/hosts",
     }
-    hosts_file = hosts_files[_common.CURRENT_OS]
+    current_os = _common.get_current_os()
+    hosts_file = hosts_files[current_os]
 
     backup = Path(hosts_file + "_backup").resolve()
     log.info("Backing up original 'hosts' file.")
@@ -48,7 +49,7 @@ def main():
         "# 8.8.8.8 https://www.{random}.google.com".format(random=randomness),
     ]
     with open(hosts_file, "a") as f:
-        f.write("\n".join(entry))
+        _ = f.write("\n".join(entry))
 
     log.info("Updated hosts file")
     with open(hosts_file, "r") as f:

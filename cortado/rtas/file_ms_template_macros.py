@@ -28,4 +28,4 @@ def main():
     Path(path).mkdir(parents=True, exist_ok=True)
     file = path + "\\Normal.dotm"
 
-    _common.temporary_file_helper("testing", file_name=file)
+    _common.create_file_with_data(file, "testing")

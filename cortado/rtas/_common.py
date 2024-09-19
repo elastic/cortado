@@ -210,7 +210,7 @@ def remove_directory(path: str | Path):
 
 
 def execute_command(
-    command_args: list[str] | tuple[str],
+    command_args: list[Any],
     timeout_secs: float | int = 30,
     capture_output: bool = True,
     ignore_failures: bool = False,
@@ -221,6 +221,7 @@ def execute_command(
 ) -> tuple[int, bytes | None, bytes | None]:
     # NOTE: `list2cmdline` is an internal function, so it might break in the future
     # https://github.com/python/cpython/blob/4bb1dd3c5c14338c9d9cea5988431c858b3b76e0/Lib/subprocess.py#L66
+    command_args = [str(a) for a in command_args]
     command_str = subprocess.list2cmdline(command_args)
 
     user_name = get_current_user()
@@ -314,8 +315,7 @@ def serve_dir_over_http(
 
 ## Unilities
 
-
-def as_wchar(s: str):
+def as_wchar(s: str) -> bytes:
     return s.encode("utf-16le")
 
 

@@ -32,8 +32,8 @@ def main():
 
     # Create a fake initd script that launches sh
     with open(fake_initd, "w") as script:
-        script.write("#!/bin/bash\n")
-        script.write("/tmp/sh\n")
+        _ = script.write("#!/bin/bash\n")
+        _ = script.write("/tmp/sh\n")
 
     # Make the script executable
     _ = _common.execute_command(["chmod", "+x", fake_initd])

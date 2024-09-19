@@ -28,7 +28,7 @@ def main():
     _common.create_macos_masquerade(masquerade)
 
     payload_file = "/Library/LaunchDaemons/test.payload"
-    _common.temporary_file_helper("testing", file_name=payload_file)
+    _common.create_file_with_data(payload_file, "testing")
 
     # Execute command
     log.info("Launching fake launchctl command to mimic LaunchDaemons payload persistence")

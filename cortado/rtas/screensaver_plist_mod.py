@@ -32,9 +32,9 @@ def main():
 
     # Execute command
     log.info("Launching fake file screensaver plist modification commands")
-    _common.temporary_file_helper(
+    _common.create_file_with_data(
+        "/Library/Managed Preferences/com.apple.screensaver.test.plist",
         "testing",
-        file_name="/Library/Managed Preferences/com.apple.screensaver.test.plist",
     )
     _ = _common.execute_command([masquerade, "cfprefsd"], timeout_secs=10)
 

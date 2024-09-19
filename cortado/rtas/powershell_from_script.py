@@ -32,8 +32,7 @@ def main():
     script = """Set objShell = CreateObject("Wscript.shell")
     objShell.run("powershell echo 'Doing evil things...'; sleep 3")
     """
-    with open(script_file, "w") as f:
-        f.write(script)
+    _ = script_file.write_text(script)
 
     # Execute script
     for proc in ["wscript", "cscript"]:
@@ -42,5 +41,3 @@ def main():
 
     # Clean up
     _common.remove_file(script_file)
-
-    return _common.SUCCESS

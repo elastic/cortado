@@ -29,7 +29,7 @@ def main():
     sublime_packages.mkdir(parents=True, exist_ok=True)
     sublime_path = str(sublime_packages.joinpath("test.py"))
     log.info(f"Executing hidden plist creation on {sublime_path}")
-    _common.temporary_file_helper("testing", file_name=sublime_path)
+    _common.create_file_with_data(sublime_path, "testing")
 
     # cleanup
     _common.remove_directory(str(sublime_packages))

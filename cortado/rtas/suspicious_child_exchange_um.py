@@ -27,5 +27,5 @@ def main():
     EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
     _common.copy_file(EXE_FILE, umservice)
 
-    _ = _common.execute_command([umservice, "/c", EXE_FILE], timeout_secs=5)
+    _ = _common.execute_command([umservice, "/c", str(EXE_FILE)], timeout_secs=5)
     _common.remove_files([umservice])

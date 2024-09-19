@@ -4,7 +4,6 @@
 # 2.0.
 
 import logging
-import sys
 from pathlib import Path
 
 from . import OSType, RuleMetadata, _common, register_code_rta
@@ -35,20 +34,16 @@ def main() -> None:
 
     # Create a fake executable that launches whoami
     with Path(fake_executable).open("w") as script:
-        script.write("#!/bin/bash\n")
-        script.write("/dev/shm/whoami\n")
+        _ = script.write("#!/bin/bash\n")
+        _ = script.write("/dev/shm/whoami\n")
 
     # Make the script executable
     _ = _common.execute_command(["chmod", "+x", fake_executable])
 
     # Execute the fake executable
     log.info("Launching whoami as a child of fake executable")
-    _ = _common.execute_command([fake_executable], timeout_secs=5, shell=True)  # noqa: S604
+    _ = _common.execute_command([fake_executable], timeout_secs=5, shell=True)
 
     # Cleanup
     _common.remove_file(fake_executable)
     _common.remove_file(masquerade)
-
-
-if __name__ == "__main__":
-    sys.exit(main())

@@ -23,4 +23,4 @@ log = logging.getLogger(__name__)
 )
 def main():
     log.info(f"Executing hidden plist creation on {Path.home()}/Library/LaunchAgents/.test.plist")
-    _common.temporary_file_helper("testing", file_name=f"{Path.home()}/Library/LaunchAgents/.test.plist")
+    _common.create_file_with_data(f"{Path.home()}/Library/LaunchAgents/.test.plist", "testing")

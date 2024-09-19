@@ -30,7 +30,7 @@ TARGET_APP_EXE = "bin/myapp.exe"
         RuleMetadata(id="cff92c41-2225-4763-b4ce-6f71e5bda5e6", name="Execution from Unusual Directory - Command Line")
     ],
     techniques=["T1036", "T1059"],
-    ancillary_files=[TARGET_APP_EXE, _common.CMD_PATH],
+    ancillary_files=[TARGET_APP_EXE],
 )
 def main():
     log.info("Execute files from the Recycle Bin")
@@ -40,24 +40,27 @@ def main():
             target_dir = _common.find_writeable_directory(recycle_path)
             if target_dir:
                 break
-
     else:
         log.info("Could not find a writeable directory in the recycle bin")
-        exit(1)
+        raise _common.ExecutionError("Could not find a writeable directory in the recycle bin")
 
-    commands = [
-        [TARGET_APP_EXE],
-        [_common.CMD_PATH, "/c", "echo hello world"],
-    ]
+    if not target_dir:
+        raise _common.ExecutionError("No writable directories in `RECYCLE_PATHS`")
 
     log.info("Running commands from recycle bin in %s" % target_dir)
-    for command in commands:  # type: list[str]
-        source_path = command[0]
-        arguments = command[1:]
+    target_path = Path(target_dir) / "recycled_process.exe"
 
-        target_path = Path(target_dir) / "recycled_process.exe"
-        _common.copy_file(source_path, target_path)
-        arguments.insert(0, target_path)
-        _ = _common.execute_command(arguments)
-        time.sleep(0.5)
-        _common.remove_file(target_path)
+    target_app_exe = _common.get_resource_path(TARGET_APP_EXE)
+    _common.copy_file(target_app_exe, target_path)
+    _ = _common.execute_command([target_path])
+
+    time.sleep(0.5)
+    _common.remove_file(target_path)
+
+    cmd_path = _common.get_cmd_path()
+    _common.copy_file(cmd_path, target_path)
+    _ = _common.execute_command(
+        [target_path, "/c", "echo hello world"],
+    )
+    time.sleep(0.5)
+    _common.remove_file(target_path)

@@ -31,5 +31,5 @@ def main():
     key = "System\\CurrentControlSet\\Control\\Terminal Server"
     value = "fDenyTSConnections"
 
-    with _common.temp_registry_value(_const.REG_HKLM, key, value, 0, _common.DWORD):
+    with _common.temp_registry_value(_const.REG_HKLM, key, value, 0, _const.DWORD):
         pass

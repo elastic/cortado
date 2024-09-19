@@ -28,7 +28,7 @@ def main():
     atom_dir.mkdir(parents=True, exist_ok=True)
     atom_path = atom_dir.joinpath("init.coffee")
     log.info(f"Executing file modification on {atom_path} to mimic malicious Atom init file.")
-    _common.temporary_file_helper("testing", file_name=atom_path)
+    _common.create_file_with_data(atom_path, "testing")
 
     # cleanup
     _common.remove_directory(str(atom_dir))

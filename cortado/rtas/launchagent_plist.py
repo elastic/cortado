@@ -29,7 +29,7 @@ def main():
     _common.create_macos_masquerade(masquerade)
 
     plist = f"{Path.home()}/Library/LaunchAgents/test.plist"
-    _common.temporary_file_helper("testing", file_name=plist)
+    _common.create_file_with_data(plist, "testing")
 
     # Execute command
     log.info("Launching fake launchctl command to mimic plist loading")

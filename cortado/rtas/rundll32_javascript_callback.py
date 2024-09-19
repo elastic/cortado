@@ -21,9 +21,6 @@ log = logging.getLogger(__name__)
     id="75687622-2e75-4612-b213-a31f923efdd4",
     name="rundll32_javascript_callback",
     platforms=[OSType.WINDOWS],
-    endpoint_rules=[],
-    siem_rules=[],
-    techniques=[],
 )
 def main():
     log.info("RunDLL32 with Javascript Callback")
@@ -33,7 +30,7 @@ def main():
     url = "http://%s:%d" % (ip, port)
     rundll32 = "rundll32.exe"
     js = """
-        'javascript:"\..\mshtml,RunHTMLApplication ";'
+        'javascript:"\\..\\mshtml,RunHTMLApplication ";'
         'var%20xhr=new%20ActiveXObject("Msxml2.XMLHttp.6.0");,'
         'xhr.open("GET", "{url}",false);xhr.send();'
     """.format(

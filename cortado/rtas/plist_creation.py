@@ -3,12 +3,17 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import time
 import logging
 from pathlib import Path
 
 from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
+
+
+def pause():
+    time.sleep(1)
 
 
 @register_code_rta(
@@ -39,13 +44,13 @@ def main():
         [f"{plistbuddy_bin}", "-c", "Add :Label string init_verx", f"{plist_file}"],
         shell=True,
     )
-    _common.pause()
+    pause()
     _ = _common.execute_command([f"{plistbuddy_bin}", "-c", "Add :RunAtLoad bool true", f"{plist_file}"])
-    _common.pause()
+    pause()
     _ = _common.execute_command([f"{plistbuddy_bin}", "-c", "Add :StartInterval integer 3600", f"{plist_file}"])
-    _common.pause()
+    pause()
     _ = _common.execute_command([f"{plistbuddy_bin}", "-c", "Add :ProgramArguments array", f"{plist_file}"])
-    _common.pause()
+    pause()
     _ = _common.execute_command(
         [
             f"{plistbuddy_bin}",
@@ -54,7 +59,7 @@ def main():
             f"{plist_file}",
         ]
     )
-    _common.pause()
+    pause()
     _ = _common.execute_command(
         [
             f"{plistbuddy_bin}",

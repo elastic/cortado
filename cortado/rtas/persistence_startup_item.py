@@ -26,5 +26,5 @@ def main():
     plist = "/Library/StartupItems/test/StartupParameters.plist"
     output_file = Path(plist)
     output_file.parent.mkdir(exist_ok=True, parents=True)
-    _common.temporary_file_helper("testing", file_name=str(plist))
+    _common.create_file_with_data(str(plist), "testing")
     _common.remove_directory("/Library/StartupItems/test/")

@@ -19,21 +19,20 @@ log = logging.getLogger(__name__)
 VBS = "bin/persistent_script.vbs"
 NAME = "rta-vbs-persistence"
 
-
 @register_code_rta(
     id="2ab62c28-1abb-4ac5-a16d-2f4f75d01d02",
     name="persistent_scripts",
     platforms=[OSType.WINDOWS],
     siem_rules=[RuleMetadata(id="afcce5ad-65de-4ed2-8516-5e093d3ac99a", name="Local Scheduled Task Creation")],
     techniques=["T1053"],
-    ancillary_files=[VBS, _common.PS_EXEC],
+    ancillary_files=[VBS, _common.PS_EXEC_EXE],
 )
 def main():
     log.info("Persistent Scripts")
 
-    if _common.check_system():
+    if _common.is_system():
         log.info("Must be run as a non-SYSTEM user")
-        return 1
+        raise _common.ExecutionError("RTA must be run as a non-SYSTEM user")
 
     # Remove any existing profiles
     user_profile = os.environ["USERPROFILE"]
@@ -55,7 +54,7 @@ def main():
     # _common.execute(["taskkill.exe", "/f", "/im", "explorer.exe"])
     # time.sleep(2)
 
-    _ = _common.execute_command(["C:\\Windows\\System32\\userinit.exe"], wait=True)
+    _ = _common.execute_command(["C:\\Windows\\System32\\userinit.exe"])
     _ = _common.execute_command(["schtasks.exe", "/run", "/tn", NAME])
 
     # Wait for the "logon" to finish
@@ -63,6 +62,6 @@ def main():
     _common.print_file(log_file)
 
     # Now delete the user profile
-    log.info("Cleanup", log_type="-")
+    log.info("Cleanup")
     _common.remove_file(log_file)
     _ = _common.execute_command(["schtasks.exe", "/delete", "/tn", NAME, "/f"])
