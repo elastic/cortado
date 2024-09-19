@@ -25,17 +25,21 @@ jobs:
         name: Create a virtual env
         run: python3 -m venv ./.venv
       - if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        needs: setup
         name: Install dependencies
         run: |
+          . .venv/bin/activate
           python -m pip install --upgrade pip
           pip install poetry
           poetry config installer.parallel false
           poetry install --with dev
       - name: Lint
         run: |
+          . .venv/bin/activate
           poetry run ruff check ./cortado
       - name: Pyright
         run: |
+          . .venv/bin/activate
           poetry run pyright ./cortado
 
   unit-tests:
@@ -57,10 +61,12 @@ jobs:
       - if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         name: Install dependencies
         run: |
+          . .venv/bin/activate
           python -m pip install --upgrade pip
           pip install poetry
           poetry config installer.parallel false
           poetry install --with dev
       - name: Run tests
         run: |
+          . .venv/bin/activate
           poetry run pytest tests/
