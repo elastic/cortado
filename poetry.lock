@@ -281,4 +281,4 @@ utils = ["ecs-logging", "structlog", "typer"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.12"
-content-hash = "404dcb845237c554deee674155e2b6706b71a58e0b2c36be70897371e0d8d760"
+content-hash = "41e3a9513a4d8dd5bf3b78623f74178b5cf47e53a218506f3ad4658d265c5631"

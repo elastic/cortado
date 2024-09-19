@@ -40,6 +40,10 @@ jobs:
       - name: Pyright
         run: |
           . .venv/bin/activate
+          whereis pyright
+          whereis python
+          whereis poetry
+          pip freeze
           poetry run pyright ./cortado
 
   unit-tests:
