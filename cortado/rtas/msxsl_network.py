@@ -8,7 +8,11 @@
 # ATT&CK: T1127
 # Description: Generates network traffic from msxsl.exe
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, _const, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 MS_XSL_EXE = "bin/msxsl.exe"
@@ -25,13 +29,13 @@ XSL_FILE = "bin/cscript.xsl"
     ancillary_files=[MS_XSL_EXE, XML_FILE, XSL_FILE],
 )
 def main():
-    _common.log("MsXsl Beacon")
-    server, ip, port = _common.serve_web()
+    log.info("MsXsl Beacon")
+    server, ip, port = _common.serve_dir_over_http()
     _common.clear_web_cache()
 
     new_callback = "http://%s:%d" % (ip, port)
-    _common.log("Updating the callback to %s" % new_callback)
-    _common.patch_regex(XSL_FILE, _common.CALLBACK_REGEX, new_callback)
+    log.info("Updating the callback to %s" % new_callback)
+    _common.patch_file_with_regex(XSL_FILE, _const.CALLBACK_REGEX, new_callback)
 
-    _common.execute([MS_XSL_EXE, XML_FILE, XSL_FILE])
+    _ = _common.execute_command([MS_XSL_EXE, XML_FILE, XSL_FILE])
     server.shutdown()

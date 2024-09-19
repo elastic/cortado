@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -20,22 +24,22 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1036", "T1218", "T1566", "T1059"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+    exe_file = _common.get_resource_path("bin/renamed_posh.exe")
+    renamer = _common.get_resource_path("bin/rcedit-x64.exe")
 
     mshta = "C:\\Users\\Public\\mshta.exe"
     rcedit = "C:\\Users\\Public\\rcedit.exe"
 
-    _common.copy_file(RENAMER, rcedit)
-    _common.copy_file(EXE_FILE, mshta)
+    _common.copy_file(renamer, rcedit)
+    _common.copy_file(exe_file, mshta)
 
     cmd = "ls ~\\Downloads\\*.pdf.js"
     # Execute command
-    _common.log("Modifying the OriginalFileName attribute")
-    _common.execute(
+    log.info("Modifying the OriginalFileName attribute")
+    _ = _common.execute_command(
         [rcedit, mshta, "--set-version-string", "OriginalFileName", "mshta.exe"],
-        timeout=10,
+        timeout_secs=10,
     )
-    _common.execute([mshta, "/c", cmd], timeout=5, kill=True)
+    _ = _common.execute_command([mshta, "/c", cmd], timeout_secs=5)
 
-    _common.remove_files(mshta, rcedit)
+    _common.remove_files([mshta, rcedit])

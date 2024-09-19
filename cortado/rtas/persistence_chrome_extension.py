@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -19,6 +23,6 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1176"],
 )
 def main():
-    _common.log("Executing chrome commands to load suspicious ext.")
+    log.info("Executing chrome commands to load suspicious ext.")
     chrome = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-    _common.execute([chrome, "--load-extension=/test"])
+    _ = _common.execute_command([chrome, "--load-extension=/test"])

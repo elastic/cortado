@@ -3,9 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 CMD_PATH = "c:\\windows\\system32\\cmd.exe"
 
@@ -27,5 +30,5 @@ def main():
     for name in masquerades:
         path = Path(name).resolve()
         _common.copy_file(CMD_PATH, path)
-        _common.execute(path, timeout=3, kill=True)
+        _ = _common.execute_command([path], timeout_secs=3)
         _common.remove_file(path)

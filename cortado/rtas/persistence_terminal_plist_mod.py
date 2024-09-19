@@ -3,10 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
-
-
+import logging
 from pathlib import Path
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -20,7 +22,7 @@ from pathlib import Path
     techniques=[""],
 )
 def main():
-    _common.log("Executing plutil commands to modify plist file.")
+    log.info("Executing plutil commands to modify plist file.")
     plist = f"{Path.home()}/Library/Preferences/com.apple.Terminal.plist"
-    _common.execute(["plutil", "-convert", "xml1", plist])
-    _common.execute(["plutil", "-convert", "binary1", plist])
+    _ = _common.execute_command(["plutil", "-convert", "xml1", plist])
+    _ = _common.execute_command(["plutil", "-convert", "binary1", plist])

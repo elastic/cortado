@@ -7,9 +7,12 @@
 # RTA: mac_office_descendant.py
 # Description: Creates a suspicious process spawned from "Microsoft Word"
 
+import logging
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType
+from . import OSType, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -18,10 +21,10 @@ from . import _common, register_code_rta, OSType
     platforms=[OSType.MACOS],
 )
 def main():
-    _common.log("Emulating Microsoft Word running enumeration commands")
+    log.info("Emulating Microsoft Word running enumeration commands")
     office_path = Path("Microsoft Word").resolve()
     _common.copy_file("/bin/sh", office_path)
 
-    _common.execute([office_path], stdin="whoami")
+    _ = _common.execute_command([str(office_path)], stdin_data="whoami")
 
-    _common.remove_files(office_path)
+    _common.remove_files([office_path])

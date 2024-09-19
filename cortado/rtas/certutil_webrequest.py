@@ -8,7 +8,11 @@
 # ATT&CK: T1105
 # Description: Uses certutil.exe to download a file.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 MY_DLL = "bin/mydll.dll"
@@ -26,13 +30,13 @@ MY_DLL = "bin/mydll.dll"
 def main():
     # http server will terminate on main thread exit
     # if daemon is True
-    server, ip, port = _common.serve_web()
+    server, ip, port = _common.serve_dir_over_http()
 
     uri = MY_DLL
     target_file = "mydll.dll"
     _common.clear_web_cache()
     url = "http://{ip}:{port}/{uri}".format(ip=ip, port=port, uri=uri)
-    _common.execute(["certutil.exe", "-urlcache", "-split", "-f", url, target_file])
+    _ = _common.execute_command(["certutil.exe", "-urlcache", "-split", "-f", url, target_file])
 
     server.shutdown()
     _common.remove_file(target_file)

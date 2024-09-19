@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -23,9 +27,12 @@ def main():
     _common.create_macos_masquerade(masquerade)
 
     # Execute command
-    _common.log("Launching fake plistbuddy command to modify plist files")
-    _common.execute([masquerade, "testRunAtLoad testLaunchAgentstest"], timeout=10, kill=True)
-    _common.execute([masquerade, "testProgramArgumentstest"], timeout=10, kill=True)
+    log.info("Launching fake plistbuddy command to modify plist files")
+    _ = _common.execute_command([masquerade, "testRunAtLoad testLaunchAgentstest"], timeout_secs=10)
+    _ = _common.execute_command(
+        [masquerade, "testProgramArgumentstest"],
+        timeout_secs=10,
+    )
 
     # cleanup
     _common.remove_file(masquerade)

@@ -3,10 +3,17 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 import os
 from pathlib import Path
 
-from . import register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
+
+
+log = logging.getLogger(__name__)
+
 
 @register_code_rta(
     id="7e23fa7b-1812-4abb-ab42-a2350c9a4741",
@@ -19,19 +26,23 @@ from . import register_code_rta, OSType, RuleMetadata
     ],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    exe_file = _common.get_resource_path("bin/renamed_posh.exe")
 
     appdata = os.getenv("LOCALAPPDATA")
+
+    if not appdata:
+        raise ValueError("No value for `LOCALAPPDATA`")
+
     path = Path(appdata) / "\\Microsoft\\OneDrive"
     winword = "C:\\Users\\Public\\winword.exe"
     dll = path / "\\a.dll"
-    _common.copy_file(EXE_FILE, winword)
+    _common.copy_file(exe_file, winword)
 
     if path.is_dir():
-        _common.execute([winword, "-c", f"New-Item -Path {dll} -Type File"], timeout=10)
-        _common.remove_files(dll, winword)
+        _ = _common.execute_command([winword, "-c", f"New-Item -Path {dll} -Type File"], timeout_secs=10)
+        _common.remove_files([dll, winword])
     else:
         path.mkdir()
-        _common.execute([winword, "-c", f"New-Item -Path {dll} -Type File"], timeout=10)
-        _common.remove_files(dll, winword)
+        _ = _common.execute_command([winword, "-c", f"New-Item -Path {dll} -Type File"], timeout_secs=10)
+        _common.remove_files([dll, winword])
         path.rmdir()

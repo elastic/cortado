@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -19,9 +23,9 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1003"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
+    PS1_FILE = _common.get_resource_path("bin/Invoke-ImageLoad.ps1")
+    RENAMER = _common.get_resource_path("bin/rcedit-x64.exe")
 
     msbuild = "C:\\Users\\Public\\msbuild.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
@@ -33,10 +37,10 @@ def main():
     _common.copy_file(PS1_FILE, ps1)
     _common.copy_file(RENAMER, rcedit)
 
-    _common.log("Modifying the OriginalFileName attribute")
-    _common.execute([rcedit, dll, "--set-version-string", "OriginalFilename", "vaultcli.dll"])
+    log.info("Modifying the OriginalFileName attribute")
+    _ = _common.execute_command([rcedit, dll, "--set-version-string", "OriginalFilename", "vaultcli.dll"])
 
-    _common.log("Loading System.DirectoryServices.Protocols.test.dll")
-    _common.execute([msbuild, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout=10)
+    log.info("Loading System.DirectoryServices.Protocols.test.dll")
+    _ = _common.execute_command([msbuild, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout_secs=10)
 
-    _common.remove_files(dll, ps1, rcedit, msbuild)
+    _common.remove_files([dll, ps1, rcedit, msbuild])

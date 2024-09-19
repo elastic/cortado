@@ -3,9 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -17,11 +20,11 @@ from . import _common, register_code_rta, OSType, RuleMetadata
     techniques=["T1546", "T1546.013"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     path = "C:\\Users\\Public\\Documents\\WindowsPowerShell"
     Path(path).mkdir(parents=True, exist_ok=True)
     file = path + "\\profile.ps1"
     _common.copy_file(EXE_FILE, file)
 
-    _common.remove_files(file)
+    _common.remove_files([file])

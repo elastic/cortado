@@ -8,7 +8,11 @@
 # ATT&CK: T1122
 # Description: Modifies the Registry to create a new user-defined COM broker, "scrobj.dll".
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, _const, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -26,5 +30,5 @@ def main():
     scrobj = "C:\\WINDOWS\\system32\\scrobj.dll"
     key_path = key + "\\" + subkey
 
-    with _common.temporary_reg(_common.HKCU, key_path, value, scrobj, pause=True):
+    with _common.temp_registry_value(_const.REG_HKCU, key_path, value, scrobj, pause=True):
         pass

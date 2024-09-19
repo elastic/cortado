@@ -3,9 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
-
+import logging
 import os
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -19,7 +22,7 @@ import os
     techniques=["T1027", "T1566"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     userprofile = os.getenv("USERPROFILE")
     partial = f"{userprofile}\\Downloads\\a.partial"
@@ -30,7 +33,7 @@ def main():
     _common.copy_file(EXE_FILE, chrome)
 
     # Execute command
-    _common.execute(
+    _ = _common.execute_command(
         [
             explorer,
             "/c",
@@ -38,9 +41,8 @@ def main():
             "--single-argument",
             f"{userprofile}\\Downloads\\a.html",
         ],
-        timeout=10,
-        kill=True,
+        timeout_secs=10,
     )
-    _common.execute([chrome, "/c", f"New-Item -Path {partial} -Type File"], timeout=10)
-    _common.execute([chrome, "/c", f"Rename-Item {partial} {file}"], timeout=10)
-    _common.remove_files(explorer, chrome, file)
+    _ = _common.execute_command([chrome, "/c", f"New-Item -Path {partial} -Type File"], timeout_secs=10)
+    _ = _common.execute_command([chrome, "/c", f"Rename-Item {partial} {file}"], timeout_secs=10)
+    _common.remove_files([explorer, chrome, file])

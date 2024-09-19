@@ -9,9 +9,13 @@
 # signal.rule.name: Disable Windows Firewall Rules via Netsh
 # Description: Uses netsh.exe to backup, disable and restore firewall rules.
 
+import logging
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
+
 
 @register_code_rta(
     id="75e14e5a-1188-47ea-9b96-2cf6e9443fc2",
@@ -24,7 +28,7 @@ from . import _common, register_code_rta, OSType, RuleMetadata
     techniques=["T1562"],
 )
 def main():
-    _common.log("NetSH Advanced Firewall Configuration", log_type="~")
+    log.info("NetSH Advanced Firewall Configuration")
     netsh = "netsh.exe"
 
     rules_file = Path("fw.rules").resolve()
@@ -32,13 +36,13 @@ def main():
     # Check to be sure that fw.rules does not already exist from previously running this script
     _common.remove_file(rules_file)
 
-    _common.log("Backing up rules")
-    _common.execute([netsh, "advfirewall", "export", rules_file])
+    log.info("Backing up rules")
+    _ = _common.execute_command([netsh, "advfirewall", "export", rules_file])
 
-    _common.log("Disabling the firewall")
-    _common.execute([netsh, "advfirewall", "set", "allprofiles", "state", "off"])
+    log.info("Disabling the firewall")
+    _ = _common.execute_command([netsh, "advfirewall", "set", "allprofiles", "state", "off"])
 
-    _common.log("Undoing the firewall change", log_type="-")
-    _common.execute([netsh, "advfirewall", "import", rules_file])
+    log.info("Undoing the firewall change")
+    _ = _common.execute_command([netsh, "advfirewall", "import", rules_file])
 
     _common.remove_file(rules_file)

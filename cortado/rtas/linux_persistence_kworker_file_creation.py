@@ -3,9 +3,13 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 import sys
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
+
 
 @register_code_rta(
     id="5282c9a4-4ce9-48b8-863a-ff453143635a",
@@ -17,20 +21,20 @@ from . import _common, register_code_rta, OSType, RuleMetadata
 )
 def main() -> None:
     masquerade = "/tmp/kworker"
-    source = _common.get_path("bin", "create_file.elf")
+    source = _common.get_resource_path("bin/create_file.elf")
     _common.copy_file(source, masquerade)
 
-    _common.log("Granting execute permissions...")
-    _common.execute(["chmod", "+x", masquerade])
+    log.info("Granting execute permissions...")
+    _ = _common.execute_command(["chmod", "+x", masquerade])
 
     commands = [masquerade, "/tmp/evil"]
 
-    _common.log("Simulating file creation activity..")
-    _common.execute([*commands], timeout=5)
-    _common.log("File creation simulation successful!")
-    _common.log("Cleaning...")
+    log.info("Simulating file creation activity..")
+    _ = _common.execute_command([*commands], timeout_secs=5)
+    log.info("File creation simulation successful!")
+    log.info("Cleaning...")
     _common.remove_file(masquerade)
-    _common.log("RTA completed!")
+    log.info("RTA completed!")
 
 
 if __name__ == "__main__":

@@ -3,8 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from pathlib import Path
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -17,12 +20,12 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 )
 def main():
     masquerade = "/tmp/rmmod"
-    source = _common.get_path("bin", "linux.ditto_and_spawn")
+    source = _common.get_resource_path("bin/linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)
 
     # Execute command
-    _common.log("Launching fake commands to remove Kernel Module")
-    _common.execute([masquerade], timeout=10, kill=True)
+    log.info("Launching fake commands to remove Kernel Module")
+    _ = _common.execute_command([masquerade], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

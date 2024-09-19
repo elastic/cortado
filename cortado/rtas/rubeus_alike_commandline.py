@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -21,4 +25,4 @@ def main():
 
     cmd = "Echo asreproast instead of executing it"
     # Execute command
-    _common.execute([powershell, "/c", "echo", cmd], timeout=10)
+    _ = _common.execute_command([powershell, "/c", "echo", cmd], timeout_secs=10)

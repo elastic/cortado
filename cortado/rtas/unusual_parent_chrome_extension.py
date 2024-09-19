@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -17,12 +21,12 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1176"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     proc = "C:\\Users\\Public\\proc.exe"
     childproc = "C:\\Users\\Public\\childproc.exe"
     _common.copy_file(EXE_FILE, proc)
     _common.copy_file(EXE_FILE, childproc)
 
-    _common.execute([proc, "/c", "echo", f"--load-extension; & {childproc}"], timeout=5, kill=True)
-    _common.remove_files(childproc, proc)
+    _ = _common.execute_command([proc, "/c", "echo", f"--load-extension; & {childproc}"], timeout_secs=5)
+    _common.remove_files([childproc, proc])

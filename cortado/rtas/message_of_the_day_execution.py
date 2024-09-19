@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -19,19 +23,19 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=[""],
 )
 def main():
-    _common.log("Creating a fake MOTD executable..")
+    log.info("Creating a fake MOTD executable..")
     masquerade = "/etc/update-motd.d/evil"
-    source = _common.get_path("bin", "netcon_exec_chain.elf")
+    source = _common.get_resource_path("bin/netcon_exec_chain.elf")
     _common.copy_file(source, masquerade)
 
-    _common.log("Granting execute permissions...")
-    _common.execute(["chmod", "+x", masquerade])
+    log.info("Granting execute permissions...")
+    _ = _common.execute_command(["chmod", "+x", masquerade])
 
     commands = [masquerade, "exec", "-c", "netcat"]
 
-    _common.log("Simulating MOTD netcat activity..")
-    _common.execute([*commands], timeout=5)
-    _common.log("MOTD netcat simulation successful!")
-    _common.log("Cleaning...")
+    log.info("Simulating MOTD netcat activity..")
+    _ = _common.execute_command([*commands], timeout_secs=5)
+    log.info("MOTD netcat simulation successful!")
+    log.info("Cleaning...")
     _common.remove_file(masquerade)
-    _common.log("RTA completed!")
+    log.info("RTA completed!")

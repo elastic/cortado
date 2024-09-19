@@ -3,11 +3,13 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-import os
-import sys
+import logging
 from pathlib import Path
 
-from . import register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
+
 
 @register_code_rta(
     id="11b447ca-6ad4-4597-a048-2585b27762ea",
@@ -21,19 +23,16 @@ from . import register_code_rta, OSType, RuleMetadata
 def main() -> None:
     masquerade_script = Path("/tmp/kworker_evasion.sh")
     with masquerade_script.open("w") as f:
-        f.write("#!/bin/bash\n")
-        f.write("sh -c 'whoami'\n")
+        _ = f.write("#!/bin/bash\n")
+        _ = f.write("sh -c 'whoami'\n")
 
     # Make the script executable
     masquerade_script.chmod(0o755)
 
     # Execute the script
-    _common.log("Launching fake command to simulate a kworker execution")
-    os.system(str(masquerade_script))  # noqa: S605
+    log.info("Launching fake command to simulate a kworker execution")
+
+    _ = _common.execute_command([_common.get_cmd_path(), str(masquerade_script)])
 
     # Cleanup
     masquerade_script.unlink()
-
-
-if __name__ == "__main__":
-    sys.exit(main())

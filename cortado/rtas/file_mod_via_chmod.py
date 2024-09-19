@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -19,6 +23,6 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1222", "T1222.002", "T1564"],
 )
 def main():
-    _common.log("Executing chmod on tmp files.")
-    with _common.temporary_file("testing", "/tmp/test.txt"):
-        _common.execute(["chmod", "+x", "/tmp/test.txt"])
+    log.info("Executing chmod on tmp files.")
+    with _common.file_with_data("/tmp/test.txt", "testing"):
+        _ = _common.execute_command(["chmod", "+x", "/tmp/test.txt"])

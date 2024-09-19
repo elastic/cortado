@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -23,16 +27,16 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1127", "T1218", "T1036", "T1204", "T1059"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     rundll32 = "C:\\Users\\Public\\rundll32.exe"
     dfsvc = "C:\\Users\\Public\\dfsvc.exe"
     _common.copy_file(EXE_FILE, dfsvc)
     _common.copy_file(EXE_FILE, rundll32)
 
-    _common.log("Loading mstscax.dll into posh")
-    _common.execute([rundll32, "-c", "echo dfshim1ShOpenVerbApplication"], timeout=10)
-    _common.execute(
+    log.info("Loading mstscax.dll into posh")
+    _ = _common.execute_command([rundll32, "-c", "echo dfshim1ShOpenVerbApplication"], timeout_secs=10)
+    _ = _common.execute_command(
         [
             dfsvc,
             "-c",
@@ -42,6 +46,6 @@ def main():
             "-Port",
             "443",
         ],
-        timeout=10,
+        timeout_secs=10,
     )
-    _common.remove_files(dfsvc, rundll32)
+    _common.remove_files([dfsvc, rundll32])

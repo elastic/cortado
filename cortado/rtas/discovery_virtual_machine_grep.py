@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -21,5 +25,5 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1082", "T1497"],
 )
 def main():
-    _common.log("Executing egrep commands to fingerprint virtual machine.")
-    _common.execute(["egrep", "-i", '"Manufacturer: (parallels|vmware|virtualbox)"'], shell=True)
+    log.info("Executing egrep commands to fingerprint virtual machine.")
+    _ = _common.execute_command(["egrep", "-i", '"Manufacturer: (parallels|vmware|virtualbox)"'], shell=True)

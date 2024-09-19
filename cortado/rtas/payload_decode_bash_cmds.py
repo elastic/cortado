@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -28,11 +32,14 @@ def main():
     _common.create_macos_masquerade(masquerade3)
 
     # Execute command
-    _common.log("Launching fake bash with base64 decode commands")
-    _common.execute([masquerade], timeout=10, kill=True)
+    log.info("Launching fake bash with base64 decode commands")
+    _ = _common.execute_command([masquerade], timeout_secs=10)
 
     command = f"{masquerade3} enc -base64 -d"
-    _common.execute([masquerade2, "childprocess", command, "/Volumes/test"], timeout=10, kill=True)
+    _ = _common.execute_command(
+        [masquerade2, "childprocess", command, "/Volumes/test"],
+        timeout_secs=10,
+    )
 
     # cleanup
     _common.remove_file(masquerade)

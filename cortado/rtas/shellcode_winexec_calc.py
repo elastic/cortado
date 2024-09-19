@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 # shellcode to pop calc
@@ -25,8 +29,8 @@ SHELLCODE = b"\x48\x31\xff\x48\xf7\xe7\x65\x48\x8b\x58\x60\x48\x8b\x5b\x18\x48\x
 )
 def main():
     # Inject shellcode into conhost.exe to trigger 2 rules
-    _common.Inject("C:\\Windows\\System32\\conhost.exe", SHELLCODE)
+    _common.inject_shellcode("C:\\Windows\\System32\\conhost.exe", SHELLCODE)  # type: ignore
 
     # Terminate CalculatorApp.exe and Calc.exe processes using taskkill
-    _common.execute(["taskkill.exe", "/f", "/im", "CalculatorApp.exe"])
-    _common.execute(["taskkill.exe", "/f", "/im", "Calc.exe"])
+    _ = _common.execute_command(["taskkill.exe", "/f", "/im", "CalculatorApp.exe"])
+    _ = _common.execute_command(["taskkill.exe", "/f", "/im", "Calc.exe"])

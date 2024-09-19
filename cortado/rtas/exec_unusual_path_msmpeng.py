@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -20,17 +24,17 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1574", "T1574.002"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
+    RENAMER = _common.get_resource_path("bin/rcedit-x64.exe")
 
     msmpeng = "C:\\Users\\Public\\MsMpEng.exe"
     rcedit = "C:\\Users\\Public\\rcedit.exe"
     _common.copy_file(RENAMER, rcedit)
     _common.copy_file(EXE_FILE, msmpeng)
 
-    _common.log("Modifying the OriginalFileName attribute")
-    _common.execute([rcedit, msmpeng, "--set-version-string", "OriginalFilename", "MsMpEng.exe"])
+    log.info("Modifying the OriginalFileName attribute")
+    _ = _common.execute_command([rcedit, msmpeng, "--set-version-string", "OriginalFilename", "MsMpEng.exe"])
 
-    _common.execute([msmpeng], timeout=2, kill=True)
+    _ = _common.execute_command([msmpeng], timeout_secs=2)
 
-    _common.remove_files(rcedit, msmpeng)
+    _common.remove_files([rcedit, msmpeng])

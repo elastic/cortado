@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -18,4 +22,4 @@ def main():
     arp = "C:\\Windows\\System32\\arp.exe"
 
     # Execute command
-    _common.execute([arp, "-a"], timeout=10)
+    _ = _common.execute_command([arp, "-a"], timeout_secs=10)

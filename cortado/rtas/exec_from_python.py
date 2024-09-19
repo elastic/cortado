@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -24,9 +28,9 @@ def main():
     _common.create_macos_masquerade(masquerade)
 
     # Execute command
-    _common.log("Launching bash commands to mimic python package execution")
+    log.info("Launching bash commands to mimic python package execution")
     parent_args = "*/lib/python*/site-packages/*"
-    _common.execute([masquerade, "childprocess", parent_args, "-c"], timeout=10, kill=True)
+    _ = _common.execute_command([masquerade, "childprocess", parent_args, "-c"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

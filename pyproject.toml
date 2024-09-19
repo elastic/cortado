@@ -27,19 +27,23 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.12"
+# Dependencies for orchestration utils
 typer = { version = "^0.12", optional = true }
 structlog = { version = "^24.4", optional = true }
+ecs-logging = { version = "^2.0.0", optional = true } 
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.6"
 pytest = "^8.3"
+typing-extensions = "^4.12"
+pyright = "^1.1.381"
 
 [tool.poetry.extras]
-utils = ["typer", "structlog"]
+utils = ["typer", "structlog", "ecs-logging"]
 
 [tool.poetry.scripts]
-cortado-run-rta = "cortado.rtas_cli:run_rta"
-cortado-print-rtas = "cortado.cli:print_rtas"
+cortado-run-rta = "cortado.rtas._cli:run_rta"
+cortado = "cortado.cli:run_cli"
 
 [tool.black]
 line-length = 120
@@ -51,6 +55,8 @@ line-length = 120
 reportMissingTypeStubs = true
 reportUnusedCallResult = "error"
 typeCheckingMode = "strict"
+venvPath = "."
+venv = ".venv"
 
 [build-system]
 requires = ["setuptools", "wheel", "setuptools_scm"]

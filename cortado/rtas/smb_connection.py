@@ -8,10 +8,12 @@
 # ATT&CK: T1105
 # Description: Initiates an SMB connection to a target machine, without going through the normal Windows APIs.
 
+import logging
 import socket
-import sys
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 SMB_PORT = 445
 
@@ -24,15 +26,15 @@ SMB_PORT = 445
     siem_rules=[RuleMetadata(id="c82c7d8f-fb9e-4874-a4bd-fd9e3f9becf1", name="Direct Outbound SMB Connection")],
     techniques=["T1021"],
 )
-def main(ip=None):
-    ip = ip or _common.get_ip()
+def main():
+    ip = _common.get_host_ip()
 
     # connect to rpc
-    _common.log("Connecting to {}:{}".format(ip, SMB_PORT))
+    log.info("Connecting to {}:{}".format(ip, SMB_PORT))
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((ip, 445))
-    _common.log("Sending HELLO")
-    s.send(b"HELLO!")
-    _common.log("Shutting down the connection...")
+    log.info("Sending HELLO")
+    _ = s.send(b"HELLO!")
+    log.info("Shutting down the connection...")
     s.close()
-    _common.log("Closed connection to {}:{}".format(ip, SMB_PORT))
+    log.info("Closed connection to {}:{}".format(ip, SMB_PORT))

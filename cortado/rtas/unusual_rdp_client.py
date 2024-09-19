@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -17,20 +21,20 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1021"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+    ps1_file = _common.get_resource_path("bin/Invoke-ImageLoad.ps1")
 
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     posh = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\posh.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
     dll = "C:\\Users\\Public\\mstscax.dll"
     ps1 = "C:\\Users\\Public\\Invoke-ImageLoad.ps1"
+
     _common.copy_file(user32, dll)
     _common.copy_file(powershell, posh)
-    _common.copy_file(PS1_FILE, ps1)
+    _common.copy_file(ps1_file, ps1)
 
-    _common.log("Loading mstscax.dll into posh")
-    _common.execute(
+    log.info("Loading mstscax.dll into posh")
+    _ = _common.execute_command(
         [
             posh,
             "-c",
@@ -41,6 +45,6 @@ def main():
             "-Port",
             "3389",
         ],
-        timeout=10,
+        timeout_secs=10,
     )
-    _common.remove_files(dll, ps1, posh)
+    _common.remove_files([dll, ps1, posh])

@@ -3,9 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
-
+import logging
 import subprocess
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -24,13 +27,13 @@ def main():
     # Create a dummy file
     dummy_file = "/tmp/evil"
     with open(dummy_file, "w") as script:
-        script.write("This is a dummy log file.\n")
+        _ = script.write("This is a dummy log file.\n")
 
     # Execute the shell command with the file pattern command as an argument
-    _common.log("Launching shell command to simulate non-executable file execution")
-    subprocess.Popen([shell_command, "-c", file_pattern])
+    log.info("Launching shell command to simulate non-executable file execution")
+    _ = subprocess.Popen([shell_command, "-c", file_pattern])
 
-    _common.log("RTA execution completed.")
+    log.info("RTA execution completed.")
 
     # Cleanup
     _common.remove_file(dummy_file)

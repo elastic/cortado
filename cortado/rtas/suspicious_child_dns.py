@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -18,10 +22,10 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1133"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     dns = "C:\\Users\\Public\\dns.exe"
     _common.copy_file(EXE_FILE, dns)
 
-    _common.execute([dns, "/c", EXE_FILE, "echo AAAAAA | Out-File a.txt"], timeout=5, kill=True)
-    _common.remove_files(dns)
+    _ = _common.execute_command([dns, "/c", str(EXE_FILE), "echo AAAAAA | Out-File a.txt"], timeout_secs=5)
+    _common.remove_files([dns])

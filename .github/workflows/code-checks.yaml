@@ -21,19 +21,25 @@ jobs:
         with:
           path: ./.venv
           key: venv-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
-      - name: Create a virtual env
+      - if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        name: Create a virtual env
         run: python3 -m venv ./.venv
-        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-      - name: Install dependencies
+      - if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        name: Install dependencies
         run: |
+          . .venv/bin/activate
           python -m pip install --upgrade pip
           pip install poetry
           poetry config installer.parallel false
-          poetry install --with dev
-        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+          poetry install --with dev --all-extras
       - name: Lint
         run: |
+          . .venv/bin/activate
           poetry run ruff check ./cortado
+      - name: Pyright
+        run: |
+          . .venv/bin/activate
+          poetry run pyright ./cortado
 
   unit-tests:
     runs-on: ubuntu-latest 
@@ -48,16 +54,49 @@ jobs:
         with:
           path: ./.venv
           key: venv-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
-      - name: Create a virtual env
+      - if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        name: Create a virtual env
         run: python3 -m venv ./.venv
-        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-      - name: Install dependencies
+      - if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        name: Install dependencies
         run: |
+          . .venv/bin/activate
           python -m pip install --upgrade pip
           pip install poetry
           poetry config installer.parallel false
-          poetry install --with dev
-        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+          poetry install --with dev --all-extras
       - name: Run tests
         run: |
+          . .venv/bin/activate
           poetry run pytest tests/
+
+  dependency-check-for-minimal-package:
+    runs-on: ubuntu-latest 
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        id: setup-python
+        with:
+          python-version: '3.12'
+      - name: Set up cache
+        uses: actions/cache@v4
+        id: cached-poetry-dependencies
+        with:
+          path: ./.venv
+          key: venv-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+      - if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        name: Create a virtual env
+        run: python3 -m venv ./.venv
+      - if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        name: Install dependencies
+        run: |
+          . .venv/bin/activate
+          python -m pip install --upgrade pip
+          pip install poetry
+          poetry config installer.parallel false
+          # Skipping extras to see if RTA CLI is still executable
+          poetry install --with dev
+      - name: Verify RTA CLI
+        run: |
+          . .venv/bin/activate
+          cortado-run-rta test-rta

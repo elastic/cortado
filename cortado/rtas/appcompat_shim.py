@@ -8,9 +8,12 @@
 # ATT&CK: T1138
 # Description: Use sdbinst.exe to install a binary patch/application shim.
 
+import logging
 import time
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 SHIM_FILE = "bin/CVE-2013-3893.sdb"
@@ -28,10 +31,10 @@ SHIM_FILE = "bin/CVE-2013-3893.sdb"
     ancillary_files=[SHIM_FILE],
 )
 def main():
-    _common.log("Application Compatibility Shims")
+    log.info("Application Compatibility Shims")
 
-    _common.execute(["sdbinst.exe", "-q", "-p", SHIM_FILE])
+    _ = _common.execute_command(["sdbinst.exe", "-q", "-p", SHIM_FILE])
     time.sleep(2)
 
-    _common.log("Removing installed shim", log_type="-")
-    _common.execute(["sdbinst.exe", "-u", SHIM_FILE])
+    log.info("Removing installed shim")
+    _ = _common.execute_command(["sdbinst.exe", "-u", SHIM_FILE])

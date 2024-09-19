@@ -8,10 +8,12 @@
 # ATT&CK: T1007, T1016, T1018, T1035, T1049, T1057, T1063, T1069, T1077, T1082, T1087, T1124, T1135
 # Description: Executes a list of administration tools _commonly used by attackers for enumeration.
 
-import argparse
+import logging
 import random
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -25,7 +27,9 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     ],
     techniques=["T1135", "T1069", "T1087", "T1018"],
 )
-def main(args=None):
+def main():
+    sample_size = 6
+
     slow_commands = ["gpresult.exe /z", "systeminfo.exe"]
 
     commands = [
@@ -36,13 +40,13 @@ def main(args=None):
         "net user /domain" "tasklist",
         "net view",
         "net view /domain",
-        "net view \\\\%s" % _common.get_ip(),
+        "net view \\\\%s" % _common.get_host_ip(),
         "netstat -nao",
         "whoami",
         "hostname",
         "net start",
         "tasklist /svc",
-        "net time \\\\%s" % _common.get_ip(),
+        "net time \\\\%s" % _common.get_host_ip(),
         "net use",
         "net view",
         "net start",
@@ -55,27 +59,16 @@ def main(args=None):
     ]
 
     commands.extend(slow_commands)
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "-s",
-        "--sample",
-        dest="sample",
-        default=len(commands),
-        type=int,
-        help="Number of commands to run, chosen at random from the list of enumeration commands",
-    )
-    args = parser.parse_args(args)
-    sample = min(len(commands), args.sample)
+    sample = min(len(commands), sample_size)
 
     if sample < len(commands):
         random.shuffle(commands)
 
-    _common.log("Running {} out of {} enumeration commands\n".format(sample, len(commands)))
+    log.info("Running {} out of {} enumeration commands\n".format(sample, len(commands)))
     for command in commands[0:sample]:
-        _common.log("About to call {}".format(command))
+        log.info("Running `{command}`")
         if command in slow_commands:
-            _common.execute(command, kill=True, timeout=15)
-            _common.log("[output suppressed]", log_type="-")
+            code, _, _ = _common.execute_command([command], shell=True, timeout_secs=15)
         else:
-            _common.execute(command)
+            code, _, _ = _common.execute_command([command], shell=True)
+        log.info(f"Retcode for `{command}`: {code}")

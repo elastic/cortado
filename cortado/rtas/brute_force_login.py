@@ -9,12 +9,14 @@
 # Description: Simulates brute force or password spraying tactics.
 #              Remote audit failures must be enabled to trigger: `auditpol /set /subcategory:"Logon" /failure:enable`
 
+import logging
 import random
 import string
-import sys
 import time
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -27,14 +29,17 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     ],
     techniques=["T1110"],
 )
-def main(username="rta-tester", remote_host=None):
+def main():
+    username = "rta-tester"
+    remote_host = None
+
     if not remote_host:
-        _common.log("A remote host is required to detonate this RTA", "!")
-        return _common.MISSING_REMOTE_HOST
+        log.error("A remote host is required to detonate this RTA")
+        raise _common.ExecutionError("Remote host is not provided")
 
-    _common.enable_logon_auditing(remote_host)
+    _ = _common.enable_logon_audit(remote_host)
 
-    _common.log("Brute forcing login with invalid password against {}".format(remote_host))
+    log.info("Brute forcing login with invalid password against {}".format(remote_host))
     ps_command = """
     $PW = ConvertTo-SecureString "such-secure-passW0RD!" -AsPlainText -Force
     $CREDS = New-Object System.Management.Automation.PsCredential {username}, $PW
@@ -46,23 +51,23 @@ def main(username="rta-tester", remote_host=None):
         ps_command.format(username=username, host=remote_host),
     ]
 
-    # fail 4 times - the first 3 concurrently and wait for the final to complete
-    for i in range(4):
-        _common.execute(command, wait=i == 3)
+    # fail 4 times
+    for _ in range(4):
+        _ = _common.execute_command(command, timeout_secs=2)
 
     time.sleep(1)
 
-    _common.log("Password spraying against {}".format(remote_host))
+    log.info("Password spraying against {}".format(remote_host))
 
-    # fail 5 times - the first 4 concurrently and wait for the final to complete
-    for i in range(5):
+    # fail 5 times
+    for _ in range(5):
         random_user = "".join(random.sample(string.ascii_letters, 10))
         command = [
             "powershell",
             "-c",
             ps_command.format(username=random_user, host=remote_host),
         ]
-        _common.execute(command, wait=i == 4)
+        _ = _common.execute_command(command)
 
     # allow time for audit event to process
     time.sleep(2)

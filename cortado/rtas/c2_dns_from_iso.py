@@ -3,8 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 from pathlib import Path
-from . import register_code_rta, OSType, RuleMetadata
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -22,11 +26,11 @@ from . import register_code_rta, OSType, RuleMetadata
 )
 def main():
     # iso contains ping.exe to test for rules looking for suspicious DNS queries from mounted ISO file
-    ISO = _common.get_path("bin", "ping_dns_from_iso.iso")
+    ISO = _common.get_resource_path("bin/ping_dns_from_iso.iso")
     PROC = "ping.exe"
 
     # ps script to mount, execute a file and unmount ISO device
-    PS_SCRIPT = _common.get_path("bin", "ExecFromISOFile.ps1")
+    PS_SCRIPT = _common.get_resource_path("bin/ExecFromISOFile.ps1")
 
     if Path(ISO).is_file() and Path(PS_SCRIPT).is_file():
         print(f"[+] - ISO File {ISO} will be mounted and executed via powershell")
@@ -36,6 +40,6 @@ def main():
             # import ExecFromISO function that takes two args -ISOFIle pointing to ISO file path and -procname pointing to the filename to execute and -cmdline for arguments
             # command = "powershell.exe -ExecutionPol Bypass -c import-module " + psf + '; ExecFromISO -ISOFile ' + ISO + ' -procname '+ PROC + ' -cmdline ' + domain + ';'
             command = f"powershell.exe -ExecutionPol Bypass -c import-module {PS_SCRIPT}; ExecFromISO -ISOFile {ISO} -procname {PROC} -cmdline {domain};"
-            _common.execute(command)
+            _ = _common.execute_command([command])
 
-        print(f"[+] - RTA Done!")
+        print("[+] - RTA Done!")

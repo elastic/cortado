@@ -8,9 +8,12 @@
 # ATT&CK: T1175
 # Description: Execute a command to simulate lateral movement using Distributed Component Object Model (DCOM) with MMC
 
-import sys
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -23,13 +26,13 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     ],
     techniques=["T1021"],
 )
-def main(remote_host=None):
-    remote_host = remote_host or _common.get_ip()
-    _common.log("DCOM Lateral Movement with MMC")
+def main():
+    remote_host = _common.get_host_ip()
+    log.info("DCOM Lateral Movement with MMC")
 
-    _common.log("Attempting to move laterally to {}".format(remote_host))
-    remote_host = _common.get_ipv4_address(remote_host)
-    _common.log("Using IP address {}".format(remote_host))
+    log.info("Attempting to move laterally to {}".format(remote_host))
+    remote_host = _common.resolve_hostname(remote_host)
+    log.info("Using IP address {}".format(remote_host))
 
     # Prepare PowerShell command for DCOM lateral movement
 
@@ -45,4 +48,4 @@ def main(remote_host=None):
     command = ["powershell", "-c", ps_command]
 
     # Execute command
-    _common.execute(command, timeout=15, kill=True)
+    _ = _common.execute_command(command, timeout_secs=15)

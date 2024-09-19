@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -18,7 +22,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1218", "T1036"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     msiexec = "C:\\Users\\Public\\msiexec.exe"
     _common.copy_file(EXE_FILE, msiexec)
@@ -27,7 +31,10 @@ def main():
     rem_reg_cmd = "Remove-ItemProperty -Path 'HKLM:\\SOFTWARE' -Name 'InstallSource'"
 
     # Execute command
-    _common.log("Creating reg key using fake msiexec")
-    _common.execute([msiexec, "/c", set_reg_cmd, "; cmd.exe", "/V"], timeout=5, kill=True)
-    _common.execute([msiexec, "/c", rem_reg_cmd], timeout=5, kill=True)
+    log.info("Creating reg key using fake msiexec")
+    _ = _common.execute_command([msiexec, "/c", set_reg_cmd, "; cmd.exe", "/V"], timeout_secs=5)
+    _ = _common.execute_command(
+        [msiexec, "/c", rem_reg_cmd],
+        timeout_secs=5,
+    )
     _common.remove_file(msiexec)

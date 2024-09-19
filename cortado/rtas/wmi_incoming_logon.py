@@ -8,9 +8,12 @@
 # ATT&CK: T1047
 # Description: Uses PS WMI to trigger 2 logon events via wmi and 1 control logon, which should result in 2 alerts total
 
-import sys
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -21,14 +24,16 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     siem_rules=[RuleMetadata(id="f3475224-b179-4f78-8877-c2bd64c26b88", name="WMI Incoming Lateral Movement")],
     techniques=["T1047"],
 )
-def main(remote_host=None):
+def main():
+    remote_host = None
+
     if not remote_host:
-        _common.log("A remote host is required to detonate this RTA", "!")
-        return _common.MISSING_REMOTE_HOST
+        log.error("A remote host is required to detonate this RTA")
+        raise _common.ExecutionError("Remote host is not provided")
 
-    _common.enable_logon_auditing(remote_host)
+    _ = _common.enable_logon_audit(remote_host)
 
-    _common.log("Attempting to trigger a remote logon on {}".format(remote_host))
+    log.info("Attempting to trigger a remote logon on {}".format(remote_host))
 
     commands = [
         "Invoke-WmiMethod -ComputerName {} -Class Win32_process -Name create -ArgumentList {}".format(remote_host, c)
@@ -37,7 +42,7 @@ def main(remote_host=None):
 
     # trigger twice
     for command in commands:
-        _common.execute(["powershell", "-c", command])
+        _ = _common.execute_command(["powershell", "-c", command])
 
     # this should not trigger an alert
-    _common.execute(["net.exe", "time", "\\\\{}".format(remote_host)])
+    _ = _common.execute_command(["net.exe", "time", "\\\\{}".format(remote_host)])

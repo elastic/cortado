@@ -3,8 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 from pathlib import Path
-from . import _common, RuleMetadata, register_code_rta, OSType
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -20,8 +24,8 @@ def main():
     cal_calendar = cal_dir.joinpath("test.calendar", "Events")
     cal_calendar.mkdir(parents=True, exist_ok=True)
     cal_path = str(cal_calendar.joinpath("test.ics"))
-    _common.log(f"Executing file modification on {cal_path} to mimic suspicious calendar file modification")
-    _common.temporary_file_helper("testing", file_name=cal_path)
+    log.info(f"Executing file modification on {cal_path} to mimic suspicious calendar file modification")
+    _common.create_file_with_data(cal_path, "testing")
 
     # cleanup
     _common.remove_directory(str(cal_calendar))

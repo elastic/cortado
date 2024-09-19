@@ -3,10 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
-
-
+import logging
 from pathlib import Path
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -23,23 +25,27 @@ def main():
     masquerade = "/tmp/bash"
     masquerade2 = "/tmp/testmodify"
 
-    tmp_file = f"{Path.home()}/Library/LaunchAgents/com.apple.test.plist"
+    tmp_file = Path(f"{Path.home()}/Library/LaunchAgents/com.apple.test.plist")
 
     # create tmp file
-    if not Path(tmp_file).exists():
-        Path(tmp_file).write_text("test")
+    if not tmp_file.exists():
+        _ = tmp_file.write_text("test")
 
     # create masquerades
     _common.copy_file("/bin/bash", masquerade)
     _common.create_macos_masquerade(masquerade2)
 
     # remove signature
-    _common.execute(["codesign", "--remove-signature", masquerade], timeout=5, kill=True)
+    _ = _common.execute_command(["codesign", "--remove-signature", masquerade], timeout_secs=5)
 
     # Execute commands
-    _common.log("Launching fake commands to modify com.apple.test.plist")
+    log.info("Launching fake commands to modify com.apple.test.plist")
     command = f"{masquerade} -c echo '1' >> {tmp_file}"
-    _common.execute([masquerade2, "childprocess", command], shell=True, timeout=5, kill=True)
+    _ = _common.execute_command(
+        [masquerade2, "childprocess", command],
+        shell=True,
+        timeout_secs=5,
+    )
 
     # cleanup
     _common.remove_file(masquerade)

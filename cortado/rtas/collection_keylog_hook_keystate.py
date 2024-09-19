@@ -3,14 +3,86 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+import sys
+import time
 
-import time, sys
+from . import OSType, RuleMetadata, register_code_rta
+
+log = logging.getLogger(__name__)
+
 
 WH_KEYBOARD_LL = 13
 WM_KEYDOWN = 0x0100
 HC_ACTION = 0
 hHook = None
+
+
+def GetAsyncKeyState():
+    from ctypes import windll  # type: ignore
+
+    user32 = windll.user32  # type: ignore
+
+    special_keys = {
+        0x08: "BS",
+        0x09: "Tab",
+        0x0D: "Enter",
+        0x10: "Shift",
+        0x11: "Ctrl",
+        0x12: "Alt",
+        0x14: "CapsLock",
+        0x1B: "Esc",
+        0x20: "Space",
+        0x2E: "Del",
+    }
+
+    # reset key states
+    for i in range(256):
+        user32.GetAsyncKeyState(i)  # type: ignore
+
+    start = time.time()
+    while time.time() - start < 5:
+        for i in range(256):
+            if user32.GetAsyncKeyState(i) & 1:  # type: ignore
+                if i in special_keys:
+                    print("<{}>".format(special_keys[i]))
+                elif 0x30 <= i <= 0x5A:
+                    print("{:c}".format(i))
+                else:
+                    print("{:02x}".format(i))
+        time.sleep(0.01)
+        sys.stdout.flush()  # type: ignore
+
+
+def hook_procedure(code, w_param, l_paraml):  # type: ignore
+    import ctypes
+
+    global hHook
+    user32 = ctypes.windll.user32  # type: ignore
+
+    if code == HC_ACTION and w_param == WM_KEYDOWN:  # type: ignore
+        print("Key down")
+
+    return user32.CallNextHookEx(hHook, code, w_param, l_paraml)  # type: ignore
+
+
+def SetWindowsHookEx():
+    import ctypes
+    from ctypes.wintypes import LPARAM, WPARAM
+
+    global hHook
+    user32 = ctypes.windll.user32  # type: ignore
+    hookproc = ctypes.WINFUNCTYPE(ctypes.HRESULT, ctypes.c_int, WPARAM, LPARAM)  # type: ignore
+    proc = hookproc(hook_procedure)  # type: ignore
+    hHook = user32.SetWindowsHookExA(WH_KEYBOARD_LL, proc, 0, 0)  # type: ignore
+
+    start = time.time()
+    while True:
+        user32.PeekMessageA(0, 0, 0, 0, 0)  # type: ignore
+        time.sleep(0.01)
+        if time.time() >= (start + 5):
+            print("Finished")
+            break
 
 
 @register_code_rta(
@@ -32,73 +104,6 @@ hHook = None
     siem_rules=[],
     techniques=["T1056", "T1056.001"],
 )
-def GetAsyncKeyState():
-    from ctypes import windll
-
-    user32 = windll.user32
-
-    special_keys = {
-        0x08: "BS",
-        0x09: "Tab",
-        0x0D: "Enter",
-        0x10: "Shift",
-        0x11: "Ctrl",
-        0x12: "Alt",
-        0x14: "CapsLock",
-        0x1B: "Esc",
-        0x20: "Space",
-        0x2E: "Del",
-    }
-
-    # reset key states
-    for i in range(256):
-        user32.GetAsyncKeyState(i)
-
-    start = time.time()
-    while time.time() - start < 5:
-        for i in range(256):
-            if user32.GetAsyncKeyState(i) & 1:
-                if i in special_keys:
-                    print("<{}>".format(special_keys[i]))
-                elif 0x30 <= i <= 0x5A:
-                    print("{:c}".format(i))
-                else:
-                    print("{:02x}".format(i))
-        time.sleep(0.01)
-        sys.stdout.flush()
-
-
-def hook_procedure(code, w_param, l_paraml):
-    import ctypes
-
-    global hHook
-    user32 = ctypes.windll.user32
-
-    if code == HC_ACTION and w_param == WM_KEYDOWN:
-        print("Key down")
-
-    return user32.CallNextHookEx(hHook, code, w_param, l_paraml)
-
-
-def SetWindowsHookEx():
-    import ctypes
-    from ctypes.wintypes import LPARAM, WPARAM
-
-    global hHook
-    user32 = ctypes.windll.user32
-    hookproc = ctypes.WINFUNCTYPE(ctypes.HRESULT, ctypes.c_int, WPARAM, LPARAM)
-    proc = hookproc(hook_procedure)
-    hHook = user32.SetWindowsHookExA(WH_KEYBOARD_LL, proc, 0, 0)
-
-    start = time.time()
-    while True:
-        user32.PeekMessageA(0, 0, 0, 0, 0)
-        time.sleep(0.01)
-        if time.time() >= (start + 5):
-            print("Finished")
-            break
-
-
 def main():
     SetWindowsHookEx()
     GetAsyncKeyState()

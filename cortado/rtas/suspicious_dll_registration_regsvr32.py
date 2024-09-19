@@ -8,7 +8,11 @@
 # ATT&CK: T1117
 # Description: Pretends to register DLL without traditional DLL extension using RegSvr32
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -20,6 +24,6 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=[],
 )
 def main():
-    _common.log("Suspicious DLL Registration by Regsvr32")
+    log.info("Suspicious DLL Registration by Regsvr32")
 
-    _common.execute(["regsvr32.exe", "-s", "meow.txt"])
+    _ = _common.execute_command(["regsvr32.exe", "-s", "meow.txt"])

@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -17,21 +21,21 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1220", "T1047", "T1036"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+    exe_file = _common.get_resource_path("bin/renamed_posh.exe")
+    ps1_file = _common.get_resource_path("bin/Invoke-ImageLoad.ps1")
 
     wmic = "C:\\Users\\Public\\wmic.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
     dll = "C:\\Users\\Public\\jscript.dll"
     ps1 = "C:\\Users\\Public\\Invoke-ImageLoad.ps1"
-    _common.copy_file(EXE_FILE, wmic)
+    _common.copy_file(exe_file, wmic)
     _common.copy_file(user32, dll)
-    _common.copy_file(PS1_FILE, ps1)
+    _common.copy_file(ps1_file, ps1)
 
-    _common.log("Loading jscript.dll into fake wmic")
-    _common.execute(
+    log.info("Loading jscript.dll into fake wmic")
+    _ = _common.execute_command(
         [wmic, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}; echo /format:"],
-        timeout=10,
+        timeout_secs=10,
     )
 
-    _common.remove_files(wmic, dll, ps1)
+    _common.remove_files([wmic, dll, ps1])

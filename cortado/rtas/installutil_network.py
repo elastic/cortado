@@ -10,10 +10,13 @@
 # Elastic detection: Unusual Network Activity from a Windows System Binary
 # Description: Uses mock .NET malware and InstallUtil to create network activity from InstallUtil.
 
+import logging
 import sys
 from pathlib import Path
 
-from . import register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 MY_DOT_NET_EXE = "bin/mydotnet.exe"
 
@@ -33,42 +36,39 @@ MY_DOT_NET_EXE = "bin/mydotnet.exe"
     ancillary_files=[MY_DOT_NET_EXE],
 )
 def main():
-    server, ip, port = _common.serve_web()
+    server, _, port = _common.serve_dir_over_http()
     _common.clear_web_cache()
 
-    target_app = "mydotnet.exe"
-    _common.patch_file(
-        MY_DOT_NET_EXE,
-        _common.wchar(":8000"),
-        _common.wchar(":%d" % port),
+    target_app = Path("mydotnet.exe")
+    _common.patch_file_with_bytes(
+        _common.get_resource_path(MY_DOT_NET_EXE),
+        _common.as_wchar(":8000"),
+        _common.as_wchar(":%d" % port),
         target_file=target_app,
     )
 
     install_util64 = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\InstallUtil.exe"
     install_util86 = "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\InstallUtil.exe"
-    fallback = False
 
+    install_util = None
     if Path(install_util64).is_file():
         install_util = install_util64
     elif Path(install_util86).is_file():
         install_util = install_util86
-    else:
-        install_util = None
-        fallback = True
 
-    if not fallback:
+    if install_util:
         _common.clear_web_cache()
-        _common.execute([install_util, "/logfile=", "/LogToConsole=False", "/U", target_app])
+        _ = _common.execute_command([install_util, "/logfile=", "/LogToConsole=False", "/U", target_app])
 
     else:
-        _common.log("Unable to find InstallUtil, creating temp file")
+        log.info("Unable to find InstallUtil, creating temp file")
         install_util = Path("InstallUtil.exe").resolve()
         _common.copy_file(sys.executable, install_util)
-        _common.execute(
+        _ = _common.execute_command(
             [
                 install_util,
                 "-c",
-                "import urllib; urllib.urlopen('http://%s:%d')" % (_common.get_ip(), port),
+                "import urllib; urllib.urlopen('http://%s:%d')" % (_common.get_host_ip(), port),
             ]
         )
         _common.remove_file(install_util)

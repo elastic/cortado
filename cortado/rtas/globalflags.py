@@ -9,7 +9,11 @@
 # Description: Uses GlobalFlags option in Image File Execution Options to silently execute calc.exe after the monitored
 #              process (notepad.exe) is closed.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, _const, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -21,13 +25,17 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1546"],
 )
 def main():
-    _common.log("Setting up persistence using Globalflags")
+    log.info("Setting up persistence using Globalflags")
     ifeo_subkey = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\netstat.exe"
     spe_subkey = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\SilentProcessExit\\netstat.exe"
 
-    with _common.temporary_reg(_common.HKLM, ifeo_subkey, "GlobalFlag", 512, _common.DWORD), _common.temporary_reg(
-        _common.HKLM, spe_subkey, "ReportingMode", 1, _common.DWORD
-    ), _common.temporary_reg(_common.HKLM, spe_subkey, "MonitorProcess", "C:\\Windows\\system32\\whoami.exe"):
-        _common.log("Opening and closing netstat")
-        _common.execute(["whoami"], shell=True)
-        _common.execute(["taskkill", "/F", "/IM", "netstat.exe"])
+    with _common.temp_registry_value(
+        _const.REG_HKLM, ifeo_subkey, "GlobalFlag", 512, _const.DWORD
+    ), _common.temp_registry_value(
+        _const.REG_HKLM, spe_subkey, "ReportingMode", 1, _const.DWORD
+    ), _common.temp_registry_value(
+        _const.REG_HKLM, spe_subkey, "MonitorProcess", "C:\\Windows\\system32\\whoami.exe"
+    ):
+        log.info("Opening and closing netstat")
+        _ = _common.execute_command(["whoami"], shell=True)
+        _ = _common.execute_command(["taskkill", "/F", "/IM", "netstat.exe"])

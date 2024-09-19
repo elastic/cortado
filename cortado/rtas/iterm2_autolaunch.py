@@ -3,9 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
-
+import logging
 from pathlib import Path
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -33,9 +36,9 @@ def main():
     _common.create_macos_masquerade(masquerade_bash)
 
     # Execute command
-    _common.log("Spawning bash from fake iterm2 commands")
+    log.info("Spawning bash from fake iterm2 commands")
     command = f"{masquerade_bash} /Users/test/.config/iterm2/AppSupport/Scripts/test"
-    _common.execute([iterm2, "childprocess", command], timeout=10, kill=True)
+    _ = _common.execute_command([iterm2, "childprocess", command], timeout_secs=10)
 
     # reset iterm2 and cleanup
     if restore_backup:

@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -23,8 +27,8 @@ def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 
     # Execute command
-    _common.log("Using PowerShell to connect to a DDNS provider website")
-    _common.execute(
+    log.info("Using PowerShell to connect to a DDNS provider website")
+    _ = _common.execute_command(
         [powershell, "/c", "iwr", "https://www.noip.com", "-UseBasicParsing"],
-        timeout=10,
+        timeout_secs=10,
     )

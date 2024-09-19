@@ -4,7 +4,13 @@
 # 2.0.
 
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+import os
+import time
+
+from . import OSType, RuleMetadata, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -31,8 +37,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1555.004", "T1552.001", "T1003.003"],
 )
 def main():
-    from os import path
-    import win32file
+    import win32file  # type: ignore
 
     files = [
         "%localappdata%\\Google\\Chrome\\User Data\\Default\\Login Data",
@@ -52,9 +57,9 @@ def main():
         "%appdata%\\Microsoft\\Protect\\CREDHIST",
     ]
     for item in files:
+        path = os.path.expandvars(item)
         try:
-            win32file.CreateFile(path.expandvars(item), win32file.GENERIC_READ, 0, None, 3, 0, None)
+            win32file.CreateFile(path, win32file.GENERIC_READ, 0, None, 3, 0, None)  # type: ignore
             time.sleep(2)
-        except Exception as e:
-            print(f"[x] - Failed to open {item}")
-            pass
+        except Exception:
+            log.error(f"Failed to open {item}")

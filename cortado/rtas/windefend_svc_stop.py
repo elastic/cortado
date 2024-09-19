@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -23,6 +27,6 @@ def main():
     _common.copy_file(powershell, tempshell)
 
     # Execute command
-    _common.log("Attempting to stop Windefend, which will not work unless running as SYSTEM")
-    _common.execute([tempshell, "/c", "sc.exe stop Windefend"])
+    log.info("Attempting to stop Windefend, which will not work unless running as SYSTEM")
+    _ = _common.execute_command([tempshell, "/c", "sc.exe stop Windefend"])
     _common.remove_file(tempshell)

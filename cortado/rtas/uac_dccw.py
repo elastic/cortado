@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -21,7 +25,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1129", "T1548", "T1036", "T1055", "T1574"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     dccw = "C:\\Users\\Public\\dccw.exe"
     dllhost = "C:\\Users\\Public\\dllhost.exe"
@@ -33,9 +37,9 @@ def main():
     _common.copy_file(EXE_FILE, dllhost)
 
     # Create Dir
-    _common.execute([powershell, "/c", f"New-Item -Path {dccwpath} -Type Directory"], timeout=10)
+    _ = _common.execute_command([powershell, "/c", f"New-Item -Path {dccwpath} -Type Directory"], timeout_secs=10)
     _common.copy_file(EXE_FILE, dccwpathdll)
-    _common.execute([dllhost, "/c", f"Rename-Item {dccwpathdll} {dccwpathdll2}"], timeout=10)
-    _common.execute([dccw, "/c", powershell], timeout=2, kill=True)
-    _common.remove_files(dccw, dllhost, dccwpathdll2)
-    _common.execute([powershell, "/c", f"rmdir {dccwpath} -Force"], timeout=3)
+    _ = _common.execute_command([dllhost, "/c", f"Rename-Item {dccwpathdll} {dccwpathdll2}"], timeout_secs=10)
+    _ = _common.execute_command([dccw, "/c", powershell], timeout_secs=2)
+    _common.remove_files([dccw, dllhost, dccwpathdll2])
+    _ = _common.execute_command([powershell, "/c", f"rmdir {dccwpath} -Force"], timeout_secs=3)

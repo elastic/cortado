@@ -8,7 +8,11 @@
 # ATT&CK:
 # Description: Use msiexec.exe to download an executable from a remote site over HTTP and run it.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -24,12 +28,12 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1127"],
 )
 def main():
-    _common.log("MsiExec HTTP Download")
-    server, ip, port = _common.serve_web()
+    log.info("MsiExec HTTP Download")
+    server, ip, port = _common.serve_dir_over_http()
     _common.clear_web_cache()
-    _common.execute(["msiexec.exe", "/quiet", "/i", "http://%s:%d/bin/Installer.msi" % (ip, port)])
-    _common.log("Cleanup", log_type="-")
-    _common.execute(
+    _ = _common.execute_command(["msiexec.exe", "/quiet", "/i", "http://%s:%d/bin/Installer.msi" % (ip, port)])
+    log.info("Cleanup")
+    _ = _common.execute_command(
         [
             "msiexec",
             "/quiet",

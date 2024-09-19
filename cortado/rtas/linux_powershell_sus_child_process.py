@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -21,20 +25,20 @@ def main():
 
     # Create fake nc executable
     masquerade = "/tmp/nc"
-    source = _common.get_path("bin", "linux.ditto_and_spawn")
+    source = _common.get_resource_path("bin/linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)
 
     # Create a fake pwsh script that launches nc
     with open(fake_pwsh_script, "w") as script:
-        script.write("#!/bin/bash\n")
-        script.write("/tmp/nc\n")
+        _ = script.write("#!/bin/bash\n")
+        _ = script.write("/tmp/nc\n")
 
     # Make the script executable
-    _common.execute(["chmod", "+x", fake_pwsh_script])
+    _ = _common.execute_command(["chmod", "+x", fake_pwsh_script])
 
     # Execute the fake pwsh script
-    _common.log("Launching nc as a child of fake pwsh")
-    _common.execute([fake_pwsh_script], timeout=5, kill=True, shell=True)
+    log.info("Launching nc as a child of fake pwsh")
+    _ = _common.execute_command([fake_pwsh_script], timeout_secs=5, shell=True)
 
     # Cleanup
     _common.remove_file(fake_pwsh_script)

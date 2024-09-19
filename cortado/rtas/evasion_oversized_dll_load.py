@@ -3,10 +3,13 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 import os
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 # testing DLL that will spawn notepad once DllMain is invoked
@@ -35,34 +38,34 @@ WER = "c:\\windows\\system32\\werfault.exe"
     techniques=["T1027", "T1574"],
 )
 def main():
-    import win32file
+    import win32file  # type: ignore
 
     if Path(DLL).is_file():
         tempc = os.path.expandvars("%localappdata%\\Temp\\oversized.dll")
         rta_dll = os.path.expandvars("%localappdata%\\Temp\\faultrep.dll")
         rta_pe = os.path.expandvars("%localappdata%\\Temp\\wer.exe")
         # copy files to temp
-        win32file.CopyFile(DLL, tempc, 0)
-        win32file.CopyFile(WER, rta_pe, 0)
+        win32file.CopyFile(DLL, tempc, 0)  # type: ignore
+        win32file.CopyFile(WER, rta_pe, 0)  # type: ignore
         if Path(tempc).is_file():
-            print(f"[+] - {DLL} copied to {tempc}")
-        print(f"[+] - File {tempc} will be appended with null bytes to reach 90MB in size.")
+            log.info(f"{DLL} copied to {tempc}")
+        log.info(f"File {tempc} will be appended with null bytes to reach 90MB in size.")
         # append null bytes to makde the DLL oversized 90+MB in size
         with open(tempc, "rb+") as binfile:
-            binfile.seek(100000000)
-            binfile.write(b"\x00")
+            _ = binfile.seek(100000000)
+            _ = binfile.write(b"\x00")
 
         # copied via cmd to trigger the rule - python is signed and won't trigger the file mod part of the rule
-        _common.execute(["cmd.exe", "/c", "copy", tempc, rta_dll])
+        _ = _common.execute_command(["cmd.exe", "/c", "copy", tempc, rta_dll])
         if Path(rta_dll).is_file() and Path(rta_pe).is_file():
             # should trigger rundll32 rules
-            _common.execute(["rundll32.exe", rta_dll, "DllMain"])
+            _ = _common.execute_command(["rundll32.exe", rta_dll, "DllMain"])
             # should trigger dll sideload from current dir
-            _common.execute(rta_pe)
+            _ = _common.execute_command([rta_pe])
         # cleanup
-        _common.execute(["taskkill", "/f", "/im", "notepad.exe"])
-        print(f"[+] - Cleanup.")
+        _ = _common.execute_command(["taskkill", "/f", "/im", "notepad.exe"])
+        log.info("Cleanup.")
         win32file.DeleteFile(tempc)
         win32file.DeleteFile(rta_dll)
         win32file.DeleteFile(rta_pe)
-        print(f"[+] - RTA Done!")
+        log.info("RTA Done!")

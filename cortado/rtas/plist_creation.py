@@ -3,9 +3,17 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
-
+import logging
+import time
 from pathlib import Path
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
+
+
+def pause():
+    time.sleep(1)
 
 
 @register_code_rta(
@@ -27,23 +35,23 @@ def main():
 
     # Create launch agents dir if it doesn't exist
     if not launch_agents_dir.exists():
-        _common.log(f"Creating directory {launch_agents_dir}")
+        log.info(f"Creating directory {launch_agents_dir}")
         launch_agents_dir.mkdir()
 
     # Create plist file using Plistbuddy
-    _common.log("Executing PlistBuddy commands to create plist file")
-    _common.execute(
+    log.info("Executing PlistBuddy commands to create plist file")
+    _ = _common.execute_command(
         [f"{plistbuddy_bin}", "-c", "Add :Label string init_verx", f"{plist_file}"],
         shell=True,
     )
-    _common.pause()
-    _common.execute([f"{plistbuddy_bin}", "-c", "Add :RunAtLoad bool true", f"{plist_file}"])
-    _common.pause()
-    _common.execute([f"{plistbuddy_bin}", "-c", "Add :StartInterval integer 3600", f"{plist_file}"])
-    _common.pause()
-    _common.execute([f"{plistbuddy_bin}", "-c", "Add :ProgramArguments array", f"{plist_file}"])
-    _common.pause()
-    _common.execute(
+    pause()
+    _ = _common.execute_command([f"{plistbuddy_bin}", "-c", "Add :RunAtLoad bool true", f"{plist_file}"])
+    pause()
+    _ = _common.execute_command([f"{plistbuddy_bin}", "-c", "Add :StartInterval integer 3600", f"{plist_file}"])
+    pause()
+    _ = _common.execute_command([f"{plistbuddy_bin}", "-c", "Add :ProgramArguments array", f"{plist_file}"])
+    pause()
+    _ = _common.execute_command(
         [
             f"{plistbuddy_bin}",
             "-c",
@@ -51,8 +59,8 @@ def main():
             f"{plist_file}",
         ]
     )
-    _common.pause()
-    _common.execute(
+    pause()
+    _ = _common.execute_command(
         [
             f"{plistbuddy_bin}",
             "-c",
@@ -63,5 +71,5 @@ def main():
 
     # Delete the plist file if it exists
     if plist_file.exists():
-        _common.log(f"Deleting plist file {plist_file}")
+        log.info(f"Deleting plist file {plist_file}")
         plist_file.unlink()

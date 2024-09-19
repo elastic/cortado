@@ -3,8 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 import platform
-from . import _common, RuleMetadata, register_code_rta, OSType
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -24,5 +28,5 @@ def main():
         name = "com.apple.sleep_arm"
     else:
         name = "com.apple.sleep_intel"
-    path = _common.get_path("bin", name)
-    _common.execute([path, "5"], kill=True)
+    path = _common.get_resource_path(f"bin/{name}")
+    _ = _common.execute_command([path, "5"])

@@ -3,9 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -22,7 +25,7 @@ from . import _common, register_code_rta, OSType, RuleMetadata
     techniques=["T1547", "T1547.001"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     proc = "C:\\Users\\Public\\proc.exe"
     path = "C:\\Users\\Public\\AppData\\Roaming\\Microsoft\\Windows\\'Start Menu'\\Programs\\Startup\\"
@@ -30,5 +33,5 @@ def main():
     _common.copy_file(EXE_FILE, proc)
     Path(path).mkdir(parents=True, exist_ok=True)
 
-    _common.execute([proc, "/c", f"Copy-Item {EXE_FILE} {file}"], timeout=10)
-    _common.remove_files(proc, file)
+    _ = _common.execute_command([proc, "/c", f"Copy-Item {EXE_FILE} {file}"], timeout_secs=10)
+    _common.remove_files([proc, file])

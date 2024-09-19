@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -17,7 +21,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1055", "T1036"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     posh = "C:\\Users\\Public\\posh.exe"
     tiworker = "C:\\Users\\Public\\TiWorker.exe"
@@ -25,5 +29,5 @@ def main():
     _common.copy_file(EXE_FILE, tiworker)
 
     # Execute command
-    _common.execute([posh, "/c", tiworker], timeout=3, kill=True)
-    _common.remove_files(posh, tiworker)
+    _ = _common.execute_command([posh, "/c", tiworker], timeout_secs=3)
+    _common.remove_files([posh, tiworker])

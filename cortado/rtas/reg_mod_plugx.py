@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, _const, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -17,11 +21,11 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1547", "T1112", "T1219"],
 )
 def main():
-    _common.log("Temporarily creating a PlugX-like reg key...")
+    log.info("Temporarily creating a PlugX-like reg key...")
 
     key = "SOFTWARE\\CLASSES\\ms-pu\\PROXY"
     value = "Test"
     data = "Test"
 
-    with _common.temporary_reg(_common.HKLM, key, value, data):
+    with _common.temp_registry_value(_const.REG_HKLM, key, value, data):
         pass

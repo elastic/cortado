@@ -10,7 +10,11 @@
 # signal.rule.name: Trusted Developer Application Usage
 # Description: Generates network traffic from msbuild.exe
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, _const, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 MS_BUILD_EXE = "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\msbuild.exe"
@@ -30,17 +34,17 @@ MS_BUILD_EXE = "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\msbuild.exe"
     ancillary_files=[MS_BUILD_EXE],
 )
 def main():
-    _common.log("MsBuild Beacon")
-    server, ip, port = _common.serve_web()
+    log.info("MsBuild Beacon")
+    server, ip, port = _common.serve_dir_over_http()
     _common.clear_web_cache()
 
-    _common.log("Updating the callback http://%s:%d" % (ip, port))
+    log.info("Updating the callback http://%s:%d" % (ip, port))
     target_task = "tmp-file.csproj"
-    _common.copy_file(_common.get_path("bin", "BadTasks.csproj"), target_task)
+    _common.copy_file(_common.get_resource_path("bin/BadTasks.csproj"), target_task)
     new_callback = "http://%s:%d" % (ip, port)
-    _common.patch_regex(target_task, _common.CALLBACK_REGEX, new_callback)
+    _common.patch_file_with_regex(target_task, _const.CALLBACK_REGEX, new_callback)
 
-    _common.execute([MS_BUILD_EXE, target_task], timeout=30, kill=True)
+    _ = _common.execute_command([MS_BUILD_EXE, target_task], timeout_secs=30)
     _common.remove_file(target_task)
 
     server.shutdown()

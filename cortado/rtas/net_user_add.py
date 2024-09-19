@@ -9,7 +9,11 @@
 # signal.rule.name: User Account Creation
 # Description: Adds an account to the local host using the net.exe command
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -23,7 +27,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1078"],
 )
 def main():
-    _common.log("Creating local and domain user accounts using net.exe")
+    log.info("Creating local and domain user accounts using net.exe")
     commands = [
         'net.exe user macgyver $w!$$@rmy11 /add /fullname:"Angus Macgyver"',
         'net.exe user macgyver $w!$$@rmy11 /add /fullname:"Angus Macgyver" /domain',
@@ -33,13 +37,13 @@ def main():
     ]
 
     for cmd in commands:
-        _common.execute(cmd)
+        _ = _common.execute_command([cmd], shell=True)
 
     cleanup_commands = [
         "net.exe user macgyver /delete",
         "net.exe user macgyver /delete /domain",
     ]
 
-    _common.log("Removing local and domain user accounts using net.exe", log_type="-")
+    log.info("Removing local and domain user accounts using net.exe")
     for cmd in cleanup_commands:
-        _common.execute(cmd)
+        _ = _common.execute_command([cmd], shell=True)

@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -18,4 +22,6 @@ def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 
     # Execute command
-    _common.execute([powershell, "/c", "Test-NetConnection -ComputerName portquiz.net -Port 88"], timeout=5)
+    _ = _common.execute_command(
+        [powershell, "/c", "Test-NetConnection -ComputerName portquiz.net -Port 88"], timeout_secs=5
+    )

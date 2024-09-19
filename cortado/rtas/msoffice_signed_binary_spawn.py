@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -24,10 +28,10 @@ def main():
     _common.copy_file(powershell, binary)
 
     # Execute command
-    _common.log("Dropping executable using fake winword")
-    _common.execute([binary, "/c", f"Copy-Item {powershell} {temposh}"], timeout=10)
+    log.info("Dropping executable using fake winword")
+    _ = _common.execute_command([binary, "/c", f"Copy-Item {powershell} {temposh}"], timeout_secs=10)
 
-    _common.log("Executing it using fake winword")
-    _common.execute([binary, "/c", temposh], kill=True)
+    log.info("Executing it using fake winword")
+    _ = _common.execute_command([binary, "/c", temposh])
 
-    _common.remove_files(binary, temposh)
+    _common.remove_files([binary, temposh])

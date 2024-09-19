@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -18,11 +22,11 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1055", "T1218", "T1036"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "regsvr32.exe")
+    EXE_FILE = _common.get_resource_path("bin/regsvr32.exe")
 
     binary = "rundll32.exe"
     _common.copy_file(EXE_FILE, binary)
 
-    _common.log("Making connection using fake rundll32.exe")
-    _common.execute([binary])
-    _common.remove_files(binary)
+    log.info("Making connection using fake rundll32.exe")
+    _ = _common.execute_command([binary])
+    _common.remove_files([binary])

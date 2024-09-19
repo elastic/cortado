@@ -3,11 +3,10 @@ import functools
 import importlib
 import importlib.resources
 import logging
-from dataclasses import dataclass, KW_ONLY, field
-from typing import Callable
+from dataclasses import KW_ONLY, dataclass, field
 from types import MappingProxyType
+from typing import Callable
 
-logging.basicConfig(level=logging.DEBUG)
 log = logging.getLogger(__name__)
 
 
@@ -75,7 +74,7 @@ def register_code_rta(
             code_func=func,
             ancillary_files=ancillary_files,
         )
-        log.debug(f"Code RTA registered: ${name}")
+        log.debug(f"Code RTA registered: {name}")
 
         @functools.wraps(func)
         def wrapper() -> None:
@@ -137,4 +136,4 @@ def load_module(module_name: str):
     try:
         _ = importlib.import_module(f".{module_name}", package="cortado.rtas")
     except Exception:
-        raise ValueError("Can't import RTA from the module named {name}")
+        raise ValueError(f"Can't import module named {module_name}")

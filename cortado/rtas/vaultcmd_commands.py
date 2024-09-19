@@ -8,9 +8,12 @@
 # ATT&CK: T1003
 # Description: Lists the Windows Credential Vaults on the endpoint
 
-import sys
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -24,6 +27,6 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1555", "T1003"],
 )
 def main():
-    _common.log("Searching Credential Vaults via VaultCmd")
+    log.info("Searching Credential Vaults via VaultCmd")
 
-    _common.execute(["vaultcmd.exe", "/list"])
+    _ = _common.execute_command(["vaultcmd.exe", "/list"])

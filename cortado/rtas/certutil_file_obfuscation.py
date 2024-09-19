@@ -9,8 +9,12 @@
 # signal.rule.name: Encoding or Decoding Files via CertUtil
 # Description: Uses certutil to create an encoded copy of cmd.exe. Then uses certutil to decode that copy.
 
+import logging
 from pathlib import Path
-from . import register_code_rta, OSType, RuleMetadata
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -22,10 +26,10 @@ from . import register_code_rta, OSType, RuleMetadata
     techniques=["T1140"],
 )
 def main():
-    _common.log("Encoding target")
+    log.info("Encoding target")
     encoded_file = Path("encoded.txt").resolve()
     decoded_file = Path("decoded.exe").resolve()
-    _common.execute(
+    _ = _common.execute_command(
         [
             "c:\\Windows\\System32\\certutil.exe",
             "-encode",
@@ -34,9 +38,9 @@ def main():
         ]
     )
 
-    _common.log("Decoding target")
-    _common.execute(["c:\\Windows\\System32\\certutil.exe", "-decode", encoded_file, decoded_file])
+    log.info("Decoding target")
+    _ = _common.execute_command(["c:\\Windows\\System32\\certutil.exe", "-decode", encoded_file, decoded_file])
 
-    _common.log("Cleaning up")
+    log.info("Cleaning up")
     _common.remove_file(encoded_file)
     _common.remove_file(decoded_file)

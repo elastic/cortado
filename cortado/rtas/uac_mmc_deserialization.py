@@ -3,10 +3,13 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 import os
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -22,17 +25,21 @@ from . import _common, register_code_rta, OSType, RuleMetadata
     techniques=["T1548"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    exe_file = _common.get_resource_path("bin/renamed_posh.exe")
 
     appdata = os.getenv("LOCALAPPDATA")
+
+    if not appdata:
+        raise _common.ExecutionError("No value for `LOCALAPPDATA` found")
+
     path = Path(appdata) / "\\Microsoft\\Event Viewer"
     recentfiles = path / "\\RecentViews"
 
     if path.is_dir():
-        _common.copy_file(EXE_FILE, recentfiles)
+        _common.copy_file(exe_file, recentfiles)
         _common.remove_file(recentfiles)
     else:
         path.mkdir()
-        _common.copy_file(EXE_FILE, recentfiles)
+        _common.copy_file(exe_file, recentfiles)
         _common.remove_file(recentfiles)
         path.rmdir()

@@ -8,13 +8,17 @@
 # ATT&CK: T1492
 # Description: Modifies the hosts file
 
+import logging
 import os
 import random
 import time
 from pathlib import Path
 from string import ascii_letters
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
+
 
 @register_code_rta(
     id="f24491d0-720b-4150-a2a1-45b5b07238aa",
@@ -26,14 +30,15 @@ from . import _common, register_code_rta, OSType, RuleMetadata
 )
 def main():
     hosts_files = {
-        _common.WINDOWS: "C:\\Windows\\system32\\drivers\\etc\\hosts",
-        _common.LINUX: "/etc/hosts",
-        _common.MACOS: "/private/etc/hosts",
+        OSType.WINDOWS: "C:\\Windows\\system32\\drivers\\etc\\hosts",
+        OSType.LINUX: "/etc/hosts",
+        OSType.MACOS: "/private/etc/hosts",
     }
-    hosts_file = hosts_files[_common.CURRENT_OS]
+    current_os = _common.get_current_os()
+    hosts_file = hosts_files[current_os]
 
     backup = Path(hosts_file + "_backup").resolve()
-    _common.log("Backing up original 'hosts' file.")
+    log.info("Backing up original 'hosts' file.")
     _common.copy_file(hosts_file, backup)
 
     # add randomness for diffs for FIM module
@@ -44,15 +49,15 @@ def main():
         "# 8.8.8.8 https://www.{random}.google.com".format(random=randomness),
     ]
     with open(hosts_file, "a") as f:
-        f.write("\n".join(entry))
+        _ = f.write("\n".join(entry))
 
-    _common.log("Updated hosts file")
+    log.info("Updated hosts file")
     with open(hosts_file, "r") as f:
-        _common.log(f.read())
+        log.info(f.read())
 
     time.sleep(2)
 
     # cleanup
-    _common.log("Restoring hosts from backup copy.")
+    log.info("Restoring hosts from backup copy.")
     _common.copy_file(backup, hosts_file)
     os.remove(backup)

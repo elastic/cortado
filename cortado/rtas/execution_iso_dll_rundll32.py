@@ -3,9 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 # iso contains shortcut to start Rundll32 to load a testing DLL that when executed it will spawn notepad.exe
 ISO_FILE = "bin/lnk_from_iso_rundll.iso"
@@ -26,15 +29,15 @@ LINK_FILE = "Invite.lnk"
 )
 def main():
     # ps script to mount, execute a file and unmount ISO device
-    PS_SCRIPT = _common.get_path("bin", "ExecFromISOFile.ps1")
+    PS_SCRIPT = _common.get_resource_path("bin/ExecFromISOFile.ps1")
 
     if Path(ISO_FILE).is_file() and Path(PS_SCRIPT).is_file():
-        print(f"[+] - ISO File {ISO_FILE} will be mounted and executed via powershell")
+        log.info(f"ISO File {ISO_FILE} will be mounted and executed via powershell")
 
         # import ExecFromISO function that takes two args -ISOFIle pointing to ISO file path and -procname pointing to the filename to execute
         command = f"powershell.exe -ExecutionPol Bypass -c import-module {PS_SCRIPT}; ExecFromISO -ISOFile {ISO_FILE} -procname {LINK_FILE};"
-        _common.execute(command)
+        _ = _common.execute_command([command], shell=True)
 
         # terminate notepad.exe spawned as a result of the DLL execution
-        _common.execute(["taskkill", "/f", "/im", "notepad.exe"])
-        print(f"[+] - RTA Done!")
+        _ = _common.execute_command(["taskkill", "/f", "/im", "notepad.exe"])
+        log.info("RTA Done!")

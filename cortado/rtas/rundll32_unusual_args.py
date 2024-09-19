@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -25,7 +29,7 @@ def main():
     _common.copy_file(source_dll, dll)
 
     # Execute command
-    _common.log("Spawning cmd using Rundll32")
-    _common.execute(["rundll32.exe", f"{dll},RegisterOCX", "cmd.exe"])
+    log.info("Spawning cmd using Rundll32")
+    _ = _common.execute_command(["rundll32.exe", f"{dll},RegisterOCX", "cmd.exe"])
 
-    _common.remove_files(dll)
+    _common.remove_files([dll])

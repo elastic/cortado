@@ -8,7 +8,11 @@
 # ATT&CK: T1140
 # Description: Calls PowerShell with command-line that contains base64/gzip
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -24,7 +28,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1140", "T1027", "T1059"],
 )
 def main():
-    _common.log("PowerShell with base64/gzip")
+    log.info("PowerShell with base64/gzip")
 
     command = "powershell.exe -noni -nop -w hidden -c &([scriptblock]::create((New-Object IO.StreamReader(New-Object IO.Compression.GzipStream((New-Object IO.MemoryStream(,[Convert]::FromBase64String(aaa)"  # noqa: E501
-    _common.execute(command)
+    _ = _common.execute_command([command], shell=True)

@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -20,7 +24,7 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1547"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     posh = "C:\\Windows\\posh.exe"
     _common.copy_file(EXE_FILE, posh)
@@ -32,7 +36,7 @@ def main():
     rem_cmd = "Remove-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run' -Name Test"
 
     # Execute command
-    _common.log("Fake ms word reg mod...")
-    _common.execute([posh, "/c", cmd], timeout=10)
-    _common.execute([posh, "/c", rem_cmd], timeout=10)
+    log.info("Fake ms word reg mod...")
+    _ = _common.execute_command([posh, "/c", cmd], timeout_secs=10)
+    _ = _common.execute_command([posh, "/c", rem_cmd], timeout_secs=10)
     _common.remove_file(posh)

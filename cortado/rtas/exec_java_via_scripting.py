@@ -3,8 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 from pathlib import Path
-from . import register_code_rta, OSType, RuleMetadata
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 EXE_FILE = "bin/renamed_posh.exe"
 
@@ -35,13 +39,13 @@ def main():
     _common.copy_file(EXE_FILE, executable)
 
     # Execute command
-    _common.execute(
+    _ = _common.execute_command(
         [
             cscript,
             "/c",
             argpath,
             ("iwr google.com -UseBasicParsing -UserAgent " "'C:\\Users\\Public\\' -SessionVariable '-jar'"),
         ],
-        timeout=10,
+        timeout_secs=10,
     )
-    _common.remove_files(cscript, executable)
+    _common.remove_files([cscript, executable])

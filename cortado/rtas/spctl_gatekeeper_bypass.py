@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -19,8 +23,8 @@ def main():
     _common.create_macos_masquerade(masquerade)
 
     # Execute command
-    _common.log("Executing fake spctl for Gatekeeper defensive evasion.")
-    _common.execute([masquerade, "spctl", "--master-disable"], timeout=10, kill=True)
+    log.info("Executing fake spctl for Gatekeeper defensive evasion.")
+    _ = _common.execute_command([masquerade, "spctl", "--master-disable"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

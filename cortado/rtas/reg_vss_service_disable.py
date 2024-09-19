@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, _const, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -23,13 +27,13 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1218", "T1112", "T1486", "T1490", "T1059"],
 )
 def main():
-    HIGHENTROPY = _common.get_path("bin", "highentropy.txt")
+    HIGHENTROPY = _common.get_resource_path("bin/highentropy.txt")
 
     key = "SYSTEM\\CurrentControlSet\\Services\\VSS"
     value = "Start"
     data = 4
 
-    with _common.temporary_reg(_common.HKLM, key, value, data, data_type="dword"):
+    with _common.temp_registry_value(_const.REG_HKLM, key, value, data, data_type="dword"):
         pass
 
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
@@ -37,5 +41,5 @@ def main():
     jpgenc = "C:\\Users\\Public\\jpg.enc"
     # Creating a high entropy file, and executing the rename operation
     _common.copy_file(HIGHENTROPY, jpg)
-    _common.execute([powershell, "/c", f"Rename-Item {jpg} {jpgenc}"], timeout=10)
-    _common.execute([powershell, "/c", "Remove-Item 'C:\\Users\\Public\\*jpg*' -Force"], timeout=10)
+    _ = _common.execute_command([powershell, "/c", f"Rename-Item {jpg} {jpgenc}"], timeout_secs=10)
+    _ = _common.execute_command([powershell, "/c", "Remove-Item 'C:\\Users\\Public\\*jpg*' -Force"], timeout_secs=10)

@@ -9,10 +9,14 @@
 # Description: Runs BitsAdmin to download file via command line.
 
 
+import logging
 import subprocess
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
+
 
 @register_code_rta(
     id="aee48793-01ec-428f-9890-c5db9df07830",
@@ -23,17 +27,17 @@ from . import _common, register_code_rta, OSType, RuleMetadata
     techniques=["T1566"],
 )
 def main():
-    _common.log("Running Windows BitsAdmin to Download")
-    server, ip, port = _common.serve_web()
+    log.info("Running Windows BitsAdmin to Download")
+    _, ip, port = _common.serve_dir_over_http()
     url = "http://" + ip + ":" + str(port) + "/bin/myapp.exe"
     dest_path = Path("myapp-test.exe").resolve()
     fake_word = Path("winword.exe").resolve()
 
-    _common.log("Emulating parent process: {parent}".format(parent=fake_word))
+    log.info("Emulating parent process: {parent}".format(parent=fake_word))
     _common.copy_file("C:\\Windows\\System32\\cmd.exe", fake_word)
 
     command = subprocess.list2cmdline(["bitsadmin.exe", "/Transfer", "/Download", url, dest_path])
-    _common.execute([fake_word, "/c", command], timeout=15, kill=True)
-    _common.execute(["taskkill", "/f", "/im", "bitsadmin.exe"])
+    _ = _common.execute_command([fake_word, "/c", command], timeout_secs=15)
+    _ = _common.execute_command(["taskkill", "/f", "/im", "bitsadmin.exe"])
 
-    _common.remove_files(dest_path, fake_word)
+    _common.remove_files([dest_path, fake_word])

@@ -8,11 +8,15 @@
 # ATT&CK: T1064
 # Description: MS Office writes executable file and it is run.
 
+import logging
 import os
 import time
 from pathlib import Path
 
-from . import register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
+
 
 @register_code_rta(
     id="ce85674f-fb6c-44d5-b880-4ce9062e1028",
@@ -30,17 +34,17 @@ def main():
     cmd_path = "c:\\windows\\system32\\cmd.exe"
 
     for office_app in ["winword.exe", "excel.exe", "powerpnt.exe", "outlook.exe"]:
-        _common.log("Emulating office application %s" % office_app)
+        log.info("Emulating office application %s" % office_app)
         office_path = Path(office_app).resolve()
         _common.copy_file(cmd_path, office_path)
 
         bad_path = Path("bad-{}-{}.exe".format(hash(office_app), os.getpid())).resolve()
-        _common.execute([office_path, "/c", "copy", cmd_path, bad_path])
+        _ = _common.execute_command([office_path, "/c", "copy", cmd_path, bad_path])
 
         time.sleep(1)
-        _common.execute([bad_path, "/c", "whoami"])
+        _ = _common.execute_command([bad_path, "/c", "whoami"])
 
         # cleanup
         time.sleep(1)
-        _common.remove_files(office_app, bad_path)
+        _common.remove_files([office_app, bad_path])
         print("")

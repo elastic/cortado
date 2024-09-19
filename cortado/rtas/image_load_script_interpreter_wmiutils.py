@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -19,8 +23,8 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1566", "T1566.001"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
+    PS1_FILE = _common.get_resource_path("bin/Invoke-ImageLoad.ps1")
 
     cscript = "C:\\Users\\Public\\cscript.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
@@ -32,7 +36,7 @@ def main():
     _common.copy_file(PS1_FILE, ps1)
     _common.copy_file(EXE_FILE, wmiprvse)
 
-    _common.log("Loading wmiutils.dll into fake cscript")
-    _common.execute([cscript, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout=10)
-    _common.execute([wmiprvse, "/c", cscript], timeout=1, kill=True)
-    _common.remove_files(cscript, dll, ps1)
+    log.info("Loading wmiutils.dll into fake cscript")
+    _ = _common.execute_command([cscript, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout_secs=10)
+    _ = _common.execute_command([wmiprvse, "/c", cscript], timeout_secs=1)
+    _common.remove_files([cscript, dll, ps1])

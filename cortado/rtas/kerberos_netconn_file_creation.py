@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -24,5 +28,5 @@ def main():
     cmd1 = "Test-NetConnection -ComputerName portquiz.net -Port 445"
     cmd2 = "echo 'aaa' > a.kirbi; rm a.kirbi"
     # Execute command
-    _common.log("Connecting to port 88 and creating a empty .kirbi file")
-    _common.execute([powershell, "/c", cmd1, ";", cmd2], timeout=10)
+    log.info("Connecting to port 88 and creating a empty .kirbi file")
+    _ = _common.execute_command([powershell, "/c", cmd1, ";", cmd2], timeout_secs=10)

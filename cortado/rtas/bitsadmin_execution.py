@@ -3,9 +3,13 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 import subprocess
 from pathlib import Path
-from . import _common, RuleMetadata, register_code_rta, OSType
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -22,14 +26,14 @@ from . import _common, RuleMetadata, register_code_rta, OSType
 def main():
     # FIXME
     ROOT_DIR = Path(__file__).parent
-    EXE_FILE = _common.get_path("bin", "renamed.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed.exe")
 
     fake_word = ROOT_DIR / "winword.exe"
-    _common.log(f"Copying {EXE_FILE} to {fake_word}")
+    log.info(f"Copying {EXE_FILE} to {fake_word}")
     _common.copy_file(EXE_FILE, fake_word)
 
     command = subprocess.list2cmdline(["bitsadmin.exe", "/Transfer", "/Download"])
-    _common.execute([fake_word, "/c", command], timeout=15, kill=True)
-    _common.execute(["taskkill", "/f", "/im", "bitsadmin.exe"])
+    _ = _common.execute_command([fake_word, "/c", command], timeout_secs=15)
+    _ = _common.execute_command(["taskkill", "/f", "/im", "bitsadmin.exe"])
 
-    _common.remove_files(fake_word)
+    _common.remove_files([fake_word])

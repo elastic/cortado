@@ -3,8 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 from pathlib import Path
-from . import _common, RuleMetadata, register_code_rta, OSType
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -18,5 +22,5 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1543"],
 )
 def main():
-    _common.log("Executing file modification on com.apple.dock.plist to mimic dock plist modification")
-    _common.temporary_file_helper("testing", file_name=f"{Path.home()}/Library/Preferences/com.apple.dock.plist")
+    log.info("Executing file modification on com.apple.dock.plist to mimic dock plist modification")
+    _common.create_file_with_data(f"{Path.home()}/Library/Preferences/com.apple.dock.plist", "testing")

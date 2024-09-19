@@ -3,10 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
-
-
+import logging
 from pathlib import Path
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -20,9 +22,9 @@ from pathlib import Path
     techniques=[""],
 )
 def main():
-    _common.log("Executing creation on temp StartupParameters.plist file.")
+    log.info("Executing creation on temp StartupParameters.plist file.")
     plist = "/Library/StartupItems/test/StartupParameters.plist"
     output_file = Path(plist)
     output_file.parent.mkdir(exist_ok=True, parents=True)
-    _common.temporary_file_helper("testing", file_name=str(plist))
+    _common.create_file_with_data(str(plist), "testing")
     _common.remove_directory("/Library/StartupItems/test/")

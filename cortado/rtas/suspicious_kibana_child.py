@@ -3,10 +3,13 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 import pathlib
 import sys
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -25,17 +28,17 @@ def main() -> None:
     pathlib.Path(executable_dir).mkdir(parents=True, exist_ok=True)
     masquerade2 = "/tmp/bash"
     # Using the Linux binary that simulates parent-> child process in Linux
-    source = _common.get_path("bin", "linux_ditto_and_spawn_parent_child")
+    source = _common.get_resource_path("bin/linux_ditto_and_spawn_parent_child")
     _common.copy_file(source, masquerade)
     _common.copy_file(source, masquerade2)
 
     # Execute command
-    _common.log("Executing Fake Commands to simulate Shell Command Execution via Kworker")
+    log.info("Executing Fake Commands to simulate Shell Command Execution via Kworker")
     command = (
         f"{masquerade2} /bin/sh -c lsb_release -a , "
         f"/bin/sh -c git rev-parse --short HEAD echo --unhandled-rejections=warn"
     )
-    _common.execute([masquerade, "childprocess", command], timeout=10, kill=True, shell=True)  # noqa: S604
+    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=10, shell=True)  # noqa: S604
 
     # cleanup
     _common.remove_file(masquerade)

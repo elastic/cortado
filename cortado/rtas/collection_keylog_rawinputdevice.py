@@ -4,9 +4,12 @@
 # 2.0.
 # Adjusted version of https://github.com/XRoemer/Organon/blob/master/source/py/rawinputdata.py
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+import time
 
-import time, sys
+from . import OSType, RuleMetadata, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -23,15 +26,20 @@ import time, sys
     techniques=["T1056", "T1056.001"],
 )
 def main():
-    from ctypes import c_long, c_int, c_uint, c_ushort, Structure, Union
-    from ctypes import WINFUNCTYPE, windll, byref, sizeof, pointer, WinError
-    from ctypes.wintypes import DWORD, HWND, HANDLE, WPARAM, ULONG, LONG, UINT
-    from ctypes.wintypes import BYTE, LPCSTR, HINSTANCE, LPVOID
+    from ctypes import WINFUNCTYPE  # type: ignore
+    from ctypes import Union  # type: ignore
+    from ctypes import WinError  # type: ignore
+    from ctypes import sizeof  # type: ignore
+    from ctypes import windll  # type: ignore
+    from ctypes import (Structure, byref, c_int, c_long, c_uint, c_ushort,
+                        pointer)
+    from ctypes.wintypes import (BYTE, DWORD, HANDLE, HINSTANCE, HWND, LONG,
+                                 LPCSTR, LPVOID, UINT, ULONG, WPARAM)
 
-    wndproc = WINFUNCTYPE(c_long, c_int, c_uint, c_int, c_int)
+    wndproc = WINFUNCTYPE(c_long, c_int, c_uint, c_int, c_int)  # type: ignore
 
     class WNDCLASS(Structure):
-        _fields_ = [
+        _fields_ = [  #  type: ignore
             ("style", c_uint),
             ("lpfnWndProc", wndproc),
             ("cbClsExtra", c_int),
@@ -138,7 +146,7 @@ def main():
             cw_use_default = -2147483648
 
             try:
-                createwindowex = windll.user32.CreateWindowExA
+                createwindowex = windll.user32.CreateWindowExA  # type: ignore
                 createwindowex.argtypes = [
                     DWORD,
                     LPCSTR,
@@ -156,7 +164,7 @@ def main():
                 createwindowex.restype = HANDLE
                 wndclass = self.get_window()
                 # Create Window
-                hwnd = createwindowex(
+                hwnd = createwindowex(  # type: ignore
                     0,
                     wndclass.lpszClassName,
                     b"Python Window",
@@ -172,7 +180,7 @@ def main():
                 )
 
                 if hwnd == 0:
-                    print(WinError())
+                    print(WinError())  # type: ignore
                 # Register for raw input
                 raw_input_device = (2 * RAWINPUTDEVICE)()
                 self.Rid = raw_input_device
@@ -186,9 +194,9 @@ def main():
                 raw_input_device[1].dwFlags = ridev_input_sink
                 raw_input_device[1].hwnTarget = hwnd
 
-                registerrawinputdevices = windll.user32.RegisterRawInputDevices
+                registerrawinputdevices = windll.user32.RegisterRawInputDevices  # type: ignore
                 registerrawinputdevices(raw_input_device, 2, sizeof(RAWINPUTDEVICE))
-                self.hwnd = hwnd
+                self.hwnd = hwnd  # type: ignore
 
             except Exception as e:
                 print("error starting")
@@ -205,16 +213,16 @@ def main():
             wndclass = WNDCLASS()
             self.wndclass = wndclass
             wndclass.style = cs_hredraw | cs_vredraw
-            wndclass.lpfnWndProc = wndproc(lambda h, m, w, l: self.wndproc(h, m, w, l))
+            wndclass.lpfnWndProc = wndproc(lambda h, m, w, x: self.wndproc(h, m, w, x))  #  type: ignore
             wndclass.cbClsExtra = wndclass.cbWndExtra = 0
-            wndclass.hInstance = windll.kernel32.GetModuleHandleA(c_int(0))
-            wndclass.hIcon = windll.user32.LoadIconA(c_int(0), c_int(idi_application))
-            wndclass.hCursor = windll.user32.LoadCursorA(c_int(0), c_int(idc_arrow))
-            wndclass.hbrBackground = windll.gdi32.GetStockObject(c_int(white_brush))
+            wndclass.hInstance = windll.kernel32.GetModuleHandleA(c_int(0))  # type: ignore
+            wndclass.hIcon = windll.user32.LoadIconA(c_int(0), c_int(idi_application))  # type: ignore
+            wndclass.hCursor = windll.user32.LoadCursorA(c_int(0), c_int(idc_arrow))  # type: ignore
+            wndclass.hbrBackground = windll.gdi32.GetStockObject(c_int(white_brush))  # type: ignore
             wndclass.lpszMenuName = None
             wndclass.lpszClassName = b"MainWin"
 
-            if not windll.user32.RegisterClassA(byref(wndclass)):
+            if not windll.user32.RegisterClassA(byref(wndclass)):  # type: ignore
                 print("error in RegisterClassA")
                 raise WinError()
 
@@ -227,28 +235,28 @@ def main():
 
             pm_remove = 1
 
-            while windll.user32.PeekMessageA(pmsg, self.hwnd, 0, 0, pm_remove) != 0:
-                windll.user32.DispatchMessageA(pmsg)
+            while windll.user32.PeekMessageA(pmsg, self.hwnd, 0, 0, pm_remove) != 0:  # type: ignore
+                windll.user32.DispatchMessageA(pmsg)  # type: ignore
 
         def __del__(self):
             pass
 
         def stop(self):
             self.Rid[0].dwFlags = 0x00000001
-            windll.user32.DestroyWindow(self.hwnd)
+            windll.user32.DestroyWindow(self.hwnd)  # type: ignore
 
-        def wndproc(self, hwnd, message, wparam, lparam):
+        def wndproc(self, hwnd, message, wparam, lparam):  # type: ignore
             try:
                 wm_input = 255
                 ri_mouse_wheel = 0x0400
                 wm_destroy = 2
 
                 if message == wm_destroy:
-                    windll.user32.PostQuitMessage(0)
+                    windll.user32.PostQuitMessage(0)  # type: ignore
                     return 0
 
                 elif message == wm_input:
-                    get_raw_input_data = windll.user32.get_raw_input_data
+                    get_raw_input_data = windll.user32.get_raw_input_data  # type: ignore
                     null = c_int(0)
                     dw_size = c_uint()
                     rid_input = 0x10000003
@@ -268,7 +276,7 @@ def main():
                                 if raw.mouse._u1._s2.usButtonFlags != ri_mouse_wheel:
                                     return 0
 
-                return windll.user32.DefWindowProcA(c_int(hwnd), c_int(message), c_int(wparam), c_int(lparam))
+                return windll.user32.DefWindowProcA(c_int(hwnd), c_int(message), c_int(wparam), c_int(lparam))  # type: ignore
 
             except Exception as e:
                 print("general exception in wndproc")

@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -20,13 +24,12 @@ def main():
     # Execute Command
     # Had a hard time trying to escape the quotes that would be needed to execute a real command using
     # RunHTMLApplication, this will just fire the rule and result in a Missing entry error
-    _common.log("Running rundll32 RunHTMLApplication")
-    _common.execute(
+    log.info("Running rundll32 RunHTMLApplication")
+    _ = _common.execute_command(
         [
             "cmd.exe",
             "/c",
             "rundll32.exe javascript:\\..\\mshtml.dll,RunHTMLApplication",
         ],
-        timeout=5,
-        kill=True,
+        timeout_secs=5,
     )

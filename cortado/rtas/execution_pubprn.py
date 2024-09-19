@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -19,8 +23,8 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1216", "T1218", "T1036", "T1059"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
+    RENAMER = _common.get_resource_path("bin/rcedit-x64.exe")
 
     cscript = "C:\\Users\\Public\\cscript.exe"
     rcedit = "C:\\Users\\Public\\rcedit.exe"
@@ -30,11 +34,11 @@ def main():
 
     cmd = "127.0.0.1 script:https://domain.com/folder/file.sct"
     # Execute command
-    _common.log("Modifying the OriginalFileName attribute")
-    _common.execute(
+    log.info("Modifying the OriginalFileName attribute")
+    _ = _common.execute_command(
         [rcedit, cscript, "--set-version-string", "OriginalFileName", "cscript.exe"],
-        timeout=10,
+        timeout_secs=10,
     )
-    _common.execute([cscript, "/c", "echo", cmd], timeout=5, kill=True)
+    _ = _common.execute_command([cscript, "/c", "echo", cmd], timeout_secs=5)
 
-    _common.remove_files(cscript, rcedit)
+    _common.remove_files([cscript, rcedit])

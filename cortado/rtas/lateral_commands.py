@@ -11,11 +11,13 @@
 # ATT&CK: T1021, T1047, T1077, T1124, T1126
 # Description: Runs various Windows commands typically used by attackers to move laterally from the local machine.
 
+import logging
 import os
 import re
-import sys
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import OSType, RuleMetadata, _common, _const, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 MY_APP_EXE = "bin/myapp.exe"
@@ -30,21 +32,21 @@ MY_APP_EXE = "bin/myapp.exe"
     techniques=["T1569", "T1021", "T1543"],
     ancillary_files=[MY_APP_EXE],
 )
-def main(remote_host=None):
-    remote_host = remote_host or _common.get_ip()
-    _common.log("Attempting to laterally move to %s" % remote_host)
+def main():
+    remote_host = _common.get_host_ip()
+    log.info("Attempting to laterally move to %s" % remote_host)
 
-    remote_host = _common.get_ipv4_address(remote_host)
-    _common.log("Using ip address %s" % remote_host)
+    remote_host = _common.resolve_hostname(remote_host)
+    log.info("Using ip address %s" % remote_host)
 
     # Put the hostname in quotes for WMIC, but leave it as is
-    if not re.match(_common.IP_REGEX, remote_host):
-        wmi_node = '"{}"'.format(remote_host)
+    if not re.match(_const.IP_REGEX, remote_host):
+        wmi_node = f'"{remote_host}"'
     else:
         wmi_node = remote_host
 
     commands = [
-        "sc.exe \\\\{host} create test_service binPath= %s" % MY_APP,
+        "sc.exe \\\\{host} create test_service binPath= %s" % MY_APP_EXE,
         "sc.exe \\\\{host} config test_service binPath= c:\\windows\\system32\\ipconfig.exe",
         "sc.exe \\\\{host} failure test_service command= c:\\windows\\system32\\net.exe",
         "sc.exe \\\\{host} start test_service",
@@ -59,21 +61,28 @@ def main(remote_host=None):
     ]
 
     for command in commands:
-        _common.execute(command.format(host=remote_host, wmi_node=wmi_node))
+        formatted_command = command.format(host=remote_host, wmi_node=wmi_node)
+        _ = _common.execute_command([formatted_command])
 
-    _, whoami = _common.execute(["whoami"])
-    _, hostname = _common.execute(["hostname"])
+    _, whoami, _ = _common.execute_command(["whoami"])
+    _, hostname, _ = _common.execute_command(["hostname"])
 
-    domain, user = whoami.lower().split("\\")
+    if not whoami or not hostname:
+        raise _common.ExecutionError("Can't get `whoami` or `hostname` command results")
+
+    whoami = whoami.lower()
+
+    separator = "\\\\"
+    domain, _, _ = whoami.partition(separator)  # type: ignore
     hostname = hostname.lower()
     schtasks_host = remote_host
 
     # Check if the account is local or a domain
     if domain in (hostname, "NT AUTHORITY"):
-        _common.log(
-            "Need password for remote scheduled task in workgroup. Performing instead on %s." % _common.get_ip()
+        log.info(
+            "Need password for remote scheduled task in workgroup. Performing instead on %s." % _common.get_host_ip()
         )
-        schtasks_host = _common.get_ip()
+        schtasks_host = _common.get_host_ip()
 
     task_name = "test_task-%d" % os.getpid()
     schtask_commands = [
@@ -85,7 +94,7 @@ def main(remote_host=None):
 
     for command in schtask_commands:
         command = command.format(host=schtasks_host, name=task_name)
-        _common.execute(command)
+        _ = _common.execute_command([command], shell=True)
 
     # Remote powershell
-    _common.execute(["C:\\Windows\\system32\\wsmprovhost.exe", "-Embedding"], timeout=5, kill=True)
+    _ = _common.execute_command(["C:\\Windows\\system32\\wsmprovhost.exe", "-Embedding"], timeout_secs=5)

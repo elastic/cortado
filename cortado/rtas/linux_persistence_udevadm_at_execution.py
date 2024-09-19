@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -21,21 +25,21 @@ def main():
 
     # Create fake at executable
     masquerade = "/tmp/at"
-    source = _common.get_path("bin", "linux.ditto_and_spawn")
+    source = _common.get_resource_path("bin/linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)
 
     # Create a fake udevadm script that launches at
     with open(fake_udevadm, "w") as script:
-        script.write("#!/bin/bash\n")
-        script.write("/tmp/at\n")
+        _ = script.write("#!/bin/bash\n")
+        _ = script.write("/tmp/at\n")
 
     # Make the script executable
-    _common.execute(["chmod", "+x", fake_udevadm])
-    _common.execute(["chmod", "+x", masquerade])
+    _ = _common.execute_command(["chmod", "+x", fake_udevadm])
+    _ = _common.execute_command(["chmod", "+x", masquerade])
 
     # Execute the fake udevadm script
-    _common.log("Launching a shell that executes a payload as a child of fake udevadm")
-    _common.execute([fake_udevadm], timeout=5, kill=True, shell=True)
+    log.info("Launching a shell that executes a payload as a child of fake udevadm")
+    _ = _common.execute_command([fake_udevadm], timeout_secs=5, shell=True)
 
     # Cleanup
     _common.remove_file(fake_udevadm)

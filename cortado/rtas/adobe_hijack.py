@@ -7,10 +7,13 @@
 # ATT&CK: T1044
 # Description: Replaces PE file that will run on Adobe Reader start.
 
-import sys
+import logging
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
+
 
 @register_code_rta(
     id="2df08481-31db-44a8-b01d-1c0df827bddb",
@@ -28,11 +31,11 @@ def main() -> None:
 
     # backup original if it exists
     if rdrcef_exe.is_file():
-        _common.log(f"{rdrcef_exe} already exists, backing up file.")
+        log.info(f"{rdrcef_exe} already exists, backing up file.")
         _common.copy_file(rdrcef_exe, backup)
         backedup = True
     else:
-        _common.log(f"{rdrcef_exe} doesn't exist. Creating path.")
+        log.info(f"{rdrcef_exe} doesn't exist. Creating path.")
         rdr_cef_dir.mkdir(parents=True)
 
     # overwrite original
@@ -40,13 +43,9 @@ def main() -> None:
 
     # cleanup
     if backedup:
-        _common.log("Putting back backup copy.")
+        log.info("Putting back backup copy.")
         _common.copy_file(backup, rdrcef_exe)
         backup.unlink()
     else:
         _common.remove_file(rdrcef_exe)
         rdr_cef_dir.rmdir()
-
-
-if __name__ == "__main__":
-    sys.exit(main())

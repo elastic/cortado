@@ -8,10 +8,13 @@
 # ATT&CK: T1060
 # Description: Writes batch file into Windows Startup folder using process ancestry tied to exploit (CVE-2018-20250)
 
+import logging
 import os
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType
+from . import OSType, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -20,16 +23,15 @@ from . import _common, register_code_rta, OSType
     platforms=[OSType.WINDOWS],
 )
 def main():
-    _common.log("WinRAR StartUp Folder Persistence")
+    log.info("WinRAR StartUp Folder Persistence")
     win_rar_path = Path("WinRAR.exe").resolve()
     ace_loader_path = Path("Ace32Loader.exe").resolve()
     batch_file_path = "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\mssconf.bat"
     startup_path = os.environ["USERPROFILE"] + batch_file_path
     _common.copy_file("C:\\Windows\\System32\\cmd.exe", win_rar_path)
     _common.copy_file("C:\\Windows\\System32\\cmd.exe", ace_loader_path)
-    _common.execute(
-        [win_rar_path, "/c", ace_loader_path, "/c", "echo", "test", "^>", startup_path],
-        kill=True,
+    _ = _common.execute_command(
+        [str(win_rar_path), "/c", str(ace_loader_path), "/c", "echo", "test", "^>", str(startup_path)],
     )
     _common.remove_file(startup_path)
     _common.remove_file(ace_loader_path)

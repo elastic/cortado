@@ -3,9 +3,13 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
+
 
 @register_code_rta(
     id="bbad34f5-3542-4484-9b23-5ef05af94c0f",
@@ -15,9 +19,9 @@ from . import _common, register_code_rta, OSType, RuleMetadata
     techniques=["T1204", "T1204.002", "T1574", "T1574.002"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
+    PS1_FILE = _common.get_resource_path("bin/Invoke-ImageLoad.ps1")
+    RENAMER = _common.get_resource_path("bin/rcedit-x64.exe")
 
     path = "C:\\Users\\Public\\Temp\\7z\\"
     Path(path).mkdir(parents=True, exist_ok=True)
@@ -32,10 +36,10 @@ def main():
     _common.copy_file(PS1_FILE, ps1)
     _common.copy_file(RENAMER, rcedit)
 
-    _common.log("Modifying the OriginalFileName attribute to invalidate the signature")
-    _common.execute([rcedit, dll, "--set-version-string", "OriginalFilename", "unsigned.dll"])
+    log.info("Modifying the OriginalFileName attribute to invalidate the signature")
+    _ = _common.execute_command([rcedit, dll, "--set-version-string", "OriginalFilename", "unsigned.dll"])
 
-    _common.log("Loading unsigned DLL into fake taskhost")
-    _common.execute([file, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout=10)
+    log.info("Loading unsigned DLL into fake taskhost")
+    _ = _common.execute_command([file, "-c", f"Import-Module {ps1}; Invoke-ImageLoad {dll}"], timeout_secs=10)
 
-    _common.remove_files(dll, ps1, rcedit, file)
+    _common.remove_files([dll, ps1, rcedit, file])

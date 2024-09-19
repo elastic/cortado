@@ -10,8 +10,12 @@
 # Description: Uses bcdedit.exe to backup the current boot configuration, and then to delete the current boot
 #  configuration, finally restoring the original.
 
+import logging
 from pathlib import Path
-from . import _common, register_code_rta, OSType, RuleMetadata
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -23,16 +27,16 @@ from . import _common, register_code_rta, OSType, RuleMetadata
 )
 def main():
     # Messing with the boot configuration is probably not a great idea so create a backup:
-    _common.log("Exporting the boot configuration....")
+    log.info("Exporting the boot configuration....")
     bcdedit = "bcdedit.exe"
     backup_file = Path("boot.cfg").resolve()
-    _common.execute(["bcdedit.exe", "/export", backup_file])
+    _ = _common.execute_command(["bcdedit.exe", "/export", backup_file])
 
     # WARNING: this is a destructive command which might be super bad to run
-    _common.log("Changing boot configuration", log_type="!")
-    _common.execute([bcdedit, "/set", "{current}", "bootstatuspolicy", "ignoreallfailures"])
-    _common.execute([bcdedit, "/set", "{current}", "recoveryenabled", "no"])
+    log.info("Changing boot configuration")
+    _ = _common.execute_command([bcdedit, "/set", "{current}", "bootstatuspolicy", "ignoreallfailures"])
+    _ = _common.execute_command([bcdedit, "/set", "{current}", "recoveryenabled", "no"])
 
     # Restore the boot configuration
-    _common.log("Restoring boot configuration from %s" % backup_file, log_type="-")
-    _common.execute([bcdedit, "/import", backup_file])
+    log.info("Restoring boot configuration from %s" % backup_file)
+    _ = _common.execute_command([bcdedit, "/import", backup_file])

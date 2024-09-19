@@ -3,9 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
-
+import logging
 import os
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -27,7 +30,7 @@ def main():
 
     # Execute command
 
-    _common.execute([powershell, "/c", "echo AAAAAAAAAA >", credmanfile], timeout=10)
-    _common.log("Cat the contents of a sample file in credman folder")
-    _common.execute([powershell, "/c", "cat", credmanfile], timeout=10)
+    _ = _common.execute_command([powershell, "/c", "echo AAAAAAAAAA >", credmanfile], timeout_secs=10)
+    log.info("Cat the contents of a sample file in credman folder")
+    _ = _common.execute_command([powershell, "/c", "cat", credmanfile], timeout_secs=10)
     _common.remove_file(credmanfile)

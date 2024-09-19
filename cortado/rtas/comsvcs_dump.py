@@ -8,10 +8,13 @@
 # ATT&CK: T1117
 # Description: Invokes comsvcs.dll with rundll32.exe to mimic creating a process MiniDump.
 
+import logging
 import os
 import time
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -31,9 +34,9 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1003"],
 )
 def main():
-    _common.log("Memory Dump via Comsvcs")
+    log.info("Memory Dump via Comsvcs")
     pid = os.getpid()
-    _common.execute(
+    _ = _common.execute_command(
         [
             "powershell.exe",
             "-c",

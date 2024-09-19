@@ -3,7 +3,11 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import _common, RuleMetadata, register_code_rta, OSType
+import logging
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
 
 
 @register_code_rta(
@@ -19,17 +23,17 @@ from . import _common, RuleMetadata, register_code_rta, OSType
     techniques=["T1036"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
-    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+    exe_file = _common.get_resource_path("bin/renamed_posh.exe")
+    renamer_exe = _common.get_resource_path("bin/rcedit-x64.exe")
 
     winword = "C:\\Users\\Public\\rta.exe"
     rcedit = "C:\\Users\\Public\\rcedit.exe"
-    _common.copy_file(RENAMER, rcedit)
-    _common.copy_file(EXE_FILE, winword)
 
-    _common.log("Modifying the OriginalFileName attribute")
-    _common.execute([rcedit, winword, "--set-version-string", "OriginalFilename", "WinWord.exe"])
+    _common.copy_file(renamer_exe, rcedit)
+    _common.copy_file(exe_file, winword)
 
-    _common.execute([winword], timeout=2, kill=True)
+    log.info("Modifying the OriginalFileName attribute")
+    _ = _common.execute_command([rcedit, winword, "--set-version-string", "OriginalFilename", "WinWord.exe"])
+    _ = _common.execute_command([winword], timeout_secs=2)
 
-    _common.remove_files(rcedit, winword)
+    _common.remove_files([rcedit, winword])

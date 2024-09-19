@@ -9,10 +9,14 @@
 # ATT&CK: T1064, T1192, T1193
 # Description: Creates a javascript file that will launch powershell.
 
+import logging
 import time
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
+
 
 @register_code_rta(
     id="161c5972-6bfe-47b5-92bd-e0399e025dec",
@@ -28,15 +32,12 @@ def main():
     script = """Set objShell = CreateObject("Wscript.shell")
     objShell.run("powershell echo 'Doing evil things...'; sleep 3")
     """
-    with open(script_file, "w") as f:
-        f.write(script)
+    _ = script_file.write_text(script)
 
     # Execute script
     for proc in ["wscript", "cscript"]:
-        _common.execute([proc, script_file])
+        _ = _common.execute_command([proc, script_file])
         time.sleep(3)
 
     # Clean up
     _common.remove_file(script_file)
-
-    return _common.SUCCESS

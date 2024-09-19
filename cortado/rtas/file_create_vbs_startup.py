@@ -3,9 +3,13 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import logging
 from pathlib import Path
 
-from . import _common, register_code_rta, OSType, RuleMetadata
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
+
 
 @register_code_rta(
     id="7cee9313-5e55-472b-9d61-a95b0c9725d6",
@@ -18,11 +22,11 @@ from . import _common, register_code_rta, OSType, RuleMetadata
     techniques=["T1547", "T1547.001"],
 )
 def main():
-    EXE_FILE = _common.get_path("bin", "renamed_posh.exe")
+    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
 
     path = "C:\\Users\\Programs\\Startup"
     Path(path).mkdir(parents=True, exist_ok=True)
     file = path + "\\a.vbs"
     _common.copy_file(EXE_FILE, file)
 
-    _common.remove_files(file)
+    _common.remove_files([file])

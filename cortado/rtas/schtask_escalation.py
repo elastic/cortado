@@ -11,9 +11,19 @@
 # signal.rule.name: Net command via SYSTEM account
 # ATT&CK: T1053
 
+import logging
 import time
 from pathlib import Path
-from . import register_code_rta, OSType, RuleMetadata
+from typing import Any
+
+from . import OSType, RuleMetadata, _common, register_code_rta
+
+log = logging.getLogger(__name__)
+
+
+def execute_schtasks(args: list[str], kwargs: dict[str, Any] = {}) -> int:
+    retcode, _, _ = _common.execute_command(["schtasks.exe"] + args, **kwargs)
+    return retcode
 
 
 @register_code_rta(
@@ -28,37 +38,29 @@ from . import register_code_rta, OSType, RuleMetadata
     ],
     techniques=["T1033", "T1053", "T1059"],
 )
-def schtasks(*args, **kwargs):
-    return _common.execute(["schtasks.exe"] + list(args), **kwargs)
-
-
 def main():
-    _common.log("Scheduled Task Privilege Escalation")
+    log.info("Scheduled Task Privilege Escalation")
 
     task_name = "test-task-rta"
     file_path = Path("task.log").resolve()
-    command = "cmd.exe /c whoami.exe > " + file_path
+    command = f"cmd.exe /c whoami.exe > {file_path}"
 
     # Delete the task if it exists
-    code, output = schtasks("/query", "/tn", task_name)
-    if code == 0:
-        schtasks("/delete", "/tn", task_name, "/f")
+    retcode = execute_schtasks(["/query", "/tn", task_name])
+    if retcode == 0:
+        _ = execute_schtasks(["/delete", "/tn", task_name, "/f"])
 
-    code, output = schtasks("/create", "/tn", task_name, "/ru", "system", "/tr", command, "/sc", "onlogon")
-    if code != 0:
-        _common.log("Error creating task", log_type="!")
+    retcode = execute_schtasks(["/create", "/tn", task_name, "/ru", "system", "/tr", command, "/sc", "onlogon"])
+    if retcode != 0:
+        log.info("Error creating task")
         return
 
     # Run the task and grab the file
-    code, output = schtasks("/run", "/tn", task_name)
-    if code == 0:
+    retcode = execute_schtasks(["/run", "/tn", task_name])
+    if retcode == 0:
         time.sleep(1)
         _common.print_file(file_path)
         time.sleep(1)
         _common.remove_file(file_path)
 
-    schtasks("/delete", "/tn", task_name, "/f")
-
-
-if __name__ == "__main__":
-    main()
+    _ = execute_schtasks(["/delete", "/tn", task_name, "/f"])
