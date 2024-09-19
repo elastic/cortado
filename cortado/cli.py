@@ -13,7 +13,7 @@ log = structlog.get_logger(__name__)
 
 @app.command()
 def print_rtas():
-    log.info("Printing out all available RTAs")
+    log.info("Printing out all RTAs found")
     load_all_modules()
 
     registry = get_registry()
