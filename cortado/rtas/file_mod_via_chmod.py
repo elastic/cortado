@@ -24,5 +24,5 @@ log = logging.getLogger(__name__)
 )
 def main():
     log.info("Executing chmod on tmp files.")
-    with _common.temporary_file("testing", "/tmp/test.txt"):
+    with _common.file_with_data("/tmp/test.txt", "testing"):
         _ = _common.execute_command(["chmod", "+x", "/tmp/test.txt"])

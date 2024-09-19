@@ -47,7 +47,7 @@ def main():
     daemon_dir.mkdir(parents=True, exist_ok=True)
     plist_path = str(daemon_dir / plist_name)
 
-    # with _common.temporary_file(plist, file_name=plist_path):
+    # with _common.file_with_data(plist_path, plist):
     with open(plist_path, "w") as f:
         f.write(plist)
         _ = _common.execute_command(["launchctl", "load", plist_path])

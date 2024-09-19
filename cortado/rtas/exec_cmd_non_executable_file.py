@@ -22,5 +22,5 @@ log = logging.getLogger(__name__)
 )
 def main():
     log.info("Executing bash on unexecutable file.")
-    with _common.temporary_file("testing", "/*.txt"):
+    with _common.file_with_data("/*.txt", "testing"):
         _ = _common.execute_command(["/bin/bash", "/*.txt"])

@@ -26,7 +26,7 @@ def main():
 
     # Execute command
     log.info("Launching fake ln commands to link to temp directory")
-    with _common.temporary_file("testing", "/tmp/test.txt"):
+    with _common.file_with_data("/tmp/test.txt", "testing"):
         _ = _common.execute_command([masquerade, "-s", "/tmp/test.txt"], timeout_secs=10)
 
     # cleanup

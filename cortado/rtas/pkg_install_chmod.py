@@ -33,7 +33,7 @@ def main():
     # Execute command
     command = f"chmod +x {source_file}"
     log.info("Launching fake bash commands to execute chmod on file via pkg install")
-    with _common.temporary_file("testing", source_file):
+    with _common.file_with_data(source_file, "testing"):
         _ = _common.execute_command(
             [
                 masquerade,
