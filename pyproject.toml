@@ -36,6 +36,7 @@ ecs-logging = { version = "^2.0.0", optional = true }
 ruff = "^0.6"
 pytest = "^8.3"
 typing-extensions = "^4.12.2"
+pyright = "^1.1.381"
 
 [tool.poetry.extras]
 utils = ["typer", "structlog", "ecs-logging"]
