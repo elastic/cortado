@@ -5,7 +5,7 @@
 
 import logging
 
-from . import OSType, RuleMetadata, _common, register_code_rta
+from . import OSType, RuleMetadata, _common, register_code_rta, _const
 
 log = logging.getLogger(__name__)
 
@@ -23,11 +23,9 @@ log = logging.getLogger(__name__)
     techniques=["T1112"],
 )
 def main():
-    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
-
     key = "SYSTEM\\CurrentControlSet\\Control\\CI\\Config"
     value = "VulnerableDriverBlocklistEnable"
     data = 0
 
-    with _common.temporary_reg(_common.HKLM, key, value, data, data_type="dword"):
+    with _common.temp_registry_value(_const.REG_HKLM, key, value, data, data_type="dword"):
         pass

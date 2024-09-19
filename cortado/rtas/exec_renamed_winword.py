@@ -36,4 +36,4 @@ def main():
     _ = _common.execute_command([rcedit, winword, "--set-version-string", "OriginalFilename", "WinWord.exe"])
     _ = _common.execute_command([winword], timeout_secs=2)
 
-    _common.remove_files([[rcedit, winword]])
+    _common.remove_files([rcedit, winword])

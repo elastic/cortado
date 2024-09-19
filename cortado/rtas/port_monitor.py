@@ -10,7 +10,7 @@
 
 import logging
 
-from . import OSType, RuleMetadata, _common, register_code_rta
+from . import OSType, RuleMetadata, _common, register_code_rta, _const
 
 log = logging.getLogger(__name__)
 
@@ -35,5 +35,5 @@ def main():
     value = "test"
     dll = "test.dll"
 
-    with _common.temporary_reg(_common.HKLM, key, value, dll):
+    with _common.temp_registry_value(_const.REG_HKLM, key, value, dll):
         pass

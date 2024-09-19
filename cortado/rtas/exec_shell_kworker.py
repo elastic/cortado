@@ -4,11 +4,9 @@
 # 2.0.
 
 import logging
-import os
-import sys
 from pathlib import Path
 
-from . import OSType, register_code_rta
+from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
@@ -24,19 +22,16 @@ log = logging.getLogger(__name__)
 def main() -> None:
     masquerade_script = Path("/tmp/kworker_evasion.sh")
     with masquerade_script.open("w") as f:
-        f.write("#!/bin/bash\n")
-        f.write("sh -c 'whoami'\n")
+        _ = f.write("#!/bin/bash\n")
+        _ = f.write("sh -c 'whoami'\n")
 
     # Make the script executable
     masquerade_script.chmod(0o755)
 
     # Execute the script
     log.info("Launching fake command to simulate a kworker execution")
-    os.system(str(masquerade_script))  # noqa: S605
+
+    _ = _common.execute_command([_common.get_cmd_path(), str(masquerade_script)])
 
     # Cleanup
     masquerade_script.unlink()
-
-
-if __name__ == "__main__":
-    sys.exit(main())

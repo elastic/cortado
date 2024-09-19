@@ -5,7 +5,7 @@
 
 import logging
 
-from . import OSType, RuleMetadata, _common, register_code_rta
+from . import OSType, RuleMetadata, _common, register_code_rta, _const
 
 log = logging.getLogger(__name__)
 
@@ -21,18 +21,16 @@ log = logging.getLogger(__name__)
     techniques=["T1068"],
 )
 def main():
-    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
-
     key = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Print\\Printers\\RTA"
     value = "SpoolDirectory"
     data = "C:\\Windows\\System32\\spool\\drivers\\x64\\4"
 
-    with _common.temporary_reg(_common.HKLM, key, value, data):
+    with _common.temp_registry_value(_const.REG_HKLM, key, value, data):
         pass
 
     key = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Print\\Printers\\RTA\\CopyFiles\\Payload"
     value = "Module"
     data = "C:\\Windows\\System32\\spool\\drivers\\x64\\4\\RTA.dll"
 
-    with _common.temporary_reg(_common.HKLM, key, value, data):
+    with _common.temp_registry_value(_const.REG_HKLM, key, value, data):
         pass

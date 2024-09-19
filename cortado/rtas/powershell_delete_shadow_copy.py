@@ -21,8 +21,6 @@ log = logging.getLogger(__name__)
     techniques=["T1490"],
 )
 def main():
-    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
-
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 
     # Execute command

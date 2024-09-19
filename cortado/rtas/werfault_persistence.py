@@ -33,10 +33,10 @@ def main():
     reg_key = "'HKLM:\\SOFTWARE\\Microsoft\\Windows\\Windows Error Reporting\\hangs'"
     reg_name = "ReflectDebugger"
 
-    commands = ["C:\\Windows\\system32\\calc.exe", "'powershell -c calc.exe'", MY_APP]
+    commands = ["C:\\Windows\\system32\\calc.exe", "'powershell -c calc.exe'", MY_APP_EXE]
 
     for command in commands:
-        log.info("Setting WerFault reg key to {}".format(command))
+        log.info(f"Setting WerFault reg key to `{command}`")
         _ = _common.execute_command(
             [
                 "powershell",
@@ -49,12 +49,11 @@ def main():
                 "-Value",
                 command,
             ],
-            wait=False,
         )
         time.sleep(1)
 
         log.info("Running WerFault.exe -pr 1")
-        _ = _common.execute_command(["werfault", "-pr", "1"], wait=False)
+        _ = _common.execute_command(["werfault", "-pr", "1"])
         time.sleep(2.5)
 
         _ = _common.execute_command(

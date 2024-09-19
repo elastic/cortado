@@ -5,19 +5,17 @@
 
 import logging
 
-from . import _common, register_code_rta
+from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
-
 
 @register_code_rta(
     id="83b04be5-ed0f-4efd-a7fd-d5db2b8ab62f",
     name="reverse_shell",
-    platforms=["macos", "linux"],
+    platforms=[OSType.MACOS, OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="d0e45f6c-1f83-4d97-a8d9-c8f9eb61c15c", name="Potential Reverse Shell Activity via Terminal")
     ],
-    siem_rules=[],
     techniques=["T1071", "T1059"],
 )
 def main():

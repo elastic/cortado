@@ -6,15 +6,22 @@
 import logging
 from multiprocessing import Process
 
-from . import _common, register_code_rta
+from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
+
+
+def run_command(masquerade: str, masquerade2: str):
+    _ = _common.execute_command(
+        [masquerade2, "childprocess", masquerade, "testnessus_sutest"],
+        timeout_secs=0.3,
+    )
 
 
 @register_code_rta(
     id="04361aca-0550-4134-ac21-939bf4a0582f",
     name="funzip_extract_content",
-    platforms=["macos", "linux"],
+    platforms=[OSType.MACOS, OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(
             id="41f1f818-0efe-4670-a2ed-7a4c200dd621",
@@ -24,14 +31,10 @@ log = logging.getLogger(__name__)
     siem_rules=[],
     techniques=["T1059", "T1059.004", "T1027", "T1140"],
 )
-def test(masquerade, masquerade2):
-    _ = _common.execute_command([masquerade2, "childprocess", masquerade, "testnessus_sutest"], timeout_secs=0.3, kill=True)
-
-
 def main():
     masquerade = "/tmp/funzip"
     masquerade2 = "/tmp/bash"
-    if _common.CURRENT_OS == "linux":
+    if _common.get_current_os() == OSType.LINUX:
         source = _common.get_resource_path("bin/linux.ditto_and_spawn")
         _common.copy_file(source, masquerade)
         _common.copy_file(source, masquerade2)
@@ -41,11 +44,11 @@ def main():
 
     # Execute command
     log.info("Launching fake funzip commands to extract suspicious content")
-    processes = []
+    processes: list[Process] = []
 
     for i in range(2):
         p = Process(
-            target=test,
+            target=run_command,
             args=(
                 masquerade,
                 masquerade2,

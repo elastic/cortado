@@ -34,8 +34,6 @@ log = logging.getLogger(__name__)
     techniques=["T1547", "T1218", "T1036", "T1059"],
 )
 def main():
-    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
-
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     tempowershell = "C:\\Windows\\notp0sh.exe"
     posh = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\posh.exe"

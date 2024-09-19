@@ -4,10 +4,12 @@
 # 2.0.
 
 
+import time
+import os
 import logging
 from pathlib import Path
 
-from . import OSType, register_code_rta
+from . import OSType, register_code_rta, RuleMetadata
 
 log = logging.getLogger(__name__)
 
@@ -20,23 +22,23 @@ log = logging.getLogger(__name__)
     techniques=["T1055"],
 )
 def main():
-    import time
-    from os import path
 
-    import win32api
-    import win32file
+    import win32api  # type: ignore
+    import win32file  # type: ignore
 
-    win32file.CopyFile(
-        path.expandvars("%systemroot%\\system32\\ntdll.dll"), path.expandvars("%localappdata%\\Temp\\notntdll.dll"), 0
-    )
-    if Path(path.expandvars("%localappdata%\\Temp\\notntdll.dll")).is_file():
-        print("[+] - NTDLL copied")
-        r = win32api.LoadLibrary(path.expandvars("%localappdata%\\Temp\\notntdll.dll"))
+    ntdll_path = os.path.expandvars("%systemroot%\\system32\\ntdll.dll")
+    notntdll_path = os.path.expandvars("%localappdata%\\Temp\\notntdll.dll")
+
+    win32file.CopyFile(ntdll_path, notntdll_path, 0) # type: ignore
+
+    if Path(notntdll_path).is_file():
+        log.info("NTDLL copied")
+        r = win32api.LoadLibrary(notntdll_path) # type: ignore
         if r > 0:
-            print("[+] - NTDLL copy loaded")
+            log.info("NTDLL copy loaded")
             time.sleep(1)
-            win32api.FreeLibrary(r)
-            win32file.DeleteFile(path.expandvars("%localappdata%\\Temp\\notntdll.dll"))
-            print("[+] - NTDLL copy deleted")
+            win32api.FreeLibrary(r)  # type: ignore
+            win32file.DeleteFile(notntdll_path)
+            log.info("NTDLL copy deleted")
         else:
-            print("f[+] - Failed to load ntdll")
+            log.info("Failed to load ntdll")

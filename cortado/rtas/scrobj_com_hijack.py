@@ -10,7 +10,7 @@
 
 import logging
 
-from . import OSType, RuleMetadata, _common, register_code_rta
+from . import OSType, RuleMetadata, _common, register_code_rta, _const
 
 log = logging.getLogger(__name__)
 
@@ -30,5 +30,5 @@ def main():
     scrobj = "C:\\WINDOWS\\system32\\scrobj.dll"
     key_path = key + "\\" + subkey
 
-    with _common.temporary_reg(_common.HKCU, key_path, value, scrobj, pause=True):
+    with _common.temp_registry_value(_const.REG_HKCU, key_path, value, scrobj, pause=True):
         pass

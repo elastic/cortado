@@ -21,13 +21,11 @@ log = logging.getLogger(__name__)
     techniques=["T1547", "T1547.001"],
 )
 def main():
-    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
-
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     path = "C:\\Users\\Public\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"
     argpath = "C:\\Users\\Public\\AppData\\Roaming\\Microsoft\\Windows\\'Start Menu'\\Programs\\Startup"
     Path(path).mkdir(parents=True, exist_ok=True)
     file = argpath + "\\file.exe"
 
-    _ = _common.execute_command([powershell, "/c", f"echo AAAAAAAA | Out-File {file}"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([powershell, "/c", f"echo AAAAAAAA | Out-File {file}"], timeout_secs=10)
     _common.remove_files([file])

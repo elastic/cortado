@@ -4,9 +4,8 @@
 # 2.0.
 
 import logging
-import subprocess
 
-from . import OSType, register_code_rta
+from . import OSType, register_code_rta, RuleMetadata, _common
 
 log = logging.getLogger(__name__)
 
@@ -28,6 +27,6 @@ def main():
 
     # Execute the 'env' command which in turn executes the child command
     log.info(f"Executing 'env' with child command: {command}")
-    subprocess.Popen(env_command, shell=True)
+    _ = _common.execute_command(env_command, shell=True)
 
     log.info("RTA execution completed.")

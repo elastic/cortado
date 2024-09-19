@@ -5,7 +5,7 @@
 
 import logging
 
-from . import OSType, RuleMetadata, _common, register_code_rta
+from . import OSType, RuleMetadata, _common, register_code_rta, _const
 
 log = logging.getLogger(__name__)
 
@@ -25,5 +25,5 @@ def main():
     value = "HostId"
     data = "Test"
 
-    with _common.temporary_reg(_common.HKCU, key, value, data):
+    with _common.temp_registry_value(_const.REG_HKCU, key, value, data):
         pass

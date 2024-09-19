@@ -27,4 +27,4 @@ def main():
 
     _ = _common.execute_command([str(office_path)], stdin_data="whoami")
 
-    _common.remove_files([[office_path]])
+    _common.remove_files([office_path])

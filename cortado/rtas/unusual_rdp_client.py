@@ -21,17 +21,17 @@ log = logging.getLogger(__name__)
     techniques=["T1021"],
 )
 def main():
-    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
-    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+    ps1_file = _common.get_resource_path("bin/Invoke-ImageLoad.ps1")
 
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     posh = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\posh.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
     dll = "C:\\Users\\Public\\mstscax.dll"
     ps1 = "C:\\Users\\Public\\Invoke-ImageLoad.ps1"
+
     _common.copy_file(user32, dll)
     _common.copy_file(powershell, posh)
-    _common.copy_file(PS1_FILE, ps1)
+    _common.copy_file(ps1_file, ps1)
 
     log.info("Loading mstscax.dll into posh")
     _ = _common.execute_command(

@@ -23,6 +23,7 @@ log = logging.getLogger(__name__)
     techniques=["T1059"],
 )
 def main():
+    url = "http://localhost.localhost"
     masquerade = "/tmp/tclsh"
     _common.copy_file("/usr/bin/curl", masquerade)
 

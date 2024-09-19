@@ -23,15 +23,15 @@ log = logging.getLogger(__name__)
     techniques=["T1566"],
 )
 def main():
-    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
-    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+    exe_file = _common.get_resource_path("bin/renamed_posh.exe")
+    ps1_file = _common.get_resource_path("bin/Invoke-ImageLoad.ps1")
 
     winword = "C:\\Users\\Public\\winword.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
     dll = "C:\\Users\\Public\\a.dll"
     ps1 = "C:\\Users\\Public\\Invoke-ImageLoad.ps1"
-    _common.copy_file(EXE_FILE, winword)
-    _common.copy_file(PS1_FILE, ps1)
+    _common.copy_file(exe_file, winword)
+    _common.copy_file(ps1_file, ps1)
 
     log.info("Droping and Loading a.dll into fake winword")
     _ = _common.execute_command(

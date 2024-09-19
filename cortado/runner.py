@@ -74,7 +74,7 @@ if __name__ == "__main__":
 
     if parsed_args.name:
         if parsed_args.run_all:
-            raise ValueError(f"Pass ttp --name or --run-all, not both")
+            raise ValueError("Pass ttp --name or --run-all, not both")
         else:
             for rta_test in parsed_args.name:
                 rta_name = Path(rta_test).stem

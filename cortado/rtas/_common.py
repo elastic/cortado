@@ -12,15 +12,20 @@ import subprocess
 import sys
 import threading
 import time
-import typing
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
 from typing import Any
 
 from cortado.rtas import OSType
-from cortado.rtas._const import (ACCESS_DENIED_RETURNCODE, PS_EXEC_EXE,
-                                 REG_HKCR, REG_HKCU, REG_HKLM, REG_HKU,
-                                 RTA_SUBPROCESS_TIMEOUT_RETURNCODE)
+from cortado.rtas._const import (
+    ACCESS_DENIED_RETURNCODE,
+    PS_EXEC_EXE,
+    REG_HKCR,
+    REG_HKCU,
+    REG_HKLM,
+    REG_HKU,
+    RTA_SUBPROCESS_TIMEOUT_RETURNCODE,
+)
 
 log = logging.getLogger("cortado.rtas")
 
@@ -58,6 +63,10 @@ def get_host_ip() -> str:
         pass
 
     return "127.0.0.1"
+
+
+def resolve_hostname(hostname: str):
+    return socket.gethostbyname(hostname)
 
 
 def is_system() -> bool:
@@ -200,7 +209,7 @@ def remove_directory(path: str | Path):
 
 def execute_command(
     command_args: list[str] | tuple[str],
-    timeout_secs: int = 30,
+    timeout_secs: float | int = 30,
     capture_output: bool = True,
     ignore_failures: bool = False,
     ignore_timeout: bool = True,
@@ -226,8 +235,8 @@ def execute_command(
             input=stdin_data,
             stdout=stdout,
             stderr=stderr,
-            timeout_secs=timeout_secs,
             capture_output=capture_output,
+            timeout=timeout_secs,
             shell=shell,
             env=env_vars,
             check=True,
@@ -265,7 +274,10 @@ def clear_web_cache(sleep_secs: int = 1):
 
 ## HTTP server
 
-def serve_dir_over_http(ip: str | None = None, port: int | None = None, dir_path: Path | None = None) -> tuple[HTTPServer, str, int]:
+
+def serve_dir_over_http(
+    ip: str | None = None, port: int | None = None, dir_path: Path | None = None
+) -> tuple[HTTPServer, str, int]:
     handler = SimpleHTTPRequestHandler
 
     dir_path = dir_path or get_current_dir()
@@ -359,7 +371,6 @@ def write_to_registry(
         pass
 
 
-@typing.no_type_check
 @contextlib.contextmanager
 def temp_registry_value(
     hive_name: str,
@@ -376,10 +387,10 @@ def temp_registry_value(
     post_changes_pause_sleep_secs = 0.5
 
     hives: dict[str, Any] = {
-        REG_HKLM: winreg.HKEY_LOCAL_MACHINE,
-        REG_HKCU: winreg.HKEY_CURRENT_USER,
-        REG_HKU: winreg.HKEY_USERS,
-        REG_HKCR: winreg.HKEY_CLASSES_ROOT,
+        REG_HKLM: winreg.HKEY_LOCAL_MACHINE,  # type: ignore
+        REG_HKCU: winreg.HKEY_CURRENT_USER,  # type: ignore
+        REG_HKU: winreg.HKEY_USERS,  # type: ignore
+        REG_HKCR: winreg.HKEY_CLASSES_ROOT,  # type: ignore
     }
     hive = hives[hive_name]
 
@@ -387,18 +398,18 @@ def temp_registry_value(
         attr = "REG_" + data_type.upper()
         data_type = getattr(winreg, attr)
     else:
-        data_type = data_type or winreg.REG_SZ
+        data_type = data_type or winreg.REG_SZ  # type: ignore
 
     key = key.rstrip("\\")
-    hkey = winreg.CreateKey(hive, key)
+    hkey = winreg.CreateKey(hive, key)  # type: ignore
 
     old_data = None
     old_type = None
 
     try:
         # check if the key already exists
-        old_data, old_type = winreg.QueryValueEx(hkey, value)
-    except WindowsError as e:
+        old_data, old_type = winreg.QueryValueEx(hkey, value)  # type: ignore
+    except OSError as e:
         # Check if the error is "No such file or directory"
         if e.errno != errno.ENOENT:
             raise
@@ -413,12 +424,12 @@ def temp_registry_value(
         if isinstance(old_data, list):
             data = old_data + data
 
-    data_string = ",".join(data) if isinstance(data, list) else data
+    data_string = ",".join(data) if isinstance(data, list) else data  # type: ignore
     log.info(f"Writing to registry: key=`{key}`, value=`{value}`, data=`{data_string}`")
 
-    winreg.SetValueEx(hkey, value, 0, data_type, data)
+    winreg.SetValueEx(hkey, value, 0, data_type, data)  # type: ignore
 
-    stored_data, _ = winreg.QueryValueEx(hkey, value)
+    stored_data, _ = winreg.QueryValueEx(hkey, value)  # type: ignore
 
     if data != stored_data:
         log.warning(f"Wrote `{data}` to registry at `{hkey}` but retrieved `{stored_data}`")
@@ -431,15 +442,15 @@ def temp_registry_value(
             time.sleep(pre_restore_sleep_secs)
             if key_exists:
                 # Otherwise restore the value
-                old_data_string = ",".join(old_data) if isinstance(old_data, list) else old_data
+                old_data_string = ",".join(old_data) if isinstance(old_data, list) else old_data  # type: ignore
                 log.info(f"Restoring registry value to: key=`{key}`, value=`{value}`, data=`{old_data_string}`")
-                winreg.SetValueEx(hkey, value, 0, old_type, old_data)
+                winreg.SetValueEx(hkey, value, 0, old_type, old_data)  # type: ignore
             else:
                 # If it didn't already exist, then delete it
                 log.info(f"Deleting from registry: key=`{key}`, value=`{value}`")
-                winreg.DeleteValue(hkey, value)
+                winreg.DeleteValue(hkey, value)  # type: ignore
 
-        hkey.Close()
+        hkey.Close()  # type: ignore
         if pause:
             time.sleep(post_changes_pause_sleep_secs)
 
@@ -460,7 +471,7 @@ def enable_logon_audit(host: str = "localhost", verbose: bool = True, sleep_secs
     # additional time to allow auditing to process
     time.sleep(sleep_secs)
     if retcode != 0:
-        log.error(f"Error while enabling logon audit: `{stderr or ""}`")
+        log.error(f"Error while enabling logon audit: `{stderr or " "}`")
         return False
     return True
 

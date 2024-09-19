@@ -4,7 +4,6 @@
 # 2.0.
 
 import logging
-from pathlib import Path
 
 from . import OSType, RuleMetadata, _common, register_code_rta
 
@@ -12,7 +11,6 @@ log = logging.getLogger(__name__)
 
 
 # iso contains cmd.exe to test for rules looking for persistence from a PE from a mounted ISO or its descendants
-ISO_FILE = "bin/cmd_from_iso.iso"
 PROC_EXE = "cmd.exe"
 
 
@@ -33,21 +31,21 @@ PROC_EXE = "cmd.exe"
 )
 def main():
     # ps script to mount, execute a file and unmount ISO device
-    PS_SCRIPT = _common.get_resource_path("bin/ExecFromISOFile.ps1")
+    ps_script = _common.get_resource_path("bin/ExecFromISOFile.ps1")
+    iso_file = _common.get_resource_path("bin/cmd_from_iso.iso")
 
-    if Path(ISO).is_file() and Path(PS_SCRIPT).is_file():
-        print(f"[+] - ISO File {ISO} will be mounted and executed via powershell")
+    if iso_file.is_file() and ps_script.is_file():
+        log.info(f"ISO File {iso_file} will be mounted and executed via powershell")
 
         # commands to trigger two unique rules looking for persistence from a mounted ISO file
         for arg in [
-            "'/c reg.exe add hkcu\SOFTWARE\Microsoft\Windows\CurrentVersion\Run /v FromISO /d test.exe /f'",
+            "'/c reg.exe add hkcu\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run /v FromISO /d test.exe /f'",
             "'/c SCHTASKS.exe /Create /TN FromISO /TR test.exe /sc hourly /F'",
         ]:
             # import ExecFromISO function that takes two args -ISOFIle pointing to ISO file path and -procname pointing to the filename to execute and -cmdline for arguments
-            command = f"powershell.exe -ExecutionPol Bypass -c import-module {PS_SCRIPT}; ExecFromISO -ISOFile {ISO} -procname {PROC} -cmdline {arg};"
-            _ = _common.execute_command(command)
+            command = f"powershell.exe -ExecutionPol Bypass -c import-module {ps_script}; ExecFromISO -ISOFile {iso_file} -procname {PROC_EXE} -cmdline {arg};"
+            _ = _common.execute_command([command])
         # cleanup
-        rem_cmd = "reg.exe delete 'HKCU\Software\Microsoft\Windows\CurrentVersion\Run' /v FromISO"
+        rem_cmd = "reg.exe delete 'HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run' /v FromISO"
         _ = _common.execute_command(["cmd.exe", "/c", rem_cmd], timeout_secs=10)
         _ = _common.execute_command(["SCHTASKS.exe", "/delete", "/TN", "FromISO", "/F"])
-        print("[+] - RTA Done!")

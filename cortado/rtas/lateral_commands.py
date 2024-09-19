@@ -15,7 +15,7 @@ import logging
 import os
 import re
 
-from . import OSType, RuleMetadata, _common, register_code_rta
+from . import OSType, RuleMetadata, _common, register_code_rta, _const
 
 log = logging.getLogger(__name__)
 
@@ -32,21 +32,21 @@ MY_APP_EXE = "bin/myapp.exe"
     techniques=["T1569", "T1021", "T1543"],
     ancillary_files=[MY_APP_EXE],
 )
-def main(remote_host=None):
-    remote_host = remote_host or _common.get_ip()
+def main():
+    remote_host = _common.get_host_ip()
     log.info("Attempting to laterally move to %s" % remote_host)
 
-    remote_host = _common.get_ipv4_address(remote_host)
+    remote_host = _common.resolve_hostname(remote_host)
     log.info("Using ip address %s" % remote_host)
 
     # Put the hostname in quotes for WMIC, but leave it as is
-    if not re.match(_common.IP_REGEX, remote_host):
-        wmi_node = '"{}"'.format(remote_host)
+    if not re.match(_const.IP_REGEX, remote_host):
+        wmi_node = f'"{remote_host}"'
     else:
         wmi_node = remote_host
 
     commands = [
-        "sc.exe \\\\{host} create test_service binPath= %s" % MY_APP,
+        "sc.exe \\\\{host} create test_service binPath= %s" % MY_APP_EXE,
         "sc.exe \\\\{host} config test_service binPath= c:\\windows\\system32\\ipconfig.exe",
         "sc.exe \\\\{host} failure test_service command= c:\\windows\\system32\\net.exe",
         "sc.exe \\\\{host} start test_service",
@@ -61,12 +61,19 @@ def main(remote_host=None):
     ]
 
     for command in commands:
-        _ = _common.execute_command(command.format(host=remote_host, wmi_node=wmi_node))
+        formatted_command = command.format(host=remote_host, wmi_node=wmi_node)
+        _ = _common.execute_command([formatted_command])
 
-    _, whoami = _common.execute(["whoami"])
-    _, hostname = _common.execute(["hostname"])
+    _, whoami, _ = _common.execute_command(["whoami"])
+    _, hostname, _ = _common.execute_command(["hostname"])
 
-    domain, user = whoami.lower().split("\\")
+    if not whoami or not hostname:
+        raise _common.ExecutionError("Can't get `whoami` or `hostname` command results")
+
+    whoami = whoami.lower()
+
+    separator = "\\\\"
+    domain, _, _ = whoami.partition(separator)
     hostname = hostname.lower()
     schtasks_host = remote_host
 

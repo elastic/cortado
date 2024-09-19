@@ -15,7 +15,9 @@ from . import OSType, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
-log = logging.getLogger()
+
+SYSTEM_RESTORE = "c:\\System Volume Information"
+
 
 @register_code_rta(
     id="0fcf5aeb-cebd-466d-8a2e-ddb710ec845d",
@@ -27,8 +29,6 @@ def main() -> None:
         log.error("Can't get the system")
         return
 
-    SYSTEM_RESTORE = "c:\\System Volume Information"
-
     log.info("System Restore Process Evasion")
     program_path = _common.get_resource_path("bin/myapp.exe")
     log.info("Finding a writeable directory in %s" % SYSTEM_RESTORE)
@@ -36,11 +36,11 @@ def main() -> None:
 
     if not target_directory:
         log.warning("No writeable directories in System Restore. Exiting...")
-        return _common.UNSUPPORTED_RTA
+        raise _common.ExecutionError("Can't place executable in system restore dir")
 
     target_path = Path(target_directory) / "restore-process.exe"
     _common.copy_file(program_path, target_path)
-    _ = _common.execute_command(target_path)
+    _ = _common.execute_command([str(target_path)])
 
-    log.info("Cleanup", log_type="-")
+    log.info("Cleanup")
     _common.remove_file(target_path)

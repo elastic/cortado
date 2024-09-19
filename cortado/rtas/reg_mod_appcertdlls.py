@@ -5,7 +5,7 @@
 
 import logging
 
-from . import OSType, RuleMetadata, _common, register_code_rta
+from . import OSType, RuleMetadata, _common, register_code_rta, _const
 
 log = logging.getLogger(__name__)
 
@@ -19,11 +19,9 @@ log = logging.getLogger(__name__)
     techniques=["T1546", "T1546.009"],
 )
 def main():
-    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
-
     key = "SYSTEM\\CurrentControlSet\\Control\\Session Manager\\AppCertDLLs"
     value = "RTA"
     data = "NotMalicious"
 
-    with _common.temporary_reg(_common.HKLM, key, value, data):
+    with _common.temp_registry_value(_const.REG_HKLM, key, value, data):
         pass

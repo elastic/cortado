@@ -7,7 +7,7 @@ import logging
 import os
 import pathlib
 
-from . import _common, register_code_rta
+from . import _common, register_code_rta, RuleMetadata, OSType
 
 log = logging.getLogger(__name__)
 
@@ -15,7 +15,7 @@ log = logging.getLogger(__name__)
 @register_code_rta(
     id="c69a06f3-3873-4d5d-8584-035e0921b4a8",
     name="builtin_cmd_file_delete",
-    platforms=["macos", "linux"],
+    platforms=[OSType.MACOS, OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(
             id="15019d7c-42e6-4cf7-88b0-0c3a6963e6f5", name="Suspicious Recursive File Deletion via Built-In Utilities"
@@ -29,7 +29,7 @@ def main():
     masquerade2 = "/tmp/rm"
     # used only for linux at 2 places to enumerate xargs as parent process.
     working_dir = "/tmp/fake_folder/xargs"
-    if _common.CURRENT_OS == "linux":
+    if _common.get_current_os() == OSType.LINUX:
         # Using the Linux binary that simulates parent-> child process in Linux
         source = _common.get_resource_path("bin/linux_ditto_and_spawn_parent_child")
         _common.copy_file(source, masquerade)

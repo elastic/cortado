@@ -21,9 +21,8 @@ log = logging.getLogger(__name__)
     techniques=["T1059", "T1059.001"],
 )
 def main():
-    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
-
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     _ = _common.execute_command(
-        [powershell, "-NoExit", "-Command", "[Console]::OutputEncoding=[Text.UTF8Encoding]::UTF8"], timeout_secs=5, kill=True
+        [powershell, "-NoExit", "-Command", "[Console]::OutputEncoding=[Text.UTF8Encoding]::UTF8"],
+        timeout_secs=5,
     )

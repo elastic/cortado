@@ -5,7 +5,7 @@
 
 import logging
 
-from . import OSType, RuleMetadata, _common, register_code_rta
+from . import OSType, RuleMetadata, _common, register_code_rta, _const
 
 log = logging.getLogger(__name__)
 
@@ -23,5 +23,5 @@ def main():
     value = "BuiltInDnsClientEnabled"
     data = 1
 
-    with _common.temporary_reg(_common.HKLM, key, value, data, data_type="dword"):
+    with _common.temp_registry_value(_const.REG_HKLM, key, value, data, data_type="dword"):
         pass

@@ -11,7 +11,7 @@
 
 import logging
 
-from . import OSType, RuleMetadata, _common, register_code_rta
+from . import OSType, RuleMetadata, _common, register_code_rta, _const
 
 log = logging.getLogger(__name__)
 
@@ -29,9 +29,9 @@ def main():
     ifeo_subkey = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\netstat.exe"
     spe_subkey = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\SilentProcessExit\\netstat.exe"
 
-    with _common.temporary_reg(_common.HKLM, ifeo_subkey, "GlobalFlag", 512, _common.DWORD), _common.temporary_reg(
-        _common.HKLM, spe_subkey, "ReportingMode", 1, _common.DWORD
-    ), _common.temporary_reg(_common.HKLM, spe_subkey, "MonitorProcess", "C:\\Windows\\system32\\whoami.exe"):
+    with _common.temp_registry_value(_const.REG_HKLM, ifeo_subkey, "GlobalFlag", 512, _common.DWORD), _common.temp_registry_value(
+        _const.REG_HKLM, spe_subkey, "ReportingMode", 1, _common.DWORD
+    ), _common.temp_registry_value(_const.REG_HKLM, spe_subkey, "MonitorProcess", "C:\\Windows\\system32\\whoami.exe"):
         log.info("Opening and closing netstat")
         _ = _common.execute_command(["whoami"], shell=True)
         _ = _common.execute_command(["taskkill", "/F", "/IM", "netstat.exe"])

@@ -16,7 +16,6 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
-
 @register_code_rta(
     id="12b28e92-281f-49a7-a8b3-54681ba6d63e",
     name="wevtutil_log_clear",
@@ -27,9 +26,9 @@ log = logging.getLogger(__name__)
 )
 def main():
     log.info("Clearing Windows Event Logs")
-    log.info("WARNING - About to clear logs from Windows Event Viewer", log_type="!")
+    log.warning("About to clear logs from Windows Event Viewer")
     time.sleep(3)
     wevtutil = "wevtutil.exe"
 
-    for log in ["security", "application", "system"]:
-        _ = _common.execute_command([wevtutil, "cl", log])
+    for log_name in ["security", "application", "system"]:
+        _ = _common.execute_command([wevtutil, "cl", log_name])

@@ -5,7 +5,7 @@
 
 import logging
 
-from . import _common, register_code_rta
+from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
@@ -13,7 +13,7 @@ log = logging.getLogger(__name__)
 @register_code_rta(
     id="6ef908be-9ed3-413d-8d4d-94446107eecc",
     name="grep_software_discovery",
-    platforms=["macos", "linux"],
+    platforms=[OSType.MACOS, OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="13eade2e-73dd-4fab-a511-88258635559d", name="Potential Security Software Discovery via Grep")
     ],
@@ -22,7 +22,7 @@ log = logging.getLogger(__name__)
 )
 def main():
     masquerade = "/tmp/grep"
-    if _common.CURRENT_OS == "linux":
+    if _common.get_current_os() == OSType.LINUX:
         source = _common.get_resource_path("bin/linux.ditto_and_spawn")
         _common.copy_file(source, masquerade)
     else:
@@ -30,7 +30,7 @@ def main():
 
     # Execute command
     log.info("Launching fake grep commands to discover software")
-    _ = _common.execute_command([masquerade, "testgreptestLittle Snitchtest"], timeout_secs=10, kill=True)
+    _ = _common.execute_command([masquerade, "testgreptestLittle Snitchtest"], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

@@ -25,8 +25,7 @@ log = logging.getLogger(__name__)
     techniques=["T1574", "T1548", "T1036"],
 )
 def main():
-    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
-    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+    exe_file = _common.get_resource_path("bin/renamed_posh.exe")
 
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     taskhostw = "C:\\Users\\Public\\taskhostw.exe"
@@ -35,9 +34,9 @@ def main():
     dll = path + "\\npmproxy.dll"
     Path(path).mkdir(parents=True, exist_ok=True)
     _common.copy_file(user32, dll)
-    _common.copy_file(EXE_FILE, taskhostw)
+    _common.copy_file(exe_file, taskhostw)
 
     log.info("Spawning PowerShell from fake taskhostw")
-    _ = _common.execute_command([taskhostw, "/c", powershell], timeout_secs=10, kill=True)
+    _ = _common.execute_command([taskhostw, "/c", powershell], timeout_secs=10)
     _common.remove_files([dll, taskhostw])
     shutil.rmtree(path)

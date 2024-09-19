@@ -24,8 +24,6 @@ log = logging.getLogger(__name__)
     techniques=["T1552", "T1552.004", "T1555"],
 )
 def main():
-    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
-
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     fake_dpapi = "C:\\Users\\Public\\ntds_capi_test.pfx"
 

@@ -23,7 +23,5 @@ log = logging.getLogger(__name__)
     techniques=["T1098", "T1098.002"],
 )
 def main():
-    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
-
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
-    _ = _common.execute_command([powershell, "/c", "echo", "Set-CASMailbox ActiveSyncAllowedDeviceIDs"], timeout_secs=5, kill=True)
+    _ = _common.execute_command([powershell, "/c", "echo", "Set-CASMailbox ActiveSyncAllowedDeviceIDs"], timeout_secs=5)
