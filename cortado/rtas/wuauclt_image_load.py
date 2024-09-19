@@ -23,19 +23,19 @@ log = logging.getLogger(__name__)
     techniques=["T1218"],
 )
 def main():
-    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
-    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
-    RENAMER = _common.get_path("bin", "rcedit-x64.exe")
+    exe_file = _common.get_resource_path("bin/renamed_posh.exe")
+    ps1_file = _common.get_resource_path("bin/Invoke-ImageLoad.ps1")
+    renamer = _common.get_resource_path("bin/rcedit-x64.exe")
 
     wuauclt = "C:\\Users\\Public\\wuauclt.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
     dll = "C:\\Users\\Public\\unsigned.dll"
     ps1 = "C:\\Users\\Public\\Invoke-ImageLoad.ps1"
     rcedit = "C:\\Users\\Public\\rcedit.exe"
-    _common.copy_file(EXE_FILE, wuauclt)
+    _common.copy_file(exe_file, wuauclt)
     _common.copy_file(user32, dll)
-    _common.copy_file(PS1_FILE, ps1)
-    _common.copy_file(RENAMER, rcedit)
+    _common.copy_file(ps1_file, ps1)
+    _common.copy_file(renamer, rcedit)
 
     # Modify the originalfilename to invalidate the code sig
     log.info("Modifying the OriginalFileName attribute")

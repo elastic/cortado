@@ -12,7 +12,6 @@
 import logging
 import shutil
 import sys
-from pathlib import Path
 
 from . import OSType, RuleMetadata, _common, register_code_rta
 
@@ -36,13 +35,14 @@ process_names = [
 ]
 
 
-def http_from_process(name, ip, port):
-    path = Path(_common.BASE_DIR) / name
+def http_from_process(name: str, ip: str, port: int):
+    current_dir = _common.get_current_dir()
+    path = current_dir / name
     log.info("Making HTTP GET from %s" % path)
     shutil.copy(sys.executable, path)
     _ = _common.execute_command(
         [
-            path,
+            str(path),
             "-c",
             "from %s import urlopen ; urlopen('http://%s:%d')" % (urlliblib, ip, port),
         ]

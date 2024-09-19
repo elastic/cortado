@@ -12,7 +12,7 @@ import logging
 import os
 from pathlib import Path
 
-from . import OSType, _common, register_code_rta
+from . import OSType, _common, register_code_rta, _const
 
 log = logging.getLogger(__name__)
 
@@ -21,13 +21,12 @@ log = logging.getLogger(__name__)
     id="dc734786-66bd-4be6-bd06-eb41fa7b6745",
     name="user_dir_escalation",
     platforms=[OSType.WINDOWS],
-    ancillary_files=[_common.PS_EXEC],
+    ancillary_files=[_const.PS_EXEC_EXE],
 )
 def main() -> None:
     # make sure path is absolute for psexec
-    status = _common.run_system()
-    if status is not None:
-        return status
+    if not _common.elevate_to_system():
+        raise _common.ExecutionError("Can't elevate to system")
 
     log.info("Run a user-writeable file as system")
     source_path = _common.get_resource_path("bin/myapp.exe")
@@ -38,6 +37,6 @@ def main() -> None:
 
     target_path = Path(target_directory) / "user_file.exe"
     _common.copy_file(source_path, target_path)
-    _ = _common.execute_command([target_path])
+    _ = _common.execute_command([str(target_path)])
 
     _common.remove_directory(target_directory)

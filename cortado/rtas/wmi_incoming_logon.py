@@ -24,12 +24,15 @@ log = logging.getLogger(__name__)
     siem_rules=[RuleMetadata(id="f3475224-b179-4f78-8877-c2bd64c26b88", name="WMI Incoming Lateral Movement")],
     techniques=["T1047"],
 )
-def main(remote_host=None):
+def main():
+
+    remote_host = None
+
     if not remote_host:
         log.error("A remote host is required to detonate this RTA")
-        return _common.MISSING_REMOTE_HOST
+        raise _common.ExecutionError("Remote host is not provided")
 
-    _common.enable_logon_auditing(remote_host)
+    _ = _common.enable_logon_audit(remote_host)
 
     log.info("Attempting to trigger a remote logon on {}".format(remote_host))
 

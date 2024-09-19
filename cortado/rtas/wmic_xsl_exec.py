@@ -9,8 +9,6 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
-log = logging.getLogger(__name__)
-
 
 @register_code_rta(
     id="b9d5427a-33c4-4b1d-838d-f47c5f3b0b43",
@@ -23,16 +21,16 @@ log = logging.getLogger(__name__)
     techniques=["T1220", "T1047", "T1036"],
 )
 def main():
-    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
-    PS1_FILE = _common.get_path("bin", "Invoke-ImageLoad.ps1")
+    exe_file = _common.get_resource_path("bin/renamed_posh.exe")
+    ps1_file = _common.get_resource_path("bin/Invoke-ImageLoad.ps1")
 
     wmic = "C:\\Users\\Public\\wmic.exe"
     user32 = "C:\\Windows\\System32\\user32.dll"
     dll = "C:\\Users\\Public\\jscript.dll"
     ps1 = "C:\\Users\\Public\\Invoke-ImageLoad.ps1"
-    _common.copy_file(EXE_FILE, wmic)
+    _common.copy_file(exe_file, wmic)
     _common.copy_file(user32, dll)
-    _common.copy_file(PS1_FILE, ps1)
+    _common.copy_file(ps1_file, ps1)
 
     log.info("Loading jscript.dll into fake wmic")
     _ = _common.execute_command(

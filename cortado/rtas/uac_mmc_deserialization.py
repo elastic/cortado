@@ -25,17 +25,21 @@ log = logging.getLogger(__name__)
     techniques=["T1548"],
 )
 def main():
-    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
+    exe_file = _common.get_resource_path("bin/renamed_posh.exe")
 
     appdata = os.getenv("LOCALAPPDATA")
+
+    if not appdata:
+        raise _common.ExecutionError("No value for `LOCALAPPDATA` found")
+
     path = Path(appdata) / "\\Microsoft\\Event Viewer"
     recentfiles = path / "\\RecentViews"
 
     if path.is_dir():
-        _common.copy_file(EXE_FILE, recentfiles)
+        _common.copy_file(exe_file, recentfiles)
         _common.remove_file(recentfiles)
     else:
         path.mkdir()
-        _common.copy_file(EXE_FILE, recentfiles)
+        _common.copy_file(exe_file, recentfiles)
         _common.remove_file(recentfiles)
         path.rmdir()
