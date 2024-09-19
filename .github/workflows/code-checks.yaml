@@ -31,7 +31,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install poetry
           poetry config installer.parallel false
-          poetry install --with dev
+          poetry install --with dev --all-extras
       - name: Lint
         run: |
           . .venv/bin/activate
@@ -39,10 +39,6 @@ jobs:
       - name: Pyright
         run: |
           . .venv/bin/activate
-          whereis pyright
-          whereis python
-          whereis poetry
-          pip freeze
           poetry run pyright ./cortado
 
   unit-tests:
@@ -68,7 +64,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install poetry
           poetry config installer.parallel false
-          poetry install --with dev
+          poetry install --with dev --all-extras
       - name: Run tests
         run: |
           . .venv/bin/activate
