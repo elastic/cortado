@@ -55,6 +55,8 @@ line-length = 120
 reportMissingTypeStubs = true
 reportUnusedCallResult = "error"
 typeCheckingMode = "strict"
+venvPath = "."
+venv = ".venv"
 
 [build-system]
 requires = ["setuptools", "wheel", "setuptools_scm"]
