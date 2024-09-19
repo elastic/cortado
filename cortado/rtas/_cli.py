@@ -5,6 +5,9 @@ from cortado.rtas import CodeRta, get_registry, load_module
 
 log = logging.getLogger(__name__)
 
+
+DUMMY_RTA_NAME = "test-rta"
+
 # CLI interface with the bare-minimum dependencies
 
 
@@ -21,6 +24,10 @@ def run_rta():
     if not rta_to_run:
         log.error("RTA name is not provided")
         sys.exit(1)
+
+    if rta_to_run == DUMMY_RTA_NAME:
+        log.info("Dummy RTA name received. The check is done")
+        return
 
     # NOTE: we're assuming here that the RTA will be registered in the module
     # named as RTA. This might not be the case in the future.
