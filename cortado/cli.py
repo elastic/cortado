@@ -5,13 +5,14 @@ import typer
 import json
 
 from pathlib import Path
+from collections import Counter
 
 from rich import box
 from rich.table import Table
 from rich.console import Console
 from rich.text import Text
 
-from cortado import mapping
+from cortado import mapping, rules
 from cortado.rtas import get_registry, load_all_modules
 from cortado.utils import configure_logging
 
@@ -37,7 +38,7 @@ def print_rtas(as_json: bool = False):
         print(json.dumps(rtas_data, sort_keys=True))
         return
 
-    table = Table(show_header=True, header_style="bold magenta", show_lines=True, box=box.ROUNDED)
+    table = Table(show_header=True, header_style="bold magenta", box=box.MINIMAL, border_style="grey50")
     table.add_column("ID", no_wrap=True)
     table.add_column("Name")
     table.add_column("Platforms")
@@ -47,12 +48,21 @@ def print_rtas(as_json: bool = False):
 
     for name in sorted_names:
         rta = registry[name]
+
+        if not rta.endpoint_rules and not rta.siem_rules:
+            endpoint_rules_count = Text.assemble(("0", "red"))
+            siem_rules_count = Text.assemble(("0", "red"))
+        else:
+            endpoint_rules_count = str(len(rta.endpoint_rules))
+            siem_rules_count = str(len(rta.siem_rules))
+
+
         table.add_row(
             Text.assemble((rta.id, "dim")),
             rta.name,
             ", ".join(rta.platforms),
-            str(len(rta.endpoint_rules)),
-            str(len(rta.siem_rules)),
+            endpoint_rules_count,
+            siem_rules_count,
             ", ".join(rta.techniques),
         )
     console = Console()
@@ -64,13 +74,62 @@ def generate_mapping(mapping_file: Path = mapping.DEFAULT_MAPPING_FILE):
     """
     Generate a mapping file that contains rule to RTA relations.
     """
-    log.info("Generating rule-to-RTA mapping file", path=str(mapping_file))
+    _log = log.bind(path=str(mapping_file))
+    _log.info("Generating rule-to-RTA mapping file")
 
     data = mapping.generate_mapping()
-    with open(mapping_file, 'w') as f:
+    with open(mapping_file, "w") as f:
         json.dump(data, f, sort_keys=True, indent=4)
 
-    log.info("Mapping file saved", path=str(mapping_file))
+    _log.info("Mapping file saved")
+
+
+@app.command()
+def get_coverage(rules_glob: str, with_maturity: list[str] | None = None):
+    """
+    Calculate RTA coverage for the rules in a specific folder.
+    """
+    _log = log.bind(rules_glob=rules_glob)
+    _log.info("Calculating coverage against rules at provided path")
+
+    loaded_rules = rules.load_rules(rules_glob)
+
+    _log.info("Rules loaded", rules_count=len(loaded_rules))
+
+    # Calculating coverage against full set of RTAs
+    rules_with_issues = rules.get_coverage(loaded_rules)
+
+    rules_to_print = [
+        (rule, issues) for rule, issues in rules_with_issues
+        if not with_maturity or rule.maturity in with_maturity  # filter by maturity if set
+    ]
+
+    type_counter = Counter()  # type: ignore
+    type_counter.update([r.type for r, _ in rules_to_print])  # type: ignore
+
+    maturity_counter = Counter()  # type: ignore
+    maturity_counter.update([r.maturity for r, _ in rules_to_print])  # type: ignore
+
+    table = Table(show_header=True, header_style="bold magenta", box=box.MINIMAL, border_style="grey50", show_footer=True)
+    table.add_column("Rule ID", str(len(rules_to_print)), no_wrap=True)
+    table.add_column("Type", "\n".join(f"{k}: {v}" for k, v in type_counter.items()))  # type: ignore
+    table.add_column("Name")
+    table.add_column("Maturity", "\n".join(f"{k}: {v}" for k, v in maturity_counter.items()))  # type: ignore
+    table.add_column("Releases")
+    table.add_column("Issues")
+
+    for rule, issues in rules_to_print:
+        table.add_row(
+            Text.assemble((rule.id, "dim")),
+            rule.type,
+            rule.name,
+            rule.maturity,
+            ", ".join(rule.releases or []),
+            "\n".join(issues),
+        )
+
+    console = Console()
+    console.print(table)
 
 
 @app.callback()

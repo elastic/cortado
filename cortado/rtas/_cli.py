@@ -15,15 +15,13 @@ def run_rta():
     logging.basicConfig(level=logging.DEBUG)
 
     if len(sys.argv) != 2:
-        log.error("RTA name argument is not provided")
-        sys.exit(1)
+        raise ValueError("RTA name argument is not provided")
 
     rta_to_run = sys.argv[1]
     rta_to_run = rta_to_run.strip()
 
     if not rta_to_run:
-        log.error("RTA name is not provided")
-        sys.exit(1)
+        raise ValueError("RTA name is not provided")
 
     if rta_to_run == DUMMY_RTA_NAME:
         log.info("Dummy RTA name received. The check is done")
@@ -45,5 +43,5 @@ def run_rta():
         if isinstance(rta_details, CodeRta):
             rta_details.code_func()
         else:
-            log.error(f"`{rta_name}` is a hash RTA that can't be executed")
-            sys.exit(1)
+            log.error(f"Found an RTA but it's a hash RTA: `{rta_name}`")
+            raise ValueError("Can't run a hash RTA")
