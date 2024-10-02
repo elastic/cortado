@@ -3,7 +3,6 @@ import functools
 import importlib
 import importlib.resources
 import logging
-import json
 from dataclasses import KW_ONLY, dataclass, field, asdict
 from types import MappingProxyType
 from typing import Callable, Any
