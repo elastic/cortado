@@ -18,8 +18,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="eaf68cce-b250-4a17-a3c3-3c9c4cf1ec14", name="Persistence Attempt via StartupItems")
     ],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     log.info("Executing creation on temp StartupParameters.plist file.")

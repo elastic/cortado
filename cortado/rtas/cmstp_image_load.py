@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         RuleMetadata(id="8adfa9ad-0ed2-4b1b-bdad-f2c52e1d2a00", name="Scriptlet Execution via CMSTP"),
     ],
-    siem_rules=[],
     techniques=["T1218", "T1036", "T1059"],
 )
 def main():

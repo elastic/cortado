@@ -15,7 +15,6 @@ log = logging.getLogger(__name__)
     name="ransomnote_delete_shadows",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[RuleMetadata(id="5dba1130-72df-46f1-b581-18d9c866cb23", name="Potential Ransomware Note File")],
-    siem_rules=[],
     techniques=["T1485"],
 )
 def main():

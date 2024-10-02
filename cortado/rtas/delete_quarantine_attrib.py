@@ -19,8 +19,6 @@ log = logging.getLogger(__name__)
             id="6e47b750-72c4-4af9-ad7b-0fc846df64d3", name="Quarantine Attribute Deleted via Untrusted Binary"
         )
     ],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     # create masquerades

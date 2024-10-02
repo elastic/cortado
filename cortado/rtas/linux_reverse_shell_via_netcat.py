@@ -16,7 +16,6 @@ log = logging.getLogger(__name__)
     name="linux_reverse_shell_via_netcat",
     platforms=[OSType.LINUX],
     endpoint_rules=[RuleMetadata(id="c0ca8114-254d-46ba-88c6-db57de6efe2d", name="Linux Reverse Shell via netcat")],
-    siem_rules=[],
     techniques=["T1059", "T1071"],
 )
 def main() -> None:

@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="92d720dd-93b2-49e0-b68a-d5d6acbe4910", name="Renamed Windows Automaton Script Interpreter")
     ],
-    siem_rules=[],
     techniques=["T1036"],
 )
 def main():

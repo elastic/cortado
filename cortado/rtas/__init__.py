@@ -3,9 +3,10 @@ import functools
 import importlib
 import importlib.resources
 import logging
-from dataclasses import KW_ONLY, dataclass, field
+import json
+from dataclasses import KW_ONLY, dataclass, field, asdict
 from types import MappingProxyType
-from typing import Callable
+from typing import Callable, Any
 
 log = logging.getLogger(__name__)
 
@@ -39,11 +40,20 @@ class Rta:
         if not self.platforms and (self.endpoint_rules or self.siem_rules):
             raise ValueError(f"RTA {self.name} has no platforms specified but has rule info provided")
 
+    def as_dict(self) -> dict[str, Any]:
+        data = asdict(self)
+        return data
+
 
 @dataclass(kw_only=True, frozen=True)
 class CodeRta(Rta):
     code_func: Callable[[], None]
     ancillary_files: list[str] = field(default_factory=list)
+
+    def as_dict(self) -> dict[str, Any]:
+        data = asdict(self)
+        data.pop("code_func", None)  # Drop `code_func` function as it is not serializable
+        return data
 
 
 @dataclass(kw_only=True, frozen=True)
@@ -51,7 +61,7 @@ class HashRta(Rta):
     sample_hash: str
 
 
-REGISTRY: dict[str, Rta] = {}
+_REGISTRY: dict[str, Rta] = {}
 
 
 def register_code_rta(
@@ -64,7 +74,7 @@ def register_code_rta(
     ancillary_files: list[str] = [],
 ) -> Callable[[Callable[[], None]], Callable[[], None]]:
     def decorator(func: Callable[[], None]) -> Callable[[], None]:
-        REGISTRY[name] = CodeRta(
+        _REGISTRY[name] = CodeRta(
             id=id,
             name=name,
             platforms=platforms,
@@ -95,7 +105,7 @@ def register_hash_rta(
     siem_rules: list[RuleMetadata] = [],
     techniques: list[str] = [],
 ):
-    REGISTRY[name] = HashRta(
+    _REGISTRY[name] = HashRta(
         id=id,
         name=name,
         platforms=platforms,
@@ -110,7 +120,7 @@ def register_hash_rta(
 def get_registry() -> MappingProxyType[str, Rta]:
     # Wrap a registry dict into a read-only mapping to prevent from any changes
     # https://docs.python.org/3/library/types.html#types.MappingProxyType
-    return MappingProxyType(REGISTRY)
+    return MappingProxyType(_REGISTRY)
 
 
 def load_all_modules():
@@ -129,7 +139,7 @@ def load_all_modules():
     if len(failed_imports) > 0:
         log.warning(f"{len(failed_imports)} failed module imports")
 
-    log.info(f"RTAs loaded: {len(REGISTRY)}")
+    log.info(f"RTAs loaded: {len(_REGISTRY)}")
 
 
 def load_module(module_name: str):

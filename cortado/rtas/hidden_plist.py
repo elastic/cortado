@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
     siem_rules=[
         RuleMetadata(id="092b068f-84ac-485d-8a55-7dd9e006715f", name="Creation of Hidden Launch Agent or Daemon")
     ],
-    techniques=[""],
 )
 def main():
     log.info(f"Executing hidden plist creation on {Path.home()}/Library/LaunchAgents/.test.plist")

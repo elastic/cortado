@@ -33,7 +33,6 @@ log = logging.getLogger(__name__)
             id="ce8a6302-7248-457a-8427-3d6bad14e2f0", name="Potential Credential Access via Windows Credential History"
         ),
     ],
-    siem_rules=[],
     techniques=["T1555.004", "T1552.001", "T1003.003"],
 )
 def main():

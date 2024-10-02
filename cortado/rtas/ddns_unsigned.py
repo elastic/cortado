@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="75b80e66-90d0-4ab6-9e6b-976f7d690906", name="Connection to Dynamic DNS Provider by an Unsigned Binary"
         )
     ],
-    siem_rules=[],
     techniques=["T1071"],
 )
 def main():

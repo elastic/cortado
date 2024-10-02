@@ -21,7 +21,6 @@ log = logging.getLogger(__name__)
         ),
         RuleMetadata(id="f06d9987-33f8-44b7-b815-c1f66fb39d25", name="Suspicious File Create via Pkg Install Script"),
     ],
-    siem_rules=[],
     techniques=["T1222", "T1222.002", "T1564", "T1546", "T1546.016"],
 )
 def main():

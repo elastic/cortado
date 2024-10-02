@@ -15,7 +15,6 @@ log = logging.getLogger(__name__)
     name="ping_delayed_exec",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[RuleMetadata(id="7615ca4b-c291-4f05-9488-114b6bf99157", name="Delayed Execution via Ping")],
-    siem_rules=[],
     techniques=["T1216", "T1220", "T1218", "T1059"],
 )
 def main():

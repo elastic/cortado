@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         RuleMetadata(id="65f52068-4d08-41af-9fd7-0c1a4f732494", name="UAC Bypass via Windows Firewall Snap-In Hijack"),
     ],
-    siem_rules=[],
     techniques=["T1574", "T1055", "T1548", "T1036"],
 )
 def main():

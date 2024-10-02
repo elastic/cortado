@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="2fbbd139-3919-4b6b-9c50-9452b0aef005", name="Unexpected SMB Connection from User-mode Process")
     ],
-    siem_rules=[],
     techniques=["T1021"],
 )
 def main():

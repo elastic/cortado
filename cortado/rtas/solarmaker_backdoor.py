@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="f7e6d239-9af5-42e3-8d23-91e7188a5cb0", name="SolarMarker Backdoor Registry Modification")
     ],
-    siem_rules=[],
     techniques=["T1112", "T1546"],
 )
 def main():

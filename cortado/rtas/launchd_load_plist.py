@@ -38,7 +38,6 @@ plist = """
             id="c6037fad-ad13-46a6-9f7f-4deeef5ac69b", name="Persistence via Suspicious Launch Agent or Launch Daemon"
         ),
     ],
-    siem_rules=[],
     techniques=["T1547", "T1547.011", "T1543", "T1543.001", "T1543.004"],
 )
 def main():

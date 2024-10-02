@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="8fff17c6-f0ba-4996-bcc3-342a9ebd0ef3", name="Remote Code Execution via Confluence OGNL Injection"
         )
     ],
-    siem_rules=[],
     techniques=["T1190"],
 )
 def main():

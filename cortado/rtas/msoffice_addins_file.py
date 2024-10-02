@@ -18,7 +18,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="aaa80718-1ed9-43bd-bcf7-97f2a6c93ea8", name="Persistence via Microsoft Office AddIns")
     ],
-    siem_rules=[],
     techniques=["T1137"],
 )
 def main():

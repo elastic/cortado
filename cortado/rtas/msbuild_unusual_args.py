@@ -18,7 +18,6 @@ log = logging.getLogger(__name__)
         RuleMetadata(id="b0207677-5041-470b-981d-13ab956cf5b4", name="Execution via Renamed Signed Binary Proxy"),
         RuleMetadata(id="6518cdaf-e6cd-4cf9-a51e-043117c3dbeb", name="MSBuild with Unusual Arguments"),
     ],
-    siem_rules=[],
     techniques=["T1127", "T1218"],
 )
 def main():

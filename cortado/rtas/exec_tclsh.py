@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="ac1eaed8-2aee-48d7-9824-2be1f00eda0e", name="Tclsh execution followed by immediate network connection"
         )
     ],
-    siem_rules=[],
     techniques=["T1059"],
 )
 def main():

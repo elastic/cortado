@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="cd3a06dc-58c3-4d57-a03a-0d8991f237e7", name="Suspicious File Overwrite and Modification via Echo"
         )
     ],
-    siem_rules=[],
     techniques=["T1027", "T1059", "T1059.004"],
 )
 def main():

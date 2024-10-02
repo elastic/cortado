@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="f57505bb-a1d2-4d3b-b7b5-1d81d7bdb80e", name="Unusual PowerShell Engine ImageLoad")
     ],
-    siem_rules=[],
     techniques=["T1059"],
 )
 def main():

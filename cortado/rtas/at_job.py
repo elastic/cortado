@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="779f18ce-1457-457c-80e1-3a5d146c2dc0", name="At Job Creation or Modification by an Unusual Process"
         )
     ],
-    siem_rules=[],
     techniques=["T1053", "T1053.002"],
 )
 def main():

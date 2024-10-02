@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
             name="Privilege Escalation via Windir or SystemRoot Environment Variable",
         )
     ],
-    siem_rules=[],
     techniques=["T1574"],
 )
 def main():

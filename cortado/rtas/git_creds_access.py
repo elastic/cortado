@@ -18,7 +18,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="39f60a36-8c5a-4703-8576-ad3e8c800a0f", name="Sensitive File Access - Cloud Credentials")
     ],
-    siem_rules=[],
     techniques=["T1552"],
 )
 def main():

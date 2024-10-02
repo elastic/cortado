@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="30c89cc9-d93c-4134-a976-58f8413f2f32", name="Privilege Escalation via PKEXEC Exploitation")
     ],
-    siem_rules=[],
     techniques=["T1574", "T1068"],
 )
 def main():

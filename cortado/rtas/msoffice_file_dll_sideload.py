@@ -21,7 +21,6 @@ log = logging.getLogger(__name__)
         ),
         RuleMetadata(id="37c54ca7-e96d-4fd5-92d3-08cab38516b7", name="Suspicious Executable File Creation"),
     ],
-    siem_rules=[],
     techniques=["T1574", "T1574.001", "T1574.002", "T1566", "T1566.001", "T1105", "T1059", "T1059.005", "T1059.007"],
 )
 def main():

@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="603ac59e-9cca-4c48-9750-e38399079043", name="Background Process Execution via Shell")
     ],
-    siem_rules=[],
     techniques=["T1059", "T1059.004"],
 )
 def main():

@@ -17,8 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="92525741-9ca8-466e-acee-ceb14ab0dc34", name="System Discovery via Built-In Utilities")
     ],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     masquerade = "/tmp/bash"

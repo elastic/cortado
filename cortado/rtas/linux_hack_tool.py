@@ -16,7 +16,6 @@ log = logging.getLogger(__name__)
     platforms=[OSType.LINUX],
     endpoint_rules=[RuleMetadata(id="3337a10c-e950-4827-a44e-96a688fba221", name="Potential Linux Hack Tool Launched")],
     siem_rules=[RuleMetadata(id="1df1152b-610a-4f48-9d7a-504f6ee5d9da", name="Potential Linux Hack Tool Launched")],
-    techniques=[""],
 )
 def main():
     masquerade = "/tmp/crackmapexec"

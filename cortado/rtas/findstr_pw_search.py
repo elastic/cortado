@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
     name="findstr_pw_search",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[],
     techniques=[],
 )
 def main():

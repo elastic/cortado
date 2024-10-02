@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="f8ec5b76-53cf-4989-b451-7d16abec7298", name="Suspicious Windows Explorer Execution")
     ],
-    siem_rules=[],
     techniques=["T1055", "T1036"],
 )
 def main():

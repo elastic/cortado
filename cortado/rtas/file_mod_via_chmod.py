@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="42ab2c0f-b10d-467d-8c6d-def890cf3f68", name="File Made Executable by Suspicious Parent Process"
         )
     ],
-    siem_rules=[],
     techniques=["T1222", "T1222.002", "T1564"],
 )
 def main():

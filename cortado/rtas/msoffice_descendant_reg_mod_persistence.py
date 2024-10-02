@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
             name="Registry Persistence via Microsoft Office Descendant Process",
         )
     ],
-    siem_rules=[],
     techniques=["T1547", "T1112", "T1566"],
 )
 def main():

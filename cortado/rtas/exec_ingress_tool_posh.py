@@ -18,7 +18,6 @@ log = logging.getLogger(__name__)
         RuleMetadata(id="5abd98fb-ffbe-4cd6-9592-3cda7b155ff5", name="Ingress Tool Transfer via PowerShell"),
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
     ],
-    siem_rules=[],
     techniques=["T1105", "T1059", "T1059.001"],
 )
 def main():

@@ -20,8 +20,6 @@ log = logging.getLogger(__name__)
             id="196f4c30-a8c5-40a5-80e3-a50c6714632f", name="Execution of File Downloaded via Internet Browser"
         )
     ],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")

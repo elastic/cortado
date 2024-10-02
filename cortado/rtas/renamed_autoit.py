@@ -15,7 +15,6 @@ log = logging.getLogger(__name__)
     name="renamed_autoit",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[RuleMetadata(id="99f2327e-871f-4b8a-ae75-d1c4697aefe4", name="Renamed AutoIt Scripts Interpreter")],
-    siem_rules=[],
     techniques=["T1036"],
 )
 def main():

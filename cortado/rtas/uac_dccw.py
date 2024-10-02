@@ -21,7 +21,6 @@ log = logging.getLogger(__name__)
             id="093bd845-b59f-4868-a7dd-62d48b737bf6", name="UAC Bypass Attempt via DCCW DLL Search Order Hijacking"
         ),
     ],
-    siem_rules=[],
     techniques=["T1129", "T1548", "T1036", "T1055", "T1574"],
 )
 def main():

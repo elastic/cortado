@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         RuleMetadata(id="5b00c9ba-9546-47cc-8f9f-1c1a3e95f65c", name="Potential Masquerading as SVCHOST"),
     ],
-    siem_rules=[],
     techniques=["T1036", "T1053", "T1566"],
 )
 def main():

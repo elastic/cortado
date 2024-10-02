@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
             id="95601d8b-b969-4189-9744-090140ae29e6", name="Network Connection via Process with Unusual Arguments"
         ),
     ],
-    siem_rules=[],
     techniques=["T1055", "T1036"],
 )
 def main():

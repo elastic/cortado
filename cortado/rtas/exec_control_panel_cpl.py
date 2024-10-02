@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="a4862afb-1292-4f65-a15f-8d6a8019b5e2", name="Control Panel Process with Unusual Arguments")
     ],
-    siem_rules=[],
     techniques=["T1218"],
 )
 def main():

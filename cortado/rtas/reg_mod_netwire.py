@@ -15,7 +15,6 @@ log = logging.getLogger(__name__)
     name="reg_mod_netwire",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[RuleMetadata(id="102f340f-1839-4bad-8493-824cc02c4e69", name="NetWire RAT Registry Modification")],
-    siem_rules=[],
     techniques=["T1112"],
 )
 def main():

@@ -22,7 +22,6 @@ log = logging.getLogger(__name__)
         ),
         RuleMetadata(id="b5c91c3e-9d2d-4df6-afb7-c9d236b5ebe2", name="Unusual Kerberos Client Process"),
     ],
-    siem_rules=[],
     techniques=["T1558", "T1204", "T1036"],
 )
 def main():

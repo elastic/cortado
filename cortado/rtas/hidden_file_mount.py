@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="c5f219ca-4bda-461b-bc54-246c0bb48143", name="MacOS Hidden File Mounted"),
     ],
-    siem_rules=[],
     techniques=["T1211", "T1059", "T1059.004"],
 )
 def main():

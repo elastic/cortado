@@ -34,7 +34,6 @@ def vss_create():
     id="b78f0255-3b97-4e39-8857-ec74d09e36ba",
     name="credaccess_sam_from_vss",
     platforms=[OSType.WINDOWS],
-    siem_rules=[],
     endpoint_rules=[
         RuleMetadata(id="dc27190a-688b-4f9b-88f0-1f13deccd67f", name="Security Account Manager (SAM) File Access")
     ],

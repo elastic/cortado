@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="bb1de0c7-3504-4b31-8d3e-928aa3acf64f", name="Potential Masquerading as System Binary")
     ],
-    siem_rules=[],
     techniques=["T1036", "T1036.004", "T1059", "T1059.004"],
 )
 def main():

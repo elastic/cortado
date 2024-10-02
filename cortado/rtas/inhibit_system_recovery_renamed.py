@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="153f52e2-2fe5-420b-8691-ddb8562b99d7", name="Inhibit System Recovery via Renamed Utilities")
     ],
-    siem_rules=[],
     techniques=["T1490", "T1218"],
 )
 def main():

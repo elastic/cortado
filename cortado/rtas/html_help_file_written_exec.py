@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="9c3b13f6-bc26-4397-9721-4ba23ddd1014", name="File Execution via Microsoft HTML Help")
     ],
-    siem_rules=[],
     techniques=["T1218", "T1566"],
 )
 def main():

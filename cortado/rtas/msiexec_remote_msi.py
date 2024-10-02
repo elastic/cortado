@@ -15,7 +15,6 @@ log = logging.getLogger(__name__)
     name="msiexec_remote_msi",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[RuleMetadata(id="8ba98e28-d83e-451e-8df7-f0964f7e69b6", name="Remote File Execution via MSIEXEC")],
-    siem_rules=[],
     techniques=["T1218"],
 )
 def main():

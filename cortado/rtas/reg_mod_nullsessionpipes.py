@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="11d374d8-2dad-4d9b-83a2-ee908eac8269", name="Suspicious NullSessionPipe Registry Modification")
     ],
-    siem_rules=[],
     techniques=["T1021", "T1112"],
 )
 def main():

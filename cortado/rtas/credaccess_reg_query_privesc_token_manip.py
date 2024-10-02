@@ -22,7 +22,6 @@ log = logging.getLogger(__name__)
             id="46de65b8-b873-4ae7-988d-12dcdc6fa605", name="Potential Privilege Escalation via Token Impersonation"
         ),
     ],
-    siem_rules=[],
     techniques=["T1134", "T1003"],
 )
 def main():

@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="94d35931-5c48-49ed-8c18-d601c4f8aeaa", name="Registry Run Key Prefixed with Asterisk")
     ],
-    siem_rules=[],
     techniques=["T1547"],
 )
 def main():

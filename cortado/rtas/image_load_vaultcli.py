@@ -15,8 +15,6 @@ log = logging.getLogger(__name__)
     name="image_load_vaultcli",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[RuleMetadata(id="048737fe-80d6-4462-aa80-ffeed853103e", name="Suspicious Vault Client Image Load")],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     PS1_FILE = _common.get_resource_path("bin/Invoke-ImageLoad.ps1")

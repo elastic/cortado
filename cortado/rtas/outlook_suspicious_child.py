@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
         RuleMetadata(id="17030515-5ed0-43c8-9602-f97cbebd43c0", name="Execution via Outlook Application COM Object"),
         RuleMetadata(id="5b00c9ba-9546-47cc-8f9f-1c1a3e95f65c", name="Potential Masquerading as SVCHOST"),
     ],
-    siem_rules=[],
     techniques=["T1566", "T1218", "T1036", "T1059"],
 )
 def main():

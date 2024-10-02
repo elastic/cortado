@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="ccca5e9f-2625-4b95-9b15-d5d8fc56df2c", name="Link Creation to Temp Directory"),
     ],
-    siem_rules=[],
     techniques=["T1222", "T1222.002"],
 )
 def main():

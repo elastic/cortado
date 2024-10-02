@@ -28,7 +28,6 @@ def run_command(masquerade: str, masquerade2: str):
             name="Suspicious Content Extracted or Decompressed via Built-In Utilities",
         )
     ],
-    siem_rules=[],
     techniques=["T1059", "T1059.004", "T1027", "T1140"],
 )
 def main():

@@ -22,7 +22,6 @@ log = logging.getLogger(__name__)
             id="58a08390-e69d-4b32-9487-1d1ddb16ba09", name="Inhibit System Recovery via Microsoft Office Process"
         ),
     ],
-    siem_rules=[],
     techniques=["T1490", "T1047", "T1566"],
 )
 def main():

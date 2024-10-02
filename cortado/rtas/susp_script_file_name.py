@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         RuleMetadata(id="f0630213-c4c4-4898-9514-746395eb9962", name="Script Execution via Microsoft HTML Application"),
     ],
-    siem_rules=[],
     techniques=["T1036", "T1218", "T1566", "T1059"],
 )
 def main():

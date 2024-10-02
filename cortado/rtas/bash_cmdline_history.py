@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="31da6564-b3d3-4fc8-9a96-75ad0b364363", name="Tampering of Bash Command-Line History")
     ],
-    siem_rules=[],
     techniques=["T1070", "T1070.003"],
 )
 def main():

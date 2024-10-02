@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="28a39a43-e850-4941-8605-ffa23dcfd25a", name="UAC Bypass Attempt via WOW64 Logger DLL Side-Loading"
         )
     ],
-    siem_rules=[],
     techniques=["T1574", "T1548"],
 )
 def main():

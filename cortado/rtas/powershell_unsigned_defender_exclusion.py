@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
             name="Suspicious Windows Defender Exclusions Added via PowerShell",
         )
     ],
-    siem_rules=[],
     techniques=["T1562", "T1059"],
 )
 def main():

@@ -18,7 +18,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="871f0c30-a7c5-40a5-80e3-a50c6714632f", name="Download and Execution of JavaScript Payload")
     ],
-    siem_rules=[],
     techniques=["T1059"],
 )
 def main():

@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
             name="Connection to Dynamic DNS Provider by a Signed Binary Proxy",
         )
     ],
-    siem_rules=[],
     techniques=["T1218", "T1071"],
 )
 def main():

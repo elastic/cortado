@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="16fba7a9-f8f6-43ce-ae24-6a392a48e49c", name="MacOS Monterey Reflective Code Loading")
     ],
-    siem_rules=[],
     techniques=["T1620", "T1106"],
 )
 def main():

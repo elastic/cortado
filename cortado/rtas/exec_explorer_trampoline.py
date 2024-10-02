@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
             name="Execution of Commonly Abused Utilities via Explorer Trampoline",
         )
     ],
-    siem_rules=[],
     techniques=["T1218", "T1566", "T1059"],
 )
 def main():

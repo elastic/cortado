@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="e5fc1285-d312-4b45-9e6b-e6c037276c17", name="Cron Tab Creation or Modification by an Unusual Process"
         )
     ],
-    siem_rules=[],
     techniques=["T1053", "T1053.003"],
 )
 def main():

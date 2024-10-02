@@ -15,7 +15,6 @@ log = logging.getLogger(__name__)
     name="suspicious_mining_process",
     platforms=[OSType.LINUX],
     endpoint_rules=[RuleMetadata(id="fbf9342e-3d1e-4fba-a828-92fa0fb4d21b", name="Suspicious Mining Process Events")],
-    siem_rules=[],
     techniques=["T1059", "T1059.004"],
 )
 def main():

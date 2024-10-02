@@ -16,7 +16,6 @@ log = logging.getLogger(__name__)
     platforms=[OSType.MACOS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="cc2fd2d0-ba3a-4939-b87f-2901764ed036", name="Attempt to Enable the Root Account")],
-    techniques=[""],
 )
 def main():
     masquerade = "/tmp/dsenableroot"

@@ -18,7 +18,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="5d2c3833-a36a-483a-acea-5bf8cf363a81", name="Potential Default Application Hijacking")
     ],
-    siem_rules=[],
     techniques=["T1574"],
 )
 def main():

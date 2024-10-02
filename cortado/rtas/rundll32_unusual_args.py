@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
         RuleMetadata(id="cfaf983e-1129-464c-b0aa-270f42e20d3d", name="RunDLL32 with Unusual Arguments"),
         RuleMetadata(id="f60455df-5054-49ff-9ff7-1dc4e37b6ea7", name="Binary Proxy Execution via Rundll32"),
     ],
-    siem_rules=[],
     techniques=["T1218", "T1059"],
 )
 def main():

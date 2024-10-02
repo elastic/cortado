@@ -84,7 +84,6 @@ def impersonate_system():
     endpoint_rules=[
         RuleMetadata(id="cc35ee3e-d350-4319-b7f3-ea0d991ce4d9", name="Suspicious Impersonation as Trusted Installer")
     ],
-    siem_rules=[],
     techniques=["T1134"],
 )
 def main():

@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="276a5df0-7e20-4218-ade1-3f3ed711d4cb", name="Potential Multi Architecture File Downloads")
     ],
-    siem_rules=[],
     techniques=["T1105"],
 )
 def main():

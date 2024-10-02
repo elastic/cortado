@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="4b61b37d-c569-444a-bafa-e29d221ee55c", name="Indirect Command Execution via Console Window Host"
         )
     ],
-    siem_rules=[],
     techniques=["T1202"],
 )
 def main():

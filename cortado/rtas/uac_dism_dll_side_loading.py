@@ -21,7 +21,6 @@ log = logging.getLogger(__name__)
             id="38210b91-f593-4c1c-a582-e5309c5b5168", name="UAC Bypass Attempt via DismCore DLL Side-Loading"
         ),
     ],
-    siem_rules=[],
     techniques=["T1574", "T1055", "T1548", "T1036"],
 )
 def main():

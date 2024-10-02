@@ -18,7 +18,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="cb351778-7329-4de9-82b5-6705f772a3af", name="Potential SSH-IT SSH Worm Downloaded"),
     ],
-    siem_rules=[],
     techniques=["T1021", "T1563"],
 )
 def main() -> None:

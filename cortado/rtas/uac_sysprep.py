@@ -21,7 +21,6 @@ log = logging.getLogger(__name__)
     name="uac_sysprep",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[],
     techniques=[],
 )
 def main():

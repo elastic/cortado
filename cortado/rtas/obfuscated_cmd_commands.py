@@ -4,6 +4,7 @@
 # 2.0.
 
 import logging
+
 # Name: Emulate Obfuscated cmd Commands
 # RTA: obfuscated_cmd_commands.py
 # ATT&CK: T1036
@@ -20,7 +21,6 @@ log = logging.getLogger(__name__)
     name="obfuscated_cmd_commands",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[],
     techniques=[],
 )
 def main():

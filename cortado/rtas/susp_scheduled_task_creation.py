@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
         RuleMetadata(id="5db08297-bf72-49f4-b426-f405c2b01326", name="Regsvr32 with Unusual Arguments"),
         RuleMetadata(id="beebd95c-93f4-46d2-a902-053bfe78686b", name="Suspicious Scheduled Task Creation"),
     ],
-    siem_rules=[],
     techniques=["T1218", "T1053", "T1036", "T1059"],
 )
 def main():

@@ -17,8 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="78afa378-d1c4-4b83-a261-ce1c90f1cbf9", name="Indirect Command Execution via ForFiles")
     ],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")

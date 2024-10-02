@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="14626cac-eb09-4e52-81f1-f87975e8f5ae", name="Potential Execution via Sliver Framework")
     ],
-    siem_rules=[],
     techniques=["T1059", "T1059.001"],
 )
 def main():

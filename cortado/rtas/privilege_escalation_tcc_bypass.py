@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
             name="Potential Privilege Escalation via TCC bypass with fake TCC.db",
         )
     ],
-    siem_rules=[],
     techniques=["T1068"],
 )
 def main():

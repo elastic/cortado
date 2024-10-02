@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
             name="Reading or Modifying Downloaded Files Database via SQLite Utility",
         )
     ],
-    siem_rules=[],
     techniques=[],
 )
 def main():

@@ -21,7 +21,6 @@ log = logging.getLogger(__name__)
             id="3899dd3b-f31a-4634-8467-55326cd87597", name="Suspicious PowerShell Execution via Windows Scripts"
         ),
     ],
-    siem_rules=[],
     techniques=["T1218", "T1036", "T1059"],
 )
 def main():

@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
             id="4154c8ce-c718-4641-80db-a6a52276f1a4", name="Potential Binary Masquerading via Invalid Code Signature"
         )
     ],
-    siem_rules=[],
     techniques=["T1036"],
 )
 def main():

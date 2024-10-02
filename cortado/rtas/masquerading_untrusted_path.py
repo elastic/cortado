@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="e216abf2-1961-43fb-bef2-0c4b34c78600", name="Linux Binary Masquerading via Untrusted Path")
     ],
-    siem_rules=[],
     techniques=["T1036", "T1036.004"],
 )
 def main():

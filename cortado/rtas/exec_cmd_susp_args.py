@@ -17,8 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="8dd7588d-fc28-40c0-adfb-14789c763984", name="Suspicious Windows Command Shell Execution")
     ],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     cmd = "C:\\Windows\\System32\\cmd.exe"

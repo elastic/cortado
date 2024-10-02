@@ -4,6 +4,7 @@
 # 2.0.
 
 import logging
+
 # Name: Obfuscated PowerShell Commands
 # RTA: obfuscated_powershell.py
 # ATT&CK: T1027,T1140,T1192,T1193
@@ -20,7 +21,6 @@ log = logging.getLogger(__name__)
     name="obfuscated_powershell",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[],
     techniques=[],
 )
 def main():

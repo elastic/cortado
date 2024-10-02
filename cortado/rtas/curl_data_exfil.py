@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="192ec591-1d00-4c16-a717-8a7481038d23", name="MacOS Potential Data Exfiltration via Curl")
     ],
-    siem_rules=[],
     techniques=["T1048"],
 )
 def main():

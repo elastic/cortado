@@ -18,7 +18,6 @@ log = logging.getLogger(__name__)
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         RuleMetadata(id="32ab2977-2932-4172-9117-36e382591818", name="Attempt to Disable Windows Defender Services"),
     ],
-    siem_rules=[],
     techniques=["T1562", "T1036"],
 )
 def main():

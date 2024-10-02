@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
             id="28996098-b9be-4aa8-a1f3-4923c84b2649", name="UAC Bypass Attempt via MMC DLL Search Order Hijacking"
         ),
     ],
-    siem_rules=[],
     techniques=["T1574", "T1548", "T1036"],
 )
 def main():

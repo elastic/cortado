@@ -15,8 +15,6 @@ log = logging.getLogger(__name__)
     name="file_double_extension",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[RuleMetadata(id="ccfca0c7-c975-4735-82bd-954ffbafd00b", name="Evasion via Double File Extension")],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"

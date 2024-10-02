@@ -24,7 +24,6 @@ SHELLCODE = b"\x48\x31\xff\x48\xf7\xe7\x65\x48\x8b\x58\x60\x48\x8b\x5b\x18\x48\x
             id="2ad63716-3dc3-49ba-b682-ef4b9e4a4d87", name="Potential Injection via the Console Window Class"
         ),
     ],
-    siem_rules=[],
     techniques=["T1134", "T1055"],
 )
 def main():

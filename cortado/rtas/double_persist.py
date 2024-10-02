@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
             name="Untrusted Process Writing to Commonly Abused Persistence Locations",
         )
     ],
-    siem_rules=[],
     techniques=["T1547", "T1112"],
 )
 def main():

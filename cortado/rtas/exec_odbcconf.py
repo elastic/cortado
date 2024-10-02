@@ -19,8 +19,6 @@ log = logging.getLogger(__name__)
             id="1faebe83-38d7-4390-b6bd-9c6b851e47c4", name="Suspicious ImageLoad via ODBC Driver Configuration Program"
         )
     ],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")

@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
             name="Windows Firewall Exception List Modified via Untrusted Process",
         )
     ],
-    siem_rules=[],
     techniques=["T1562"],
 )
 def main():

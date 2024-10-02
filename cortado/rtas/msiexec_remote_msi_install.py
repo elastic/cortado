@@ -18,7 +18,6 @@ log = logging.getLogger(__name__)
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         RuleMetadata(id="706bf4ca-45b7-4eb1-acae-b1228124594a", name="Remote MSI Package Installation via MSIEXEC"),
     ],
-    siem_rules=[],
     techniques=["T1218", "T1036"],
 )
 def main():

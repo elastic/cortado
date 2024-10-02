@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="ed77616c-8f97-472b-bb15-532af004e82a", name="Suspicious DLLRegisterServer Execution via MSIEXEC"
         )
     ],
-    siem_rules=[],
     techniques=["T1218", "T1218.007"],
 )
 def main():

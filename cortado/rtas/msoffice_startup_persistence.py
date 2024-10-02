@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="2b8ea430-897d-486c-85a8-add9d7072ff3", name="Microsoft Office Process Setting Persistence via Startup"
         )
     ],
-    siem_rules=[],
     techniques=["T1547", "T1566"],
 )
 def main():

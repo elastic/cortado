@@ -16,7 +16,6 @@ log = logging.getLogger(__name__)
     id="395d0e4c-e7f5-4c77-add7-92b1d2ba169e",
     name="evasion_patch_etw_amsi",
     platforms=[OSType.WINDOWS],
-    siem_rules=[],
     endpoint_rules=[
         RuleMetadata(id="586bf106-b208-45fc-9401-727664175ca0", name="Potential AMSI Bypass via Memory Patching"),
         RuleMetadata(id="3046168a-91cb-4ecd-a061-b75b1df1c107", name="Potential Evasion via Event Tracing Patching"),

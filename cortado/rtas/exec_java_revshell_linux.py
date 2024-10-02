@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="e0db3577-879e-4ac2-bd58-691e1343afca", name="Potential Linux Reverse Shell via Java")
     ],
-    siem_rules=[],
     techniques=["T1059", "T1071"],
 )
 def main():

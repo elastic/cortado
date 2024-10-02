@@ -16,8 +16,6 @@ log = logging.getLogger(__name__)
     name="xcsset_infection",
     platforms=[OSType.MACOS],
     endpoint_rules=[RuleMetadata(id="875b71bb-ef09-46b2-9c12-a95112461e85", name="Potential XCSSET Malware Infection")],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     masquerade = "/tmp/zip"

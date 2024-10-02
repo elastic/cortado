@@ -23,7 +23,6 @@ log = logging.getLogger(__name__)
         ),
         RuleMetadata(id="8606d5fe-5005-4f48-804a-3ad71a22e39d", name="Execution via Microsoft DotNet ClickOnce Host"),
     ],
-    siem_rules=[],
     techniques=["T1127", "T1218", "T1036", "T1204", "T1059"],
 )
 def main():

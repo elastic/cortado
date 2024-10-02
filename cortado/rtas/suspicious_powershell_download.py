@@ -22,7 +22,6 @@ log = logging.getLogger(__name__)
         ),
         RuleMetadata(id="7200673e-588c-45d5-be48-bc5c7a908d6b", name="Suspicious PowerShell Downloads"),
     ],
-    siem_rules=[],
     techniques=["T1566", "T1059"],
 )
 def main():

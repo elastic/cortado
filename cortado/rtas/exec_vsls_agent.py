@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="a5416b1f-fc3f-4162-936d-34086689c3b0", name="DLL Execution via Visual Studio Live Share")
     ],
-    siem_rules=[],
     techniques=["T1218"],
 )
 def main():

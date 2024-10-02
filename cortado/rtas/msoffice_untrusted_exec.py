@@ -21,7 +21,6 @@ log = logging.getLogger(__name__)
         RuleMetadata(id="bb23a662-2d75-4714-837d-4ec9c2e772a5", name="Untrusted File Execution via Microsoft Office"),
         RuleMetadata(id="901f0c30-a7c5-40a5-80e3-a50c6744632f", name="RunDLL32/Regsvr32 Loads Dropped Executable"),
     ],
-    siem_rules=[],
     techniques=["T1218", "T1036", "T1055", "T1566", "T1059"],
 )
 def main():

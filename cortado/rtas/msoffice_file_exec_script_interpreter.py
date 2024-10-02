@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="54aabea0-3687-4ef1-b70c-015ca588e563", name="Microsoft Office File Execution via Script Interpreter"
         )
     ],
-    siem_rules=[],
     techniques=["T1566"],
 )
 def main():

@@ -17,8 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="1f207515-b56f-4d15-929e-b6c0b1bb34f2", name="Suspicious Manual VScode Extension Installation")
     ],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     log.info("Executing code commands to load fake extension.")

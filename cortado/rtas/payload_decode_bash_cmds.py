@@ -19,8 +19,6 @@ log = logging.getLogger(__name__)
             id="5dce3865-838f-4773-9781-87226af1fc12", name="Payload Decoded and Decrypted via Built-In Utilities"
         )
     ],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     # create masquerades

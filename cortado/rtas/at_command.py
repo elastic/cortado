@@ -23,7 +23,6 @@ log = logging.getLogger(__name__)
     name="at_command",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[],
     techniques=[],
 )
 def main():

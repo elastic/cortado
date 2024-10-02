@@ -22,7 +22,6 @@ log = logging.getLogger(__name__)
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         RuleMetadata(id="740ad26d-3e67-47e1-aff1-adb47a697375", name="Inhibit System Recovery via Signed Binary Proxy"),
     ],
-    siem_rules=[],
     techniques=["T1218", "T1036", "T1216", "T1220", "T1490", "T1059"],
 )
 def main():

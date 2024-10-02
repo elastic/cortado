@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="ced93ac0-f153-402f-9239-17ae32f304e2", name="Suspicious Credential Files Creation via Kerberos"
         )
     ],
-    siem_rules=[],
     techniques=["T1558", "T1021"],
 )
 def main():

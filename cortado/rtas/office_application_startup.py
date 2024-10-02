@@ -21,7 +21,6 @@ log = logging.getLogger(__name__)
     name="office_application_startup",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[],
     techniques=[],
 )
 def main():

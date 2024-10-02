@@ -18,7 +18,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="7df7fca3-8a91-4a54-9799-0478a90ae326", name="Suspicious Browser Files Modification")
     ],
-    siem_rules=[],
     techniques=["T1176", "T1112"],
 )
 def main():

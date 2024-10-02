@@ -18,8 +18,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="3da48cdd-262a-42a9-af2f-c82ef639b9e3", name="Persistence via a Masqueraded Plist Filename")
     ],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     masquerade = "/tmp/bash"

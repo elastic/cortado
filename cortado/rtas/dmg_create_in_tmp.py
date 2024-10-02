@@ -18,7 +18,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="fdb0e7ed-4210-4b71-be47-d0b0d9458fa7", name="Suspicious DMG File Creation in Temp Directory")
     ],
-    siem_rules=[],
     techniques=["T1211", "T1059", "T1059.004"],
 )
 def main():

@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="de869aa1-c63a-451e-a953-7069ec39ba60", name="New System Kext File and Immediate Load via KextLoad"
         )
     ],
-    siem_rules=[],
     techniques=["T1547", "T1547.006", "T1059", "T1059.004"],
 )
 def main():

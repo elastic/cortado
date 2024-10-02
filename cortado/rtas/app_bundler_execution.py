@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="94a891a9-3771-4a8c-a6ca-82fa66cfd7e2", name="Script Execution via macOS Application Bundle")
     ],
-    siem_rules=[],
     techniques=["T1553", "T1059"],
 )
 def main():

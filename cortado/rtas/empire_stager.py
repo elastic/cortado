@@ -15,7 +15,6 @@ log = logging.getLogger(__name__)
     name="empire_stager",
     platforms=[OSType.MACOS, OSType.LINUX],
     endpoint_rules=[RuleMetadata(id="b7974ff6-82ff-4743-9e07-1c6901b1f0ea", name="Empire Stager Execution")],
-    siem_rules=[],
     techniques=["T1132", "T1059"],
 )
 def main():

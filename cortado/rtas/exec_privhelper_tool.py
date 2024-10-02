@@ -18,7 +18,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="900fdb84-2a81-4a6d-88db-b48a0fafd79e", name="Suspicious PrivilegedHelperTool Activity")
     ],
-    siem_rules=[],
     techniques=["T1068"],
 )
 def main():

@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="2c624716-75a1-42d9-bcb8-1defcb9bded9", name="Suspicious Windows Service DLL Creation")
     ],
-    siem_rules=[],
     techniques=["T1543"],
 )
 def main():

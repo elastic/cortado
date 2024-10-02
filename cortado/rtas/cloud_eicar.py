@@ -18,7 +18,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="7b9ddfc8-8ea8-45d5-b62f-3fbd142c8f08", name="Behavior Protection - Cloud Reputation EICAR"),
     ],
-    siem_rules=[],
     techniques=["TA0002"],
 )
 def main() -> None:

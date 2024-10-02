@@ -20,8 +20,6 @@ log = logging.getLogger(__name__)
             id="482e5ab2-029c-4896-afc0-f3e6b8280920", name="Suspicious Apple Mail Rule Creation or Modification"
         )
     ],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     log.info("Executing deletion on SyncedRules.plist file.")

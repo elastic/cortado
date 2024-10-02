@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
             name="Suspicious Network Connection from Microsoft Equation Editor",
         )
     ],
-    siem_rules=[],
     techniques=["T1203", "T1566"],
 )
 def main():

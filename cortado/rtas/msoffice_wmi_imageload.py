@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="46952f58-6741-4280-8e74-fa43f63c9604", name="WMI Image Load via Microsoft Office")
     ],
-    siem_rules=[],
     techniques=["T1047", "T1566"],
 )
 def main():

@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="c0770406-7ede-4049-a7a1-999c15fb60bd", name="Execution of Non-Executable File via Shell")
     ],
-    siem_rules=[],
     techniques=["T1036", "T1059", "T1059.004"],
 )
 def main():

@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="d2017990-b448-4617-8d4a-55aa45abe354", name="Execution of a File Dropped by OpenSSL")
     ],
-    siem_rules=[],
     techniques=["T1027", "T1140", "T1204", "T1204.002"],
 )
 def main():

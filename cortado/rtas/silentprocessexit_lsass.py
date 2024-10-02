@@ -15,7 +15,6 @@ log = logging.getLogger(__name__)
     name="silentprocessexit_lsass",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[RuleMetadata(id="28969fe6-0ebe-4442-b40c-dbe9b4234f5e", name="LSA Dump via SilentProcessExit")],
-    siem_rules=[],
     techniques=["T1003"],
 )
 def main():

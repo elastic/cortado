@@ -15,7 +15,6 @@ log = logging.getLogger(__name__)
     name="osascript_suspicious_cmdline",
     platforms=[OSType.MACOS],
     endpoint_rules=[RuleMetadata(id="7b9d544a-5b2a-4f0d-984a-cdc89a7fad25", name="Suspicious Apple Script Execution")],
-    siem_rules=[],
     techniques=["T1105", "T1059"],
 )
 def main():

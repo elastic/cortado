@@ -18,7 +18,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="4415ab60-7cff-41dc-b3f0-939bd22c1810", name="Suspicious File Delivery via HTML Smuggling")
     ],
-    siem_rules=[],
     techniques=["T1027", "T1566"],
 )
 def main():

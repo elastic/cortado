@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="926b6cd1-c0c7-46d4-82d6-9deb6ae431d6", name="Registry Modification via Microsoft Office")
     ],
-    siem_rules=[],
     techniques=["T1547", "T1112", "T1566"],
 )
 def main():

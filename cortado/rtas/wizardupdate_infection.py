@@ -17,8 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="eb78fa0f-5e8a-4c15-a099-e904c4a226e6", name="Potential WizardUpdate Malware Infection")
     ],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     masquerade = "/tmp/curl"

@@ -19,8 +19,6 @@ log = logging.getLogger(__name__)
             id="4dd92062-2871-43bc-adda-82f15cf6e189", name="Decoded or Decrypted Payload Written to Temp Directory"
         )
     ],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     masquerade = "/tmp/openssl"

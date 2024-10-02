@@ -18,7 +18,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="3144cab7-cc28-46c3-a3ac-8fefe8db22d6", name="Privilege Escalation via Polkit System Service"),
     ],
-    siem_rules=[],
     techniques=["T1548"],
 )
 def main() -> None:

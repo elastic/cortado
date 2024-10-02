@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
     siem_rules=[
         RuleMetadata(id="4ec47004-b34a-42e6-8003-376a123ea447", name="Suspicious Process Spawned from MOTD Detected")
     ],
-    techniques=[""],
 )
 def main():
     log.info("Creating a fake MOTD executable..")

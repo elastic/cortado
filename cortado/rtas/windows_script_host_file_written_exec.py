@@ -24,7 +24,6 @@ log = logging.getLogger(__name__)
             id="83da4fac-563a-4af8-8f32-5a3797a9068e", name="Suspicious Windows Script Interpreter Child Process"
         ),
     ],
-    siem_rules=[],
     techniques=["T1055", "T1218", "T1036", "T1059"],
 )
 def main():

@@ -22,7 +22,6 @@ log = logging.getLogger(__name__)
             id="4dbb9dfb-b3e2-49d7-8919-d6f221526df4", name="Keystroke Input Capture via RegisterRawInputDevices"
         ),
     ],
-    siem_rules=[],
     techniques=["T1056", "T1056.001"],
 )
 def main():
@@ -31,10 +30,8 @@ def main():
     from ctypes import WinError  # type: ignore
     from ctypes import sizeof  # type: ignore
     from ctypes import windll  # type: ignore
-    from ctypes import (Structure, byref, c_int, c_long, c_uint, c_ushort,
-                        pointer)
-    from ctypes.wintypes import (BYTE, DWORD, HANDLE, HINSTANCE, HWND, LONG,
-                                 LPCSTR, LPVOID, UINT, ULONG, WPARAM)
+    from ctypes import Structure, byref, c_int, c_long, c_uint, c_ushort, pointer
+    from ctypes.wintypes import BYTE, DWORD, HANDLE, HINSTANCE, HWND, LONG, LPCSTR, LPVOID, UINT, ULONG, WPARAM
 
     wndproc = WINFUNCTYPE(c_long, c_int, c_uint, c_int, c_int)  # type: ignore
 

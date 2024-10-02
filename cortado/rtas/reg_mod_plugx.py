@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="7a201712-9f3c-4f40-b4fc-2418a44b8ecb", name="Potential PlugX Registry Modification")
     ],
-    siem_rules=[],
     techniques=["T1547", "T1112", "T1219"],
 )
 def main():

@@ -22,7 +22,6 @@ log = logging.getLogger(__name__)
             id="c567240c-445b-4000-9612-b5531e21e050", name="Connection to WebService by a Signed Binary Proxy"
         ),
     ],
-    siem_rules=[],
     techniques=["T1102", "T1218", "T1016", "T1071"],
 )
 def main():

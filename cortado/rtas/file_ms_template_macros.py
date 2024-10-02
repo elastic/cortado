@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
             id="608eae71-6797-4ded-bfaa-41bcb17a8498", name="Office Application Startup via Template File Modification"
         )
     ],
-    siem_rules=[],
     techniques=["T1137", "T1137.001"],
 )
 def main():

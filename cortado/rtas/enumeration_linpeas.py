@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="92bb2a27-745b-4291-90a1-b7b654df1379", name="Privilege Escalation Enumeration via LinPEAS")
     ],
-    siem_rules=[],
     techniques=["T1059"],
 )
 def main():

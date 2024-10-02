@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="7a4d1be2-db47-4545-a08c-9d4b20bad0d0", name="Access to Windows Passwords Vault via Powershell")
     ],
-    siem_rules=[],
     techniques=["T1555", "T1059"],
 )
 def main():

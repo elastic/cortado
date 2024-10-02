@@ -21,7 +21,6 @@ log = logging.getLogger(__name__)
             id="df7e55c9-cd36-4e33-9e82-3a54b9c84495", name="UAC Bypass via Unsafe Deserialization in Event Viewer"
         )
     ],
-    siem_rules=[],
     techniques=["T1548"],
 )
 def main():

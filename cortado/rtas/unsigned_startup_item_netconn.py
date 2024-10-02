@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
         ),
         RuleMetadata(id="0b33141a-3f73-4414-ba90-d8410e6ab176", name="Network Connection via Startup Item"),
     ],
-    siem_rules=[],
     techniques=["T1547", "T1218", "T1036", "T1059"],
 )
 def main():

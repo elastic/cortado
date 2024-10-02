@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="02db53f7-d6de-4e69-8e05-819233583c87", name="Attempt to Disable IPTables or Firewall")
     ],
-    siem_rules=[],
     techniques=["T1562", "T1562.001"],
 )
 def main():

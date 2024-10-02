@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="a0a82ad6-98ed-4426-abd8-52e7b052e297", name="Microsoft Office Loaded a Dropped Executable File"
         )
     ],
-    siem_rules=[],
     techniques=["T1566"],
 )
 def main():

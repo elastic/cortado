@@ -19,8 +19,6 @@ log = logging.getLogger(__name__)
             id="12e6ac2e-a429-4f54-abb2-eaa5713a4d06", name="Suspicious Execution via Microsoft OfficeCmd URL Handler"
         )
     ],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")

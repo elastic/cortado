@@ -15,8 +15,6 @@ log = logging.getLogger(__name__)
     name="persistence_reopened_app",
     platforms=[OSType.MACOS],
     endpoint_rules=[RuleMetadata(id="57e9e13a-4eda-4b5f-b39a-d38c8104ab0f", name="Re-Opened Application Persistence")],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     log.info("Executing deletion on com.apple.loginwindow.test.plist file.")

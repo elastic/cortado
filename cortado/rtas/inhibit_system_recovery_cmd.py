@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="d3588fad-43ae-4f2d-badd-15a27df72133", name="Inhibit System Recovery via Windows Command Shell"
         )
     ],
-    siem_rules=[],
     techniques=["T1490", "T1047", "T1059"],
 )
 def main():

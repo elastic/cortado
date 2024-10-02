@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="b76c0a04-b504-4a2f-a0cf-b4175a2f3eea", name="Execution of a Windows Script with Unusual File Extension"
         )
     ],
-    siem_rules=[],
     techniques=["T1059"],
 )
 def main():

@@ -22,7 +22,6 @@ log = logging.getLogger(__name__)
             id="d8b7a157-c98f-42bd-8aac-7d1e4fcd53f4", name="UAC Bypass Attempt via CDSSync Scheduled Task Hijack"
         ),
     ],
-    siem_rules=[],
     techniques=["T1574", "T1548", "T1036"],
 )
 def main():

@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
             name="Suspicious Scheduled Task Creation via Masqueraded XML File",
         )
     ],
-    siem_rules=[],
     techniques=["T1053", "T1036"],
 )
 def main():

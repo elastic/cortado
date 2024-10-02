@@ -18,7 +18,6 @@ log = logging.getLogger(__name__)
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         RuleMetadata(id="2e708541-c6e8-4ded-923f-78a6c160987e", name="Unusual Network Connection via RunDLL32"),
     ],
-    siem_rules=[],
     techniques=["T1055", "T1218", "T1036"],
 )
 def main():

@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
         RuleMetadata(id="5b00c9ba-9546-47cc-8f9f-1c1a3e95f65c", name="Potential Masquerading as SVCHOST"),
         RuleMetadata(id="eb04896b-935f-4d12-b2ad-579db82e1f42", name="Suspicious Windows Schedule Child Process"),
     ],
-    siem_rules=[],
     techniques=["T1218", "T1036", "T1216", "T1220", "T1053", "T1059"],
 )
 def main():

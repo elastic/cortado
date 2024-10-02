@@ -18,7 +18,6 @@ log = logging.getLogger(__name__)
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         RuleMetadata(id="e9095298-65e0-40a2-97c9-055de8685645", name="UAC Bypass via Sdclt"),
     ],
-    siem_rules=[],
     techniques=["T1548", "T1036"],
 )
 def main():

@@ -18,8 +18,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="7e52f64b-b0be-4437-81d1-91dd4dd5cb79", name="Potential iTerm2 Autolaunch Process Hijack")
     ],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     iterm2 = "/Applications/iTerm.app/Contents/MacOS/iTerm2"

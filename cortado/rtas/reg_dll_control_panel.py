@@ -17,8 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="340bdcad-187f-4ccb-b84e-34ee70844d78", name="DLL Control Panel Items Registry Modification")
     ],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     log.info("Temporarily creating a CPL reg key...")

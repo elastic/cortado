@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
         RuleMetadata(id="93438ae3-becd-43fa-81de-645ce17afa8e", name="Scriptlet Execution via Rundll32"),
         RuleMetadata(id="f60455df-5054-49ff-9ff7-1dc4e37b6ea7", name="Binary Proxy Execution via Rundll32"),
     ],
-    siem_rules=[],
     techniques=["T1218", "T1059"],
 )
 def main():

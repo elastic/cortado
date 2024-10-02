@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="d7fda3d7-fe77-49c2-8b50-d28a6da206c4", name="Chromium Extension Loaded from Unusual Parent")
     ],
-    siem_rules=[],
     techniques=["T1176"],
 )
 def main():

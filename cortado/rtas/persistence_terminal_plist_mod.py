@@ -18,8 +18,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="2ac8ec88-8549-4fcb-9697-5f53e2f78bf4", name="Suspicious Terminal Plist Modification")
     ],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     log.info("Executing plutil commands to modify plist file.")

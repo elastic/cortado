@@ -15,7 +15,6 @@ log = logging.getLogger(__name__)
     name="darkradiation",
     platforms=[OSType.MACOS, OSType.LINUX],
     endpoint_rules=[RuleMetadata(id="33309858-3154-47a6-b601-eda2de62557b", name="DARKRADIATION Ransomware Infection")],
-    siem_rules=[],
     techniques=["T1486"],
 )
 def main():

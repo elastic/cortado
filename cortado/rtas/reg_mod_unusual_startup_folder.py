@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="377aad38-24e0-4dd7-93c2-bd231cb749e3", name="Unusual Startup Shell Folder Modification")
     ],
-    siem_rules=[],
     techniques=["T1547", "T1547.001", "T1112"],
 )
 def main():

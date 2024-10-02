@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="a0265178-779d-4bc5-b3f1-abb3bcddedab", name="Privilege Escalation via Named Pipe Impersonation"
         )
     ],
-    siem_rules=[],
     techniques=["T1134"],
 )
 def main():

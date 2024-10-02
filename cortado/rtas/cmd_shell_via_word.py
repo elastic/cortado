@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="2a396a3c-b343-42a9-b74b-c5b9925b6ee2", name="Windows Command Shell Spawned via Microsoft Office"
         )
     ],
-    siem_rules=[],
     techniques=["T1566", "T1059"],
 )
 def main():

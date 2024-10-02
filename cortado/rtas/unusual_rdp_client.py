@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="d448566e-486f-4b61-a76f-945662313d49", name="Unusual Remote Desktop Client Process")
     ],
-    siem_rules=[],
     techniques=["T1021"],
 )
 def main():

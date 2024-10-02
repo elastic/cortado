@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
             id="b63df89d-ac6f-44d7-80fa-ddf038295e42", name="Attempt to Disable Linux Security and Logging Controls"
         ),
     ],
-    siem_rules=[],
     techniques=["T1562", "T1562.001"],
 )
 def main() -> None:

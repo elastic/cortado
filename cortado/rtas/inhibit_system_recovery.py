@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="99358f31-a84a-4f92-bb91-4370083acda0", name="Inhibit System Recovery via Obfuscated Commands")
     ],
-    siem_rules=[],
     techniques=["T1490", "T1047", "T1059"],
 )
 def main():

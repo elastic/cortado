@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
     name="shortcut_file_suspicious_process",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[],
     techniques=[],
 )
 def main():

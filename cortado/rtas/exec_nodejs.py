@@ -17,8 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="a34c5dc0-a353-4c1f-9b08-6f0aca4f1f45", name="Suspicious JavaScript Execution via Node.js")
     ],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")

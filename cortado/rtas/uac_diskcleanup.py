@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="d487049e-381d-44ad-9ec9-d23e88dbf573", name="UAC Bypass via DiskCleanup Scheduled Task Hijack")
     ],
-    siem_rules=[],
     techniques=["T1548"],
 )
 def main():

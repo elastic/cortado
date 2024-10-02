@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="4b4ba027-151f-40e4-99ba-a386735c27e4", name="Unsigned DLL Loaded by Windows Tasks Host")
     ],
-    siem_rules=[],
     techniques=["T1053", "T1053.005"],
 )
 def main():

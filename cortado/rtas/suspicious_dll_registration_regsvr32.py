@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
     name="suspicious_dll_registration_regsvr32",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
-    siem_rules=[],
     techniques=[],
 )
 def main():

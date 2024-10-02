@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
     name="evasion_ntdll_from_unusual_path",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[RuleMetadata(id="3205274e-7eb0-4765-a712-5783361091ae", name="NTDLL Loaded from an Unusual Path")],
-    siem_rules=[],
     techniques=["T1055"],
 )
 def main():

@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="71ad1420-ed83-46d0-835b-63d4b2008427", name="UAC Bypass via Windows Activation Execution Hijack"
         )
     ],
-    siem_rules=[],
     techniques=["T1548"],
 )
 def main():

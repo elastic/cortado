@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="62cc9cf4-5440-4237-aa5b-ea8db83deb3d", name="Non-Native Dylib Extracted into New Directory")
     ],
-    siem_rules=[],
     techniques=["T1059", "T1059.004"],
 )
 def main():

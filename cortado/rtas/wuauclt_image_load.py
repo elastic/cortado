@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="3788c03d-28a5-4466-b157-d6dd4dc449bb", name="Suspicious ImageLoad via Windows Update Auto Update Client"
         )
     ],
-    siem_rules=[],
     techniques=["T1218"],
 )
 def main():

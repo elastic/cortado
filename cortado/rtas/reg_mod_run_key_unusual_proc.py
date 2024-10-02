@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
             id="727db78e-e1dd-4bc0-89b0-885cd99e069e", name="Suspicious String Value Written to Registry Run Key"
         ),
     ],
-    siem_rules=[],
     techniques=["T1547"],
 )
 def main():

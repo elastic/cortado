@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
             name="Payload Downloaded by Process Running in Suspicious Directory",
         )
     ],
-    siem_rules=[],
     techniques=["T1105"],
 )
 def main():

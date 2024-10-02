@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
             id="d18721f0-dce0-4bbc-a56a-06ea511b025e", name="Suspicious Troubleshooting Pack Cabinet Execution"
         ),
     ],
-    siem_rules=[],
     techniques=["T1218", "T1036"],
 )
 def main():

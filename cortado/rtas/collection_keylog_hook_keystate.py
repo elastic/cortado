@@ -101,7 +101,6 @@ def SetWindowsHookEx():
             id="6ef43c9a-25af-449c-8416-20349780a146", name="Keystrokes Input Capture from Suspicious CallStack"
         ),
     ],
-    siem_rules=[],
     techniques=["T1056", "T1056.001"],
 )
 def main():

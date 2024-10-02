@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
         RuleMetadata(id="d1b6319f-2933-4872-8e67-5728fd09a4a1", name="Executable with Unusual Filename"),
         RuleMetadata(id="6daf97b0-8e29-476b-998a-c3d168d98506", name="Process Execution with Unusual File Extension"),
     ],
-    siem_rules=[],
     techniques=["T1218", "T1036"],
 )
 def main():

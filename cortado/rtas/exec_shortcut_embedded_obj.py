@@ -21,7 +21,6 @@ EXE_FILE = "bin/renamed_posh.exe"
         RuleMetadata(id="8076640d-ec66-4d24-a252-ee2f054e00a1", name="Windows Shortcut File Embedded Object Execution"),
         RuleMetadata(id="9fdd772b-b483-404f-bc02-7ec87e332bec", name="Embedded Executable via Windows Shortcut File"),
     ],
-    siem_rules=[],
     techniques=["T1059", "T1059.003", "T1204", "T1204.001", "T1204.002", "T1566", "T1566.001", "T1566.002"],
 )
 def main():

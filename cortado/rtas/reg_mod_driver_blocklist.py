@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="31b7218e-ba98-4228-a39a-d0e0d1c0e5b7", name="Attempt to Disable Windows Driver Blocklist via Registry"
         )
     ],
-    siem_rules=[],
     techniques=["T1112"],
 )
 def main():

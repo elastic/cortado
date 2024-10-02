@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     name="persistence_shell_via_web_server",
     platforms=[OSType.LINUX],
     endpoint_rules=[RuleMetadata(id="753f83ff-437b-4952-8612-07e3c1327daf", name="Potential Shell via Web Server")],
-    siem_rules=[],
     techniques=["T1505", "T1505.003"],
 )
 def main():

@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
             name="Potential Defense Evasion via Filter Manager Control Program",
         )
     ],
-    siem_rules=[],
     techniques=["T1562"],
 )
 def main():

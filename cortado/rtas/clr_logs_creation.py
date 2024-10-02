@@ -21,7 +21,6 @@ log = logging.getLogger(__name__)
             id="5a898048-d98c-44c6-b7ba-f63a31eb3571", name="Managed .NET Code Execution via Windows Script Interpreter"
         ),
     ],
-    siem_rules=[],
     techniques=["T1220", "T1218", "T1055", "T1059"],
 )
 def main():

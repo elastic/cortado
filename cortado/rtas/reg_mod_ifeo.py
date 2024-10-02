@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="ff5fd85a-e770-4e57-8bae-0d267442eb9f", name="Suspicious Image File Execution Options Modification"
         )
     ],
-    siem_rules=[],
     techniques=["T1546", "T1546.012"],
 )
 def main():

@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="dfe28e03-9b0b-47f5-9753-65ed2666663f", name="External IP Address Discovery via Untrusted Program"
         )
     ],
-    siem_rules=[],
     techniques=["T1016"],
 )
 def main():

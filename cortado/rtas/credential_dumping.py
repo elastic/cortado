@@ -18,7 +18,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="05f95917-6942-4aab-a904-37c6db906503", name="Potential Linux Credential Dumping via Unshadow"),
     ],
-    siem_rules=[],
     techniques=["T1003"],
 )
 def main() -> None:

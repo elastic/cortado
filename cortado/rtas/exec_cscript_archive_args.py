@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
         RuleMetadata(id="35dedf0c-8db6-4d70-b2dc-a133b808211f", name="Binary Masquerading via Untrusted Path"),
         RuleMetadata(id="23e29d07-7584-465e-8a6d-912d9ea254a6", name="Suspicious Image Load via Windows Scripts"),
     ],
-    siem_rules=[],
     techniques=["T1059", "T1059.007", "T1566", "T1566.001"],
 )
 def main():

@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
             id="cc60be0e-2c6c-4dc9-9902-e97103ff8df9", name="Potential Discovery of Windows Credential Manager Store"
         )
     ],
-    siem_rules=[],
     techniques=["T1555"],
 )
 def main():

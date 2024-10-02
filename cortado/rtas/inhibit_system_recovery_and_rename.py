@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
             name="Inhibit System Recovery Followed by a Suspicious File Rename",
         )
     ],
-    siem_rules=[],
     techniques=["T1490", "T1486"],
 )
 def main():

@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="05599d18-6ff7-4fff-ad2d-f03c930a7b6e", name="Potential Process Injection from Malicious Document"
         )
     ],
-    siem_rules=[],
     techniques=["T1055", "T1566", "T1566.001"],
 )
 def main():

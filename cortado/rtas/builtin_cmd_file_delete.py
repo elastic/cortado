@@ -21,7 +21,6 @@ log = logging.getLogger(__name__)
             id="15019d7c-42e6-4cf7-88b0-0c3a6963e6f5", name="Suspicious Recursive File Deletion via Built-In Utilities"
         )
     ],
-    siem_rules=[],
     techniques=["T1565", "T1485"],
 )
 def main():

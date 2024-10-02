@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="3d16f5f9-da4c-4b15-a501-505761b75ca6", name="Windows Error Manager/Reporting Masquerading")
     ],
-    siem_rules=[],
     techniques=["T1055", "T1036"],
 )
 def main():

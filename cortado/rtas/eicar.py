@@ -15,7 +15,6 @@ log = logging.getLogger(__name__)
     name="eicar",
     platforms=[OSType.MACOS, OSType.LINUX, OSType.WINDOWS],
     endpoint_rules=[RuleMetadata(id="c4539c79-9f55-4b36-b06f-8aff82563bca", name="Behavior Protection - EICAR")],
-    siem_rules=[],
     techniques=["TA0002"],
 )
 def main():

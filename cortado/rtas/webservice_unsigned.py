@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="2c3efa34-fecd-4b3b-bdb6-30d547f2a1a4", name="Connection to WebService by an Unsigned Binary")
     ],
-    siem_rules=[],
     techniques=["T1102", "T1071"],
 )
 def main():

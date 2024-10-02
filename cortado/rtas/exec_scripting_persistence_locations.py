@@ -23,7 +23,6 @@ log = logging.getLogger(__name__)
             id="a85000c8-3eac-413b-8353-079343c2b6f0", name="Startup Persistence via Windows Script Interpreter"
         ),
     ],
-    siem_rules=[],
     techniques=["T1547", "T1059"],
 )
 def main():

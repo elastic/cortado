@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="d40ffcba-b83e-4d0a-8d6d-84385def8e18", name="Initial Access via macOS Installer Package")
     ],
-    siem_rules=[],
     techniques=["T1105", "T1543", "T1082", "T1566", "T1204", "T1547", "T1569", "T1059"],
 )
 def main():

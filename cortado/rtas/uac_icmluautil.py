@@ -21,7 +21,6 @@ log = logging.getLogger(__name__)
             id="13fab475-06e4-4ac9-87fc-2105c7441244", name="UAC Bypass via ICMLuaUtil Elevated COM Interface"
         ),
     ],
-    siem_rules=[],
     techniques=["T1055", "T1548", "T1036"],
 )
 def main():

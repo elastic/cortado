@@ -21,7 +21,6 @@ log = logging.getLogger(__name__)
         ),
         RuleMetadata(id="60eb5960-b26e-494a-8cf2-35ab5939f6c1", name="Microsoft Equation Editor Child Process"),
     ],
-    siem_rules=[],
     techniques=["T1203", "T1566"],
 )
 def main():

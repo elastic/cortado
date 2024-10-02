@@ -18,7 +18,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="c71b9783-ca42-4532-8eb3-e8f2fe32ff39", name="Linux Reverse Shell via Suspicious Utility"),
     ],
-    siem_rules=[],
     techniques=["T1059", "T1071"],
 )
 def main() -> None:

@@ -23,7 +23,6 @@ WER = "c:\\windows\\system32\\werfault.exe"
     id="ec52377c-b2a8-4c44-8eb4-465376f2189a",
     name="evasion_oversized_dll_load",
     platforms=[OSType.WINDOWS],
-    siem_rules=[],
     endpoint_rules=[
         RuleMetadata(id="33cdad6c-5809-4d78-94f0-5a5153289e7e", name="Oversized DLL Creation followed by SideLoad"),
         RuleMetadata(id="65a402ff-904b-4d14-b7aa-fa0c5ae575f8", name="Potential Evasion via Oversized Image Load"),

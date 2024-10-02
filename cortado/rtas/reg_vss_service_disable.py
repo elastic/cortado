@@ -23,7 +23,6 @@ log = logging.getLogger(__name__)
         ),
         RuleMetadata(id="df874d7e-6639-44ce-b47d-96254022ccd5", name="Suspicious File Rename by an Unusual Process"),
     ],
-    siem_rules=[],
     techniques=["T1218", "T1112", "T1486", "T1490", "T1059"],
 )
 def main():

@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="e8d52cc6-8785-43d2-8e98-30f07e19e16c", name="Manual Loading of a Suspicious Chromium Extension"
         )
     ],
-    siem_rules=[],
     techniques=["T1176"],
 )
 def main():

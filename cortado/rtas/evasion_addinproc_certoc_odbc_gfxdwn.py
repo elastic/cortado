@@ -14,7 +14,6 @@ log = logging.getLogger(__name__)
     id="6e84852e-b8a2-4158-971e-c5148d969d2a",
     name="evasion_addinproc_certoc_odbc_gfxdwn",
     platforms=[OSType.WINDOWS],
-    siem_rules=[],
     endpoint_rules=[
         RuleMetadata(id="5bc7a8f8-4de8-4af4-bea4-cba538e54a5c", name="Suspicious Execution via DotNet Remoting"),
         RuleMetadata(id="6fcbf73f-4413-4689-be33-61b0d6bd0ffc", name="Suspicious ImageLoad via Windows CertOC"),

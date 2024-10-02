@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="901f0c30-a7c5-40a5-80e3-a50c6714432f", name="Suspicious Property List File Creation or Modification"
         )
     ],
-    siem_rules=[],
     techniques=["T1547", "T1543"],
 )
 def main():

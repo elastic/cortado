@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="aec74eb4-9618-42ff-96eb-2d13e6959d47", name="Potential VScode Remote Tunnel Established"),
     ],
-    siem_rules=[],
     techniques=["T1059"],
 )
 def main() -> None:

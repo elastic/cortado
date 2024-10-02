@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="adaf95d2-28ce-4880-af16-f3041b624440", name="UAC Bypass Attempt via Windows Directory Masquerading"
         )
     ],
-    siem_rules=[],
     techniques=["T1548", "T1548.002"],
 )
 def main():

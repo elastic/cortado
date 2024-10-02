@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="9efd977a-6d4a-4cc8-8ab3-355587b0ef69", name="Suspicious Execution via Microsoft Office Add-Ins"
         )
     ],
-    siem_rules=[],
     techniques=["T1137", "T1566"],
 )
 def main():

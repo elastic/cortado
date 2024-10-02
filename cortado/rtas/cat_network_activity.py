@@ -16,7 +16,6 @@ log = logging.getLogger(__name__)
     platforms=[OSType.LINUX],
     endpoint_rules=[RuleMetadata(id="25ae94f5-0214-4bf1-b534-33d4ffc3d41c", name="Network Activity Detected via cat")],
     siem_rules=[RuleMetadata(id="afd04601-12fc-4149-9b78-9c3f8fe45d39", name="Network Activity Detected via cat")],
-    techniques=[""],
 )
 def main():
     log.info("Creating a fake cat executable..")

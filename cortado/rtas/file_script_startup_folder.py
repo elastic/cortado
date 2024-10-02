@@ -21,7 +21,6 @@ log = logging.getLogger(__name__)
             id="30a90136-7831-41c3-a2aa-1a303c1186ac", name="Unusual File Written or Modified in Startup Folder"
         ),
     ],
-    siem_rules=[],
     techniques=["T1547", "T1547.001"],
 )
 def main():

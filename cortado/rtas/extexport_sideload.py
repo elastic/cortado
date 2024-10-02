@@ -18,7 +18,6 @@ log = logging.getLogger(__name__)
         RuleMetadata(id="e13a65b7-f46f-4c7f-85cf-7e59170071fa", name="Execution via Internet Explorer Exporter"),
         RuleMetadata(id="b0207677-5041-470b-981d-13ab956cf5b4", name="Execution via Renamed Signed Binary Proxy"),
     ],
-    siem_rules=[],
     techniques=["T1218"],
 )
 def main():

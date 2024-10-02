@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="0b206183-7f90-461d-80b3-8a147147ae78", name="Suspicious Kibana Child Process"),
     ],
-    siem_rules=[],
     techniques=["T1190", "T1059", "T1059.004"],
 )
 def main() -> None:

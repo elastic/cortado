@@ -21,7 +21,6 @@ log = logging.getLogger(__name__)
         ),
         RuleMetadata(id="792411bd-59ef-4ac0-89be-786d52d1a5c8", name="Microsoft Office File Execution via WMI"),
     ],
-    siem_rules=[],
     techniques=["T1047", "T1566"],
 )
 def main():

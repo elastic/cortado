@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
             id="2ffc3943-8100-4f77-9c8f-e8f9e185604b", name="Persistence via AutodialDLL Registry Modification"
         )
     ],
-    siem_rules=[],
     techniques=["T1112"],
 )
 def main():

@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="7c0048d5-356d-4f69-839e-10c1e194958f", name="UAC Bypass via ComputerDefaults Execution Hijack")
     ],
-    siem_rules=[],
     techniques=["T1548"],
 )
 def main():

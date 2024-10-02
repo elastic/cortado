@@ -15,8 +15,6 @@ log = logging.getLogger(__name__)
     name="exec_curl_output",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[RuleMetadata(id="336ada1c-69f8-46e8-bdd2-790c85429696", name="Ingress Tool Transfer via CURL")],
-    siem_rules=[],
-    techniques=[""],
 )
 def main():
     EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")

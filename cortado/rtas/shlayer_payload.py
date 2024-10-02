@@ -15,7 +15,6 @@ log = logging.getLogger(__name__)
     name="shlayer_payload",
     platforms=[OSType.MACOS],
     endpoint_rules=[RuleMetadata(id="3dda1ac2-86ef-41f5-ad3b-d9396383e104", name="Shlayer Malware Infection")],
-    siem_rules=[],
     techniques=["T1105"],
 )
 def main():
