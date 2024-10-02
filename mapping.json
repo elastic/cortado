@@ -1,0 +1,4976 @@
+[
+    {
+        "rta_id": "413cf7ef-0fad-46fd-ab67-e94c4e3e0f0b",
+        "rta_name": "comsvcs_dump",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "00140285-b827-4aee-aa09-8113f58a08f3",
+        "rule_name": "Potential Credential Access via Windows Utilities",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "a840e9b2-5aac-41a1-8c79-03ff624eb77b",
+        "rta_name": "suspicious_child_services",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "0022d47d-39c7-4f69-a232-4fe9dc7a3acd",
+        "rule_name": "System Shells via Services",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "e061a96e-4c31-4f67-9745-6ff873f7829e",
+        "rta_name": "browser_debugging",
+        "rta_platforms": [
+            "linux",
+            "macos",
+            "windows"
+        ],
+        "rule_id": "027ff9ea-85e7-42e3-99d2-bbb7069e02eb",
+        "rule_name": "Potential Cookies Theft via Browser Debugging",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "0a6fcfaa-db5e-498f-9253-0f76b8a18687",
+        "rta_name": "credential_access_dump_hashes_via_cmd",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "02ea4563-ec10-4974-b7de-12e65aa4f9b3",
+        "rule_name": "Dumping Account Hashes via Built-In Commands",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "0427904d-1fba-40f4-a423-ea555d1a2335",
+        "rta_name": "exec_cmd_net_stop",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "035889c4-2686-4583-a7df-67f89c292f2c",
+        "rule_name": "High Number of Process and/or Service Terminations",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "1f0afcd1-e091-4489-a750-5b0b44e69e45",
+        "rta_name": "exec_unusual_path_msmpeng",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "053a0387-f3b5-4ba5-8245-8002cca2bd08",
+        "rule_name": "Potential DLL Side-Loading via Microsoft Antimalware Service Executable",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "a296162b-65c1-4fbe-ae34-67f606de408e",
+        "rta_name": "exec_cmd_pwd_appcmd",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "0564fb9d-90b9-4234-a411-82a546dc1343",
+        "rule_name": "Microsoft IIS Service Account Password Dumped",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "46463426-0a03-448a-afe3-9215841ec86d",
+        "rta_name": "suspicious_parent_smss",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "05b358de-aa6d-4f6c-89e6-78f74018b43b",
+        "rule_name": "Conhost Spawned By Suspicious Parent Process",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "2a391051-b103-450b-be50-fd133b6d05c3",
+        "rta_name": "exec_cmd_arp",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "0635c542-1b96-4335-9b47-126582d2c19a",
+        "rule_name": "Remote System Discovery Commands",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "fc1e40b8-ae2d-4479-a854-77b346982894",
+        "rta_name": "exec_cmd_fltmc_unload",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "06dceabf-adca-48af-ac79-ffdf4c3b1e9a",
+        "rule_name": "Potential Evasion via Filter Manager",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "0b3a3f97-f09e-4a42-b592-6be2b5467c08",
+        "rta_name": "exec_cmd_netsh_remotedesktop",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "074464f9-f30d-4029-8c03-0ed237fffec7",
+        "rule_name": "Remote Desktop Enabled in Windows Firewall by Netsh",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "459d7b3c-2c6d-4101-b830-d6c317d4b355",
+        "rta_name": "opera_child_process",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "080bc66a-5d56-4d1f-8071-817671716db9",
+        "rule_name": "Suspicious Browser Child Process",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "7548a786-50f7-40e5-8f8a-b005e9e8d864",
+        "rta_name": "launchagent_plist",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "082e3f8c-6f80-485c-91eb-5b112cb79b28",
+        "rule_name": "Launch Agent Creation or Modification and Immediate Loading",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "6df524fe-6a1a-417f-8f70-d6140ef739e2",
+        "rta_name": "hidden_plist",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "092b068f-84ac-485d-8a55-7dd9e006715f",
+        "rule_name": "Creation of Hidden Launch Agent or Daemon",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "904cae88-f6bf-4585-b779-2451ce4b6b1b",
+        "rta_name": "exec_cmd_fsutil_fsinfo",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "0c7ca5c2-728d-4ad9-b1c5-bbba83ecb1f4",
+        "rule_name": "Peripheral Device Discovery",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "ce85674f-fb6c-44d5-b880-4ce9062e1028",
+        "rta_name": "ms_office_drop_exe",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "0d8ad79f-9025-45d8-80c1-4f0cd3c5e8e5",
+        "rule_name": "Execution of File Written or Modified by Microsoft Office",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "f9feed6d-bae3-49c6-8952-7ed8e9b0b9ef",
+        "rta_name": "root_crontab_file_modification",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "0ff84c42-873d-41a2-a4ed-08d74d352d01",
+        "rule_name": "Privilege Escalation via Root Crontab File Modification",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "bc6130d9-f4fd-46c6-bcfe-623be6c51a3b",
+        "rta_name": "webproxy_modification",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "10a500bb-a28f-418e-ba29-ca4c8d1a9f2f",
+        "rule_name": "WebProxy Settings Modification",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "c5a8bbf2-0920-40ee-a08f-f897c2895eba",
+        "rta_name": "exec_renamed_winword",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "1160dcdb-0a0a-4a79-91d8-9b84616edebd",
+        "rule_name": "Potential DLL SideLoading via Trusted Microsoft Programs",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "a6c80b08-ca72-4c3e-93c7-ac3421e4235e",
+        "rta_name": "file_delete_vbk",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "11ea6bec-ebde-4d71-a8e9-784948f8e3e9",
+        "rule_name": "Third-party Backup Files Deleted via Unexpected Process",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "f2e5c332-ad54-4bfa-8d51-ce1a85e749d7",
+        "rta_name": "exec_cmd_wmi_cmdexe",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "12f07955-1674-44f7-86b5-c35da0a6f41a",
+        "rule_name": "Suspicious Cmd Execution via WMI",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "2e5d3ddd-6dc4-4ebf-93e3-c32698b8df40",
+        "rta_name": "file_create_task_file",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "1327384f-00f3-44d5-9a8c-2373ba071e92",
+        "rule_name": "Persistence via Scheduled Job Creation",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "8b03eda5-5c01-4e69-9095-f9c00af85000",
+        "rta_name": "reg_mod_time_provider",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "14ed1aa9-ebfd-4cf9-a463-0ac59ec55204",
+        "rule_name": "Potential Persistence via Time Provider Modification",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "127f1e70-a491-4da4-a24f-ac6bf6e5b756",
+        "rta_name": "network_connection_desktopimgdownldr",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "15c0b7a7-9c34-4869-b25b-fa6518414899",
+        "rule_name": "Remote File Download via Desktopimgdownldr Utility",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "f9a34606-863d-46aa-b12d-eeeb68b530e3",
+        "rta_name": "networksetup_vpn",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "15dacaa0-5b90-466b-acab-63435a59701a",
+        "rule_name": "Virtual Private Network Connection Attempt",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "057f2c1b-28cc-4286-92ce-75e789aa8e74",
+        "rta_name": "bifrost_attack",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "16904215-2c95-4ac8-bf5c-12354e047192",
+        "rule_name": "Potential Kerberos Attack via Bifrost",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "ac739578-c978-429f-9454-0bbe82f993f4",
+        "rta_name": "scrobj_com_hijack",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "16a52c14-7883-47af-8745-9357803f0d4c",
+        "rule_name": "Component Object Model Hijacking",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "f62ebacb-5d53-4f74-ae72-b64b8b6c899f",
+        "rta_name": "exec_cmd_short_name",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "17c7f6a5-5bc9-4e1f-92bf-13632d24384d",
+        "rule_name": "Suspicious Execution - Short Program Name",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "bcdda7c2-cc0c-4555-8dda-86a3263c99ad",
+        "rta_name": "exec_cmd_xwizard",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "1a6075b0-7479-450e-8fe7-b8b8438ac570",
+        "rule_name": "Execution of COM object via Xwizard",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "7253d78c-8a68-4073-b20a-fbab9d4daf23",
+        "rta_name": "network_connection_download_script_interpreter",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "1d276579-3380-4095-ad38-e596a01bc64f",
+        "rule_name": "Remote File Download via Script Interpreter",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "07edc3ea-2cf8-4a8b-aa2f-6b10f1c46838",
+        "rta_name": "network_connection_external_ip_lookup_non_browser",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "1d72d014-e2ab-4707-b056-9b96abe7b511",
+        "rule_name": "External IP Lookup from Non-Browser Process",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "571e229f-fb92-48cf-b0fb-dd9630b1580f",
+        "rta_name": "file_create_exec_pdf_reader",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "1defdd62-cd8d-426e-a246-81a37751bb2b",
+        "rule_name": "Execution of File Written or Modified by PDF Reader",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "9b0bbe6d-2116-4327-930b-51e3e5097487",
+        "rta_name": "linux_hack_tool",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "1df1152b-610a-4f48-9d7a-504f6ee5d9da",
+        "rule_name": "Potential Linux Hack Tool Launched",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "cf94f5cc-5265-4287-80e5-82d9663ecf2e",
+        "rta_name": "unusual_ms_tool_network",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "1fe3b299-fbb5-4657-a937-1d746f2c711a",
+        "rule_name": "Unusual Network Activity from a Windows System Binary",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "07eaba7d-c0ff-4480-87cf-5ad39805dc92",
+        "rta_name": "suspicious_parent_csc",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "201200f1-a99b-43fb-88ed-f65a45c4972c",
+        "rule_name": "Suspicious .NET Code Compilation",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "5781ea36-ac63-4746-8e0f-a1ebd5ec481d",
+        "rta_name": "reg_mod_systemcertificates",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "203ab79b-239b-4aa5-8e54-fc50623ee8e4",
+        "rule_name": "Creation or Modification of Root Certificate",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "ea187b1f-4aa0-4ffc-bac9-9ee1d55552fd",
+        "rta_name": "browser_cred_access",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "20457e4f-d1de-4b92-ae69-142e27a4342a",
+        "rule_name": "Access of Stored Browser Credentials",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "413cf7ef-0fad-46fd-ab67-e94c4e3e0f0b",
+        "rta_name": "comsvcs_dump",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "208dbe77-01ed-4954-8d44-1e5751cb20de",
+        "rule_name": "LSASS Memory Dump Handle Access",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "55750f93-0545-4222-a1fe-8b25a1c736f0",
+        "rta_name": "file_create_mstsc_startup",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "25224a80-5a4a-4b8a-991e-6ab390465c4f",
+        "rule_name": "Lateral Movement via Startup Folder",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "2df08481-31db-44a8-b01d-1c0df827bddb",
+        "rta_name": "adobe_hijack",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "2bf78aa2-9c56-48de-b139-f169bf99cf86",
+        "rule_name": "Adobe Hijack Persistence",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "2730b84c-9e39-4647-ba96-0b438aca9575",
+        "rta_name": "exec_cmd_set_mppreference",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "2c17e5d7-08b9-43b2-b58a-0270d65ac85b",
+        "rule_name": "Windows Defender Exclusions Added via PowerShell",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "83332fb4-2299-4584-b5f3-7e0264d034f7",
+        "rta_name": "exec_cmd_msdt",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "2c3c29a4-f170-42f8-a3d8-2ceebc18eb6a",
+        "rule_name": "Suspicious Microsoft Diagnostics Wizard Execution",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "e70ab2f3-7a67-4cd8-9969-ad4ebe0358bc",
+        "rta_name": "reg_mod_disableantispyware",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "2ffa1f1e-b6db-47fa-994b-1512743847eb",
+        "rule_name": "Windows Defender Disabled via Registry Modification",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "1185afa2-49aa-4cca-8702-228d238c0bd5",
+        "rta_name": "uac_eventviewer",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "31b4c719-f2b4-41f6-a9bd-fce93c2eaf62",
+        "rule_name": "Bypass UAC via Event Viewer",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "a3cdd478-b817-4513-bb3d-897a5f92c836",
+        "rta_name": "suspicious_wscript_parent",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "32f4675e-6c49-4ace-80f9-97c9259dca2e",
+        "rule_name": "Suspicious MS Outlook Child Process",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "4b85db7b-b7e7-45d1-94de-210587e6d947",
+        "rta_name": "network_connection_download_powershell",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "33f306e8-417c-411b-965c-c2812d6d3f4d",
+        "rule_name": "Remote File Download via PowerShell",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "20631e46-d3c4-45c0-bfa8-37f6b287db36",
+        "rta_name": "execution_node_child_process",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "35330ba2-c859-4c98-8b7f-c19159ea0e58",
+        "rule_name": "Execution via Electron Child Process Node.js Module",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "8896c6ac-ead6-4f4e-aecf-8308fd53e78c",
+        "rta_name": "reg_mod_port_forwarding",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "3535c8bb-3bd5-40f4-ae32-b7cd589d5372",
+        "rule_name": "Port Forwarding Rule Addition",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "6cf12026-f99f-4e5c-8cd4-3dbc7bce3e67",
+        "rta_name": "unusual_parent_child",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "35df0dd8-092d-4a83-88c1-5151a804f31b",
+        "rule_name": "Unusual Parent-Child Relationship",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "ffc9ace1-3527-46e3-bc3e-86b942107edb",
+        "rta_name": "reg_mod_suspicious_service",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "36a8e048-d888-4f61-a8b9-0f9e2e40f317",
+        "rule_name": "Suspicious ImagePath Service Creation",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "214db941-51ba-4867-b9bf-9b22ff07eea8",
+        "rta_name": "finder_sync_plugin",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "37f638ea-909d-4f94-9248-edd21e4a9906",
+        "rule_name": "Finder Sync Plugin Registered and Enabled",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "10609a63-0013-4fd0-9322-66c86c1c9501",
+        "rta_name": "certutil_webrequest",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "3838e0e3-1850-4850-a411-2e8c5ba40ba8",
+        "rule_name": "Network Connection via Certutil",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "cc7b01f9-852c-4232-8c70-ada3fb5cc515",
+        "rta_name": "credential_access_osascript_phishing",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "38948d29-3d5d-42e3-8aec-be832aaaf8eb",
+        "rule_name": "Prompt for Credentials with OSASCRIPT",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "3c40b5fd-afd0-4794-8af3-f7af249edf84",
+        "rta_name": "file_create_outlook_vba",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "397945f3-d39a-4e6f-8bcb-9656c2031438",
+        "rule_name": "Persistence via Microsoft Outlook VBA",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "d6c94638-5c8a-40e9-9ad8-86a8f97cc043",
+        "rta_name": "network_connection_nslookup",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "3a59fc81-99d3-47ea-8cd6-d48d561fca20",
+        "rule_name": "Potential DNS Tunneling via NsLookup",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "41ea3472-7ec7-4c4a-baf4-b1805ba597df",
+        "rta_name": "suspicious_parent_cmd",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "3b47900d-e793-49e8-968f-c90dc3526aa1",
+        "rule_name": "Unusual Parent Process for cmd.exe",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "0a9bd666-6dc8-484e-9286-dea82a5661a9",
+        "rta_name": "exec_cmd_ntdsdit",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "3bc6deaa-fbd4-433a-ae21-3e892f95624f",
+        "rule_name": "NTDS or SAM Database File Copied",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "d1988e82-a079-4fc2-99f7-2bdbc9af0e00",
+        "rta_name": "emond_child_process",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "3e3d15c6-1509-479a-b125-21718372157e",
+        "rule_name": "Suspicious Emond Child Process",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "b2faa842-ffc9-41c6-baed-8008c9749a52",
+        "rta_name": "exec_nohup",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "3f18726c-4897-41dc-8426-15da95b8482f",
+        "rule_name": "Suspicious Nohup Execution",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "1b7fe2e7-29c0-4d10-9ced-8b9cd158835d",
+        "rta_name": "binary_execution_from_shared_memory",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "3f3f9fe2-d095-11ec-95dc-f661ea17fbce",
+        "rule_name": "Binary Executed from Shared Memory Directory",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "be090f8e-dc7b-41eb-9c7e-74a0aed0dad1",
+        "rta_name": "eggshell_backdoor",
+        "rta_platforms": [
+            "macos",
+            "linux"
+        ],
+        "rule_id": "41824afb-d68c-4d0e-bfee-474dac1fa56e",
+        "rule_name": "EggShell Backdoor Execution",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "b084e9dd-0c79-480c-b488-049ab8167b38",
+        "rta_name": "dscl_hidden_account",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "41b638a1-8ab6-4f8e-86d9-466317ef2db5",
+        "rule_name": "Potential Hidden Local User Account Creation",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "e56f77bc-d9a7-4e02-97e2-b3056f3d4171",
+        "rta_name": "file_create_scripting_startup",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "440e2db4-bc7f-4c96-a068-65b78da59bde",
+        "rule_name": "Startup Persistence by a Suspicious Process",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "6cd35061-278b-45e7-a9cb-86b48bc47884",
+        "rta_name": "sevenzip_encrypted",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "45d273fb-1dca-457d-9855-bcb302180c21",
+        "rule_name": "Encrypting Files with WinRar or 7z",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "1d452f81-8f5a-44a3-ae95-e95fe4bf2762",
+        "rta_name": "exec_cmd_attrib_hidden",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "4630d948-40d4-4cef-ac69-4002e29bc3db",
+        "rule_name": "Adding Hidden File Attribute via Attrib",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "3a84dc01-0202-4aee-8cd1-5fdefead9f4f",
+        "rta_name": "exec_cmd_rundll32_davsetcookie",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "4682fd2c-cfae-47ed-a543-9bed37657aa6",
+        "rule_name": "Potential Local NTLM Relay via HTTP",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "66407efa-a32e-4f4d-b339-def48e23e810",
+        "rta_name": "osascript_net_conn",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "47f76567-d58a-4fed-b32b-21f571e28910",
+        "rule_name": "Apple Script Execution followed by Network Connection",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "9f58f9e7-a0f5-48e6-a924-d437fd626195",
+        "rta_name": "suspicious_child_exchange_um",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "483c4daf-b0c6-49e0-adf3-0bfa93231d6b",
+        "rule_name": "Microsoft Exchange Server UM Spawning Suspicious Processes",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "adc70542-4d6e-4449-bf96-4cd44367bfbb",
+        "rta_name": "screensaver_child_process",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "48d7f54d-c29e-4430-93a9-9db6b5892270",
+        "rule_name": "Unexpected Child Process of macOS Screensaver Engine",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "31161e21-c290-4e51-a6d3-2865710793ff",
+        "rta_name": "periodic_task_creation",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "48ec9452-e1fd-4513-a376-10a1a26d2c83",
+        "rule_name": "Potential Persistence via Periodic Tasks",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "75e14e5a-1188-47ea-9b96-2cf6e9443fc2",
+        "rta_name": "disable_windows_fw",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "4b438734-3793-4fda-bd42-ceeada0be8f9",
+        "rule_name": "Disable Windows Firewall Rules via Netsh",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "cf71bf97-e3ba-474c-9b6b-538e5a8008b0",
+        "rta_name": "spctl_gatekeeper_bypass",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "4da13d6e-904f-4636-81d8-6ab14b4e6ae9",
+        "rule_name": "Attempt to Disable Gatekeeper",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "92da05da-5acf-473c-809c-6f4cdbced0db",
+        "rta_name": "exec_cmd_auditpol",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "4de76544-f0e5-486a-8f84-eae0b6063cdc",
+        "rule_name": "Disable Windows Event and Security Logs Using Built-in Tools",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "33f3ebda-7776-4cec-933b-48e85d707d61",
+        "rta_name": "message_of_the_day_execution",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "4ec47004-b34a-42e6-8003-376a123ea447",
+        "rule_name": "Suspicious Process Spawned from MOTD Detected",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "f0340de4-e433-49a3-ba8c-de0ded32840d",
+        "rta_name": "exec_cmd_mssql_xp_cmdshell",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "4ed493fc-d637-4a36-80ff-ac84937e5461",
+        "rule_name": "Execution via MSSQL xp_cmdshell Stored Procedure",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "4c0e7d24-63d1-4888-9ea4-0d920ce3fe40",
+        "rta_name": "reg_mod_appcertdlls",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "513f0ffd-b317-4b9c-9494-92ce861f22c7",
+        "rule_name": "Registry Persistence via AppCert DLL",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "7f4cfcf6-881b-48b0-864d-21eba06e57cc",
+        "rta_name": "dcom_lateral_movement_with_mmc",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "51ce96fb-9e52-4dad-b0ba-99b54440fc9a",
+        "rule_name": "Incoming DCOM Lateral Movement with MMC",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "d62cd5fb-0e8f-4f20-9477-b8622772ed16",
+        "rta_name": "suspicious_child_acrobat",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "53a26770-9cbd-40c5-8b57-61d01a325e14",
+        "rule_name": "Suspicious PDF Reader Child Process",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "1b4050d9-e3fa-4559-b188-522b620584c8",
+        "rta_name": "reg_mod_networkprovider",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "54c3d186-0461-4dc3-9b33-2dc5c7473936",
+        "rule_name": "Network Logon Provider Registry Modification",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "90cf6001-11a7-410b-b259-cf20a029b929",
+        "rta_name": "lateral_command_psexec",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "55d551c6-333b-4665-ab7e-5d14a59715ce",
+        "rule_name": "PsExec Network Connection",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "d5643e8a-c3f5-48a7-9f64-7255f603a24a",
+        "rta_name": "dseditgroup_admin_add",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "565c2b44-7a21-4818-955f-8d4737967d2e",
+        "rule_name": "Potential Admin Group Account Addition",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "f158a6dc-1974-4b98-a3e7-466f6f1afe01",
+        "rta_name": "keychain_dump",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "565d6ca5-75ba-4c82-9b13-add25353471c",
+        "rule_name": "Dumping of Keychain Content via Security Command",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "8ffd2053-c04a-435a-84b3-a8403a5395db",
+        "rta_name": "delete_catalogs",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "581add16-df76-42bb-af8e-c979bfb39a59",
+        "rule_name": "Deleting Backup Catalogs with Wbadmin",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "1ef2a173-a9c8-446d-9d56-f7e54a197a33",
+        "rta_name": "registry_rdp_enable",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "58aa72ca-d968-4f34-b9f7-bea51d75eb50",
+        "rule_name": "RDP Enabled via Registry",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "23997dfa-9e30-4091-9ee2-8bd45a2da70a",
+        "rta_name": "systemsetup_ssh_enable",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "5ae4e6f8-d1bf-40fa-96ba-e29645e1e4dc",
+        "rule_name": "Remote SSH Login Enabled via systemsetup Command",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "1bc32d6d-c5c9-43c6-bada-6d26469b5dac",
+        "rta_name": "file_create_powershell_profile",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "5cf6397e-eb91-4f31-8951-9f0eaa755a31",
+        "rule_name": "Persistence via PowerShell profile",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "26339b1f-05ba-4fd8-94c2-8ee1613e4590",
+        "rta_name": "login_hook",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "5d0265bf-dea9-41a9-92ad-48a8dcd05080",
+        "rule_name": "Persistence via Login or Logout Hook",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "6df14bf3-6153-4ff2-aa0f-f91f2aa06b7b",
+        "rta_name": "suspicious_child_svchost_sch",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "5d1d6907-0747-4d5d-9b24-e4a18853dc0a",
+        "rule_name": "Suspicious Execution via Scheduled Task",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "6294e8bd-a82e-4d60-9de7-cceb639e91d9",
+        "rta_name": "automator_workflows",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "5d9f8cfc-0d03-443e-a167-2b0597ce0965",
+        "rule_name": "Suspicious Automator Workflows Execution",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "cf94f5cc-5265-4287-80e5-82d9663ecf2e",
+        "rta_name": "unusual_ms_tool_network",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "610949a1-312f-4e04-bb55-3a79b8c95267",
+        "rule_name": "Unusual Process Network Connection",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "9d02871f-6338-47aa-84c4-7d622692319f",
+        "rta_name": "defensive_evasion_safari_modification",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "6482255d-f468-45ea-a5b3-d3a7de1331ae",
+        "rule_name": "Modification of Safari Settings via Defaults Command",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "d275922f-a702-4668-a77d-c60e8df58646",
+        "rta_name": "mount_smbfs",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "661545b4-1a90-4f45-85ce-2ebd7c6a15d0",
+        "rule_name": "Attempt to Mount SMB Share via Command Line",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "65ae1bcd-0b1c-4992-97c3-f40b0f92deb1",
+        "rta_name": "office_child_process",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "66da12b1-ac83-40eb-814c-07ed1d82b7b9",
+        "rule_name": "Suspicious macOS MS Office Child Process",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "e09d904a-f3bb-4d36-8eb8-8c234812807c",
+        "rta_name": "globalflags",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "6839c821-011d-43bd-bd5b-acff00257226",
+        "rule_name": "Image File Execution Options Injection",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "398933ec-f8d4-4d81-93ed-e7d7adcb9d97",
+        "rta_name": "sticky_keys_write_execute",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "68921d85-d0dc-48b3-865f-43291ca2c4f2",
+        "rule_name": "Persistence via TelemetryController Scheduled Task Hijack",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "eaf71384-2e38-4970-b170-9645ccde1d2b",
+        "rta_name": "delete_bootconf",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "69c251fb-a5d6-4035-b5ec-40438bd829ff",
+        "rule_name": "Modification of Boot Configuration",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "b63e7b4a-85a6-4b4f-bf72-abe49d04b24f",
+        "rta_name": "suspicious_child_childless_process",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "6a8ab9cc-4023-4d17-b5df-1a3e16882ce7",
+        "rule_name": "Unusual Service Host Child Process - Childless Service",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "b6b65c6a-830a-4e1c-ace7-3c98362f998b",
+        "rta_name": "exec_cmd_posh_mailbox",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "6aace640-e631-4870-ba8e-5fdda09325db",
+        "rule_name": "Exporting Exchange Mailbox via PowerShell",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "f3ffa89b-de47-4e17-ac8e-385e0e7f8253",
+        "rta_name": "linux_compress_sensitive_files",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "6b84d470-9036-4cc0-a27c-6d90bbfe81ab",
+        "rule_name": "Sensitive Files Compression",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "29eb99a6-14cc-4d37-81dd-c2e78cda8c74",
+        "rta_name": "file_create_exchange_um",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "6cd1779c-560f-4b68-a8f1-11009b27fe63",
+        "rule_name": "Microsoft Exchange Server UM Writing Suspicious Files",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "370c3432-65f5-4068-b879-916bc1297c60",
+        "rta_name": "ldapsearch_group_enumeration",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "6e9b351e-a531-4bdc-b73e-7034d6eed7ff",
+        "rule_name": "Enumeration of Users or Groups via Built-in Commands",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "d123ee22-aa28-4dcd-9c3b-5be047eb6eff",
+        "rta_name": "exec_cmd_wmic_antivirus_enum",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "6ea55c81-e2ba-42f2-a134-bccf857ba922",
+        "rule_name": "Security Software Discovery using WMIC",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "61f308d8-40c5-4c46-9181-e993cf07e92b",
+        "rta_name": "kernelext_agent_unload",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "70fa1af4-27fd-4f26-bd03-50b6af6b9e24",
+        "rule_name": "Attempt to Unload Elastic Endpoint Security Kernel Extension",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "ffddb3f7-75ac-49e8-9042-ae1bf5c199e8",
+        "rta_name": "file_ads_creation",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "71bccb61-e19b-452f-b104-79a60e546a95",
+        "rule_name": "Unusual File Creation - Alternate Data Stream",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "eb06a33e-bc80-412b-8ae8-f45af6682293",
+        "rta_name": "image_load_rdp_client_dll",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "71c5cb27-eca5-4151-bb47-64bc3f883270",
+        "rule_name": "Suspicious RDP ActiveX Client Loaded",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "398933ec-f8d4-4d81-93ed-e7d7adcb9d97",
+        "rta_name": "sticky_keys_write_execute",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "7405ddf1-6c8e-41ce-818f-48bea6bcaed8",
+        "rule_name": "Potential Modification of Accessibility Binaries",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "a18454da-5f28-4223-95d6-5dc1f58c861a",
+        "rta_name": "env_variable_hijacking",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "7453e19e-3dbf-4e4e-9ae0-33d6c6ed15e1",
+        "rule_name": "Modification of Environment Variable via Launchctl",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "7143aab0-c4f3-43da-a11e-aca589887860",
+        "rta_name": "network_connection_rdp_tunneling",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "76fd43b7-3480-4dd9-8ad7-8bd36bfad92f",
+        "rule_name": "Potential Remote Desktop Tunneling Detected",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "1f1833da-dca4-467c-9a9d-a61cf41d6b63",
+        "rta_name": "suspicious_child_wmiprvse",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "770e0c4d-b998-41e5-a62e-c7901fd7f470",
+        "rule_name": "Enumeration Command Spawned via WMIPrvSE",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "9b19f4a3-7287-45d2-ab0f-9a9c0b1bc8e1",
+        "rta_name": "enum_commands",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "7b8bfc26-81d2-435e-965c-d722ee397ef1",
+        "rule_name": "Windows Network Enumeration",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "16b3d9c6-e188-49c5-8dce-d3eb5b0fcf91",
+        "rta_name": "suspicious_wmic_script",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "7f370d54-c0eb-4270-ac5a-9a6020585dc6",
+        "rule_name": "Suspicious WMIC XSL Script Execution",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "5ef57ec6-32a0-40b2-b9a7-c4eda4cd3e49",
+        "rta_name": "reg_mod_enablescriptblocklogging",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "818e23e6-2094-4f0e-8c01-22d30f3506c6",
+        "rule_name": "PowerShell Script Block Logging Disabled",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "38defc7e-7234-45a2-83ef-e845d0eba3f2",
+        "rta_name": "powershell_base64_gzip",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "81fe9dc6-a2d7-4192-a2d8-eed98afc766a",
+        "rule_name": "PowerShell Suspicious Payload Encoded and Compressed",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "086c6cae-22ac-47b6-bd24-85b33d8cf3a2",
+        "rta_name": "elevated_osascript_execution",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "827f8d8f-4117-4ae4-b551-f56d54b9da6b",
+        "rule_name": "Apple Scripting Execution with Administrator Privileges",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "c5b8e9c5-59c6-4316-8e73-cd4f5a9a2761",
+        "rta_name": "exec_cmd_nltest",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "84da2554-e12a-11ec-b896-f661ea17fbcd",
+        "rule_name": "Enumerating Domain Trusts via NLTEST.EXE",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "6ef908be-9ed3-413d-8d4d-94446107eecc",
+        "rta_name": "grep_software_discovery",
+        "rta_platforms": [
+            "macos",
+            "linux"
+        ],
+        "rule_id": "870aecc0-cea4-4110-af3f-e02e9b373655",
+        "rule_name": "Security Software Discovery via Grep",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "9b19f4a3-7287-45d2-ab0f-9a9c0b1bc8e1",
+        "rta_name": "enum_commands",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "871ea072-1b71-4def-b016-6278b505138d",
+        "rule_name": "Enumeration of Administrator Accounts",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "21d1d048-b8c9-4b6d-9748-44f8af1b444d",
+        "rta_name": "exec_from_mount",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "87def154-004d-4d3a-8224-591e41804454",
+        "rule_name": "Shell Script Execution from abnormal Volume Mount Path",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "5fc46f6e-5a2a-4336-98f3-5fdc27db7152",
+        "rta_name": "modify_sublime_app",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "88817a33-60d3-411f-ba79-7c905d865b2a",
+        "rule_name": "Sublime Plugin or Application Script Modification",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "b7ed774f-f5e8-49bd-995a-a705c979d88f",
+        "rta_name": "network_connection_kerberos_port",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "897dc6b5-b39f-432a-8d75-d3730d50c782",
+        "rule_name": "Kerberos Traffic from Unusual Process",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "ff744c89-20cb-4be0-9725-2430d0be7f6a",
+        "rta_name": "directory_service_plugin_file",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "89fa6cb7-6b53-4de2-b604-648488841ab8",
+        "rule_name": "Persistence via DirectoryService Plugin Modification",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "df91f5f2-a0a0-47e8-848b-d01526a43d60",
+        "rta_name": "cve_2019_14287",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "8af5b42f-8d74-48c8-a8d0-6d14b4197288",
+        "rule_name": "Potential Sudo Privilege Escalation via CVE-2019-14287",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "27694576-0454-40b3-9823-e29719c53750",
+        "rta_name": "process_double_extension",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "8b2b3a62-a598-4293-bc14-3d5fa22bb98f",
+        "rule_name": "Executable File Creation with Multiple Extensions",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "5b52f7e5-e2bc-4a2d-82bd-2e844c081519",
+        "rta_name": "exec_cmd_netsh_advfirewall_network_discovery",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "8b4f0816-6a65-4630-86a6-c21c179c0d09",
+        "rule_name": "Enable Host Network Discovery via Netsh",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "9f58f9e7-a0f5-48e6-a924-d437fd626195",
+        "rta_name": "suspicious_child_dns",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "8c37dc0e-e3ac-4c97-8aa0-cf6a9122de45",
+        "rule_name": "Unusual Child Process of dns.exe",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "1b681241-d9f1-4239-a9e7-650ebc0c38a4",
+        "rta_name": "exec_from_terminal",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "8e88d216-af7a-4f5c-8155-fa7d2be03987",
+        "rule_name": "Suspicious Terminal Child Process Execution",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "d7d1d0cf-a84a-4526-b0db-be59a210246e",
+        "rta_name": "port_monitor",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "8f3e91c7-d791-4704-80a1-42c160d7aa27",
+        "rule_name": "Potential Port Monitor or Print Processor Registration Abuse",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "f964558b-0674-4c97-afcc-42d4b6a813c6",
+        "rta_name": "keychain_pwd_cmdline",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "9092cd6c-650f-4fa3-8a8a-28256c7489c9",
+        "rule_name": "Keychain Password Retrieval via Command Line",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "e55c13d4-ab70-4a3d-ba1e-c54156000e42",
+        "rta_name": "suspicious_child_solarwinds_businesslayerhost",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "93b22c0a-06a0-4131-b830-b10d5e166ff4",
+        "rule_name": "Suspicious SolarWinds Child Process",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "ada7805f-e0e1-4633-952e-41f5bb392fdb",
+        "rta_name": "reg_mod_base64_executable",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "93c1ce76-494c-4f01-8167-35edfb52f7b1",
+        "rule_name": "Encoded Executable Stored in the Registry",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "603d77bf-cdfc-44dd-94d3-5b4016caef94",
+        "rta_name": "keychain_cred_access",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "96e90768-c3b7-4df6-b5d9-6237f8bc36a8",
+        "rule_name": "Access to Keychain Credentials Directories",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "00402735-f78d-4ed6-9f8e-a1b365c42f5b",
+        "rta_name": "suspicious_child_zoom",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "97aba1ef-6034-4bd3-8c1a-1e0996b27afa",
+        "rule_name": "Suspicious Zoom Child Process",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "ca020d7f-f495-4f0a-a808-da615f3409b4",
+        "rta_name": "uncommon_persistence",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "97fc44d3-8dae-4019-ae83-298c3015600f",
+        "rule_name": "Startup or Run Key Registry Modification",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "bc837b89-713a-4d21-a086-8649e8411f11",
+        "rta_name": "suspicious_child_explorer",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "9a5b4e31-6cde-4295-9ff7-6be1b8567e1b",
+        "rule_name": "Suspicious Explorer Child Process",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "712509fa-5326-4ebc-bb1e-82ddf28e8baa",
+        "rta_name": "reg_mod_enableat",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "9aa0e1f6-52ce-42e1-abb3-09657cee2698",
+        "rule_name": "Scheduled Tasks AT Command Enabled",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "3c2c32fd-0856-4fc9-8a2d-81ed85e568b0",
+        "rta_name": "exec_cmd_wmi_subscription",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "9b6813a1-daf1-457e-b0e6-0bb4e55b8a4c",
+        "rule_name": "Persistence via WMI Event Subscription",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "f24491d0-720b-4150-a2a1-45b5b07238aa",
+        "rta_name": "hosts_file_modify",
+        "rta_platforms": [
+            "windows",
+            "linux",
+            "macos"
+        ],
+        "rule_id": "9c260313-c811-4ec8-ab89-8f6530e0246c",
+        "rule_name": "Hosts File Modified",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "81adc847-2965-4a4b-8d3c-91e541c85ab4",
+        "rta_name": "exec_cmd_rundll32",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "9ccf3ce0-0057-440a-91f5-870c6ad39093",
+        "rule_name": "Command Shell Activity Started via RunDLL32",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "aafeb270-4704-4b5f-aa1b-1286dc14c5a9",
+        "rta_name": "suspicious_parent_msbuild_script",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "9d110cb3-5f4b-4c9a-b9f5-53f0a1707ae2",
+        "rule_name": "Microsoft Build Engine Started by a Script Process",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "8fb34501-1774-4618-be8e-9db6294445ab",
+        "rta_name": "suspicious_parent_msbuild_explorer",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "9d110cb3-5f4b-4c9a-b9f5-53f0a1707ae3",
+        "rule_name": "Microsoft Build Engine Started by a System Process",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "465eb9a9-2f8b-458b-9ea4-e50912ce1b89",
+        "rta_name": "exec_renamed_msbuild",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "9d110cb3-5f4b-4c9a-b9f5-53f0a1707ae4",
+        "rule_name": "Microsoft Build Engine Using an Alternate Name",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "d4b4f924-974b-4033-9728-bb6a736bf7ef",
+        "rta_name": "image_load_msbuild_vaultcli",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "9d110cb3-5f4b-4c9a-b9f5-53f0a1707ae5",
+        "rule_name": "Potential Credential Access via Trusted Developer Utility",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "022dc249-a496-413a-9355-c37e3ea41dda",
+        "rta_name": "msbuild_network",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "9d110cb3-5f4b-4c9a-b9f5-53f0a1707ae6",
+        "rule_name": "Microsoft Build Engine Started an Unusual Process",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "762adc57-58c2-413d-a98d-258a223c07da",
+        "rta_name": "launchdaemon_persistence",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "9d19ece6-c20e-481a-90c5-ccca596537de",
+        "rule_name": "LaunchDaemon Creation or Modification and Immediate Loading",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "6dfa88c9-9fb2-4fb0-8bea-0bc45222b498",
+        "rta_name": "installutil_network",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "a13167f1-eec2-4015-9631-1fee60406dcf",
+        "rule_name": "InstallUtil Process Making Network Connections",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "2edd7889-578b-4870-befd-6b3d0f5a10fd",
+        "rta_name": "reg_mod_builtindnsclientenabled",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "a22a09c2-2162-4df0-a356-9aacbeb56a04",
+        "rule_name": "DNS-over-HTTPS Enabled via Registry",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "83465fca-25ae-4d6d-b747-c82cda75b0ae",
+        "rta_name": "mshta_network",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "a4ec1382-4557-452b-89ba-e413b22ed4b8",
+        "rule_name": "Network Connection via Mshta",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "a3cdd478-b817-4513-bb3d-897a5f92c836",
+        "rta_name": "suspicious_wscript_parent",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "a624863f-a70d-417f-a7d2-7a404638d47f",
+        "rule_name": "Suspicious MS Office Child Process",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "2c186f11-d07c-4df6-8b86-bf9ffd6ca871",
+        "rta_name": "emond_plist",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "a6bf4dd4-743e-4da8-8c03-3ebd753a6c90",
+        "rule_name": "Emond Rules Creation or Modification",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "dfdcc4f4-5aca-486a-8115-b15b653b9b4f",
+        "rta_name": "registry_hive_export",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "a7e7bfa3-088e-4f13-b29e-3986e0e756b8",
+        "rule_name": "Credential Acquisition via Registry Hive Dumping",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "3c8fc2cc-fa66-4c91-ae72-c72accaa92b7",
+        "rta_name": "login_window_plist",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "ac412404-57a5-476f-858f-4e8fbb4f48d8",
+        "rule_name": "Potential Persistence via Login Hook",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "cbd90dde-02f4-4010-b654-ccabff3c3c73",
+        "rta_name": "werfault_persistence",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "ac5012b8-8da8-440b-aaaf-aedafdea2dff",
+        "rule_name": "Suspicious WerFault Child Process",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "9182299f-cebf-4d8b-97a8-15ec5e11fe14",
+        "rta_name": "network_connection_iexplore_rundll32",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "acd611f3-2b93-47b3-a0a3-7723bcc46f6d",
+        "rule_name": "Potential Command and Control via Internet Explorer",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "61369084-af6a-4fd0-903f-b44467f5d6e7",
+        "rta_name": "ssh_bruteforce",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "ace1e989-a541-44df-93a8-a8b0591b63c0",
+        "rule_name": "Potential SSH Brute Force Detected",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "a555c960-08af-49fe-8889-18434a604f68",
+        "rta_name": "exec_cmd_workfolders",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "ad0d2742-9a49-11ec-8d6b-acde48001122",
+        "rule_name": "Signed Proxy Execution via MS Work Folders",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "2f17286a-e4a8-41de-b3fa-595a4be6fb19",
+        "rta_name": "kcc_kerberos_dump",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "ad88231f-e2ab-491c-8fc6-64746da26cfe",
+        "rule_name": "Kerberos Cached Credentials Dumping",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "5282c9a4-4ce9-48b8-863a-ff453143635a",
+        "rta_name": "linux_persistence_kworker_file_creation",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "ae343298-97bc-47bc-9ea2-5f2ad831c16e",
+        "rule_name": "Suspicious File Creation via kworker",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "2ab62c28-1abb-4ac5-a16d-2f4f75d01d02",
+        "rta_name": "persistent_scripts",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "afcce5ad-65de-4ed2-8516-5e093d3ac99a",
+        "rule_name": "Local Scheduled Task Creation",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "fcd2d0fe-fed2-424a-bdc5-e9bef5031344",
+        "rta_name": "cat_network_activity",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "afd04601-12fc-4149-9b78-9c3f8fe45d39",
+        "rule_name": "Network Activity Detected via cat",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "4c8675a8-fbed-4f36-88e6-ffceaf82f426",
+        "rta_name": "tcc_bypass_mounted_apfs",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "b00bcd89-000c-4425-b94c-716ef67762f6",
+        "rule_name": "TCC Bypass via Mounted APFS Snapshot Access",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "0da48a27-4a5e-4974-ba6a-63cce8f602df",
+        "rta_name": "file_creation_teamviewer",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "b25a7df2-120a-4db2-bd3f-3e4b86b24bee",
+        "rule_name": "Remote File Copy via TeamViewer",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "be77efd7-8f6a-4033-92b9-f47addb60866",
+        "rta_name": "exec_cmd_endpoint_security_masquerading",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "b41a13c6-ba45-4bab-a534-df53d0cfed6a",
+        "rule_name": "Suspicious Endpoint Security Parent Process",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "72c2470b-c96e-4b44-88ec-1a67c4ec091c",
+        "rta_name": "atom_init_coffee",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "b4449455-f986-4b5a-82ed-e36b129331f7",
+        "rule_name": "Potential Persistence via Atom Init Script Modification",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "a78663dc-9561-40a9-b4eb-f15e31c690cc",
+        "rta_name": "overlayfs_privesc",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "b51dbc92-84e2-4af1-ba47-65183fcd0c57",
+        "rule_name": "Potential Privilege Escalation via OverlayFS",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "57d4d7f4-03a6-43d3-a5af-9ac706b2eedf",
+        "rta_name": "exec_cmd_clear_history",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "b5877334-677f-4fb9-86d5-a9721274223b",
+        "rule_name": "Clearing Windows Console History",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "2cd02bee-6774-4b93-a632-995462440371",
+        "rta_name": "image_load_script_interpreter_wmiutils",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "b64b183e-1a76-422d-9179-7b389513e74d",
+        "rule_name": "Windows Script Interpreter Executing Process via WMI",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "146cf978-05f2-4492-843c-46626651db89",
+        "rta_name": "file_create_dpapi_key",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "b83a7e96-2eb3-4edf-8346-427b6858d3bd",
+        "rule_name": "Creation or Modification of Domain Backup DPAPI private key",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "a8331ff5-2199-48cf-9284-88351c859835",
+        "rta_name": "msxsl_network",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "b86afe07-0d98-4738-b15d-8d7465f95ff5",
+        "rule_name": "Network Connection via MsXsl",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "1d887a40-ea2a-493c-90b4-54e0ce4f3534",
+        "rta_name": "uac_clipup",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "b90cdde7-7e0d-4359-8bf0-2c112ce2008a",
+        "rule_name": "UAC Bypass Attempt with IEditionUpgradeManager Elevated COM Interface",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "633313a4-dbe5-420f-b4ae-90c481a7f881",
+        "rta_name": "root_cert_install",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "bc1eeacf-2972-434f-b782-3a532b100d67",
+        "rule_name": "Attempt to Install Root Certificate",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "d2bc8d23-736f-4045-87cd-81d9f4719d2f",
+        "rta_name": "reg_mod_point_and_print_dll",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "bd7eefee-f671-494e-98df-f01daf9e5f17",
+        "rule_name": "Suspicious Print Spooler Point and Print DLL",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "53d071d9-36e3-4b40-83c8-d818bd831010",
+        "rta_name": "vaultcmd_commands",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "be8afaed-4bcd-4e0a-b5f9-5562003dde81",
+        "rule_name": "Searching for Saved Credentials via VaultCmd",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "dabd91c9-101e-475d-b2f2-ca255abda003",
+        "rta_name": "image_load_phantomdll",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "bfeaf89b-a2a7-48a3-817f-e41829dc61ee",
+        "rule_name": "Suspicious DLL Loaded for Persistence or Privilege Escalation",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "75fec962-54a4-4bb1-80ea-995269e90b30",
+        "rta_name": "scp_privacy_bypass",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "c02c8b9f-5e1d-463c-a1b0-04edcdfe1a3d",
+        "rule_name": "Potential Privacy Control Bypass via Localhost Secure Copy",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "5faf9f55-c52e-41e0-8195-b183aba8b876",
+        "rta_name": "exec_cmd_aspnet_regiis",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c25e9c87-95e1-4368-bfab-9fd34cf867ec",
+        "rule_name": "Microsoft IIS Connection Strings Decryption",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "4e63cb99-b56d-4c75-9cda-3a7f30861d35",
+        "rta_name": "user_action_script",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "c292fa52-4115-408a-b897-e14f684b3cb7",
+        "rule_name": "Persistence via Folder Action Script",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "83465fca-25ae-4d6d-b747-c82cda75b0ae",
+        "rta_name": "mshta_network",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c2d90150-0133-451c-a783-533e736c12d7",
+        "rule_name": "Mshta Making Network Connections",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "bc4c85e7-c2c6-497c-a52e-7c8896a79ab2",
+        "rta_name": "suspicious_bits_job_notify",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c3b915e0-22f3-4bf7-991d-b643513c722f",
+        "rule_name": "Persistence via BITS Job Notify Cmdline",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "46f6ae71-2fd8-46bd-8209-9fc0f59432ef",
+        "rta_name": "exec_cmd_net_use",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c4210e1c-64f2-4f48-b67e-b5a8ffe3aa14",
+        "rule_name": "Mounting Hidden or WebDav Remote Shares",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "3a343699-374c-454a-841c-f0d0d4a3031f",
+        "rta_name": "file_delete_spool_driver",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c4818812-d44f-47be-aaef-4cfb2f9cc799",
+        "rule_name": "Suspicious Print Spooler File Deletion",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "a6263f00-58b4-4555-b88f-9d66a7395891",
+        "rta_name": "reg_mod_shadow_rdp",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c57f8579-e2a5-4804-847f-f2732edc5156",
+        "rule_name": "Potential Remote Desktop Shadowing Activity",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "413cf7ef-0fad-46fd-ab67-e94c4e3e0f0b",
+        "rta_name": "comsvcs_dump",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c5c9f591-d111-4cf8-baec-c26a39bc31ef",
+        "rule_name": "Potential Credential Access via Renamed COM+ Services DLL",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "735969b3-6a2e-4c7d-b18a-59e2f36ef13b",
+        "rta_name": "reg_mod_shim_sb",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c5ce48a6-7f57-4ee8-9313-3d0024caee10",
+        "rule_name": "Installation of Custom Shim Databases",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "b279f4c3-2269-4557-b267-68dc2f88019b",
+        "rta_name": "suspicious_parent_msbuild_office",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c5dc3223-13a2-44a2-946c-e9dc0aa0449c",
+        "rule_name": "Microsoft Build Engine Started by an Office Application",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "219dee0a-48ad-4e17-ab59-783a619a7bd5",
+        "rta_name": "exec_cmd_mpcmdrun_download",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c6453e73-90eb-4fe7-a98c-cde7bbfc504a",
+        "rule_name": "Remote File Download via MpCmdRun",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "9f58f9e7-a0f5-48e6-a924-d437fd626195",
+        "rta_name": "suspicious_child_dns",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c7ce36c0-32ff-4f9a-bfc2-dcb242bf99f9",
+        "rule_name": "Unusual File Modification by dns.exe",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "38c81994-958f-40c8-bb6a-20bc1b93d598",
+        "rta_name": "dock_plist",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "c81cefcb-82b9-4408-a533-3c3df549e62d",
+        "rule_name": "Persistence via Docker Shortcut Modification",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "b0e3e1bb-dfa5-473a-8862-b2d1d42819ce",
+        "rta_name": "smb_connection",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c82c7d8f-fb9e-4874-a4bd-fd9e3f9becf1",
+        "rule_name": "Direct Outbound SMB Connection",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "92407d57-e5ce-41b1-933a-7cad26158802",
+        "rta_name": "discovery_virtual_machine_grep",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "c85eb82c-d2c8-485c-a36f-534f914b7663",
+        "rule_name": "Virtual Machine Fingerprinting via Grep",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "16fe008f-58b5-4a8c-9e73-2784edf636b1",
+        "rta_name": "reg_mod_startup_shell_folder",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c8b150f0-0164-475b-a75e-74b47800a9ff",
+        "rule_name": "Suspicious Startup Shell Folder Modification",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "2730b84c-9e39-4647-ba96-0b438aca9575",
+        "rta_name": "exec_cmd_set_mppreference",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c8cccb06-faf2-4cd5-886e-2c9636cfcb87",
+        "rule_name": "Disabling Windows Defender Security Settings via PowerShell",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "44345dc0-883f-41b7-ad34-1d84cfd57129",
+        "rta_name": "calendar_file_mod",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "cb71aa62-55c8-42f0-b0dd-afb0bb0b1f51",
+        "rule_name": "Suspicious Calendar File Modification",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "eddbcd95-2922-46e4-b356-86d3bc8aeadc",
+        "rta_name": "dsenableroot_account",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "cc2fd2d0-ba3a-4939-b87f-2901764ed036",
+        "rule_name": "Attempt to Enable the Root Account",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "900e8599-1d5f-4522-9aed-6eab82de2bad",
+        "rta_name": "kernel_module_removal_execution",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "cd66a5af-e34b-4bb0-8931-57d0a043f2ef",
+        "rule_name": "Kernel Module Removal",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "0eb19c28-f82f-4f69-b11f-3b946f310e32",
+        "rta_name": "exec_cmd_set_casmailbox",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "ce64d965-6cb0-466d-b74f-8d2c76f47f05",
+        "rule_name": "New ActiveSyncAllowedDeviceID Added via PowerShell",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "790cbe6f-ee44-4654-9998-039236dbe0d8",
+        "rta_name": "recycle_bin_process",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "cff92c41-2225-4763-b4ce-6f71e5bda5e6",
+        "rule_name": "Execution from Unusual Directory - Command Line",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "b434626c-4787-4967-9984-50c0db12692f",
+        "rta_name": "reg_mod_appinitdlls",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "d0e159cf-73e9-40d1-a9ed-077e3158a855",
+        "rule_name": "Registry Persistence via AppInit DLL",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "fafdfbda-add8-40a1-b2b5-640fce12413e",
+        "rta_name": "exec_cmd_mklink",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "d117cbb4-7d56-41b4-b999-bdf8c25648a0",
+        "rule_name": "Symbolic Link to Shadow Copy Created",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "dce9cb95-b97d-4874-ab7a-26382a1ba348",
+        "rta_name": "special_chars_zip_file",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "d22a85c6-d2ad-4cc4-bf7b-54787473669a",
+        "rule_name": "Potential Microsoft Office Sandbox Evasion",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "6a884a9a-b061-4eeb-8711-f14f6b49c9c0",
+        "rta_name": "reg_mod_disable_uac",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "d31f183a-e5b1-451b-8534-ba62bca0b404",
+        "rule_name": "Disabling User Account Control via Registry Modification",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "12b28e92-281f-49a7-a8b3-54681ba6d63e",
+        "rta_name": "wevtutil_log_clear",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "d331bbe2-6db4-4941-80a5-8270db72eb61",
+        "rule_name": "Clearing Windows Event Logs",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "fa1dd615-73f0-46d0-b047-b495337d356b",
+        "rta_name": "osascript_sh_execution",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "d461fac0-43e8-49e2-85ea-3a58fe120b4f",
+        "rule_name": "Shell Execution via Apple Scripting",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "163dbe60-28e0-4042-b2f0-173dddea877b",
+        "rta_name": "gdb_init_secret_dump",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "d4ff2f53-c802-4d2e-9fb9-9ecc08356c3f",
+        "rule_name": "Linux init (PID 1) Secret Dump via GDB",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "389392dc-61db-4e45-846f-099f7d289c1b",
+        "rta_name": "lateral_commands",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "d61cbcf8-1bc1-4cff-85ba-e7b21c5beedc",
+        "rule_name": "Service Command Lateral Movement",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "878ffa93-dea6-48f8-9441-e199bc23ec6b",
+        "rta_name": "modification_of_wdigest_security_provider",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "d703a5af-d5b0-43bd-8ddb-7a5d500b7da5",
+        "rule_name": "Modification of WDigest Security Provider",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "810554c9-fe55-4fdd-8127-e753ae448d52",
+        "rta_name": "suspicious_child_solarwindsdiagnostics",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "d72e33fc-6e91-42ff-ac8b-e573268c5a87",
+        "rule_name": "Command Execution via SolarWinds Process",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "d950ef5f-8277-4ed8-a8dd-d2433e791cef",
+        "rta_name": "systemkey_credential_access",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "d75991f2-b989-419d-b797-ac1e54ec2d61",
+        "rule_name": "SystemKey Access via Command Line",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "54041e42-7a4b-417e-ac40-cd50c7085e48",
+        "rta_name": "exec_from_python",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "d8cbba0d-7275-4bcd-be22-79ee6fea2951",
+        "rule_name": "Suspicious Python Package Child Process Execution",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "463e513d-1b7e-447c-a019-a340445cea3f",
+        "rta_name": "powershell_delete_shadow_copy",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "d99a037b-c8e2-47a5-97b9-170d076827c4",
+        "rule_name": "Volume Shadow Copy Deletion via PowerShell",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "ae6343cc-3b56-4f60-854f-7102db519ec4",
+        "rta_name": "delete_volume_shadows",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "dc9c1f74-dac3-48e3-b47f-eb79db358f57",
+        "rule_name": "Volume Shadow Copy Deletion via WMIC",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "35bb73a9-cafa-4b2c-81f0-a97e2afa5e1c",
+        "rta_name": "brute_force_login",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "e08ccd49-0380-4b2b-8d71-8000377d6e49",
+        "rule_name": "Attempts to Brute Force an Okta User Account",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "7c4e0d1e-e80a-465a-9612-a319800390f4",
+        "rta_name": "exec_cmd_psexesvc",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "e2f9fdf5-8076-45ad-9427-41e0e03dc9c2",
+        "rule_name": "Suspicious Process Execution via Renamed PsExec Executable",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "2e2b5db2-2edb-421e-bb5e-6d2ab09303e0",
+        "rta_name": "exec_cmd_compiled_html",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "e3343ab9-4245-4715-b344-e11c56b0a47f",
+        "rule_name": "Process Activity via Compiled HTML File",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "9261a9ca-53ed-483c-967a-3f7a8f93e0ea",
+        "rta_name": "network_connection_freesslcert",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "e3cf38fa-d5b8-46cc-87f9-4a7513e4281d",
+        "rule_name": "Connection to Commonly Abused Free SSL Certificate Providers",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "96c3cc10-7f86-428c-b353-e9de52472a96",
+        "rta_name": "auth_plugin",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "e6c98d38-633d-4b3e-9387-42112cd5ac10",
+        "rule_name": "Authorization Plugin Modification",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "ce87d15a-9b72-42c4-8721-ae4bcff86a05",
+        "rta_name": "screensaver_plist_mod",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "e6e8912f-283f-4d0d-8442-e0dcaf49944b",
+        "rule_name": "Screensaver Plist File Modified by Unexpected Process",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "7961c43d-4dd8-45ec-b237-a940bf55d114",
+        "rta_name": "suspicious_lineage_script",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "e7125cea-9fe1-42a5-9a05-b0792cf86f5a",
+        "rule_name": "Execution of Persistent Suspicious Program",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "c5cecd6d-a7c4-4e3b-970d-6ca5cfc5c662",
+        "rta_name": "unshadow_execution",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "e7cb3cfd-aaa3-4d7b-af18-23b89955062c",
+        "rule_name": "Potential Linux Credential Dumping via Unshadow",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "eb1ecbae-a7d0-4beb-89fe-fbf2db0edce3",
+        "rta_name": "suspicious_parent_sc",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "e8571d5f-bea1-46c2-9f56-998de2d3ed95",
+        "rule_name": "Service Control Spawned via Script Interpreter",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "ac6b2cda-97f1-4095-b5f1-9791da2e6282",
+        "rta_name": "reg_mod_lsa_ssp",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "e86da94d-e54b-4fb5-b96c-cecff87e8787",
+        "rule_name": "Installation of Security Support Provider",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "4aa10c2d-3839-4ed3-8ca6-a88fdd32bdef",
+        "rta_name": "file_create_smss_exec",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "e94262f2-c1e9-4d3f-a907-aeab16712e1a",
+        "rule_name": "Unusual Executable File Creation by a System Critical Process",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "ac6b2cda-97f1-4095-b5f1-9791da2e6282",
+        "rta_name": "reg_mod_lsa_ssp",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "e9abe69b-1deb-4e19-ac4a-5d5ac00f72eb",
+        "rule_name": "Potential LSA Authentication Package Abuse",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "4b23eaa2-aa73-43ee-9c10-47ecf01e00aa",
+        "rta_name": "file_create_mimilsa_log",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "ebb200e8-adf0-43f8-a0bb-4ee5b5d852c6",
+        "rule_name": "Mimikatz Memssp Log File Detected",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "84a9bc41-8b2e-434e-b6ae-237e9202c745",
+        "rta_name": "exec_cmd_appcmd_logging",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "ebf1adea-ccf2-4943-8b96-7ab11ca173a5",
+        "rule_name": "IIS HTTP Logging Disabled",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "6e84852e-b8a2-4158-971e-c5148d969d2a",
+        "rta_name": "exec_cmd_adfind",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "eda499b8-a073-4e35-9733-22ec71f57f3a",
+        "rule_name": "AdFind Command Activity",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "34cddcb3-bd49-4363-8092-677307abaa82",
+        "rta_name": "tcc_modification",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "eea82229-b002-470e-a9e1-00be38b14d32",
+        "rule_name": "Potential Privacy Control Bypass via TCCDB Modification",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "e5a98cc9-1f15-4d14-baf2-96bebb932ae9",
+        "rta_name": "mimipenguin_execution",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "ef100a2e-ecd4-4f72-9d1e-2f779ff3c311",
+        "rule_name": "Potential Linux Credential Dumping via Proc Filesystem",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "1a61241e-5b1b-44ec-8c9f-3ae4652550be",
+        "rta_name": "schtask_escalation",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "ef862985-3f13-4262-a686-5f357bbb9bc2",
+        "rule_name": "Whoami Process Activity",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "dd39e94e-bfd7-467c-b20d-662d84c0b97e",
+        "rta_name": "security_authtrampoline",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "f0eb70e9-71e9-40cd-813f-bf8e8c812cb1",
+        "rule_name": "Execution with Explicit Credentials via Scripting",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "d00ef4d9-4690-4eb1-aa60-7ff3ce3bd75b",
+        "rta_name": "osascript_hidden_login_item",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "f24bcae1-8980-4b30-b5dd-f851b055c9e7",
+        "rule_name": "Creation of Hidden Login Item via Apple Script",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "45541eb5-c636-477b-81c9-b6dcf184c9cc",
+        "rta_name": "trust_provider",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "f2c7b914-eda3-40c2-96ac-d23ef91776ca",
+        "rule_name": "SIP Provider Modification",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "a330f58c-c808-45d9-b8be-9c2054285c08",
+        "rta_name": "file_create_lsass_dump",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "f2f46686-6f3c-4724-bd7d-24e31c70f98f",
+        "rule_name": "LSASS Memory Dump Creation",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "3adf005f-94b8-4b34-8994-d5a3dc6666c2",
+        "rta_name": "wmi_incoming_logon",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "f3475224-b179-4f78-8877-c2bd64c26b88",
+        "rule_name": "WMI Incoming Lateral Movement",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "da35cb80-dad9-4995-ac11-6a408843cd12",
+        "rta_name": "sudo_exploit",
+        "rta_platforms": [
+            "linux",
+            "macos"
+        ],
+        "rule_id": "f37f3054-d40b-49ac-aa9b-a786c74c58b8",
+        "rule_name": "Sudo Heap-Based Buffer Overflow Attempt",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "6a5977f6-ed19-446e-a441-e325cff7772b",
+        "rta_name": "execution_linux_curl_cve_2023_38545",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "f41296b4-9975-44d6-9486-514c6f635b2d",
+        "rule_name": "Potential curl CVE-2023-38545 Exploitation",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "5432792c-d31a-42cc-a82f-0884ea230493",
+        "rta_name": "file_create_ms_addins",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "f44fa4b6-524c-4e87-8d9e-a32599e4fb7c",
+        "rule_name": "Persistence via Microsoft Office AddIns",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "161c5972-6bfe-47b5-92bd-e0399e025dec",
+        "rta_name": "powershell_from_script",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "f545ff26-3c94-4fd0-bd33-3c7f95a3a0fc",
+        "rule_name": "Windows Script Executing PowerShell",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "1286c142-8acc-4b58-a7c1-572870c81bc1",
+        "rta_name": "exec_cmd_windows_firewall_disabled",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "f63c8e3c-d396-404f-b2ea-0379d3942d73",
+        "rule_name": "Windows Firewall Disabled via PowerShell",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "5d049893-b5ca-4482-a9ea-c38c6d01c171",
+        "rta_name": "delete_usnjrnl",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "f675872f-6d85-40a3-b502-c0d2ef101e92",
+        "rule_name": "Delete Volume USN Journal with Fsutil",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "f4e4a28e-c845-4b26-bfdf-24128e73ef21",
+        "rta_name": "disable_os_security_updates",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "f683dcdf-a018-4801-b066-193d4ae6c8e5",
+        "rule_name": "SoftwareUpdate Preferences Modification",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "7cee9313-5e55-472b-9d61-a95b0c9725d6",
+        "rta_name": "file_create_vbs_startup",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "f7c4dc5a-a58d-491d-9f14-9b66507121c0",
+        "rule_name": "Persistent Scripts in the Startup Directory",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "e5d376ae-d634-41fa-903c-42f35736a615",
+        "rta_name": "adobe_priv_helper_tool",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "f85ce03f-d8a8-4c83-acdc-5c8cd0592be7",
+        "rule_name": "Suspicious Child Process of Adobe Acrobat Reader Update Service",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "78715019-6eff-45b1-a942-47db87d55b01",
+        "rta_name": "reg_mod_amsienable",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "f874315d-5188-4b4a-8521-d1c73093a7e4",
+        "rule_name": "Modification of AmsiEnable Registry Key",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "19b6d1cd-6342-42f0-9f1d-20185f5b3d95",
+        "rta_name": "exec_cmd_hidden_share",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "fa01341d-6662-426b-9d0c-6d81e33c8a9d",
+        "rule_name": "Remote File Copy to a Hidden Share",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "a4a8608e-d94f-4eb1-b500-738328307bbc",
+        "rta_name": "appcompat_shim",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "fd4a992d-6130-4802-9ff8-829b89ae801f",
+        "rule_name": "Potential Application Shimming via Sdbinst",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "7b2c1b3e-2097-4e2f-bf5c-e157a91b8001",
+        "rta_name": "certutil_file_obfuscation",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "fd70c98a-c410-42dc-a2e3-761c71848acf",
+        "rule_name": "Suspicious CertUtil Commands",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "1a61241e-5b1b-44ec-8c9f-3ae4652550be",
+        "rta_name": "schtask_escalation",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "fd7a6052-58fa-4397-93c3-4795249ccfa2",
+        "rule_name": "Svchost spawning Cmd",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "e70ab2f3-7a67-4cd8-9969-ad4ebe0358bc",
+        "rta_name": "reg_mod_disableantispyware",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "fe794edd-487f-4a90-b285-3ee54f2af2d3",
+        "rule_name": "Microsoft Windows Defender Tampering",
+        "rule_type": "endpoint"
+    },
+    {
+        "rta_id": "413cf7ef-0fad-46fd-ab67-e94c4e3e0f0b",
+        "rta_name": "comsvcs_dump",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "00140285-b827-4aee-aa09-8113f58a08f3",
+        "rule_name": "Potential Credential Access via Windows Utilities",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "a840e9b2-5aac-41a1-8c79-03ff624eb77b",
+        "rta_name": "suspicious_child_services",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "0022d47d-39c7-4f69-a232-4fe9dc7a3acd",
+        "rule_name": "System Shells via Services",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "e061a96e-4c31-4f67-9745-6ff873f7829e",
+        "rta_name": "browser_debugging",
+        "rta_platforms": [
+            "linux",
+            "macos",
+            "windows"
+        ],
+        "rule_id": "027ff9ea-85e7-42e3-99d2-bbb7069e02eb",
+        "rule_name": "Potential Cookies Theft via Browser Debugging",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "0a6fcfaa-db5e-498f-9253-0f76b8a18687",
+        "rta_name": "credential_access_dump_hashes_via_cmd",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "02ea4563-ec10-4974-b7de-12e65aa4f9b3",
+        "rule_name": "Dumping Account Hashes via Built-In Commands",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "0427904d-1fba-40f4-a423-ea555d1a2335",
+        "rta_name": "exec_cmd_net_stop",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "035889c4-2686-4583-a7df-67f89c292f2c",
+        "rule_name": "High Number of Process and/or Service Terminations",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "1f0afcd1-e091-4489-a750-5b0b44e69e45",
+        "rta_name": "exec_unusual_path_msmpeng",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "053a0387-f3b5-4ba5-8245-8002cca2bd08",
+        "rule_name": "Potential DLL Side-Loading via Microsoft Antimalware Service Executable",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "a296162b-65c1-4fbe-ae34-67f606de408e",
+        "rta_name": "exec_cmd_pwd_appcmd",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "0564fb9d-90b9-4234-a411-82a546dc1343",
+        "rule_name": "Microsoft IIS Service Account Password Dumped",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "46463426-0a03-448a-afe3-9215841ec86d",
+        "rta_name": "suspicious_parent_smss",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "05b358de-aa6d-4f6c-89e6-78f74018b43b",
+        "rule_name": "Conhost Spawned By Suspicious Parent Process",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "2a391051-b103-450b-be50-fd133b6d05c3",
+        "rta_name": "exec_cmd_arp",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "0635c542-1b96-4335-9b47-126582d2c19a",
+        "rule_name": "Remote System Discovery Commands",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "fc1e40b8-ae2d-4479-a854-77b346982894",
+        "rta_name": "exec_cmd_fltmc_unload",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "06dceabf-adca-48af-ac79-ffdf4c3b1e9a",
+        "rule_name": "Potential Evasion via Filter Manager",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "0b3a3f97-f09e-4a42-b592-6be2b5467c08",
+        "rta_name": "exec_cmd_netsh_remotedesktop",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "074464f9-f30d-4029-8c03-0ed237fffec7",
+        "rule_name": "Remote Desktop Enabled in Windows Firewall by Netsh",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "459d7b3c-2c6d-4101-b830-d6c317d4b355",
+        "rta_name": "opera_child_process",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "080bc66a-5d56-4d1f-8071-817671716db9",
+        "rule_name": "Suspicious Browser Child Process",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "7548a786-50f7-40e5-8f8a-b005e9e8d864",
+        "rta_name": "launchagent_plist",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "082e3f8c-6f80-485c-91eb-5b112cb79b28",
+        "rule_name": "Launch Agent Creation or Modification and Immediate Loading",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "6df524fe-6a1a-417f-8f70-d6140ef739e2",
+        "rta_name": "hidden_plist",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "092b068f-84ac-485d-8a55-7dd9e006715f",
+        "rule_name": "Creation of Hidden Launch Agent or Daemon",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "904cae88-f6bf-4585-b779-2451ce4b6b1b",
+        "rta_name": "exec_cmd_fsutil_fsinfo",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "0c7ca5c2-728d-4ad9-b1c5-bbba83ecb1f4",
+        "rule_name": "Peripheral Device Discovery",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "ce85674f-fb6c-44d5-b880-4ce9062e1028",
+        "rta_name": "ms_office_drop_exe",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "0d8ad79f-9025-45d8-80c1-4f0cd3c5e8e5",
+        "rule_name": "Execution of File Written or Modified by Microsoft Office",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "f9feed6d-bae3-49c6-8952-7ed8e9b0b9ef",
+        "rta_name": "root_crontab_file_modification",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "0ff84c42-873d-41a2-a4ed-08d74d352d01",
+        "rule_name": "Privilege Escalation via Root Crontab File Modification",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "bc6130d9-f4fd-46c6-bcfe-623be6c51a3b",
+        "rta_name": "webproxy_modification",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "10a500bb-a28f-418e-ba29-ca4c8d1a9f2f",
+        "rule_name": "WebProxy Settings Modification",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "c5a8bbf2-0920-40ee-a08f-f897c2895eba",
+        "rta_name": "exec_renamed_winword",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "1160dcdb-0a0a-4a79-91d8-9b84616edebd",
+        "rule_name": "Potential DLL SideLoading via Trusted Microsoft Programs",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "a6c80b08-ca72-4c3e-93c7-ac3421e4235e",
+        "rta_name": "file_delete_vbk",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "11ea6bec-ebde-4d71-a8e9-784948f8e3e9",
+        "rule_name": "Third-party Backup Files Deleted via Unexpected Process",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "f2e5c332-ad54-4bfa-8d51-ce1a85e749d7",
+        "rta_name": "exec_cmd_wmi_cmdexe",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "12f07955-1674-44f7-86b5-c35da0a6f41a",
+        "rule_name": "Suspicious Cmd Execution via WMI",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "2e5d3ddd-6dc4-4ebf-93e3-c32698b8df40",
+        "rta_name": "file_create_task_file",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "1327384f-00f3-44d5-9a8c-2373ba071e92",
+        "rule_name": "Persistence via Scheduled Job Creation",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "8b03eda5-5c01-4e69-9095-f9c00af85000",
+        "rta_name": "reg_mod_time_provider",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "14ed1aa9-ebfd-4cf9-a463-0ac59ec55204",
+        "rule_name": "Potential Persistence via Time Provider Modification",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "127f1e70-a491-4da4-a24f-ac6bf6e5b756",
+        "rta_name": "network_connection_desktopimgdownldr",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "15c0b7a7-9c34-4869-b25b-fa6518414899",
+        "rule_name": "Remote File Download via Desktopimgdownldr Utility",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "f9a34606-863d-46aa-b12d-eeeb68b530e3",
+        "rta_name": "networksetup_vpn",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "15dacaa0-5b90-466b-acab-63435a59701a",
+        "rule_name": "Virtual Private Network Connection Attempt",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "057f2c1b-28cc-4286-92ce-75e789aa8e74",
+        "rta_name": "bifrost_attack",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "16904215-2c95-4ac8-bf5c-12354e047192",
+        "rule_name": "Potential Kerberos Attack via Bifrost",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "ac739578-c978-429f-9454-0bbe82f993f4",
+        "rta_name": "scrobj_com_hijack",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "16a52c14-7883-47af-8745-9357803f0d4c",
+        "rule_name": "Component Object Model Hijacking",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "f62ebacb-5d53-4f74-ae72-b64b8b6c899f",
+        "rta_name": "exec_cmd_short_name",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "17c7f6a5-5bc9-4e1f-92bf-13632d24384d",
+        "rule_name": "Suspicious Execution - Short Program Name",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "bcdda7c2-cc0c-4555-8dda-86a3263c99ad",
+        "rta_name": "exec_cmd_xwizard",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "1a6075b0-7479-450e-8fe7-b8b8438ac570",
+        "rule_name": "Execution of COM object via Xwizard",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "7253d78c-8a68-4073-b20a-fbab9d4daf23",
+        "rta_name": "network_connection_download_script_interpreter",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "1d276579-3380-4095-ad38-e596a01bc64f",
+        "rule_name": "Remote File Download via Script Interpreter",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "07edc3ea-2cf8-4a8b-aa2f-6b10f1c46838",
+        "rta_name": "network_connection_external_ip_lookup_non_browser",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "1d72d014-e2ab-4707-b056-9b96abe7b511",
+        "rule_name": "External IP Lookup from Non-Browser Process",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "571e229f-fb92-48cf-b0fb-dd9630b1580f",
+        "rta_name": "file_create_exec_pdf_reader",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "1defdd62-cd8d-426e-a246-81a37751bb2b",
+        "rule_name": "Execution of File Written or Modified by PDF Reader",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "9b0bbe6d-2116-4327-930b-51e3e5097487",
+        "rta_name": "linux_hack_tool",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "1df1152b-610a-4f48-9d7a-504f6ee5d9da",
+        "rule_name": "Potential Linux Hack Tool Launched",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "cf94f5cc-5265-4287-80e5-82d9663ecf2e",
+        "rta_name": "unusual_ms_tool_network",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "1fe3b299-fbb5-4657-a937-1d746f2c711a",
+        "rule_name": "Unusual Network Activity from a Windows System Binary",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "07eaba7d-c0ff-4480-87cf-5ad39805dc92",
+        "rta_name": "suspicious_parent_csc",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "201200f1-a99b-43fb-88ed-f65a45c4972c",
+        "rule_name": "Suspicious .NET Code Compilation",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "5781ea36-ac63-4746-8e0f-a1ebd5ec481d",
+        "rta_name": "reg_mod_systemcertificates",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "203ab79b-239b-4aa5-8e54-fc50623ee8e4",
+        "rule_name": "Creation or Modification of Root Certificate",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "ea187b1f-4aa0-4ffc-bac9-9ee1d55552fd",
+        "rta_name": "browser_cred_access",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "20457e4f-d1de-4b92-ae69-142e27a4342a",
+        "rule_name": "Access of Stored Browser Credentials",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "413cf7ef-0fad-46fd-ab67-e94c4e3e0f0b",
+        "rta_name": "comsvcs_dump",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "208dbe77-01ed-4954-8d44-1e5751cb20de",
+        "rule_name": "LSASS Memory Dump Handle Access",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "55750f93-0545-4222-a1fe-8b25a1c736f0",
+        "rta_name": "file_create_mstsc_startup",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "25224a80-5a4a-4b8a-991e-6ab390465c4f",
+        "rule_name": "Lateral Movement via Startup Folder",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "2df08481-31db-44a8-b01d-1c0df827bddb",
+        "rta_name": "adobe_hijack",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "2bf78aa2-9c56-48de-b139-f169bf99cf86",
+        "rule_name": "Adobe Hijack Persistence",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "2730b84c-9e39-4647-ba96-0b438aca9575",
+        "rta_name": "exec_cmd_set_mppreference",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "2c17e5d7-08b9-43b2-b58a-0270d65ac85b",
+        "rule_name": "Windows Defender Exclusions Added via PowerShell",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "83332fb4-2299-4584-b5f3-7e0264d034f7",
+        "rta_name": "exec_cmd_msdt",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "2c3c29a4-f170-42f8-a3d8-2ceebc18eb6a",
+        "rule_name": "Suspicious Microsoft Diagnostics Wizard Execution",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "e70ab2f3-7a67-4cd8-9969-ad4ebe0358bc",
+        "rta_name": "reg_mod_disableantispyware",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "2ffa1f1e-b6db-47fa-994b-1512743847eb",
+        "rule_name": "Windows Defender Disabled via Registry Modification",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "1185afa2-49aa-4cca-8702-228d238c0bd5",
+        "rta_name": "uac_eventviewer",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "31b4c719-f2b4-41f6-a9bd-fce93c2eaf62",
+        "rule_name": "Bypass UAC via Event Viewer",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "a3cdd478-b817-4513-bb3d-897a5f92c836",
+        "rta_name": "suspicious_wscript_parent",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "32f4675e-6c49-4ace-80f9-97c9259dca2e",
+        "rule_name": "Suspicious MS Outlook Child Process",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "4b85db7b-b7e7-45d1-94de-210587e6d947",
+        "rta_name": "network_connection_download_powershell",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "33f306e8-417c-411b-965c-c2812d6d3f4d",
+        "rule_name": "Remote File Download via PowerShell",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "20631e46-d3c4-45c0-bfa8-37f6b287db36",
+        "rta_name": "execution_node_child_process",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "35330ba2-c859-4c98-8b7f-c19159ea0e58",
+        "rule_name": "Execution via Electron Child Process Node.js Module",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "8896c6ac-ead6-4f4e-aecf-8308fd53e78c",
+        "rta_name": "reg_mod_port_forwarding",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "3535c8bb-3bd5-40f4-ae32-b7cd589d5372",
+        "rule_name": "Port Forwarding Rule Addition",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "6cf12026-f99f-4e5c-8cd4-3dbc7bce3e67",
+        "rta_name": "unusual_parent_child",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "35df0dd8-092d-4a83-88c1-5151a804f31b",
+        "rule_name": "Unusual Parent-Child Relationship",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "ffc9ace1-3527-46e3-bc3e-86b942107edb",
+        "rta_name": "reg_mod_suspicious_service",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "36a8e048-d888-4f61-a8b9-0f9e2e40f317",
+        "rule_name": "Suspicious ImagePath Service Creation",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "214db941-51ba-4867-b9bf-9b22ff07eea8",
+        "rta_name": "finder_sync_plugin",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "37f638ea-909d-4f94-9248-edd21e4a9906",
+        "rule_name": "Finder Sync Plugin Registered and Enabled",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "10609a63-0013-4fd0-9322-66c86c1c9501",
+        "rta_name": "certutil_webrequest",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "3838e0e3-1850-4850-a411-2e8c5ba40ba8",
+        "rule_name": "Network Connection via Certutil",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "cc7b01f9-852c-4232-8c70-ada3fb5cc515",
+        "rta_name": "credential_access_osascript_phishing",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "38948d29-3d5d-42e3-8aec-be832aaaf8eb",
+        "rule_name": "Prompt for Credentials with OSASCRIPT",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "3c40b5fd-afd0-4794-8af3-f7af249edf84",
+        "rta_name": "file_create_outlook_vba",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "397945f3-d39a-4e6f-8bcb-9656c2031438",
+        "rule_name": "Persistence via Microsoft Outlook VBA",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "d6c94638-5c8a-40e9-9ad8-86a8f97cc043",
+        "rta_name": "network_connection_nslookup",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "3a59fc81-99d3-47ea-8cd6-d48d561fca20",
+        "rule_name": "Potential DNS Tunneling via NsLookup",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "41ea3472-7ec7-4c4a-baf4-b1805ba597df",
+        "rta_name": "suspicious_parent_cmd",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "3b47900d-e793-49e8-968f-c90dc3526aa1",
+        "rule_name": "Unusual Parent Process for cmd.exe",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "0a9bd666-6dc8-484e-9286-dea82a5661a9",
+        "rta_name": "exec_cmd_ntdsdit",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "3bc6deaa-fbd4-433a-ae21-3e892f95624f",
+        "rule_name": "NTDS or SAM Database File Copied",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "d1988e82-a079-4fc2-99f7-2bdbc9af0e00",
+        "rta_name": "emond_child_process",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "3e3d15c6-1509-479a-b125-21718372157e",
+        "rule_name": "Suspicious Emond Child Process",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "b2faa842-ffc9-41c6-baed-8008c9749a52",
+        "rta_name": "exec_nohup",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "3f18726c-4897-41dc-8426-15da95b8482f",
+        "rule_name": "Suspicious Nohup Execution",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "1b7fe2e7-29c0-4d10-9ced-8b9cd158835d",
+        "rta_name": "binary_execution_from_shared_memory",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "3f3f9fe2-d095-11ec-95dc-f661ea17fbce",
+        "rule_name": "Binary Executed from Shared Memory Directory",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "be090f8e-dc7b-41eb-9c7e-74a0aed0dad1",
+        "rta_name": "eggshell_backdoor",
+        "rta_platforms": [
+            "macos",
+            "linux"
+        ],
+        "rule_id": "41824afb-d68c-4d0e-bfee-474dac1fa56e",
+        "rule_name": "EggShell Backdoor Execution",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "b084e9dd-0c79-480c-b488-049ab8167b38",
+        "rta_name": "dscl_hidden_account",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "41b638a1-8ab6-4f8e-86d9-466317ef2db5",
+        "rule_name": "Potential Hidden Local User Account Creation",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "e56f77bc-d9a7-4e02-97e2-b3056f3d4171",
+        "rta_name": "file_create_scripting_startup",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "440e2db4-bc7f-4c96-a068-65b78da59bde",
+        "rule_name": "Startup Persistence by a Suspicious Process",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "6cd35061-278b-45e7-a9cb-86b48bc47884",
+        "rta_name": "sevenzip_encrypted",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "45d273fb-1dca-457d-9855-bcb302180c21",
+        "rule_name": "Encrypting Files with WinRar or 7z",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "1d452f81-8f5a-44a3-ae95-e95fe4bf2762",
+        "rta_name": "exec_cmd_attrib_hidden",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "4630d948-40d4-4cef-ac69-4002e29bc3db",
+        "rule_name": "Adding Hidden File Attribute via Attrib",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "3a84dc01-0202-4aee-8cd1-5fdefead9f4f",
+        "rta_name": "exec_cmd_rundll32_davsetcookie",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "4682fd2c-cfae-47ed-a543-9bed37657aa6",
+        "rule_name": "Potential Local NTLM Relay via HTTP",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "66407efa-a32e-4f4d-b339-def48e23e810",
+        "rta_name": "osascript_net_conn",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "47f76567-d58a-4fed-b32b-21f571e28910",
+        "rule_name": "Apple Script Execution followed by Network Connection",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "9f58f9e7-a0f5-48e6-a924-d437fd626195",
+        "rta_name": "suspicious_child_exchange_um",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "483c4daf-b0c6-49e0-adf3-0bfa93231d6b",
+        "rule_name": "Microsoft Exchange Server UM Spawning Suspicious Processes",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "adc70542-4d6e-4449-bf96-4cd44367bfbb",
+        "rta_name": "screensaver_child_process",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "48d7f54d-c29e-4430-93a9-9db6b5892270",
+        "rule_name": "Unexpected Child Process of macOS Screensaver Engine",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "31161e21-c290-4e51-a6d3-2865710793ff",
+        "rta_name": "periodic_task_creation",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "48ec9452-e1fd-4513-a376-10a1a26d2c83",
+        "rule_name": "Potential Persistence via Periodic Tasks",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "75e14e5a-1188-47ea-9b96-2cf6e9443fc2",
+        "rta_name": "disable_windows_fw",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "4b438734-3793-4fda-bd42-ceeada0be8f9",
+        "rule_name": "Disable Windows Firewall Rules via Netsh",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "cf71bf97-e3ba-474c-9b6b-538e5a8008b0",
+        "rta_name": "spctl_gatekeeper_bypass",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "4da13d6e-904f-4636-81d8-6ab14b4e6ae9",
+        "rule_name": "Attempt to Disable Gatekeeper",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "92da05da-5acf-473c-809c-6f4cdbced0db",
+        "rta_name": "exec_cmd_auditpol",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "4de76544-f0e5-486a-8f84-eae0b6063cdc",
+        "rule_name": "Disable Windows Event and Security Logs Using Built-in Tools",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "33f3ebda-7776-4cec-933b-48e85d707d61",
+        "rta_name": "message_of_the_day_execution",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "4ec47004-b34a-42e6-8003-376a123ea447",
+        "rule_name": "Suspicious Process Spawned from MOTD Detected",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "f0340de4-e433-49a3-ba8c-de0ded32840d",
+        "rta_name": "exec_cmd_mssql_xp_cmdshell",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "4ed493fc-d637-4a36-80ff-ac84937e5461",
+        "rule_name": "Execution via MSSQL xp_cmdshell Stored Procedure",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "4c0e7d24-63d1-4888-9ea4-0d920ce3fe40",
+        "rta_name": "reg_mod_appcertdlls",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "513f0ffd-b317-4b9c-9494-92ce861f22c7",
+        "rule_name": "Registry Persistence via AppCert DLL",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "7f4cfcf6-881b-48b0-864d-21eba06e57cc",
+        "rta_name": "dcom_lateral_movement_with_mmc",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "51ce96fb-9e52-4dad-b0ba-99b54440fc9a",
+        "rule_name": "Incoming DCOM Lateral Movement with MMC",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "d62cd5fb-0e8f-4f20-9477-b8622772ed16",
+        "rta_name": "suspicious_child_acrobat",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "53a26770-9cbd-40c5-8b57-61d01a325e14",
+        "rule_name": "Suspicious PDF Reader Child Process",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "1b4050d9-e3fa-4559-b188-522b620584c8",
+        "rta_name": "reg_mod_networkprovider",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "54c3d186-0461-4dc3-9b33-2dc5c7473936",
+        "rule_name": "Network Logon Provider Registry Modification",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "90cf6001-11a7-410b-b259-cf20a029b929",
+        "rta_name": "lateral_command_psexec",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "55d551c6-333b-4665-ab7e-5d14a59715ce",
+        "rule_name": "PsExec Network Connection",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "d5643e8a-c3f5-48a7-9f64-7255f603a24a",
+        "rta_name": "dseditgroup_admin_add",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "565c2b44-7a21-4818-955f-8d4737967d2e",
+        "rule_name": "Potential Admin Group Account Addition",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "f158a6dc-1974-4b98-a3e7-466f6f1afe01",
+        "rta_name": "keychain_dump",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "565d6ca5-75ba-4c82-9b13-add25353471c",
+        "rule_name": "Dumping of Keychain Content via Security Command",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "8ffd2053-c04a-435a-84b3-a8403a5395db",
+        "rta_name": "delete_catalogs",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "581add16-df76-42bb-af8e-c979bfb39a59",
+        "rule_name": "Deleting Backup Catalogs with Wbadmin",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "1ef2a173-a9c8-446d-9d56-f7e54a197a33",
+        "rta_name": "registry_rdp_enable",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "58aa72ca-d968-4f34-b9f7-bea51d75eb50",
+        "rule_name": "RDP Enabled via Registry",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "23997dfa-9e30-4091-9ee2-8bd45a2da70a",
+        "rta_name": "systemsetup_ssh_enable",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "5ae4e6f8-d1bf-40fa-96ba-e29645e1e4dc",
+        "rule_name": "Remote SSH Login Enabled via systemsetup Command",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "1bc32d6d-c5c9-43c6-bada-6d26469b5dac",
+        "rta_name": "file_create_powershell_profile",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "5cf6397e-eb91-4f31-8951-9f0eaa755a31",
+        "rule_name": "Persistence via PowerShell profile",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "26339b1f-05ba-4fd8-94c2-8ee1613e4590",
+        "rta_name": "login_hook",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "5d0265bf-dea9-41a9-92ad-48a8dcd05080",
+        "rule_name": "Persistence via Login or Logout Hook",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "6df14bf3-6153-4ff2-aa0f-f91f2aa06b7b",
+        "rta_name": "suspicious_child_svchost_sch",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "5d1d6907-0747-4d5d-9b24-e4a18853dc0a",
+        "rule_name": "Suspicious Execution via Scheduled Task",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "6294e8bd-a82e-4d60-9de7-cceb639e91d9",
+        "rta_name": "automator_workflows",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "5d9f8cfc-0d03-443e-a167-2b0597ce0965",
+        "rule_name": "Suspicious Automator Workflows Execution",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "cf94f5cc-5265-4287-80e5-82d9663ecf2e",
+        "rta_name": "unusual_ms_tool_network",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "610949a1-312f-4e04-bb55-3a79b8c95267",
+        "rule_name": "Unusual Process Network Connection",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "9d02871f-6338-47aa-84c4-7d622692319f",
+        "rta_name": "defensive_evasion_safari_modification",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "6482255d-f468-45ea-a5b3-d3a7de1331ae",
+        "rule_name": "Modification of Safari Settings via Defaults Command",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "d275922f-a702-4668-a77d-c60e8df58646",
+        "rta_name": "mount_smbfs",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "661545b4-1a90-4f45-85ce-2ebd7c6a15d0",
+        "rule_name": "Attempt to Mount SMB Share via Command Line",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "65ae1bcd-0b1c-4992-97c3-f40b0f92deb1",
+        "rta_name": "office_child_process",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "66da12b1-ac83-40eb-814c-07ed1d82b7b9",
+        "rule_name": "Suspicious macOS MS Office Child Process",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "e09d904a-f3bb-4d36-8eb8-8c234812807c",
+        "rta_name": "globalflags",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "6839c821-011d-43bd-bd5b-acff00257226",
+        "rule_name": "Image File Execution Options Injection",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "398933ec-f8d4-4d81-93ed-e7d7adcb9d97",
+        "rta_name": "sticky_keys_write_execute",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "68921d85-d0dc-48b3-865f-43291ca2c4f2",
+        "rule_name": "Persistence via TelemetryController Scheduled Task Hijack",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "eaf71384-2e38-4970-b170-9645ccde1d2b",
+        "rta_name": "delete_bootconf",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "69c251fb-a5d6-4035-b5ec-40438bd829ff",
+        "rule_name": "Modification of Boot Configuration",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "b63e7b4a-85a6-4b4f-bf72-abe49d04b24f",
+        "rta_name": "suspicious_child_childless_process",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "6a8ab9cc-4023-4d17-b5df-1a3e16882ce7",
+        "rule_name": "Unusual Service Host Child Process - Childless Service",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "b6b65c6a-830a-4e1c-ace7-3c98362f998b",
+        "rta_name": "exec_cmd_posh_mailbox",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "6aace640-e631-4870-ba8e-5fdda09325db",
+        "rule_name": "Exporting Exchange Mailbox via PowerShell",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "f3ffa89b-de47-4e17-ac8e-385e0e7f8253",
+        "rta_name": "linux_compress_sensitive_files",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "6b84d470-9036-4cc0-a27c-6d90bbfe81ab",
+        "rule_name": "Sensitive Files Compression",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "29eb99a6-14cc-4d37-81dd-c2e78cda8c74",
+        "rta_name": "file_create_exchange_um",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "6cd1779c-560f-4b68-a8f1-11009b27fe63",
+        "rule_name": "Microsoft Exchange Server UM Writing Suspicious Files",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "370c3432-65f5-4068-b879-916bc1297c60",
+        "rta_name": "ldapsearch_group_enumeration",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "6e9b351e-a531-4bdc-b73e-7034d6eed7ff",
+        "rule_name": "Enumeration of Users or Groups via Built-in Commands",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "d123ee22-aa28-4dcd-9c3b-5be047eb6eff",
+        "rta_name": "exec_cmd_wmic_antivirus_enum",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "6ea55c81-e2ba-42f2-a134-bccf857ba922",
+        "rule_name": "Security Software Discovery using WMIC",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "61f308d8-40c5-4c46-9181-e993cf07e92b",
+        "rta_name": "kernelext_agent_unload",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "70fa1af4-27fd-4f26-bd03-50b6af6b9e24",
+        "rule_name": "Attempt to Unload Elastic Endpoint Security Kernel Extension",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "ffddb3f7-75ac-49e8-9042-ae1bf5c199e8",
+        "rta_name": "file_ads_creation",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "71bccb61-e19b-452f-b104-79a60e546a95",
+        "rule_name": "Unusual File Creation - Alternate Data Stream",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "eb06a33e-bc80-412b-8ae8-f45af6682293",
+        "rta_name": "image_load_rdp_client_dll",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "71c5cb27-eca5-4151-bb47-64bc3f883270",
+        "rule_name": "Suspicious RDP ActiveX Client Loaded",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "398933ec-f8d4-4d81-93ed-e7d7adcb9d97",
+        "rta_name": "sticky_keys_write_execute",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "7405ddf1-6c8e-41ce-818f-48bea6bcaed8",
+        "rule_name": "Potential Modification of Accessibility Binaries",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "a18454da-5f28-4223-95d6-5dc1f58c861a",
+        "rta_name": "env_variable_hijacking",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "7453e19e-3dbf-4e4e-9ae0-33d6c6ed15e1",
+        "rule_name": "Modification of Environment Variable via Launchctl",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "7143aab0-c4f3-43da-a11e-aca589887860",
+        "rta_name": "network_connection_rdp_tunneling",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "76fd43b7-3480-4dd9-8ad7-8bd36bfad92f",
+        "rule_name": "Potential Remote Desktop Tunneling Detected",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "1f1833da-dca4-467c-9a9d-a61cf41d6b63",
+        "rta_name": "suspicious_child_wmiprvse",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "770e0c4d-b998-41e5-a62e-c7901fd7f470",
+        "rule_name": "Enumeration Command Spawned via WMIPrvSE",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "9b19f4a3-7287-45d2-ab0f-9a9c0b1bc8e1",
+        "rta_name": "enum_commands",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "7b8bfc26-81d2-435e-965c-d722ee397ef1",
+        "rule_name": "Windows Network Enumeration",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "16b3d9c6-e188-49c5-8dce-d3eb5b0fcf91",
+        "rta_name": "suspicious_wmic_script",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "7f370d54-c0eb-4270-ac5a-9a6020585dc6",
+        "rule_name": "Suspicious WMIC XSL Script Execution",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "5ef57ec6-32a0-40b2-b9a7-c4eda4cd3e49",
+        "rta_name": "reg_mod_enablescriptblocklogging",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "818e23e6-2094-4f0e-8c01-22d30f3506c6",
+        "rule_name": "PowerShell Script Block Logging Disabled",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "38defc7e-7234-45a2-83ef-e845d0eba3f2",
+        "rta_name": "powershell_base64_gzip",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "81fe9dc6-a2d7-4192-a2d8-eed98afc766a",
+        "rule_name": "PowerShell Suspicious Payload Encoded and Compressed",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "086c6cae-22ac-47b6-bd24-85b33d8cf3a2",
+        "rta_name": "elevated_osascript_execution",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "827f8d8f-4117-4ae4-b551-f56d54b9da6b",
+        "rule_name": "Apple Scripting Execution with Administrator Privileges",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "c5b8e9c5-59c6-4316-8e73-cd4f5a9a2761",
+        "rta_name": "exec_cmd_nltest",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "84da2554-e12a-11ec-b896-f661ea17fbcd",
+        "rule_name": "Enumerating Domain Trusts via NLTEST.EXE",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "6ef908be-9ed3-413d-8d4d-94446107eecc",
+        "rta_name": "grep_software_discovery",
+        "rta_platforms": [
+            "macos",
+            "linux"
+        ],
+        "rule_id": "870aecc0-cea4-4110-af3f-e02e9b373655",
+        "rule_name": "Security Software Discovery via Grep",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "9b19f4a3-7287-45d2-ab0f-9a9c0b1bc8e1",
+        "rta_name": "enum_commands",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "871ea072-1b71-4def-b016-6278b505138d",
+        "rule_name": "Enumeration of Administrator Accounts",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "21d1d048-b8c9-4b6d-9748-44f8af1b444d",
+        "rta_name": "exec_from_mount",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "87def154-004d-4d3a-8224-591e41804454",
+        "rule_name": "Shell Script Execution from abnormal Volume Mount Path",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "5fc46f6e-5a2a-4336-98f3-5fdc27db7152",
+        "rta_name": "modify_sublime_app",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "88817a33-60d3-411f-ba79-7c905d865b2a",
+        "rule_name": "Sublime Plugin or Application Script Modification",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "b7ed774f-f5e8-49bd-995a-a705c979d88f",
+        "rta_name": "network_connection_kerberos_port",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "897dc6b5-b39f-432a-8d75-d3730d50c782",
+        "rule_name": "Kerberos Traffic from Unusual Process",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "ff744c89-20cb-4be0-9725-2430d0be7f6a",
+        "rta_name": "directory_service_plugin_file",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "89fa6cb7-6b53-4de2-b604-648488841ab8",
+        "rule_name": "Persistence via DirectoryService Plugin Modification",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "df91f5f2-a0a0-47e8-848b-d01526a43d60",
+        "rta_name": "cve_2019_14287",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "8af5b42f-8d74-48c8-a8d0-6d14b4197288",
+        "rule_name": "Potential Sudo Privilege Escalation via CVE-2019-14287",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "27694576-0454-40b3-9823-e29719c53750",
+        "rta_name": "process_double_extension",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "8b2b3a62-a598-4293-bc14-3d5fa22bb98f",
+        "rule_name": "Executable File Creation with Multiple Extensions",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "5b52f7e5-e2bc-4a2d-82bd-2e844c081519",
+        "rta_name": "exec_cmd_netsh_advfirewall_network_discovery",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "8b4f0816-6a65-4630-86a6-c21c179c0d09",
+        "rule_name": "Enable Host Network Discovery via Netsh",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "9f58f9e7-a0f5-48e6-a924-d437fd626195",
+        "rta_name": "suspicious_child_dns",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "8c37dc0e-e3ac-4c97-8aa0-cf6a9122de45",
+        "rule_name": "Unusual Child Process of dns.exe",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "1b681241-d9f1-4239-a9e7-650ebc0c38a4",
+        "rta_name": "exec_from_terminal",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "8e88d216-af7a-4f5c-8155-fa7d2be03987",
+        "rule_name": "Suspicious Terminal Child Process Execution",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "d7d1d0cf-a84a-4526-b0db-be59a210246e",
+        "rta_name": "port_monitor",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "8f3e91c7-d791-4704-80a1-42c160d7aa27",
+        "rule_name": "Potential Port Monitor or Print Processor Registration Abuse",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "f964558b-0674-4c97-afcc-42d4b6a813c6",
+        "rta_name": "keychain_pwd_cmdline",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "9092cd6c-650f-4fa3-8a8a-28256c7489c9",
+        "rule_name": "Keychain Password Retrieval via Command Line",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "e55c13d4-ab70-4a3d-ba1e-c54156000e42",
+        "rta_name": "suspicious_child_solarwinds_businesslayerhost",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "93b22c0a-06a0-4131-b830-b10d5e166ff4",
+        "rule_name": "Suspicious SolarWinds Child Process",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "ada7805f-e0e1-4633-952e-41f5bb392fdb",
+        "rta_name": "reg_mod_base64_executable",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "93c1ce76-494c-4f01-8167-35edfb52f7b1",
+        "rule_name": "Encoded Executable Stored in the Registry",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "603d77bf-cdfc-44dd-94d3-5b4016caef94",
+        "rta_name": "keychain_cred_access",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "96e90768-c3b7-4df6-b5d9-6237f8bc36a8",
+        "rule_name": "Access to Keychain Credentials Directories",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "00402735-f78d-4ed6-9f8e-a1b365c42f5b",
+        "rta_name": "suspicious_child_zoom",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "97aba1ef-6034-4bd3-8c1a-1e0996b27afa",
+        "rule_name": "Suspicious Zoom Child Process",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "ca020d7f-f495-4f0a-a808-da615f3409b4",
+        "rta_name": "uncommon_persistence",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "97fc44d3-8dae-4019-ae83-298c3015600f",
+        "rule_name": "Startup or Run Key Registry Modification",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "bc837b89-713a-4d21-a086-8649e8411f11",
+        "rta_name": "suspicious_child_explorer",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "9a5b4e31-6cde-4295-9ff7-6be1b8567e1b",
+        "rule_name": "Suspicious Explorer Child Process",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "712509fa-5326-4ebc-bb1e-82ddf28e8baa",
+        "rta_name": "reg_mod_enableat",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "9aa0e1f6-52ce-42e1-abb3-09657cee2698",
+        "rule_name": "Scheduled Tasks AT Command Enabled",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "3c2c32fd-0856-4fc9-8a2d-81ed85e568b0",
+        "rta_name": "exec_cmd_wmi_subscription",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "9b6813a1-daf1-457e-b0e6-0bb4e55b8a4c",
+        "rule_name": "Persistence via WMI Event Subscription",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "f24491d0-720b-4150-a2a1-45b5b07238aa",
+        "rta_name": "hosts_file_modify",
+        "rta_platforms": [
+            "windows",
+            "linux",
+            "macos"
+        ],
+        "rule_id": "9c260313-c811-4ec8-ab89-8f6530e0246c",
+        "rule_name": "Hosts File Modified",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "81adc847-2965-4a4b-8d3c-91e541c85ab4",
+        "rta_name": "exec_cmd_rundll32",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "9ccf3ce0-0057-440a-91f5-870c6ad39093",
+        "rule_name": "Command Shell Activity Started via RunDLL32",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "aafeb270-4704-4b5f-aa1b-1286dc14c5a9",
+        "rta_name": "suspicious_parent_msbuild_script",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "9d110cb3-5f4b-4c9a-b9f5-53f0a1707ae2",
+        "rule_name": "Microsoft Build Engine Started by a Script Process",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "8fb34501-1774-4618-be8e-9db6294445ab",
+        "rta_name": "suspicious_parent_msbuild_explorer",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "9d110cb3-5f4b-4c9a-b9f5-53f0a1707ae3",
+        "rule_name": "Microsoft Build Engine Started by a System Process",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "465eb9a9-2f8b-458b-9ea4-e50912ce1b89",
+        "rta_name": "exec_renamed_msbuild",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "9d110cb3-5f4b-4c9a-b9f5-53f0a1707ae4",
+        "rule_name": "Microsoft Build Engine Using an Alternate Name",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "d4b4f924-974b-4033-9728-bb6a736bf7ef",
+        "rta_name": "image_load_msbuild_vaultcli",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "9d110cb3-5f4b-4c9a-b9f5-53f0a1707ae5",
+        "rule_name": "Potential Credential Access via Trusted Developer Utility",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "022dc249-a496-413a-9355-c37e3ea41dda",
+        "rta_name": "msbuild_network",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "9d110cb3-5f4b-4c9a-b9f5-53f0a1707ae6",
+        "rule_name": "Microsoft Build Engine Started an Unusual Process",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "762adc57-58c2-413d-a98d-258a223c07da",
+        "rta_name": "launchdaemon_persistence",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "9d19ece6-c20e-481a-90c5-ccca596537de",
+        "rule_name": "LaunchDaemon Creation or Modification and Immediate Loading",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "6dfa88c9-9fb2-4fb0-8bea-0bc45222b498",
+        "rta_name": "installutil_network",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "a13167f1-eec2-4015-9631-1fee60406dcf",
+        "rule_name": "InstallUtil Process Making Network Connections",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "2edd7889-578b-4870-befd-6b3d0f5a10fd",
+        "rta_name": "reg_mod_builtindnsclientenabled",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "a22a09c2-2162-4df0-a356-9aacbeb56a04",
+        "rule_name": "DNS-over-HTTPS Enabled via Registry",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "83465fca-25ae-4d6d-b747-c82cda75b0ae",
+        "rta_name": "mshta_network",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "a4ec1382-4557-452b-89ba-e413b22ed4b8",
+        "rule_name": "Network Connection via Mshta",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "a3cdd478-b817-4513-bb3d-897a5f92c836",
+        "rta_name": "suspicious_wscript_parent",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "a624863f-a70d-417f-a7d2-7a404638d47f",
+        "rule_name": "Suspicious MS Office Child Process",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "2c186f11-d07c-4df6-8b86-bf9ffd6ca871",
+        "rta_name": "emond_plist",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "a6bf4dd4-743e-4da8-8c03-3ebd753a6c90",
+        "rule_name": "Emond Rules Creation or Modification",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "dfdcc4f4-5aca-486a-8115-b15b653b9b4f",
+        "rta_name": "registry_hive_export",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "a7e7bfa3-088e-4f13-b29e-3986e0e756b8",
+        "rule_name": "Credential Acquisition via Registry Hive Dumping",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "3c8fc2cc-fa66-4c91-ae72-c72accaa92b7",
+        "rta_name": "login_window_plist",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "ac412404-57a5-476f-858f-4e8fbb4f48d8",
+        "rule_name": "Potential Persistence via Login Hook",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "cbd90dde-02f4-4010-b654-ccabff3c3c73",
+        "rta_name": "werfault_persistence",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "ac5012b8-8da8-440b-aaaf-aedafdea2dff",
+        "rule_name": "Suspicious WerFault Child Process",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "9182299f-cebf-4d8b-97a8-15ec5e11fe14",
+        "rta_name": "network_connection_iexplore_rundll32",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "acd611f3-2b93-47b3-a0a3-7723bcc46f6d",
+        "rule_name": "Potential Command and Control via Internet Explorer",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "61369084-af6a-4fd0-903f-b44467f5d6e7",
+        "rta_name": "ssh_bruteforce",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "ace1e989-a541-44df-93a8-a8b0591b63c0",
+        "rule_name": "Potential SSH Brute Force Detected",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "a555c960-08af-49fe-8889-18434a604f68",
+        "rta_name": "exec_cmd_workfolders",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "ad0d2742-9a49-11ec-8d6b-acde48001122",
+        "rule_name": "Signed Proxy Execution via MS Work Folders",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "2f17286a-e4a8-41de-b3fa-595a4be6fb19",
+        "rta_name": "kcc_kerberos_dump",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "ad88231f-e2ab-491c-8fc6-64746da26cfe",
+        "rule_name": "Kerberos Cached Credentials Dumping",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "5282c9a4-4ce9-48b8-863a-ff453143635a",
+        "rta_name": "linux_persistence_kworker_file_creation",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "ae343298-97bc-47bc-9ea2-5f2ad831c16e",
+        "rule_name": "Suspicious File Creation via kworker",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "2ab62c28-1abb-4ac5-a16d-2f4f75d01d02",
+        "rta_name": "persistent_scripts",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "afcce5ad-65de-4ed2-8516-5e093d3ac99a",
+        "rule_name": "Local Scheduled Task Creation",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "fcd2d0fe-fed2-424a-bdc5-e9bef5031344",
+        "rta_name": "cat_network_activity",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "afd04601-12fc-4149-9b78-9c3f8fe45d39",
+        "rule_name": "Network Activity Detected via cat",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "4c8675a8-fbed-4f36-88e6-ffceaf82f426",
+        "rta_name": "tcc_bypass_mounted_apfs",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "b00bcd89-000c-4425-b94c-716ef67762f6",
+        "rule_name": "TCC Bypass via Mounted APFS Snapshot Access",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "0da48a27-4a5e-4974-ba6a-63cce8f602df",
+        "rta_name": "file_creation_teamviewer",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "b25a7df2-120a-4db2-bd3f-3e4b86b24bee",
+        "rule_name": "Remote File Copy via TeamViewer",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "be77efd7-8f6a-4033-92b9-f47addb60866",
+        "rta_name": "exec_cmd_endpoint_security_masquerading",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "b41a13c6-ba45-4bab-a534-df53d0cfed6a",
+        "rule_name": "Suspicious Endpoint Security Parent Process",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "72c2470b-c96e-4b44-88ec-1a67c4ec091c",
+        "rta_name": "atom_init_coffee",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "b4449455-f986-4b5a-82ed-e36b129331f7",
+        "rule_name": "Potential Persistence via Atom Init Script Modification",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "a78663dc-9561-40a9-b4eb-f15e31c690cc",
+        "rta_name": "overlayfs_privesc",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "b51dbc92-84e2-4af1-ba47-65183fcd0c57",
+        "rule_name": "Potential Privilege Escalation via OverlayFS",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "57d4d7f4-03a6-43d3-a5af-9ac706b2eedf",
+        "rta_name": "exec_cmd_clear_history",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "b5877334-677f-4fb9-86d5-a9721274223b",
+        "rule_name": "Clearing Windows Console History",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "2cd02bee-6774-4b93-a632-995462440371",
+        "rta_name": "image_load_script_interpreter_wmiutils",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "b64b183e-1a76-422d-9179-7b389513e74d",
+        "rule_name": "Windows Script Interpreter Executing Process via WMI",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "146cf978-05f2-4492-843c-46626651db89",
+        "rta_name": "file_create_dpapi_key",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "b83a7e96-2eb3-4edf-8346-427b6858d3bd",
+        "rule_name": "Creation or Modification of Domain Backup DPAPI private key",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "a8331ff5-2199-48cf-9284-88351c859835",
+        "rta_name": "msxsl_network",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "b86afe07-0d98-4738-b15d-8d7465f95ff5",
+        "rule_name": "Network Connection via MsXsl",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "1d887a40-ea2a-493c-90b4-54e0ce4f3534",
+        "rta_name": "uac_clipup",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "b90cdde7-7e0d-4359-8bf0-2c112ce2008a",
+        "rule_name": "UAC Bypass Attempt with IEditionUpgradeManager Elevated COM Interface",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "633313a4-dbe5-420f-b4ae-90c481a7f881",
+        "rta_name": "root_cert_install",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "bc1eeacf-2972-434f-b782-3a532b100d67",
+        "rule_name": "Attempt to Install Root Certificate",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "d2bc8d23-736f-4045-87cd-81d9f4719d2f",
+        "rta_name": "reg_mod_point_and_print_dll",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "bd7eefee-f671-494e-98df-f01daf9e5f17",
+        "rule_name": "Suspicious Print Spooler Point and Print DLL",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "53d071d9-36e3-4b40-83c8-d818bd831010",
+        "rta_name": "vaultcmd_commands",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "be8afaed-4bcd-4e0a-b5f9-5562003dde81",
+        "rule_name": "Searching for Saved Credentials via VaultCmd",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "dabd91c9-101e-475d-b2f2-ca255abda003",
+        "rta_name": "image_load_phantomdll",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "bfeaf89b-a2a7-48a3-817f-e41829dc61ee",
+        "rule_name": "Suspicious DLL Loaded for Persistence or Privilege Escalation",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "75fec962-54a4-4bb1-80ea-995269e90b30",
+        "rta_name": "scp_privacy_bypass",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "c02c8b9f-5e1d-463c-a1b0-04edcdfe1a3d",
+        "rule_name": "Potential Privacy Control Bypass via Localhost Secure Copy",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "5faf9f55-c52e-41e0-8195-b183aba8b876",
+        "rta_name": "exec_cmd_aspnet_regiis",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c25e9c87-95e1-4368-bfab-9fd34cf867ec",
+        "rule_name": "Microsoft IIS Connection Strings Decryption",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "4e63cb99-b56d-4c75-9cda-3a7f30861d35",
+        "rta_name": "user_action_script",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "c292fa52-4115-408a-b897-e14f684b3cb7",
+        "rule_name": "Persistence via Folder Action Script",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "83465fca-25ae-4d6d-b747-c82cda75b0ae",
+        "rta_name": "mshta_network",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c2d90150-0133-451c-a783-533e736c12d7",
+        "rule_name": "Mshta Making Network Connections",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "bc4c85e7-c2c6-497c-a52e-7c8896a79ab2",
+        "rta_name": "suspicious_bits_job_notify",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c3b915e0-22f3-4bf7-991d-b643513c722f",
+        "rule_name": "Persistence via BITS Job Notify Cmdline",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "46f6ae71-2fd8-46bd-8209-9fc0f59432ef",
+        "rta_name": "exec_cmd_net_use",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c4210e1c-64f2-4f48-b67e-b5a8ffe3aa14",
+        "rule_name": "Mounting Hidden or WebDav Remote Shares",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "3a343699-374c-454a-841c-f0d0d4a3031f",
+        "rta_name": "file_delete_spool_driver",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c4818812-d44f-47be-aaef-4cfb2f9cc799",
+        "rule_name": "Suspicious Print Spooler File Deletion",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "a6263f00-58b4-4555-b88f-9d66a7395891",
+        "rta_name": "reg_mod_shadow_rdp",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c57f8579-e2a5-4804-847f-f2732edc5156",
+        "rule_name": "Potential Remote Desktop Shadowing Activity",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "413cf7ef-0fad-46fd-ab67-e94c4e3e0f0b",
+        "rta_name": "comsvcs_dump",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c5c9f591-d111-4cf8-baec-c26a39bc31ef",
+        "rule_name": "Potential Credential Access via Renamed COM+ Services DLL",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "735969b3-6a2e-4c7d-b18a-59e2f36ef13b",
+        "rta_name": "reg_mod_shim_sb",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c5ce48a6-7f57-4ee8-9313-3d0024caee10",
+        "rule_name": "Installation of Custom Shim Databases",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "b279f4c3-2269-4557-b267-68dc2f88019b",
+        "rta_name": "suspicious_parent_msbuild_office",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c5dc3223-13a2-44a2-946c-e9dc0aa0449c",
+        "rule_name": "Microsoft Build Engine Started by an Office Application",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "219dee0a-48ad-4e17-ab59-783a619a7bd5",
+        "rta_name": "exec_cmd_mpcmdrun_download",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c6453e73-90eb-4fe7-a98c-cde7bbfc504a",
+        "rule_name": "Remote File Download via MpCmdRun",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "9f58f9e7-a0f5-48e6-a924-d437fd626195",
+        "rta_name": "suspicious_child_dns",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c7ce36c0-32ff-4f9a-bfc2-dcb242bf99f9",
+        "rule_name": "Unusual File Modification by dns.exe",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "38c81994-958f-40c8-bb6a-20bc1b93d598",
+        "rta_name": "dock_plist",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "c81cefcb-82b9-4408-a533-3c3df549e62d",
+        "rule_name": "Persistence via Docker Shortcut Modification",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "b0e3e1bb-dfa5-473a-8862-b2d1d42819ce",
+        "rta_name": "smb_connection",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c82c7d8f-fb9e-4874-a4bd-fd9e3f9becf1",
+        "rule_name": "Direct Outbound SMB Connection",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "92407d57-e5ce-41b1-933a-7cad26158802",
+        "rta_name": "discovery_virtual_machine_grep",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "c85eb82c-d2c8-485c-a36f-534f914b7663",
+        "rule_name": "Virtual Machine Fingerprinting via Grep",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "16fe008f-58b5-4a8c-9e73-2784edf636b1",
+        "rta_name": "reg_mod_startup_shell_folder",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c8b150f0-0164-475b-a75e-74b47800a9ff",
+        "rule_name": "Suspicious Startup Shell Folder Modification",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "2730b84c-9e39-4647-ba96-0b438aca9575",
+        "rta_name": "exec_cmd_set_mppreference",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "c8cccb06-faf2-4cd5-886e-2c9636cfcb87",
+        "rule_name": "Disabling Windows Defender Security Settings via PowerShell",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "44345dc0-883f-41b7-ad34-1d84cfd57129",
+        "rta_name": "calendar_file_mod",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "cb71aa62-55c8-42f0-b0dd-afb0bb0b1f51",
+        "rule_name": "Suspicious Calendar File Modification",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "eddbcd95-2922-46e4-b356-86d3bc8aeadc",
+        "rta_name": "dsenableroot_account",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "cc2fd2d0-ba3a-4939-b87f-2901764ed036",
+        "rule_name": "Attempt to Enable the Root Account",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "900e8599-1d5f-4522-9aed-6eab82de2bad",
+        "rta_name": "kernel_module_removal_execution",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "cd66a5af-e34b-4bb0-8931-57d0a043f2ef",
+        "rule_name": "Kernel Module Removal",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "0eb19c28-f82f-4f69-b11f-3b946f310e32",
+        "rta_name": "exec_cmd_set_casmailbox",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "ce64d965-6cb0-466d-b74f-8d2c76f47f05",
+        "rule_name": "New ActiveSyncAllowedDeviceID Added via PowerShell",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "790cbe6f-ee44-4654-9998-039236dbe0d8",
+        "rta_name": "recycle_bin_process",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "cff92c41-2225-4763-b4ce-6f71e5bda5e6",
+        "rule_name": "Execution from Unusual Directory - Command Line",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "b434626c-4787-4967-9984-50c0db12692f",
+        "rta_name": "reg_mod_appinitdlls",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "d0e159cf-73e9-40d1-a9ed-077e3158a855",
+        "rule_name": "Registry Persistence via AppInit DLL",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "fafdfbda-add8-40a1-b2b5-640fce12413e",
+        "rta_name": "exec_cmd_mklink",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "d117cbb4-7d56-41b4-b999-bdf8c25648a0",
+        "rule_name": "Symbolic Link to Shadow Copy Created",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "dce9cb95-b97d-4874-ab7a-26382a1ba348",
+        "rta_name": "special_chars_zip_file",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "d22a85c6-d2ad-4cc4-bf7b-54787473669a",
+        "rule_name": "Potential Microsoft Office Sandbox Evasion",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "6a884a9a-b061-4eeb-8711-f14f6b49c9c0",
+        "rta_name": "reg_mod_disable_uac",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "d31f183a-e5b1-451b-8534-ba62bca0b404",
+        "rule_name": "Disabling User Account Control via Registry Modification",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "12b28e92-281f-49a7-a8b3-54681ba6d63e",
+        "rta_name": "wevtutil_log_clear",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "d331bbe2-6db4-4941-80a5-8270db72eb61",
+        "rule_name": "Clearing Windows Event Logs",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "fa1dd615-73f0-46d0-b047-b495337d356b",
+        "rta_name": "osascript_sh_execution",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "d461fac0-43e8-49e2-85ea-3a58fe120b4f",
+        "rule_name": "Shell Execution via Apple Scripting",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "163dbe60-28e0-4042-b2f0-173dddea877b",
+        "rta_name": "gdb_init_secret_dump",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "d4ff2f53-c802-4d2e-9fb9-9ecc08356c3f",
+        "rule_name": "Linux init (PID 1) Secret Dump via GDB",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "389392dc-61db-4e45-846f-099f7d289c1b",
+        "rta_name": "lateral_commands",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "d61cbcf8-1bc1-4cff-85ba-e7b21c5beedc",
+        "rule_name": "Service Command Lateral Movement",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "878ffa93-dea6-48f8-9441-e199bc23ec6b",
+        "rta_name": "modification_of_wdigest_security_provider",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "d703a5af-d5b0-43bd-8ddb-7a5d500b7da5",
+        "rule_name": "Modification of WDigest Security Provider",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "810554c9-fe55-4fdd-8127-e753ae448d52",
+        "rta_name": "suspicious_child_solarwindsdiagnostics",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "d72e33fc-6e91-42ff-ac8b-e573268c5a87",
+        "rule_name": "Command Execution via SolarWinds Process",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "d950ef5f-8277-4ed8-a8dd-d2433e791cef",
+        "rta_name": "systemkey_credential_access",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "d75991f2-b989-419d-b797-ac1e54ec2d61",
+        "rule_name": "SystemKey Access via Command Line",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "54041e42-7a4b-417e-ac40-cd50c7085e48",
+        "rta_name": "exec_from_python",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "d8cbba0d-7275-4bcd-be22-79ee6fea2951",
+        "rule_name": "Suspicious Python Package Child Process Execution",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "463e513d-1b7e-447c-a019-a340445cea3f",
+        "rta_name": "powershell_delete_shadow_copy",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "d99a037b-c8e2-47a5-97b9-170d076827c4",
+        "rule_name": "Volume Shadow Copy Deletion via PowerShell",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "ae6343cc-3b56-4f60-854f-7102db519ec4",
+        "rta_name": "delete_volume_shadows",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "dc9c1f74-dac3-48e3-b47f-eb79db358f57",
+        "rule_name": "Volume Shadow Copy Deletion via WMIC",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "35bb73a9-cafa-4b2c-81f0-a97e2afa5e1c",
+        "rta_name": "brute_force_login",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "e08ccd49-0380-4b2b-8d71-8000377d6e49",
+        "rule_name": "Attempts to Brute Force an Okta User Account",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "7c4e0d1e-e80a-465a-9612-a319800390f4",
+        "rta_name": "exec_cmd_psexesvc",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "e2f9fdf5-8076-45ad-9427-41e0e03dc9c2",
+        "rule_name": "Suspicious Process Execution via Renamed PsExec Executable",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "2e2b5db2-2edb-421e-bb5e-6d2ab09303e0",
+        "rta_name": "exec_cmd_compiled_html",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "e3343ab9-4245-4715-b344-e11c56b0a47f",
+        "rule_name": "Process Activity via Compiled HTML File",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "9261a9ca-53ed-483c-967a-3f7a8f93e0ea",
+        "rta_name": "network_connection_freesslcert",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "e3cf38fa-d5b8-46cc-87f9-4a7513e4281d",
+        "rule_name": "Connection to Commonly Abused Free SSL Certificate Providers",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "96c3cc10-7f86-428c-b353-e9de52472a96",
+        "rta_name": "auth_plugin",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "e6c98d38-633d-4b3e-9387-42112cd5ac10",
+        "rule_name": "Authorization Plugin Modification",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "ce87d15a-9b72-42c4-8721-ae4bcff86a05",
+        "rta_name": "screensaver_plist_mod",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "e6e8912f-283f-4d0d-8442-e0dcaf49944b",
+        "rule_name": "Screensaver Plist File Modified by Unexpected Process",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "7961c43d-4dd8-45ec-b237-a940bf55d114",
+        "rta_name": "suspicious_lineage_script",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "e7125cea-9fe1-42a5-9a05-b0792cf86f5a",
+        "rule_name": "Execution of Persistent Suspicious Program",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "c5cecd6d-a7c4-4e3b-970d-6ca5cfc5c662",
+        "rta_name": "unshadow_execution",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "e7cb3cfd-aaa3-4d7b-af18-23b89955062c",
+        "rule_name": "Potential Linux Credential Dumping via Unshadow",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "eb1ecbae-a7d0-4beb-89fe-fbf2db0edce3",
+        "rta_name": "suspicious_parent_sc",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "e8571d5f-bea1-46c2-9f56-998de2d3ed95",
+        "rule_name": "Service Control Spawned via Script Interpreter",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "ac6b2cda-97f1-4095-b5f1-9791da2e6282",
+        "rta_name": "reg_mod_lsa_ssp",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "e86da94d-e54b-4fb5-b96c-cecff87e8787",
+        "rule_name": "Installation of Security Support Provider",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "4aa10c2d-3839-4ed3-8ca6-a88fdd32bdef",
+        "rta_name": "file_create_smss_exec",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "e94262f2-c1e9-4d3f-a907-aeab16712e1a",
+        "rule_name": "Unusual Executable File Creation by a System Critical Process",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "ac6b2cda-97f1-4095-b5f1-9791da2e6282",
+        "rta_name": "reg_mod_lsa_ssp",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "e9abe69b-1deb-4e19-ac4a-5d5ac00f72eb",
+        "rule_name": "Potential LSA Authentication Package Abuse",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "4b23eaa2-aa73-43ee-9c10-47ecf01e00aa",
+        "rta_name": "file_create_mimilsa_log",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "ebb200e8-adf0-43f8-a0bb-4ee5b5d852c6",
+        "rule_name": "Mimikatz Memssp Log File Detected",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "84a9bc41-8b2e-434e-b6ae-237e9202c745",
+        "rta_name": "exec_cmd_appcmd_logging",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "ebf1adea-ccf2-4943-8b96-7ab11ca173a5",
+        "rule_name": "IIS HTTP Logging Disabled",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "6e84852e-b8a2-4158-971e-c5148d969d2a",
+        "rta_name": "exec_cmd_adfind",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "eda499b8-a073-4e35-9733-22ec71f57f3a",
+        "rule_name": "AdFind Command Activity",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "34cddcb3-bd49-4363-8092-677307abaa82",
+        "rta_name": "tcc_modification",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "eea82229-b002-470e-a9e1-00be38b14d32",
+        "rule_name": "Potential Privacy Control Bypass via TCCDB Modification",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "e5a98cc9-1f15-4d14-baf2-96bebb932ae9",
+        "rta_name": "mimipenguin_execution",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "ef100a2e-ecd4-4f72-9d1e-2f779ff3c311",
+        "rule_name": "Potential Linux Credential Dumping via Proc Filesystem",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "1a61241e-5b1b-44ec-8c9f-3ae4652550be",
+        "rta_name": "schtask_escalation",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "ef862985-3f13-4262-a686-5f357bbb9bc2",
+        "rule_name": "Whoami Process Activity",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "dd39e94e-bfd7-467c-b20d-662d84c0b97e",
+        "rta_name": "security_authtrampoline",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "f0eb70e9-71e9-40cd-813f-bf8e8c812cb1",
+        "rule_name": "Execution with Explicit Credentials via Scripting",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "d00ef4d9-4690-4eb1-aa60-7ff3ce3bd75b",
+        "rta_name": "osascript_hidden_login_item",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "f24bcae1-8980-4b30-b5dd-f851b055c9e7",
+        "rule_name": "Creation of Hidden Login Item via Apple Script",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "45541eb5-c636-477b-81c9-b6dcf184c9cc",
+        "rta_name": "trust_provider",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "f2c7b914-eda3-40c2-96ac-d23ef91776ca",
+        "rule_name": "SIP Provider Modification",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "a330f58c-c808-45d9-b8be-9c2054285c08",
+        "rta_name": "file_create_lsass_dump",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "f2f46686-6f3c-4724-bd7d-24e31c70f98f",
+        "rule_name": "LSASS Memory Dump Creation",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "3adf005f-94b8-4b34-8994-d5a3dc6666c2",
+        "rta_name": "wmi_incoming_logon",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "f3475224-b179-4f78-8877-c2bd64c26b88",
+        "rule_name": "WMI Incoming Lateral Movement",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "da35cb80-dad9-4995-ac11-6a408843cd12",
+        "rta_name": "sudo_exploit",
+        "rta_platforms": [
+            "linux",
+            "macos"
+        ],
+        "rule_id": "f37f3054-d40b-49ac-aa9b-a786c74c58b8",
+        "rule_name": "Sudo Heap-Based Buffer Overflow Attempt",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "6a5977f6-ed19-446e-a441-e325cff7772b",
+        "rta_name": "execution_linux_curl_cve_2023_38545",
+        "rta_platforms": [
+            "linux"
+        ],
+        "rule_id": "f41296b4-9975-44d6-9486-514c6f635b2d",
+        "rule_name": "Potential curl CVE-2023-38545 Exploitation",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "5432792c-d31a-42cc-a82f-0884ea230493",
+        "rta_name": "file_create_ms_addins",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "f44fa4b6-524c-4e87-8d9e-a32599e4fb7c",
+        "rule_name": "Persistence via Microsoft Office AddIns",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "161c5972-6bfe-47b5-92bd-e0399e025dec",
+        "rta_name": "powershell_from_script",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "f545ff26-3c94-4fd0-bd33-3c7f95a3a0fc",
+        "rule_name": "Windows Script Executing PowerShell",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "1286c142-8acc-4b58-a7c1-572870c81bc1",
+        "rta_name": "exec_cmd_windows_firewall_disabled",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "f63c8e3c-d396-404f-b2ea-0379d3942d73",
+        "rule_name": "Windows Firewall Disabled via PowerShell",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "5d049893-b5ca-4482-a9ea-c38c6d01c171",
+        "rta_name": "delete_usnjrnl",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "f675872f-6d85-40a3-b502-c0d2ef101e92",
+        "rule_name": "Delete Volume USN Journal with Fsutil",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "f4e4a28e-c845-4b26-bfdf-24128e73ef21",
+        "rta_name": "disable_os_security_updates",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "f683dcdf-a018-4801-b066-193d4ae6c8e5",
+        "rule_name": "SoftwareUpdate Preferences Modification",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "7cee9313-5e55-472b-9d61-a95b0c9725d6",
+        "rta_name": "file_create_vbs_startup",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "f7c4dc5a-a58d-491d-9f14-9b66507121c0",
+        "rule_name": "Persistent Scripts in the Startup Directory",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "e5d376ae-d634-41fa-903c-42f35736a615",
+        "rta_name": "adobe_priv_helper_tool",
+        "rta_platforms": [
+            "macos"
+        ],
+        "rule_id": "f85ce03f-d8a8-4c83-acdc-5c8cd0592be7",
+        "rule_name": "Suspicious Child Process of Adobe Acrobat Reader Update Service",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "78715019-6eff-45b1-a942-47db87d55b01",
+        "rta_name": "reg_mod_amsienable",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "f874315d-5188-4b4a-8521-d1c73093a7e4",
+        "rule_name": "Modification of AmsiEnable Registry Key",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "19b6d1cd-6342-42f0-9f1d-20185f5b3d95",
+        "rta_name": "exec_cmd_hidden_share",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "fa01341d-6662-426b-9d0c-6d81e33c8a9d",
+        "rule_name": "Remote File Copy to a Hidden Share",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "a4a8608e-d94f-4eb1-b500-738328307bbc",
+        "rta_name": "appcompat_shim",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "fd4a992d-6130-4802-9ff8-829b89ae801f",
+        "rule_name": "Potential Application Shimming via Sdbinst",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "7b2c1b3e-2097-4e2f-bf5c-e157a91b8001",
+        "rta_name": "certutil_file_obfuscation",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "fd70c98a-c410-42dc-a2e3-761c71848acf",
+        "rule_name": "Suspicious CertUtil Commands",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "1a61241e-5b1b-44ec-8c9f-3ae4652550be",
+        "rta_name": "schtask_escalation",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "fd7a6052-58fa-4397-93c3-4795249ccfa2",
+        "rule_name": "Svchost spawning Cmd",
+        "rule_type": "siem"
+    },
+    {
+        "rta_id": "e70ab2f3-7a67-4cd8-9969-ad4ebe0358bc",
+        "rta_name": "reg_mod_disableantispyware",
+        "rta_platforms": [
+            "windows"
+        ],
+        "rule_id": "fe794edd-487f-4a90-b285-3ee54f2af2d3",
+        "rule_name": "Microsoft Windows Defender Tampering",
+        "rule_type": "siem"
+    }
+]
