@@ -27,7 +27,7 @@ def main():
 
     # Execute command
     log.info("Launching fake command to simulate ssh-keygen shared object load")
-    _ = _common.execute_command([*commands], timeout_secs=5)
+    _ = _common.execute_command(commands, timeout_secs=5)
 
     # cleanup
     _common.remove_file(masquerade)

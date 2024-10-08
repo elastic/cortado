@@ -31,7 +31,7 @@ def main():
 
     # Execute command
     log.info("Launching fake bash with base64 decode commands")
-    _ = _common.execute_command([masquerade], timeout_secs=10)
+    _ = _common.execute_command(masquerade, shell=True, timeout_secs=10)
 
     command = f"{masquerade3} enc -base64 -d"
     _ = _common.execute_command(

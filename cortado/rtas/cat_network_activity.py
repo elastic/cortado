@@ -29,7 +29,7 @@ def main():
     commands = [masquerade, "netcon", "-h", "127.0.0.1", "-p", "1337"]
 
     log.info("Simulating cat network activity..")
-    _ = _common.execute_command([*commands], timeout_secs=5)
+    _ = _common.execute_command(commands, timeout_secs=5)
     log.info("Cat network simulation successful!")
     log.info("Cleaning...")
     _common.remove_file(masquerade)

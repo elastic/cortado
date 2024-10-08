@@ -30,5 +30,5 @@ def main():
 
     # Execute command
     log.info("Executing executable from Downloads folder")
-    _ = _common.execute_command([posh], timeout_secs=5)
+    _ = _common.execute_command(posh, shell=True, timeout_secs=5)
     _common.remove_file(posh)

@@ -33,7 +33,7 @@ def main() -> None:
     commands = [masquerade, "-rm", "cap_setuid"]
 
     log.info("Launching fake commands to set cap_setuid via unshare")
-    _ = _common.execute_command([*commands], timeout_secs=2)
+    _ = _common.execute_command(commands, timeout_secs=2)
     log.info("Unshare simulation succesful")
 
     log.info("Faking uid change via same parent")

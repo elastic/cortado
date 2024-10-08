@@ -26,5 +26,5 @@ def main():
 
     _common.copy_file(EXE_FILE, werfault)
     log.info("Making connection using fake werfault.exe")
-    _ = _common.execute_command([werfault], timeout_secs=10)
+    _ = _common.execute_command(werfault, shell=True, timeout_secs=10)
     _common.remove_file(werfault)

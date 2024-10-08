@@ -30,5 +30,5 @@ def main():
         "C:\\windows\\system32\\kernel32.dll",
         "C:\\Windows\\system32\\sysprep\\CRYPTBASE.DLL",
     )
-    _ = _common.execute_command(["C:\\Windows\\system32\\sysprep\\sysprep.exe"], timeout_secs=5)
+    _ = _common.execute_command("C:\\Windows\\system32\\sysprep\\sysprep.exe", shell=True, timeout_secs=5)
     _common.remove_file("C:\\Windows\\system32\\sysprep\\CRYPTBASE.DLL")

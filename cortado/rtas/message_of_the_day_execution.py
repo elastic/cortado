@@ -33,7 +33,7 @@ def main():
     commands = [masquerade, "exec", "-c", "netcat"]
 
     log.info("Simulating MOTD netcat activity..")
-    _ = _common.execute_command([*commands], timeout_secs=5)
+    _ = _common.execute_command(commands, timeout_secs=5)
     log.info("MOTD netcat simulation successful!")
     log.info("Cleaning...")
     _common.remove_file(masquerade)

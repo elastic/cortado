@@ -30,7 +30,7 @@ def main() -> None:
     commands = [masquerade, "/tmp/evil"]
 
     log.info("Simulating file creation activity..")
-    _ = _common.execute_command([*commands], timeout_secs=5)
+    _ = _common.execute_command(commands, timeout_secs=5)
     log.info("File creation simulation successful!")
     log.info("Cleaning...")
     _common.remove_file(masquerade)

@@ -35,6 +35,6 @@ def main():
     log.info("Modifying the OriginalFileName attribute")
     _ = _common.execute_command([rcedit, msmpeng, "--set-version-string", "OriginalFilename", "MsMpEng.exe"])
 
-    _ = _common.execute_command([msmpeng], timeout_secs=2)
+    _ = _common.execute_command(msmpeng, shell=True, timeout_secs=2)
 
     _common.remove_files([rcedit, msmpeng])

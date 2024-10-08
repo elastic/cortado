@@ -36,6 +36,6 @@ def main():
     _ = _common.execute_command([rcedit, posh, "--set-version-string", "OriginalFilename", "extexport.exe"])
 
     log.info("Executing modified binary with extexport.exe original file name")
-    _ = _common.execute_command([posh], timeout_secs=10)
+    _ = _common.execute_command(posh, shell=True, timeout_secs=10)
 
     _common.remove_files([dll, posh, rcedit])

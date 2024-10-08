@@ -39,7 +39,7 @@ def main():
 
     # Execute the fake udevadm script
     log.info("Launching a shell that executes a payload as a child of fake udevadm")
-    _ = _common.execute_command([fake_udevadm], timeout_secs=5)
+    _ = _common.execute_command(fake_udevadm, shell=True, timeout_secs=5)
 
     # Cleanup
     _common.remove_file(fake_udevadm)

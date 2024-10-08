@@ -43,6 +43,6 @@ def main():
     for process in process_names:
         # taskhostw.exe isn't on all versions of windows
         if Path(process).is_file():
-            _ = _common.execute_command([process], timeout_secs=2)
+            _ = _common.execute_command(process, shell=True, timeout_secs=2)
         else:
             log.info("Skipping %s" % process, "-")

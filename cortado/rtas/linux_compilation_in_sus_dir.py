@@ -36,10 +36,10 @@ def main():
 
     # Execute command
     log.info("Launching fake command to simulate file compilation")
-    _ = _common.execute_command([*commands], timeout_secs=5)
+    _ = _common.execute_command(commands, timeout_secs=5)
 
     log.info("Simulating file creation activity..")
-    _ = _common.execute_command([*commands_file], timeout_secs=5)
+    _ = _common.execute_command(commands_file, timeout_secs=5)
     log.info("File creation simulation successful!")
     log.info("Cleaning...")
     _common.remove_file(masquerade_file)

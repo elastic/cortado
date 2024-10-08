@@ -40,6 +40,6 @@ def main():
         ]
     )
 
-    _ = _common.execute_command([autohotkey], timeout_secs=10)
+    _ = _common.execute_command(autohotkey, shell=True, timeout_secs=10)
 
     _common.remove_files([autohotkey, rcedit])

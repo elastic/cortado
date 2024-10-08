@@ -29,7 +29,7 @@ def main() -> None:
     _ = _common.execute_command(["chmod", "+x", masquerade])
     commands = [masquerade, "chain", "-h", "8.8.8.8", "-p", "1234", "-c", "/inet/tcp/1234"]
     log.info("Simulating reverse shell activity..")
-    _ = _common.execute_command([*commands], timeout_secs=5)
+    _ = _common.execute_command(commands, timeout_secs=5)
     log.info("Reverse shell simulation successful!")
     log.info("Cleaning...")
     _common.remove_file(masquerade)

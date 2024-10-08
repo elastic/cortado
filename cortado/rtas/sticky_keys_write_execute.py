@@ -61,7 +61,7 @@ def main():
 
         # Copy Calc to overwrite binary, then run it
         _common.copy_file(calc, bin_path)
-        _ = _common.execute_command([bin_path], timeout_secs=1)
+        _ = _common.execute_command(bin_path, shell=True, timeout_secs=1)
 
         # Restore Original File and Permissions on file
         _common.copy_file(temp, bin_path)

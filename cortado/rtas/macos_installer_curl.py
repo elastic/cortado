@@ -28,7 +28,7 @@ def main():
 
     # Execute command
     log.info("Launching fake macOS installer commands to download payload")
-    _ = _common.execute_command([masquerade], timeout_secs=10)
+    _ = _common.execute_command(masquerade, shell=True, timeout_secs=10)
 
     command = f"{masquerade2} test.amazonaws.comtest "
     _ = _common.execute_command(

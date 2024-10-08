@@ -25,6 +25,6 @@ def main():
     office_path = Path("Microsoft Word").resolve()
     _common.copy_file("/bin/sh", office_path)
 
-    _ = _common.execute_command([str(office_path)], stdin_data="whoami")
+    _ = _common.execute_command(str(office_path), shell=True, stdin_data="whoami")
 
     _common.remove_files([office_path])

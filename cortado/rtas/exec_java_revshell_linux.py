@@ -31,7 +31,7 @@ def main():
     commands = [masquerade, "chain", "-h", "127.0.0.1", "-p", "1337", "-c", "-jar"]
 
     log.info("Simulating reverse shell activity..")
-    _ = _common.execute_command([*commands], timeout_secs=5)
+    _ = _common.execute_command(commands, timeout_secs=5)
     log.info("Reverse shell simulation successful!")
     log.info("Cleaning...")
     _common.remove_file(masquerade)

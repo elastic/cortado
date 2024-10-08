@@ -26,7 +26,7 @@ def main():
 
     # Execute command
     log.info("Launching fake mount_smbfs command to mimic mounting a network share.")
-    _ = _common.execute_command([masquerade], timeout_secs=10)
+    _ = _common.execute_command(masquerade, shell=True, timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)
