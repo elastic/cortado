@@ -25,7 +25,7 @@ def main():
 
     log.info("Executing background processes via sh from tmp directory.")
     command = 'bash -c "/* &"'
-    _ = _common.execute_command([masquerade, "childprocess", command],) timeout_secs=5)
+    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=5)
 
     # cleanup
     _common.remove_file(masquerade)

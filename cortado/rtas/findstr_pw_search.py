@@ -25,4 +25,4 @@ log = logging.getLogger(__name__)
 def main():
     path = "c:\\rta"
     log.info("Searching for passwords on %s" % path)
-    _ = _common.execute_command(["dir", path, "/s", "/b", "|", "findstr", "password"],) timeout_secs=15)
+    _ = _common.execute_command(["dir", path, "/s", "/b", "|", "findstr", "password"], timeout_secs=15)

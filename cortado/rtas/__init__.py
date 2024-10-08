@@ -117,7 +117,6 @@ def register_hash_rta(
 
 
 def get_registry(force_reload: bool = False) -> MappingProxyType[str, Rta]:
-
     if not _REGISTRY or force_reload:
         log.debug("The registry is empty or force reload is requested")
         load_all_modules()

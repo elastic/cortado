@@ -34,7 +34,7 @@ def main():
     # Execute commands
     log.info("Launching fake osascript commands to mimic apple script execution")
     command = "osascript with administrator privileges"
-    _ = _common.execute_command([masquerade, "childprocess", command],) timeout_secs=5)
+    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=5)
 
     # cleanup
     _common.remove_file(masquerade)
