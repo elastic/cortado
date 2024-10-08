@@ -55,7 +55,7 @@ def main():
     # _common.execute(["taskkill.exe", "/f", "/im", "explorer.exe"])
     # time.sleep(2)
 
-    _ = _common.execute_command(["C:\\Windows\\System32\\userinit.exe"])
+    _ = _common.execute_command("C:\\Windows\\System32\\userinit.exe", shell=True)
     _ = _common.execute_command(["schtasks.exe", "/run", "/tn", NAME])
 
     # Wait for the "logon" to finish

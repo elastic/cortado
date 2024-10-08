@@ -28,5 +28,5 @@ def main():
     binary = "DoublePersist.exe"
     _common.copy_file(EXE_FILE, binary)
 
-    _ = _common.execute_command([binary])
+    _ = _common.execute_command(binary, shell=True)
     _common.remove_files([binary])

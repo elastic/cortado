@@ -40,7 +40,7 @@ def main() -> None:
 
     target_path = Path(target_directory) / "restore-process.exe"
     _common.copy_file(program_path, target_path)
-    _ = _common.execute_command([str(target_path)])
+    _ = _common.execute_command(str(target_path), shell=True)
 
     log.info("Cleanup")
     _common.remove_file(target_path)

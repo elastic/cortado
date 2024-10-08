@@ -70,5 +70,5 @@ def main():
         if command in slow_commands:
             code, _, _ = _common.execute_command([command],) timeout_secs=15)
         else:
-            code, _, _ = _common.execute_command([command])
+            code, _, _ = _common.execute_command(command, shell=True)
         log.info(f"Retcode for `{command}`: {code}")

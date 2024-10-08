@@ -44,7 +44,7 @@ def main():
         ]:
             # import ExecFromISO function that takes two args -ISOFIle pointing to ISO file path and -procname pointing to the filename to execute and -cmdline for arguments
             command = f"powershell.exe -ExecutionPol Bypass -c import-module {ps_script}; ExecFromISO -ISOFile {iso_file} -procname {PROC_EXE} -cmdline {arg};"
-            _ = _common.execute_command([command])
+            _ = _common.execute_command(command, shell=True)
         # cleanup
         rem_cmd = "reg.exe delete 'HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run' /v FromISO"
         _ = _common.execute_command(["cmd.exe", "/c", rem_cmd], timeout_secs=10)

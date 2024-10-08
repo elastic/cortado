@@ -37,6 +37,6 @@ def main() -> None:
 
     target_path = Path(target_directory) / "user_file.exe"
     _common.copy_file(source_path, target_path)
-    _ = _common.execute_command([str(target_path)])
+    _ = _common.execute_command(str(target_path), shell=True)
 
     _common.remove_directory(target_directory)

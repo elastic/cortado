@@ -40,6 +40,6 @@ def main():
             # import ExecFromISO function that takes two args -ISOFIle pointing to ISO file path and -procname pointing to the filename to execute and -cmdline for arguments
             # command = "powershell.exe -ExecutionPol Bypass -c import-module " + psf + '; ExecFromISO -ISOFile ' + ISO + ' -procname '+ PROC + ' -cmdline ' + domain + ';'
             command = f"powershell.exe -ExecutionPol Bypass -c import-module {PS_SCRIPT}; ExecFromISO -ISOFile {ISO} -procname {PROC} -cmdline {domain};"
-            _ = _common.execute_command([command])
+            _ = _common.execute_command(command, shell=True)
 
         print("[+] - RTA Done!")

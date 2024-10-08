@@ -30,6 +30,6 @@ def main():
 
     if Path(BIN).is_file():
         log.info(f"File {BIN} will be executed")
-        _ = _common.execute_command([BIN])
+        _ = _common.execute_command(BIN, shell=True)
         # cleanup
         _ = _common.execute_command(["taskkill", "/f", "/im", "notepad.exe"])

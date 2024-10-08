@@ -62,7 +62,7 @@ def main():
 
     for command in commands:
         formatted_command = command.format(host=remote_host, wmi_node=wmi_node)
-        _ = _common.execute_command([formatted_command])
+        _ = _common.execute_command(formatted_command, shell=True)
 
     _, whoami, _ = _common.execute_command(["whoami"])
     _, hostname, _ = _common.execute_command(["hostname"])

@@ -37,7 +37,7 @@ def main():
     ]
 
     for cmd in commands:
-        _ = _common.execute_command([cmd])
+        _ = _common.execute_command(cmd, shell=True)
 
     cleanup_commands = [
         "net.exe user macgyver /delete",

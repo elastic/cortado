@@ -60,7 +60,7 @@ def main():
             # should trigger rundll32 rules
             _ = _common.execute_command(["rundll32.exe", rta_dll, "DllMain"])
             # should trigger dll sideload from current dir
-            _ = _common.execute_command([rta_pe])
+            _ = _common.execute_command(rta_pe, shell=True)
         # cleanup
         _ = _common.execute_command(["taskkill", "/f", "/im", "notepad.exe"])
         log.info("Cleanup.")

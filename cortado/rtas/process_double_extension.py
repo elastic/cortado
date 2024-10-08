@@ -37,5 +37,5 @@ def main():
     for path in anomalies:
         log.info(f"Masquerading process as {path}")
         _common.copy_file(MY_APP_EXE, path)
-        _ = _common.execute_command([path])
+        _ = _common.execute_command(path, shell=True)
         _common.remove_file(path)

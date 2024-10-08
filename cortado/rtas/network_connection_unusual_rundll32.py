@@ -27,5 +27,5 @@ def main():
     _common.copy_file(EXE_FILE, binary)
 
     log.info("Making connection using fake rundll32.exe")
-    _ = _common.execute_command([binary])
+    _ = _common.execute_command(binary, shell=True)
     _common.remove_files([binary])
