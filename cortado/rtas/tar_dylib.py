@@ -22,7 +22,7 @@ log = logging.getLogger(__name__)
 def main():
     # Execute command"
     log.info("Launching commands to tar tmp dir.")
-    _ = _common.execute_command(["mkdir"], timeout_secs=10)
+    _ = _common.execute_command("mkdir", shell=True, timeout_secs=10)
 
     with _common.file_with_data("/tmp/test.txt", "testing"):
         _ = _common.execute_command(

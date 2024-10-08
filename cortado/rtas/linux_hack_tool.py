@@ -24,7 +24,7 @@ def main():
 
     # Execute command
     log.info("Launching fake command to simulate a CME process")
-    _ = _common.execute_command([masquerade], timeout_secs=5)
+    _ = _common.execute_command(masquerade, shell=True, timeout_secs=5)
 
     # cleanup
     _common.remove_file(masquerade)

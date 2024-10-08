@@ -23,15 +23,15 @@ log = logging.getLogger(__name__)
     techniques=["T1566", "T1566.001", "T1566.002"],
 )
 def main():
-    EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")
+    exe_file = _common.get_resource_path("bin/renamed_posh.exe")
 
     rdrcef = "C:\\Users\\Public\\rdrcef.exe"
     arp = "C:\\Users\\Public\\arp.exe"
-    temp = "C:\\Users\\Public\\temp.exe"
-    _common.copy_file(EXE_FILE, rdrcef)
-    _common.copy_file(EXE_FILE, arp)
+    temp_exe = "C:\\Users\\Public\\temp.exe"
+    _common.copy_file(exe_file, rdrcef)
+    _common.copy_file(exe_file, arp)
 
     # Execute command
-    _ = _common.execute_command([rdrcef, "/c", "Copy-Item", arp, temp], timeout_secs=5)
-    _ = _common.execute_command([temp], timeout_secs=5)
-    _common.remove_files([rdrcef, arp, temp])
+    _ = _common.execute_command([rdrcef, "/c", "Copy-Item", arp, temp_exe], timeout_secs=5)
+    _ = _common.execute_command(temp_exe, shell=True, timeout_secs=5)
+    _common.remove_files([rdrcef, arp, temp_exe])

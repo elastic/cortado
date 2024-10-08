@@ -64,8 +64,8 @@ def main():
         formatted_command = command.format(host=remote_host, wmi_node=wmi_node)
         _ = _common.execute_command(formatted_command, shell=True)
 
-    _, whoami, _ = _common.execute_command(["whoami"])
-    _, hostname, _ = _common.execute_command(["hostname"])
+    _, whoami, _ = _common.execute_command("whoami", shell=True)
+    _, hostname, _ = _common.execute_command("hostname", shell=True)
 
     if not whoami or not hostname:
         raise _common.ExecutionError("Can't get `whoami` or `hostname` command results")
@@ -94,7 +94,7 @@ def main():
 
     for command in schtask_commands:
         command = command.format(host=schtasks_host, name=task_name)
-        _ = _common.execute_command([command])
+        _ = _common.execute_command(command, shell=True)
 
     # Remote powershell
     _ = _common.execute_command(["C:\\Windows\\system32\\wsmprovhost.exe", "-Embedding"], timeout_secs=5)

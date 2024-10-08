@@ -34,6 +34,6 @@ def main():
     log.info("Modifying the OriginalFileName attribute")
     _ = _common.execute_command([rcedit, psexesvc, "--set-version-string", "OriginalFilename", "psexesvc.exe"])
 
-    _ = _common.execute_command([psexesvc], timeout_secs=2)
+    _ = _common.execute_command(psexesvc, shell=True, timeout_secs=2)
 
     _common.remove_files([rcedit, psexesvc])

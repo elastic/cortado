@@ -30,15 +30,14 @@ def main():
 
     # Create a fake pwsh script that launches nc
     with open(fake_pwsh_script, "w") as script:
-        _ = script.write("#!/bin/bash\n")
-        _ = script.write("/tmp/nc\n")
+        _ = script.write("#!/bin/bash\n/tmp/nc\n")
 
     # Make the script executable
     _ = _common.execute_command(["chmod", "+x", fake_pwsh_script])
 
     # Execute the fake pwsh script
     log.info("Launching nc as a child of fake pwsh")
-    _ = _common.execute_command([fake_pwsh_script], timeout_secs=5)
+    _ = _common.execute_command(fake_pwsh_script, shell=True, timeout_secs=5)
 
     # Cleanup
     _common.remove_file(fake_pwsh_script)

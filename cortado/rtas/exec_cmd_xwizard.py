@@ -29,7 +29,6 @@ def main():
 
     log.info("Modifying the OriginalFileName attribute")
     _ = _common.execute_command([rcedit, xwizard, "--set-version-string", "OriginalFilename", "xwizard.exe"])
-
-    _ = _common.execute_command([xwizard], timeout_secs=2)
+    _ = _common.execute_command(xwizard, shell=True, timeout_secs=2)
 
     _common.remove_files([rcedit, xwizard])

@@ -233,10 +233,7 @@ def execute_command(
         command_args = [str(a) for a in command_args]
         command_str = subprocess.list2cmdline(command_args)
     else:
-        # Set `shell` to `True` for string args
-        shell = True
-
-    command_to_run = command_args
+        command_str = command_args
 
     user_name = get_current_user()
     hostname = get_hostname()
@@ -248,7 +245,7 @@ def execute_command(
     start = time.time()
     try:
         result = subprocess.run(
-            command_to_run,
+            command_args,
             input=stdin_data,
             stdout=stdout,
             stderr=stderr,

@@ -31,4 +31,4 @@ def main():
     _ = _common.execute_command(f"{sleep_path} 5000 &", shell=True)
 
     path = _common.get_resource_path(f"bin/{name}")
-    _ = _common.execute_command([f"{path} `pgrep {sleep_name}`"])
+    _ = _common.execute_command(f"{path} `pgrep {sleep_name}`", shell=True)

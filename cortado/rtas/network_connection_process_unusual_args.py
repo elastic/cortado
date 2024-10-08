@@ -23,7 +23,7 @@ log = logging.getLogger(__name__)
     techniques=["T1055", "T1036"],
 )
 def main():
-    EXE_FILE = _common.get_resource_path("bin/regsvr32.exe")
+    exe_file = _common.get_resource_path("bin/regsvr32.exe")
 
     log.info("Making connection using fake regsvr32.exe")
-    _ = _common.execute_command([EXE_FILE], timeout_secs=10)
+    _ = _common.execute_command(str(exe_file), shell=True, timeout_secs=10)

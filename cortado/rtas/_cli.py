@@ -12,8 +12,6 @@ log = logging.getLogger(__name__)
 
 DUMMY_RTA_NAME = "test-rta"
 
-PARALLEL_RTA_PROCESSES_MAX = 10
-
 
 class RtaIssue(enum.StrEnum):
     NOT_EXECUTABLE = "RTA is not executable"
@@ -96,6 +94,11 @@ def _run_rta_in_process(rta_name: str) -> RtaIssue | None:
 def run_rtas_for_os():
     configure_logging()
 
+    if len(sys.argv) == 2:
+        pool_size = int(sys.argv[1])
+    else:
+        pool_size = 1
+
     current_os = get_current_os()
 
     registry = get_registry()  # load all modules
@@ -105,7 +108,9 @@ def run_rtas_for_os():
 
     rta_names = [r.name for r in rtas_for_os]
 
-    with Pool(PARALLEL_RTA_PROCESSES_MAX) as p:
+    log.info(f"Parallel processes to run RTAs: {pool_size}")
+
+    with Pool(pool_size) as p:
         errors = p.map(_run_rta_in_process, rta_names)
 
     names_and_errors = zip(rta_names, errors)
