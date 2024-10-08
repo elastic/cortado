@@ -45,7 +45,3 @@ def main():
 
     _ = _common.execute_command(["taskkill", "/F", "/im", "calc.exe"])
     _ = _common.execute_command(["taskkill", "/F", "/im", "calculator.exe"])
-
-
-if __name__ == "__main__":
-    main()

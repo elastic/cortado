@@ -34,7 +34,7 @@ def main():
 
     commands_file = [masquerade_file, "/dev/shm/evil"]
 
-    log.info("Simulating file creation activity..")
+    log.info("Simulating file creation activity...")
     _ = _common.execute_command(commands_file, timeout_secs=5)
     log.info("File creation simulation successful!")
     time.sleep(1)
@@ -42,6 +42,8 @@ def main():
     _common.remove_file(masquerade_file)
 
     _common.copy_file(source, masquerade)
+    _ = _common.execute_command(["chmod", "+x", masquerade])
+
     log.info("Launching fake command to simulate OpenSSL execution")
     _ = _common.execute_command(commands, timeout_secs=5)
 

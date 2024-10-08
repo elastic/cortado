@@ -4,7 +4,6 @@
 # 2.0.
 
 import logging
-import sys
 
 from . import OSType, RuleMetadata, _common, register_code_rta
 
@@ -40,16 +39,9 @@ def main() -> None:
 
     sudo_commands = ["sudo", "su"]
 
-    _ = _common.execute_command(
-        [*sudo_commands],
-        timeout_secs=2,
-    )
+    _ = _common.execute_command(sudo_commands, timeout_secs=2)
 
     log.info("Uid change simulation succesful")
 
     # cleanup
     _common.remove_file(masquerade)
-
-
-if __name__ == "__main__":
-    sys.exit(main())

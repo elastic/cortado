@@ -49,7 +49,3 @@ def main():
             log.info(str(exc))
 
         _common.remove_file(masquerade)
-
-
-if __name__ == "__main__":
-    main()

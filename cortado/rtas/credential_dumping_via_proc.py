@@ -4,7 +4,6 @@
 # 2.0.
 
 import logging
-import sys
 
 from . import OSType, RuleMetadata, _common, register_code_rta
 
@@ -45,7 +44,3 @@ def main() -> None:
     # cleanup
     _common.remove_file(masquerade)
     _common.remove_file(masquerade2)
-
-
-if __name__ == "__main__":
-    sys.exit(main())

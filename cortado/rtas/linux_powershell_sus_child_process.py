@@ -5,6 +5,7 @@
 
 import logging
 
+from pathlib import Path
 from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
@@ -29,8 +30,7 @@ def main():
     _common.copy_file(source, masquerade)
 
     # Create a fake pwsh script that launches nc
-    with open(fake_pwsh_script, "w") as script:
-        _ = script.write("#!/bin/bash\n/tmp/nc\n")
+    _ = Path(fake_pwsh_script).write_text("#!/bin/bash\n/tmp/nc\n")
 
     # Make the script executable
     _ = _common.execute_command(["chmod", "+x", fake_pwsh_script])

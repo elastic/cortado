@@ -4,7 +4,6 @@
 # 2.0.
 
 import logging
-import sys
 
 from . import OSType, RuleMetadata, _common, register_code_rta
 
@@ -34,7 +33,3 @@ def main() -> None:
     _ = _common.execute_command([masquerade, command, command1], timeout_secs=10)  # noqa: S604
     # cleanup
     _common.remove_file(masquerade)
-
-
-if __name__ == "__main__":
-    sys.exit(main())

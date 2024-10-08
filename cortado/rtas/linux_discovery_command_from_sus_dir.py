@@ -34,8 +34,7 @@ def main() -> None:
 
     # Create a fake executable that launches whoami
     with Path(fake_executable).open("w") as script:
-        _ = script.write("#!/bin/bash\n")
-        _ = script.write("/dev/shm/whoami\n")
+        _ = script.write("#!/bin/bash\n/dev/shm/whoami\n")
 
     # Make the script executable
     _ = _common.execute_command(["chmod", "+x", fake_executable])
