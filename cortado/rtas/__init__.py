@@ -116,7 +116,12 @@ def register_hash_rta(
     log.debug(f"Hash RTA registered: ${name}")
 
 
-def get_registry() -> MappingProxyType[str, Rta]:
+def get_registry(force_reload: bool = False) -> MappingProxyType[str, Rta]:
+
+    if not _REGISTRY or force_reload:
+        log.debug("The registry is empty or force reload is requested")
+        load_all_modules()
+
     # Wrap a registry dict into a read-only mapping to prevent from any changes
     # https://docs.python.org/3/library/types.html#types.MappingProxyType
     return MappingProxyType(_REGISTRY)
@@ -124,6 +129,7 @@ def get_registry() -> MappingProxyType[str, Rta]:
 
 def load_all_modules():
     dir_path = importlib.resources.files("cortado.rtas")
+    log.debug(f"Loading RTA modules. dir_path={dir_path}")
 
     failed_imports: list[str] = []
     for module_file in dir_path.glob("*.py"):  # type: ignore
