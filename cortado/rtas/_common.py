@@ -28,12 +28,14 @@ from cortado.rtas._const import (
     RTA_SUBPROCESS_TIMEOUT_RETURNCODE,
 )
 
-log = logging.getLogger("cortado.rtas")
+log = logging.getLogger(__name__)
 
 
 # Amount of seconds a command should take at a minimum.
 # This can allow for arbitrary slow down of scripts
 MIN_EXECUTION_TIME = 0
+
+DEFAULT_SUBPROCESS_TIMEOUT_SECS = 40
 
 HOSTS_TO_PROCESS_CAP = 64
 
@@ -119,7 +121,8 @@ def get_winreg():
 
 def get_resource_path(path: str | Path) -> Path:
     """Resolve relative path to a resource file into an absolute OS-specific path"""
-    return Path(path).resolve()
+    current_dir = Path(__file__).resolve().parent
+    return current_dir / path
 
 
 ## File utilities
@@ -214,9 +217,9 @@ def remove_directory(path: str | Path):
 
 
 def execute_command(
-    command_args: list[Any],
-    timeout_secs: float | int = 30,
-    capture_output: bool = True,
+    command_args: str | list[Any],
+    timeout_secs: float | int = DEFAULT_SUBPROCESS_TIMEOUT_SECS,
+    capture_output: bool = False,
     ignore_failures: bool = False,
     ignore_timeout: bool = True,
     shell: bool = False,
@@ -225,8 +228,15 @@ def execute_command(
 ) -> tuple[int, bytes | None, bytes | None]:
     # NOTE: `list2cmdline` is an internal function, so it might break in the future
     # https://github.com/python/cpython/blob/4bb1dd3c5c14338c9d9cea5988431c858b3b76e0/Lib/subprocess.py#L66
-    command_args = [str(a) for a in command_args]
-    command_str = subprocess.list2cmdline(command_args)
+
+    if isinstance(command_args, list):
+        command_args = [str(a) for a in command_args]
+        command_str = subprocess.list2cmdline(command_args)
+    else:
+        # Set `shell` to `True` for string args
+        shell = True
+
+    command_to_run = command_args
 
     user_name = get_current_user()
     hostname = get_hostname()
@@ -238,7 +248,7 @@ def execute_command(
     start = time.time()
     try:
         result = subprocess.run(
-            command_args,
+            command_to_run,
             input=stdin_data,
             stdout=stdout,
             stderr=stderr,
@@ -252,9 +262,9 @@ def execute_command(
         log.error(f"Error while executing command in a subprocess: {e}")
         if ignore_failures:
             return e.returncode, e.stdout, e.stderr
-        raise ExecutionError("Subprocess command execution failed")
+        raise ExecutionError("Subprocess command execution failed", e)
     except subprocess.TimeoutExpired:
-        log.error("Subprocess command timed out")
+        log.error(f"Subprocess command timed out. timeout_secs={timeout_secs}")
         if ignore_timeout:
             return RTA_SUBPROCESS_TIMEOUT_RETURNCODE, None, None
         raise ExecutionError("Subprocess command timed out")
@@ -597,3 +607,15 @@ def inject_shellcode(path: Path, shellcode: bytes):
     # create remote thread to start shellcode execution
     CreateRemoteThread(process_handle, None, 0, lpBuffer, 0, 0, 0)
     log.info("Shellcode Injection, done")
+
+
+def configure_logging(logging_level: int = logging.DEBUG, root_logger_name: str = "cortado.rtas"):
+    """Configure logging level and log output format for RTAs root logger.
+
+    By default, logging level is set to DEBUG. The logs are printed to stderr as plain text.
+    """
+    logging.basicConfig(
+        format="%(asctime)s %(name)s %(levelname)-6s %(message)s",
+        level=logging_level,
+        datefmt="%Y-%m-%d %H:%M:%S",
+    )
