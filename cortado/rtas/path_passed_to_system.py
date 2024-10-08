@@ -26,7 +26,7 @@ def main():
     # Execute command
     log.info("Launching fake bash commands to mimic passing a path to system bin")
     command = f"exec -a /System/Applications/test {masquerade}"
-    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=5, shell=True)
+    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=5)
 
     # cleanup
     _common.remove_file(masquerade)

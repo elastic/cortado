@@ -35,7 +35,7 @@ def main():
 
         # import ExecFromISO function that takes two args -ISOFIle pointing to ISO file path and -procname pointing to the filename to execute
         command = f"powershell.exe -ExecutionPol Bypass -c import-module {PS_SCRIPT}; ExecFromISO -ISOFile {ISO_FILE} -procname {LINK_FILE};"
-        _ = _common.execute_command([command], shell=True)
+        _ = _common.execute_command([command])
 
         # terminate notepad.exe spawned as a result of the DLL execution
         _ = _common.execute_command(["taskkill", "/f", "/im", "notepad.exe"])

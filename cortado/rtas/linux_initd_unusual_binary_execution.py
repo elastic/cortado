@@ -41,7 +41,7 @@ def main():
 
     # Execute the fake initd script
     log.info("Launching a shell that executes a payload as a child of fake initd")
-    _ = _common.execute_command([fake_initd], timeout_secs=5, shell=True)
+    _ = _common.execute_command([fake_initd], timeout_secs=5)
 
     # Cleanup
     _common.remove_file(fake_initd)

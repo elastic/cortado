@@ -94,7 +94,7 @@ def main():
 
     for command in schtask_commands:
         command = command.format(host=schtasks_host, name=task_name)
-        _ = _common.execute_command([command], shell=True)
+        _ = _common.execute_command([command])
 
     # Remote powershell
     _ = _common.execute_command(["C:\\Windows\\system32\\wsmprovhost.exe", "-Embedding"], timeout_secs=5)

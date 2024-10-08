@@ -68,7 +68,7 @@ def main():
     for command in commands[0:sample]:
         log.info("Running `{command}`")
         if command in slow_commands:
-            code, _, _ = _common.execute_command([command], shell=True, timeout_secs=15)
+            code, _, _ = _common.execute_command([command],) timeout_secs=15)
         else:
-            code, _, _ = _common.execute_command([command], shell=True)
+            code, _, _ = _common.execute_command([command])
         log.info(f"Retcode for `{command}`: {code}")

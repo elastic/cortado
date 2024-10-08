@@ -31,7 +31,7 @@ def main() -> None:
     log.info("Launching fake builtin commands for disabling security controls")
     command = "stop"
     command1 = "apparmor"
-    _ = _common.execute_command([masquerade, command, command1], timeout_secs=10, shell=True)  # noqa: S604
+    _ = _common.execute_command([masquerade, command, command1], timeout_secs=10)  # noqa: S604
     # cleanup
     _common.remove_file(masquerade)
 

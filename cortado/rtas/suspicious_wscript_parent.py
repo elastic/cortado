@@ -46,7 +46,7 @@ def main():
         _ = _common.execute_command([str(app_path), "/c", "wscript.exe", "script_path"], timeout_secs=1)
 
         log.info("Killing wscript window")
-        _ = _common.execute_command(["taskkill /IM wscript.exe"], shell=True)
+        _ = _common.execute_command("taskkill /IM wscript.exe")
 
         log.info("Cleanup %s" % app_path)
         _common.remove_file(app_path)

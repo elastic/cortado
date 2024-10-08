@@ -37,7 +37,7 @@ def main():
     commands = [c.strip() for c in commands.splitlines()]
 
     for a in commands:
-        _ = _common.execute_command([a], shell=True)
+        _ = _common.execute_command([a])
         time.sleep(1)
 
     _ = _common.execute_command(["taskkill", "/F", "/im", "calc.exe"])

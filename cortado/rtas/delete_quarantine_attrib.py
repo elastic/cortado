@@ -30,7 +30,7 @@ def main():
     # Execute commands
     log.info("Launching fake delete commands to delete quarantine attribute.")
     command = f"{masquerade} xattr -d com.apple.quarantine"
-    _ = _common.execute_command([masquerade2, "childprocess", command], shell=True, timeout_secs=5)
+    _ = _common.execute_command([masquerade2, "childprocess", command],) timeout_secs=5)
 
     # cleanup
     _common.remove_file(masquerade)

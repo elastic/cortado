@@ -26,6 +26,6 @@ def main():
 
     # Execute the 'env' command which in turn executes the child command
     log.info(f"Executing 'env' with child command: {command}")
-    _ = _common.execute_command([env_command], shell=True)
+    _ = _common.execute_command([env_command])
 
     log.info("RTA execution completed.")

@@ -47,7 +47,7 @@ def main():
     # Execute command
     log.info("Launching fake builtin commands to recursively delete")
     command = f"{masquerade2} -rf arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8 arg9 arg10 /home/test"
-    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=10, shell=True)
+    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

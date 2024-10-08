@@ -28,7 +28,7 @@ def main():
         _common.create_macos_masquerade(masquerade)
 
     log.info("Executing fake sed command for LinPEAS behavior.")
-    _ = _common.execute_command([masquerade, "testImPoSSssSiBlEeetest"], timeout_secs=5, shell=True)
+    _ = _common.execute_command([masquerade, "testImPoSSssSiBlEeetest"], timeout_secs=5)
 
     # cleanup
     _common.remove_file(masquerade)

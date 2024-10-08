@@ -40,7 +40,7 @@ def main():
     commands = [c.strip() for c in commands.splitlines()]
 
     for command in commands:
-        _ = _common.execute_command(["powershell", "-c", command], shell=True)
+        _ = _common.execute_command(["powershell", "-c", command])
         time.sleep(1)
 
     _ = _common.execute_command(["taskkill", "/F", "/im", "calc.exe"])

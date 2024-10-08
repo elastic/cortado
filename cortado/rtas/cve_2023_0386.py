@@ -30,7 +30,7 @@ def main() -> None:
     # Execute command
     log.info("Executing Fake Commands to simulate CVE-2023-0386 Exploitation Attempt")
     command = f"{masquerade2} -o rw,nosuid,nodev ./* "
-    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=10, shell=True)  # noqa: S604
+    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=10)  # noqa: S604
 
     # cleanup
     _common.remove_file(masquerade)

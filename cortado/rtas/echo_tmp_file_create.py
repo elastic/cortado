@@ -29,7 +29,7 @@ def main():
     # Execute command
     log.info("Launching fake bash commands to abnormal echo shell commands")
     command = f"bash -c 'echo* > {file_path}'"
-    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=10, shell=True)
+    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

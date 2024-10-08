@@ -27,4 +27,4 @@ def main():
     _common.copy_file("/usr/bin/curl", masquerade)
 
     log.info("Executing commands to mimic network activity from tclsh")
-    _ = _common.execute_command([masquerade, url], shell=True)
+    _ = _common.execute_command([masquerade, url])

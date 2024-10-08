@@ -26,6 +26,6 @@ def main():
     log.info("Launching fake builtin commands for disabling _common mining services by name")
     command = "start"
     command1 = "apache4.service"
-    _ = _common.execute_command([masquerade, command, command1], timeout_secs=10, shell=True)
+    _ = _common.execute_command([masquerade, command, command1], timeout_secs=10)
     # cleanup
     _common.remove_file(masquerade)

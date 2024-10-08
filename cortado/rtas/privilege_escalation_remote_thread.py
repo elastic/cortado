@@ -28,7 +28,7 @@ def main():
         name = "thread_injector_intel"
         sleep_name = "com.apple.sleep_intel"
     sleep_path = _common.get_resource_path(f"bin/{sleep_name}")
-    _ = _common.execute_command([f"{sleep_path} 5000 &"], shell=True)
+    _ = _common.execute_command([f"{sleep_path} 5000 &"])
 
     path = _common.get_resource_path(f"bin/{name}")
-    _ = _common.execute_command([f"{path} `pgrep {sleep_name}`"], shell=True)
+    _ = _common.execute_command([f"{path} `pgrep {sleep_name}`"])

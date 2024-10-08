@@ -32,7 +32,7 @@ def main():
     # Execute command
     log.info("Launching fake commands for Remote Code Execution via Confluence")
     command = f"{masquerade2} date"
-    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=10, shell=True)
+    _ = _common.execute_command([masquerade, "childprocess", command], timeout_secs=10)
 
     # cleanup
     _common.remove_file(masquerade)

@@ -26,4 +26,4 @@ log = logging.getLogger(__name__)
 )
 def main():
     log.info("Executing egrep commands to fingerprint virtual machine.")
-    _ = _common.execute_command(["egrep", "-i", '"Manufacturer: (parallels|vmware|virtualbox)"'], shell=True)
+    _ = _common.execute_command(["egrep", "-i", '"Manufacturer: (parallels|vmware|virtualbox)"'])
