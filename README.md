@@ -28,19 +28,23 @@ $ cortado --help
 
  Usage: cortado [OPTIONS] COMMAND [ARGS]...
 
-╭─ Options ────────────────────────────────────────────────────────────────────────────────────────╮
-│ --verbose               --no-verbose           [default: no-verbose]                             │
-│ --logs-as-json          --no-logs-as-json      [default: no-logs-as-json]                        │
-│ --install-completion                           Install completion for the current shell.         │
-│ --show-completion                              Show completion for the current shell, to copy it │
-│                                                or customize the installation.                    │
-│ --help                                         Show this message and exit.                       │
-╰──────────────────────────────────────────────────────────────────────────────────────────────────╯
-╭─ Commands ───────────────────────────────────────────────────────────────────────────────────────╮
-│ generate-mapping   Generate a mapping file that contains rule to RTA relations.                  │
-│ get-coverage       Calculate RTA coverage for the rules with paths that match provided glob      │
-│ print-rtas         Print information about all available RTAs                                    │
-╰──────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ──────────────────────────────────────────────────────────────────────╮
+│ --verbose               --no-verbose           [default: no-verbose]           │
+│ --logs-as-json          --no-logs-as-json      [default: no-logs-as-json]      │
+│ --install-completion                           Install completion for the      │
+│                                                current shell.                  │
+│ --show-completion                              Show completion for the current │
+│                                                shell, to copy it or customize  │
+│                                                the installation.               │
+│ --help                                         Show this message and exit.     │
+╰────────────────────────────────────────────────────────────────────────────────╯
+╭─ Commands ─────────────────────────────────────────────────────────────────────╮
+│ generate-mapping   Generate a mapping file that contains rule to RTA           │
+│                    relations.                                                  │
+│ get-coverage       Calculate RTA coverage for the rules with paths that match  │
+│                    provided glob                                               │
+│ print-rtas         Print information about all available RTAs                  │
+╰────────────────────────────────────────────────────────────────────────────────╯
 ```
 
 This script requires `utils` extra dependencies to be installed.
