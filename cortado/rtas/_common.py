@@ -239,21 +239,19 @@ def execute_command(
     hostname = get_hostname()
     log.info(f"Executing command as `{user_name}` at `{hostname}`: `{command_str}`")
 
-    stdout = subprocess.PIPE
-    stderr = subprocess.STDOUT
-
     start = time.time()
     try:
         result = subprocess.run(
             command_args,
             input=stdin_data,
-            stdout=stdout,
-            stderr=stderr,
+            stdout=subprocess.PIPE if capture_output else subprocess.DEVNULL,
+            stderr=subprocess.PIPE if capture_output else subprocess.DEVNULL,
             capture_output=capture_output,
             timeout=timeout_secs,
             shell=shell,
             env=env_vars,
             check=True,
+            start_new_session=True,
         )
     except subprocess.CalledProcessError as e:
         log.error(f"Error while executing command in a subprocess: {e}")
@@ -485,7 +483,8 @@ def enable_logon_audit(host: str = "localhost", verbose: bool = True, sleep_secs
     # additional time to allow auditing to process
     time.sleep(sleep_secs)
     if retcode != 0:
-        log.error(f"Error while enabling logon audit: `{stderr or " "}`")
+        error = stderr or ""
+        log.error(f"Error while enabling logon audit: `{error}`")
         return False
     return True
 

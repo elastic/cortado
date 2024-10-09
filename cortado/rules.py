@@ -23,7 +23,7 @@ class Rule:
     path: Path
 
     maturity: Literal["production", "deprecated"] | None
-    releases: list[Literal["production", "diagnostic"]] | None
+    releases: list[Literal["production", "diagnostic"]]
 
 
 def load_rule(path: Path) -> Rule:
@@ -63,7 +63,8 @@ def normalize_rule(rule_body: dict[str, Any], rule_path: Path) -> Rule:
 
     rule_type = rule.get("type")  # type: ignore
     if not rule_type:
-        raise ValueError("Rule type is not found in `rule` block in the rule body")
+        log.debug("Rule type is not found in `rule` block in the rule body, assuming `endpoint`")
+        rule_type = "endpoint"
 
     name = rule.get("name")  # type: ignore
     if not name:
@@ -73,7 +74,7 @@ def normalize_rule(rule_body: dict[str, Any], rule_path: Path) -> Rule:
     maturity = rule_body.get("metadata", {}).get("maturity")
 
     # Release labes are only set in the rules in `endpoint-rules` repo
-    release = rule_body.get("internal", {}).get("release")
+    releases = rule_body.get("internal", {}).get("release")
 
     return Rule(
         id=rule_id,  # type: ignore
@@ -82,7 +83,7 @@ def normalize_rule(rule_body: dict[str, Any], rule_path: Path) -> Rule:
         type=rule_type,  # type: ignore
         path=rule_path,
         maturity=maturity,
-        releases=release,
+        releases=releases or [],
     )
 
 
@@ -103,7 +104,7 @@ def get_coverage(rules: list[Rule], rtas: list[Rta] | None = None) -> list[tuple
 
     issue_rule_without_rta = "No RTAs for the rule"
     issue_deprecated_rule_with_rtas = "Rule is deprecated but has associated RTAs"
-    rules_with_issues: list[tuple[Rule, list[str]]] = []
+    rules_and_issues: list[tuple[Rule, list[str]]] = []
 
     for rule in sorted(rules, key=lambda r: r.id):
         issues: list[str] = []
@@ -114,6 +115,6 @@ def get_coverage(rules: list[Rule], rtas: list[Rta] | None = None) -> list[tuple
         if rule_to_rtas.get(rule.id) and rule.maturity == "deprecated":
             issues.append(issue_deprecated_rule_with_rtas)
 
-        rules_with_issues.append((rule, issues))
+        rules_and_issues.append((rule, issues))
 
-    return rules_with_issues
+    return rules_and_issues

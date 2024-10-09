@@ -1,7 +1,6 @@
 import logging
 from collections import Counter
 import sys
-import enum
 from multiprocessing import Pool
 
 from cortado.rtas import CodeRta, get_registry, load_module
@@ -11,12 +10,6 @@ log = logging.getLogger(__name__)
 
 
 DUMMY_RTA_NAME = "test-rta"
-
-
-class RtaIssue(enum.StrEnum):
-    NOT_EXECUTABLE = "RTA is not executable"
-    FAILURE_DURING_LOADING = "Failure during loading"
-    FAILURE_DURING_EXEC = "Failure during execution"
 
 
 # CLI interface with the bare-minimum dependencies
@@ -58,7 +51,7 @@ def run_rta():
             raise ValueError("Can't run a hash RTA")
 
 
-def _run_rta_in_process(rta_name: str) -> RtaIssue | None:
+def _run_rta_in_process(rta_name: str) -> Exception | None:
     configure_logging()
     log = logging.getLogger(__name__)
 
@@ -72,22 +65,23 @@ def _run_rta_in_process(rta_name: str) -> RtaIssue | None:
 
         rta = registry.get(rta_name)
         if not rta:
-            raise ValueError(f"Can't find RTA with name `{rta_name}`")
+            return ValueError(f"Can't find RTA with name `{rta_name}`")
 
-    except Exception:
+    except Exception as e:
         log.error(f"Can't load RTA `{rta_name}`", exc_info=True)
-        return RtaIssue.FAILURE_DURING_LOADING
+        return e
 
     if not isinstance(rta, CodeRta):
         log.warning(f"RTA `{rta_name}` is not executable")
-        return RtaIssue.NOT_EXECUTABLE
+        return ValueError(f"RTA `{rta_name}` is not executable")
 
     log.debug(f"Running {rta_name}")
     try:
         rta.code_func()
-    except Exception:
+    except Exception as e:
         log.error(f"RTA `{rta_name}` failed during execution", exc_info=True)
-        return RtaIssue.FAILURE_DURING_EXEC
+        return e
+
     return None
 
 
@@ -113,16 +107,16 @@ def run_rtas_for_os():
     with Pool(pool_size) as p:
         errors = p.map(_run_rta_in_process, rta_names)
 
-    names_and_errors = zip(rta_names, errors)
+    names_and_errors = list(zip(rta_names, errors))
 
     error_counter = Counter()  # type: ignore
-    error_counter.update([e for _, e in names_and_errors])  # type: ignore
+    error_counter.update([("Failed" if e else "Succeeded") for _, e in names_and_errors])  # type: ignore
 
-    for name, error in names_and_errors:
+    for name, error in sorted(names_and_errors):
         if errors:
-            print(f"𐄂 {name}: {error}")
+            log.info(f"Failure: `{name}`, Error: `{str(error)}`")
         else:
-            print(f"✓ {name}")
+            log.info(f"Success: `{name}`")
 
     results = ", ".join([f"{k}={v}" for k, v in error_counter.items()])  # type: ignore
     log.info(f"RTA execution results: {results}")

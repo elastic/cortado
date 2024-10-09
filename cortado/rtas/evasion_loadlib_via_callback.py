@@ -4,7 +4,6 @@
 # 2.0.
 
 import logging
-from pathlib import Path
 
 from . import OSType, RuleMetadata, _common, register_code_rta
 
@@ -24,11 +23,11 @@ log = logging.getLogger(__name__)
 # testing PE that will load ws2_32 and dnsapi.dll via a Callback function using RtlQueueWorkItem and RtlRegisterWait
 # source code - https://gist.github.com/joe-desimone/0b2bb00eca4c522ba0bd5541a6f3528b
 def main():
-    BIN = _common.get_resource_path("bin/LoadLib-Callback64.exe")
+    bin_exe = _common.get_resource_path("bin/LoadLib-Callback64.exe")
 
-    if Path(BIN).is_file():
-        log.info(f"File {BIN} will be executed")
-        _ = _common.execute_command(BIN, shell=True)
+    if bin_exe.is_file():
+        log.info(f"File {bin_exe} will be executed")
+        _ = _common.execute_command(str(bin_exe), shell=True)
         # cleanup
         _ = _common.execute_command(["taskkill", "/f", "/im", "LoadLib-Callback64.exe"])
         log.info("RTA Done!")

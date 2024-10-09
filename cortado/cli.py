@@ -13,7 +13,7 @@ from rich.console import Console
 from rich.text import Text
 
 from cortado import mapping, rules
-from cortado.rtas import get_registry, load_all_modules
+from cortado.rtas import get_registry
 from cortado.utils import configure_logging
 
 from typing import Any
@@ -28,8 +28,6 @@ def print_rtas(as_json: bool = False):
     """
     Print information about all available RTAs
     """
-    load_all_modules()
-
     registry = get_registry()
     sorted_names = sorted(registry.keys())
 
@@ -55,7 +53,6 @@ def print_rtas(as_json: bool = False):
         else:
             endpoint_rules_count = str(len(rta.endpoint_rules))
             siem_rules_count = str(len(rta.siem_rules))
-
 
         table.add_row(
             Text.assemble((rta.id, "dim")),
@@ -85,9 +82,9 @@ def generate_mapping(mapping_file: Path = mapping.DEFAULT_MAPPING_FILE):
 
 
 @app.command()
-def get_coverage(rules_glob: str, with_maturity: list[str] | None = None):
+def get_coverage(rules_glob: str, with_maturity: list[str] | None = None, with_issues: bool = False):
     """
-    Calculate RTA coverage for the rules in a specific folder.
+    Calculate RTA coverage for the rules with paths that match provided glob
     """
     _log = log.bind(rules_glob=rules_glob)
     _log.info("Calculating coverage against rules at provided path")
@@ -100,8 +97,11 @@ def get_coverage(rules_glob: str, with_maturity: list[str] | None = None):
     rules_with_issues = rules.get_coverage(loaded_rules)
 
     rules_to_print = [
-        (rule, issues) for rule, issues in rules_with_issues
-        if not with_maturity or rule.maturity in with_maturity  # filter by maturity if set
+        (rule, issues)
+        for rule, issues in rules_with_issues
+        # filter by maturity if `--with-maturity` criteria are set
+        # filter by issues if `--with-issues` flag is set
+        if ((not with_maturity or rule.maturity in with_maturity) and (not with_issues or issues))
     ]
 
     type_counter = Counter()  # type: ignore
@@ -110,13 +110,25 @@ def get_coverage(rules_glob: str, with_maturity: list[str] | None = None):
     maturity_counter = Counter()  # type: ignore
     maturity_counter.update([r.maturity for r, _ in rules_to_print])  # type: ignore
 
-    table = Table(show_header=True, header_style="bold magenta", box=box.MINIMAL, border_style="grey50", show_footer=True)
-    table.add_column("Rule ID", str(len(rules_to_print)), no_wrap=True)
+    releases_counter = Counter()  # type: ignore
+    releases_counter.update([release for r, _ in rules_to_print for release in r.releases])  # type: ignore
+
+    issues_counter = Counter()  # type: ignore
+    issues_counter.update([i for _, issues in rules_to_print for i in issues])  # type: ignore
+
+    table = Table(
+        show_header=True,
+        header_style="bold magenta",
+        box=box.MINIMAL,
+        border_style="grey50",
+        show_footer=True,
+    )
+    table.add_column("Rule ID", f"Total: {len(rules_to_print)}", no_wrap=True)
     table.add_column("Type", "\n".join(f"{k}: {v}" for k, v in type_counter.items()))  # type: ignore
     table.add_column("Name")
     table.add_column("Maturity", "\n".join(f"{k}: {v}" for k, v in maturity_counter.items()))  # type: ignore
-    table.add_column("Releases")
-    table.add_column("Issues")
+    table.add_column("Releases", "\n".join(f"{k}: {v}" for k, v in releases_counter.items()))  # type: ignore
+    table.add_column("Issues", "\n".join(f"{k}: {v}" for k, v in issues_counter.items()))  # type: ignore
 
     for rule, issues in rules_to_print:
         table.add_row(

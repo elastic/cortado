@@ -26,4 +26,4 @@ def main():
     # The RTA script has complied binary in the /bin folder. Refer src folder for the origin code.
 
     exploit_path = _common.get_resource_path("bin/pkexec_cve20214034/cve-2021-4034")
-    _ = _common.execute_command(exploit_path, shell=True)
+    _ = _common.execute_command(str(exploit_path), shell=True)

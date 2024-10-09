@@ -52,7 +52,7 @@ def main():
 
     target_app_exe = _common.get_resource_path(TARGET_APP_EXE)
     _common.copy_file(target_app_exe, target_path)
-    _ = _common.execute_command(target_path, shell=True)
+    _ = _common.execute_command(str(target_path), shell=True)
 
     time.sleep(0.5)
     _common.remove_file(target_path)
