@@ -45,6 +45,7 @@ utils = ["typer", "structlog", "ecs-logging", "rich", "pyyaml"]
 
 [tool.poetry.scripts]
 cortado-run-rta = "cortado.rtas._cli:run_rta"
+cortado-run-rtas = "cortado.rtas._cli:run_rtas_for_os"
 cortado = "cortado.cli:run_cli"
 
 [tool.black]
