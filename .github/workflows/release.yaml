@@ -1,0 +1,50 @@
+name: Build release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  building-dev-release:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest 
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        id: setup-python
+        with:
+          python-version: '3.12'
+      - name: Set up cache
+        uses: actions/cache@v4
+        id: cached-poetry-dependencies
+        with:
+          path: ./.venv
+          key: venv-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+      - if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        name: Create a virtual env
+        run: python3 -m venv ./.venv
+      - if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        name: Install dependencies
+        run: |
+          . .venv/bin/activate
+          python -m pip install --upgrade pip
+          pip install poetry
+          poetry config installer.parallel false
+          poetry install --with dev --all-extras
+      - name: Build a wheel
+        run: |
+          . .venv/bin/activate
+          DEV_RELEASE=$(git rev-parse --short=8 HEAD)
+          poetry version "$(poetry version -s)+$DEV_RELEASE"
+          poetry build -f wheel
+      - name: Create a release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          POETRY_VERSION=$(poetry version -s)
+          gh release create ${{ github.ref_name }} \
+            dist/cortado-*-py3-none-any.whl \
+            --generate-notes \
+            --title "Dev Version $POETRY_VERSION"
