@@ -1,6 +1,30 @@
 # cortado
 Consolidated RTAs
 
+## Build and deploy to VM
+
+Cortado is deployed as a python wheel package (`Wheels are the new standard of Python distribution and are intended to
+replace eggs`). To build a wheel, run `poetry build` command:
+
+```bash
+$ poetry build -f wheel
+Building cortado (0.1.0)
+  - Building wheel
+  - Built cortado-0.1.0-py3-none-any.whl
+```
+
+`cortado-0.1.0-py3-none-any.whl` file is a python wheel that can be delivered to a VM and installed with `pip`:
+
+```bash
+$ pip install ./cortado-0.1.0-py3-none-any.whl
+Processing ./cortado-0.1.0-py3-none-any.whl
+Installing collected packages: cortado
+Successfully installed cortado-0.1.0
+$
+```
+
+Note that the wheel does not contain any dependencies and will not install any dependencies needed for the orchestration
+code to run. It's main purpose it to deliver and run RTAs.
 
 ## Install for development
 
