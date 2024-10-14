@@ -1,4 +1,4 @@
-name: Build release
+name: Release
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  building-dev-release:
+  dev-release:
     permissions:
       contents: write
     runs-on: ubuntu-latest 
@@ -43,6 +43,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          . .venv/bin/activate
           POETRY_VERSION=$(poetry version -s)
           gh release create ${{ github.ref_name }} \
             dist/cortado-*-py3-none-any.whl \
