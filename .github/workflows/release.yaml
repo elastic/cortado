@@ -48,4 +48,4 @@ jobs:
           gh release create ${{ github.ref_name }} \
             dist/cortado-*-py3-none-any.whl \
             --generate-notes \
-            --title "Dev Version $POETRY_VERSION"
+            --title "dev-release-$POETRY_VERSION"
