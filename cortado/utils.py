@@ -3,7 +3,6 @@ from typing import Any
 
 import ecs_logging
 import structlog
-from elasticapm.handlers.structlog import structlog_processor  # type: ignore
 from structlog.processors import CallsiteParameter
 
 CUSTOM_ECS_FIELDS_ROOT_KEY = "cortado"
@@ -68,7 +67,6 @@ def configure_logging(logging_level: int = logging.DEBUG, as_json: bool = False,
             structlog.processors.format_exc_info,
             normalise_eventdict_to_ecs,
             # Extend event dict with APM tracing properties
-            structlog_processor,
             ecs_logging.StructlogFormatter(),
         ]
     else:

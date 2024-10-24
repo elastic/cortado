@@ -20,7 +20,7 @@ jobs:
         id: cached-poetry-dependencies
         with:
           path: ./.venv
-          key: venv-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+          key: venv-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}-full
       - if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         name: Create a virtual env
         run: python3 -m venv ./.venv
@@ -53,7 +53,7 @@ jobs:
         id: cached-poetry-dependencies
         with:
           path: ./.venv
-          key: venv-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+          key: venv-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}-full
       - if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         name: Create a virtual env
         run: python3 -m venv ./.venv
@@ -83,7 +83,7 @@ jobs:
         id: cached-poetry-dependencies
         with:
           path: ./.venv
-          key: venv-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+          key: venv-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}-min
       - if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         name: Create a virtual env
         run: python3 -m venv ./.venv
