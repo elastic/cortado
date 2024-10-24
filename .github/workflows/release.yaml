@@ -45,7 +45,7 @@ jobs:
         run: |
           . .venv/bin/activate
           POETRY_VERSION=$(poetry version -s)
-          gh release create ${{ github.ref_name }} \
+          gh release create "dev-release-$POETRY_VERSION" \
             dist/cortado-*-py3-none-any.whl \
             --generate-notes \
             --title "dev-release-$POETRY_VERSION"
