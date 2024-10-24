@@ -88,7 +88,7 @@ def normalize_rule(rule_body: dict[str, Any], rule_path: Path) -> Rule:
     # `rule_id` in `detection-rules`
     # `uuid` in `endpoint-rules`
 
-    is_endpoint_rule = rule.get("rule_id") is None
+    is_endpoint_rule = rule.get("rule_id") is None  # type: ignore
 
     rule_id: str | None = rule.get("uuid") or rule.get("rule_id")  # type: ignore
     if not rule_id:
