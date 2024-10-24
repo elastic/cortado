@@ -109,10 +109,7 @@ def get_current_exec_args():
 
 
 def get_winreg():
-    try:
-        import _winreg as winreg  # type: ignore
-    except ImportError:
-        import winreg
+    import winreg
     return winreg
 
 

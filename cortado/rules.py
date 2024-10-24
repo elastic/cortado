@@ -1,6 +1,7 @@
 import glob
 import tomli
 import structlog
+import enum
 
 from collections import defaultdict
 
@@ -20,10 +21,30 @@ class Rule:
     type: str
     rule: dict[str, Any]
 
+    is_endpoint_rule: bool
+
     path: Path
 
     maturity: Literal["production", "deprecated"] | None
     releases: list[Literal["production", "diagnostic"]]
+
+
+class CoverageIssue(enum.StrEnum):
+    NO_RTA = (enum.auto(), "No RTAs for the rule")
+    DEPRECATED_WITH_RTA = (enum.auto(), "Rule is deprecated but has associated RTAs")
+
+    def __new__(cls, value: str, _: str):
+        obj = str.__new__(cls, value)
+        obj._value_ = value
+        return obj
+
+    def __init__(self, _: str, description: str):
+        self._description_ = description
+
+    # Make sure the description is read-only
+    @property
+    def description(self):
+        return self._description_
 
 
 def load_rule(path: Path) -> Rule:
@@ -32,11 +53,20 @@ def load_rule(path: Path) -> Rule:
     return normalize_rule(rule_data, path)
 
 
-def load_rules(path_glob: str, skip_on_error: bool = True) -> list[Rule]:
+def load_rules_from_glob(path_glob: str, skip_on_error: bool = True) -> list[Rule]:
+    return load_rules_from_paths(glob.glob(path_glob), skip_on_error=skip_on_error)
+
+
+def load_rules_from_paths(paths: list[str], skip_on_error: bool = True) -> list[Rule]:
     rules: list[Rule] = []
-    for path in glob.glob(path_glob):
+    for path in paths:
+        p = Path(path)
+        if not p.exists():
+            log.error("Provided rule path does not exist", path=str(p))
+            raise ValueError(f"Can't read provided path: {p}")
+
         try:
-            rule = load_rule(Path(path))
+            rule = load_rule(p)
         except ValueError as e:
             if skip_on_error:
                 log.warning("Error while reading a rule, skipping", rule=path, error=e)
@@ -57,6 +87,9 @@ def normalize_rule(rule_body: dict[str, Any], rule_path: Path) -> Rule:
 
     # `rule_id` in `detection-rules`
     # `uuid` in `endpoint-rules`
+
+    is_endpoint_rule = rule.get("rule_id") is None
+
     rule_id: str | None = rule.get("uuid") or rule.get("rule_id")  # type: ignore
     if not rule_id:
         raise ValueError("Rule ID is not found in `rule` block in the rule body")
@@ -84,10 +117,11 @@ def normalize_rule(rule_body: dict[str, Any], rule_path: Path) -> Rule:
         path=rule_path,
         maturity=maturity,
         releases=releases or [],
+        is_endpoint_rule=is_endpoint_rule,
     )
 
 
-def get_coverage(rules: list[Rule], rtas: list[Rta] | None = None) -> list[tuple[Rule, list[str]]]:
+def get_coverage(rules: list[Rule], rtas: list[Rta] | None = None) -> list[tuple[Rule, list[Rta], list[CoverageIssue]]]:
     rtas = rtas or list(get_registry().values())
 
     rule_to_rtas: dict[str, list[Rta]] = defaultdict(list)
@@ -102,19 +136,18 @@ def get_coverage(rules: list[Rule], rtas: list[Rta] | None = None) -> list[tuple
             log.debug("RTA without any rules found, skipping", id=rta.id, name=rta.name)
             continue
 
-    issue_rule_without_rta = "No RTAs for the rule"
-    issue_deprecated_rule_with_rtas = "Rule is deprecated but has associated RTAs"
-    rules_and_issues: list[tuple[Rule, list[str]]] = []
+    rules_rtas_issues: list[tuple[Rule, list[Rta], list[CoverageIssue]]] = []
 
     for rule in sorted(rules, key=lambda r: r.id):
-        issues: list[str] = []
+        issues: list[CoverageIssue] = []
 
         if rule.id not in rule_to_rtas:
-            issues.append(issue_rule_without_rta)
+            issues.append(CoverageIssue.NO_RTA)
 
         if rule_to_rtas.get(rule.id) and rule.maturity == "deprecated":
-            issues.append(issue_deprecated_rule_with_rtas)
+            issues.append(CoverageIssue.DEPRECATED_WITH_RTA)
 
-        rules_and_issues.append((rule, issues))
+        rtas = rule_to_rtas[rule.id]
+        rules_rtas_issues.append((rule, rtas, issues))
 
-    return rules_and_issues
+    return rules_rtas_issues
