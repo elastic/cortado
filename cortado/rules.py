@@ -6,12 +6,21 @@ import enum
 from collections import defaultdict
 
 from pathlib import Path
-from typing import Any, Literal
+from typing import Any
 from dataclasses import dataclass
 
 from cortado.rtas import get_registry, Rta
 
 log = structlog.get_logger(__name__)
+
+
+class RuleMaturity(enum.StrEnum):
+    PRODUCTION = "production"
+    DEPRECATED = "deprecated"
+
+class RuleRelease(enum.StrEnum):
+    PRODUCTION = "production"
+    DIAGNOSTIC = "diagnostic"
 
 
 @dataclass
@@ -25,8 +34,8 @@ class Rule:
 
     path: Path
 
-    maturity: Literal["production", "deprecated"] | None
-    releases: list[Literal["production", "diagnostic"]]
+    maturity: RuleMaturity | None
+    releases: list[RuleRelease]
 
 
 class CoverageIssue(enum.StrEnum):

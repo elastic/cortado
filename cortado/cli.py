@@ -14,6 +14,7 @@ from rich.console import Console
 from rich.text import Text
 
 from cortado import mapping, rules
+from cortado.rules import RuleMaturity, RuleRelease
 from cortado.rtas import get_registry, HashRta
 from cortado.utils import configure_logging
 
@@ -89,7 +90,20 @@ def get_coverage(
     rules_glob: Annotated[str | None, typer.Option(help="A path glob that resolves into rule paths")] = None,
     rule_paths_str: Annotated[str | None, typer.Option("--rules", help="Comma-separated list of rule paths")] = None,
     filter_by_maturity: Annotated[
-        list[str] | None, typer.Option(help="Filter rules by maturity. Multiple instances are accepted")
+        list[RuleMaturity] | None,
+        typer.Option(help="Filter rules by maturity (`production`, `deprecated`). Supports multiple values."),
+    ] = None,
+    filter_by_release: Annotated[
+        list[RuleRelease] | None,
+        typer.Option(help="Filter rules by release (`production`, `diagnostic`). Supports multiple values."),
+    ] = None,
+    filter_by_type: Annotated[
+        list[str] | None,
+        typer.Option(help="Filter rules by rule type. Supports multiple values."),
+    ] = None,
+    filter_by_rta: Annotated[
+        list[str] | None,
+        typer.Option(help="Filter rules by RTAs. Supports multiple values."),
     ] = None,
     with_issues: Annotated[bool, typer.Option(help="Only show rules with issues")] = False,
     as_json: Annotated[bool, typer.Option(help="Output results in JSON")] = False,
@@ -122,7 +136,13 @@ def get_coverage(
         for rule, rtas, issues in rules_rtas_issues
         # filter by maturity if `--with-maturity` criteria are set
         # filter by issues if `--with-issues` flag is set
-        if ((not filter_by_maturity or rule.maturity in filter_by_maturity) and (not with_issues or issues))
+        if (
+            (not filter_by_maturity or rule.maturity in filter_by_maturity)
+            and (not filter_by_release or (set(filter_by_release) & set(rule.releases)))
+            and (not filter_by_type or rule.type in filter_by_type)
+            and (not filter_by_rta or (set(filter_by_rta) & set([r.name for r in rtas])))
+            and (not with_issues or issues)
+        )
     ]
 
     type_counter = Counter()  # type: ignore
