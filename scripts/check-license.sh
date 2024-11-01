@@ -1,6 +1,6 @@
 FILE_GLOB=$1
 
-LICENSE_BODY_FILE=".license-header"
+LICENSE_BODY_FILE="license-header.txt"
 LICENSE_LINES=$(wc -l $LICENSE_BODY_FILE | xargs | cut -f1 -d ' ')
 
 echo "License text from '$LICENSE_BODY_FILE' has $LICENSE_LINES lines"
