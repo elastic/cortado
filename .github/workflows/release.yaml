@@ -39,6 +39,18 @@ jobs:
           DEV_RELEASE=$(git rev-parse --short=8 HEAD)
           poetry version "$(poetry version -s)+$DEV_RELEASE"
           poetry build -f wheel
+      - name: Generate Release Notes from Commits Between Tags
+        id: release_notes
+        run: |
+          # Get the latest and previous tags
+          LAST_TAG=$(git describe --tags --abbrev=0 HEAD^)
+          CURRENT_TAG=$(git describe --tags --abbrev=0)
+
+          # Get commits between the two tags
+          NOTES=$(git log $LAST_TAG..$CURRENT_TAG --pretty=format:"- %s")
+
+          # Store notes in an environment variable
+          echo "RELEASE_NOTES=$NOTES" >> $GITHUB_ENV
       - name: Create a release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -47,5 +59,5 @@ jobs:
           POETRY_VERSION=$(poetry version -s)
           gh release create "dev-release-$POETRY_VERSION" \
             dist/cortado-*-py3-none-any.whl \
-            --generate-notes \
+            --notes "$RELEASE_NOTES" \
             --title "dev-release-$POETRY_VERSION"
