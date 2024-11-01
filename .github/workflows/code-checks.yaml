@@ -5,7 +5,9 @@ on:
     branches: [ "*" ]
     paths:
       - "*.py"
+      - ".github/workflows/*"
       - "**/*.py"
+
 jobs:
   linting:
     runs-on: ubuntu-latest 
