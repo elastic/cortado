@@ -41,6 +41,15 @@ jobs:
           . .venv/bin/activate
           poetry run pyright ./cortado
 
+  license-header-check:
+    runs-on: ubuntu-latest 
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Python files for a license header
+        run: |
+          bash ./check-license.sh "cortado/**/*.py"
+          exit $?
+
   unit-tests:
     runs-on: ubuntu-latest 
     steps:
