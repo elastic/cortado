@@ -1,4 +1,4 @@
-FILE_GLOB=$1
+DIR_PATH=$1
 
 LICENSE_BODY_FILE="scripts/license-header.txt"
 LICENSE_LINES=$(wc -l $LICENSE_BODY_FILE | xargs | cut -f1 -d ' ')
@@ -9,7 +9,11 @@ rc=0
 counter_failed=0
 counter_all=0
 
-for x in $FILE_GLOB; do  
+echo "Checking .py files in $DIR_PATH"
+
+for x in $(find $DIR_PATH -name "*.py"); do  
+
+    # echo "Checking $x"
 
     counter_all=$((counter_all+1))
 

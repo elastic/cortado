@@ -1,3 +1,8 @@
+# Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+# or more contributor license agreements. Licensed under the Elastic License
+# 2.0; you may not use this file except in compliance with the Elastic License
+# 2.0.
+
 import logging
 import sys
 
@@ -5,7 +10,6 @@ import structlog
 import typer
 import json
 
-from pathlib import Path
 from collections import Counter
 
 from rich import box
@@ -13,7 +17,7 @@ from rich.table import Table
 from rich.console import Console
 from rich.text import Text
 
-from cortado import mapping, rules
+from cortado import rules
 from cortado.rules import RuleMaturity, RuleRelease
 from cortado.rtas import get_registry, HashRta
 from cortado.utils import configure_logging
@@ -68,21 +72,6 @@ def print_rtas(as_json: bool = False):
         )
     console = Console()
     console.print(table)
-
-
-@app.command()
-def generate_mapping(mapping_file: Path = mapping.DEFAULT_MAPPING_FILE):
-    """
-    Generate a mapping file that contains rule to RTA relations.
-    """
-    _log = log.bind(path=str(mapping_file))
-    _log.info("Generating rule-to-RTA mapping file")
-
-    data = mapping.generate_mapping()
-    with open(mapping_file, "w") as f:
-        json.dump(data, f, sort_keys=True, indent=4)
-
-    _log.info("Mapping file saved")
 
 
 @app.command()
