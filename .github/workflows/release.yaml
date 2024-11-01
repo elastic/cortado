@@ -53,7 +53,7 @@ jobs:
           NOTES=$(git log $LAST_TAG..$CURRENT_TAG --pretty=format:"- %s")
 
           # Store notes in an environment variable
-          echo "RELEASE_NOTES=$NOTES" >> $GITHUB_ENV
+          echo "RELEASE_NOTES='$NOTES'" >> $GITHUB_ENV
       - name: Create a release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
