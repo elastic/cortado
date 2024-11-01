@@ -47,9 +47,13 @@ jobs:
     runs-on: ubuntu-latest 
     steps:
       - uses: actions/checkout@v4
-      - name: Check Python files for a license header
+      - name: Check Cortado files for a license header
         run: |
           bash ./scripts/check-license.sh ./cortado
+          exit $?
+      - name: Check test files for a license header
+        run: |
+          bash ./scripts/check-license.sh ./tests
           exit $?
 
   unit-tests:
