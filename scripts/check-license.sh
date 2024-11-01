@@ -18,7 +18,8 @@ for x in $FILE_GLOB; do
         head -$LICENSE_LINES $x | diff $LICENSE_BODY_FILE - || {
             rc=1;
             counter_failed=$((counter_failed+1))
-            echo "ERROR: License header not found in $x\n"
+            echo "ERROR: License header not found in $x"
+            echo
         }
     else
         echo "Skipping $x"
