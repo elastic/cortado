@@ -4,7 +4,8 @@
 # 2.0.
 
 from pathlib import Path
-from cortado.rtas import load_all_modules, get_registry
+
+from cortado.rtas import get_registry, load_all_modules
 
 
 def test_load_all_modules():
