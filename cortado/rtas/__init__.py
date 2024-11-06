@@ -8,9 +8,9 @@ import functools
 import importlib
 import importlib.resources
 import logging
-from dataclasses import KW_ONLY, dataclass, field, asdict
+from dataclasses import KW_ONLY, asdict, dataclass, field
 from types import MappingProxyType
-from typing import Callable, Any
+from typing import Any, Callable
 
 log = logging.getLogger(__name__)
 

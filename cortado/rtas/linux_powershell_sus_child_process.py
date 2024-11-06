@@ -4,8 +4,8 @@
 # 2.0.
 
 import logging
-
 from pathlib import Path
+
 from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)

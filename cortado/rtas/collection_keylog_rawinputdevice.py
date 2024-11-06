@@ -30,8 +30,10 @@ def main():
     from ctypes import WinError  # type: ignore
     from ctypes import sizeof  # type: ignore
     from ctypes import windll  # type: ignore
-    from ctypes import Structure, byref, c_int, c_long, c_uint, c_ushort, pointer
-    from ctypes.wintypes import BYTE, DWORD, HANDLE, HINSTANCE, HWND, LONG, LPCSTR, LPVOID, UINT, ULONG, WPARAM
+    from ctypes import (Structure, byref, c_int, c_long, c_uint, c_ushort,
+                        pointer)
+    from ctypes.wintypes import (BYTE, DWORD, HANDLE, HINSTANCE, HWND, LONG,
+                                 LPCSTR, LPVOID, UINT, ULONG, WPARAM)
 
     wndproc = WINFUNCTYPE(c_long, c_int, c_uint, c_int, c_int)  # type: ignore
 
