@@ -26,21 +26,21 @@ def main() -> None:
 
     # Create fake executable
     masquerade = "/tmp/bash"
-    source = _common.get_resource_path("bin", "linux.ditto_and_spawn")
+    source = _common.get_resource_path("bin/linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)
-    _common.execute_command(["chmod", "+x", masquerade])
+    _ = _common.execute_command(["chmod", "+x", masquerade])
 
     # Create a fake script that executes a fake binary
     with Path(rta_script).open("w", encoding="utf-8") as script:
-        script.write("#!/bin/bash\n")
-        script.write("/tmp/bash\n")
+        _ = script.write("#!/bin/bash\n")
+        _ = script.write("/tmp/bash\n")
 
     # Make the script executable
-    _common.execute_command(["chmod", "+x", rta_script])
+    _ = _common.execute_command(["chmod", "+x", rta_script])
 
     # Execute the fake script
     log.info("Launching fake script")
-    _common.execute_command([rta_script], timeout=5, kill=True, shell=True)  # noqa: S604
+    _ = _common.execute_command(rta_script, timeout_secs=5, shell=True)
 
     # Cleanup
     _common.remove_file(rta_script)

@@ -25,13 +25,13 @@ def main() -> None:
     log.info("Creating a fake executable..")
     masquerade = "/tmp/base64"
 
-    source = _common.get_resource_path("bin", "linux.ditto_and_spawn")
+    source = _common.get_resource_path("bin/linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)
     log.info("Granting execute permissions...")
-    _common.execute_command(["chmod", "+x", masquerade])
+    _ = _common.execute_command(["chmod", "+x", masquerade])
 
     commands = [masquerade, "-d", "IyEvdXNyL2Jpbi9weXRob24"]
-    _common.execute_command(commands, timeout_secs=5)
+    _ = _common.execute_command(commands, timeout_secs=5)
     log.info("Cleaning...")
     _common.remove_file(masquerade)
     log.info("Simulation successfull!")

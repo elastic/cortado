@@ -23,12 +23,12 @@ def main() -> None:
     log.info("Creating a fake executable..")
     masquerade = "/dev/shm/evil"
 
-    source = _common.get_resource_path("bin", "netcon_exec_chain.elf")
+    source = _common.get_resource_path("bin/netcon_exec_chain.elf")
     _common.copy_file(source, masquerade)
-    _common.execute_command(["chmod", "+x", masquerade])
+    _ = _common.execute_command(["chmod", "+x", masquerade])
 
     commands = [masquerade, "exec", "-c", "crypto-pool.info"]
-    _common.execute_command(commands, timeout_secs=5)
+    _ = _common.execute_command(commands, timeout_secs=5)
     log.info("Cleaning...")
     _common.remove_file(masquerade)
     log.info("Simulation successfull!")

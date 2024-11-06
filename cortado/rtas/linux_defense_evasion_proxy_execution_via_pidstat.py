@@ -24,18 +24,18 @@ def main() -> None:
     masquerade = "/tmp/pidstat"
     masquerade2 = "/tmp/sh"
 
-    source = _common.get_resource_path("bin", "linux.ditto_and_spawn")
+    source = _common.get_resource_path("bin/linux.ditto_and_spawn")
     _common.copy_file(source, masquerade)
     log.info("Granting execute permissions...")
-    _common.execute_command(["chmod", "+x", masquerade])
+    _ = _common.execute_command(["chmod", "+x", masquerade])
 
-    source = _common.get_resource_path("bin", "linux.ditto_and_spawn")
+    source = _common.get_resource_path("bin/linux.ditto_and_spawn")
     _common.copy_file(source, masquerade2)
     log.info("Granting execute permissions...")
-    _common.execute_command(["chmod", "+x", masquerade2])
+    _ = _common.execute_command(["chmod", "+x", masquerade2])
 
     commands = [masquerade, "-e", masquerade, "-c", "whoami"]
-    _common.execute_command(commands, timeout_secs=5)
+    _ = _common.execute_command(commands, timeout_secs=5)
     log.info("Cleaning...")
     _common.remove_file(masquerade)
     _common.remove_file(masquerade2)

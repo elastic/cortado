@@ -28,21 +28,21 @@ def main() -> None:
 
     # Create the fake parent process script
     with open(parent_process_path, "w") as parent_script:  # noqa: PTH123
-        parent_script.write("#!/bin/bash\n")
-        parent_script.write(f"{child_script_path}\n")
+        _ = parent_script.write("#!/bin/bash\n")
+        _ = parent_script.write(f"{child_script_path}\n")
 
     # Create the child script that will make the network connection
     with open(child_script_path, "w") as child_script:  # noqa: PTH123
-        child_script.write("#!/bin/bash\n")
-        child_script.write(f"{network_command}\n")
+        _ = child_script.write("#!/bin/bash\n")
+        _ = child_script.write(f"{network_command}\n")
 
     # Make the scripts executable
-    _common.execute_command(["chmod", "+x", parent_process_path])
-    _common.execute_command(["chmod", "+x", child_script_path])
+    _ = _common.execute_command(["chmod", "+x", parent_process_path])
+    _ = _common.execute_command(["chmod", "+x", child_script_path])
 
     # Execute the parent process script
     log.info("Executing the fake parent process script")
-    subprocess.Popen([parent_process_path])  # noqa: S603
+    _ = subprocess.Popen([parent_process_path])
 
     # Allow some time for the network connection to be attempted
     time.sleep(5)

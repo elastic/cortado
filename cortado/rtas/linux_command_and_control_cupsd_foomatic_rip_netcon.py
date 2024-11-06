@@ -22,17 +22,17 @@ log = logging.getLogger(__name__)
 def main() -> None:
     # Path for the fake motd executable
     masquerade = "/tmp/foomatic-rip"
-    source = _common.get_resource_path("bin", "netcon_exec_chain.elf")
+    source = _common.get_resource_path("bin/netcon_exec_chain.elf")
 
     log.info("Creating a fake motd executable..")
     _common.copy_file(source, masquerade)
     log.info("Granting execute permissions...")
-    _common.execute_command(["chmod", "+x", masquerade])
+    _ = _common.execute_command(["chmod", "+x", masquerade])
 
     # Execute the fake motd executable
     log.info("Executing the fake motd executable..")
     commands = [masquerade, "chain", "-h", "8.8.8.8", "-p", "53", "-c", "/tmp/foomatic-rip netcon -h 8.8.8.8 -p 53"]
-    _common.execute_command(commands, timeout_secs=5)
+    _ = _common.execute_command(commands, timeout_secs=5)
 
     # Cleanup
     _common.remove_file(masquerade)
