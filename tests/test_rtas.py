@@ -14,4 +14,4 @@ def test_load_all_modules():
 
     # Continuously changing number of RTAs
     # Please make sure that the change corresponds with the number of new RTAs added
-    assert len(registry) == 582
+    assert len(registry) == 590
