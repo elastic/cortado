@@ -3,11 +3,12 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-import logging
 # Name: Suspicious WMIC script execution
 # RTA: suspicious_wmic_script.py
 # Description: Uses the WMI command-line utility to execute built-in Windows commands which are unusual or unexpected.
 # Reference: https://subt0x11.blogspot.com/2018/04/wmicexe-whitelisting-bypass-hacking.html
+
+import logging
 import os
 
 from . import OSType, RuleMetadata, _common, register_code_rta
