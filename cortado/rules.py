@@ -23,6 +23,7 @@ class RuleMaturity(enum.StrEnum):
     PRODUCTION = "production"
     DEPRECATED = "deprecated"
 
+
 class RuleRelease(enum.StrEnum):
     PRODUCTION = "production"
     DIAGNOSTIC = "diagnostic"

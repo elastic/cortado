@@ -4,7 +4,6 @@
 # 2.0.
 
 import logging
-
 # Name: Obfuscated PowerShell Commands
 # RTA: obfuscated_powershell.py
 # ATT&CK: T1027,T1140,T1192,T1193

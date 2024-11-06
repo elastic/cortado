@@ -5,12 +5,13 @@
 
 from cortado.rtas import load_all_modules, get_registry
 
-def test_load_all_modules():
 
+def test_load_all_modules():
     # All RTA modules must be imported without issues
     load_all_modules()
 
     registry = get_registry()
 
     # Continuously changing number of RTAs
-    assert len(registry) == 552
+    # Please make sure that the change corresponds with the number of new RTAs added
+    assert len(registry) == 582

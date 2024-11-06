@@ -23,15 +23,9 @@ from pathlib import Path
 from typing import Any
 
 from cortado.rtas import OSType
-from cortado.rtas._const import (
-    ACCESS_DENIED_RETURNCODE,
-    PS_EXEC_EXE,
-    REG_HKCR,
-    REG_HKCU,
-    REG_HKLM,
-    REG_HKU,
-    RTA_SUBPROCESS_TIMEOUT_RETURNCODE,
-)
+from cortado.rtas._const import (ACCESS_DENIED_RETURNCODE, PS_EXEC_EXE,
+                                 REG_HKCR, REG_HKCU, REG_HKLM, REG_HKU,
+                                 RTA_SUBPROCESS_TIMEOUT_RETURNCODE)
 
 log = logging.getLogger(__name__)
 
@@ -115,6 +109,7 @@ def get_current_exec_args():
 
 def get_winreg():
     import winreg
+
     return winreg
 
 

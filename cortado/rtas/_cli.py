@@ -4,12 +4,12 @@
 # 2.0.
 
 import logging
-from collections import Counter
 import sys
+from collections import Counter
 from multiprocessing import Pool
 
 from cortado.rtas import CodeRta, get_registry, load_module
-from cortado.rtas._common import get_current_os, configure_logging
+from cortado.rtas._common import configure_logging, get_current_os
 
 log = logging.getLogger(__name__)
 
