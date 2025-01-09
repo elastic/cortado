@@ -56,7 +56,7 @@ jobs:
           echo "RELEASE_NOTES=$NOTES" >> $GITHUB_ENV
       - name: Create a release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.WRITE_CORTADO_TOKEN }}
         run: |
           . .venv/bin/activate
           POETRY_VERSION=$(poetry version -s)
