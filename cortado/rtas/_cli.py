@@ -51,6 +51,7 @@ def run_rta():
 
         if isinstance(rta_details, CodeRta):
             rta_details.code_func()
+            return
         else:
             log.error(f"Found an RTA but it's a hash RTA: `{rta_name}`")
             raise ValueError("Can't run a hash RTA")

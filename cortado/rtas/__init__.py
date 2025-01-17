@@ -156,3 +156,14 @@ def load_module(module_name: str):
         _ = importlib.import_module(f".{module_name}", package="cortado.rtas")
     except Exception:
         raise ValueError(f"Can't import module named {module_name}")
+
+
+def get_rta(rta_name: str) -> Rta | None:
+    load_all_modules()
+
+    registry = get_registry()
+    log.info(f"RTAs loaded: {len(registry)}")
+
+    for name, details in registry.items():
+        if rta_name == name:
+            return details
