@@ -48,17 +48,21 @@ jobs:
           # Get the latest and previous tags
           LAST_TAG=$(git describe --tags --abbrev=0 HEAD^)
 
+          echo "$LAST_TAG"
+
           # Get commits between the two tags
           NOTES=$(git log $LAST_TAG..HEAD --pretty=format:"- %s")
+          echo "$NOTES"
 
           # Store notes in an environment variable
-          echo "RELEASE_NOTES=$NOTES" >> $GITHUB_ENV
+          echo "RELEASE_NOTES=$NOTES" >> ./notes.txt
       - name: Create a release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           . .venv/bin/activate
           POETRY_VERSION=$(poetry version -s)
+          RELEASE_NOTES=$(cat ./notes.txt)
           gh release create "dev-release-$POETRY_VERSION" \
             dist/cortado-*-py3-none-any.whl \
             --notes "$RELEASE_NOTES" \
