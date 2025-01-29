@@ -1,0 +1,42 @@
+name: General Bug Report
+description: Report a bug in Cortado codebase. For the RTAs, use a [RTA Bug Report] template.
+title: "[Bug] "
+labels: ["bug", "Team: TRADE"]
+assignees: []
+projects: ["elastic/1268"]
+
+body:
+  - type: textarea
+    id: bug_description
+    attributes:
+      label: Describe the Bug
+      description: "A clear and concise description of what the bug is."
+      placeholder: "Describe the bug..."
+
+  - type: textarea
+    id: reproduce_steps
+    attributes:
+      label: To Reproduce
+      description: "Steps to reproduce the behavior:"
+      placeholder: "1. Run Cortado as '...'\n2. The output is '....'\n3. Observed behaviour is '....'\n4. See error"
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs and output
+      description: "Include any relevant logs, error messages, or output from running the script. If possible, paste the output directly or attach files/screenshots"
+      placeholder: "The CLI output is \n```\n...\n```\n"
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Expected Behavior
+      description: "A clear and concise description of what you expected to happen."
+      placeholder: "Expected behavior..."
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: "Add any other context, explanations or references about the issue"
+      placeholder: "Additional context..."
