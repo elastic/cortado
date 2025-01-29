@@ -47,10 +47,9 @@ jobs:
         run: |
           # Get the latest and previous tags
           LAST_TAG=$(git describe --tags --abbrev=0 HEAD^)
-          CURRENT_TAG=$(git describe --tags --abbrev=0)
 
           # Get commits between the two tags
-          NOTES=$(git log $LAST_TAG..$CURRENT_TAG --pretty=format:"- %s")
+          NOTES=$(git log $LAST_TAG..HEAD --pretty=format:"- %s")
 
           # Store notes in an environment variable
           echo "RELEASE_NOTES=$NOTES" >> $GITHUB_ENV
