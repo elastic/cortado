@@ -1,6 +1,11 @@
 # cortado
 Consolidated RTAs (Red Team Automations)
 
+The repository contains Red Team Automations (RTAs) implemented in Python. These RTAs either reference binary samples by
+specifying a sample hash that exhibits behaviors we aim to detect or emulate attacker behaviors through code.
+
+RTAs provide a simple way to verify that detection rules are generating the expected alerts.
+
 ## Table of Contents
 
 - [Running](#running)
