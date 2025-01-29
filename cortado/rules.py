@@ -36,6 +36,8 @@ class Rule:
     type: str
     rule: dict[str, Any]
 
+    language: str | None
+
     is_endpoint_rule: bool
 
     path: Path
@@ -45,8 +47,8 @@ class Rule:
 
 
 class CoverageIssue(enum.StrEnum):
-    NO_RTA = (enum.auto(), "No RTAs for the rule")
-    DEPRECATED_WITH_RTA = (enum.auto(), "Rule is deprecated but has associated RTAs")
+    NO_RTA = (enum.auto(), "No RTAs for rule")
+    DEPRECATED_WITH_RTA = (enum.auto(), "Rule is deprecated but has RTAs")
 
     def __new__(cls, value: str, _: str):
         obj = str.__new__(cls, value)
@@ -129,6 +131,8 @@ def normalize_rule(rule_body: dict[str, Any], rule_path: Path) -> Rule:
         name=name,  # type: ignore
         rule=rule,  # type: ignore
         type=rule_type,  # type: ignore
+        # Note, some rules do not have `language` specified, like machine learning jobs.
+        language=rule.get("language"),  # type: ignore
         path=rule_path,
         maturity=maturity,
         releases=releases or [],

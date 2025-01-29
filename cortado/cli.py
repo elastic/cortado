@@ -95,6 +95,7 @@ def get_coverage(
         typer.Option(help="Filter rules by RTAs. Supports multiple values."),
     ] = None,
     with_issues: Annotated[bool, typer.Option(help="Only show rules with issues")] = False,
+    without_issues: Annotated[bool, typer.Option(help="Only show rules without issues")] = False,
     as_json: Annotated[bool, typer.Option(help="Output results in JSON")] = False,
     fail_if_issues: Annotated[bool, typer.Option(help="Return status code 1 if any issues found")] = False,
 ):
@@ -107,7 +108,7 @@ def get_coverage(
     if not rules_glob and not rule_paths:
         raise ValueError("Either `--rules-glob` or `--rules` values must be provided")
 
-    _log = log.bind(rules_glob=rules_glob, rules=rule_paths)
+    _log = log.bind(rules_glob=rules_glob, rules_paths=rule_paths)
     _log.info("Calculating coverage against rules at provided path")
 
     if rules_glob:
@@ -130,7 +131,11 @@ def get_coverage(
             and (not filter_by_release or (set(filter_by_release) & set(rule.releases)))
             and (not filter_by_type or rule.type in filter_by_type)
             and (not filter_by_rta or (set(filter_by_rta) & set([r.name for r in rtas])))
-            and (not with_issues or issues)
+            and (
+                (with_issues and issues)
+                or (without_issues and not issues)
+                or (not with_issues and not without_issues)
+            )
         )
     ]
 
@@ -158,16 +163,21 @@ def get_coverage(
                     "name": rule.name,
                     "type": rule.type,
                     "maturity": rule.maturity,
+                    "language": rule.language,  # type: ignore
                     "releases": rule.releases or [],
                     "path": str(rule.path),
-                    "issues": [i.name.lower() for i in issues],  # type: ignore
+                    "issues": [
+                        {
+                            "name": i.name.lower(),
+                            "type": "coverage_issue",
+                        } for i in issues],  # type: ignore
                     "is_endpoint_rule": rule.is_endpoint_rule,
                     "rtas": [
                         {
                             "id": r.id,
                             "name": r.name,
                             "platforms": r.platforms,
-                            "rta_hash": (r.sample_hash if isinstance(r, HashRta) else None),
+                            **({"sample_hash": r.sample_hash} if isinstance(r, HashRta) else {}),  # set `sample_hash` only for HashRtas
                         }
                         for r in rtas
                     ],
@@ -212,7 +222,7 @@ def get_coverage(
             rule.maturity if maturity_counter else None,
             ", ".join(rule.releases or []) if releases_counter else None,
             ", ".join([r.name for r in rtas]) or "-",
-            "\n".join([i._description_ for i in issues]),  # type: ignore
+            "\n".join([i.description for i in issues]),  # type: ignore
         ]
         row = filter(None, row)
         table.add_row(*row)
