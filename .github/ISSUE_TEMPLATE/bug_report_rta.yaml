@@ -3,6 +3,7 @@ description: Report a bug in Cortado RTA code
 title: "[RTA Bug] "
 labels: ["bug", "Team: TRADE"]
 assignees: []
+projects: ["elastic/1268"]
 
 body:
   - type: input

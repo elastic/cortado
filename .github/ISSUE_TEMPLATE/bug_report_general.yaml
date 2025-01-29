@@ -3,6 +3,7 @@ description: Report a bug in Cortado codebase. For the RTAs, use a [RTA Bug Repo
 title: "[Bug] "
 labels: ["bug", "Team: TRADE"]
 assignees: []
+projects: ["elastic/1268"]
 
 body:
   - type: textarea

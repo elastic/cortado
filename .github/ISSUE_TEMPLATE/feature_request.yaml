@@ -3,6 +3,7 @@ description: Suggest an idea for Cortado
 title: "[FR] "
 labels: ["enhancement", "Team: TRADE"]
 assignees: []
+rojects: ["elastic/1268"]
 
 body:
   - type: dropdown
