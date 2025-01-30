@@ -9,6 +9,8 @@ import sys
 import structlog
 import typer
 import json
+import io
+import csv
 
 from collections import Counter
 
@@ -77,7 +79,7 @@ def print_rtas(as_json: bool = False):
 @app.command()
 def get_coverage(
     rules_glob: Annotated[str | None, typer.Option(help="A path glob that resolves into rule paths")] = None,
-    rule_paths_str: Annotated[str | None, typer.Option("--rules", help="Comma-separated list of rule paths")] = None,
+    rule_paths_csv: Annotated[str | None, typer.Option("--rules", help="Comma-separated list of rule paths")] = None,
     filter_by_maturity: Annotated[
         list[RuleMaturity] | None,
         typer.Option(help="Filter rules by maturity (`production`, `deprecated`). Supports multiple values."),
@@ -103,7 +105,11 @@ def get_coverage(
     Calculate RTA coverage for the rules with paths that match provided glob
     """
 
-    rule_paths = rule_paths_str.split(",") if rule_paths_str else []
+    if rule_paths_csv:
+        reader = csv.reader(io.StringIO(rule_paths_csv))
+        rule_paths = next(reader)
+    else:
+        rule_paths = []
 
     if not rules_glob and not rule_paths:
         raise ValueError("Either `--rules-glob` or `--rules` values must be provided")
@@ -132,9 +138,7 @@ def get_coverage(
             and (not filter_by_type or rule.type in filter_by_type)
             and (not filter_by_rta or (set(filter_by_rta) & set([r.name for r in rtas])))
             and (
-                (with_issues and issues)
-                or (without_issues and not issues)
-                or (not with_issues and not without_issues)
+                (with_issues and issues) or (without_issues and not issues) or (not with_issues and not without_issues)
             )
         )
     ]
@@ -170,14 +174,18 @@ def get_coverage(
                         {
                             "name": i.name.lower(),
                             "type": "coverage_issue",
-                        } for i in issues],  # type: ignore
+                        }
+                        for i in issues
+                    ],  # type: ignore
                     "is_endpoint_rule": rule.is_endpoint_rule,
                     "rtas": [
                         {
                             "id": r.id,
                             "name": r.name,
                             "platforms": r.platforms,
-                            **({"sample_hash": r.sample_hash} if isinstance(r, HashRta) else {}),  # set `sample_hash` only for HashRtas
+                            **(
+                                {"sample_hash": r.sample_hash} if isinstance(r, HashRta) else {}
+                            ),  # set `sample_hash` only for HashRtas
                         }
                         for r in rtas
                     ],
