@@ -9,11 +9,15 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="1b24ddc7-c01c-4d24-a00e-0738a40b6dd6",
-name="linux_sus_netcon_command_exec",    platforms=[OSType.LINUX],
+    name="linux_sus_netcon_command_exec",
+    platforms=[OSType.LINUX],
     endpoint_rules=[
-        RuleMetadata(id="8c2977dd-07ce-4a8e-8ccd-5e4183138675", name="Network Connection Followed by Command Execution"),
+        RuleMetadata(
+            id="8c2977dd-07ce-4a8e-8ccd-5e4183138675", name="Network Connection Followed by Command Execution"
+        ),
     ],
     techniques=["T1071", "T1059"],
 )

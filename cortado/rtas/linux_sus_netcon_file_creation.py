@@ -11,9 +11,11 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="41d3cdaf-a72e-49bb-b92f-99bfe21e0854",
-name="linux_sus_netcon_file_creation",    platforms=[OSType.LINUX],
+    name="linux_sus_netcon_file_creation",
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="08ad673a-7f99-417e-8b93-a79d4faeeed3", name="Network Connection Followed by File Creation"),
     ],
@@ -24,13 +26,15 @@ def main() -> None:
     file_path = "/dev/shm/evil.txt"
 
     # Create a bash script that performs network connection and file creation
-    script_content = textwrap.dedent(f"""
+    script_content = textwrap.dedent(
+        f"""
         #!/bin/bash
         # Perform network connection using bash built-in tools
         exec 3<>/dev/tcp/8.8.8.8/53
         # Create a file
         echo "Hello, World!" > {file_path}
-    """).strip()
+    """
+    ).strip()
 
     # Write the script content to the file
     with Path(script_path).open("w", encoding="utf-8") as script_file:

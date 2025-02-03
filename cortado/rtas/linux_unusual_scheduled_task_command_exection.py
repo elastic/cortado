@@ -10,9 +10,11 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="0c55d2bd-924b-44a0-8f75-8fb6fc2427bf",
-name="linux_unusual_scheduled_task_command_exection",    platforms=[OSType.LINUX],
+    name="linux_unusual_scheduled_task_command_exection",
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="46b142a6-3d54-45e7-ad8a-7a4bc9bfe01c", name="Scheduled Task Unusual Command Execution"),
     ],
@@ -37,7 +39,7 @@ def main() -> None:
 
     # Execute the fake cron script
     log.info("Launching a shell that executes a payload as a child of fake systemd")
-    _ = _common.execute_command([fake_systemd], timeout_secs=5, kill=True, shell=True)  # noqa: S604
+    _ = _common.execute_command([fake_systemd], timeout_secs=5, shell=True)  # noqa: S604
 
     # Cleanup
     _common.remove_file(fake_systemd)

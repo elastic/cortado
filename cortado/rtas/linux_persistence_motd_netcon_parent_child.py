@@ -9,9 +9,11 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="a67ba2b1-cace-4cb9-9b7e-12c9ffe136cb",
-name="linux_persistence_motd_netcon_parent_child",    platforms=[OSType.LINUX],
+    name="linux_persistence_motd_netcon_parent_child",
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="da02d81a-d432-4cfe-8aa4-fc1a31c29c98", name="Egress Network Connection by MOTD Child"),
     ],

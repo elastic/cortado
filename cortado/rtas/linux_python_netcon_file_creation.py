@@ -11,11 +11,15 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="d1ad870e-9b38-429b-bc9c-62b4b9ba2821",
-name="linux_python_netcon_file_creation",    platforms=[OSType.LINUX],
+    name="linux_python_netcon_file_creation",
+    platforms=[OSType.LINUX],
     endpoint_rules=[
-        RuleMetadata(id="1a2596ff-a5e7-4562-af17-97dbaf9284d5", name="Python Network Connection Followed by File Creation"),
+        RuleMetadata(
+            id="1a2596ff-a5e7-4562-af17-97dbaf9284d5", name="Python Network Connection Followed by File Creation"
+        ),
     ],
     techniques=["T1071", "T1059"],
 )

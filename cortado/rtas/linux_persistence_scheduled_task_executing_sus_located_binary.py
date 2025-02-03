@@ -9,11 +9,15 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="5b9be46b-18f2-4b74-9003-36d763c5d887",
-name="linux_persistence_scheduled_task_executing_sus_located_binary",    platforms=[OSType.LINUX],
+    name="linux_persistence_scheduled_task_executing_sus_located_binary",
+    platforms=[OSType.LINUX],
     endpoint_rules=[
-        RuleMetadata(id="f2a52d42-2410-468b-9910-26823c6ef822", name="Scheduled Job Executing Binary in Unusual Location"),
+        RuleMetadata(
+            id="f2a52d42-2410-468b-9910-26823c6ef822", name="Scheduled Job Executing Binary in Unusual Location"
+        ),
     ],
     techniques=["T1543", "T1053", "T1543"],
 )

@@ -10,9 +10,11 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="535959a4-5bad-44d8-9ebd-003d7ed0733c",
-name="linux_persistence_rpm_netcon",    platforms=[OSType.LINUX],
+    name="linux_persistence_rpm_netcon",
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="d20cd4ba-ff65-4e1c-8012-4241d449b16b", name="Egress Network Connection from RPM Package"),
     ],

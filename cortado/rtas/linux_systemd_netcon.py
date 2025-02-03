@@ -11,11 +11,15 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="517a466b-f11f-4469-8e5a-a39f4edf333a",
-name="linux_systemd_netcon",    platforms=[OSType.LINUX],
+    name="linux_systemd_netcon",
+    platforms=[OSType.LINUX],
     endpoint_rules=[
-        RuleMetadata(id="6644d936-36a2-4d21-95f3-4826e6b61b9b", name="Systemd Execution Followed by Network Connection"),
+        RuleMetadata(
+            id="6644d936-36a2-4d21-95f3-4826e6b61b9b", name="Systemd Execution Followed by Network Connection"
+        ),
     ],
     techniques=["T1543", "T1059", "T1071"],
 )

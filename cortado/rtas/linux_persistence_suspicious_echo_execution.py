@@ -9,9 +9,11 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="a2217fc5-7105-4457-98fe-1cd5f810dc1a",
-name="linux_persistence_suspicious_echo_execution",    platforms=[OSType.LINUX],
+    name="linux_persistence_suspicious_echo_execution",
+    platforms=[OSType.LINUX],
     endpoint_rules=[
         RuleMetadata(id="a13c8f01-36a5-4ad7-a282-8d297cf62860", name="Suspicious Echo Execution"),
     ],

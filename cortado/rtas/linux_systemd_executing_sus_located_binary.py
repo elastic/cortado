@@ -8,16 +8,19 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
+
 @register_code_rta(
     id="5b277316-4584-4e4f-8a71-6c7d833e2c30",
-name="linux_systemd_executing_sus_located_binary",    platforms=[OSType.LINUX],
+    name="linux_systemd_executing_sus_located_binary",
+    platforms=[OSType.LINUX],
     endpoint_rules=[
-        RuleMetadata(id="f2a52d42-2410-468b-9910-26823c6ef822", name="Scheduled Job Executing Binary in Unusual Location")
+        RuleMetadata(
+            id="f2a52d42-2410-468b-9910-26823c6ef822", name="Scheduled Job Executing Binary in Unusual Location"
+        )
     ],
     techniques=["T1543", "T1053"],
 )
 def main():
-
     # Path for the fake systemd script
     fake_systemd = "/tmp/systemd"
 
@@ -27,17 +30,17 @@ def main():
     _common.copy_file(source, masquerade)
 
     # Create a fake systemd script that launches sh
-    with open(fake_systemd, 'w') as script:
-        _ = script.write('#!/bin/bash\n')
-        _ = script.write('/tmp/sh\n')
+    with open(fake_systemd, "w") as script:
+        _ = script.write("#!/bin/bash\n")
+        _ = script.write("/tmp/sh\n")
 
     # Make the script executable
-    _ = _common.execute_command(['chmod', '+x', fake_systemd])
-    _ = _common.execute_command(['chmod', '+x', masquerade])
+    _ = _common.execute_command(["chmod", "+x", fake_systemd])
+    _ = _common.execute_command(["chmod", "+x", masquerade])
 
     # Execute the fake systemd script
     log.info("Launching a shell that executes a payload as a child of fake systemd")
-    _ = _common.execute_command([fake_systemd], timeout_secs=5, kill=True, shell=True)
+    _ = _common.execute_command([fake_systemd], timeout_secs=5, shell=True)
 
     # Cleanup
     _common.remove_file(fake_systemd)
