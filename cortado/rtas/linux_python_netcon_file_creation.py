@@ -4,25 +4,21 @@
 # 2.0.
 
 import socket
-import sys
+import logging
 from pathlib import Path
 
-from . import RtaMetadata, common
+from . import OSType, RuleMetadata, _common, register_code_rta
 
-metadata = RtaMetadata(
-    uuid="d1ad870e-9b38-429b-bc9c-62b4b9ba2821",
-    platforms=["linux"],
-    endpoint=[
-        {
-            "rule_name": "Python Network Connection Followed by File Creation",
-            "rule_id": "1a2596ff-a5e7-4562-af17-97dbaf9284d5",
-        },
+log = logging.getLogger(__name__)
+
+@register_code_rta(
+    id="d1ad870e-9b38-429b-bc9c-62b4b9ba2821",
+name="linux_python_netcon_file_creation",    platforms=[OSType.LINUX],
+    endpoint_rules=[
+        RuleMetadata(id="1a2596ff-a5e7-4562-af17-97dbaf9284d5", name="Python Network Connection Followed by File Creation"),
     ],
     techniques=["T1071", "T1059"],
 )
-
-
-@common.requires_os(*metadata.platforms)
 def main() -> None:
     # Define the paths
     masquerade = "/dev/shm/python"
@@ -30,8 +26,8 @@ def main() -> None:
 
     # Create a fake Python executable by copying a valid executable
     with Path(masquerade).open("w", encoding="utf-8") as f:
-        f.write("#!/bin/bash\n")
-        f.write('exec python "$@"\n')
+        _ = f.write("#!/bin/bash\n")
+        _ = f.write('exec python "$@"\n')
 
     # Grant execute permissions
     Path(masquerade).chmod(0o755)
@@ -42,26 +38,22 @@ def main() -> None:
         sock.settimeout(1)
         sock.connect(("8.8.8.8", 53))
         sock.close()
-        print("Network connection successful.")
+        log.info("Network connection successful.")
     except OSError as e:
-        print(f"Network connection failed: {e}")
+        log.info(f"Network connection failed: {e}")
 
     # Create a file using the Python process
     try:
         with Path(file_path).open("w", encoding="utf-8") as f:
-            f.write("foo")
-        print("File creation successful.")
+            _ = f.write("foo")
+        log.info("File creation successful.")
     except OSError as e:
-        print(f"File creation failed: {e}")
+        log.info(f"File creation failed: {e}")
 
     # Clean up
     try:
-        common.remove_file(masquerade)
-        common.remove_file(file_path)
-        print("Cleanup successful.")
+        _common.remove_file(masquerade)
+        _common.remove_file(file_path)
+        log.info("Cleanup successful.")
     except OSError as e:
-        print(f"Cleanup failed: {e}")
-
-
-if __name__ == "__main__":
-    sys.exit(main())
+        log.info(f"Cleanup failed: {e}")

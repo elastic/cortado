@@ -3,36 +3,32 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-import sys
+import logging
 
-from . import RtaMetadata, common
+from . import OSType, RuleMetadata, _common, register_code_rta
 
-metadata = RtaMetadata(
-    uuid="a67ba2b1-cace-4cb9-9b7e-12c9ffe136cb",
-    platforms=["linux"],
-    endpoint=[
-        {
-            "rule_name": "Egress Network Connection by MOTD Child",
-            "rule_id": "da02d81a-d432-4cfe-8aa4-fc1a31c29c98",
-        },
+log = logging.getLogger(__name__)
+
+@register_code_rta(
+    id="a67ba2b1-cace-4cb9-9b7e-12c9ffe136cb",
+name="linux_persistence_motd_netcon_parent_child",    platforms=[OSType.LINUX],
+    endpoint_rules=[
+        RuleMetadata(id="da02d81a-d432-4cfe-8aa4-fc1a31c29c98", name="Egress Network Connection by MOTD Child"),
     ],
     techniques=["T1037", "T1059", "T1071"],
 )
-
-
-@common.requires_os(*metadata.platforms)
 def main() -> None:
     # Path for the fake motd executable
     masquerade = "/etc/update-motd.d/rta"
-    source = common.get_path("bin", "netcon_exec_chain.elf")
+    source = _common.get_resource_path("bin/netcon_exec_chain.elf")
 
-    common.log("Creating a fake motd executable..")
-    common.copy_file(source, masquerade)
-    common.log("Granting execute permissions...")
-    common.execute(["chmod", "+x", masquerade])
+    log.info("Creating a fake motd executable..")
+    _common.copy_file(source, masquerade)
+    log.info("Granting execute permissions...")
+    _ = _common.execute_command(["chmod", "+x", masquerade])
 
     # Execute the fake motd executable
-    common.log("Executing the fake motd executable..")
+    log.info("Executing the fake motd executable..")
     commands = [
         masquerade,
         "chain",
@@ -43,11 +39,7 @@ def main() -> None:
         "-c",
         "/etc/update-motd.d/rta netcon -h 8.8.8.8 -p 53",
     ]
-    common.execute([*commands], timeout=5, kill=True)
+    _ = _common.execute_command(commands, timeout_secs=5)
 
     # Cleanup
-    common.remove_file(masquerade)
-
-
-if __name__ == "__main__":
-    sys.exit(main())
+    _common.remove_file(masquerade)

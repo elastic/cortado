@@ -3,23 +3,19 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-from . import common
-from . import RtaMetadata
+import logging
+from . import OSType, RuleMetadata, _common, register_code_rta
 
-metadata = RtaMetadata(
-    uuid="5b277316-4584-4e4f-8a71-6c7d833e2c30",
-    platforms=["linux"],
-    endpoint=[
-        {
-            "rule_name": "Scheduled Job Executing Binary in Unusual Location",
-            "rule_id": "f2a52d42-2410-468b-9910-26823c6ef822"
-        }
+log = logging.getLogger(__name__)
+
+@register_code_rta(
+    id="5b277316-4584-4e4f-8a71-6c7d833e2c30",
+name="linux_systemd_executing_sus_located_binary",    platforms=[OSType.LINUX],
+    endpoint_rules=[
+        RuleMetadata(id="f2a52d42-2410-468b-9910-26823c6ef822", name="Scheduled Job Executing Binary in Unusual Location")
     ],
     techniques=["T1543", "T1053"],
 )
-
-
-@common.requires_os(*metadata.platforms)
 def main():
 
     # Path for the fake systemd script
@@ -27,25 +23,21 @@ def main():
 
     # Create fake sh executable
     masquerade = "/tmp/sh"
-    source = common.get_path("bin", "linux.ditto_and_spawn")
-    common.copy_file(source, masquerade)
+    source = _common.get_resource_path("bin/linux.ditto_and_spawn")
+    _common.copy_file(source, masquerade)
 
     # Create a fake systemd script that launches sh
     with open(fake_systemd, 'w') as script:
-        script.write('#!/bin/bash\n')
-        script.write('/tmp/sh\n')
+        _ = script.write('#!/bin/bash\n')
+        _ = script.write('/tmp/sh\n')
 
     # Make the script executable
-    common.execute(['chmod', '+x', fake_systemd])
-    common.execute(['chmod', '+x', masquerade])
+    _ = _common.execute_command(['chmod', '+x', fake_systemd])
+    _ = _common.execute_command(['chmod', '+x', masquerade])
 
     # Execute the fake systemd script
-    common.log("Launching a shell that executes a payload as a child of fake systemd")
-    common.execute([fake_systemd], timeout=5, kill=True, shell=True)
+    log.info("Launching a shell that executes a payload as a child of fake systemd")
+    _ = _common.execute_command([fake_systemd], timeout_secs=5, kill=True, shell=True)
 
     # Cleanup
-    common.remove_file(fake_systemd)
-
-
-if __name__ == "__main__":
-    exit(main())
+    _common.remove_file(fake_systemd)
