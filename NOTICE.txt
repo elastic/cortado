@@ -1,0 +1,2 @@
+Cortado
+Copyright 2025 Elasticsearch B.V.
