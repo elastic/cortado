@@ -1,19 +1,26 @@
+[![Supported Python versions](https://img.shields.io/badge/python-3.12+-yellow.svg)](https://www.python.org/downloads/)
+[![Code checks](https://github.com/elastic/cortado/actions/workflows/code-checks.yaml/badge.svg)](https://github.com/elastic/cortado/actions/workflows/code-checks.yaml)
 # cortado
 Consolidated RTAs (Red Team Automations)
 
 The repository contains Red Team Automations (RTAs) implemented in Python. These RTAs either reference binary samples by
 specifying a sample hash that exhibits behaviors we aim to detect or emulate attacker behaviors through code.
 
-RTAs provide a simple way to verify that detection rules are generating the expected alerts.
+RTAs provide a simple way to verify that detection rules are generating the expected alerts for [Elastic's](https://www.elastic.co/security) open [SIEM](https://github.com/elastic/detection-rules) and [EDR](https://github.com/elastic/protections-artifacts/tree/main/behavior) behavioral detection rules.
 
 ## Table of Contents
 
-- [Running](#running)
-  - [Main CLI](#main-cli)
-  - [RTA CLI](#rta-cli)
-- [Development](#development)
-  - [Setup](#setup)
-  - [Build and deploy to VM](#build-and-deploy-to-vm)
+- [cortado](#cortado)
+  - [Table of Contents](#table-of-contents)
+  - [Running](#running)
+    - [Main CLI](#main-cli)
+    - [RTA CLI](#rta-cli)
+  - [Development](#development)
+    - [Setup](#setup)
+    - [Build and deploy to VM](#build-and-deploy-to-vm)
+  - [How to contribute](#how-to-contribute)
+  - [Licensing](#licensing)
+  - [Questions? Problems? Suggestions?](#questions-problems-suggestions)
 
 ## Running
 
