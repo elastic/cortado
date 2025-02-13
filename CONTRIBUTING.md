@@ -24,7 +24,9 @@ resolved. These guidelines are here to help you whether you are opening an issue
     - [Forking and setup](#forking-and-setup)
     - [Commit messages](#commit-messages)
     - [Creating a pull request](#creating-a-pull-request)
+      - [Submitting a pull request](#submitting-a-pull-request)
     - [Code review](#code-review)
+    - [RTA Metadata](#rta-metadata)
   - [Signing the contributor license agreement](#signing-the-contributor-license-agreement)
 
 ## Effective issue creation in Cortado
@@ -140,6 +142,24 @@ Once your pull request is submitted:
 - Remember, our goal is to collaborate with you to integrate your contributions effectively into the project.
 
 We appreciate your effort and look forward to reviewing your work!
+
+### RTA Metadata
+
+1. Create a new file in `cortado/rtas` directory with the name of your RTA.
+2. Add a main function to the file that will be executed decorated by `@register_code_rta`.
+
+```python
+@register_code_rta(
+    id="12345678-31db-44a8-b01d-1c0df827bddb",                               # <-- UUID
+    name="my_rta_name",                                                      # <-- RTA name
+    platforms=[OSType.WINDOWS],                                              # <-- OS type
+    siem_rules=[RuleMetadata(id="12345678-9c56-48de-b139-f169bf99cf86",      # <-- SIEM rule metadata from detection-rules
+                             name="Some SIEM rule name")],
+    endpoint_rules=[RuleMetadata(id="12345678-7657-4b56-9406-e080e19ad159",  # <-- Endpoint rule metadata from detection-rules
+                                 name="Some EDR rule name")],
+    techniques=["T1574"],                                                    # <-- MITRE ATT&CK techniques
+)
+```
 
 ## Signing the contributor license agreement
 
