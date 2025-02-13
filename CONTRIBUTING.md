@@ -153,9 +153,9 @@ We appreciate your effort and look forward to reviewing your work!
     id="12345678-31db-44a8-b01d-1c0df827bddb",                               # <-- UUID
     name="my_rta_name",                                                      # <-- RTA name
     platforms=[OSType.WINDOWS],                                              # <-- OS type
-    siem_rules=[RuleMetadata(id="2bf78aa2-9c56-48de-b139-f169bf99cf86",      # <-- SIEM rule metadata from detection-rules
+    siem_rules=[RuleMetadata(id="12345678-9c56-48de-b139-f169bf99cf86",      # <-- SIEM rule metadata from detection-rules
                              name="Some SIEM rule name")],
-    endpoint_rules=[RuleMetadata(id="51894221-7657-4b56-9406-e080e19ad159",  # <-- Endpoint rule metadata from detection-rules
+    endpoint_rules=[RuleMetadata(id="12345678-7657-4b56-9406-e080e19ad159",  # <-- Endpoint rule metadata from detection-rules
                                  name="Some EDR rule name")],
     techniques=["T1574"],                                                    # <-- MITRE ATT&CK techniques
 )
