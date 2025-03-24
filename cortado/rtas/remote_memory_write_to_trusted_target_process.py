@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="4756c5cd-bc5e-44c7-be85-34af710da53d",
+    id="36167273-a4c6-4c58-a608-71610e2690f9",
     name="remote_memory_write_to_trusted_target_process",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="debcc93e-01db-4395-8cf5-49d43bece51f",
+    id="fbcd275f-aeba-4297-a25a-cbe8fe596399",
     name="startup_persistence_from_backed_rwx_memory",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

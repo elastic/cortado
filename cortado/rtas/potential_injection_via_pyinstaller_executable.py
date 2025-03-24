@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="fad82a70-30fa-409e-a91a-20bb6d9f49ed",
+    id="cf5e28a1-0c35-4be1-87ba-381dcdbb2d8b",
     name="potential_injection_via_pyinstaller_executable",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="299c3c85-eb4d-4568-8430-70487b42da0b",
+    id="1728887a-c3f0-42d0-b590-b175341caab7",
     name="potential_windows_script_evasion_via_sleep",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

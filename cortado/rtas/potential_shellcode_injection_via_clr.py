@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="0d1a2dae-3c92-40d1-80b6-5f50bf6b89bd",
+    id="08717def-f6f4-4ff9-8091-4f13411c308d",
     name="potential_shellcode_injection_via_clr",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

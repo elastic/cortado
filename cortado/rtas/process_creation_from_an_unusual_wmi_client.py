@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="0881a565-66ab-4928-93f7-437b0e39ba4c",
+    id="c065d4a4-3128-449d-91e4-23adeb6d789c",
     name="process_creation_from_an_unusual_wmi_client",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

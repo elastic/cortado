@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="cb55e09b-a20d-4207-908b-4f28050fdfb0",
+    id="cfe1d663-20b3-4a1b-a98e-9ce83d5e9f7c",
     name="remote_process_manipulation_by_suspicious_process",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

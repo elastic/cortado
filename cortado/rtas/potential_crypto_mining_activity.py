@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="bc02929d-6aa5-4b36-8086-3ddff099508f",
+    id="bdc606e1-a136-447d-9e55-de60a89dffea",
     name="potential_crypto_mining_activity",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

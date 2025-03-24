@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="2b4f1347-749e-4acd-a422-5d66bc994998",
+    id="cbb29b1d-e0ef-4c00-a2ca-0f5277deb3a3",
     name="amsi_bypass_via_unbacked_memory",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

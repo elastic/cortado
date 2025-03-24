@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="08ebf6e8-02bd-40ea-990c-c725cf684982",
+    id="b4245c29-ed9a-4059-a145-4a1303ff2b04",
     name="unusual_windows_system_service_disabled",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

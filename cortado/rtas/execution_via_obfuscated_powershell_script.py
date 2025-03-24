@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="cf6a6563-fcfb-4c99-a4d9-0c6216ba5878",
+    id="64d4640c-3c0f-4e5f-b8b1-e910b8a5d152",
     name="execution_via_obfuscated_powershell_script",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

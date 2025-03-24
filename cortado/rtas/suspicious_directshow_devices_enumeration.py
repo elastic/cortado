@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="97e97ffa-7209-4086-adba-add9f3c9548d",
+    id="7caa250c-87c2-43de-aa87-1fc85481fd0f",
     name="suspicious_directshow_devices_enumeration",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

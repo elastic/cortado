@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="e23063b3-b4e6-402e-a0d1-150979d75dff",
+    id="49360b18-d88a-470c-b551-2851773797a6",
     name="firewall_policy_changed_by_a_suspicious_process",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

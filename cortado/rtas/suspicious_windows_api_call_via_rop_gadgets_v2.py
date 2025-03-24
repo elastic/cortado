@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="b387b2c7-7976-4474-bd24-75df6ecc3ae6",
+    id="c4453f69-3717-4ba6-9dff-d61d84223cf6",
     name="suspicious_windows_api_call_via_rop_gadgets_v2",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

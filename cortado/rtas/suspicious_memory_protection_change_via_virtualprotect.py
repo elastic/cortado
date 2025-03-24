@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="9af91d3f-099f-48dc-adcf-b5136934de86",
+    id="e9fb015e-5f26-4c39-a8ef-710dcefdd548",
     name="suspicious_memory_protection_change_via_virtualprotect",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="a3fc135e-340e-438c-ba23-056f71609c07",
+    id="93f0485e-9fc8-4ac2-9bee-e2604a7b0bfa",
     name="process_memory_write_to_a_non_child_process",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

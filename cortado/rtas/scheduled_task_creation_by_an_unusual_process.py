@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="142e0849-792d-4877-b57e-6ef838af639c",
+    id="67e1e8ad-b03a-4a54-a557-1a0f7d1df09b",
     name="scheduled_task_creation_by_an_unusual_process",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

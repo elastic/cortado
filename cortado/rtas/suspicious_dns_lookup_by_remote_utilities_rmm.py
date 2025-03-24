@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="b7fe9bcd-bc6f-4629-830b-c6ab4bf98597",
+    id="4297b3f2-936c-4166-b77a-1063d778280a",
     name="suspicious_dns_lookup_by_remote_utilities_rmm",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

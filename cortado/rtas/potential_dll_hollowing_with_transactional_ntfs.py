@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="3178b53c-d91d-45dd-b7d6-a1da98595190",
+    id="52751955-55a7-4409-bc16-4bd26cf118ed",
     name="potential_dll_hollowing_with_transactional_ntfs",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="81fd2ff1-bf91-4118-982f-7db57571ec57",
+    id="5c536d4c-0e38-47a9-8258-5b6ef4095c7a",
     name="shellcode_execution_via_a_callback_function",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

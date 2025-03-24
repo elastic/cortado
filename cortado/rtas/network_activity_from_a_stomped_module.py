@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="7f85402a-ed80-459d-9eeb-9e1a4a8150c8",
+    id="66d7626a-3ae6-464b-ba20-446ce2b556dd",
     name="network_activity_from_a_stomped_module",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

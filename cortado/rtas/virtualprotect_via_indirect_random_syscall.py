@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="f6938756-7892-421f-a516-ff6ac1e16104",
+    id="d50d61c8-9e1c-4afa-b281-0f87ecf38b64",
     name="virtualprotect_via_indirect_random_syscall",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

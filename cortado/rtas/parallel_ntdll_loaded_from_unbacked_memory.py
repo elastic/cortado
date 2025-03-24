@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="e49721bf-7baa-4f74-9469-7c7288deab70",
+    id="40944110-6966-4e9c-aef0-d7fe1093b87b",
     name="parallel_ntdll_loaded_from_unbacked_memory",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="63b2fe46-9685-4ea8-9046-05b57e5143ab",
+    id="340f4c29-1fa6-42b0-846b-c56da0040498",
     name="network_module_loaded_from_a_backed_rwx_memory",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

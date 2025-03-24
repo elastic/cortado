@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="e35eac75-6461-4bc2-a718-25911f18781c",
+    id="adc67195-dd7a-41f5-a929-6ea25559a26a",
     name="suspicious_communication_via_mail_protocol",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[

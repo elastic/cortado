@@ -1,4 +1,3 @@
-
 # Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
 # or more contributor license agreements. Licensed under the Elastic License
 # 2.0; you may not use this file except in compliance with the Elastic License
@@ -7,7 +6,7 @@
 from . import OSType, RuleMetadata, register_hash_rta
 
 register_hash_rta(
-    id="6cff5718-c34d-4304-b59c-dd4d8c54b8c4",
+    id="5110c22c-f37c-4097-a78d-eb70a448ae37",
     name="process_anti-debug_via_memory_patching",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[
