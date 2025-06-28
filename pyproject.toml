@@ -63,6 +63,5 @@ venvPath = "."
 venv = ".venv"
 
 [build-system]
-requires = ["setuptools", "wheel", "setuptools_scm"]
-build-backend = "setuptools.build_meta"
-
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
