@@ -1,30 +1,18 @@
-# Declare your Buildkite pipelines below
+# Declare a Backstage Component that represents your application.
 ---
-# yaml-language-server: $schema=https://gist.githubusercontent.com/elasticmachine/988b80dae436cafea07d9a4a460a011d/raw/rre.schema.json
+# yaml-language-server: $schema=https://json.schemastore.org/catalog-info.json
 apiVersion: backstage.io/v1alpha1
-kind: Resource
+kind: Component
 metadata:
-  name: buildkite-pipeline-cortado
-  description: Buildkite Pipeline for cortado
-  links:
-    - title: Pipeline
-      url: https://buildkite.com/elastic/cortado
+  name: cortado
+  description: Consolidated RTAs (Red Team Automations)
+  annotations:
+    backstage.io/source-location: "url:https://github.com/elastic/cortado/"
+    github.com/project-slug: "elastic/cortado"
+    github.com/team-slug: "elastic/threat-research-and-detection-engineering"
+    buildkite.com/project-slug: "elastic/cortado"
 
 spec:
-  type: buildkite-pipeline
+  type: service
   owner: group:threat-research-and-detection-engineering
-  system: buildkite
-  implementation:
-    apiVersion: buildkite.elastic.dev/v1
-    kind: Pipeline
-    metadata:
-      name: cortado
-      description: 
-    spec:
-      repository: elastic/cortado
-      pipeline_file: ".buildkite/pipeline.yml"
-      teams:
-        threat-research-and-detection-engineering:
-          access_level: MANAGE_BUILD_AND_READ
-        everyone:
-          access_level: READ_ONLY
+  lifecycle: production
