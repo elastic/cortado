@@ -1,4 +1,3 @@
-# cortado code owners
-# POC: Elastic Security Intelligence and Analytics Team
-
-*   @mikaayenson @eric-forte-elastic @traut
+# These owners will be the default owners for everything in
+# the repo.
+*       @elastic/threat-research-and-detection-engineering
