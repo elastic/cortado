@@ -12,7 +12,7 @@
 
 import logging
 
-from . import OSType, RuleMetadata, _common, register_code_rta
+from . import OSType, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
@@ -21,18 +21,8 @@ log = logging.getLogger(__name__)
     id="f8a2c3d1-5e6b-4a7f-9c8d-1e2f3a4b5c6d",
     name="valid_accounts_domain",
     platforms=[OSType.WINDOWS],
-    endpoint_rules=[
-        RuleMetadata(
-            id="d8a2c3d1-5e6b-4a7f-9c8d-1e2f3a4b5c6e",
-            name="Suspicious Domain Account Activity",
-        ),
-    ],
-    siem_rules=[
-        RuleMetadata(
-            id="e8a2c3d1-5e6b-4a7f-9c8d-1e2f3a4b5c6f",
-            name="Domain Account Enumeration via Built-in Tools",
-        ),
-    ],
+    endpoint_rules=[],
+    siem_rules=[],
     techniques=["T1078", "T1078.002"],
 )
 def main():

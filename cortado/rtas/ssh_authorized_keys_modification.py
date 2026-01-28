@@ -22,28 +22,12 @@ log = logging.getLogger(__name__)
     id="c1c2c3c4-d5d6-e7e8-f9f0-a1a2a3a4a5a6",
     name="ssh_authorized_keys_modification",
     platforms=[OSType.LINUX, OSType.MACOS],
-    endpoint_rules=[
-        RuleMetadata(
-            id="d1c2c3c4-d5d6-e7e8-f9f0-a1a2a3a4a5a7",
-            name="SSH Authorized Keys File Modification",
-        ),
-        RuleMetadata(
-            id="e1c2c3c4-d5d6-e7e8-f9f0-a1a2a3a4a5a8",
-            name="Potential SSH Backdoor via Authorized Keys",
-        ),
-        RuleMetadata(
-            id="d2c3c4c5-d6d7-e8e9-f0f1-a2a3a4a5a6a8",
-            name="macOS SSH Authorized Keys File Modification",
-        ),
-    ],
+    endpoint_rules=[],
     siem_rules=[
+        # Real rule: SSH Authorized Keys File Activity
         RuleMetadata(
-            id="f1c2c3c4-d5d6-e7e8-f9f0-a1a2a3a4a5a9",
-            name="SSH Authorized Keys Modification for Persistence",
-        ),
-        RuleMetadata(
-            id="e2c3c4c5-d6d7-e8e9-f0f1-a2a3a4a5a6a9",
-            name="macOS SSH Authorized Keys Persistence",
+            id="2215b8bd-1759-4ffa-8ab8-55c8e6b32e7f",
+            name="SSH Authorized Keys File Activity",
         ),
     ],
     techniques=["T1098", "T1098.004"],

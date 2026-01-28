@@ -21,28 +21,12 @@ log = logging.getLogger(__name__)
     id="d1d2d3d4-e5e6-f7f8-a9a0-b1b2b3b4b5b6",
     name="account_discovery_domain",
     platforms=[OSType.WINDOWS, OSType.LINUX],
-    endpoint_rules=[
-        RuleMetadata(
-            id="e1d2d3d4-e5e6-f7f8-a9a0-b1b2b3b4b5b7",
-            name="Domain Account Enumeration via Built-in Tools",
-        ),
-        RuleMetadata(
-            id="f1d2d3d4-e5e6-f7f8-a9a0-b1b2b3b4b5b8",
-            name="Suspicious LDAP Query for Domain Accounts",
-        ),
-        RuleMetadata(
-            id="e2d3d4d5-e6e7-f8f9-a0a1-b2b3b4b5b6b8",
-            name="Linux LDAP Domain Account Enumeration",
-        ),
-    ],
+    endpoint_rules=[],
     siem_rules=[
+        # Real rule: Enumeration of Administrator Accounts
         RuleMetadata(
-            id="01d2d3d4-e5e6-f7f8-a9a0-b1b2b3b4b5b9",
-            name="Domain Account Discovery Activity",
-        ),
-        RuleMetadata(
-            id="f2d3d4d5-e6e7-f8f9-a0a1-b2b3b4b5b6b9",
-            name="Linux Domain Account Discovery via LDAP",
+            id="871ea072-1b71-4def-b016-6278b505138d",
+            name="Enumeration of Administrator Accounts",
         ),
     ],
     techniques=["T1087", "T1087.002"],
