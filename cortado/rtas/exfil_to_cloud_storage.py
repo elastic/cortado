@@ -12,7 +12,7 @@
 import logging
 from pathlib import Path
 
-from . import OSType, _common, register_code_rta
+from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
@@ -21,7 +21,12 @@ log = logging.getLogger(__name__)
     id="a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e5e6",
     name="exfil_to_cloud_storage",
     platforms=[OSType.WINDOWS, OSType.LINUX],
-    endpoint_rules=[],
+    endpoint_rules=[
+        RuleMetadata(
+            id="65784f6e-247a-466b-bbfb-cd92024f7e82",
+            name="Suspicious PowerShell Execution",
+        ),
+    ],
     siem_rules=[],
     techniques=["T1567", "T1567.002"],
 )
