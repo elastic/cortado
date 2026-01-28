@@ -21,32 +21,12 @@ log = logging.getLogger(__name__)
     id="b1b2b3b4-c5c6-d7d8-e9e0-f1f2f3f4f5f6",
     name="clear_linux_system_logs",
     platforms=[OSType.LINUX],
-    endpoint_rules=[
-        RuleMetadata(
-            id="c1b2b3b4-c5c6-d7d8-e9e0-f1f2f3f4f5f7",
-            name="Linux System Log Cleared",
-        ),
-        RuleMetadata(
-            id="d1b2b3b4-c5c6-d7d8-e9e0-f1f2f3f4f5f8",
-            name="Potential Log Tampering via File Truncation",
-        ),
-        RuleMetadata(
-            id="e1b2b3b4-c5c6-d7d8-e9e0-f1f2f3f4f5f9",
-            name="Suspicious Log File Deletion",
-        ),
-        RuleMetadata(
-            id="c2b3b4b5-c6c7-d8d9-e0e1-f2f3f4f5f6f8",
-            name="Linux Command History Cleared",
-        ),
-    ],
+    endpoint_rules=[],
     siem_rules=[
+        # Real rule: Tampering of Shell Command-Line History (covers T1070.003 only)
         RuleMetadata(
-            id="f1b2b3b4-c5c6-d7d8-e9e0-f1f2f3f4f5fa",
-            name="Linux Log Files Cleared",
-        ),
-        RuleMetadata(
-            id="d2b3b4b5-c6c7-d8d9-e0e1-f2f3f4f5f6f9",
-            name="Linux Shell History File Modification",
+            id="7bcbb3ac-e533-41ad-a612-d6c3bf666aba",
+            name="Tampering of Shell Command-Line History",
         ),
     ],
     techniques=["T1070", "T1070.002", "T1070.003"],

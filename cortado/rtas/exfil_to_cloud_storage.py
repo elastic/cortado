@@ -12,7 +12,7 @@
 import logging
 from pathlib import Path
 
-from . import OSType, RuleMetadata, _common, register_code_rta
+from . import OSType, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
@@ -21,30 +21,8 @@ log = logging.getLogger(__name__)
     id="a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e5e6",
     name="exfil_to_cloud_storage",
     platforms=[OSType.WINDOWS, OSType.LINUX],
-    endpoint_rules=[
-        RuleMetadata(
-            id="b1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e5e7",
-            name="Potential Data Exfiltration to Cloud Storage",
-        ),
-        RuleMetadata(
-            id="c1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e5e8",
-            name="Suspicious Upload to File Sharing Service",
-        ),
-        RuleMetadata(
-            id="b2a3a4a5-b6b7-c8c9-d0d1-e2e3e4e5e6e8",
-            name="Linux Potential Data Exfiltration to Cloud Storage",
-        ),
-    ],
-    siem_rules=[
-        RuleMetadata(
-            id="d1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e5e9",
-            name="Data Exfiltration to Cloud Storage Service",
-        ),
-        RuleMetadata(
-            id="c2a3a4a5-b6b7-c8c9-d0d1-e2e3e4e5e6e9",
-            name="Linux Cloud Storage Exfiltration Activity",
-        ),
-    ],
+    endpoint_rules=[],
+    siem_rules=[],
     techniques=["T1567", "T1567.002"],
 )
 def main():

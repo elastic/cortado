@@ -12,7 +12,7 @@
 import logging
 from pathlib import Path
 
-from . import OSType, RuleMetadata, _common, register_code_rta
+from . import OSType, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
@@ -21,22 +21,8 @@ log = logging.getLogger(__name__)
     id="e1f2a3b4-c5d6-7890-ef12-3456789abcde",
     name="user_execution_malicious_file",
     platforms=[OSType.WINDOWS],
-    endpoint_rules=[
-        RuleMetadata(
-            id="f1f2a3b4-c5d6-7890-ef12-3456789abcdf",
-            name="Suspicious File Execution from User Downloads",
-        ),
-        RuleMetadata(
-            id="01f2a3b4-c5d6-7890-ef12-3456789abce0",
-            name="Executable File Creation in User Directory",
-        ),
-    ],
-    siem_rules=[
-        RuleMetadata(
-            id="11f2a3b4-c5d6-7890-ef12-3456789abce1",
-            name="Potential User Execution of Malicious File",
-        ),
-    ],
+    endpoint_rules=[],
+    siem_rules=[],
     techniques=["T1204", "T1204.002"],
 )
 def main():

@@ -13,7 +13,7 @@
 import logging
 from pathlib import Path
 
-from . import OSType, RuleMetadata, _common, register_code_rta
+from . import OSType, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
@@ -22,30 +22,8 @@ log = logging.getLogger(__name__)
     id="a1b2c3d4-e5f6-7890-abcd-ef1234567890",
     name="defacement_internal",
     platforms=[OSType.WINDOWS, OSType.LINUX],
-    endpoint_rules=[
-        RuleMetadata(
-            id="b1b2c3d4-e5f6-7890-abcd-ef1234567891",
-            name="Potential Internal Defacement via Registry Modification",
-        ),
-        RuleMetadata(
-            id="c1b2c3d4-e5f6-7890-abcd-ef1234567892",
-            name="Suspicious Wallpaper Change via Command Line",
-        ),
-        RuleMetadata(
-            id="b2b3c4d5-e6f7-8901-bcde-f12345678902",
-            name="Potential Internal Defacement via MOTD Modification",
-        ),
-    ],
-    siem_rules=[
-        RuleMetadata(
-            id="d1b2c3d4-e5f6-7890-abcd-ef1234567893",
-            name="Potential Ransomware Defacement Activity",
-        ),
-        RuleMetadata(
-            id="c2b3c4d5-e6f7-8901-bcde-f12345678903",
-            name="Linux Internal Defacement Activity",
-        ),
-    ],
+    endpoint_rules=[],
+    siem_rules=[],
     techniques=["T1491", "T1491.001", "T1112"],
 )
 def main():
