@@ -12,7 +12,7 @@
 import logging
 from pathlib import Path
 
-from . import OSType, _common, register_code_rta
+from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
@@ -21,7 +21,13 @@ log = logging.getLogger(__name__)
     id="e1f2a3b4-c5d6-7890-ef12-3456789abcde",
     name="user_execution_malicious_file",
     platforms=[OSType.WINDOWS],
-    endpoint_rules=[],
+    endpoint_rules=[
+        # Endpoint rule: Evasion via File Name Masquerading (double extension)
+        RuleMetadata(
+            id="ccfca0c7-c975-4735-82bd-954ffbafd00b",
+            name="Evasion via File Name Masquerading",
+        ),
+    ],
     siem_rules=[],
     techniques=["T1204", "T1204.002"],
 )

@@ -21,9 +21,20 @@ log = logging.getLogger(__name__)
     id="d1d2d3d4-e5e6-f7f8-a9a0-b1b2b3b4b5b6",
     name="account_discovery_domain",
     platforms=[OSType.WINDOWS, OSType.LINUX],
-    endpoint_rules=[],
+    endpoint_rules=[
+        # Endpoint rule: Domain Accounts Enumeration via LDAP Search
+        RuleMetadata(
+            id="c3b3cd2e-04f5-457f-8d69-f92468f22eae",
+            name="Domain Accounts Enumeration via LDAP Search",
+        ),
+        # Endpoint rule: Group and Privileged Accounts Discovery via LDAP
+        RuleMetadata(
+            id="447b004a-ac74-4ba4-8131-44efc25fdd47",
+            name="Group and Privileged Accounts Discovery via LDAP",
+        ),
+    ],
     siem_rules=[
-        # Real rule: Enumeration of Administrator Accounts
+        # SIEM rule: Enumeration of Administrator Accounts
         RuleMetadata(
             id="871ea072-1b71-4def-b016-6278b505138d",
             name="Enumeration of Administrator Accounts",
