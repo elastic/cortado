@@ -14,9 +14,10 @@ def test_load_all_modules():
 
     registry = get_registry()
 
-    # NOTE: we assime here that 1 RTA == 1 file in `cortado/rtas` folder, which might not be always correct
+    # NOTE: Some files contain multiple RTAs (e.g., user_execution_simulation.py has 2 RTAs),
+    # so we check that registry count is >= file count rather than exact equality
     rtas_directory_path = Path("cortado/rtas")
     rta_files_found_gen = rtas_directory_path.glob("[!_]*.py")
     rta_files_found_count = sum(1 for _ in rta_files_found_gen)
 
-    assert len(registry) == rta_files_found_count
+    assert len(registry) >= rta_files_found_count
