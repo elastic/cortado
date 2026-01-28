@@ -70,11 +70,15 @@ def _run_windows():
     log.info("Simulating Windows domain account discovery techniques")
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 
+    # Note: Domain commands may fail on non-domain-joined machines, which is expected.
+    # We use ignore_failures=True to allow the RTA to continue and generate telemetry.
+
     # Enumerate all domain users
     log.info("Enumerating domain users via net.exe")
     _ = _common.execute_command(
         ["net.exe", "user", "/domain"],
         timeout_secs=15,
+        ignore_failures=True,
     )
 
     # Enumerate domain groups
@@ -82,6 +86,7 @@ def _run_windows():
     _ = _common.execute_command(
         ["net.exe", "group", "/domain"],
         timeout_secs=15,
+        ignore_failures=True,
     )
 
     # Query Domain Admins group membership
@@ -89,6 +94,7 @@ def _run_windows():
     _ = _common.execute_command(
         ["net.exe", "group", "Domain Admins", "/domain"],
         timeout_secs=15,
+        ignore_failures=True,
     )
 
     # Query Enterprise Admins group membership
@@ -96,6 +102,7 @@ def _run_windows():
     _ = _common.execute_command(
         ["net.exe", "group", "Enterprise Admins", "/domain"],
         timeout_secs=15,
+        ignore_failures=True,
     )
 
     # Query Schema Admins group membership
@@ -103,6 +110,7 @@ def _run_windows():
     _ = _common.execute_command(
         ["net.exe", "group", "Schema Admins", "/domain"],
         timeout_secs=15,
+        ignore_failures=True,
     )
 
     # Query Account Operators group
@@ -110,6 +118,7 @@ def _run_windows():
     _ = _common.execute_command(
         ["net.exe", "group", "Account Operators", "/domain"],
         timeout_secs=15,
+        ignore_failures=True,
     )
 
     # Simulate LDAP query for domain users via PowerShell
@@ -177,6 +186,7 @@ def _run_windows():
     _ = _common.execute_command(
         ["net.exe", "localgroup", "Administrators"],
         timeout_secs=10,
+        ignore_failures=True,
     )
 
     log.info("Windows domain account discovery simulation completed")
@@ -205,6 +215,7 @@ def _run_linux():
             "(objectClass=user)",
         ],
         timeout_secs=10,
+        ignore_failures=True,
     )
 
     # Simulate ldapsearch for domain groups
@@ -220,6 +231,7 @@ def _run_linux():
             "(objectClass=group)",
         ],
         timeout_secs=10,
+        ignore_failures=True,
     )
 
     # Simulate ldapsearch for admin accounts
@@ -232,6 +244,7 @@ def _run_linux():
             "CN=Domain Admins,CN=Users,DC=domain,DC=local",
         ],
         timeout_secs=10,
+        ignore_failures=True,
     )
 
     # Cleanup

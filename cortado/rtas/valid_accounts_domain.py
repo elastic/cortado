@@ -42,6 +42,9 @@ def main():
     This RTA executes common domain enumeration commands that attackers use
     after obtaining valid domain credentials. All commands are safe and only
     perform read operations or use echo to simulate suspicious command lines.
+
+    Note: Domain commands may fail on non-domain-joined machines, which is expected.
+    We use ignore_failures=True to allow the RTA to continue and generate telemetry.
     """
     log.info("Simulating domain account enumeration and usage patterns")
     powershell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
@@ -51,6 +54,7 @@ def main():
     _ = _common.execute_command(
         ["net.exe", "user", "/domain"],
         timeout_secs=10,
+        ignore_failures=True,
     )
 
     # Enumerate domain groups
@@ -58,6 +62,7 @@ def main():
     _ = _common.execute_command(
         ["net.exe", "group", "/domain"],
         timeout_secs=10,
+        ignore_failures=True,
     )
 
     # Query domain admins group - high-value target for attackers
@@ -65,6 +70,7 @@ def main():
     _ = _common.execute_command(
         ["net.exe", "group", "Domain Admins", "/domain"],
         timeout_secs=10,
+        ignore_failures=True,
     )
 
     # Query enterprise admins group
@@ -72,6 +78,7 @@ def main():
     _ = _common.execute_command(
         ["net.exe", "group", "Enterprise Admins", "/domain"],
         timeout_secs=10,
+        ignore_failures=True,
     )
 
     # Simulate whoami with domain context - common post-exploitation check
@@ -79,6 +86,7 @@ def main():
     _ = _common.execute_command(
         ["whoami.exe", "/all"],
         timeout_secs=10,
+        ignore_failures=True,
     )
 
     # Simulate domain controller query
