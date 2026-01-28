@@ -12,7 +12,7 @@
 
 import logging
 
-from . import OSType, _common, register_code_rta
+from . import OSType, RuleMetadata, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
@@ -21,7 +21,12 @@ log = logging.getLogger(__name__)
     id="f8a2c3d1-5e6b-4a7f-9c8d-1e2f3a4b5c6d",
     name="valid_accounts_domain",
     platforms=[OSType.WINDOWS],
-    endpoint_rules=[],
+    endpoint_rules=[
+        RuleMetadata(
+            id="65784f6e-247a-466b-bbfb-cd92024f7e82",
+            name="Suspicious PowerShell Execution",
+        ),
+    ],
     siem_rules=[],
     techniques=["T1078", "T1078.002"],
 )
