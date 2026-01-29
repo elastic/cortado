@@ -12,7 +12,7 @@
 
 import logging
 
-from . import OSType, RuleMetadata, _common, register_code_rta
+from . import OSType, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
