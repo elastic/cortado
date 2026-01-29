@@ -12,7 +12,7 @@
 import logging
 from pathlib import Path
 
-from . import OSType, RuleMetadata, _common, register_code_rta
+from . import OSType, _common, register_code_rta
 
 log = logging.getLogger(__name__)
 
@@ -21,13 +21,7 @@ log = logging.getLogger(__name__)
     id="e2f3a4b5-c6d7-8901-f012-456789abcdef",
     name="user_execution_malicious_link",
     platforms=[OSType.WINDOWS],
-    endpoint_rules=[
-        # Endpoint rule: Potential Execution via LNK Stomping
-        RuleMetadata(
-            id="27d1b0dc-a50c-4e7b-9ec5-961351fbe819",
-            name="Potential Execution via LNK Stomping",
-        ),
-    ],
+    endpoint_rules=[],
     siem_rules=[],
     techniques=["T1204", "T1204.001"],
 )

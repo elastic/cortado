@@ -32,6 +32,10 @@ log = logging.getLogger(__name__)
             id="447b004a-ac74-4ba4-8131-44efc25fdd47",
             name="Group and Privileged Accounts Discovery via LDAP",
         ),
+        RuleMetadata(
+            id="65784f6e-247a-466b-bbfb-cd92024f7e82",
+            name="Suspicious PowerShell Execution",
+        ),
     ],
     siem_rules=[
         # SIEM rule: Enumeration of Administrator Accounts
