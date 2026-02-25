@@ -15,6 +15,6 @@ register_hash_rta(
             name="Network file unzipped via Unsigned or Untrusted binary",
         )
     ],
-    techniques=["T1027", "T1140", "T1059"],
+    techniques=["T1027", "T1059", "T1059.001"],
     sample_hash="122877b338ec943ac0b33dcedc973aab6db48dd93cd30263255a7e7351ee60e6",
 )

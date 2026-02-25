@@ -24,7 +24,7 @@ WEB_RTA_EXE = "WER_RTA.exe"
             id="ba802fb2-f183-420e-947b-da5ce0c74dd3", name="Potential DLL SideLoad via a Microsoft Signed Binary"
         )
     ],
-    techniques=["T1574", "T1574.002"],
+    techniques=["T1574", "T1574.001"],
 )
 def main():
     # ps script to mount, execute a file and unmount ISO device

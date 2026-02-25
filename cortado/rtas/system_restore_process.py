@@ -5,7 +5,7 @@
 
 # Name: Process Execution in System Restore
 # RTA: system_restore_process.py
-# ATT&CK: T1158
+# ATT&CK: T1158 deprecated; see credential/indicator-removal techniques
 # Description: Copies mock malware into the System Volume Information directory and executes.
 
 import logging

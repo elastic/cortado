@@ -5,7 +5,7 @@
 
 # Name: Powershell with Suspicious Arguments
 # RTA: powershell_args.py
-# ATT&CK: T1140
+# ATT&CK: T1027, T1059.001 (T1140 deprecated)
 # Description: Calls PowerShell with suspicious command line arguments.
 
 import base64

@@ -5,7 +5,7 @@
 
 # Name: Encrypting files with 7zip
 # RTA: sevenzip_encrypted.py
-# ATT&CK: T1022
+# ATT&CK: T1560 (Data Encrypted for Impact; T1022 deprecated)
 # Description: Uses "bin\.exe" to perform encryption of archives and archive headers.
 
 import base64

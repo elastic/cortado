@@ -5,7 +5,7 @@
 
 # Name: Microsoft HTA tool (mshta.exe) with Network Callback
 # RTA: mshta_network.py
-# ATT&CK: T1170
+# ATT&CK: T1021 (Remote Services; T1170 deprecated)
 # Description: Generates network traffic from mshta.exe
 
 import logging

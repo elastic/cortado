@@ -5,7 +5,7 @@
 
 # Name: USN Journal Deletion with fsutil.exe
 # RTA: delete_usnjrnl.py
-# ATT&CK: T1107
+# ATT&CK: T1070 (Indicator Removal; T1107 deprecated)
 # signal.rule.name: Delete Volume USN Journal with Fsutil
 # Description: Uses fsutil to delete the USN journal.
 

@@ -5,7 +5,7 @@
 
 # Name: Boot Config Deletion With bcdedit
 # RTA: delete_bootconf.py
-# ATT&CK: T1107
+# ATT&CK: T1070 (Indicator Removal; T1107 deprecated)
 # signal.rule.name: Modification of Boot Configuration
 # Description: Uses bcdedit.exe to backup the current boot configuration, and then to delete the current boot
 #  configuration, finally restoring the original.

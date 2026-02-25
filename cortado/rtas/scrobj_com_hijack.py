@@ -5,7 +5,7 @@
 
 # Name: COM Hijack via Script Object
 # RTA: scrobj_com_hijack.py
-# ATT&CK: T1122
+# ATT&CK: T1546.015 (COM Hijacking; T1122 deprecated)
 # Description: Modifies the Registry to create a new user-defined COM broker, "scrobj.dll".
 
 import logging

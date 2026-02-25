@@ -5,7 +5,7 @@
 
 # Name: Suspicious DLL Registration by Regsvr32
 # RTA: suspicious_dll_registration_regsvr32.py
-# ATT&CK: T1117
+# ATT&CK: T1218.010 (Regsvr32), T1546 (T1117 deprecated)
 # Description: Pretends to register DLL without traditional DLL extension using RegSvr32
 
 import logging

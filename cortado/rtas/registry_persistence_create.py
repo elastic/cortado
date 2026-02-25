@@ -7,7 +7,7 @@
 # RTA: registry_persistence_create.py
 # signal.rule.name: Local Service Commands
 # signal.rule.name: Potential Modification of Accessibility Binaries
-# ATT&CK: T1015, T1103
+# ATT&CK: T1546.008 (Accessibility Features), T1547 (Boot/Logon Autostart; T1015/T1103 deprecated)
 # Description: Creates registry persistence for mock malware in Run and RunOnce keys, Services, NetSH and debuggers.
 
 import logging

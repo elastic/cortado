@@ -18,7 +18,7 @@ log = logging.getLogger(__name__)
     siem_rules=[
         RuleMetadata(id="93c1ce76-494c-4f01-8167-35edfb52f7b1", name="Encoded Executable Stored in the Registry")
     ],
-    techniques=["T1112", "T1140"],
+    techniques=["T1112", "T1027"],
 )
 def main():
     key = "SOFTWARE\\Policies\\Test"

@@ -5,7 +5,7 @@
 
 # Name: Shortcut File Suspicious Process
 # RTA: shortcut_file_suspicious_process.py
-# ATT&CK: T1023,T1204,T1193,T1192
+# ATT&CK: T1547.009 (Shortcut Modification), T1204, T1566 (T1023/T1192/T1193 deprecated)
 # Description: Create a .lnk file using cmd.exe
 
 import logging

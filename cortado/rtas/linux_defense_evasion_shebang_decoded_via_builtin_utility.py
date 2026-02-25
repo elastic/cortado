@@ -19,7 +19,7 @@ log = logging.getLogger(__name__)
             id="e659b4b9-5bbf-4839-96b9-b489334b4ca1", name="Base64 Shebang Payload Decoded via Built-in Utility"
         ),
     ],
-    techniques=["T1027", "T1140", "T1059", "T1204"],
+    techniques=["T1027", "T1059", "T1059.001", "T1204"],
 )
 def main() -> None:
     log.info("Creating a fake executable..")

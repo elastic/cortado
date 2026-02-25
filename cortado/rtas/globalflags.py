@@ -5,7 +5,7 @@
 
 # Name: Persistence using GlobalFlags
 # RTA: globalflags.py
-# ATT&CK: T1183
+# ATT&CK: T1546.012 (Image File Execution Options; T1183 deprecated)
 # Description: Uses GlobalFlags option in Image File Execution Options to silently execute calc.exe after the monitored
 #              process (notepad.exe) is closed.
 

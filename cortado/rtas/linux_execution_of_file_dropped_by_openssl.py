@@ -18,7 +18,7 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="7032dd32-8a51-4545-94d0-5997051f4610", name="Linux Execution of a File Dropped by OpenSSL")
     ],
-    techniques=["T1027", "T1140", "T1204"],
+    techniques=["T1027", "T1059.001", "T1204"],
 )
 def main():
     masquerade = "/dev/shm/evil"

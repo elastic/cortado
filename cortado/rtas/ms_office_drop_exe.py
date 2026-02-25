@@ -5,7 +5,7 @@
 
 # Name: Emulate MS Office Dropping an executable file to disk
 # RTA: ms_office_drop_exe.py
-# ATT&CK: T1064
+# ATT&CK: T1566, T1059 (T1064 deprecated)
 # Description: MS Office writes executable file and it is run.
 
 import logging

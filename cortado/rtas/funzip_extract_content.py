@@ -28,7 +28,7 @@ def run_command(masquerade: str, masquerade2: str):
             name="Suspicious Content Extracted or Decompressed via Built-In Utilities",
         )
     ],
-    techniques=["T1059", "T1059.004", "T1027", "T1140"],
+    techniques=["T1059", "T1059.004", "T1027", "T1059.001"],
 )
 def main():
     masquerade = "/tmp/funzip"

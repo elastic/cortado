@@ -5,7 +5,7 @@
 
 # Name: Run Process from the Recycle Bin
 # RTA: recycle_bin_process.py
-# ATT&CK: T1158
+# ATT&CK: T1158 deprecated; see credential/indicator-removal techniques
 # Description: Executes mock malware from the "C:\Recycler\" and "C:\$RECYCLE.BIN\" subdirectories.
 
 import logging

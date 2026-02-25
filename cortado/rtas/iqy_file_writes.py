@@ -5,7 +5,7 @@
 
 # Name: Suspicious IQY/PUB File Writes
 # RTA: iqy_file_writes.py
-# ATT&CK: T1140, T1192, T1193
+# ATT&CK: T1027, T1059.001, T1566 (T1140/T1192/T1193 deprecated)
 # Description: Generates four file writes related to file extensions (PUB, IQY)
 
 import logging

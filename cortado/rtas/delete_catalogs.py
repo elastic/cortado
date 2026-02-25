@@ -5,7 +5,7 @@
 
 # Name: Catalog Deletion with wbadmin.exe
 # RTA: delete_catalogs.py
-# ATT&CK: T1107
+# ATT&CK: T1070 (Indicator Removal; T1107 deprecated)
 # Description: Uses wbadmin to delete the backup catalog.
 
 import logging

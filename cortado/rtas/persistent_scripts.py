@@ -5,7 +5,7 @@
 
 # Name: Persistent Scripts
 # RTA: persistent_scripts.py
-# ATT&CK: T1064 (Scripting), T1086 (PowerShell)
+# ATT&CK: T1059 (Command and Scripting Interpreter), T1059.001 (PowerShell; T1064/T1086 deprecated)
 
 import logging
 import os
