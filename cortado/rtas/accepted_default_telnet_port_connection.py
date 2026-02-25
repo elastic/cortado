@@ -32,6 +32,8 @@ def _run_listener():
         server.settimeout(10)
         conn, _ = server.accept()
         conn.close()
+    except PermissionError as e:
+        log.error("Permission denied binding to port %s: %s", TELNET_PORT, e)
     finally:
         server.close()
 
