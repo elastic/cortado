@@ -46,7 +46,7 @@ def _run_listener():
             name="Accepted Default Telnet Port Connection",
         )
     ],
-    techniques=["T1043"],
+    techniques=["T1071"],
 )
 def main():
     """Establish an accepted TCP connection to localhost:23 (telnet port)."""
