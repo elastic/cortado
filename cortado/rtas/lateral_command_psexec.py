@@ -5,7 +5,7 @@
 
 # Name: PsExec Lateral Movement
 # RTA: lateral_command_psexec.py
-# ATT&CK: T1035, T1077
+# ATT&CK: T1021, T1484 (T1035/T1077 deprecated)
 # Description: Runs PSExec to move laterally
 
 

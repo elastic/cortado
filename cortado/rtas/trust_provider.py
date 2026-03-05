@@ -5,7 +5,7 @@
 
 # Name: Trust Provider Modification
 # RTA: trust_provider.py
-# ATT&CK: T1116
+# ATT&CK: T1553 (Subvert Trust Controls; T1116 deprecated)
 # Description: Substitutes an invalid code authentication policy, enabling trust policy bypass.
 
 import logging

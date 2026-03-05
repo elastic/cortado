@@ -5,7 +5,7 @@
 
 # Name: Certutil Encode / Decode
 # RTA: certutil_file_obfuscation.py
-# ATT&CK: T1140
+# ATT&CK: T1027, T1059.001 (T1140 deprecated)
 # signal.rule.name: Encoding or Decoding Files via CertUtil
 # Description: Uses certutil to create an encoded copy of cmd.exe. Then uses certutil to decode that copy.
 
@@ -23,7 +23,7 @@ log = logging.getLogger(__name__)
     platforms=[OSType.WINDOWS],
     endpoint_rules=[],
     siem_rules=[RuleMetadata(id="fd70c98a-c410-42dc-a2e3-761c71848acf", name="Suspicious CertUtil Commands")],
-    techniques=["T1140"],
+    techniques=["T1027", "T1059.001"],
 )
 def main():
     log.info("Encoding target")

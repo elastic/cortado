@@ -5,7 +5,7 @@
 
 # Name: SYSTEM Escalation from User Directory
 # RTA: user_dir_escalation.py
-# ATT&CK: T1044
+# ATT&CK: T1044 deprecated; see T1574 (Hijack Execution Flow) / T1546
 # Description: Spawns mock malware written to a regular user directory and executes as System.
 
 import logging

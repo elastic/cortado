@@ -20,7 +20,7 @@ log = logging.getLogger(__name__)
             name="Initial Access or Execution via Microsoft Office Application",
         )
     ],
-    techniques=["T1105", "T1140", "T1027", "T1566", "T1547", "T1204", "T1059"],
+    techniques=["T1105", "T1027", "T1059.001", "T1566", "T1547", "T1204", "T1059"],
 )
 def main():
     masquerade = "/tmp/Microsoft PowerPoint"

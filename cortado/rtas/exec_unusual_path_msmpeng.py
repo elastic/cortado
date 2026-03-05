@@ -21,7 +21,7 @@ log = logging.getLogger(__name__)
             name="Potential DLL Side-Loading via Microsoft Antimalware Service Executable",
         )
     ],
-    techniques=["T1574", "T1574.002"],
+    techniques=["T1574", "T1574.001"],
 )
 def main():
     EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")

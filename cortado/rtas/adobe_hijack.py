@@ -4,7 +4,7 @@
 # 2.0.
 
 # Name: Adobe Hijack Persistence
-# ATT&CK: T1044
+# ATT&CK: T1574 (Hijack Execution Flow; T1044 deprecated)
 # Description: Replaces PE file that will run on Adobe Reader start.
 
 import logging

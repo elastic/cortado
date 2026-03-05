@@ -20,7 +20,7 @@ log = logging.getLogger(__name__)
             name="Linux Decoded or Decrypted Payload Written to Suspicious Directory",
         )
     ],
-    techniques=["T1027", "T1140", "T1059", "T1204"],
+    techniques=["T1027", "T1059", "T1059.001", "T1204"],
 )
 def main():
     masquerade = "/tmp/openssl"

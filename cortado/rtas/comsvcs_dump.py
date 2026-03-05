@@ -5,7 +5,7 @@
 
 # Name: Memory Dump via Comsvcs
 # RTA: comsvcs_dump.py
-# ATT&CK: T1117
+# ATT&CK: T1218.010 (Regsvr32), T1546 (T1117 deprecated)
 # Description: Invokes comsvcs.dll with rundll32.exe to mimic creating a process MiniDump.
 
 import logging

@@ -5,7 +5,7 @@
 
 # Name: Network Traffic from InstallUtil
 # RTA: installutil_network.py
-# ATT&CK: T1118
+# ATT&CK: T1218.004 (InstallUtil; T1118 deprecated)
 # Elastic detection: InstallUtil Process Making Network Connections
 # Elastic detection: Unusual Network Activity from a Windows System Binary
 # Description: Uses mock .NET malware and InstallUtil to create network activity from InstallUtil.

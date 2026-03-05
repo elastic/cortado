@@ -7,7 +7,7 @@
 # RTA: delete_volume_shadow.py
 # signal.rule.name: Volume Shadow Copy Deletion via VssAdmin
 # ELastic Detection: Volume Shadow Copy Deletion via WMIC
-# ATT&CK: T1107
+# ATT&CK: T1070 (Indicator Removal; T1107 deprecated)
 # Description: Uses both vssadmin.exe and wmic.exe to delete volume shadow copies.
 
 import logging

@@ -5,7 +5,7 @@
 
 # Name: Bypass UAC via Event Viewer
 # RTA: uac_eventviewer.py
-# ATT&CK: T1088
+# ATT&CK: T1548.002 (Bypass User Account Control; T1088 deprecated)
 # Description: Modifies the Registry value to change the handler for MSC files, bypassing UAC.
 
 import logging

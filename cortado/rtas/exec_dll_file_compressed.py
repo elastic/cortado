@@ -16,7 +16,7 @@ log = logging.getLogger(__name__)
     name="exec_dll_file_compressed",
     platforms=[OSType.WINDOWS],
     endpoint_rules=[RuleMetadata(id="08fba401-b76f-4c7b-9a88-4f3b17fe00c1", name="DLL Loaded from an Archive File")],
-    techniques=["T1204", "T1204.002", "T1574", "T1574.002"],
+    techniques=["T1204", "T1204.002", "T1574", "T1574.001"],
 )
 def main():
     EXE_FILE = _common.get_resource_path("bin/renamed_posh.exe")

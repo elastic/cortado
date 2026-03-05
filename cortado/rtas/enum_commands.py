@@ -5,7 +5,7 @@
 
 # Name: Common Enumeration Commands
 # RTA: enum_commands.py
-# ATT&CK: T1007, T1016, T1018, T1035, T1049, T1057, T1063, T1069, T1077, T1082, T1087, T1124, T1135
+# ATT&CK: T1007, T1016, T1018, T1021, T1049, T1057, T1063, T1069, T1484, T1082, T1087, T1124, T1135 (T1035/T1077 deprecated)
 # Description: Executes a list of administration tools _commonly used by attackers for enumeration.
 
 import logging

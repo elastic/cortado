@@ -12,6 +12,6 @@ register_hash_rta(
     endpoint_rules=[
         RuleMetadata(id="dbc72ac5-a004-45de-916d-e8aac82c4789", name="Payload Decoded via CertUtil")
     ],
-    techniques=['T1027', 'T1140'],
+    techniques=['T1027', 'T1059.001'],
     sample_hash="24f65e496692a64157011ed08648a853312526299131e4f819376889ff94876d",
 )

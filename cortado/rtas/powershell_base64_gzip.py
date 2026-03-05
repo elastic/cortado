@@ -5,7 +5,7 @@
 
 # Name: PowerShell with base64/gzip
 # RTA: powershell_base64_gzip.py
-# ATT&CK: T1140
+# ATT&CK: T1027, T1059.001 (T1140 deprecated)
 # Description: Calls PowerShell with command-line that contains base64/gzip
 
 import logging
@@ -25,7 +25,7 @@ log = logging.getLogger(__name__)
             id="81fe9dc6-a2d7-4192-a2d8-eed98afc766a", name="PowerShell Suspicious Payload Encoded and Compressed"
         )
     ],
-    techniques=["T1140", "T1027", "T1059"],
+    techniques=["T1027", "T1059", "T1059.001"],
 )
 def main():
     log.info("PowerShell with base64/gzip")

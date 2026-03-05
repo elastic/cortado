@@ -7,7 +7,7 @@
 # RTA: settingcontentms_files.py
 # signal.rule.name: Potential Modification of Accessibility Binaries
 # signal.rule.name: Local Service Commands
-# ATT&CK: T1193, T1204, T1064
+# ATT&CK: T1546, T1204, T1566 (T1193/T1064 deprecated)
 # Description: SettingContent-ms file written to specific path or by risky process
 
 import logging

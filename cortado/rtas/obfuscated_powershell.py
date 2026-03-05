@@ -7,7 +7,7 @@ import logging
 
 # Name: Obfuscated PowerShell Commands
 # RTA: obfuscated_powershell.py
-# ATT&CK: T1027,T1140,T1192,T1193
+# ATT&CK: T1027, T1059.001, T1566 (T1140/T1192/T1193 deprecated)
 # Description:   Runs commands through PowerShell that are obfuscated using multiple techniques.
 import time
 

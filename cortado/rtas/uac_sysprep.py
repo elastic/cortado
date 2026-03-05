@@ -5,7 +5,7 @@
 
 # Name: Bypass UAC via Sysprep
 # RTA: uac_sysprep.py
-# ATT&CK: T1088
+# ATT&CK: T1548.002 (Bypass User Account Control; T1088 deprecated)
 # Description: Use CRYPTBASE.dll opportunity to do Dll Sideloading with SysPrep for a UAC bypass
 
 

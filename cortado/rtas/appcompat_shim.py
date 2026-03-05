@@ -5,7 +5,7 @@
 
 # Name: Application Compatibility Shims
 # RTA: appcompat_shim.py
-# ATT&CK: T1138
+# ATT&CK: T1546.011 (Application Shimming; T1138 deprecated)
 # Description: Use sdbinst.exe to install a binary patch/application shim.
 
 import logging

@@ -17,7 +17,7 @@ log = logging.getLogger(__name__)
     endpoint_rules=[
         RuleMetadata(id="789f8a41-00cb-40cb-b41f-c2e1611b1245", name="Base64 or Xxd Decode Argument Evasion"),
     ],
-    techniques=["T1027", "T1140", "T1059", "T1204"],
+    techniques=["T1027", "T1059", "T1059.001", "T1204"],
 )
 def main() -> None:
     log.info("Creating a fake executable..")
