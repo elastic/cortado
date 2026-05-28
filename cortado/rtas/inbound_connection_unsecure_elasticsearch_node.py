@@ -22,6 +22,12 @@
 #              required. The Network Packet Capture integration must be configured
 #              to decode HTTP on TCP/9200 with send_all_headers enabled for header
 #              fields to be populated.
+#
+#              NOTE: The Packetbeat sensor must have internal_networks configured
+#              (e.g. RFC1918 ranges in packetbeat.yml) so that the host's IP is
+#              recognised as an internal address. Without this, Packetbeat will
+#              classify the flow as ingress rather than inbound and the rule's
+#              network.direction:inbound condition will not match.
 
 import http.client
 import http.server
