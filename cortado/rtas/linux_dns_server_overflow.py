@@ -7,12 +7,15 @@
 # RTA: linux_dns_server_overflow.py
 # Description: Emulates the network shape of CVE-2020-1350 (SigRed) by
 #              producing a flow with destination.port=53 where the server
-#              (destination) sends > 60,000 bytes back to the client. Stands
+#              (destination) sends >= 65,000 bytes back to the client. Stands
 #              up a localhost TCP listener on port 53 and connects to it,
-#              with the listener writing ~64 KiB of payload to the client.
+#              with the listener writing ~70 KiB of payload to the client.
 #              The resulting flow record (network_traffic / Zeek) shows
-#              destination.port=53 and destination.bytes well above the
-#              60,000-byte threshold the rule looks for.
+#              destination.port=53 and destination.bytes above the
+#              65,000-byte threshold the rule looks for (raised from 60,000
+#              in detection-rules PR #6201). The flow completes in well under
+#              60 seconds, so it is not removed by the rule's new long-lived
+#              flow_terminated / network_flow exclusion.
 #
 #              Binding TCP/53 requires CAP_NET_BIND_SERVICE / root.
 
@@ -28,7 +31,7 @@ log = logging.getLogger(__name__)
 
 DNS_PORT = 53
 LOCALHOST = "127.0.0.1"
-RESPONSE_SIZE = 65 * 1024  # > 60_000 bytes triggers the rule
+RESPONSE_SIZE = 70 * 1024  # >= 65_000 bytes triggers the rule (threshold raised in PR #6201)
 
 
 def _serve_large_response(ready: threading.Event) -> None:
@@ -43,7 +46,7 @@ def _serve_large_response(ready: threading.Event) -> None:
         conn, addr = server.accept()
         log.info("Accepted client %s on TCP/%d - sending %d-byte payload", addr, DNS_PORT, RESPONSE_SIZE)
         try:
-            # Sending in a single large buffer so the flow accounts > 60KB on the
+            # Sending in a single large buffer so the flow accounts >= 65KB on the
             # destination -> source direction.
             _ = conn.sendall(b"\xab" * RESPONSE_SIZE)
         finally:
@@ -69,7 +72,7 @@ def _serve_large_response(ready: threading.Event) -> None:
     techniques=["T1210", "T1499", "T1499.004"],
 )
 def main() -> None:
-    """Generate a TCP flow with destination.port=53 and destination.bytes > 60,000 to emulate SigRed (CVE-2020-1350)."""
+    """Generate a TCP flow with destination.port=53 and destination.bytes >= 65,000 to emulate SigRed (CVE-2020-1350)."""
     if os.geteuid() != 0:
         log.error("Binding TCP/53 requires root or CAP_NET_BIND_SERVICE")
         return
