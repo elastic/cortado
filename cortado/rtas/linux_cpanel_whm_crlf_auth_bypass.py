@@ -5,16 +5,19 @@
 
 # Name: cPanel WHM CRLF Authentication Bypass (Linux)
 # RTA: linux_cpanel_whm_crlf_auth_bypass.py
-# Description: Emulates the network signature of CVE-2026-41940 by standing up
-#              a localhost HTTP listener on TCP/2087 (the WHM admin port) that
-#              responds to GET / with an HTTP 307 redirect carrying a
-#              Location: /cpsess<10-digit>/... header, then issuing a GET /
-#              request to that listener with an Authorization: Basic header
-#              whose decoded value contains CRLF-injected session fields.
-#              The resulting decoded HTTP transaction (network_traffic.http)
-#              matches every clause of the CVE-2026-41940 detection rule:
-#              GET /, cPanel admin port, Authorization: Basic on the request,
-#              3xx response, /cpsess* in the response Location header.
+# Description: Emulates the network signature of CVE-2026-41940 by binding an
+#              HTTP listener on TCP/2087 (the WHM admin port) on all interfaces
+#              (0.0.0.0) that responds to GET / with an HTTP 307 redirect
+#              carrying a Location: /cpsess<10-digit>/... header, then issuing
+#              a GET / request to the host's non-loopback IP so the transaction
+#              traverses the physical interface and is visible to Packetbeat /
+#              network_traffic packet capture. The request carries an
+#              Authorization: Basic header whose decoded value contains
+#              CRLF-injected session fields. The resulting decoded HTTP
+#              transaction (network_traffic.http) matches every clause of the
+#              CVE-2026-41940 detection rule: GET /, cPanel admin port,
+#              Authorization: Basic on the request, 3xx response, /cpsess* in
+#              the response Location header.
 #
 #              TCP/2087 is unprivileged (>1024) so no special capabilities are
 #              required. The Network Packet Capture integration must be
@@ -30,10 +33,10 @@ import threading
 import time
 
 from . import OSType, RuleMetadata, register_code_rta
+from ._common import get_host_ip
 
 log = logging.getLogger(__name__)
 
-LOCALHOST = "127.0.0.1"
 WHM_PORT = 2087
 CPSESS_LOCATION = "/cpsess1234567890/json-api/version"
 
@@ -94,9 +97,9 @@ def main() -> None:
     """Emulate Stage 2 of CVE-2026-41940: GET / with Basic auth + 3xx response carrying /cpsess Location."""
     http.server.HTTPServer.allow_reuse_address = True
     try:
-        server = http.server.HTTPServer((LOCALHOST, WHM_PORT), _CpanelRedirectHandler)
+        server = http.server.HTTPServer(("0.0.0.0", WHM_PORT), _CpanelRedirectHandler)
     except OSError as e:
-        log.error("Could not bind %s:%d (%s)", LOCALHOST, WHM_PORT, e)
+        log.error("Could not bind 0.0.0.0:%d (%s)", WHM_PORT, e)
         return
 
     ready = threading.Event()
@@ -112,12 +115,13 @@ def main() -> None:
     time.sleep(0.2)
 
     auth_value = "Basic " + base64.b64encode(CRLF_PAYLOAD).decode("ascii")
+    local_ip = get_host_ip()
 
     log.info(
         "Sending GET / to %s:%d with CRLF-injected Authorization: Basic header",
-        LOCALHOST, WHM_PORT,
+        local_ip, WHM_PORT,
     )
-    conn = http.client.HTTPConnection(LOCALHOST, WHM_PORT, timeout=5)
+    conn = http.client.HTTPConnection(local_ip, WHM_PORT, timeout=5)
     try:
         conn.request(
             "GET", "/",
@@ -127,12 +131,12 @@ def main() -> None:
         location = resp.getheader("Location")
         log.info(
             "Received HTTP %d from %s:%d with Location: %s",
-            resp.status, LOCALHOST, WHM_PORT, location,
+            resp.status, local_ip, WHM_PORT, location,
         )
         # Drain so the server-side handle_request can return cleanly.
         _ = resp.read()
     except OSError as e:
-        log.error("Request to %s:%d failed: %s", LOCALHOST, WHM_PORT, e)
+        log.error("Request to %s:%d failed: %s", local_ip, WHM_PORT, e)
     finally:
         conn.close()
 

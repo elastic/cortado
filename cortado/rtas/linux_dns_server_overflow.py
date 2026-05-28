@@ -7,14 +7,16 @@
 # RTA: linux_dns_server_overflow.py
 # Description: Emulates the network shape of CVE-2020-1350 (SigRed) by
 #              producing a flow with destination.port=53 where the server
-#              (destination) sends >= 65,000 bytes back to the client. Stands
-#              up a localhost TCP listener on port 53 and connects to it,
-#              with the listener writing ~70 KiB of payload to the client.
-#              The resulting flow record (network_traffic / Zeek) shows
+#              (destination) sends >= 65,000 bytes back to the client. Binds
+#              a TCP listener on port 53 on all interfaces (0.0.0.0) and
+#              connects to the host's non-loopback IP so the traffic traverses
+#              the physical interface and is visible to Packetbeat / Zeek /
+#              network_traffic packet capture. The listener writes ~70 KiB of
+#              payload to the client. The resulting flow record shows
 #              destination.port=53 and destination.bytes above the
 #              65,000-byte threshold the rule looks for (raised from 60,000
 #              in detection-rules PR #6201). The flow completes in well under
-#              60 seconds, so it is not removed by the rule's new long-lived
+#              60 seconds, so it is not removed by the rule's long-lived
 #              flow_terminated / network_flow exclusion.
 #
 #              Binding TCP/53 requires CAP_NET_BIND_SERVICE / root.
@@ -26,20 +28,20 @@ import threading
 import time
 
 from . import OSType, RuleMetadata, register_code_rta
+from ._common import get_host_ip
 
 log = logging.getLogger(__name__)
 
 DNS_PORT = 53
-LOCALHOST = "127.0.0.1"
 RESPONSE_SIZE = 70 * 1024  # >= 65_000 bytes triggers the rule (threshold raised in PR #6201)
 
 
 def _serve_large_response(ready: threading.Event) -> None:
-    """Bind localhost:53 and write a >60KB payload to the first client that connects."""
+    """Bind 0.0.0.0:53 and write a >60KB payload to the first client that connects."""
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     try:
-        server.bind((LOCALHOST, DNS_PORT))
+        server.bind(("0.0.0.0", DNS_PORT))
         server.listen(1)
         server.settimeout(10)
         ready.set()
@@ -87,12 +89,13 @@ def main() -> None:
 
     time.sleep(0.2)
 
-    log.info("Connecting to %s:%d to receive oversized DNS-shaped response", LOCALHOST, DNS_PORT)
+    local_ip = get_host_ip()
+    log.info("Connecting to %s:%d to receive oversized DNS-shaped response", local_ip, DNS_PORT)
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.settimeout(10)
     received = 0
     try:
-        client.connect((LOCALHOST, DNS_PORT))
+        client.connect((local_ip, DNS_PORT))
         while True:
             chunk = client.recv(8192)
             if not chunk:

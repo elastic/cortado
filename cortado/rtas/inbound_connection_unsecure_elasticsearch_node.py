@@ -6,9 +6,12 @@
 # Name: Inbound Connection to an Unsecure Elasticsearch Node
 # RTA: inbound_connection_unsecure_elasticsearch_node.py
 # Description: Emulates an inbound HTTP request to an unauthenticated Elasticsearch
-#              node by standing up a localhost HTTP listener on TCP/9200 that responds
-#              with HTTP 200 and an application/json body, then issuing a GET /
-#              request to that listener WITHOUT an Authorization header.
+#              node by binding an HTTP listener on TCP/9200 on all interfaces
+#              (0.0.0.0) that responds with HTTP 200 and an application/json body,
+#              then issuing a GET / request to the host's non-loopback IP WITHOUT
+#              an Authorization header. Connecting via the real host IP forces the
+#              traffic over the physical interface where Packetbeat / network_traffic
+#              packet capture can observe it.
 #
 #              This matches the Packetbeat/network_traffic path of the detection rule:
 #              destination.port:9200, http.response.status_code:200,
@@ -27,10 +30,10 @@ import threading
 import time
 
 from . import OSType, RuleMetadata, register_code_rta
+from ._common import get_host_ip
 
 log = logging.getLogger(__name__)
 
-LOCALHOST = "127.0.0.1"
 ELASTICSEARCH_PORT = 9200
 FAKE_ES_BODY = b'{"name":"node-1","cluster_name":"elasticsearch","version":{"number":"8.0.0"}}'
 
@@ -77,9 +80,9 @@ def main() -> None:
     """Emit an unauthenticated HTTP GET to TCP/9200 and receive a 200 response."""
     http.server.HTTPServer.allow_reuse_address = True
     try:
-        server = http.server.HTTPServer((LOCALHOST, ELASTICSEARCH_PORT), _UnsecuredElasticsearchHandler)
+        server = http.server.HTTPServer(("0.0.0.0", ELASTICSEARCH_PORT), _UnsecuredElasticsearchHandler)
     except OSError as e:
-        log.error("Could not bind %s:%d (%s)", LOCALHOST, ELASTICSEARCH_PORT, e)
+        log.error("Could not bind 0.0.0.0:%d (%s)", ELASTICSEARCH_PORT, e)
         return
 
     ready = threading.Event()
@@ -94,22 +97,23 @@ def main() -> None:
 
     time.sleep(0.2)
 
+    local_ip = get_host_ip()
     log.info(
         "Sending unauthenticated GET / to %s:%d (unsecured Elasticsearch emulation)",
-        LOCALHOST, ELASTICSEARCH_PORT,
+        local_ip, ELASTICSEARCH_PORT,
     )
-    conn = http.client.HTTPConnection(LOCALHOST, ELASTICSEARCH_PORT, timeout=5)
+    conn = http.client.HTTPConnection(local_ip, ELASTICSEARCH_PORT, timeout=5)
     try:
         # Deliberately omit Authorization header to match the detection condition.
         conn.request("GET", "/", headers={"Connection": "close"})
         resp = conn.getresponse()
         log.info(
             "Received HTTP %d from %s:%d (Content-Type: %s)",
-            resp.status, LOCALHOST, ELASTICSEARCH_PORT, resp.getheader("Content-Type"),
+            resp.status, local_ip, ELASTICSEARCH_PORT, resp.getheader("Content-Type"),
         )
         _ = resp.read()
     except OSError as e:
-        log.error("Request to %s:%d failed: %s", LOCALHOST, ELASTICSEARCH_PORT, e)
+        log.error("Request to %s:%d failed: %s", local_ip, ELASTICSEARCH_PORT, e)
     finally:
         conn.close()
 
