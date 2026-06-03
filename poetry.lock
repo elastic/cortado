@@ -31,15 +31,15 @@ markers = {main = "extra == \"utils\" and platform_system == \"Windows\"", dev =
 
 [[package]]
 name = "ecs-logging"
-version = "2.2.0"
+version = "2.3.0"
 description = "Logging formatters for ECS (Elastic Common Schema) in Python"
 optional = true
-python-versions = ">=3.6"
+python-versions = ">=3.8"
 groups = ["main"]
 markers = "extra == \"utils\""
 files = [
-    {file = "ecs_logging-2.2.0-py3-none-any.whl", hash = "sha256:f6e22d267770b06f797076f49b5fcc9d97108b22f452f5f9ed4b5367b1e61b5b"},
-    {file = "ecs_logging-2.2.0.tar.gz", hash = "sha256:1dc9e216f614129db0e6a2f9f926da4e4cf8edf8de16d1045a20aa8e950291d3"},
+    {file = "ecs_logging-2.3.0-py3-none-any.whl", hash = "sha256:42da72191a98bd724d105e126ca8d7c81fc82b0d7bbbe4bb1584c34e61042cfc"},
+    {file = "ecs_logging-2.3.0.tar.gz", hash = "sha256:be7f618e71e10c33a61165aea58813ebd702f6c0044538155871cb9a1609ab4e"},
 ]
 
 [package.extras]
