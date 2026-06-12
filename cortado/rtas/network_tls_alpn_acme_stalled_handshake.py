@@ -6,32 +6,36 @@
 # Name: Repeated Stalled TLS Handshakes via ALPN acme-tls/1 Extension
 # RTA: network_tls_alpn_acme_stalled_handshake.py
 # Description: Emulates the CVE-2026-22045 goroutine-exhaustion DoS pattern by
-#              opening THRESHOLD_COUNT parallel TLS connections to a plain TCP
-#              listener on TCP/8443 via the host's non-loopback IP. Each client
-#              uses ssl.SSLContext.set_alpn_protocols(["acme-tls/1"]) so that
-#              Python constructs a proper TLS ClientHello advertising the
-#              acme-tls/1 ALPN extension. The plain TCP server accepts each
-#              connection and holds it open for STALL_SECONDS without sending
-#              a TLS ServerHello, causing the client's do_handshake() to block.
+#              opening THRESHOLD_COUNT parallel TCP connections to a plain listener
+#              on TCP/443 via the host's non-loopback IP, each sending a manually
+#              crafted TLS ClientHello that advertises acme-tls/1 as its sole ALPN
+#              extension. The plain TCP server accepts each connection and holds it
+#              open for STALL_SECONDS without sending a TLS ServerHello.
 #
 #              Packetbeat / network_traffic with TLS parsing and
 #              include_detailed_fields: true sees each connection as:
 #                - tls.detailed.client_hello.extensions
 #                    .application_layer_protocol_negotiation = "acme-tls/1"
-#                - tls.established = false  (no ServerHello received)
-#                - network.bytes < 1024     (only ClientHello bytes sent)
+#                - tls.established = false  (no ServerHello sent)
+#                - network.bytes < 1024     (ClientHello only, ~80 bytes)
 #                - event.duration >= 10000000000  (12 s > 10 s threshold)
 #
 #              Five such events from the same source.ip + destination.ip pair
 #              fire the threshold rule. All connections run in parallel so total
 #              wall time is approximately STALL_SECONDS.
 #
-#              TCP/8443 is unprivileged. Connections use the host's non-loopback
-#              IP so traffic traverses the physical NIC where Packetbeat captures.
+#              The ClientHello is crafted from raw bytes rather than via the ssl
+#              module, guaranteeing the ALPN extension contains exactly "acme-tls/1"
+#              regardless of OpenSSL version or ssl context defaults.
+#
+#              TCP/8443 is unprivileged. Connections use the host's non-loopback IP
+#              so traffic traverses the physical NIC where Packetbeat captures (same
+#              approach as the inbound_connection_unsecure_elasticsearch_node RTA).
 
 import logging
+import os  # for os.urandom in _build_tls_client_hello
 import socket
-import ssl
+import struct
 import threading
 import time
 
@@ -41,8 +45,67 @@ from ._common import get_host_ip
 log = logging.getLogger(__name__)
 
 TLS_PORT = 8443
-STALL_SECONDS = 12      # must exceed the rule's 10 s (10_000_000_000 ns) minimum
+STALL_SECONDS = 12      # must exceed the rule's 10 s (10_000_000_000 ns) floor
 THRESHOLD_COUNT = 5     # matches the rule's threshold value
+
+# "acme-tls/1" encoded as bytes for the ALPN ProtocolName field
+_ALPN_PROTOCOL = b"acme-tls/1"
+
+
+def _build_tls_client_hello() -> bytes:
+    """
+    Build a minimal but well-formed TLS ClientHello with acme-tls/1 as
+    the sole ALPN protocol. Uses os.urandom for the 32-byte client random
+    so each of the five connections looks distinct on the wire.
+    """
+    random_bytes = os.urandom(32)
+
+    # Supported Versions extension — advertise TLS 1.3 and TLS 1.2
+    ext_supported_versions = (
+        b"\x00\x2b"     # type: supported_versions (43)
+        b"\x00\x05"     # ext data length: 5
+        b"\x04"         # versions list length: 4
+        b"\x03\x04"     # TLS 1.3
+        b"\x03\x03"     # TLS 1.2
+    )
+
+    # ALPN extension — exactly one protocol: "acme-tls/1"
+    _name_len = len(_ALPN_PROTOCOL)          # 10
+    _list_len = 1 + _name_len               # 11  (1-byte name length + name)
+    _ext_data_len = 2 + _list_len           # 13  (2-byte list length + list)
+    ext_alpn = (
+        b"\x00\x10"                                     # type: ALPN (16)
+        + struct.pack("!H", _ext_data_len)              # ext data length: 13
+        + struct.pack("!H", _list_len)                  # ProtocolNameList length: 11
+        + struct.pack("!B", _name_len)                  # ProtocolName length: 10
+        + _ALPN_PROTOCOL                                # b"acme-tls/1"
+    )
+
+    extensions = ext_supported_versions + ext_alpn
+
+    client_hello_body = (
+        b"\x03\x03"                                     # ClientHello version: TLS 1.2
+        + random_bytes                                   # 32-byte random
+        + b"\x00"                                       # session ID length: 0
+        + b"\x00\x04"                                   # cipher suites length: 4
+        + b"\x13\x01"                                   # TLS_AES_128_GCM_SHA256
+        + b"\x00\x2f"                                   # TLS_RSA_WITH_AES_128_CBC_SHA
+        + b"\x01\x00"                                   # 1 compression method: null
+        + struct.pack("!H", len(extensions))            # extensions length
+        + extensions
+    )
+
+    handshake = (
+        b"\x01"                                         # HandshakeType: ClientHello
+        + struct.pack("!I", len(client_hello_body))[1:] # 3-byte length
+        + client_hello_body
+    )
+
+    return (
+        b"\x16\x03\x01"                                 # TLS Handshake, record version TLS 1.0
+        + struct.pack("!H", len(handshake))             # record length
+        + handshake
+    )
 
 
 def _stall_connection(conn: socket.socket) -> None:
@@ -64,7 +127,7 @@ def _server_thread(server: socket.socket, ready: threading.Event) -> None:
         for _ in range(THRESHOLD_COUNT):
             try:
                 conn, addr = server.accept()
-                log.debug("Accepted stalled TLS connection from %s", addr)
+                log.debug("Accepted stalled connection from %s", addr)
                 t = threading.Thread(target=_stall_connection, args=(conn,), daemon=True)
                 t.start()
                 stall_threads.append(t)
@@ -77,23 +140,28 @@ def _server_thread(server: socket.socket, ready: threading.Event) -> None:
         server.close()
 
 
-def _client_stalled_hello(host: str, port: int, ctx: ssl.SSLContext) -> None:
-    """Connect with SSL (sends ClientHello with acme-tls/1 ALPN) and let the handshake stall."""
+def _client_stalled_hello(host: str, port: int) -> None:
+    """Send a raw TLS ClientHello with acme-tls/1 ALPN and hold the connection open."""
     try:
-        raw = socket.create_connection((host, port), timeout=STALL_SECONDS + 5)
+        conn = socket.create_connection((host, port), timeout=STALL_SECONDS + 5)
     except OSError as e:
         log.error("Could not connect to %s:%d: %s", host, port, e)
         return
 
-    ssl_sock = ctx.wrap_socket(raw, server_hostname=None, do_handshake_on_connect=False)
     try:
-        ssl_sock.do_handshake()
-    except (ssl.SSLError, OSError) as e:
-        # Expected — server closes without sending ServerHello after STALL_SECONDS
-        log.debug("Handshake stall ended (expected): %s", e)
+        hello = _build_tls_client_hello()
+        conn.sendall(hello)
+        # Block until the server closes (stall period expires), then exit
+        conn.settimeout(STALL_SECONDS + 5)
+        try:
+            _ = conn.recv(4096)
+        except OSError:
+            pass
+    except OSError as e:
+        log.error("Client send error: %s", e)
     finally:
         try:
-            ssl_sock.close()
+            conn.close()
         except OSError:
             pass
 
@@ -112,7 +180,7 @@ def _client_stalled_hello(host: str, port: int, ctx: ssl.SSLContext) -> None:
     techniques=["T1499", "T1499.002"],
 )
 def main() -> None:
-    """Open 5 stalled TLS ClientHellos with acme-tls/1 ALPN to trigger the threshold rule."""
+    """Open 5 stalled TLS ClientHellos with acme-tls/1 ALPN on TCP/443 to fire the threshold rule."""
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     try:
@@ -132,11 +200,6 @@ def main() -> None:
 
     time.sleep(0.1)
 
-    ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
-    ctx.check_hostname = False
-    ctx.verify_mode = ssl.CERT_NONE
-    ctx.set_alpn_protocols(["acme-tls/1"])
-
     local_ip = get_host_ip()
     log.info(
         "Opening %d stalled TLS ClientHellos (acme-tls/1 ALPN) to %s:%d — stalling %ds each",
@@ -147,7 +210,7 @@ def main() -> None:
     for i in range(THRESHOLD_COUNT):
         t = threading.Thread(
             target=_client_stalled_hello,
-            args=(local_ip, TLS_PORT, ctx),
+            args=(local_ip, TLS_PORT),
             daemon=True,
             name=f"acme-tls-client-{i}",
         )
