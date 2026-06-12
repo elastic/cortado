@@ -6,64 +6,131 @@
 # Name: Repeated Stalled TLS Handshakes via ALPN acme-tls/1 Extension
 # RTA: network_tls_alpn_acme_stalled_handshake.py
 # Description: Emulates the CVE-2026-22045 goroutine-exhaustion DoS pattern by
-#              opening THRESHOLD_COUNT parallel TCP connections to a plain listener
-#              on TCP/8443 via the host's non-loopback IP, each sending a manually
+#              sending THRESHOLD_COUNT raw IP/TCP flows, each carrying a manually
 #              crafted TLS ClientHello that advertises acme-tls/1 as its sole ALPN
-#              extension. The plain TCP server accepts each connection, holds it
-#              open for STALL_SECONDS, then sends a fatal TLS Alert
-#              (handshake_failure) before closing.
+#              extension. Flows are spoofed (src = SPOOFED_SOURCE_IP) and aimed at
+#              a non-local destination (PRIVATE_DESTINATION_IP) so the packets
+#              egress through the physical NIC where Packetbeat captures.
+#
+#              Each flow is three raw packets:
+#                1. TCP SYN   — opens the Packetbeat flow
+#                2. TCP PSH+ACK + TLS ClientHello (acme-tls/1 ALPN)
+#                3. TCP RST   — closes the flow after STALL_SECONDS
 #
 #              Packetbeat / network_traffic with TLS parsing and
 #              include_detailed_fields: true sees each connection as:
 #                - tls.detailed.client_hello.extensions
 #                    .application_layer_protocol_negotiation = "acme-tls/1"
-#                - tls.established = false  (no ServerHello sent)
-#                - network.bytes < 1024     (ClientHello ~80B + Alert 7B ≈ 87 bytes total)
-#                - event.duration >= 10000000000  (12 s > 10 s threshold)
+#                - tls.established = false  (no ServerHello on the wire)
+#                - network.bytes < 1024     (TLS ClientHello payload only ~80 B)
+#                - event.duration >= 10000000000  (12 s between SYN and RST)
 #
 #              Five such events from the same source.ip + destination.ip pair
-#              fire the threshold rule. All connections run in parallel so total
+#              fire the threshold rule. All flows run in parallel so total
 #              wall time is approximately STALL_SECONDS.
 #
-#              The ClientHello is crafted from raw bytes rather than via the ssl
-#              module, guaranteeing the ALPN extension contains exactly "acme-tls/1"
-#              regardless of OpenSSL version or ssl context defaults.
+#              The local-server pattern cannot be used here because connecting
+#              to get_host_ip() from the same host routes through the loopback
+#              interface (lo), which Packetbeat does not capture. Raw sockets
+#              with a non-local destination are required to hit the physical NIC.
 #
-#              After STALL_SECONDS the server sends a TLS Alert (fatal
-#              handshake_failure) before closing. The server-side response is
-#              required for Packetbeat to finalise and emit the TLS transaction
-#              event; a silent close produces no event (unlike HTTP/Redis RTAs
-#              whose fake servers always send a response).
-#
-#              TCP/8443 is unprivileged. Connections use the host's non-loopback IP
-#              so traffic traverses the physical NIC where Packetbeat captures (same
-#              approach as the inbound_connection_unsecure_elasticsearch_node RTA).
+#              Requires CAP_NET_RAW (run as root or with capability set).
 
 import logging
-import os  # for os.urandom in _build_tls_client_hello
+import os
+import random
 import socket
 import struct
 import threading
 import time
 
 from . import OSType, RuleMetadata, register_code_rta
-from ._common import get_host_ip
 
 log = logging.getLogger(__name__)
 
 TLS_PORT = 8443
-STALL_SECONDS = 12      # must exceed the rule's 10 s (10_000_000_000 ns) floor
-THRESHOLD_COUNT = 5     # matches the rule's threshold value
+STALL_SECONDS = 12          # SYN→RST gap; must exceed the rule's 10 s floor
+THRESHOLD_COUNT = 5         # matches the rule's threshold value
 
-# "acme-tls/1" encoded as bytes for the ALPN ProtocolName field
+# Source IP is spoofed so gateway RST/ICMP replies go to a non-existent host
+# and never reach our kernel's TCP stack.
+SPOOFED_SOURCE_IP = "10.10.10.5"
+# Destination is non-local; routes via the default gateway on the physical NIC.
+PRIVATE_DESTINATION_IP = "10.10.10.10"
+
 _ALPN_PROTOCOL = b"acme-tls/1"
+
+_TCP_SYN    = 0x02
+_TCP_RST    = 0x04
+_TCP_PSHACK = 0x18   # PSH | ACK
+
+
+def _ones_complement_sum(data: bytes) -> int:
+    if len(data) % 2:
+        data += b"\x00"
+    s = 0
+    for i in range(0, len(data), 2):
+        s += (data[i] << 8) | data[i + 1]
+    s = (s & 0xFFFF) + (s >> 16)
+    s += s >> 16
+    return ~s & 0xFFFF
+
+
+def _build_raw_packet(
+    src_ip: str,
+    dst_ip: str,
+    src_port: int,
+    dst_port: int,
+    tcp_flags: int,
+    seq: int,
+    ack_seq: int,
+    payload: bytes = b"",
+) -> bytes:
+    """Build a complete raw IP/TCP packet with optional application payload."""
+    src_bytes = socket.inet_aton(src_ip)
+    dst_bytes = socket.inet_aton(dst_ip)
+
+    data_offset = 5 << 4  # 20-byte TCP header, no options
+    tcp_seg_len = 20 + len(payload)
+
+    tcp_header = struct.pack(
+        "!HHIIBBHHH",
+        src_port, dst_port, seq, ack_seq,
+        data_offset, tcp_flags, 8192, 0, 0,
+    )
+    pseudo = struct.pack(
+        "!4s4sBBH",
+        src_bytes, dst_bytes, 0, socket.IPPROTO_TCP, tcp_seg_len,
+    )
+    tcp_checksum = _ones_complement_sum(pseudo + tcp_header + payload)
+    tcp_header = struct.pack(
+        "!HHIIBBHHH",
+        src_port, dst_port, seq, ack_seq,
+        data_offset, tcp_flags, 8192, tcp_checksum, 0,
+    )
+
+    ip_total_len = 20 + 20 + len(payload)
+    ident = random.randint(0, 0xFFFF)
+    ip_header = struct.pack(
+        "!BBHHHBBH4s4s",
+        0x45, 0, ip_total_len, ident, 0, 64, socket.IPPROTO_TCP, 0,
+        src_bytes, dst_bytes,
+    )
+    ip_checksum = _ones_complement_sum(ip_header)
+    ip_header = struct.pack(
+        "!BBHHHBBH4s4s",
+        0x45, 0, ip_total_len, ident, 0, 64, socket.IPPROTO_TCP, ip_checksum,
+        src_bytes, dst_bytes,
+    )
+
+    return ip_header + tcp_header + payload
 
 
 def _build_tls_client_hello() -> bytes:
     """
     Build a minimal but well-formed TLS ClientHello with acme-tls/1 as
-    the sole ALPN protocol. Uses os.urandom for the 32-byte client random
-    so each of the five connections looks distinct on the wire.
+    the sole ALPN protocol. Uses os.urandom for the 32-byte random so
+    each of the five flows looks distinct on the wire.
     """
     random_bytes = os.urandom(32)
 
@@ -115,72 +182,45 @@ def _build_tls_client_hello() -> bytes:
     )
 
 
-# TLS Alert record — fatal handshake_failure (40 / 0x28).
-# Sending a real TLS record causes Packetbeat to finalise and emit the session
-# event. Without any server-side bytes Packetbeat silently discards stalled
-# sessions and produces no event (same reason Redis/ES RTAs send +OK / HTTP 200).
-_TLS_ALERT_HANDSHAKE_FAILURE = b"\x15\x03\x03\x00\x02\x02\x28"
+def _stalled_tls_flow(sock: socket.socket, src_port: int) -> None:
+    """
+    Emit one stalled TLS ClientHello flow via raw socket:
+      SYN → (50 ms) → PSH+ACK+TLS ClientHello → (STALL_SECONDS) → RST
+    """
+    tls_hello = _build_tls_client_hello()
+    isn = random.randint(0x10000000, 0x7FFFFFFF)
 
+    # SYN — opens the Packetbeat flow entry
+    pkt = _build_raw_packet(
+        SPOOFED_SOURCE_IP, PRIVATE_DESTINATION_IP,
+        src_port, TLS_PORT,
+        _TCP_SYN, isn, 0,
+    )
+    sock.sendto(pkt, (PRIVATE_DESTINATION_IP, TLS_PORT))
+    log.debug("SYN sent from %s:%d", SPOOFED_SOURCE_IP, src_port)
+    time.sleep(0.05)
 
-def _stall_and_alert(conn: socket.socket) -> None:
-    """Hold an accepted TCP connection, then send a fatal TLS Alert and close."""
-    try:
-        time.sleep(STALL_SECONDS)
-        conn.sendall(_TLS_ALERT_HANDSHAKE_FAILURE)
-    except OSError:
-        pass
-    finally:
-        try:
-            conn.close()
-        except OSError:
-            pass
+    # PSH+ACK carrying the TLS ClientHello with acme-tls/1 ALPN
+    pkt = _build_raw_packet(
+        SPOOFED_SOURCE_IP, PRIVATE_DESTINATION_IP,
+        src_port, TLS_PORT,
+        _TCP_PSHACK, isn + 1, 1,
+        tls_hello,
+    )
+    sock.sendto(pkt, (PRIVATE_DESTINATION_IP, TLS_PORT))
+    log.debug("TLS ClientHello (acme-tls/1) sent from %s:%d", SPOOFED_SOURCE_IP, src_port)
 
+    # Stall — keeps the flow open so event.duration >= STALL_SECONDS
+    time.sleep(STALL_SECONDS)
 
-def _server_thread(server: socket.socket, ready: threading.Event) -> None:
-    """Accept THRESHOLD_COUNT connections and stall each in its own thread."""
-    ready.set()
-    stall_threads: list[threading.Thread] = []
-    try:
-        for _ in range(THRESHOLD_COUNT):
-            try:
-                conn, addr = server.accept()
-                log.debug("Accepted stalled connection from %s", addr)
-                t = threading.Thread(target=_stall_and_alert, args=(conn,), daemon=True)
-                t.start()
-                stall_threads.append(t)
-            except OSError as e:
-                log.debug("Server accept error: %s", e)
-                break
-    finally:
-        for t in stall_threads:
-            t.join(timeout=STALL_SECONDS + 5)
-        server.close()
-
-
-def _client_stalled_hello(host: str, port: int) -> None:
-    """Send a raw TLS ClientHello with acme-tls/1 ALPN and hold the connection open."""
-    try:
-        conn = socket.create_connection((host, port), timeout=STALL_SECONDS + 5)
-    except OSError as e:
-        log.error("Could not connect to %s:%d: %s", host, port, e)
-        return
-
-    try:
-        hello = _build_tls_client_hello()
-        conn.sendall(hello)
-        # Block until the server closes (stall period expires), then exit
-        conn.settimeout(STALL_SECONDS + 5)
-        try:
-            _ = conn.recv(4096)
-        except OSError:
-            pass
-    except OSError as e:
-        log.error("Client send error: %s", e)
-    finally:
-        try:
-            conn.close()
-        except OSError:
-            pass
+    # RST — closes the flow and causes Packetbeat to emit the TLS event
+    pkt = _build_raw_packet(
+        SPOOFED_SOURCE_IP, PRIVATE_DESTINATION_IP,
+        src_port, TLS_PORT,
+        _TCP_RST, isn + 1 + len(tls_hello), 1,
+    )
+    sock.sendto(pkt, (PRIVATE_DESTINATION_IP, TLS_PORT))
+    log.debug("RST sent from %s:%d (flow closed)", SPOOFED_SOURCE_IP, src_port)
 
 
 @register_code_rta(
@@ -197,45 +237,34 @@ def _client_stalled_hello(host: str, port: int) -> None:
     techniques=["T1499", "T1499.002"],
 )
 def main() -> None:
-    """Open 5 stalled TLS ClientHellos with acme-tls/1 ALPN on TCP/8443 to fire the threshold rule."""
-    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    try:
-        server.bind(("0.0.0.0", TLS_PORT))
-    except OSError as e:
-        log.error("Could not bind 0.0.0.0:%d (%s)", TLS_PORT, e)
-        return
-    server.listen(THRESHOLD_COUNT)
-
-    ready = threading.Event()
-    srv_thread = threading.Thread(target=_server_thread, args=(server, ready), daemon=True)
-    srv_thread.start()
-
-    if not ready.wait(timeout=5):
-        log.error("Listener on TCP/%d did not start in time", TLS_PORT)
+    """Emit 5 raw stalled TLS flows with acme-tls/1 ALPN on TCP/8443 to fire the threshold rule."""
+    if os.geteuid() != 0:
+        log.error("Raw socket privileges required (run as root or with CAP_NET_RAW)")
         return
 
-    time.sleep(0.1)
+    sock = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_TCP)
+    sock.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
 
-    local_ip = get_host_ip()
+    base_port = random.randint(32768, 60000)
+
     log.info(
-        "Opening %d stalled TLS ClientHellos (acme-tls/1 ALPN) to %s:%d — stalling %ds each",
-        THRESHOLD_COUNT, local_ip, TLS_PORT, STALL_SECONDS,
+        "Sending %d stalled TLS flows (acme-tls/1 ALPN) from %s to %s:%d — stalling %ds",
+        THRESHOLD_COUNT, SPOOFED_SOURCE_IP, PRIVATE_DESTINATION_IP, TLS_PORT, STALL_SECONDS,
     )
 
-    client_threads: list[threading.Thread] = []
+    threads: list[threading.Thread] = []
     for i in range(THRESHOLD_COUNT):
         t = threading.Thread(
-            target=_client_stalled_hello,
-            args=(local_ip, TLS_PORT),
+            target=_stalled_tls_flow,
+            args=(sock, base_port + i),
             daemon=True,
-            name=f"acme-tls-client-{i}",
+            name=f"acme-tls-flow-{i}",
         )
         t.start()
-        client_threads.append(t)
+        threads.append(t)
 
-    for t in client_threads:
+    for t in threads:
         t.join(timeout=STALL_SECONDS + 10)
 
-    srv_thread.join(timeout=5)
+    sock.close()
     log.info("Stalled handshake emulation complete")
