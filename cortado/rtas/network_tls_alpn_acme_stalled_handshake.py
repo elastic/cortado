@@ -7,17 +7,18 @@
 # RTA: network_tls_alpn_acme_stalled_handshake.py
 # Description: Emulates the CVE-2026-22045 goroutine-exhaustion DoS pattern by
 #              opening THRESHOLD_COUNT parallel TCP connections to a plain listener
-#              on TCP/443 via the host's non-loopback IP, each sending a manually
+#              on TCP/8443 via the host's non-loopback IP, each sending a manually
 #              crafted TLS ClientHello that advertises acme-tls/1 as its sole ALPN
-#              extension. The plain TCP server accepts each connection and holds it
-#              open for STALL_SECONDS without sending a TLS ServerHello.
+#              extension. The plain TCP server accepts each connection, holds it
+#              open for STALL_SECONDS, then sends a fatal TLS Alert
+#              (handshake_failure) before closing.
 #
 #              Packetbeat / network_traffic with TLS parsing and
 #              include_detailed_fields: true sees each connection as:
 #                - tls.detailed.client_hello.extensions
 #                    .application_layer_protocol_negotiation = "acme-tls/1"
 #                - tls.established = false  (no ServerHello sent)
-#                - network.bytes < 1024     (ClientHello only, ~80 bytes)
+#                - network.bytes < 1024     (ClientHello ~80B + Alert 7B ≈ 87 bytes total)
 #                - event.duration >= 10000000000  (12 s > 10 s threshold)
 #
 #              Five such events from the same source.ip + destination.ip pair
@@ -27,6 +28,12 @@
 #              The ClientHello is crafted from raw bytes rather than via the ssl
 #              module, guaranteeing the ALPN extension contains exactly "acme-tls/1"
 #              regardless of OpenSSL version or ssl context defaults.
+#
+#              After STALL_SECONDS the server sends a TLS Alert (fatal
+#              handshake_failure) before closing. The server-side response is
+#              required for Packetbeat to finalise and emit the TLS transaction
+#              event; a silent close produces no event (unlike HTTP/Redis RTAs
+#              whose fake servers always send a response).
 #
 #              TCP/8443 is unprivileged. Connections use the host's non-loopback IP
 #              so traffic traverses the physical NIC where Packetbeat captures (same
@@ -108,10 +115,20 @@ def _build_tls_client_hello() -> bytes:
     )
 
 
-def _stall_connection(conn: socket.socket) -> None:
-    """Hold an accepted TCP connection open without responding, then close."""
+# TLS Alert record — fatal handshake_failure (40 / 0x28).
+# Sending a real TLS record causes Packetbeat to finalise and emit the session
+# event. Without any server-side bytes Packetbeat silently discards stalled
+# sessions and produces no event (same reason Redis/ES RTAs send +OK / HTTP 200).
+_TLS_ALERT_HANDSHAKE_FAILURE = b"\x15\x03\x03\x00\x02\x02\x28"
+
+
+def _stall_and_alert(conn: socket.socket) -> None:
+    """Hold an accepted TCP connection, then send a fatal TLS Alert and close."""
     try:
         time.sleep(STALL_SECONDS)
+        conn.sendall(_TLS_ALERT_HANDSHAKE_FAILURE)
+    except OSError:
+        pass
     finally:
         try:
             conn.close()
@@ -128,7 +145,7 @@ def _server_thread(server: socket.socket, ready: threading.Event) -> None:
             try:
                 conn, addr = server.accept()
                 log.debug("Accepted stalled connection from %s", addr)
-                t = threading.Thread(target=_stall_connection, args=(conn,), daemon=True)
+                t = threading.Thread(target=_stall_and_alert, args=(conn,), daemon=True)
                 t.start()
                 stall_threads.append(t)
             except OSError as e:
@@ -180,7 +197,7 @@ def _client_stalled_hello(host: str, port: int) -> None:
     techniques=["T1499", "T1499.002"],
 )
 def main() -> None:
-    """Open 5 stalled TLS ClientHellos with acme-tls/1 ALPN on TCP/443 to fire the threshold rule."""
+    """Open 5 stalled TLS ClientHellos with acme-tls/1 ALPN on TCP/8443 to fire the threshold rule."""
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     try:
