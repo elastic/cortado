@@ -196,7 +196,7 @@ def _stalled_tls_flow(sock: socket.socket, src_port: int) -> None:
         src_port, TLS_PORT,
         _TCP_SYN, isn, 0,
     )
-    sock.sendto(pkt, (PRIVATE_DESTINATION_IP, TLS_PORT))
+    _ = sock.sendto(pkt, (PRIVATE_DESTINATION_IP, TLS_PORT))
     log.debug("SYN sent from %s:%d", SPOOFED_SOURCE_IP, src_port)
     time.sleep(0.05)
 
@@ -207,7 +207,7 @@ def _stalled_tls_flow(sock: socket.socket, src_port: int) -> None:
         _TCP_PSHACK, isn + 1, 1,
         tls_hello,
     )
-    sock.sendto(pkt, (PRIVATE_DESTINATION_IP, TLS_PORT))
+    _ = sock.sendto(pkt, (PRIVATE_DESTINATION_IP, TLS_PORT))
     log.debug("TLS ClientHello (acme-tls/1) sent from %s:%d", SPOOFED_SOURCE_IP, src_port)
 
     # Stall — keeps the flow open so event.duration >= STALL_SECONDS
@@ -219,7 +219,7 @@ def _stalled_tls_flow(sock: socket.socket, src_port: int) -> None:
         src_port, TLS_PORT,
         _TCP_RST, isn + 1 + len(tls_hello), 1,
     )
-    sock.sendto(pkt, (PRIVATE_DESTINATION_IP, TLS_PORT))
+    _ = sock.sendto(pkt, (PRIVATE_DESTINATION_IP, TLS_PORT))
     log.debug("RST sent from %s:%d (flow closed)", SPOOFED_SOURCE_IP, src_port)
 
 
