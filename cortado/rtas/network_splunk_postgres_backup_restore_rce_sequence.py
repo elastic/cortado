@@ -61,10 +61,13 @@ from . import OSType, RuleMetadata, register_code_rta
 
 log = logging.getLogger(__name__)
 
-# splunkd management API — the recovery sidecar lives behind splunkd (default 8089).
-# The sensor must observe this traffic in cleartext (e.g. downstream of TLS
-# termination) and be configured to parse HTTP on this port.
-SPLUNK_PORT = 8089
+# Splunk Web default port (8000) — it is in the default Network Packet Capture /
+# Packetbeat HTTP port list, so the sensor parses this traffic as cleartext HTTP
+# without extra configuration. The rule does not filter on port; it matches on
+# url.path. (splunkd's management port 8089 is HTTPS by default and not in the
+# default HTTP port list, so it would require TLS termination plus an added HTTP
+# port; the sidecar can alternatively be monitored on TCP 5435.)
+SPLUNK_PORT = 8000
 
 # Source is spoofed so gateway RST/ICMP replies go to a non-existent host and
 # never reach our kernel's TCP stack. Destination is non-local so the flow
@@ -181,7 +184,16 @@ def _http_transaction(sock: socket.socket, client_port: int, path: str, body: by
     cli_isn = random.randint(0x10000000, 0x7FFFFFFF)
     srv_isn = random.randint(0x10000000, 0x7FFFFFFF)
 
-    def send(src_ip, dst_ip, sport, dport, flags, seq, ack, payload=b""):
+    def send(
+        src_ip: str,
+        dst_ip: str,
+        sport: int,
+        dport: int,
+        flags: int,
+        seq: int,
+        ack: int,
+        payload: bytes = b"",
+    ) -> None:
         pkt = _build_raw_packet(src_ip, dst_ip, sport, dport, flags, seq, ack, payload)
         _ = sock.sendto(pkt, (dst_ip, dport))
 
