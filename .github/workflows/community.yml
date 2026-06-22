@@ -10,6 +10,9 @@ on:
 jobs:
   label:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
     steps:
       - name: Check if member of elastic org
         uses: actions/github-script@v6
