@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Set up cache
-        uses: actions/cache@v4
+        uses: actions/cache@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6
         id: cached-poetry-dependencies
         with:
           path: ./.venv
@@ -64,7 +64,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Set up cache
-        uses: actions/cache@v4
+        uses: actions/cache@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6
         id: cached-poetry-dependencies
         with:
           path: ./.venv
@@ -94,7 +94,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Set up cache
-        uses: actions/cache@v4
+        uses: actions/cache@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6
         id: cached-poetry-dependencies
         with:
           path: ./.venv
