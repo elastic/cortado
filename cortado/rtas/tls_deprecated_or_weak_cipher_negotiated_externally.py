@@ -220,33 +220,33 @@ def main() -> None:
 
     try:
         # --- TCP three-way handshake ---
-        sock.sendto(client(_TCP_SYN, c_isn, 0), (EXTERNAL_DEST_IP, TLS_PORT))
+        _ = sock.sendto(client(_TCP_SYN, c_isn, 0), (EXTERNAL_DEST_IP, TLS_PORT))
         time.sleep(0.02)
-        sock.sendto(server(_TCP_SYNACK, s_isn, c_isn + 1), (INTERNAL_SOURCE_IP, src_port))
+        _ = sock.sendto(server(_TCP_SYNACK, s_isn, c_isn + 1), (INTERNAL_SOURCE_IP, src_port))
         time.sleep(0.02)
-        sock.sendto(client(_TCP_ACK, c_seq, s_seq), (EXTERNAL_DEST_IP, TLS_PORT))
+        _ = sock.sendto(client(_TCP_ACK, c_seq, s_seq), (EXTERNAL_DEST_IP, TLS_PORT))
 
         # --- TLS handshake ---
-        sock.sendto(client(_TCP_PSHACK, c_seq, s_seq, client_hello), (EXTERNAL_DEST_IP, TLS_PORT))
+        _ = sock.sendto(client(_TCP_PSHACK, c_seq, s_seq, client_hello), (EXTERNAL_DEST_IP, TLS_PORT))
         c_seq += len(client_hello)
         time.sleep(0.02)
 
-        sock.sendto(server(_TCP_PSHACK, s_seq, c_seq, server_hello), (INTERNAL_SOURCE_IP, src_port))
+        _ = sock.sendto(server(_TCP_PSHACK, s_seq, c_seq, server_hello), (INTERNAL_SOURCE_IP, src_port))
         s_seq += len(server_hello)
         time.sleep(0.02)
 
-        sock.sendto(client(_TCP_PSHACK, c_seq, s_seq, client_finish), (EXTERNAL_DEST_IP, TLS_PORT))
+        _ = sock.sendto(client(_TCP_PSHACK, c_seq, s_seq, client_finish), (EXTERNAL_DEST_IP, TLS_PORT))
         c_seq += len(client_finish)
         time.sleep(0.02)
 
-        sock.sendto(server(_TCP_PSHACK, s_seq, c_seq, server_finish), (INTERNAL_SOURCE_IP, src_port))
+        _ = sock.sendto(server(_TCP_PSHACK, s_seq, c_seq, server_finish), (INTERNAL_SOURCE_IP, src_port))
         s_seq += len(server_finish)
         time.sleep(0.02)
 
         # --- graceful close so the sensor emits the completed TLS event ---
-        sock.sendto(client(_TCP_FINACK, c_seq, s_seq), (EXTERNAL_DEST_IP, TLS_PORT))
-        sock.sendto(server(_TCP_FINACK, s_seq, c_seq + 1), (INTERNAL_SOURCE_IP, src_port))
-        sock.sendto(client(_TCP_ACK, c_seq + 1, s_seq + 1), (EXTERNAL_DEST_IP, TLS_PORT))
+        _ = sock.sendto(client(_TCP_FINACK, c_seq, s_seq), (EXTERNAL_DEST_IP, TLS_PORT))
+        _ = sock.sendto(server(_TCP_FINACK, s_seq, c_seq + 1), (INTERNAL_SOURCE_IP, src_port))
+        _ = sock.sendto(client(_TCP_ACK, c_seq + 1, s_seq + 1), (EXTERNAL_DEST_IP, TLS_PORT))
 
         log.info("Forged TLS 1.0 / RC4-SHA handshake emitted (tls.established=true expected)")
     except OSError as e:
