@@ -5,68 +5,144 @@
 
 # Name: Inbound Connection to an Unsecure Elasticsearch Node
 # RTA: inbound_connection_unsecure_elasticsearch_node.py
-# Description: Emulates an inbound HTTP request to an unauthenticated Elasticsearch
-#              node by binding an HTTP listener on TCP/9200 on all interfaces
-#              (0.0.0.0) that responds with HTTP 200 and an application/json body,
-#              then issuing a GET / request to the host's non-loopback IP WITHOUT
-#              an Authorization header. Connecting via the real host IP forces the
-#              traffic over the physical interface where Packetbeat / network_traffic
-#              packet capture can observe it.
+# Description: Forges a complete bidirectional HTTP/1.1 transaction on the wire
+#              from an EXTERNAL (public) source IP to an INTERNAL (RFC1918)
+#              destination on TCP/9200, emulating an unauthenticated inbound
+#              request to an Internet-exposed Elasticsearch node. The request
+#              carries NO Authorization header and the response is HTTP 200 with
+#              Content-Type: application/json - satisfying every field the rule
+#              inspects: destination.port:9200, http.response.status_code:200,
+#              Content-Type != image/x-icon, and no http.request.headers.authorization.
 #
-#              This matches the Packetbeat/network_traffic path of the detection rule:
-#              destination.port:9200, http.response.status_code:200,
-#              NOT _exists_:http.request.headers.authorization, and the response
-#              Content-Type is application/json (not image/x-icon).
+#              WHY THIS IS FORGED RATHER THAN A LOCAL LISTENER:
+#              The rule requires network.direction:inbound. Packetbeat / the
+#              network_traffic integration derives direction from the source and
+#              destination IPs relative to its configured internal_networks:
+#              external source + internal destination -> "inbound". A previous
+#              version of this RTA stood up a local HTTP listener and connected to
+#              the host's own IP; that flow has source == destination == the host
+#              (both internal), which is classified "internal" (or interface-relative
+#              "ingress"), NEVER "inbound", so the rule could not match. Forging the
+#              flow from a genuinely external source (203.0.113.50, TEST-NET-3) to an
+#              internal RFC1918 destination (10.10.10.10) is the only way to produce
+#              an inbound-classified flow on a single host, and mirrors the approach
+#              used by network_smb_from_internet.py.
 #
-#              TCP/9200 is unprivileged (>1024) so no special capabilities are
-#              required. The Network Packet Capture integration must be configured
-#              to decode HTTP on TCP/9200 with send_all_headers enabled for header
-#              fields to be populated.
+#              SENSOR PREREQUISITE: network.direction:inbound requires the sensor to
+#              have internal_networks configured (e.g. the RFC1918 ranges) so that
+#              10.10.10.10 is recognised as internal and 203.0.113.50 as external.
+#              Without internal_networks set, the integration falls back to
+#              interface-relative "ingress"/"egress" and the rule's inbound clause
+#              will not match regardless of the traffic generated here.
 #
-#              NOTE: The Packetbeat sensor must have internal_networks configured
-#              (e.g. RFC1918 ranges in packetbeat.yml) so that the host's IP is
-#              recognised as an internal address. Without this, Packetbeat will
-#              classify the flow as ingress rather than inbound and the rule's
-#              network.direction:inbound condition will not match.
+#              Both directions are forged as raw IP/TCP packets to a non-local
+#              destination so they egress the physical NIC where the sensor
+#              captures them and reassembles the transaction into
+#              logs-network_traffic.http-*.
+#
+#              Flow: SYN -> SYN/ACK -> ACK -> client GET / (no auth) ->
+#              server HTTP/1.1 200 (application/json) -> FIN/ACK exchange.
+#
+#              Requires CAP_NET_RAW (run as root or with the capability set). The
+#              local kernel holds no TCP state for the forged conversation; replies
+#              to the forged endpoints go nowhere, which is expected.
 
-import http.client
-import http.server
 import logging
-import threading
+import os
+import random
+import socket
+import struct
 import time
 
 from . import OSType, RuleMetadata, register_code_rta
-from ._common import get_host_ip
 
 log = logging.getLogger(__name__)
 
 ELASTICSEARCH_PORT = 9200
+EXTERNAL_SOURCE_IP = "203.0.113.50"   # public source -> classified external
+INTERNAL_DEST_IP = "10.10.10.10"      # RFC1918 Elasticsearch node -> classified internal
+
 FAKE_ES_BODY = b'{"name":"node-1","cluster_name":"elasticsearch","version":{"number":"8.0.0"}}'
 
+# GET / with NO Authorization header -> matches "not http.request.headers.authorization: *"
+HTTP_REQUEST = (
+    b"GET / HTTP/1.1\r\n"
+    b"Host: 10.10.10.10:9200\r\n"
+    b"User-Agent: curl/8.0.0\r\n"
+    b"Accept: */*\r\n"
+    b"Connection: close\r\n"
+    b"\r\n"
+)
 
-class _UnsecuredElasticsearchHandler(http.server.BaseHTTPRequestHandler):
-    """Respond to any GET with HTTP 200 and a JSON body, no auth required."""
+# 200 with application/json (not image/x-icon) -> matches the rule's response clauses.
+HTTP_RESPONSE = (
+    b"HTTP/1.1 200 OK\r\n"
+    b"Content-Type: application/json\r\n"
+    b"Content-Length: " + str(len(FAKE_ES_BODY)).encode("ascii") + b"\r\n"
+    b"Connection: close\r\n"
+    b"\r\n" + FAKE_ES_BODY
+)
 
-    protocol_version = "HTTP/1.1"
-
-    def do_GET(self) -> None:  # noqa: N802 - http.server method name convention
-        self.send_response(200)
-        self.send_header("Content-Type", "application/json")
-        self.send_header("Content-Length", str(len(FAKE_ES_BODY)))
-        self.send_header("Connection", "close")
-        self.end_headers()
-        _ = self.wfile.write(FAKE_ES_BODY)
-
-    def log_message(self, format: str, *args: object) -> None:  # noqa: A002 - http.server signature
-        log.debug("listener: " + format, *args)
+_TCP_SYN = 0x02
+_TCP_ACK = 0x10
+_TCP_FIN = 0x01
+_TCP_SYNACK = _TCP_SYN | _TCP_ACK
+_TCP_PSHACK = 0x18  # PSH | ACK
+_TCP_FINACK = _TCP_FIN | _TCP_ACK
 
 
-def _serve_one_request(server: http.server.HTTPServer, ready: threading.Event) -> None:
-    ready.set()
-    try:
-        server.handle_request()
-    finally:
-        server.server_close()
+def _ones_complement_sum(data: bytes) -> int:
+    if len(data) % 2:
+        data += b"\x00"
+    s = 0
+    for i in range(0, len(data), 2):
+        s += (data[i] << 8) | data[i + 1]
+    s = (s & 0xFFFF) + (s >> 16)
+    s += s >> 16
+    return ~s & 0xFFFF
+
+
+def _build_raw_packet(
+    src_ip: str,
+    dst_ip: str,
+    src_port: int,
+    dst_port: int,
+    tcp_flags: int,
+    seq: int,
+    ack_seq: int,
+    payload: bytes = b"",
+) -> bytes:
+    """Build a complete raw IP/TCP packet with optional application payload."""
+    src_bytes = socket.inet_aton(src_ip)
+    dst_bytes = socket.inet_aton(dst_ip)
+
+    data_offset = 5 << 4  # 20-byte TCP header, no options
+    tcp_seg_len = 20 + len(payload)
+
+    tcp_header = struct.pack(
+        "!HHIIBBHHH",
+        src_port, dst_port, seq, ack_seq, data_offset, tcp_flags, 8192, 0, 0,
+    )
+    pseudo = struct.pack("!4s4sBBH", src_bytes, dst_bytes, 0, socket.IPPROTO_TCP, tcp_seg_len)
+    tcp_checksum = _ones_complement_sum(pseudo + tcp_header + payload)
+    tcp_header = struct.pack(
+        "!HHIIBBHHH",
+        src_port, dst_port, seq, ack_seq, data_offset, tcp_flags, 8192, tcp_checksum, 0,
+    )
+
+    ip_total_len = 20 + 20 + len(payload)
+    ident = random.randint(0, 0xFFFF)
+    ip_header = struct.pack(
+        "!BBHHHBBH4s4s",
+        0x45, 0, ip_total_len, ident, 0, 64, socket.IPPROTO_TCP, 0, src_bytes, dst_bytes,
+    )
+    ip_checksum = _ones_complement_sum(ip_header)
+    ip_header = struct.pack(
+        "!BBHHHBBH4s4s",
+        0x45, 0, ip_total_len, ident, 0, 64, socket.IPPROTO_TCP, ip_checksum, src_bytes, dst_bytes,
+    )
+
+    return ip_header + tcp_header + payload
 
 
 @register_code_rta(
@@ -83,44 +159,58 @@ def _serve_one_request(server: http.server.HTTPServer, ready: threading.Event) -
     techniques=["T1190", "T1595"],
 )
 def main() -> None:
-    """Emit an unauthenticated HTTP GET to TCP/9200 and receive a 200 response."""
-    http.server.HTTPServer.allow_reuse_address = True
-    try:
-        server = http.server.HTTPServer(("0.0.0.0", ELASTICSEARCH_PORT), _UnsecuredElasticsearchHandler)
-    except OSError as e:
-        log.error("Could not bind 0.0.0.0:%d (%s)", ELASTICSEARCH_PORT, e)
+    """Forge an inbound (external->internal) unauthenticated HTTP GET / with a 200 response on TCP/9200."""
+    if os.geteuid() != 0:
+        log.error("Raw socket privileges required (run as root or with CAP_NET_RAW)")
         return
 
-    ready = threading.Event()
-    server_thread = threading.Thread(
-        target=_serve_one_request, args=(server, ready), daemon=True
-    )
-    server_thread.start()
+    src_port = random.randint(32768, 60000)
+    c_isn = random.randint(0x10000000, 0x7FFFFFFF)
+    s_isn = random.randint(0x10000000, 0x7FFFFFFF)
 
-    if not ready.wait(timeout=5):
-        log.error("Listener on TCP/%d did not start in time", ELASTICSEARCH_PORT)
-        return
-
-    time.sleep(0.2)
-
-    local_ip = get_host_ip()
-    log.info(
-        "Sending unauthenticated GET / to %s:%d (unsecured Elasticsearch emulation)",
-        local_ip, ELASTICSEARCH_PORT,
-    )
-    conn = http.client.HTTPConnection(local_ip, ELASTICSEARCH_PORT, timeout=5)
-    try:
-        # Deliberately omit Authorization header to match the detection condition.
-        conn.request("GET", "/", headers={"Connection": "close"})
-        resp = conn.getresponse()
-        log.info(
-            "Received HTTP %d from %s:%d (Content-Type: %s)",
-            resp.status, local_ip, ELASTICSEARCH_PORT, resp.getheader("Content-Type"),
+    def client(flags: int, seq: int, ack: int, payload: bytes = b"") -> bytes:
+        return _build_raw_packet(
+            EXTERNAL_SOURCE_IP, INTERNAL_DEST_IP, src_port, ELASTICSEARCH_PORT, flags, seq, ack, payload
         )
-        _ = resp.read()
-    except OSError as e:
-        log.error("Request to %s:%d failed: %s", local_ip, ELASTICSEARCH_PORT, e)
-    finally:
-        conn.close()
 
-    server_thread.join(timeout=5)
+    def server(flags: int, seq: int, ack: int, payload: bytes = b"") -> bytes:
+        return _build_raw_packet(
+            INTERNAL_DEST_IP, EXTERNAL_SOURCE_IP, ELASTICSEARCH_PORT, src_port, flags, seq, ack, payload
+        )
+
+    c_seq = c_isn + 1   # after SYN consumes one sequence number
+    s_seq = s_isn + 1   # after SYN/ACK consumes one sequence number
+
+    sock = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_TCP)
+    sock.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
+
+    log.info(
+        "Forging inbound unauthenticated GET / %s -> %s:%d (unsecure Elasticsearch emulation)",
+        EXTERNAL_SOURCE_IP, INTERNAL_DEST_IP, ELASTICSEARCH_PORT,
+    )
+    try:
+        # --- TCP three-way handshake ---
+        _ = sock.sendto(client(_TCP_SYN, c_isn, 0), (INTERNAL_DEST_IP, ELASTICSEARCH_PORT))
+        time.sleep(0.02)
+        _ = sock.sendto(server(_TCP_SYNACK, s_isn, c_isn + 1), (EXTERNAL_SOURCE_IP, src_port))
+        time.sleep(0.02)
+        _ = sock.sendto(client(_TCP_ACK, c_seq, s_seq), (INTERNAL_DEST_IP, ELASTICSEARCH_PORT))
+
+        # --- HTTP request (no auth) / response (200 application/json) ---
+        _ = sock.sendto(client(_TCP_PSHACK, c_seq, s_seq, HTTP_REQUEST), (INTERNAL_DEST_IP, ELASTICSEARCH_PORT))
+        c_seq += len(HTTP_REQUEST)
+        time.sleep(0.02)
+        _ = sock.sendto(server(_TCP_PSHACK, s_seq, c_seq, HTTP_RESPONSE), (EXTERNAL_SOURCE_IP, src_port))
+        s_seq += len(HTTP_RESPONSE)
+        time.sleep(0.02)
+
+        # --- graceful close so the sensor emits the completed HTTP event ---
+        _ = sock.sendto(client(_TCP_FINACK, c_seq, s_seq), (INTERNAL_DEST_IP, ELASTICSEARCH_PORT))
+        _ = sock.sendto(server(_TCP_FINACK, s_seq, c_seq + 1), (EXTERNAL_SOURCE_IP, src_port))
+        _ = sock.sendto(client(_TCP_ACK, c_seq + 1, s_seq + 1), (INTERNAL_DEST_IP, ELASTICSEARCH_PORT))
+
+        log.info("Forged inbound unauthenticated Elasticsearch GET / (HTTP 200) emitted")
+    except OSError as e:
+        log.error("Failed to send forged HTTP transaction: %s", e)
+    finally:
+        sock.close()
