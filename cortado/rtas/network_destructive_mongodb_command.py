@@ -5,11 +5,11 @@
 
 # Name: Destructive MongoDB Command
 # RTA: network_destructive_mongodb_command.py
-# Description: Sends a MongoDB OP_MSG command containing
-#              {"dropDatabase": 1, "$db": "rta_victim"} to a minimal local
-#              server and returns a valid OP_MSG success response. Network
-#              Packet Capture decodes the command query text, satisfying the
-#              destructive-command rule without requiring MongoDB or deleting
+# Description: Sends a legacy MongoDB OP_QUERY command for
+#              {"dropDatabase": 1} to the rta_victim.$cmd namespace and returns
+#              a valid OP_REPLY. Packetbeat recognizes database commands carried
+#              by OP_QUERY and publishes method=dropDatabase, satisfying the
+#              rule's exact method branch without requiring MongoDB or deleting
 #              any data.
 
 import logging
@@ -24,7 +24,8 @@ from ._common import get_host_ip
 log = logging.getLogger(__name__)
 
 MONGODB_PORT = 27017
-_OP_MSG = 2013
+_OP_REPLY = 1
+_OP_QUERY = 2004
 
 
 def _recv_exact(conn: socket.socket, size: int) -> bytes:
@@ -41,10 +42,6 @@ def _bson_document(elements: bytes) -> bytes:
     return struct.pack("<i", len(elements) + 5) + elements + b"\x00"
 
 
-def _bson_int32(name: str, value: int) -> bytes:
-    return b"\x10" + name.encode() + b"\x00" + struct.pack("<i", value)
-
-
 def _bson_string(name: str, value: str) -> bytes:
     encoded = value.encode() + b"\x00"
     return b"\x02" + name.encode() + b"\x00" + struct.pack("<i", len(encoded)) + encoded
@@ -54,24 +51,29 @@ def _bson_double(name: str, value: float) -> bytes:
     return b"\x01" + name.encode() + b"\x00" + struct.pack("<d", value)
 
 
-def _op_msg(request_id: int, response_to: int, document: bytes) -> bytes:
-    payload = struct.pack("<iB", 0, 0) + document  # flagBits=0, body section kind=0
-    header = struct.pack("<iiii", 16 + len(payload), request_id, response_to, _OP_MSG)
+def _message(request_id: int, response_to: int, opcode: int, payload: bytes) -> bytes:
+    header = struct.pack("<iiii", 16 + len(payload), request_id, response_to, opcode)
     return header + payload
 
 
 def _drop_database_request(request_id: int) -> bytes:
     document = _bson_document(
-        _bson_int32("dropDatabase", 1)
-        + _bson_string("$db", "rta_victim")
-        + _bson_string("comment", "cortado-rta"),
+        # Packetbeat's OP_QUERY command classifier expects command value 1 as
+        # a BSON double when decoding into its generic command map.
+        _bson_double("dropDatabase", 1.0) + _bson_string("comment", "cortado-rta"),
     )
-    return _op_msg(request_id, 0, document)
+    payload = struct.pack("<i", 0)  # flags
+    payload += b"rta_victim.$cmd\x00"
+    payload += struct.pack("<ii", 0, -1)  # numberToSkip, numberToReturn
+    payload += document
+    return _message(request_id, 0, _OP_QUERY, payload)
 
 
 def _success_response(request_id: int) -> bytes:
     document = _bson_document(_bson_double("ok", 1.0))
-    return _op_msg(request_id + 1, request_id, document)
+    payload = struct.pack("<iqii", 0, 0, 0, 1)
+    payload += document
+    return _message(request_id + 1, request_id, _OP_REPLY, payload)
 
 
 def _serve_request(server: socket.socket, ready: threading.Event) -> None:
@@ -82,7 +84,7 @@ def _serve_request(server: socket.socket, ready: threading.Event) -> None:
         with conn:
             header = _recv_exact(conn, 16)
             message_length, request_id, _, opcode = struct.unpack("<iiii", header)
-            if opcode != _OP_MSG or message_length < 21:
+            if opcode != _OP_QUERY or message_length < 40:
                 raise ValueError("Unexpected MongoDB request")
             _ = _recv_exact(conn, message_length - 16)
             conn.sendall(_success_response(request_id))
@@ -106,7 +108,7 @@ def _serve_request(server: socket.socket, ready: threading.Event) -> None:
     techniques=["T1485"],
 )
 def main() -> None:
-    """Send one successful MongoDB dropDatabase OP_MSG transaction."""
+    """Send one successful MongoDB dropDatabase OP_QUERY transaction."""
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     try:
@@ -128,7 +130,7 @@ def main() -> None:
     time.sleep(0.1)
     host_ip = get_host_ip()
     request_id = 0x43525444
-    log.info("Sending MongoDB dropDatabase command to %s:%d", host_ip, MONGODB_PORT)
+    log.info("Sending MongoDB OP_QUERY dropDatabase command to %s:%d", host_ip, MONGODB_PORT)
     try:
         with socket.create_connection((host_ip, MONGODB_PORT), timeout=5) as conn:
             conn.sendall(_drop_database_request(request_id))
