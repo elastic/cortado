@@ -26,9 +26,8 @@
 #              required.
 
 import logging
-import os
 import socket
-import struct
+import ssl
 import threading
 import time
 
@@ -41,62 +40,32 @@ TLS_PORT = 8443
 STALL_SECONDS = 12          # preserve a realistic stalled-handshake interval
 THRESHOLD_COUNT = 5         # matches the rule's threshold value
 
-_ALPN_PROTOCOL = b"acme-tls/1"
+_ALPN_PROTOCOL = "acme-tls/1"
 
 def _build_tls_client_hello() -> bytes:
-    """
-    Build a minimal but well-formed TLS ClientHello with acme-tls/1 as
-    the sole ALPN protocol. Uses os.urandom for the 32-byte random so
-    each of the five flows looks distinct on the wire.
-    """
-    random_bytes = os.urandom(32)
+    """Generate a standards-compliant ClientHello using the system TLS library."""
+    context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+    context.check_hostname = False
+    context.verify_mode = ssl.CERT_NONE
+    context.set_alpn_protocols([_ALPN_PROTOCOL])
 
-    # Supported Versions extension — advertise TLS 1.3 and TLS 1.2
-    ext_supported_versions = (
-        b"\x00\x2b"     # type: supported_versions (43)
-        b"\x00\x05"     # ext data length: 5
-        b"\x04"         # versions list length: 4
-        b"\x03\x04"     # TLS 1.3
-        b"\x03\x03"     # TLS 1.2
+    incoming = ssl.MemoryBIO()
+    outgoing = ssl.MemoryBIO()
+    tls = context.wrap_bio(
+        incoming,
+        outgoing,
+        server_side=False,
+        server_hostname="acme.invalid",
     )
+    try:
+        tls.do_handshake()
+    except ssl.SSLWantReadError:
+        pass
 
-    # ALPN extension — exactly one protocol: "acme-tls/1"
-    _name_len = len(_ALPN_PROTOCOL)          # 10
-    _list_len = 1 + _name_len               # 11  (1-byte name length + name)
-    _ext_data_len = 2 + _list_len           # 13  (2-byte list length + list)
-    ext_alpn = (
-        b"\x00\x10"                                     # type: ALPN (16)
-        + struct.pack("!H", _ext_data_len)              # ext data length: 13
-        + struct.pack("!H", _list_len)                  # ProtocolNameList length: 11
-        + struct.pack("!B", _name_len)                  # ProtocolName length: 10
-        + _ALPN_PROTOCOL                                # b"acme-tls/1"
-    )
-
-    extensions = ext_supported_versions + ext_alpn
-
-    client_hello_body = (
-        b"\x03\x03"                                     # ClientHello version: TLS 1.2
-        + random_bytes                                   # 32-byte random
-        + b"\x00"                                       # session ID length: 0
-        + b"\x00\x04"                                   # cipher suites length: 4
-        + b"\x13\x01"                                   # TLS_AES_128_GCM_SHA256
-        + b"\x00\x2f"                                   # TLS_RSA_WITH_AES_128_CBC_SHA
-        + b"\x01\x00"                                   # 1 compression method: null
-        + struct.pack("!H", len(extensions))            # extensions length
-        + extensions
-    )
-
-    handshake = (
-        b"\x01"                                         # HandshakeType: ClientHello
-        + struct.pack("!I", len(client_hello_body))[1:] # 3-byte length
-        + client_hello_body
-    )
-
-    return (
-        b"\x16\x03\x01"                                 # TLS Handshake, record version TLS 1.0
-        + struct.pack("!H", len(handshake))             # record length
-        + handshake
-    )
+    client_hello = outgoing.read()
+    if not client_hello:
+        raise RuntimeError("TLS library did not generate a ClientHello")
+    return client_hello
 
 
 def _drain_connection(conn: socket.socket, peer: tuple[str, int]) -> None:
