@@ -37,7 +37,7 @@ from ._common import get_host_ip
 log = logging.getLogger(__name__)
 
 TLS_PORT = 8443
-STALL_SECONDS = 12          # preserve a realistic stalled-handshake interval
+STALL_SECONDS = 3           # remain below Packetbeat's 10-second transaction timeout
 THRESHOLD_COUNT = 5         # matches the rule's threshold value
 
 _ALPN_PROTOCOL = "acme-tls/1"
