@@ -16,7 +16,7 @@
 #                1. Client TCP SYN
 #                2. Server TCP SYN/ACK
 #                3. Client TCP PSH/ACK + TLS ClientHello (acme-tls/1 ALPN)
-#                4. Client TCP RST/ACK after STALL_SECONDS
+#                4. Client TCP FIN/ACK after STALL_SECONDS
 #
 #              Packetbeat / network_traffic with TLS parsing and
 #              include_detailed_fields: true sees each connection as:
@@ -61,7 +61,7 @@ _ALPN_PROTOCOL = b"acme-tls/1"
 
 _TCP_SYN = 0x02
 _TCP_SYNACK = 0x12   # SYN | ACK
-_TCP_RSTACK = 0x14   # RST | ACK
+_TCP_FINACK = 0x11   # FIN | ACK
 _TCP_PSHACK = 0x18   # PSH | ACK
 
 
@@ -185,7 +185,7 @@ def _build_tls_client_hello() -> bytes:
 def _stalled_tls_flow(sock: socket.socket, src_port: int) -> None:
     """
     Emit one stalled TLS ClientHello flow via raw socket:
-      SYN → SYN/ACK → PSH/ACK+TLS ClientHello → stall → RST/ACK
+      SYN → SYN/ACK → PSH/ACK+TLS ClientHello → stall → FIN/ACK
     """
     tls_hello = _build_tls_client_hello()
     client_isn = random.randint(0x10000000, 0x6FFFFFFF)
@@ -224,14 +224,15 @@ def _stalled_tls_flow(sock: socket.socket, src_port: int) -> None:
     # Do not send a ServerHello, leaving tls.established=false.
     time.sleep(STALL_SECONDS)
 
-    # Close the incomplete flow so Packetbeat emits the TLS event.
+    # Packetbeat's TLS plugin publishes incomplete handshakes from its TCP FIN
+    # callback. A reset does not reliably invoke that event-publication path.
     pkt = _build_raw_packet(
         SPOOFED_SOURCE_IP, PRIVATE_DESTINATION_IP,
         src_port, TLS_PORT,
-        _TCP_RSTACK, client_isn + 1 + len(tls_hello), server_isn + 1,
+        _TCP_FINACK, client_isn + 1 + len(tls_hello), server_isn + 1,
     )
     _ = sock.sendto(pkt, (PRIVATE_DESTINATION_IP, TLS_PORT))
-    log.debug("RST/ACK sent from %s:%d (flow closed)", SPOOFED_SOURCE_IP, src_port)
+    log.debug("FIN/ACK sent from %s:%d (flow closed)", SPOOFED_SOURCE_IP, src_port)
 
 
 @register_code_rta(
