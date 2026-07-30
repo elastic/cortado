@@ -12,18 +12,17 @@
 #              a non-local destination (PRIVATE_DESTINATION_IP) so the packets
 #              egress through the physical NIC where Packetbeat captures.
 #
-#              Each flow is three raw packets:
-#                1. TCP SYN   — opens the Packetbeat flow
-#                2. TCP PSH+ACK + TLS ClientHello (acme-tls/1 ALPN)
-#                3. TCP RST   — closes the flow after STALL_SECONDS
+#              Each flow is four raw packets:
+#                1. Client TCP SYN
+#                2. Server TCP SYN/ACK
+#                3. Client TCP PSH/ACK + TLS ClientHello (acme-tls/1 ALPN)
+#                4. Client TCP RST/ACK after STALL_SECONDS
 #
 #              Packetbeat / network_traffic with TLS parsing and
 #              include_detailed_fields: true sees each connection as:
 #                - tls.detailed.client_hello.extensions
 #                    .application_layer_protocol_negotiation = "acme-tls/1"
 #                - tls.established = false  (no ServerHello on the wire)
-#                - network.bytes < 1024     (TLS ClientHello payload only ~80 B)
-#                - event.duration >= 10000000000  (12 s between SYN and RST)
 #
 #              Five such events from the same source.ip + destination.ip pair
 #              fire the threshold rule. All flows run in parallel so total
@@ -49,7 +48,7 @@ from . import OSType, RuleMetadata, register_code_rta
 log = logging.getLogger(__name__)
 
 TLS_PORT = 8443
-STALL_SECONDS = 12          # SYN→RST gap; must exceed the rule's 10 s floor
+STALL_SECONDS = 12          # preserve a realistic stalled-handshake interval
 THRESHOLD_COUNT = 5         # matches the rule's threshold value
 
 # Source IP is spoofed so gateway RST/ICMP replies go to a non-existent host
@@ -60,8 +59,9 @@ PRIVATE_DESTINATION_IP = "10.10.10.10"
 
 _ALPN_PROTOCOL = b"acme-tls/1"
 
-_TCP_SYN    = 0x02
-_TCP_RST    = 0x04
+_TCP_SYN = 0x02
+_TCP_SYNACK = 0x12   # SYN | ACK
+_TCP_RSTACK = 0x14   # RST | ACK
 _TCP_PSHACK = 0x18   # PSH | ACK
 
 
@@ -185,42 +185,53 @@ def _build_tls_client_hello() -> bytes:
 def _stalled_tls_flow(sock: socket.socket, src_port: int) -> None:
     """
     Emit one stalled TLS ClientHello flow via raw socket:
-      SYN → (50 ms) → PSH+ACK+TLS ClientHello → (STALL_SECONDS) → RST
+      SYN → SYN/ACK → PSH/ACK+TLS ClientHello → stall → RST/ACK
     """
     tls_hello = _build_tls_client_hello()
-    isn = random.randint(0x10000000, 0x7FFFFFFF)
+    client_isn = random.randint(0x10000000, 0x6FFFFFFF)
+    server_isn = random.randint(0x10000000, 0x6FFFFFFF)
 
-    # SYN — opens the Packetbeat flow entry
+    # Client SYN opens the flow.
     pkt = _build_raw_packet(
         SPOOFED_SOURCE_IP, PRIVATE_DESTINATION_IP,
         src_port, TLS_PORT,
-        _TCP_SYN, isn, 0,
+        _TCP_SYN, client_isn, 0,
     )
     _ = sock.sendto(pkt, (PRIVATE_DESTINATION_IP, TLS_PORT))
     log.debug("SYN sent from %s:%d", SPOOFED_SOURCE_IP, src_port)
-    time.sleep(0.05)
+    time.sleep(0.02)
 
-    # PSH+ACK carrying the TLS ClientHello with acme-tls/1 ALPN
+    # Spoof the server SYN/ACK so Packetbeat observes a complete TCP handshake.
+    pkt = _build_raw_packet(
+        PRIVATE_DESTINATION_IP, SPOOFED_SOURCE_IP,
+        TLS_PORT, src_port,
+        _TCP_SYNACK, server_isn, client_isn + 1,
+    )
+    _ = sock.sendto(pkt, (SPOOFED_SOURCE_IP, src_port))
+    log.debug("SYN/ACK sent from %s:%d", PRIVATE_DESTINATION_IP, TLS_PORT)
+    time.sleep(0.02)
+
+    # The PSH/ACK completes the TCP handshake and carries the ClientHello.
     pkt = _build_raw_packet(
         SPOOFED_SOURCE_IP, PRIVATE_DESTINATION_IP,
         src_port, TLS_PORT,
-        _TCP_PSHACK, isn + 1, 1,
+        _TCP_PSHACK, client_isn + 1, server_isn + 1,
         tls_hello,
     )
     _ = sock.sendto(pkt, (PRIVATE_DESTINATION_IP, TLS_PORT))
     log.debug("TLS ClientHello (acme-tls/1) sent from %s:%d", SPOOFED_SOURCE_IP, src_port)
 
-    # Stall — keeps the flow open so event.duration >= STALL_SECONDS
+    # Do not send a ServerHello, leaving tls.established=false.
     time.sleep(STALL_SECONDS)
 
-    # RST — closes the flow and causes Packetbeat to emit the TLS event
+    # Close the incomplete flow so Packetbeat emits the TLS event.
     pkt = _build_raw_packet(
         SPOOFED_SOURCE_IP, PRIVATE_DESTINATION_IP,
         src_port, TLS_PORT,
-        _TCP_RST, isn + 1 + len(tls_hello), 1,
+        _TCP_RSTACK, client_isn + 1 + len(tls_hello), server_isn + 1,
     )
     _ = sock.sendto(pkt, (PRIVATE_DESTINATION_IP, TLS_PORT))
-    log.debug("RST sent from %s:%d (flow closed)", SPOOFED_SOURCE_IP, src_port)
+    log.debug("RST/ACK sent from %s:%d (flow closed)", SPOOFED_SOURCE_IP, src_port)
 
 
 @register_code_rta(
