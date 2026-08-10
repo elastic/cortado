@@ -12,7 +12,7 @@ jobs:
   linting:
     runs-on: ubuntu-latest 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
       - uses: actions/setup-python@v5
         id: setup-python
         with:
@@ -46,7 +46,7 @@ jobs:
   license-header-check:
     runs-on: ubuntu-latest 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
       - name: Check Cortado files for a license header
         run: |
           bash ./scripts/check-license.sh ./cortado
@@ -59,7 +59,7 @@ jobs:
   unit-tests:
     runs-on: ubuntu-latest 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -88,7 +88,7 @@ jobs:
   dependency-check-for-minimal-package:
     runs-on: ubuntu-latest 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
       - uses: actions/setup-python@v5
         id: setup-python
         with:
