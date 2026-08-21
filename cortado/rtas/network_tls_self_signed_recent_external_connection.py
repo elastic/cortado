@@ -3,13 +3,16 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
-# Name: Self-Signed TLS Certificate Recently Issued on External Connection
+# Name: Potential Self-Signed TLS Certificate Recently Issued on External Connection
 # RTA: network_tls_self_signed_recent_external_connection.py
 # Description: Completes a real TLS handshake from an internal client address
 #              to a locally assigned public destination address. The listener
 #              presents an ephemeral self-signed certificate (issuer DN equals
 #              subject DN, not_before is now) so Packetbeat / network_traffic.tls
 #              emits tls.established=true with tls.server.x509.* populated.
+#              A just-issued not_before satisfies the rule's
+#              now()-30 days <= not_before <= now() window once the event is
+#              ingested.
 #
 #              A public destination is required because the rule excludes RFC1918,
 #              documentation, and other reserved ranges. Spoofed TLS records are
@@ -18,7 +21,10 @@
 #              /32 on the host's primary interface and removed afterward, so no
 #              external host is contacted.
 #
-#              Requires root (bind TCP/443 and ip addr) and openssl.
+#              Packetbeat cannot populate tls.server.x509.* for TLS 1.3: the
+#              Certificate handshake message is encrypted. Both peers are pinned
+#              to TLS 1.2 with session tickets disabled so the self-signed leaf
+#              is visible on the wire and tls.resumed stays false.
 
 import ipaddress
 import logging
@@ -109,6 +115,27 @@ def _delete_local_address(ip: str, iface: str) -> None:
     )
 
 
+def _server_tls_context(cert_path: str, key_path: str) -> ssl.SSLContext:
+    """TLS 1.2 only: Packetbeat can parse cleartext Certificate messages."""
+    ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+    ctx.minimum_version = ssl.TLSVersion.TLSv1_2
+    ctx.maximum_version = ssl.TLSVersion.TLSv1_2
+    ctx.options |= ssl.OP_NO_TICKET
+    ctx.load_cert_chain(certfile=cert_path, keyfile=key_path)
+    return ctx
+
+
+def _client_tls_context() -> ssl.SSLContext:
+    """TLS 1.2 only, no verification, no session tickets."""
+    ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
+    ctx.minimum_version = ssl.TLSVersion.TLSv1_2
+    ctx.maximum_version = ssl.TLSVersion.TLSv1_2
+    ctx.options |= ssl.OP_NO_TICKET
+    return ctx
+
+
 def _serve_one_tls(server: socket.socket, ctx: ssl.SSLContext, ready: threading.Event) -> None:
     """Accept a single connection, complete the TLS handshake, then close."""
     ready.set()
@@ -139,7 +166,7 @@ def _serve_one_tls(server: socket.socket, ctx: ssl.SSLContext, ready: threading.
     siem_rules=[
         RuleMetadata(
             id="869fe008-5dd4-4f07-9c2e-aa90c3926fd9",
-            name="Self-Signed TLS Certificate Recently Issued on External Connection",
+            name="Potential Self-Signed TLS Certificate Recently Issued on External Connection",
         )
     ],
     techniques=["T1071", "T1573", "T1573.002"],
@@ -180,8 +207,7 @@ def main() -> None:
     tmp_dir = tempfile.mkdtemp(prefix="tls-selfsigned-")
     try:
         cert_path, key_path = _generate_self_signed_cert(tmp_dir, CERTIFICATE_CN)
-        server_ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-        server_ctx.load_cert_chain(certfile=cert_path, keyfile=key_path)
+        server_ctx = _server_tls_context(cert_path, key_path)
 
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -201,9 +227,7 @@ def main() -> None:
             return
         time.sleep(0.2)
 
-        client_ctx = ssl.create_default_context()
-        client_ctx.check_hostname = False
-        client_ctx.verify_mode = ssl.CERT_NONE
+        client_ctx = _client_tls_context()
 
         log.info(
             "Performing TLS handshake %s -> %s:%d with self-signed CN=%s",
