@@ -23,7 +23,7 @@ jobs:
           vault-role: "token-policy-4a57efea1929"
 
       - name: Check if member of elastic org
-        uses: actions/github-script@v6
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
         id: membership
         with:
           github-token: ${{ steps.fetch-ephemeral-token.outputs.token }}
@@ -51,7 +51,7 @@ jobs:
 
 
       - name: Add label for community members
-        uses: actions/github-script@v6
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
         if: ${{ steps.membership.outputs.result == 'notMember' }}
         with:
           script: |
