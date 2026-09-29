@@ -66,10 +66,15 @@ def get_hostname():
 
 def get_host_ip() -> str:
     try:
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+            s.connect(("8.8.8.8", 80))
+            return s.getsockname()[0]
+    except OSError:
+        pass
+    try:
         return socket.gethostbyname(get_hostname())
     except socket.gaierror:
         pass
-
     return "127.0.0.1"
 
 
