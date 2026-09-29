@@ -39,7 +39,7 @@ tomli = {version = "^2.0.2", optional = true}
 ruff = "^0.16"
 pytest = "9.1.1"
 typing-extensions = "4.16.0"
-pyright = "1.1.396"
+pyright = "1.1.414"
 
 [tool.poetry.extras]
 utils = ["typer", "structlog", "ecs-logging", "rich", "pyyaml", "tomli"]

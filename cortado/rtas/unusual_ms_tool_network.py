@@ -39,7 +39,7 @@ def http_from_process(name: str, ip: str, port: int):
     current_dir = _common.get_current_dir()
     path = current_dir / name
     log.info("Making HTTP GET from %s" % path)
-    shutil.copy(sys.executable, path)
+    _ = shutil.copy(sys.executable, path)
     _ = _common.execute_command(
         [
             str(path),

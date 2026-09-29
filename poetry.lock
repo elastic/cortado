@@ -153,14 +153,14 @@ windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "pyright"
-version = "1.1.396"
+version = "1.1.414"
 description = "Command line wrapper for pyright"
 optional = false
 python-versions = ">=3.7"
 groups = ["dev"]
 files = [
-    {file = "pyright-1.1.396-py3-none-any.whl", hash = "sha256:c635e473095b9138c471abccca22b9fedbe63858e0b40d4fc4b67da041891844"},
-    {file = "pyright-1.1.396.tar.gz", hash = "sha256:142901f5908f5a0895be3d3befcc18bedcdb8cc1798deecaec86ef7233a29b03"},
+    {file = "pyright-1.1.414-py3-none-any.whl", hash = "sha256:2a6b4b3298c9eec174c5ed83bd338de6eee82df2992f3e1930e6199d381be36f"},
+    {file = "pyright-1.1.414.tar.gz", hash = "sha256:523c0a97c60da6333234955c277730c9cf4f5bd6d5399e7b7d2b0fc5d3599524"},
 ]
 
 [package.dependencies]
@@ -447,4 +447,4 @@ utils = ["ecs-logging", "pyyaml", "rich", "structlog", "tomli", "typer"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12"
-content-hash = "5fc0699266f9e5a8bcd96fd2ac9449b457905baf8b1692cb0bd07c6f2cd3a2fd"
+content-hash = "b50d59dfaf35771f816ba405663241e9ff05cc84e174b163c70545a3bc44facd"

@@ -36,9 +36,9 @@ class Rta:
     # https://docs.python.org/3/library/dataclasses.html#dataclasses.KW_ONLY
     _: KW_ONLY
 
-    endpoint_rules: list[RuleMetadata] = field(default_factory=list)
-    siem_rules: list[RuleMetadata] = field(default_factory=list)
-    techniques: list[str] = field(default_factory=list)
+    endpoint_rules: list[RuleMetadata] = field(default_factory=list[RuleMetadata])
+    siem_rules: list[RuleMetadata] = field(default_factory=list[RuleMetadata])
+    techniques: list[str] = field(default_factory=list[str])
 
     def __post_init__(self):
         if not self.platforms and (self.endpoint_rules or self.siem_rules):
@@ -52,7 +52,7 @@ class Rta:
 @dataclass(kw_only=True, frozen=True)
 class CodeRta(Rta):
     code_func: Callable[[], None]
-    ancillary_files: list[str] = field(default_factory=list)
+    ancillary_files: list[str] = field(default_factory=list[str])
 
     def as_dict(self) -> dict[str, Any]:
         data = asdict(self)

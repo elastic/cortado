@@ -22,7 +22,7 @@ def get_vss_list():
 def vss_create():
     import win32com.client  # type: ignore
 
-    wmi = win32com.client.GetObject("winmgmts:\\\\.\\root\\cimv2:Win32_ShadowCopy")
+    wmi = win32com.client.GetObject("winmgmts:\\\\.\\root\\cimv2:Win32_ShadowCopy")  # type: ignore
     createmethod = wmi.Methods_("Create")
     createparams = createmethod.InParameters
     createparams.Properties_[1].value = "c:\\"
