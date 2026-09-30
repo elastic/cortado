@@ -3,6 +3,7 @@
 # 2.0; you may not use this file except in compliance with the Elastic License
 # 2.0.
 
+import contextlib
 import logging
 import sys
 
@@ -21,9 +22,10 @@ from rich.text import Text
 
 from cortado import rules
 from cortado.rules import RuleMaturity, RuleRelease
-from cortado.rtas import get_registry, HashRta
+from cortado.rtas import get_registry, HashRta, MultiHostRta
 from cortado.utils import configure_logging
 
+from pathlib import Path
 from typing import Any
 from typing_extensions import Annotated
 
@@ -50,6 +52,7 @@ def print_rtas(as_json: bool = False):
     table.add_column("ID", no_wrap=True)
     table.add_column("Name")
     table.add_column("Platforms")
+    table.add_column("Roles")
     table.add_column("Endpoint Rules")
     table.add_column("SIEM Rules")
     table.add_column("Techniques")
@@ -68,6 +71,7 @@ def print_rtas(as_json: bool = False):
             Text.assemble((rta.id, "dim")),
             rta.name,
             ", ".join(rta.platforms),
+            ", ".join(rta.roles) if isinstance(rta, MultiHostRta) else "",
             endpoint_rules_count,
             siem_rules_count,
             ", ".join(rta.techniques),
@@ -239,6 +243,52 @@ def get_coverage(
     console.print(table)
     if fail_if_issues and issues_counter:
         sys.exit(1)
+
+
+@app.command()
+def run_multihost(
+    rta_name: Annotated[str, typer.Argument(help="Multi-host RTA name")],
+    hosts: Annotated[
+        list[str], typer.Option("--host", help="SSH target for a role: ROLE=[USER@]HOST. Required for each role.")
+    ],
+    addresses: Annotated[
+        list[str] | None,
+        typer.Option("--addr", help="Lab address peers connect to: ROLE=IP (default: the SSH host)"),
+    ] = None,
+    params: Annotated[list[str] | None, typer.Option("--param", "-p", help="RTA parameter NAME=VALUE")] = None,
+    port: Annotated[int | None, typer.Option(help="Port for listening roles (default: RTA-specific)")] = None,
+    timeout: Annotated[float, typer.Option(help="Maximum role run time in seconds")] = 300.0,
+    ssh_command: Annotated[str, typer.Option(help="SSH client command")] = "ssh -T -o BatchMode=yes",
+    remote_command: Annotated[
+        str, typer.Option(help="Multi-host RTA CLI on the remote hosts")
+    ] = "cortado-run-multihost-rta",
+    output: Annotated[Path | None, typer.Option(help="Also write merged JSON events to this file")] = None,
+):
+    """
+    Run all roles of a multi-host RTA on remote hosts over SSH (optional; manual mode needs no SSH)
+    """
+    from cortado import multihost_driver
+    from cortado.rtas._multihost import MultiHostError, get_multihost_rta, parse_assignments
+
+    try:
+        rta = get_multihost_rta(rta_name)
+        targets = multihost_driver.parse_host_targets(rta, hosts, addresses or [])
+        overrides = parse_assignments(params or [])
+        with output.open("a") if output else contextlib.nullcontext() as output_file:
+            code = multihost_driver.drive(
+                rta,
+                targets,
+                overrides,
+                timeout=timeout,
+                port=port,
+                ssh_command=ssh_command,
+                remote_command=remote_command,
+                output=output_file,
+            )
+    except MultiHostError as e:
+        log.error(str(e))
+        code = 2
+    sys.exit(code)
 
 
 @app.callback()

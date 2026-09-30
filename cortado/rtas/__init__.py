@@ -10,9 +10,15 @@ import importlib.resources
 import logging
 from dataclasses import KW_ONLY, asdict, dataclass, field
 from types import MappingProxyType
-from typing import Any, Callable
+from typing import TYPE_CHECKING, Any, Callable
+
+if TYPE_CHECKING:
+    from cortado.rtas._multihost import RoleContext
 
 log = logging.getLogger(__name__)
+
+# Package with multi-host RTAs (scenarios with roles that run on separate hosts)
+MULTIHOST_PACKAGE = "cortado.rtas.multihost"
 
 
 class OSType(enum.StrEnum):
@@ -63,6 +69,74 @@ class CodeRta(Rta):
 @dataclass(kw_only=True, frozen=True)
 class HashRta(Rta):
     sample_hash: str
+
+
+@dataclass(frozen=True)
+class RtaParameter:
+    """A named string parameter a multi-host RTA accepts via `-p NAME=VALUE`"""
+
+    name: str
+    default: str
+
+    _: KW_ONLY
+
+    choices: list[str] = field(default_factory=list[str])
+    help: str = ""
+
+
+RoleFunc = Callable[["RoleContext"], None]
+
+
+@dataclass(kw_only=True, frozen=True)
+class Role:
+    """One side of a multi-host RTA, executed on its own host"""
+
+    name: str
+    platforms: list[OSType]
+    func: RoleFunc
+    # Listening roles bind first and announce readiness; the other roles connect to them
+    listens: bool = False
+    help: str = ""
+
+    def as_dict(self) -> dict[str, Any]:
+        return {"name": self.name, "platforms": self.platforms, "listens": self.listens, "help": self.help}
+
+
+@dataclass(kw_only=True, frozen=True)
+class MultiHostRta(Rta):
+    """RTA with multiple roles (e.g. server and client) that run on separate hosts"""
+
+    parameters: list[RtaParameter] = field(default_factory=list[RtaParameter])
+    roles: dict[str, Role] = field(default_factory=dict[str, Role])
+
+    def role(
+        self,
+        name: str,
+        platforms: list[OSType] | None = None,
+        listens: bool = False,
+        help: str = "",
+    ) -> Callable[[RoleFunc], RoleFunc]:
+        """Register the decorated function as a role of this RTA"""
+
+        def decorator(func: RoleFunc) -> RoleFunc:
+            if name in self.roles:
+                raise ValueError(f"RTA {self.name} already has a role named `{name}`")
+            self.roles[name] = Role(
+                name=name,
+                platforms=platforms or self.platforms,
+                func=func,
+                listens=listens,
+                help=help or (func.__doc__ or "").strip(),
+            )
+            log.debug(f"Multi-host RTA role registered: {self.name}/{name}")
+            return func
+
+        return decorator
+
+    def as_dict(self) -> dict[str, Any]:
+        data = asdict(self)
+        data["roles"] = [role.as_dict() for role in self.roles.values()]
+        return data
 
 
 _REGISTRY: dict[str, Rta] = {}
@@ -121,6 +195,30 @@ def register_hash_rta(
     log.debug(f"Hash RTA registered: ${name}")
 
 
+def register_multihost_rta(
+    id: str,
+    name: str,
+    platforms: list[OSType],
+    endpoint_rules: list[RuleMetadata] = [],
+    siem_rules: list[RuleMetadata] = [],
+    techniques: list[str] = [],
+    parameters: list[RtaParameter] = [],
+) -> MultiHostRta:
+    """Register a multi-host RTA. Add roles with the `@rta.role(...)` decorator on the returned object."""
+    rta = MultiHostRta(
+        id=id,
+        name=name,
+        platforms=platforms,
+        endpoint_rules=endpoint_rules,
+        siem_rules=siem_rules,
+        techniques=techniques,
+        parameters=parameters,
+    )
+    _REGISTRY[name] = rta
+    log.debug(f"Multi-host RTA registered: {name}")
+    return rta
+
+
 def get_registry(force_reload: bool = False) -> MappingProxyType[str, Rta]:
     if not _REGISTRY or force_reload:
         log.debug("The registry is empty or force reload is requested")
@@ -145,6 +243,8 @@ def load_all_modules():
             log.error(f"Can't import module `{name}`, skipping", exc_info=True)
             continue
 
+    failed_imports.extend(load_multihost_modules())
+
     if len(failed_imports) > 0:
         log.warning(f"{len(failed_imports)} failed module imports")
 
@@ -156,6 +256,30 @@ def load_module(module_name: str):
         _ = importlib.import_module(f".{module_name}", package="cortado.rtas")
     except Exception:
         raise ValueError(f"Can't import module named {module_name}")
+
+
+def load_multihost_modules() -> list[str]:
+    """Import all multi-host RTA modules and return names of modules that failed to import"""
+    dir_path = importlib.resources.files(MULTIHOST_PACKAGE)
+
+    failed_imports: list[str] = []
+    for module_file in dir_path.glob("[!_]*.py"):  # type: ignore
+        name = module_file.stem  # type: ignore
+        try:
+            _ = importlib.import_module(f".{name}", package=MULTIHOST_PACKAGE)
+        except Exception:
+            failed_imports.append(f"multihost.{name}")
+            log.error(f"Can't import multi-host module `{name}`, skipping", exc_info=True)
+    return failed_imports
+
+
+def load_multihost_module(module_name: str):
+    try:
+        _ = importlib.import_module(f".{module_name}", package=MULTIHOST_PACKAGE)
+    except ModuleNotFoundError as e:
+        if e.name != f"{MULTIHOST_PACKAGE}.{module_name}":
+            raise
+        raise ValueError(f"Can't find multi-host module named {module_name}")
 
 
 def get_rta(rta_name: str) -> Rta | None:

@@ -15,6 +15,7 @@ RTAs provide a simple way to verify that detection rules are generating the expe
   - [Running](#running)
     - [Main CLI](#main-cli)
     - [RTA CLI](#rta-cli)
+    - [Multi-host RTAs](#multi-host-rtas)
   - [Development](#development)
     - [Setup](#setup)
     - [Build and deploy to VM](#build-and-deploy-to-vm)
@@ -61,8 +62,75 @@ RTA CLI are used to execute RTAs in a sandboxed environment with minimal depende
 
 - `cortado-run-rta` -- a command to execute a particular RTA
 - `cortado-run-rtas` -- a command to execute all RTAs that match the current OS
+- `cortado-run-multihost-rta` -- a command to execute one role of a [multi-host RTA](#multi-host-rtas)
 
 These scripts run without any external dependencies.
+
+### Multi-host RTAs
+
+Multi-host RTAs (`cortado/rtas/multihost/`) emulate behaviors that need two or more hosts, such as protocol
+channels between a server and a client. Each RTA defines *roles*; every role runs on its own host and produces real
+network flows that endpoint agents on both hosts and any network sensor in between observe. They're never run by
+`cortado-run-rtas`.
+
+```bash
+$ cortado-run-multihost-rta list
+NAME               ROLES            PLATFORMS     RULES
+stun_turn_channel  server*, client  linux, macos  0
+
+* listening role (start it first)
+
+$ cortado-run-multihost-rta describe stun_turn_channel   # roles, parameters, examples
+```
+
+**Manual mode (default).** Start the listening role first. It prints the exact command to run on the peer host,
+including a generated shared secret and a run ID:
+
+```bash
+# Host A
+$ cortado-run-multihost-rta run stun_turn_channel --role server --bind 0.0.0.0 -p transport=dtls
+Role `server` of `stun_turn_channel` is ready (run_id=d7f498dcca3c, address=10.1.1.5:5349).
+Run on the peer host(s):
+  env CORTADO_MULTIHOST_SECRET=... cortado-run-multihost-rta run stun_turn_channel --role client --peer server=10.1.1.5:5349 --run-id d7f498dcca3c -p transport=dtls
+
+# Host B
+$ env CORTADO_MULTIHOST_SECRET=... cortado-run-multihost-rta run stun_turn_channel --role client --peer server=10.1.1.5:5349 --run-id d7f498dcca3c -p transport=dtls
+```
+
+Roles print JSON ground-truth events (tagged with `run_id`, `role`, and `host`) to stdout and logs to stderr. Roles
+that wait for a peer step prompt for Enter; `--no-wait` skips such waits. Connecting roles retry until the listening
+role is up or `--timeout` (default 300 seconds) passes.
+
+**Local mode.** `--local` runs all roles on one host over loopback. Loopback traffic isn't visible to network
+sensors, so use it for smoke tests.
+
+**Optional SSH orchestration.** `cortado run-multihost` (requires the `utils` extra) runs every role over the
+system `ssh` client, relays coordination signals, and merges the events of all roles. SSH sessions add their own
+traffic and logins to the lab data, so it's opt-in; manual mode needs no extra channel.
+
+```bash
+$ cortado run-multihost stun_turn_channel \
+    --host server=lab@mgmt-a --addr server=10.1.1.5 --host client=lab@mgmt-b \
+    -p transport=tls --output ground_truth.ndjson
+```
+
+`--addr` sets the lab address peers connect to when it differs from the SSH (management) address.
+
+**Optional dependencies.** Some protocols need third-party packages that are never installed by default. The
+transports of `stun_turn_channel` need:
+
+| Transport | Python 3.13+ | Python 3.12 |
+|---|---|---|
+| `udp` | standard library | standard library |
+| `tls` | standard library (`ssl` TLS-PSK) | `python-mbedtls` |
+| `dtls` | not available | `python-mbedtls` |
+
+`python-mbedtls` only ships wheels up to CPython 3.12, so the `protocols` extra is limited to Python 3.12:
+
+```bash
+$ pip install python-mbedtls               # on Python 3.12 hosts with the bare cortado wheel
+$ poetry install --extras protocols        # in a Python 3.12 development environment
+```
 
 ## Development
 

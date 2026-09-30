@@ -27,6 +27,7 @@ resolved. These guidelines are here to help you whether you are opening an issue
       - [Submitting a pull request](#submitting-a-pull-request)
     - [Code review](#code-review)
     - [RTA Metadata](#rta-metadata)
+    - [Multi-host RTAs](#multi-host-rtas)
   - [Signing the contributor license agreement](#signing-the-contributor-license-agreement)
 
 ## Effective issue creation in Cortado
@@ -161,7 +162,53 @@ We appreciate your effort and look forward to reviewing your work!
 )
 ```
 
-## Signing the contributor license agreement
+### Multi-host RTAs
+
+Multi-host RTAs have roles that run on separate hosts. The code is split into three places:
+
+- `cortado/rtas/multihost/` -- the RTAs: one module per RTA (named after it) with rule metadata and role functions
+- `cortado/rtas/_protocols/` -- reusable protocol implementations shared by RTAs; these aren't RTAs themselves
+- `cortado/rtas/_multihost.py` -- the runtime: role context, coordination between hosts, local runs
+
+```python
+from .. import OSType, RtaParameter, register_multihost_rta
+from .._multihost import RoleContext
+
+rta = register_multihost_rta(
+    id="12345678-31db-44a8-b01d-1c0df827bddb",                     # <-- UUID
+    name="my_protocol_rta",                                        # <-- RTA name, same as the module name
+    platforms=[OSType.LINUX, OSType.MACOS],                        # <-- default platforms of the roles
+    siem_rules=[...],                                              # <-- rule metadata, as for other RTAs
+    techniques=["T1071"],
+    parameters=[RtaParameter("transport", "udp", choices=["udp", "tls"], help="...")],
+)
+
+
+@rta.role("server", listens=True)                                  # <-- listening roles start first
+def server(ctx: RoleContext) -> None:
+    host, port = ctx.bind_address(default_port=3478)
+    ...                                                            # bind
+    ctx.ready(port=actual_port)                                    # <-- announce readiness and the bound port
+    ...
+
+
+@rta.role("client")
+def client(ctx: RoleContext) -> None:
+    host, port = ctx.peer_address(default_port=3478)               # <-- from `--peer`
+    ...
+```
+
+Guidelines:
+
+- Only use the standard library in RTA modules. Import optional third-party packages lazily, only in the code path
+  that needs them, and fail with a message that says what to install. Add such packages to an optional extra
+  (for example `protocols`) in `pyproject.toml`, never to required dependencies.
+- Every wait must be bounded by `ctx.remaining()` or `ctx.deadline`. Connecting roles should retry until the
+  listening role is reachable instead of assuming start order.
+- Emit ground-truth events with `ctx.event(...)`. For multi-step scenarios, use `ctx.signal(name)` and
+  `ctx.wait_for(name)` instead of sleeping; they work in manual, orchestrated, and local runs.
+- Add a `--local` run of the RTA to `tests/test_multihost.py`.
+
 
 Please make sure you've signed the [Contributor License Agreement](http://www.elastic.co/contributor-agreement/). We're
 not asking you to assign copyright to us, but to give us the right to distribute your code without restriction. We ask

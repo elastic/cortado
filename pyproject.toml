@@ -34,6 +34,9 @@ ecs-logging = { version = "^2.0.0", optional = true }
 rich = { version = "^15.0.0", optional = true}
 pyyaml = {version = "^6.0.2", optional = true}
 tomli = {version = "^2.0.2", optional = true}
+# Dependencies for multi-host protocol RTAs: DTLS transport. python-mbedtls only ships wheels up to CPython 3.12;
+# TLS uses the standard library `ssl` module on Python 3.13+ and needs no extra dependency there.
+python-mbedtls = { version = "^2.10.1", optional = true, python = "<3.13" }
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.16"
@@ -43,10 +46,12 @@ pyright = "1.1.414"
 
 [tool.poetry.extras]
 utils = ["typer", "structlog", "ecs-logging", "rich", "pyyaml", "tomli"]
+protocols = ["python-mbedtls"]
 
 [tool.poetry.scripts]
 cortado-run-rta = "cortado.rtas._cli:run_rta"
 cortado-run-rtas = "cortado.rtas._cli:run_rtas_for_os"
+cortado-run-multihost-rta = "cortado.rtas._cli:run_multihost_rta"
 cortado = "cortado.cli:run_cli"
 
 [tool.black]
