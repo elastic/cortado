@@ -5,16 +5,15 @@
 
 # Name: Multiple RMM Vendors Queried by a Single DNS Client
 # RTA: command_and_control_multiple_rmm_vendors_network.py
-# Description: Emits complete DNS A-record transactions for AnyDesk and
-#              TeamViewer subdomains from one randomized private client
+# Description: Completes local DNS A-record transactions for AnyDesk and
+#              TeamViewer subdomains from one randomized loopback client
 #              address. Packetbeat / network_traffic.dns derives the registered
 #              domains, allowing the rule to normalize and count two vendors.
 #
-#              Requires CAP_NET_RAW. Both packet directions are spoofed, so no
+#              Requires root or CAP_NET_BIND_SERVICE to bind UDP/53. No
 #              recursive resolver or RMM service is contacted.
 
 import logging
-import os
 import random
 import socket
 import struct
@@ -25,53 +24,20 @@ from . import OSType, RuleMetadata, register_code_rta
 log = logging.getLogger(__name__)
 
 DNS_PORT = 53
-SERVER_IP = "10.10.10.10"
+SERVER_IP = "127.0.0.1"
 QUESTION_NAMES = (
     "rta-client.anydesk.com",
     "rta-client.teamviewer.com",
 )
 ANSWER_IP = "203.0.113.80"
 ANSWER_TTL_SECONDS = 60
+SOCKET_TIMEOUT_SECONDS = 5
 
 _DNS_TYPE_A = 1
 _DNS_CLASS_IN = 1
 _DNS_QUERY_FLAGS = 0x0100
 _DNS_RESPONSE_FLAGS = 0x8180
 _DNS_NAME_POINTER = 0xC00C
-
-
-def _checksum(data: bytes) -> int:
-    if len(data) % 2:
-        data += b"\x00"
-    value = sum((data[index] << 8) | data[index + 1] for index in range(0, len(data), 2))
-    value = (value & 0xFFFF) + (value >> 16)
-    value += value >> 16
-    return ~value & 0xFFFF
-
-
-def _udp_packet(src_ip: str, dst_ip: str, src_port: int, dst_port: int, payload: bytes) -> bytes:
-    src = socket.inet_aton(src_ip)
-    dst = socket.inet_aton(dst_ip)
-    udp_length = 8 + len(payload)
-    pseudo = struct.pack("!4s4sBBH", src, dst, 0, socket.IPPROTO_UDP, udp_length)
-    udp_zero = struct.pack("!HHHH", src_port, dst_port, udp_length, 0)
-    udp = struct.pack("!HHHH", src_port, dst_port, udp_length, _checksum(pseudo + udp_zero + payload))
-
-    ip_zero = struct.pack(
-        "!BBHHHBBH4s4s",
-        0x45,
-        0,
-        20 + udp_length,
-        random.randint(0, 0xFFFF),
-        0,
-        64,
-        socket.IPPROTO_UDP,
-        0,
-        src,
-        dst,
-    )
-    ip = ip_zero[:10] + struct.pack("!H", _checksum(ip_zero)) + ip_zero[12:]
-    return ip + udp + payload
 
 
 def _encode_dns_name(name: str) -> bytes:
@@ -126,38 +92,41 @@ def _dns_response(message_id: int, question_name: str) -> bytes:
     techniques=["T1219", "T1219.002"],
 )
 def main() -> None:
-    """Emit two RMM vendor DNS transactions from one client address."""
-    if os.geteuid() != 0:
-        log.error("Raw socket privileges required (run as root or with CAP_NET_RAW)")
-        return
-
-    client_ip = f"10.200.{random.randint(1, 254)}.{random.randint(1, 254)}"
-    client_port = random.randint(32768, 60000)
+    """Complete two local RMM vendor DNS transactions from one client address."""
+    client_ip = f"127.200.{random.randint(1, 254)}.{random.randint(1, 254)}"
     base_id = random.randint(1, 0xFFFF - len(QUESTION_NAMES))
 
-    sock = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_UDP)
-    sock.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
-    log.info("Emitting DNS transactions for %d RMM vendors from client %s", len(QUESTION_NAMES), client_ip)
+    server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    server.settimeout(SOCKET_TIMEOUT_SECONDS)
+    client.settimeout(SOCKET_TIMEOUT_SECONDS)
+
     try:
+        try:
+            server.bind((SERVER_IP, DNS_PORT))
+        except OSError as error:
+            log.error("Unable to bind local DNS responder to %s:%d: %s", SERVER_IP, DNS_PORT, error)
+            return
+
+        client.bind((client_ip, 0))
+        log.info("Completing local DNS transactions for %d RMM vendors from client %s", len(QUESTION_NAMES), client_ip)
+
         for index, question_name in enumerate(QUESTION_NAMES):
             message_id = base_id + index
-            query = _udp_packet(
-                client_ip,
-                SERVER_IP,
-                client_port,
-                DNS_PORT,
-                _dns_query(message_id, question_name),
-            )
-            response = _udp_packet(
-                SERVER_IP,
-                client_ip,
-                DNS_PORT,
-                client_port,
-                _dns_response(message_id, question_name),
-            )
-            _ = sock.sendto(query, (SERVER_IP, DNS_PORT))
-            time.sleep(0.01)
-            _ = sock.sendto(response, (client_ip, client_port))
-            time.sleep(0.01)
+            query = _dns_query(message_id, question_name)
+            response = _dns_response(message_id, question_name)
+
+            _ = client.sendto(query, (SERVER_IP, DNS_PORT))
+            received_query, client_address = server.recvfrom(4096)
+            if received_query != query:
+                raise RuntimeError("Local DNS responder received an unexpected request")
+
+            _ = server.sendto(response, client_address)
+            received_response, _ = client.recvfrom(4096)
+            if received_response != response:
+                raise RuntimeError("Local DNS client received an unexpected response")
+
+            time.sleep(0.05)
     finally:
-        sock.close()
+        client.close()
+        server.close()
