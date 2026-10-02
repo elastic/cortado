@@ -447,4 +447,4 @@ utils = ["ecs-logging", "pyyaml", "rich", "structlog", "tomli", "typer"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12"
-content-hash = "b50d59dfaf35771f816ba405663241e9ff05cc84e174b163c70545a3bc44facd"
+content-hash = "88052247add970f2977837d3f7deb0cf11b6d874d9ececed409b9830889a6983"
