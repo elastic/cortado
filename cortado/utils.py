@@ -121,7 +121,7 @@ def configure_logging(logging_level: int = logging.DEBUG, as_json: bool = False,
 
     # if `as_json` is `True`, event dict will contain only ECS-serialised message
     # that can be sent to `ConsoleRenderer` for output
-    renderer = structlog.dev.ConsoleRenderer(colors=with_colors, pad_event=10)
+    renderer = structlog.dev.ConsoleRenderer(colors=with_colors, pad_event_to=10)
     formatter = structlog.stdlib.ProcessorFormatter(
         foreign_pre_chain=attr_processors,
         processors=[

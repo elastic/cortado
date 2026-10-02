@@ -153,7 +153,7 @@ def file_with_data(path: str | Path, data: str | bytes):
 
 def copy_file(source: str | Path, target: str | Path):
     log.info(f"Copying `{source}` to `{target}`")
-    shutil.copy(source, target)
+    _ = shutil.copy(source, target)
 
 
 def patch_file_with_bytes(
@@ -442,7 +442,7 @@ def temp_registry_value(
             data = [data]
 
         if isinstance(old_data, list):
-            data = old_data + data
+            data = old_data + data  # type: ignore
 
     data_string = ",".join(data) if isinstance(data, list) else data  # type: ignore
     log.info(f"Writing to registry: key=`{key}`, value=`{value}`, data=`{data_string}`")
@@ -563,7 +563,6 @@ def get_process_pid(pname: str) -> int | None:
 @typing.no_type_check
 def inject_shellcode(path: Path, shellcode: bytes):
     import ctypes
-    import ctypes.wintypes
     from ctypes import windll
     from ctypes.wintypes import BOOL, DWORD, HANDLE, LPCVOID, LPVOID
 
