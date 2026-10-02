@@ -14,6 +14,19 @@ files = [
 ]
 
 [[package]]
+name = "certifi"
+version = "2026.7.22"
+description = "Python package for providing Mozilla's CA Bundle."
+optional = true
+python-versions = ">=3.7"
+groups = ["main"]
+markers = "python_version == \"3.12\" and extra == \"protocols\""
+files = [
+    {file = "certifi-2026.7.22-py3-none-any.whl", hash = "sha256:62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775"},
+    {file = "certifi-2026.7.22.tar.gz", hash = "sha256:741e2c3b351ddf169a738da9f2c048608ff7f2c5cc02f1ebc6b118bb090d5d55"},
+]
+
+[[package]]
 name = "colorama"
 version = "0.4.6"
 description = "Cross-platform colored terminal text."
@@ -193,6 +206,47 @@ pygments = ">=2.7.2"
 
 [package.extras]
 dev = ["argcomplete", "attrs (>=19.2)", "hypothesis (>=3.56)", "mock", "requests", "setuptools", "xmlschema"]
+
+[[package]]
+name = "python-mbedtls"
+version = "2.10.1"
+description = "hash, hmac, RSA, ECC, X.509, TLS, DTLS, handshakes, and secrets with an mbed TLS back end"
+optional = true
+python-versions = "*"
+groups = ["main"]
+markers = "python_version == \"3.12\" and extra == \"protocols\""
+files = [
+    {file = "python-mbedtls-2.10.1.tar.gz", hash = "sha256:a1f8ac8a6e810f80d3e8d26561e787d04047c2d098e9ce21b9266174f124e00c"},
+    {file = "python_mbedtls-2.10.1-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:4cde7a4c3d468d29acef9503befd901af47d812dd6fd3752aac318a09c1e24e9"},
+    {file = "python_mbedtls-2.10.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:dcc2c7ad83d9de6a029f5fe1452881a7652503f150e694e89344aadf67e25a00"},
+    {file = "python_mbedtls-2.10.1-cp310-cp310-musllinux_1_1_i686.whl", hash = "sha256:2dcb285807712ae28b065f4db0423044a97faa8f8265098182f527212fb22451"},
+    {file = "python_mbedtls-2.10.1-cp310-cp310-musllinux_1_1_x86_64.whl", hash = "sha256:7f92b5356d3ca6f13ae323b155a75b93c3e03848bf81c7f965584acaf58b5c97"},
+    {file = "python_mbedtls-2.10.1-cp310-cp310-win_amd64.whl", hash = "sha256:29155fdf680a99827227dec2631b8d48488fec9bd4d74ce05da77ab0c911f22b"},
+    {file = "python_mbedtls-2.10.1-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:5175e620a415c4142e29f0041656425cddfcc1b551bf6309d01402de4ce3b6ff"},
+    {file = "python_mbedtls-2.10.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:3f2316a1ba4909e35d378a2d7ab957bd67b98501f8f6c875160aeb76de306981"},
+    {file = "python_mbedtls-2.10.1-cp311-cp311-musllinux_1_1_i686.whl", hash = "sha256:1f70b096ce8b8110ecd92e64f721a4ea8782bd5eba3f132fb6907c5b3ad8e1e0"},
+    {file = "python_mbedtls-2.10.1-cp311-cp311-musllinux_1_1_x86_64.whl", hash = "sha256:6d80fd3cb6437aa5500a1981fc69a8c26fffd3f2ba2cab00d2ca5c523e49dad9"},
+    {file = "python_mbedtls-2.10.1-cp311-cp311-win_amd64.whl", hash = "sha256:b8576cc3bc12291d2dcdf15f1ee37649cfd3590528a4b9a729aada5aed5a1635"},
+    {file = "python_mbedtls-2.10.1-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:2dccf478a00762d60033bc11a202dfc5f3f1da4921cb793f6741a29c3ab34771"},
+    {file = "python_mbedtls-2.10.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:38fe76bcd959c4a3ae575df6d5957bbf2005b5a1119d1625bc0e3da889212b16"},
+    {file = "python_mbedtls-2.10.1-cp312-cp312-musllinux_1_1_i686.whl", hash = "sha256:c9ad78bee9e7460d8291b78451d309debd49cdf82faeee2d2a378c6947dd5477"},
+    {file = "python_mbedtls-2.10.1-cp312-cp312-musllinux_1_1_x86_64.whl", hash = "sha256:00af93c71fc408f4d886070b436449afa0e53ad5e5b98eb382ad91358c2c33ef"},
+    {file = "python_mbedtls-2.10.1-cp312-cp312-win_amd64.whl", hash = "sha256:274dfe1e5712c6a8a07cf3a092a2b43967d83ff23e1534b46b0aa6b41a52ddd0"},
+    {file = "python_mbedtls-2.10.1-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:99de3af3265a931b89ad490ef8d262b024ccf1111dd88bbeeeb1d8050d2e18ee"},
+    {file = "python_mbedtls-2.10.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:a1ecaef4235a58411b6faf623b4e3f64e5aa2bb74f61b68806167c738367edc7"},
+    {file = "python_mbedtls-2.10.1-cp38-cp38-musllinux_1_1_i686.whl", hash = "sha256:fd2bac338882221b46fee8c1c98ed10e848cd6d6db2ee71c95d38d67abfe1715"},
+    {file = "python_mbedtls-2.10.1-cp38-cp38-musllinux_1_1_x86_64.whl", hash = "sha256:23be9a587adcd84fa119b2753eafe24b9b7130ef4092cb2f34fa5faeec8cfc59"},
+    {file = "python_mbedtls-2.10.1-cp38-cp38-win_amd64.whl", hash = "sha256:66a5e36694cad3011f35857ff3cb1dc23e36d8b9a7e9e6e30a26f1fd628d5928"},
+    {file = "python_mbedtls-2.10.1-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:b9dd25824dd4f8a78e84f9c2d91ad18fbd13395a36c1e9169656e91392e9addc"},
+    {file = "python_mbedtls-2.10.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:994e4f3c4fece1fb93ba40b0daa5844ffa32dbef74097e30f944faa0239888cf"},
+    {file = "python_mbedtls-2.10.1-cp39-cp39-musllinux_1_1_i686.whl", hash = "sha256:04d8bd56d5bcf41b64296be7bcaaf2cac3d0d6bf9134934a0a221b0898321589"},
+    {file = "python_mbedtls-2.10.1-cp39-cp39-musllinux_1_1_x86_64.whl", hash = "sha256:9e00a0812ed0864b70dfb43979d881885f875525db5c001db541ba96907eb1db"},
+    {file = "python_mbedtls-2.10.1-cp39-cp39-win_amd64.whl", hash = "sha256:2ad116a169bfaf9d37ffd9b2b96799c9aa844e08119290be20db6a7ede5822f0"},
+]
+
+[package.dependencies]
+certifi = "*"
+typing-extensions = "*"
 
 [[package]]
 name = "pyyaml"
@@ -435,16 +489,18 @@ version = "4.16.0"
 description = "Backported and Experimental Type Hints for Python 3.9+"
 optional = false
 python-versions = ">=3.9"
-groups = ["dev"]
+groups = ["main", "dev"]
 files = [
     {file = "typing_extensions-4.16.0-py3-none-any.whl", hash = "sha256:481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8"},
     {file = "typing_extensions-4.16.0.tar.gz", hash = "sha256:dc983d19a509c94dba722ee6abd33940f7c05a89e243c47e907eb4db6f1a43e5"},
 ]
+markers = {main = "python_version == \"3.12\" and extra == \"protocols\""}
 
 [extras]
+protocols = ["python-mbedtls"]
 utils = ["ecs-logging", "pyyaml", "rich", "structlog", "tomli", "typer"]
 
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12"
-content-hash = "b50d59dfaf35771f816ba405663241e9ff05cc84e174b163c70545a3bc44facd"
+content-hash = "e781209d49a109335128cd50315e498b3548d2c3cd001f20c058418625199ee7"
