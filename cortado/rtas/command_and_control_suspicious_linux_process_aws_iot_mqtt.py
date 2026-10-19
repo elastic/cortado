@@ -6,18 +6,16 @@
 # Name: Suspicious Linux Process Connection to AWS IoT Core MQTT
 # RTA: command_and_control_suspicious_linux_process_aws_iot_mqtt.py
 # Description: Runs one Linux process from /tmp whose name starts with a dot.
-#              That process resolves a synthetic AWS IoT Core ATS name and then
-#              attempts an outbound TCP connection to a public address on
+#              That process resolves an AWS IoT Core ATS name and then attempts
+#              an outbound TCP connection to one of the returned addresses on
 #              TCP/443. Elastic Defend attributes both events to the same
 #              process.entity_id, which is the sequence the rule requires.
 #
 #              The executable path matches /tmp/* and the process name matches
 #              the hidden-name clause. The DNS question matches
-#              *-ats.iot.*.amazonaws.com. The name is not a real AWS IoT
-#              endpoint, and the connection is not made to a resolved broker
-#              address. The rule correlates the lookup with any later public
-#              connection on TCP/443 or TCP/8883; this run uses TCP/443 so the
-#              attempt can complete against a public listener.
+#              *-ats.iot.*.amazonaws.com. The connection uses an IPv4 address
+#              returned by that lookup, satisfying the rule's DNS answer to
+#              destination IP correlation.
 #
 #              Linux DNS events require Elastic Defend on Stack 9.3.0 or later.
 
@@ -30,22 +28,29 @@ from . import OSType, RuleMetadata, _common, register_code_rta
 log = logging.getLogger(__name__)
 
 SUSPICIOUS_EXECUTABLE = "/tmp/.cortado-aws-iot"
-AWS_IOT_ATS_NAME = "cortado-ats.iot.us-east-1.amazonaws.com"
-PUBLIC_DESTINATION_IP = "8.8.8.8"
+# Public endpoint used by Espressif's AWS IoT tutorial.
+AWS_IOT_ATS_NAME = "a3orti3lw2padm-ats.iot.us-east-1.amazonaws.com"
 DESTINATION_PORT = 443
 
-# argv after -c: DNS name, destination IP, destination port.
+# argv after -c: DNS name, destination port.
 _CHILD_CODE = """
 import socket
 import sys
 
 name = sys.argv[1]
-destination = sys.argv[2]
-port = int(sys.argv[3])
+port = int(sys.argv[2])
 try:
-    socket.getaddrinfo(name, port, type=socket.SOCK_STREAM)
-except OSError:
-    pass
+    answers = socket.getaddrinfo(
+        name,
+        port,
+        family=socket.AF_INET,
+        type=socket.SOCK_STREAM,
+        proto=socket.IPPROTO_TCP,
+    )
+except OSError as error:
+    raise SystemExit(f"Could not resolve {name}: {error}") from error
+
+destination = answers[0][4][0]
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.settimeout(3)
 try:
@@ -85,7 +90,7 @@ def _elf_interpreter() -> Path | None:
     techniques=["T1071", "T1071.005"],
 )
 def main() -> None:
-    """Look up a synthetic AWS IoT ATS name and connect outbound from /tmp."""
+    """Look up an AWS IoT ATS name and connect to its resolved IP from /tmp."""
     source = _elf_interpreter()
     if source is None:
         return
@@ -94,9 +99,8 @@ def main() -> None:
     try:
         _ = _common.execute_command(["chmod", "+x", SUSPICIOUS_EXECUTABLE])
         log.info(
-            "Resolving %s and connecting to %s:%d from %s",
+            "Resolving %s and connecting to one of its addresses on TCP/%d from %s",
             AWS_IOT_ATS_NAME,
-            PUBLIC_DESTINATION_IP,
             DESTINATION_PORT,
             SUSPICIOUS_EXECUTABLE,
         )
@@ -106,7 +110,6 @@ def main() -> None:
                 "-c",
                 _CHILD_CODE,
                 AWS_IOT_ATS_NAME,
-                PUBLIC_DESTINATION_IP,
                 str(DESTINATION_PORT),
             ],
             timeout_secs=15,
