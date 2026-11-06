@@ -412,15 +412,15 @@ files = [
 
 [[package]]
 name = "typer"
-version = "0.27.2"
+version = "0.28.0"
 description = "Typer, build great CLIs. Easy to code. Based on Python type hints."
 optional = true
 python-versions = ">=3.10"
 groups = ["main"]
 markers = "extra == \"utils\""
 files = [
-    {file = "typer-0.27.2-py3-none-any.whl", hash = "sha256:b3a5fc4342d5fc8fda8fc3010b1cf117e9249aab7fae800c2eff62fd3842d97d"},
-    {file = "typer-0.27.2.tar.gz", hash = "sha256:269b7eb9d3c202ca84b4bc9618cb04ebb43d3d4d1e567e4c768607232c05f945"},
+    {file = "typer-0.28.0-py3-none-any.whl", hash = "sha256:afd18929180b706c5e9a239f53c3c8136903553c0c2d460598bbaa924191d4ab"},
+    {file = "typer-0.28.0.tar.gz", hash = "sha256:69ab84ef79fd601cff071bbd2566d855ecadfd93adbc4b3360b9924359bdd857"},
 ]
 
 [package.dependencies]
@@ -447,4 +447,4 @@ utils = ["ecs-logging", "pyyaml", "rich", "structlog", "tomli", "typer"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12"
-content-hash = "b50d59dfaf35771f816ba405663241e9ff05cc84e174b163c70545a3bc44facd"
+content-hash = "ebc7783e0bd2129f9ffd575a52a6b72a3d5cb5aec5b1135ad989015b35c16c61"
