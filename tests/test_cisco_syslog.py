@@ -23,6 +23,7 @@ from cortado.rtas._syslog import (
     send_syslog,
 )
 from cortado.rtas.fortigate_configuration_file_downloaded import (
+    DEFAULT_FORTIGATE_SYSLOG_PORT,
     build_fortigate_configuration_download_message,
     main as fortigate_main,
 )
@@ -209,5 +210,6 @@ def test_fortigate_main_honors_shared_dry_run(monkeypatch, caplog):
         fortigate_main()
 
     socket_factory.assert_not_called()
+    assert f"to {DEFAULT_SYSLOG_HOST}:{DEFAULT_FORTIGATE_SYSLOG_PORT}" in caplog.text
     assert 'logid="0100032095"' in caplog.text
     assert 'action="download"' in caplog.text

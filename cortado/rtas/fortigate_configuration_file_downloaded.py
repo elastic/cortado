@@ -17,8 +17,9 @@
 from datetime import UTC, datetime
 
 from . import OSType, RuleMetadata, register_code_rta
-from ._syslog import send_syslog
+from ._syslog import config_from_environment, send_syslog
 
+DEFAULT_FORTIGATE_SYSLOG_PORT = 9004
 APPLIANCE_NAME = "fortigate-rta"
 DEVICE_ID = "FGVMTM0000000001"
 ADMIN_USER = "rta-admin"
@@ -57,4 +58,5 @@ def build_fortigate_configuration_download_message(timestamp: datetime | None = 
 )
 def main() -> None:
     """Send one FortiGate configuration-download event."""
-    send_syslog([build_fortigate_configuration_download_message()])
+    config = config_from_environment(default_port=DEFAULT_FORTIGATE_SYSLOG_PORT)
+    send_syslog([build_fortigate_configuration_download_message()], config)

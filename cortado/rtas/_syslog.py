@@ -50,7 +50,7 @@ def _read_boolean(name: str) -> bool:
     return value == "1"
 
 
-def config_from_environment() -> SyslogConfig:
+def config_from_environment(*, default_port: int = DEFAULT_SYSLOG_PORT) -> SyslogConfig:
     """Read and validate the shared syslog sender environment variables."""
     host = os.environ.get("CORTADO_SYSLOG_HOST", DEFAULT_SYSLOG_HOST).strip()
     if not host:
@@ -58,7 +58,7 @@ def config_from_environment() -> SyslogConfig:
     if "\x00" in host or any(character.isspace() for character in host):
         raise SyslogConfigurationError("CORTADO_SYSLOG_HOST contains invalid characters")
 
-    port_text = os.environ.get("CORTADO_SYSLOG_PORT", str(DEFAULT_SYSLOG_PORT)).strip()
+    port_text = os.environ.get("CORTADO_SYSLOG_PORT", str(default_port)).strip()
     if not port_text.isascii() or not port_text.isdigit():
         raise SyslogConfigurationError("CORTADO_SYSLOG_PORT must be an integer between 1 and 65535")
     port = int(port_text)
