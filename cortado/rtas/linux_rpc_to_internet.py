@@ -5,21 +5,28 @@
 
 # Name: RPC (Remote Procedure Call) to the Internet (Linux)
 # RTA: linux_rpc_to_internet.py
-# Description: Initiates outbound TCP connections from the local (presumed
-#              RFC1918) host to public Internet IPs on TCP/135 (Microsoft
-#              DCE/RPC endpoint mapper). The connection attempt produces a
-#              network flow event with source.ip in private space and
-#              destination.ip on the public Internet, matching the rule.
+# Description: Emits a complete synthetic TCP session from an RFC1918 source
+#              to a public destination on TCP/135 through the monitored
+#              physical interface. Ethernet frames are addressed back to the
+#              local adapter, so no traffic is routed to the public endpoint.
 
 import logging
-import socket
+import random
 
 from . import OSType, RuleMetadata, register_code_rta
+from ._synthetic_tcp import (
+    SyntheticTcpError,
+    build_tcp_exchange,
+    configured_interface,
+    emit_frames,
+    interface_mac_address,
+)
 
 log = logging.getLogger(__name__)
 
 RPC_PORT = 135
-TARGET_PUBLIC_HOSTS = ["8.8.8.8", "1.1.1.1"]
+PRIVATE_SOURCE_IP = "10.10.10.10"
+PUBLIC_DESTINATION_IP = "8.8.8.8"
 
 
 @register_code_rta(
@@ -36,16 +43,25 @@ TARGET_PUBLIC_HOSTS = ["8.8.8.8", "1.1.1.1"]
     techniques=["T1190", "T1021", "T1021.003"],
 )
 def main() -> None:
-    """Generate outbound TCP/135 (DCE/RPC) traffic from a private host to the public Internet."""
-    for host in TARGET_PUBLIC_HOSTS:
-        log.info("Attempting outbound RPC connection to %s:%d", host, RPC_PORT)
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.settimeout(3)
-        try:
-            sock.connect((host, RPC_PORT))
-            log.info("RPC connection to %s:%d established", host, RPC_PORT)
-        except (socket.timeout, OSError) as e:
-            # SYN packet still produces a flow event even on RST/timeout.
-            log.info("RPC connection to %s:%d did not complete (%s) - flow event still emitted", host, RPC_PORT, e)
-        finally:
-            sock.close()
+    """Emit an established, multi-packet private-to-public TCP/135 flow."""
+    try:
+        interface = configured_interface()
+        frames = build_tcp_exchange(
+            source_ip=PRIVATE_SOURCE_IP,
+            destination_ip=PUBLIC_DESTINATION_IP,
+            source_port=random.randint(49152, 65535),
+            destination_port=RPC_PORT,
+            mac_address=interface_mac_address(interface),
+            client_payload=b"CORTADO RPC endpoint mapper request",
+            server_payload=b"CORTADO RPC endpoint mapper response",
+        )
+        log.info(
+            "Emitting established RPC session %s -> %s:%d on %s",
+            PRIVATE_SOURCE_IP,
+            PUBLIC_DESTINATION_IP,
+            RPC_PORT,
+            interface,
+        )
+        emit_frames(frames, interface=interface)
+    except SyntheticTcpError as error:
+        log.error("Unable to emit RPC session: %s", error)
